@@ -10,6 +10,7 @@ import {
   Text,
   Touchable,
   View,
+  TouchableOpacity,
   Image,
 } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
@@ -53,45 +54,21 @@ export default function DrawerContent(props) {
             <View
               style={{ flexDirection: "row", justifyContent: "space-between" }}
             >
-              <Button transparent>
-                <View
-                  style={{
-                    borderBottomColor: "white",
-                    borderBottomWidth: 0.2,
-                    padding: 5,
-                  }}
-                >
-                  <Text style={[drawerstyles.text, { fontSize: 12 }]}>
-                    טפסים פעילים
-                  </Text>
-                </View>
-              </Button>
-              <Button transparent>
-                <View
-                  style={{
-                    borderBottomColor: "white",
-                    borderBottomWidth: 0.2,
-                    padding: 5,
-                  }}
-                >
-                  <Text style={[drawerstyles.text, { fontSize: 12 }]}>
-                    היסטורית שליחות
-                  </Text>
-                </View>
-              </Button>
-              <Button transparent>
-                <View
-                  style={{
-                    borderBottomColor: "white",
-                    borderBottomWidth: 0.2,
-                    padding: 5,
-                  }}
-                >
-                  <Text style={[drawerstyles.text, { fontSize: 12 }]}>
-                    הגדרות
-                  </Text>
-                </View>
-              </Button>
+              <TouchableOpacity>
+                <Text style={[drawerstyles.text, { fontSize: 12 }]}>
+                  טפסים פעילים
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={[drawerstyles.text, { fontSize: 12 }]}>
+                  היסטורית שליחות
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={[drawerstyles.text, { fontSize: 12 }]}>
+                  הגדרות
+                </Text>
+              </TouchableOpacity>
             </View>
 
             <ColorLine />
@@ -100,65 +77,42 @@ export default function DrawerContent(props) {
 
         <View style={{ marginLeft: 8 }}>
           <DrawerItem
-            labelStyle={{
-              color: "white",
-              borderBottomColor: "white",
-              borderBottomWidth: 1,
-            }}
+            labelStyle={drawerstyles.labelStyle}
             label='כל המשחקים'
             onPress={() => {
               props.navigation.navigate("Home");
             }}
           />
           <DrawerItem
-            labelStyle={{
-              color: "white",
-              borderBottomColor: "white",
-              borderBottomWidth: 1,
-            }}
+            labelStyle={drawerstyles.labelStyle}
             label='תוצאות הגרלה'
             onPress={() => {
               props.navigation.navigate("Home");
             }}
           />
           <DrawerItem
-            labelStyle={{
-              borderBottomColor: "white",
-              borderBottomWidth: 1,
-            }}
+            labelStyle={drawerstyles.labelStyle}
             label='עזרה'
             onPress={() => {
               props.navigation.navigate("Home");
             }}
           />
           <DrawerItem
-            labelStyle={{
-              color: "white",
-              borderBottomColor: "white",
-              borderBottomWidth: 1,
-            }}
+            labelStyle={drawerstyles.labelStyle}
             label='שאלות ותשובות'
             onPress={() => {
               props.navigation.navigate("Home");
             }}
           />
           <DrawerItem
-            labelStyle={{
-              color: "white",
-              borderBottomColor: "white",
-              borderBottomWidth: 1,
-            }}
+            labelStyle={drawerstyles.labelStyle}
             label='אודות'
             onPress={() => {
               props.navigation.navigate("Home");
             }}
           />
           <DrawerItem
-            labelStyle={{
-              color: "white",
-              borderBottomColor: "white",
-              borderBottomWidth: 1,
-            }}
+            labelStyle={drawerstyles.labelStyle}
             label='צור קשר'
             onPress={() => {
               props.navigation.navigate("Home");
@@ -168,49 +122,51 @@ export default function DrawerContent(props) {
         <ColorLine />
 
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Button transparent>
-            <View
-              style={{
-                borderBottomColor: "white",
-                borderBottomWidth: 0.2,
+          <TouchableOpacity
+            style={{
+              borderBottomColor: "white",
+              borderBottomWidth: 0.2,
 
-                margin: 15,
-              }}
-            >
-              <Text style={[drawerstyles.text, { fontSize: 12 }]}>
-                הצהרת נגישות
-              </Text>
-            </View>
-          </Button>
-          <Button transparent>
-            <View
-              style={{
-                borderBottomColor: "white",
-                borderBottomWidth: 0.2,
-              }}
-            >
-              <Text style={[drawerstyles.text, { fontSize: 12 }]}>
-                תנאי שימוש באתר
-              </Text>
-            </View>
-          </Button>
-          <Button transparent>
-            <View
-              style={{
-                borderBottomColor: "white",
-                borderBottomWidth: 0.2,
-              }}
-            >
-              <Text style={[drawerstyles.text, { fontSize: 12 }]}>תקנון</Text>
-            </View>
-          </Button>
+              margin: 15,
+            }}
+          >
+            <Text style={[drawerstyles.text, { fontSize: 12 }]}>
+              הצהרת נגישות
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              borderBottomColor: "white",
+              borderBottomWidth: 0.2,
+
+              margin: 15,
+            }}
+          >
+            <Text style={[drawerstyles.text, { fontSize: 12 }]}>
+              תנאי שימוש באתר
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              borderBottomColor: "white",
+              borderBottomWidth: 0.2,
+
+              margin: 15,
+            }}
+          >
+            <Text style={[drawerstyles.text, { fontSize: 12 }]}>תקנון</Text>
+          </TouchableOpacity>
         </View>
-        <Button transparent>
-          <Text style={drawerstyles.text}>העמוד שלנו בפייסבוק</Text>
-        </Button>
-        <Button transparent>
-          <Text style={drawerstyles.text}>העמוד שלנו באינסטגרם</Text>
-        </Button>
+        <View style={{ padding: 15 }}>
+          <TouchableOpacity style={{ marginBottom: 7 }}>
+            <Text style={drawerstyles.text}>העמוד שלנו בפייסבוק</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={drawerstyles.text}>העמוד שלנו באינסטגרם</Text>
+          </TouchableOpacity>
+        </View>
       </DrawerContentScrollView>
     </View>
   );

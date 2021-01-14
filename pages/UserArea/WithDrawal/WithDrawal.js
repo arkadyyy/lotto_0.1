@@ -17,10 +17,10 @@ import {
 } from "native-base";
 import ViewForm from "../ViewForm";
 
-const WithDrawal = () => {
+const Withdrawal = () => {
   const [open, setOpen] = useState(false);
 
-  return(
+  return (
     <>
       <View
         style={{
@@ -35,11 +35,10 @@ const WithDrawal = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
-            flex:1
-
+            flex: 0.5,
           }}
         >
-         מספר
+          מספר
         </Text>
         <Text
           style={{
@@ -49,8 +48,7 @@ const WithDrawal = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
-            flex:1
-
+            flex: 0.5,
           }}
         >
           תאריך ושעה
@@ -61,14 +59,13 @@ const WithDrawal = () => {
             fontSize: 12,
             backgroundColor: "#263742",
             padding: 7,
-            marginLeft:2,
-            marginRight:2,
-            flex:1,
+            marginLeft: 2,
+            marginRight: 2,
+            flex: 1.5,
           }}
         >
-         סה"כ בש"ח
+          סה"כ בש"ח
         </Text>
-       
       </View>
 
       <List
@@ -94,7 +91,8 @@ const WithDrawal = () => {
           </View>
           <View>
             <Button
-              style={{ borderColor: "white", padding: 5, marginLeft:'47%' }}
+              disabled
+              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
               small
               bordered
               onPress={() => {
@@ -118,7 +116,8 @@ const WithDrawal = () => {
           </View>
           <View>
             <Button
-              style={{ borderColor: "white", padding: 5, marginLeft:'47%' }}
+              disabled
+              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
               small
               bordered
               onPress={() => {
@@ -142,7 +141,8 @@ const WithDrawal = () => {
           </View>
           <View>
             <Button
-              style={{ borderColor: "white", padding: 5, marginLeft:'47%' }}
+              disabled
+              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
               small
               bordered
               onPress={() => {
@@ -153,12 +153,9 @@ const WithDrawal = () => {
             </Button>
           </View>
         </ListItem>
-
-       
-
-        </List>
+      </List>
     </>
   );
 };
 
-export default WithDrawal;
+export default Withdrawal;

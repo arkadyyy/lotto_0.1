@@ -2,7 +2,7 @@ import "react-native-gesture-handler";
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { I18nManager } from "react-native";
+import { I18nManager, TouchableOpacity } from "react-native";
 import {
   createStackNavigator,
   DrawerContentScrollView,

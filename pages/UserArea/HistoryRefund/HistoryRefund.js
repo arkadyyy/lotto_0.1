@@ -20,7 +20,7 @@ import ViewForm from "../ViewForm";
 const HistoryRefund = () => {
   const [open, setOpen] = useState(false);
 
-  return(
+  return (
     <>
       <View
         style={{
@@ -35,11 +35,10 @@ const HistoryRefund = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
-            flex:0.5
-
+            flex: 0.5,
           }}
         >
-         מספר
+          מספר
         </Text>
         <Text
           style={{
@@ -49,8 +48,7 @@ const HistoryRefund = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
-            flex:0.5
-
+            flex: 0.5,
           }}
         >
           תאריך ושעה
@@ -61,14 +59,13 @@ const HistoryRefund = () => {
             fontSize: 12,
             backgroundColor: "#263742",
             padding: 7,
-            marginLeft:2,
-            marginRight:2,
-            flex:2,
+            marginLeft: 2,
+            marginRight: 2,
+            flex: 2,
           }}
         >
-         סה"כ בש"ח
+          סה"כ בש"ח
         </Text>
-       
       </View>
 
       <List
@@ -94,7 +91,8 @@ const HistoryRefund = () => {
           </View>
           <View>
             <Button
-              style={{ borderColor: "white", padding: 5, marginLeft:'47%' }}
+              disabled
+              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
               small
               bordered
               onPress={() => {
@@ -118,7 +116,8 @@ const HistoryRefund = () => {
           </View>
           <View>
             <Button
-              style={{ borderColor: "white", padding: 5, marginLeft:'47%' }}
+              disabled
+              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
               small
               bordered
               onPress={() => {
@@ -129,11 +128,7 @@ const HistoryRefund = () => {
             </Button>
           </View>
         </ListItem>
-    
-
-       
-
-        </List>
+      </List>
     </>
   );
 };
