@@ -27,10 +27,10 @@ const homestyles = StyleSheet.create({
     width: "100%",
   },
   openingPageBtns: {
-    height: 260,
+    height: 110,
     margin: 35,
     width: "100%",
-    justifyContent: "center",
+    justifyContent: "flex-start",
 
     flexWrap: "wrap",
     alignItems: "flex-start",
@@ -38,14 +38,34 @@ const homestyles = StyleSheet.create({
   },
   openingPageBtn: {
     // flexGrow: 1,
-
-    width: 95,
-    height: 80,
+    flexDirection: "column",
+    justifyContent: "center",
+    width: 102,
+    height: 103,
     margin: 10,
     borderRadius: 7,
   },
+  openingPageBtnBorder: {
+    borderWidth: 1.5,
+    borderColor: "white",
+    borderRadius: 7,
+
+    paddingLeft: "15%",
+    paddingRight: "15%",
+    paddingBottom: "5%",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  openingPageTopIcon: {
+    width: 40,
+    height: 30,
+    position: "relative",
+  },
   openingPageBtnLastBtns: {
     backgroundColor: "#263742",
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: 13,
   },
   btnWrapper: {
     justifyContent: "center",
