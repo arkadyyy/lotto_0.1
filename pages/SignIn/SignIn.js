@@ -52,40 +52,36 @@ const SignIn = ({ navigation }) => {
             ></View>
             {/* 00ADEF Deep Sky Blue*/}
 
-            <View style={signInstyles.whiteSquare}>
+            <View style={[signInstyles.whiteSquare]}>
               <Text
                 style={{
-                  flex: 1,
-                  flexDirection: "row",
                   fontSize: 25,
-                  marginStart: 10,
                 }}
               >
                 לקוח חדש
               </Text>
 
-              <Button
-                small
-                style={{
-                  flex: 0.5,
-                  alignItems: "center",
-                  justifyContent: "center",
-
-                  borderRadius: 13,
-                  backgroundColor: "#000000",
-                }}
-                onPress={() => navigation.navigate("Home")}
-              >
-                <Text
+              <View>
+                <Button
+                  small
                   style={{
-                    fontWeight: "bold",
-                    color: "white",
-                    fontSize: 10,
+                    borderRadius: 13,
+                    backgroundColor: "#000000",
                   }}
+                  onPress={() => navigation.navigate("Home")}
                 >
-                  רשום? התחבר עכשיו
-                </Text>
-              </Button>
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                      color: "white",
+                      fontSize: 10,
+                      padding: 15,
+                    }}
+                  >
+                    רשום? התחבר עכשיו
+                  </Text>
+                </Button>
+              </View>
             </View>
 
             <View
@@ -98,15 +94,13 @@ const SignIn = ({ navigation }) => {
                 style={{
                   flex: 1,
                   flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
+                  marginBottom: 30,
                 }}
               >
                 <Text
                   style={{
                     flex: 1,
                     color: "white",
-                    marginBottom: 30,
 
                     // textAlign: "left",
                     // margin: 20,
@@ -117,20 +111,25 @@ const SignIn = ({ navigation }) => {
                 </Text>
 
                 <View style={signInstyles.radioGenderButons}>
-                  <Button
-                    rounded
-                    style={signInstyles.radioGenderButon}
-                    onPress={() => setGender("men")}
-                  >
-                    <Text style={{ color: "white" }}>גבר</Text>
-                  </Button>
-                  <Button
-                    rounded
-                    style={signInstyles.radioGenderButon}
-                    onPress={() => setGender("women")}
-                  >
-                    <Text style={{ color: "white" }}>אישה</Text>
-                  </Button>
+                  <View>
+                    <Button
+                      rounded
+                      style={signInstyles.radioGenderButon}
+                      onPress={() => setGender("men")}
+                    >
+                      <Text style={{ color: "white" }}>גבר</Text>
+                    </Button>
+                  </View>
+
+                  <View>
+                    <Button
+                      rounded
+                      style={signInstyles.radioGenderButon}
+                      onPress={() => setGender("women")}
+                    >
+                      <Text style={{ color: "white" }}>אישה</Text>
+                    </Button>
+                  </View>
                 </View>
               </View>
 

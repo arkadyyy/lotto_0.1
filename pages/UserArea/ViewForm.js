@@ -9,10 +9,16 @@ const ViewForm = () => {
           width: 30,
           height: 30,
           borderRadius: 30,
-          backgroundColor: "white",
+          backgroundColor: "#263742",
+          borderColor: "white",
+          borderWidth: 1,
           margin: 5,
+          justifyContent: "center",
+          alignItems: "center",
         }}
-      ></View>
+      >
+        <Text style={{ color: "white" }}>7</Text>
+      </View>
       <View
         style={{
           width: 30,
@@ -20,8 +26,25 @@ const ViewForm = () => {
           borderRadius: 30,
           backgroundColor: "white",
           margin: 5,
+          justifyContent: "center",
+          alignItems: "center",
         }}
-      ></View>
+      >
+        <Text>6</Text>
+      </View>
+      <View
+        style={{
+          width: 30,
+          height: 30,
+          borderRadius: 30,
+          backgroundColor: "#FFFF00",
+          margin: 5,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text>5</Text>
+      </View>
       <View
         style={{
           width: 30,
@@ -29,8 +52,12 @@ const ViewForm = () => {
           borderRadius: 30,
           backgroundColor: "white",
           margin: 5,
+          justifyContent: "center",
+          alignItems: "center",
         }}
-      ></View>
+      >
+        <Text>4</Text>
+      </View>
       <View
         style={{
           width: 30,
@@ -38,26 +65,12 @@ const ViewForm = () => {
           borderRadius: 30,
           backgroundColor: "white",
           margin: 5,
+          justifyContent: "center",
+          alignItems: "center",
         }}
-      ></View>
-      <View
-        style={{
-          width: 30,
-          height: 30,
-          borderRadius: 30,
-          backgroundColor: "white",
-          margin: 5,
-        }}
-      ></View>
-      <View
-        style={{
-          width: 30,
-          height: 30,
-          borderRadius: 30,
-          backgroundColor: "white",
-          margin: 5,
-        }}
-      ></View>
+      >
+        <Text>3</Text>
+      </View>
       <View
         style={{
           width: 30,
@@ -70,6 +83,19 @@ const ViewForm = () => {
         }}
       >
         <Text>2</Text>
+      </View>
+      <View
+        style={{
+          width: 30,
+          height: 30,
+          borderRadius: 30,
+          backgroundColor: "white",
+          margin: 5,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text>1</Text>
       </View>
     </View>
   );

@@ -14,22 +14,20 @@ const signInstyles = StyleSheet.create({
   },
   whiteSquare: {
     margin: 10,
-    backgroundColor: "white",
 
-    paddingLeft: 20,
-    paddingRight: 20,
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
     alignItems: "center",
     height: "10%",
     width: "100%",
   },
   detailsSquare: {
     backgroundColor: "#00ADEF",
-    height: 350,
-    width: "85%",
-    padding: 15,
+
+    width: "90%",
+
     flex: 1,
+    margin: 20,
   },
 
   signInPageInput: {
@@ -50,7 +48,6 @@ const signInstyles = StyleSheet.create({
   },
 
   radioGenderButons: {
-    flex: 2,
     height: 30,
     textAlign: "center",
     alignItems: "center",
@@ -58,7 +55,7 @@ const signInstyles = StyleSheet.create({
     // marginTop: 10,
     // marginBottom: 20,
     // marginRight: 15,
-    // justifyContent:"space-between",
+    justifyContent: "space-between",
   },
   radioGenderButon: {
     flex: 1,
