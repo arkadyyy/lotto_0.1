@@ -101,7 +101,6 @@ const ActiveForms = () => {
             </Text>
             <Button
               rounded
-              large
               style={{
                 backgroundColor: "#FBB03B",
                 borderColor: "white",

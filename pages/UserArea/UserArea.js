@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import userAreaStyles from "./UserAreaStyles";
 import {
   ScrollView,
   StyleSheet,
@@ -7,7 +8,7 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import userAreaStyles from "../UserArea/UserAreaStyles";
+
 import {
   Container,
   Header,
@@ -31,7 +32,7 @@ import BlankSquare from "../../components/BlankSquare";
 import SendHistory from "./SendHistory/SendHistory";
 import ActiveForms from "./ActiveForms/ActiveForms";
 import MyWins from "./MyWins/MyWins";
-import WithDrawl from "./WithDrawal/WithDrawal";
+import WithDrawl from "./Withdrawal/WithDrawal";
 const UserArea = ({ navigation }) => {
   const [screen, setScreen] = useState("activeForms");
   return (
@@ -56,14 +57,28 @@ const UserArea = ({ navigation }) => {
                   }}
                 >
                   <TouchableOpacity
+                    style={[
+                      userAreaStyles.toucheable,
+                      screen === "activeForms" && {
+                        borderBottomColor: "black",
+                        borderBottomWidth: 1,
+                      },
+                    ]}
                     onPress={() => {
                       setScreen("activeForms");
                     }}
                   >
-                    <Text style={{ fontSize: 10 }}> טפסים פעילים</Text>
+                    <Text style={{ fontSize: 10 }}>טפסים פעילים</Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity
+                    style={[
+                      userAreaStyles.toucheable,
+                      screen === "sendHistory" && {
+                        borderBottomColor: "black",
+                        borderBottomWidth: 1,
+                      },
+                    ]}
                     onPress={() => {
                       setScreen("sendHistory");
                     }}
@@ -72,6 +87,13 @@ const UserArea = ({ navigation }) => {
                   </TouchableOpacity>
 
                   <TouchableOpacity
+                    style={[
+                      userAreaStyles.toucheable,
+                      screen === "myWins" && {
+                        borderBottomColor: "black",
+                        borderBottomWidth: 1,
+                      },
+                    ]}
                     onPress={() => {
                       setScreen("myWins");
                     }}
@@ -92,14 +114,28 @@ const UserArea = ({ navigation }) => {
                   }}
                 >
                   <TouchableOpacity
+                    style={[
+                      userAreaStyles.toucheable,
+                      screen === "withdrawal" && {
+                        borderBottomColor: "black",
+                        borderBottomWidth: 1,
+                      },
+                    ]}
                     onPress={() => {
-                      setScreen("WithDrawl");
+                      setScreen("withdrawal");
                     }}
                   >
                     <Text style={{ fontSize: 10 }}>משיכות</Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity
+                    style={[
+                      userAreaStyles.toucheable,
+                      screen === "paymentHistory" && {
+                        borderBottomColor: "black",
+                        borderBottomWidth: 1,
+                      },
+                    ]}
                     onPress={() => {
                       setScreen("paymentHistory");
                     }}
@@ -108,8 +144,15 @@ const UserArea = ({ navigation }) => {
                   </TouchableOpacity>
 
                   <TouchableOpacity
+                    style={[
+                      userAreaStyles.toucheable,
+                      screen === "myWins2" && {
+                        borderBottomColor: "black",
+                        borderBottomWidth: 1,
+                      },
+                    ]}
                     onPress={() => {
-                      setScreen("myWins");
+                      setScreen("myWins2");
                     }}
                   >
                     <Text style={{ fontSize: 10 }}>הזכיות שלי</Text>
@@ -128,7 +171,13 @@ const UserArea = ({ navigation }) => {
                   }}
                 >
                   <TouchableOpacity
-                    style={userAreaStyles}
+                    style={[
+                      userAreaStyles.toucheable,
+                      screen === "refundHistory" && {
+                        borderBottomColor: "black",
+                        borderBottomWidth: 1,
+                      },
+                    ]}
                     onPress={() => {
                       setScreen("refundHistory");
                     }}
@@ -169,7 +218,7 @@ const UserArea = ({ navigation }) => {
             {screen === "activeForms" && <ActiveForms />}
             {screen === "sendHistory" && <SendHistory />}
             {screen === "myWins" && <MyWins />}
-            {screen === "WithDrawl" && <WithDrawl />}
+            {screen === "withdrawal" && <WithDrawl />}
             {/* {screen === "paymentHistory" && <SendHistory />} */}
             {/* {screen === "myWins" && <SendHistory />} */}
             {/* {screen === "refundHistory" && <SendHistory />} */}
