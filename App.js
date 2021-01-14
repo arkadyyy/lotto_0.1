@@ -12,17 +12,10 @@ import Home from "./pages/Home/Home";
 import UserArea from "./pages/UserArea/UserArea";
 import SignIn from "./pages/SignIn/SignIn";
 import StackWrapper from "./StackWrapper";
+import DrawerContent from "./pages/DrawerContent/DrawerContent";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-
-// function CustomDrawerContent(props) {
-//   return (
-//     <View>
-//       <Text>this is the drawer comp !</Text>
-//     </View>
-//   );
-// }
 
 // function MyDrawer() {
 //   return (
@@ -37,7 +30,10 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-        <Drawer.Navigator initialRouteName='Home'>
+        <Drawer.Navigator
+          drawerContent={(props) => <DrawerContent {...props} />}
+          initialRouteName='Home'
+        >
           <Drawer.Screen name='Home' component={Home} />
           <Drawer.Screen name='UserArea' component={UserArea} />
           <Drawer.Screen name='SignIn' component={SignIn} />

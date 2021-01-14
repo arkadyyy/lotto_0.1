@@ -21,6 +21,11 @@ import {
   ListItem,
   CheckBox,
 } from "native-base";
+<<<<<<< HEAD
+=======
+// import Hr from "azir-hr";
+import Hr from "react-native-hr-component";
+>>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
 
 import NavBar from "../../components/NavBar";
 import { color } from "react-native-reanimated";
@@ -37,7 +42,11 @@ const SignIn = ({ navigation }) => {
 
   return (
     <>
+<<<<<<< HEAD
       <NavBar navigation={navigation} screenName={'signIn'}/>
+=======
+      <NavBar navigation={navigation} titleText='הרשמה ופרטי תשלום' />
+>>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
 
       <View
         style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
@@ -55,10 +64,16 @@ const SignIn = ({ navigation }) => {
             <View style={signInstyles.whiteSquare}>
               <Text
                 style={{
+<<<<<<< HEAD
                   flex: 1,
                   flexDirection: "row",
                   fontSize: 25,
                   marginStart:10
+=======
+                  flex: 2,
+                  flexDirection: "row",
+                  fontSize: 25,
+>>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
                 }}
               >
                 לקוח חדש
@@ -66,6 +81,7 @@ const SignIn = ({ navigation }) => {
 
               <Button
                 style={{
+<<<<<<< HEAD
                   flex:0.5,
                   alignItems: "center",
                   justifyContent: "center",
@@ -79,6 +95,19 @@ const SignIn = ({ navigation }) => {
                 onPress={()=>navigation.navigate("Home")}
               >
                 <Text  style={{ fontWeight:"bold", color: "white", fontSize: 12 }}>
+=======
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 130,
+                  height: 40,
+                  margin: 10,
+                  borderRadius: 13,
+                  backgroundColor: "#000000",
+                }}
+              >
+                <Text style={{ color: "white", fontSize: 12 }}>
+>>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
                   רשום? התחבר עכשיו
                 </Text>
               </Button>
@@ -92,6 +121,7 @@ const SignIn = ({ navigation }) => {
                     flexDirection: "row",
                     justifyContent: "center",
                     alignItems: "center",
+<<<<<<< HEAD
                   }}>
 
                   <Text
@@ -100,6 +130,14 @@ const SignIn = ({ navigation }) => {
                       color: "white",
                       marginBottom:30
                       
+=======
+                  }}
+                >
+                  <Text
+                    style={{
+                      flex: 0.7,
+                      color: "white",
+>>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
                       // textAlign: "left",
                       // margin: 20,
                       // marginStart: 25,
@@ -109,6 +147,7 @@ const SignIn = ({ navigation }) => {
                   </Text>
 
                   <View style={signInstyles.radioGenderButons}>
+<<<<<<< HEAD
                     <Button rounded style={signInstyles.radioGenderButon} onPress={() => setGender("men")} >
                       <Text style={{ color: "white" }}>גבר</Text>
                     </Button>
@@ -126,14 +165,39 @@ const SignIn = ({ navigation }) => {
                     </Item>
                     <Item style={signInstyles.signInPageInput}>
                       <Input placeholder='טלפון נייד' onChangeText={text =>setPhoneNum(text)}/>
+=======
+                    <Button rounded style={signInstyles.radioGenderButon}>
+                      <Text style={{ color: "white" }}>גבר</Text>
+                    </Button>
+                    <Button rounded style={signInstyles.radioGenderButon}>
+                      <Text style={{ color: "white" }}>אישה</Text>
+                    </Button>
+                  </View>
+                </View>
+
+                <View style={signInstyles.inputWrapper}>
+                  <View style={signInstyles.signInPageInputs}>
+                    <Item style={signInstyles.signInPageInput}>
+                      <Input placeholder='שם פרטי' />
+                    </Item>
+                    <Item style={signInstyles.signInPageInput}>
+                      <Input placeholder='טלפון נייד' />
+>>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
                     </Item>
                   </View>
                   <View style={signInstyles.signInPageInputs}>
                     <Item style={signInstyles.signInPageInput}>
+<<<<<<< HEAD
                       <Input placeholder='שם משפחה' onChangeText={text =>setLastName(text)}/>
                     </Item>
                     <Item style={signInstyles.signInPageInput}>
                       <Input placeholder='מספר תעודת זהות' onChangeText={text =>setID(text)}/>
+=======
+                      <Input placeholder='שם משפחה' />
+                    </Item>
+                    <Item style={signInstyles.signInPageInput}>
+                      <Input placeholder='מספר תעודת זהות' />
+>>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
                     </Item>
                   </View>
 
@@ -141,6 +205,7 @@ const SignIn = ({ navigation }) => {
                     <Input
                       fontSize={12}
                       // style={{ color: "blue", fontFamily: "Arial" }}
+<<<<<<< HEAD
                     placeholder='דוא"ל'
                     onChangeText={text =>setEmail(text)}
                     />
@@ -150,6 +215,16 @@ const SignIn = ({ navigation }) => {
                 <Content>
                   <ListItem>
                     <CheckBox  checked={age} onPress={()=> {setAge(true)}} />
+=======
+                      placeholder='דוא"ל'
+                    />
+                  </Item>
+                </View>
+
+                <Content>
+                  <ListItem>
+                    <CheckBox checked={true} />
+>>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
                     <Body>
                       <Text style={{ color: "white", fontSize: 12 }}>
                         אני מעל גיל 18
@@ -157,6 +232,7 @@ const SignIn = ({ navigation }) => {
                     </Body>
                   </ListItem>
                   <ListItem>
+<<<<<<< HEAD
                   <CheckBox checked={agreement} color='white' onPress={()=> {setAgreement(true)}} />
                     <Body>
                       <Text style={{ color: "white", fontSize: 12 }}>
@@ -168,12 +244,32 @@ const SignIn = ({ navigation }) => {
                 </Content>
               </Content>
              
+=======
+                    <CheckBox checked={false} color='white' />
+                    <Body>
+                      <Text style={{ color: "white", fontSize: 12 }}>
+                        אני מאשר את תנאי השימוש באתר ואת התקנון
+                      </Text>
+                    </Body>
+                  </ListItem>
+                </Content>
+              </Content>
+              {/* <View
+                style={{
+                  flex: 1,
+                  flexDirection: "column",
+                  alignSelf: "center",
+                  textAlign: "center",
+                }}
+              ></View> */}
+>>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
               <Button
                 rounded
                 style={{
                   backgroundColor: "#FBB03B",
                   borderColor: "white",
                   borderWidth: 1,
+<<<<<<< HEAD
                   flex: 1,
                   height: 30,
                   marginHorizontal:70
@@ -189,6 +285,11 @@ const SignIn = ({ navigation }) => {
                   age:age,
                   agreement:agreement
                 })}
+=======
+                  flex: 0.5,
+                }}
+                onPress={console.log("submit")}
+>>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
               >
                 <Text
                   style={{
@@ -205,10 +306,14 @@ const SignIn = ({ navigation }) => {
           </View>
         </View>
 
+<<<<<<< HEAD
 
         <View
         style={{ width: "100%", height: 2, backgroundColor: "pink" }}
         ></View>
+=======
+        <Hr lineColor='blue' thickness={1} />
+>>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
       </ScrollView>
     </>
   );
