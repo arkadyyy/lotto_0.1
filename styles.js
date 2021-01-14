@@ -5,6 +5,13 @@ const styles = StyleSheet.create({
   navbar: {
     backgroundColor: "#263742",
   },
+  signNav: {
+    // backgroundColor: 'red',
+    
+  },
+  homeNav: {
+    
+  },
   userAreaBtn: {
     fontSize: 10,
     paddingLeft: 8,

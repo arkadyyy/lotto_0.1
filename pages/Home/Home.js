@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+
 import {
   ScrollView,
   StyleSheet,
@@ -26,18 +28,19 @@ import styles from "../../styles";
 //////////////////////////////////////////////////////////////
 
 export default function Home({ navigation }) {
+
   return (
     <>
-      <NavBar navigation={navigation} />
+      <NavBar navigation={navigation} screenName={'home'}  />
       <Container>
         <ScrollView>
           <View style={homestyles.container}>
-            <View style={homestyles.toplogo}>
+            {/* <View style={homestyles.toplogo}>
               <Image
                 style={{ width: 220, height: 100 }}
-                source={require("C:/fullstack/lottoMatic/assets/home/logo.png")}
+                source={require("C:\fullstack\lotto_0.1\assets\home\logo.png")}
               />
-            </View>
+            </View> */}
             <View style={homestyles.blanksquare}></View>
             <View style={homestyles.openingPageBtns}>
               <View style={homestyles.btnWrapper}>
@@ -51,10 +54,10 @@ export default function Home({ navigation }) {
                     הגרלת לוטו
                   </Text>
                 </Button>
-                <Image
+                {/* <Image
                   style={{ width: 70, height: 30 }}
-                  source={require("C:/fullstack/lottoMatic/assets/home/Lotto-sml_1.png")}
-                />
+                  source={require("C:/fullstack/lotto_0.1/assets/home/SVG/Lotto-sml_1")}
+                 />  */}
               </View>
 
               <View style={homestyles.btnWrapper}>
@@ -71,10 +74,10 @@ export default function Home({ navigation }) {
                     הגרלת 123
                   </Text>
                 </Button>
-                <Image
+                {/* <Image
                   style={{ width: 70, height: 30 }}
                   source={require("C:/fullstack/lottoMatic/assets/home/_123_sml.png")}
-                />
+                /> */}
               </View>
               <View
                 style={[
@@ -130,10 +133,10 @@ export default function Home({ navigation }) {
                     הגרלת 777
                   </Text>
                 </Button>
-                <Image
+                {/* <Image
                   style={{ width: 70, height: 30 }}
                   source={require("C:/fullstack/lottoMatic/assets/home/_777_sml.png")}
-                />
+                /> */}
               </View>
               <View style={homestyles.btnWrapper}>
                 <Button
