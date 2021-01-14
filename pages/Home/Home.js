@@ -34,19 +34,18 @@ import {
 //////////////////////////////////////////////////////////////
 
 export default function Home({ navigation }) {
-
   return (
     <>
-      <NavBar navigation={navigation} screenName={'home'}  />
+      <NavBar navigation={navigation} screenName={"home"} />
       <Container>
         <ScrollView>
           <View style={homestyles.container}>
-            {/* <View style={homestyles.toplogo}>
+            <View style={homestyles.toplogo}>
               <Image
                 style={{ width: 220, height: 100 }}
-                source={require("C:\fullstack\lotto_0.1\assets\home\logo.png")}
+                source={require("C:/fullstack/lottoMatic/assets/home/logo.png")}
               />
-            </View> */}
+            </View>
             <View style={homestyles.blanksquare}></View>
             <View style={homestyles.openingPageBtns}>
               <View style={homestyles.btnWrapper}>
@@ -71,10 +70,10 @@ export default function Home({ navigation }) {
                     </Text>
                   </View>
                 </Button>
-                {/* <Image
+                <Image
                   style={{ width: 70, height: 30 }}
-                  source={require("C:/fullstack/lotto_0.1/assets/home/SVG/Lotto-sml_1")}
-                 />  */}
+                  source={require("C:/fullstack/lottoMatic/assets/home/Lotto_sml_1.png")}
+                />
               </View>
               <View style={[homestyles.btnWrapper]}>
                 <Button
@@ -99,17 +98,10 @@ export default function Home({ navigation }) {
                     </Text>
                   </View>
                 </Button>
-<<<<<<< HEAD
-                {/* <Image
-                  style={{ width: 70, height: 30 }}
-                  source={require("C:/fullstack/lottoMatic/assets/home/_123_sml.png")}
-                /> */}
-=======
                 <Image
                   style={{ width: 80, height: 30 }}
                   source={require("C:/fullstack/lottoMatic/assets/home/Chance_sml.png")}
                 />
->>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
               </View>
               <View style={homestyles.btnWrapper}>
                 <Button
@@ -165,15 +157,10 @@ export default function Home({ navigation }) {
                     </Text>
                   </View>
                 </Button>
-                {/* <Image
+                <Image
                   style={{ width: 70, height: 30 }}
-<<<<<<< HEAD
-                  source={require("C:/fullstack/lottoMatic/assets/home/_777_sml.png")}
-                /> */}
-=======
                   source={require("C:/fullstack/lottoMatic/assets/home/_123_sml.png")}
                 />
->>>>>>> 40ca643b90829cd671804528b78eaa90f02fa056
               </View>
               <View style={[homestyles.btnWrapper, { marginBottom: 25 }]}>
                 <Button

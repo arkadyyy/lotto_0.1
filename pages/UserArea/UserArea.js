@@ -18,13 +18,14 @@ import {
 import Hr from "react-native-hr-component";
 import NavBar from "../../components/NavBar";
 import ColorLine from "../../components/ColorLine";
+import ViewForm from "./ViewForm";
 
 const UserArea = ({ navigation }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
       <NavBar navigation={navigation} />
-      <ScrollView>
+      <ScrollView style={{ flex: 1 }}>
         <View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
@@ -165,187 +166,130 @@ const UserArea = ({ navigation }) => {
                 שכפול הטופס
               </Text>
             </View>
-
-            <List
-              style={{
-                marginLeft: 20,
-                marginRight: 20,
-                backgroundColor: "#00AEEF",
-
-                width: "98%",
-                marginTop: 10,
-              }}
-            >
-              <ListItem>
-                <View style={{ marginRight: 45 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>
-                    דאבל לוטו
-                  </Text>
-                  <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-                </View>
-                <View style={{ marginRight: 40 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-                  <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-                </View>
-                <View style={{ marginRight: 40 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-                </View>
-                <View>
-                  <Button
-                    style={{ borderColor: "white", padding: 5 }}
-                    small
-                    bordered
-                    onPress={() => {
-                      setOpen(true);
-                    }}
-                  >
+            <>
+              <List
+                style={{
+                  marginLeft: 20,
+                  marginRight: 20,
+                  backgroundColor: "#00AEEF",
+                  height: 800,
+                  width: "98%",
+                  marginTop: 10,
+                }}
+              >
+                <ListItem>
+                  <View style={{ marginRight: 45 }}>
                     <Text style={{ fontSize: 12, color: "white" }}>
-                      שכפל או צפה
+                      דאבל לוטו
                     </Text>
-                  </Button>
-                </View>
-              </ListItem>
-              {open && (
-                <View>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-around",
-                    }}
-                  >
-                    <View>
-                      <Text>סהכ זכייה</Text>
-                    </View>
-                    <Button
-                      style={{ borderColor: "white", padding: 5 }}
-                      small
-                      bordered
-                    >
-                      <Text>צפה בטופס</Text>
-                    </Button>
-                    <Button
-                      style={{ borderColor: "white", padding: 5 }}
-                      small
-                      bordered
-                    >
-                      <Text>תוצאות הגרלה</Text>
-                    </Button>
-                    <Button
-                      style={{ padding: 5 }}
-                      small
-                      onPress={() => {
-                        setOpen(false);
-                      }}
-                    >
-                      <Text>סגור</Text>
-                    </Button>
+                    <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
+                  </View>
+                  <View style={{ marginRight: 40 }}>
+                    <Text style={{ fontSize: 12, color: "white" }}>
+                      01.02.20
+                    </Text>
+                    <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
+                  </View>
+                  <View style={{ marginRight: 40 }}>
+                    <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
                   </View>
                   <View>
-                    <Text>הצירוף שלי</Text>
-                    <View style={{ flexDirection: "row" }}>
-                      <View
-                        style={{
-                          width: 30,
-                          height: 30,
-                          borderRadius: 30,
-                          backgroundColor: "white",
-                          margin: 5,
-                        }}
-                      ></View>
-                      <View
-                        style={{
-                          width: 30,
-                          height: 30,
-                          borderRadius: 30,
-                          backgroundColor: "white",
-                          margin: 5,
-                        }}
-                      ></View>
-                      <View
-                        style={{
-                          width: 30,
-                          height: 30,
-                          borderRadius: 30,
-                          backgroundColor: "white",
-                          margin: 5,
-                        }}
-                      ></View>
-                      <View
-                        style={{
-                          width: 30,
-                          height: 30,
-                          borderRadius: 30,
-                          backgroundColor: "white",
-                          margin: 5,
-                        }}
-                      ></View>
-                      <View
-                        style={{
-                          width: 30,
-                          height: 30,
-                          borderRadius: 30,
-                          backgroundColor: "white",
-                          margin: 5,
-                        }}
-                      ></View>
-                      <View
-                        style={{
-                          width: 30,
-                          height: 30,
-                          borderRadius: 30,
-                          backgroundColor: "white",
-                          margin: 5,
-                        }}
-                      ></View>
-                      <View
-                        style={{
-                          width: 30,
-                          height: 30,
-                          borderRadius: 30,
-                          backgroundColor: "white",
-                          margin: 5,
-                          justifyContent: "center",
-                          alignItems: "center",
+                    <Button
+                      style={{ borderColor: "white", padding: 5 }}
+                      small
+                      bordered
+                      onPress={() => {
+                        setOpen(true);
+                      }}
+                    >
+                      <Text style={{ fontSize: 12, color: "white" }}>
+                        שכפל או צפה
+                      </Text>
+                    </Button>
+                  </View>
+                </ListItem>
+                {open && (
+                  <View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-around",
+                      }}
+                    >
+                      <View>
+                        <Text>סהכ זכייה</Text>
+                      </View>
+                      <Button
+                        style={{ borderColor: "white", padding: 5 }}
+                        small
+                        bordered
+                      >
+                        <Text>צפה בטופס</Text>
+                      </Button>
+                      <Button
+                        style={{ borderColor: "white", padding: 5 }}
+                        small
+                        bordered
+                      >
+                        <Text>תוצאות הגרלה</Text>
+                      </Button>
+                      <Button
+                        style={{ padding: 5 }}
+                        small
+                        onPress={() => {
+                          setOpen(false);
                         }}
                       >
-                        <Text>2</Text>
-                      </View>
+                        <Text>סגור</Text>
+                      </Button>
+                    </View>
+                    <View>
+                      <Text>הצירוף שלי</Text>
+                      <ViewForm />
+                      <ViewForm />
+                      <ViewForm />
+                      <ViewForm />
+                      <ViewForm />
+                      <ViewForm />
+                      <ViewForm />
                     </View>
                   </View>
-                </View>
-              )}
-              <ListItem>
-                <View style={{ marginRight: 45 }}>
-                  <Text
-                    style={{
-                      fontSize: 12,
-                      color: "white",
-                    }}
-                  >
-                    דאבל לוטו
-                  </Text>
-                  <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-                </View>
-                <View style={{ marginRight: 40 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-                  <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-                </View>
-                <View style={{ marginRight: 40 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-                </View>
-                <View>
-                  <Button
-                    style={{ borderColor: "white", padding: 5 }}
-                    small
-                    bordered
-                  >
-                    <Text style={{ fontSize: 12, color: "white" }}>
-                      שכפל או צפה
+                )}
+                <ListItem>
+                  <View style={{ marginRight: 45 }}>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        color: "white",
+                      }}
+                    >
+                      דאבל לוטו
                     </Text>
-                  </Button>
-                </View>
-              </ListItem>
-            </List>
+                    <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
+                  </View>
+                  <View style={{ marginRight: 40 }}>
+                    <Text style={{ fontSize: 12, color: "white" }}>
+                      01.02.20
+                    </Text>
+                    <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
+                  </View>
+                  <View style={{ marginRight: 40 }}>
+                    <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
+                  </View>
+                  <View>
+                    <Button
+                      style={{ borderColor: "white", padding: 5 }}
+                      small
+                      bordered
+                    >
+                      <Text style={{ fontSize: 12, color: "white" }}>
+                        שכפל או צפה
+                      </Text>
+                    </Button>
+                  </View>
+                </ListItem>
+              </List>
+            </>
             <ColorLine />
           </Container>
         </View>
