@@ -24,6 +24,7 @@ import {
 
 import NavBar from "../../components/NavBar";
 import { color } from "react-native-reanimated";
+import ColorLine from "../../components/ColorLine";
 
 const SignIn = ({ navigation }) => {
   const [gender, setGender] = useState("");
@@ -56,6 +57,7 @@ const SignIn = ({ navigation }) => {
               <Text
                 style={{
                   fontSize: 25,
+                  fontWeight: "bold",
                 }}
               >
                 לקוח חדש
@@ -94,6 +96,8 @@ const SignIn = ({ navigation }) => {
                 style={{
                   flex: 1,
                   flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
                   marginBottom: 30,
                 }}
               >
@@ -101,10 +105,6 @@ const SignIn = ({ navigation }) => {
                   style={{
                     flex: 1,
                     color: "white",
-
-                    // textAlign: "left",
-                    // margin: 20,
-                    // marginStart: 25,
                   }}
                 >
                   פרטי לקוח
@@ -113,6 +113,7 @@ const SignIn = ({ navigation }) => {
                 <View style={signInstyles.radioGenderButons}>
                   <View>
                     <Button
+                      small
                       rounded
                       style={signInstyles.radioGenderButon}
                       onPress={() => setGender("men")}
@@ -123,6 +124,7 @@ const SignIn = ({ navigation }) => {
 
                   <View>
                     <Button
+                      small
                       rounded
                       style={signInstyles.radioGenderButon}
                       onPress={() => setGender("women")}
@@ -133,7 +135,6 @@ const SignIn = ({ navigation }) => {
                 </View>
               </View>
 
-              {/* <View style={signInstyles.inputWrapper}> */}
               <View style={signInstyles.signInPageInputs}>
                 <Item style={signInstyles.signInPageInput}>
                   <Input
@@ -166,36 +167,37 @@ const SignIn = ({ navigation }) => {
               <Item last rounded style={signInstyles.signInPageInput}>
                 <Input
                   fontSize={12}
-                  // style={{ color: "blue", fontFamily: "Arial" }}
                   placeholder='דוא"ל'
                   onChangeText={(text) => setEmail(text)}
                 />
               </Item>
-              {/* </View> */}
 
-              <ListItem>
+              <ListItem noBorder>
                 <CheckBox
+                  style={{ borderRadius: 13 }}
+                  color='white'
                   checked={age}
                   onPress={() => {
-                    setAge(true);
+                    setAge(!age);
                   }}
                 />
-                <Body>
-                  <Text style={{ color: "white", fontSize: 12 }}>
+                <Body style={{ marginLeft: 20 }}>
+                  <Text style={{ color: "white", fontSize: 10 }}>
                     אני מעל גיל 18
                   </Text>
                 </Body>
               </ListItem>
-              <ListItem>
+              <ListItem noBorder>
                 <CheckBox
+                  style={{ borderRadius: 13 }}
                   checked={agreement}
                   color='white'
                   onPress={() => {
-                    setAgreement(true);
+                    setAgreement(!agreement);
                   }}
                 />
-                <Body>
-                  <Text style={{ color: "white", fontSize: 12 }}>
+                <Body style={{ marginLeft: 20 }}>
+                  <Text style={{ color: "white", fontSize: 10 }}>
                     אני מאשר את תנאי השימוש באתר ואת התקנון
                   </Text>
                 </Body>
@@ -203,11 +205,11 @@ const SignIn = ({ navigation }) => {
 
               <Button
                 rounded
-                large
                 style={{
                   backgroundColor: "#FBB03B",
                   borderColor: "white",
                   borderWidth: 2,
+                  borderRadius: 17,
                   flex: 1,
 
                   marginHorizontal: 70,
@@ -239,9 +241,7 @@ const SignIn = ({ navigation }) => {
             </View>
           </View>
 
-          <View
-            style={{ width: "100%", height: 2, backgroundColor: "pink" }}
-          ></View>
+          <ColorLine />
         </View>
       </ScrollView>
     </>

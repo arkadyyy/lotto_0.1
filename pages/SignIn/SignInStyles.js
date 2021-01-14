@@ -13,12 +13,12 @@ const signInstyles = StyleSheet.create({
     width: "100%",
   },
   whiteSquare: {
-    margin: 10,
+    marginTop: 20,
 
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    height: "10%",
+    height: "7%",
     width: "100%",
   },
   detailsSquare: {
@@ -48,23 +48,18 @@ const signInstyles = StyleSheet.create({
   },
 
   radioGenderButons: {
-    height: 30,
-    textAlign: "center",
-    alignItems: "center",
     flexDirection: "row",
-    // marginTop: 10,
-    // marginBottom: 20,
-    // marginRight: 15,
-    justifyContent: "space-between",
+    justifyContent: "center",
+    alignItems: "center",
   },
   radioGenderButon: {
-    flex: 1,
     flexDirection: "row",
-    height: 20,
-    justifyContent: "space-around",
+    width: 80,
+    justifyContent: "center",
     backgroundColor: "#00ADEF",
     borderColor: "white",
     borderWidth: 1,
+    marginLeft: 15,
   },
 });
 

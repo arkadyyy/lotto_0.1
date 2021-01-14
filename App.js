@@ -2,6 +2,7 @@ import "react-native-gesture-handler";
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { I18nManager } from "react-native";
 import {
   createStackNavigator,
   DrawerContentScrollView,
@@ -27,6 +28,7 @@ const Drawer = createDrawerNavigator();
 //   );
 // }
 export default function App() {
+  I18nManager.forceRTL(true);
   return (
     <>
       <NavigationContainer>

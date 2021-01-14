@@ -13,7 +13,7 @@ const homestyles = StyleSheet.create({
   },
   toplogo: {
     // flexDirection: "row",
-    height: 100,
+    height: 130,
     width: "100%",
 
     justifyContent: "center",
@@ -29,11 +29,11 @@ const homestyles = StyleSheet.create({
   openingPageBtns: {
     height: 110,
     margin: 35,
-    width: "100%",
+
     justifyContent: "flex-start",
 
     flexWrap: "wrap",
-    alignItems: "flex-start",
+    alignItems: "center",
     direction: "rtl",
   },
   openingPageBtn: {

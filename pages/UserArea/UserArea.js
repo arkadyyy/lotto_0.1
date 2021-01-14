@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, Touchable, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  Touchable,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import userAreaStyles from "../UserArea/UserAreaStyles";
 import {
   Container,
@@ -47,35 +54,29 @@ const UserArea = ({ navigation }) => {
                     height: 120,
                   }}
                 >
-                  <Button
+                  <TouchableOpacity
                     onPress={() => {
                       setScreen("activeForms");
                     }}
-                    transparent
-                    small
                   >
-                    <Text style={{ fontSize: 10 }}>טפסים פעילים</Text>
-                  </Button>
+                    <Text style={{ fontSize: 10 }}> טפסים פעילים</Text>
+                  </TouchableOpacity>
 
-                  <Button
+                  <TouchableOpacity
                     onPress={() => {
                       setScreen("sendHistory");
                     }}
-                    transparent
-                    small
                   >
                     <Text style={{ fontSize: 10 }}>היסטורית שליחות</Text>
-                  </Button>
+                  </TouchableOpacity>
 
-                  <Button
+                  <TouchableOpacity
                     onPress={() => {
                       setScreen("myWins");
                     }}
-                    transparent
-                    small
                   >
                     <Text style={{ fontSize: 10 }}>הזכיות שלי</Text>
-                  </Button>
+                  </TouchableOpacity>
                 </View>
               </Card>
               <Card transparent style={{ flex: 1 }}>
@@ -89,35 +90,29 @@ const UserArea = ({ navigation }) => {
                     height: 120,
                   }}
                 >
-                  <Button
+                  <TouchableOpacity
                     onPress={() => {
                       setScreen("withdrawal");
                     }}
-                    transparent
-                    small
                   >
                     <Text style={{ fontSize: 10 }}>משיכות</Text>
-                  </Button>
+                  </TouchableOpacity>
 
-                  <Button
+                  <TouchableOpacity
                     onPress={() => {
                       setScreen("paymentHistory");
                     }}
-                    transparent
-                    small
                   >
                     <Text style={{ fontSize: 10 }}>היסטורית תשלומים</Text>
-                  </Button>
+                  </TouchableOpacity>
 
-                  <Button
+                  <TouchableOpacity
                     onPress={() => {
                       setScreen("myWins");
                     }}
-                    transparent
-                    small
                   >
                     <Text style={{ fontSize: 10 }}>הזכיות שלי</Text>
-                  </Button>
+                  </TouchableOpacity>
                 </View>
               </Card>
               <Card transparent style={{ flex: 1 }}>
@@ -131,15 +126,14 @@ const UserArea = ({ navigation }) => {
                     height: 120,
                   }}
                 >
-                  <Button
+                  <TouchableOpacity
+                    style={userAreaStyles}
                     onPress={() => {
                       setScreen("refundHistory");
                     }}
-                    transparent
-                    small
                   >
-                    <Text style={{ fontSize: 10 }}>היסטורית החזרים</Text>
-                  </Button>
+                    <Text style={{ fontSize: 11 }}>היסטורית החזרים</Text>
+                  </TouchableOpacity>
                 </View>
               </Card>
             </View>
@@ -173,7 +167,7 @@ const UserArea = ({ navigation }) => {
 
             {screen === "activeForms" && <ActiveForms />}
             {screen === "sendHistory" && <SendHistory />}
-            {/* {screen === "myWins" && <SendHistory />}
+            {/* {screen === "myWins" && <MyWins />}
             {screen === "withdrawal" && <SendHistory />}
             {screen === "paymentHistory" && <SendHistory />}
             {screen === "myWins" && <SendHistory />}
