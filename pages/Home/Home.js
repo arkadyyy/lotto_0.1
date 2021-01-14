@@ -43,7 +43,8 @@ export default function Home({ navigation }) {
             <View style={homestyles.toplogo}>
               <Image
                 style={{ width: 220, height: 100 }}
-                source={require("C:/fullstack/lottoMatic/assets/home/logo.png")}
+                source={require("../../assets/home/logo.png")}
+                
               />
             </View>
             <View style={homestyles.blanksquare}></View>
@@ -60,7 +61,8 @@ export default function Home({ navigation }) {
                   <View style={homestyles.openingPageBtnBorder}>
                     <Image
                       style={homestyles.openingPageTopIcon}
-                      source={require("C:/fullstack/lottoMatic/assets/home/red_ball.png")}
+                source={require("../../assets/home/red_ball.png")}
+                      
                     />
                     <Text style={{ color: "white", fontSize: 18 }}>הגרלת</Text>
                     <Text style={{ color: "white", fontSize: 18 }}>לוטו</Text>
@@ -72,7 +74,7 @@ export default function Home({ navigation }) {
                 </Button>
                 <Image
                   style={{ width: 70, height: 30 }}
-                  source={require("C:/fullstack/lottoMatic/assets/home/Lotto_sml_1.png")}
+                  source={require("../../assets/home/Lotto_sml_1.png")}
                 />
               </View>
               <View style={[homestyles.btnWrapper]}>
@@ -85,7 +87,8 @@ export default function Home({ navigation }) {
                   <View style={homestyles.openingPageBtnBorder}>
                     <Image
                       style={homestyles.openingPageTopIcon}
-                      source={require("C:/fullstack/lottoMatic/assets/home/spade.png")}
+                  source={require("../../assets/home/spade.png")}
+                      
                     />
                     <Text style={{ color: "white", fontSize: 18 }}>הגרלת</Text>
 
@@ -100,7 +103,9 @@ export default function Home({ navigation }) {
                 </Button>
                 <Image
                   style={{ width: 80, height: 30 }}
-                  source={require("C:/fullstack/lottoMatic/assets/home/Chance_sml.png")}
+                  // source={require("C:/fullstack/lottoMatic/assets/home/Chance_sml.png")}
+                  source={require("../../assets/home/Chance_sml.png")}
+
                 />
               </View>
               <View style={homestyles.btnWrapper}>
@@ -114,7 +119,8 @@ export default function Home({ navigation }) {
                     <Image
                       resizeMode='contain'
                       style={[homestyles.openingPageTopIcon]}
-                      source={require("C:/fullstack/lottoMatic/assets/home/seven.png")}
+                      source={require("../../assets/home/seven.png")}
+
                     />
                     <Text style={{ color: "white", fontSize: 18 }}>הגרלת</Text>
                     <Text style={{ color: "white", fontSize: 18 }}>777</Text>
@@ -128,7 +134,7 @@ export default function Home({ navigation }) {
                 </Button>
                 <Image
                   style={{ width: 70, height: 30 }}
-                  source={require("C:/fullstack/lottoMatic/assets/home/_777_sml.png")}
+                  source={require("../../assets/home/_777_sml.png")}
                 />
               </View>
             </View>
@@ -145,7 +151,7 @@ export default function Home({ navigation }) {
                   <View style={homestyles.openingPageBtnBorder}>
                     <Image
                       style={homestyles.openingPageTopIcon}
-                      source={require("C:/fullstack/lottoMatic/assets/home/orange_ball.png")}
+                      source={require("../../assets/home/orange_ball.png")}
                     />
                     <Text style={{ color: "white", fontSize: 18 }}>הגרלת</Text>
                     <Text style={{ color: "white", fontSize: 18 }}>123</Text>
@@ -159,7 +165,7 @@ export default function Home({ navigation }) {
                 </Button>
                 <Image
                   style={{ width: 70, height: 30 }}
-                  source={require("C:/fullstack/lottoMatic/assets/home/_123_sml.png")}
+                  source={require("../../assets/home/_123_sml.png")}
                 />
               </View>
               <View style={[homestyles.btnWrapper, { marginBottom: 25 }]}>
@@ -214,7 +220,7 @@ export default function Home({ navigation }) {
                       top: 3,
                       resizeMode: "contain",
                     }}
-                    source={require("C:/fullstack/lottoMatic/assets/home/toppng.com_visa_mastercard_american_express_logos_american_express_1530x261.png")}
+                  source={require("../../assets/home/toppng.com_visa_mastercard_american_express_logos_american_express_1530x261.png")} 
                   />
                 </View>
               </View>

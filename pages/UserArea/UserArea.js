@@ -31,8 +31,11 @@ import ViewForm from "./ViewForm";
 import BlankSquare from "../../components/BlankSquare";
 import SendHistory from "./SendHistory/SendHistory";
 import ActiveForms from "./ActiveForms/ActiveForms";
+import WithDrawal from "./WithDrawal/WithDrawal";
 import MyWins from "./MyWins/MyWins";
-import WithDrawl from "./Withdrawal/WithDrawal";
+import PaymentHistory from "./PaymentHistory/PaymentHistory";
+import HistoryRefund from "./HistoryRefund/HistoryRefund";
+
 const UserArea = ({ navigation }) => {
   const [screen, setScreen] = useState("activeForms");
   return (
@@ -116,13 +119,13 @@ const UserArea = ({ navigation }) => {
                   <TouchableOpacity
                     style={[
                       userAreaStyles.toucheable,
-                      screen === "withdrawal" && {
+                      screen === "WithDrawal" && {
                         borderBottomColor: "black",
                         borderBottomWidth: 1,
                       },
                     ]}
                     onPress={() => {
-                      setScreen("withdrawal");
+                      setScreen("WithDrawal");
                     }}
                   >
                     <Text style={{ fontSize: 10 }}>משיכות</Text>
@@ -131,13 +134,13 @@ const UserArea = ({ navigation }) => {
                   <TouchableOpacity
                     style={[
                       userAreaStyles.toucheable,
-                      screen === "paymentHistory" && {
+                      screen === "PaymentHistory" && {
                         borderBottomColor: "black",
                         borderBottomWidth: 1,
                       },
                     ]}
                     onPress={() => {
-                      setScreen("paymentHistory");
+                      setScreen("PaymentHistory");
                     }}
                   >
                     <Text style={{ fontSize: 10 }}>היסטורית תשלומים</Text>
@@ -173,13 +176,13 @@ const UserArea = ({ navigation }) => {
                   <TouchableOpacity
                     style={[
                       userAreaStyles.toucheable,
-                      screen === "refundHistory" && {
+                      screen === "HistoryRefund" && {
                         borderBottomColor: "black",
                         borderBottomWidth: 1,
                       },
                     ]}
                     onPress={() => {
-                      setScreen("refundHistory");
+                      setScreen("HistoryRefund");
                     }}
                   >
                     <Text style={{ fontSize: 11 }}>היסטורית החזרים</Text>
@@ -218,10 +221,10 @@ const UserArea = ({ navigation }) => {
             {screen === "activeForms" && <ActiveForms />}
             {screen === "sendHistory" && <SendHistory />}
             {screen === "myWins" && <MyWins />}
-            {screen === "withdrawal" && <WithDrawl />}
-            {/* {screen === "paymentHistory" && <SendHistory />} */}
+            {screen === "WithDrawal" && <WithDrawal />}
+            {screen === "PaymentHistory" && <PaymentHistory />}
             {/* {screen === "myWins" && <SendHistory />} */}
-            {/* {screen === "refundHistory" && <SendHistory />} */}
+            {screen === "HistoryRefund" && <HistoryRefund />}
 
             <ColorLine />
           </View>

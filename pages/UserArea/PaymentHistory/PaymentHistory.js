@@ -17,7 +17,7 @@ import {
 } from "native-base";
 import ViewForm from "../ViewForm";
 
-const WithDrawal = () => {
+const PaymentHistory = () => {
   const [open, setOpen] = useState(false);
 
   return(
@@ -35,7 +35,7 @@ const WithDrawal = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
-            flex:1
+            flex:0.5
 
           }}
         >
@@ -49,7 +49,7 @@ const WithDrawal = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
-            flex:1
+            flex:0.5
 
           }}
         >
@@ -63,7 +63,7 @@ const WithDrawal = () => {
             padding: 7,
             marginLeft:2,
             marginRight:2,
-            flex:1,
+            flex:2,
           }}
         >
          סה"כ בש"ח
@@ -101,7 +101,55 @@ const WithDrawal = () => {
                 setOpen(true);
               }}
             >
-              <Text style={{ fontSize: 12, color: "white" }}>בוצע</Text>
+              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
+            </Button>
+          </View>
+        </ListItem>
+        <ListItem>
+          <View style={{ marginRight: 45 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
+          </View>
+          <View style={{ marginRight: 40 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
+            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
+          </View>
+          <View style={{ marginRight: 40 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
+          </View>
+          <View >
+            <Button
+              style={{ borderColor: "white", padding: 5,marginLeft:'47%'}}
+              small
+                bordered          
+              onPress={() => {
+                setOpen(true);
+              }}
+            >
+              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
+            </Button>
+          </View>
+        </ListItem>
+        <ListItem>
+          <View style={{ marginRight: 45 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
+          </View>
+          <View style={{ marginRight: 40 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
+            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
+          </View>
+          <View style={{ marginRight: 40 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
+          </View>
+          <View>
+            <Button
+              style={{ borderColor: "white", padding: 5, marginLeft:'47%'}}
+              small
+              bordered
+              onPress={() => {
+                setOpen(true);
+              }}
+            >
+              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
             </Button>
           </View>
         </ListItem>
@@ -125,31 +173,7 @@ const WithDrawal = () => {
                 setOpen(true);
               }}
             >
-              <Text style={{ fontSize: 12, color: "white" }}>בוצע</Text>
-            </Button>
-          </View>
-        </ListItem>
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-          </View>
-          <View>
-            <Button
-              style={{ borderColor: "white", padding: 5, marginLeft:'47%' }}
-              small
-              bordered
-              onPress={() => {
-                setOpen(true);
-              }}
-            >
-              <Text style={{ fontSize: 12, color: "white" }}>בוצע</Text>
+              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
             </Button>
           </View>
         </ListItem>
@@ -161,4 +185,4 @@ const WithDrawal = () => {
   );
 };
 
-export default WithDrawal;
+export default PaymentHistory;
