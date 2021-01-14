@@ -25,12 +25,12 @@ import {
 import Hr from "react-native-hr-component";
 import NavBar from "../../components/NavBar";
 import styles from "../../styles";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  faCoffee,
-  faPlus,
-  faPlusCircle,
-} from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+// import {
+//   faCoffee,
+//   faPlus,
+//   faPlusCircle,
+// } from "@fortawesome/free-solid-svg-icons";
 //////////////////////////////////////////////////////////////
 
 export default function Home({ navigation }) {
@@ -41,10 +41,11 @@ export default function Home({ navigation }) {
         <ScrollView>
           <View style={homestyles.container}>
             <View style={homestyles.toplogo}>
-              <Image
-                style={{ width: 220, height: 100 }}
-                source={require("C:/fullstack/lottoMatic/assets/home/logo.png")}
-              />
+              {/* <Image */}
+                {/* style={{ width: 220, height: 100 }} */}
+                 {/* source={require("C:/fullstack/lottoMatic/assets/home/logo.png")} */}
+                {/* source={require("C:\fullstack\lotto_0.1\assets\home\logo.png")} */}
+              {/* /> */}
             </View>
             <View style={homestyles.blanksquare}></View>
             <View style={homestyles.openingPageBtns}>
@@ -58,10 +59,10 @@ export default function Home({ navigation }) {
                   ]}
                 >
                   <View style={homestyles.openingPageBtnBorder}>
-                    <Image
+                    {/* <Image
                       style={homestyles.openingPageTopIcon}
                       source={require("C:/fullstack/lottoMatic/assets/home/red_ball.png")}
-                    />
+                    /> */}
                     <Text style={{ color: "white", fontSize: 18 }}>הגרלת</Text>
                     <Text style={{ color: "white", fontSize: 18 }}>לוטו</Text>
                     <Text style={{ color: "white", fontSize: 12 }}>עד</Text>
@@ -70,10 +71,10 @@ export default function Home({ navigation }) {
                     </Text>
                   </View>
                 </Button>
-                <Image
+                {/* <Image
                   style={{ width: 70, height: 30 }}
                   source={require("C:/fullstack/lottoMatic/assets/home/Lotto_sml_1.png")}
-                />
+                /> */}
               </View>
               <View style={[homestyles.btnWrapper]}>
                 <Button
@@ -83,10 +84,10 @@ export default function Home({ navigation }) {
                   ]}
                 >
                   <View style={homestyles.openingPageBtnBorder}>
-                    <Image
+                    {/* <Image
                       style={homestyles.openingPageTopIcon}
                       source={require("C:/fullstack/lottoMatic/assets/home/spade.png")}
-                    />
+                    /> */}
                     <Text style={{ color: "white", fontSize: 18 }}>הגרלת</Text>
 
                     <Text style={{ color: "white", fontSize: 18 }}>צ'אנס</Text>
@@ -98,10 +99,10 @@ export default function Home({ navigation }) {
                     </Text>
                   </View>
                 </Button>
-                <Image
+                {/* <Image
                   style={{ width: 80, height: 30 }}
                   source={require("C:/fullstack/lottoMatic/assets/home/Chance_sml.png")}
-                />
+                /> */}
               </View>
               <View style={homestyles.btnWrapper}>
                 <Button
@@ -111,11 +112,11 @@ export default function Home({ navigation }) {
                   ]}
                 >
                   <View style={homestyles.openingPageBtnBorder}>
-                    <Image
+                    {/* <Image
                       resizeMode='contain'
                       style={[homestyles.openingPageTopIcon]}
                       source={require("C:/fullstack/lottoMatic/assets/home/seven.png")}
-                    />
+                    /> */}
                     <Text style={{ color: "white", fontSize: 18 }}>הגרלת</Text>
                     <Text style={{ color: "white", fontSize: 18 }}>777</Text>
                     <Text style={{ color: "white", fontSize: 12 }}>
@@ -126,10 +127,10 @@ export default function Home({ navigation }) {
                     </Text>
                   </View>
                 </Button>
-                <Image
+                {/* <Image
                   style={{ width: 70, height: 30 }}
                   source={require("C:/fullstack/lottoMatic/assets/home/_777_sml.png")}
-                />
+                /> */}
               </View>
             </View>
             <View style={homestyles.openingPageBtns}>
@@ -143,10 +144,10 @@ export default function Home({ navigation }) {
                   ]}
                 >
                   <View style={homestyles.openingPageBtnBorder}>
-                    <Image
+                    {/* <Image
                       style={homestyles.openingPageTopIcon}
                       source={require("C:/fullstack/lottoMatic/assets/home/orange_ball.png")}
-                    />
+                    /> */}
                     <Text style={{ color: "white", fontSize: 18 }}>הגרלת</Text>
                     <Text style={{ color: "white", fontSize: 18 }}>123</Text>
                     <Text style={{ color: "white", fontSize: 12 }}>
@@ -157,10 +158,10 @@ export default function Home({ navigation }) {
                     </Text>
                   </View>
                 </Button>
-                <Image
+                {/* <Image
                   style={{ width: 70, height: 30 }}
                   source={require("C:/fullstack/lottoMatic/assets/home/_123_sml.png")}
-                />
+                /> */}
               </View>
               <View style={[homestyles.btnWrapper, { marginBottom: 25 }]}>
                 <Button
@@ -175,12 +176,12 @@ export default function Home({ navigation }) {
                   <Text style={{ color: "white", marginBottom: 10 }}>
                     איך זה עובד
                   </Text>
-                  <FontAwesomeIcon
+                  {/* <FontAwesomeIcon
                     color='white'
                     border={true}
                     inverse
                     icon={faPlus}
-                  />
+                  /> */}
                 </Button>
               </View>
 
@@ -198,14 +199,14 @@ export default function Home({ navigation }) {
                     <Text style={{ color: "white", marginBottom: 10 }}>
                       קצת עלינו
                     </Text>
-                    <FontAwesomeIcon
+                    {/* <FontAwesomeIcon
                       color='white'
                       border={true}
                       inverse
                       icon={faPlus}
-                    />
+                    /> */}
                   </Button>
-                  <Image
+                  {/* <Image
                     style={{
                       width: 100,
                       height: 18,
@@ -215,7 +216,7 @@ export default function Home({ navigation }) {
                       resizeMode: "contain",
                     }}
                     source={require("C:/fullstack/lottoMatic/assets/home/toppng.com_visa_mastercard_american_express_logos_american_express_1530x261.png")}
-                  />
+                  /> */}
                 </View>
               </View>
             </View>

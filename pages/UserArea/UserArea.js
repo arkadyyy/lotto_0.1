@@ -30,7 +30,8 @@ import ViewForm from "./ViewForm";
 import BlankSquare from "../../components/BlankSquare";
 import SendHistory from "./SendHistory/SendHistory";
 import ActiveForms from "./ActiveForms/ActiveForms";
-
+import MyWins from "./MyWins/MyWins";
+import WithDrawl from "./WithDrawal/WithDrawal";
 const UserArea = ({ navigation }) => {
   const [screen, setScreen] = useState("activeForms");
   return (
@@ -92,7 +93,7 @@ const UserArea = ({ navigation }) => {
                 >
                   <TouchableOpacity
                     onPress={() => {
-                      setScreen("withdrawal");
+                      setScreen("WithDrawl");
                     }}
                   >
                     <Text style={{ fontSize: 10 }}>משיכות</Text>
@@ -167,11 +168,11 @@ const UserArea = ({ navigation }) => {
 
             {screen === "activeForms" && <ActiveForms />}
             {screen === "sendHistory" && <SendHistory />}
-            {/* {screen === "myWins" && <MyWins />}
-            {screen === "withdrawal" && <SendHistory />}
-            {screen === "paymentHistory" && <SendHistory />}
-            {screen === "myWins" && <SendHistory />}
-            {screen === "refundHistory" && <SendHistory />} */}
+            {screen === "myWins" && <MyWins />}
+            {screen === "WithDrawl" && <WithDrawl />}
+            {/* {screen === "paymentHistory" && <SendHistory />} */}
+            {/* {screen === "myWins" && <SendHistory />} */}
+            {/* {screen === "refundHistory" && <SendHistory />} */}
 
             <ColorLine />
           </View>
