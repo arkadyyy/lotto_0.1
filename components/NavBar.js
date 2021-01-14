@@ -54,7 +54,7 @@ const NavBar = (props) => {
       
       <Right>
 
-        {props.screenName === 'home' ? (
+        
           <View style={{ flexDirection: 'row' }}>
            
             <Button
@@ -73,7 +73,7 @@ const NavBar = (props) => {
                  
            </Text>
             </Button>
-            <Button
+            {props.screenName === 'home' && (<Button
               onPress={() => {
                 navigation.navigate("SignIn");
               }}
@@ -94,111 +94,12 @@ const NavBar = (props) => {
                   הרשם
             </Text>
               </View>
-            </Button>
+            </Button>)}
           </View>
-        )
-      
-          :
-          // props.screenName === 'signIn' ?
-            (
-          <View style={{flexDirection:'row'}}>
-           
-           <Button
-           onPress={() => {
-             navigation.navigate("UserArea");
-           }}
-           style={styles.headerBtns}
-           small
-           light
-           bordered
-           rounded
-         >
-            
-           <Text style={[{ color: "white" }, styles.userAreaBtn]}>
-              אזור אישי
-               
-           </Text>
-              </Button>
-            </View>
-              
-            )
-              
-            }
+        
 
 </Right>
     </Header>
   );
 };
 export default NavBar;
-        
-        /* <Button
-          onPress={() => {
-            navigation.navigate("UserArea");
-          }}
-          style={styles.headerBtns}
-          small
-          light
-          bordered
-          rounded
-        >
-          <Text style={[{ color: "white" }, styles.userAreaBtn]}>
-          אזור אישי
-            
-          </Text>
-        </Button> */
-        // <Button
-        //   onPress={() => {
-        //     navigation.navigate("SignIn");
-        //   }}
-        //   style={styles.headerBtns}
-        //   small
-        //   light
-        //   transparent
-        //   rounded
-        // >
-        //   {props.screenName==='home' ? (
-        //     <View>
-        //       <Text
-        //         style={{
-        //           color: "white",
-
-                
-        //         }}
-        //       >
-        //         הרשם
-        //     </Text>
-        //     </View>
-            
-          // )
-          //  :
-
-        //   <Button
-        //   onPress={() => {
-        //     navigation.navigate("UserArea");
-        //   }}
-        //   style={styles.headerBtns}
-        //   small
-        //   light
-        //   bordered
-        //   rounded
-        // >
-        //   <Text style={[{ color: "white" }, styles.userAreaBtn]}>
-        //   אזור אישי
-            
-        //   </Text>
-        // </Button>
-        //   }
-        //           </Button>
-
-           
-          /* <View style={propsTitleText}>
-            <Text
-              style={{
-                color: "white",
-
-                
-              }}
-            >
-            {props.titleText}
-            </Text>
-          </View> */
