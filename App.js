@@ -3,34 +3,26 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { I18nManager, TouchableOpacity } from "react-native";
-import {
-  createStackNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-  DrawerItem,
-} from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./pages/Home/Home";
 import UserArea from "./pages/UserArea/UserArea";
 import SignIn from "./pages/SignIn/SignIn";
 import StackWrapper from "./StackWrapper";
 import DrawerContent from "./pages/DrawerContent/DrawerContent";
+import LottoPage from "./pages/Lotto/LottoPage";
+import LottoList from "./pages/Lotto/LottoList";
+
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-// function MyDrawer() {
-//   return (
-//     <Drawer.Navigator drawerContent={<CustomDrawerContent {...props} />}>
-//       <Drawer.Screen name='Home' component={Home} />
-//       <Drawer.Screen name='UserArea' component={UserArea} />
-//       <Drawer.Screen name='SignIn' component={SignIn} />
-//     </Drawer.Navigator>
-//   );
-// }
 export default function App() {
   I18nManager.forceRTL(true);
   return (
     <>
+      {/* <Provider store={store} > */}
       <NavigationContainer>
         <Drawer.Navigator
           drawerContent={(props) => <DrawerContent {...props} />}
@@ -39,8 +31,11 @@ export default function App() {
           <Drawer.Screen name='Home' component={Home} />
           <Drawer.Screen name='UserArea' component={UserArea} />
           <Drawer.Screen name='SignIn' component={SignIn} />
+          <Drawer.Screen name='LottoPage' component={LottoPage} />
+          <Drawer.Screen name='LottoList' component={LottoList} />
         </Drawer.Navigator>
       </NavigationContainer>
+      {/* </Provider> */}
     </>
   );
 }
