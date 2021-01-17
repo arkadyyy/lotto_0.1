@@ -51,9 +51,6 @@ const LottoList = (props) => {
             <View>
               <BlankSquare />
             </View>
-            <View style={{ width: "100%", height: "7%" }}>
-              <Text> Timer component will be here</Text>
-            </View>
           </View>
           <View
             style={{ width: "100%", height: "2%", backgroundColor: "red" }}
