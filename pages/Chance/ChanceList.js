@@ -1,9 +1,9 @@
 import React from "react";
-import { useState } from "react";
+
 
 import {
   ScrollView,
-  StyleSheet,
+ 
   Text,
   TouchableOpacity,
   View,
@@ -24,9 +24,8 @@ import {
   List,
   ListItem,
 } from "native-base";
-import Hr from "react-native-hr-component";
 import NavBar from "../../components/NavBar";
-import styles from "../../styles";
+
 import ColorLine from "../../components/ColorLine";
 import BlankSquare from "../../components/BlankSquare.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -35,36 +34,37 @@ import {
   faPlus,
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import LottoListstyles from "./LottoListStyles";
+import ChanceListstyles from "./ChanceListStyles";
 //////////////////////////////////////////////////////////////
 
-const LottoList = (props) => {
+const ChanceList = (props) => {
   const { navigation } = props;
 
   return (
     <>
-      <NavBar navigation={navigation} screenName={"LottoList"} />
-      
+      <NavBar navigation={navigation} screenName={"ChanceList"} />
+      <View
+            style={{ width: "100%", height: "1%", backgroundColor: "#009C4A" }}></View>
     <Container>
     <ScrollView>
-      <View style={homestyles.container}>
+                  <View style={homestyles.container}>
+                      
             <View>
               <BlankSquare />
             </View>
         
           <View
-            style={{ width: "100%", height: "2%", backgroundColor: "red" }}
+            style={{ width: "100%", height: "1%", backgroundColor: "#009C4A" }}
           ></View>
 
           <List
             style={{
               width: "100%",
-              marginTop: "10%",
             }}
           >
             <ListItem
               style={{
-                backgroundColor: "red",
+                backgroundColor: "#009C4B",
                 width: "100%",
                 marginLeft: null,
                 marginVertical: "2%",
@@ -73,7 +73,7 @@ const LottoList = (props) => {
               <Left>
                 <View>
                 <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    לוטו רגיל
+                    צ'אנס רגיל
                   </Text>
                 </View>
               </Left>
@@ -86,12 +86,12 @@ const LottoList = (props) => {
                       borderRadius: 13,
                       backgroundColor: "white",
                     }}
-                    onPress={() => navigation.navigate("LottoPage")}
+                    onPress={() => navigation.navigate("ChancePage")}
                   >
                     <Text
                       style={{
                         fontWeight: "bold",
-                        color: "red",
+                        color: "#009C4B",
                         fontSize: 10,
                         padding: 15,
                       }}
@@ -104,7 +104,7 @@ const LottoList = (props) => {
             </ListItem>
             <ListItem
               style={{
-                backgroundColor: "red",
+                backgroundColor: "#009C4B",
                 width: "100%",
                 marginLeft: null,
                 marginVertical: "2%",
@@ -113,7 +113,47 @@ const LottoList = (props) => {
               <Left>
                 <View>
                 <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    דאבל לוטו
+                   רב צ'אנס
+                  </Text>
+                </View>
+              </Left>
+
+              <Right>
+                <View>
+                  <Button
+                    small
+                    style={{
+                      borderRadius: 13,
+                      backgroundColor: "white",
+                    }}
+                    // onPress={() => navigation.navigate("Home")}
+                  >
+                   <Text
+                      style={{
+                        fontWeight: "bold",
+                        color: "#009C4B",
+                        fontSize: 10,
+                        padding: 15,
+                      }}
+                    >
+                      שחק עכשיו
+                    </Text>
+                  </Button>
+                </View>
+              </Right>
+            </ListItem>
+            <ListItem
+              style={{
+                backgroundColor: "#00552B",
+                width: "100%",
+                marginLeft: null,
+                marginVertical: "2%",
+              }}
+            >
+              <Left>
+                <View>
+                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
+                    צ'אנס שיטתי
                   </Text>
                 </View>
               </Left>
@@ -131,7 +171,7 @@ const LottoList = (props) => {
                     <Text
                       style={{
                         fontWeight: "bold",
-                        color: "red",
+                        color: "#009C4B",
                         fontSize: 10,
                         padding: 15,
                       }}
@@ -142,95 +182,16 @@ const LottoList = (props) => {
                 </View>
               </Right>
             </ListItem>
-            <ListItem
-              style={{
-                backgroundColor: "#E50000",
-                width: "100%",
-                marginLeft: null,
-                marginVertical: "2%",
-              }}
-            >
-              <Left>
-                <View>
-                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    לוטו שיטתי
-                  </Text>
-                </View>
-              </Left>
-
-              <Right>
-                <View>
-                  <Button
-                    small
-                    style={{
-                      borderRadius: 13,
-                      backgroundColor: "white",
-                    }}
-                    // onPress={() => navigation.navigate("Home")}
-                  >
-                    <Text
-                      style={{
-                        fontWeight: "bold",
-                        color: "red",
-                        fontSize: 10,
-                        padding: 15,
-                      }}
-                    >
-                      שחק עכשיו
-                    </Text>
-                  </Button>
-                </View>
-              </Right>
-            </ListItem>
-            <ListItem
-              style={{
-                backgroundColor: "#D10000",
-                width: "100%",
-                marginLeft: null,
-                marginVertical: "2%",
-              }}
-            >
-              <Left>
-                <View>
-                  <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    לוטו שיטתי חזק
-                  </Text>
-                </View>
-              </Left>
-
-              <Right>
-                <View>
-                  <Button
-                    small
-                    style={{
-                      borderRadius: 13,
-                      backgroundColor: "white",
-                    }}
-                    // onPress={() => navigation.navigate("Home")}
-                  >
-                    <Text
-                      style={{
-                        fontWeight: "bold",
-                        color: "red",
-                        fontSize: 10,
-                        padding: 15,
-                      }}
-                    >
-                      שחק עכשיו!
-                    </Text>
-                  </Button>
-                </View>
-              </Right>
-            </ListItem>
+           
           </List>
-            <View style={{ flexDirection: "row" }}>
-            <Text style={{flex:3, fontSize:25,}}>הסבר על הגרלת הלוטו</Text>
+            <View style={{ flexDirection: "row", marginTop:'50%'}}>
+            <Text style={{flex:3, fontSize:25,}}>הסבר על הגרלת צ'אנס</Text>
             <TouchableOpacity
-        style={LottoListstyles.roundButton1}>
+        style={ChanceListstyles.roundButton1}>
                 <Text style={{ fontSize: 20, color: "white"}}>+</Text>
       </TouchableOpacity>
               
-            <Text style={{flex:1}}>עוד</Text>
+            <Text style={{flex:1}}>   עוד..</Text>
           </View>
           <View
             style={{  padding: 1,backgroundColor:"#F2F2F2"}}
@@ -266,4 +227,4 @@ const LottoList = (props) => {
   );
 };
 
-export default LottoList;
+export default ChanceList;

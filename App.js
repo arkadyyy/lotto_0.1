@@ -11,6 +11,8 @@ import StackWrapper from "./StackWrapper";
 import DrawerContent from "./pages/DrawerContent/DrawerContent";
 import LottoPage from "./pages/Lotto/LottoPage";
 import LottoList from "./pages/Lotto/LottoList";
+import ChanceList from "./pages/Chance/ChanceList";
+
 
 // import { Provider } from "react-redux";
 // import { store } from "./redux/store";
@@ -33,6 +35,7 @@ export default function App() {
           <Drawer.Screen name='SignIn' component={SignIn} />
           <Drawer.Screen name='LottoPage' component={LottoPage} />
           <Drawer.Screen name='LottoList' component={LottoList} />
+          <Drawer.Screen name='ChanceList' component={ChanceList} />
         </Drawer.Navigator>
       </NavigationContainer>
       {/* </Provider> */}

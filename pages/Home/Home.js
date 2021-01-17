@@ -80,6 +80,9 @@ export default function Home({ navigation }) {
               </View>
               <View style={[homestyles.btnWrapper]}>
                 <Button
+                    onPress={() => {
+                      navigation.navigate("ChanceList");
+                    }}
                   style={[
                     homestyles.openingPageBtn,
                     { backgroundColor: "#009943" },

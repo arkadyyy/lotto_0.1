@@ -64,6 +64,20 @@ const NavBar = (props) => {
           </View>
         </Body>
       )}
+      {props.screenName === "LottoList" && (
+        <Body>
+          <View>
+            <Text
+              style={{
+                color: "white",
+                marginLeft: 50,
+              }}
+            >
+            הגרלת צ'אנס
+            </Text>
+          </View>
+        </Body>
+      )}
   
       <Right>
         <View style={{ flexDirection: "row" }}>
