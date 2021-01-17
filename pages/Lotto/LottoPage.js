@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import {
@@ -234,9 +234,114 @@ const LottoPage = ({ navigation }) => {
                 marginTop: 20,
               }}
             >
-              <List>
-                <ListItem style={{ backgroundColor: "#8CC63F" }}>
-                  <Text>tesdt123</Text>
+              <List
+                style={{
+                  alignItems: "flex-start",
+                }}
+              >
+                <ListItem
+                  style={{
+                    backgroundColor: "#8CC63F",
+
+                    marginTop: 4,
+                  }}
+                >
+                  <Text>טבלה 1</Text>
+                  <View style={{ flexDirection: "row" }}>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "#263742",
+                        borderColor: "white",
+                        borderWidth: 1,
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "white" }}>7</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>6</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "#FFFF00",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>5</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>4</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>3</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>2</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>1</Text>
+                    </View>
+                  </View>
                 </ListItem>
               </List>
             </View>
@@ -248,16 +353,28 @@ const LottoPage = ({ navigation }) => {
               }}
             >
               <Button
-                bordered
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#8CC63F",
                   borderColor: "white",
+                  borderWidth: 2,
                 }}
               >
-                <Text style={{ color: "white" }}>שלח טופס</Text>
+                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
               </Button>
             </View>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ fontSize: 18 }}>הסבר על הגרלות לוטו</Text>
+            <TouchableOpacity>
+              <Text>עוד</Text>
+            </TouchableOpacity>
           </View>
         </Container>
       </ScrollView>

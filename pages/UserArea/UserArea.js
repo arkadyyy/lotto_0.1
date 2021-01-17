@@ -43,7 +43,7 @@ const UserArea = ({ navigation }) => {
       <NavBar navigation={navigation} />
       <ScrollView style={{ flex: 1 }}>
         <View>
-          <BlankSquare />
+          <BlankSquare color={"#00AEEF"} />
           <View style={{ alignItems: "center" }}>
             {/* {start of userArea navigation} */}
 
