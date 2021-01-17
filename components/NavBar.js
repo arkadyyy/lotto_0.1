@@ -64,7 +64,7 @@ const NavBar = (props) => {
           </View>
         </Body>
       )}
-      {props.screenName === "LottoList" && (
+      {props.screenName === "ChanceList" && (
         <Body>
           <View>
             <Text
