@@ -14,7 +14,7 @@ import UserArea from "./pages/UserArea/UserArea";
 import SignIn from "./pages/SignIn/SignIn";
 import StackWrapper from "./StackWrapper";
 import DrawerContent from "./pages/DrawerContent/DrawerContent";
-
+import ChooseGame from "./pages/Lotto/ChooseGame"
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -39,6 +39,7 @@ export default function App() {
           <Drawer.Screen name='Home' component={Home} />
           <Drawer.Screen name='UserArea' component={UserArea} />
           <Drawer.Screen name='SignIn' component={SignIn} />
+          <Drawer.Screen name='ChooseGame' component={ChooseGame} />
         </Drawer.Navigator>
       </NavigationContainer>
     </>

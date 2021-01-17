@@ -26,6 +26,7 @@ import Hr from "react-native-hr-component";
 import NavBar from "../../components/NavBar";
 import styles from "../../styles";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import ChooseGame from "../../pages/Lotto/ChooseGame";
 import {
   faCoffee,
   faPlus,
@@ -51,6 +52,9 @@ export default function Home({ navigation }) {
             <View style={homestyles.openingPageBtns}>
               <View style={homestyles.btnWrapper}>
                 <Button
+                  onPress={() => {
+                    navigation.navigate("ChooseGame");
+                }}
                   style={[
                     homestyles.openingPageBtn,
                     {

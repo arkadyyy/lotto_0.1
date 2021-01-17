@@ -51,6 +51,22 @@ const NavBar = (props) => {
         
        
 )}
+      {props.screenName === 'ChooseGame' && (      
+        <Body>
+            <View>
+              <Text
+            style={{
+              color: "white",
+              marginLeft:50
+                }}
+              >
+                הגרלת לוטו
+            </Text>
+            </View>
+        </Body>
+        
+       
+)}
       
       <Right>
 
