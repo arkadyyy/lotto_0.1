@@ -16,6 +16,7 @@ import {
   Content,
 } from "native-base";
 import ViewForm from "../ViewForm";
+import drawerstyles from "../../DrawerContent/DrawerContentStyles";
 const MyWins = () => {
   const [open, setOpen] = useState(false);
   return (
@@ -32,11 +33,11 @@ const MyWins = () => {
             backgroundColor: "#263742",
             padding: 7,
             marginLeft: 2,
-                      marginRight: 2,
-            flex:1
+            marginRight: 2,
+            flex: 1,
           }}
         >
-         מספר זכיה
+          מספר זכיה
         </Text>
         <Text
           style={{
@@ -46,6 +47,7 @@ const MyWins = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
+            flex: 1,
           }}
         >
           תאריך ושעה
@@ -57,11 +59,11 @@ const MyWins = () => {
             backgroundColor: "#263742",
             padding: 7,
             marginLeft: 2,
-                      marginRight: 2,
-            flex:1
+            marginRight: 2,
+            flex: 1,
           }}
         >
-         סה"כ בש"ח
+          סה"כ בש"ח
         </Text>
         <Text
           style={{
@@ -70,12 +72,11 @@ const MyWins = () => {
             backgroundColor: "#263742",
             padding: 7,
             marginLeft: 2,
-                      marginRight: 2,
-                      flex:1
-
+            marginRight: 2,
+            flex: 1,
           }}
         >
-         משחק
+          משחק
         </Text>
         <Text
           style={{
@@ -84,12 +85,11 @@ const MyWins = () => {
             backgroundColor: "#263742",
             padding: 7,
             marginLeft: 2,
-                      marginRight: 2,
-                      flex:1
-
+            marginRight: 2,
+            flex: 1,
           }}
         >
-טופס
+          טופס
         </Text>
       </View>
 
@@ -101,10 +101,11 @@ const MyWins = () => {
 
           width: "98%",
           marginTop: 10,
+          flexWrap: "wrap",
         }}
       >
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
+        <ListItem style={{ backgroundColor: "#00AEEF" }}>
+          <View style={{ marginRight: 20 }}>
             <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
           </View>
           <View style={{ marginRight: 40 }}>
@@ -119,93 +120,16 @@ const MyWins = () => {
           </View>
           <View>
             <Button
-              style={{ borderColor: "white", padding: 5 }}
+              style={{ borderColor: "white", paddingLeft: 3, paddingRight: 3 }}
               small
               bordered
-              onPress={() => {
-                setOpen(true);
-              }}
             >
               <Text style={{ fontSize: 12, color: "white" }}>צפה בטופס</Text>
             </Button>
           </View>
         </ListItem>
-
-        {/* {open && (
-          <View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <View>
-                <Text>סהכ זכייה</Text>
-              </View>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>צפה בטופס</Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>תוצאות הגרלה</Text>
-              </Button>
-              <Button
-                style={{ padding: 5 }}
-                small
-                onPress={() => {
-                  setOpen(false);
-                }}
-              >
-                <Text>סגור</Text>
-              </Button>
-            </View>
-            <View style={{ margin: 10 }}>
-              <Text
-                style={{
-                  color: "#263742",
-                  fontWeight: "bold",
-                  padding: 10,
-                }}
-              >
-                הצירוף שלי
-              </Text>
-              <View>
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-              </View>
-            </View>
-          </View>
-        )} */}
-
-      </List>
-      <List
-        style={{
-          marginLeft: 20,
-          marginRight: 20,
-          backgroundColor: "#00AEEF",
-
-          width: "98%",
-          marginTop: 10,
-        }}
-      >
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
+        <ListItem style={{ backgroundColor: "#00AEEF" }}>
+          <View style={{ marginRight: 20 }}>
             <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
           </View>
           <View style={{ marginRight: 40 }}>
@@ -220,93 +144,16 @@ const MyWins = () => {
           </View>
           <View>
             <Button
-              style={{ borderColor: "white", padding: 5 }}
+              style={{ borderColor: "white", paddingLeft: 3, paddingRight: 3 }}
               small
               bordered
-              onPress={() => {
-                setOpen(true);
-              }}
             >
               <Text style={{ fontSize: 12, color: "white" }}>צפה בטופס</Text>
             </Button>
           </View>
         </ListItem>
-
-        {/* {open && (
-          <View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <View>
-                <Text>סהכ זכייה</Text>
-              </View>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>צפה בטופס</Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>תוצאות הגרלה</Text>
-              </Button>
-              <Button
-                style={{ padding: 5 }}
-                small
-                onPress={() => {
-                  setOpen(false);
-                }}
-              >
-                <Text>סגור</Text>
-              </Button>
-            </View>
-            <View style={{ margin: 10 }}>
-              <Text
-                style={{
-                  color: "#263742",
-                  fontWeight: "bold",
-                  padding: 10,
-                }}
-              >
-                הצירוף שלי
-              </Text>
-              <View>
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-              </View>
-            </View>
-          </View>
-        )} */}
-
-      </List>
-      <List
-        style={{
-          marginLeft: 20,
-          marginRight: 20,
-          backgroundColor: "#00AEEF",
-
-          width: "98%",
-          marginTop: 10,
-        }}
-      >
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
+        <ListItem style={{ backgroundColor: "#00AEEF" }}>
+          <View style={{ marginRight: 20 }}>
             <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
           </View>
           <View style={{ marginRight: 40 }}>
@@ -321,181 +168,14 @@ const MyWins = () => {
           </View>
           <View>
             <Button
-              style={{ borderColor: "white", padding: 5 }}
+              style={{ borderColor: "white", paddingLeft: 3, paddingRight: 3 }}
               small
               bordered
-              onPress={() => {
-                setOpen(true);
-              }}
             >
               <Text style={{ fontSize: 12, color: "white" }}>צפה בטופס</Text>
             </Button>
           </View>
         </ListItem>
-
-        {/* {open && (
-          <View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <View>
-                <Text>סהכ זכייה</Text>
-              </View>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>צפה בטופס</Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>תוצאות הגרלה</Text>
-              </Button>
-              <Button
-                style={{ padding: 5 }}
-                small
-                onPress={() => {
-                  setOpen(false);
-                }}
-              >
-                <Text>סגור</Text>
-              </Button>
-            </View>
-            <View style={{ margin: 10 }}>
-              <Text
-                style={{
-                  color: "#263742",
-                  fontWeight: "bold",
-                  padding: 10,
-                }}
-              >
-                הצירוף שלי
-              </Text>
-              <View>
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-              </View>
-            </View>
-          </View>
-        )} */}
-
-      </List>
-      <List
-        style={{
-          marginLeft: 20,
-          marginRight: 20,
-          backgroundColor: "#00AEEF",
-
-          width: "98%",
-          marginTop: 10,
-        }}
-      >
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>לוטו</Text>
-          </View>
-          <View>
-            <Button
-              style={{ borderColor: "white", padding: 5 }}
-              small
-              bordered
-              onPress={() => {
-                setOpen(true);
-              }}
-            >
-              <Text style={{ fontSize: 12, color: "white" }}>צפה בטופס</Text>
-            </Button>
-          </View>
-        </ListItem>
-
-        {/* {open && (
-          <View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <View>
-                <Text>סהכ זכייה</Text>
-              </View>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>צפה בטופס</Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>תוצאות הגרלה</Text>
-              </Button>
-              <Button
-                style={{ padding: 5 }}
-                small
-                onPress={() => {
-                  setOpen(false);
-                }}
-              >
-                <Text>סגור</Text>
-              </Button>
-            </View>
-            <View style={{ margin: 10 }}>
-              <Text
-                style={{
-                  color: "#263742",
-                  fontWeight: "bold",
-                  padding: 10,
-                }}
-              >
-                הצירוף שלי
-              </Text>
-              <View>
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-              </View>
-            </View>
-          </View>
-        )} */}
-
       </List>
     </>
   );

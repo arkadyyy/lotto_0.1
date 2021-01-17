@@ -20,7 +20,7 @@ import ViewForm from "../ViewForm";
 const PaymentHistory = () => {
   const [open, setOpen] = useState(false);
 
-  return(
+  return (
     <>
       <View
         style={{
@@ -35,11 +35,10 @@ const PaymentHistory = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
-            flex:0.5
-
+            flex: 0.5,
           }}
         >
-         מספר
+          מספר
         </Text>
         <Text
           style={{
@@ -49,8 +48,7 @@ const PaymentHistory = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
-            flex:0.5
-
+            flex: 0.5,
           }}
         >
           תאריך ושעה
@@ -61,14 +59,13 @@ const PaymentHistory = () => {
             fontSize: 12,
             backgroundColor: "#263742",
             padding: 7,
-            marginLeft:2,
-            marginRight:2,
-            flex:2,
+            marginLeft: 2,
+            marginRight: 2,
+            flex: 1.5,
           }}
         >
-         סה"כ בש"ח
+          סה"כ בש"ח
         </Text>
-       
       </View>
 
       <List
@@ -94,55 +91,8 @@ const PaymentHistory = () => {
           </View>
           <View>
             <Button
-              style={{ borderColor: "white", padding: 5, marginLeft:'47%' }}
-              small
-              bordered
-              onPress={() => {
-                setOpen(true);
-              }}
-            >
-              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
-            </Button>
-          </View>
-        </ListItem>
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-          </View>
-          <View >
-            <Button
-              style={{ borderColor: "white", padding: 5,marginLeft:'47%'}}
-              small
-                bordered          
-              onPress={() => {
-                setOpen(true);
-              }}
-            >
-              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
-            </Button>
-          </View>
-        </ListItem>
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-          </View>
-          <View>
-            <Button
-              style={{ borderColor: "white", padding: 5, marginLeft:'47%'}}
+              disabled
+              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
               small
               bordered
               onPress={() => {
@@ -166,7 +116,8 @@ const PaymentHistory = () => {
           </View>
           <View>
             <Button
-              style={{ borderColor: "white", padding: 5, marginLeft:'47%' }}
+              disabled
+              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
               small
               bordered
               onPress={() => {
@@ -177,10 +128,57 @@ const PaymentHistory = () => {
             </Button>
           </View>
         </ListItem>
-
-       
-
-        </List>
+        <ListItem>
+          <View style={{ marginRight: 45 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
+          </View>
+          <View style={{ marginRight: 40 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
+            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
+          </View>
+          <View style={{ marginRight: 40 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
+          </View>
+          <View>
+            <Button
+              disabled
+              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
+              small
+              bordered
+              onPress={() => {
+                setOpen(true);
+              }}
+            >
+              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
+            </Button>
+          </View>
+        </ListItem>
+        <ListItem>
+          <View style={{ marginRight: 45 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
+          </View>
+          <View style={{ marginRight: 40 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
+            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
+          </View>
+          <View style={{ marginRight: 40 }}>
+            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
+          </View>
+          <View>
+            <Button
+              disabled
+              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
+              small
+              bordered
+              onPress={() => {
+                setOpen(true);
+              }}
+            >
+              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
+            </Button>
+          </View>
+        </ListItem>
+      </List>
     </>
   );
 };

@@ -24,14 +24,14 @@ import {
   ListItem,
   Content,
 } from "native-base";
-import Hr from "react-native-hr-component";
+
 import NavBar from "../../components/NavBar";
 import ColorLine from "../../components/ColorLine";
 import ViewForm from "./ViewForm";
 import BlankSquare from "../../components/BlankSquare";
 import SendHistory from "./SendHistory/SendHistory";
 import ActiveForms from "./ActiveForms/ActiveForms";
-import WithDrawal from "./WithDrawal/WithDrawal";
+import Withdrawal from "./WithDrawal/WithDrawal";
 import MyWins from "./MyWins/MyWins";
 import PaymentHistory from "./PaymentHistory/PaymentHistory";
 import HistoryRefund from "./HistoryRefund/HistoryRefund";
@@ -119,13 +119,13 @@ const UserArea = ({ navigation }) => {
                   <TouchableOpacity
                     style={[
                       userAreaStyles.toucheable,
-                      screen === "WithDrawal" && {
+                      screen === "Withdrawal" && {
                         borderBottomColor: "black",
                         borderBottomWidth: 1,
                       },
                     ]}
                     onPress={() => {
-                      setScreen("WithDrawal");
+                      setScreen("Withdrawal");
                     }}
                   >
                     <Text style={{ fontSize: 10 }}>משיכות</Text>
@@ -221,9 +221,9 @@ const UserArea = ({ navigation }) => {
             {screen === "activeForms" && <ActiveForms />}
             {screen === "sendHistory" && <SendHistory />}
             {screen === "myWins" && <MyWins />}
-            {screen === "WithDrawal" && <WithDrawal />}
+            {screen === "Withdrawal" && <Withdrawal />}
             {screen === "PaymentHistory" && <PaymentHistory />}
-            {/* {screen === "myWins" && <SendHistory />} */}
+            {screen === "myWins2" && <SendHistory />}
             {screen === "HistoryRefund" && <HistoryRefund />}
 
             <ColorLine />

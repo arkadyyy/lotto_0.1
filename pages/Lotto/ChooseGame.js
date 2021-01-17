@@ -205,16 +205,9 @@ import {
        
 
         </List>
+<View style={{backgroundColor:"red"}}><Text>הסבר על הגרת הלוטו</Text></View>
 
-
-          <View style={homestyles.footerMsg}>
-            <Text style={homestyles.footerText}>
-              אתר זה מעניק שירות של משלוח טפסי הגרלה של מפעל הפיס כגוף עצמאי.
-            </Text>
-            <Text style={homestyles.footerText}>
-              אסורה מכירה למי שטרם מלאו לו 18.
-            </Text>
-          </View>
+         
         </ScrollView>
       </Container>
       </>
