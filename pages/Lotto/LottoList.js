@@ -28,6 +28,7 @@ import Hr from "react-native-hr-component";
 import NavBar from "../../components/NavBar";
 import styles from "../../styles";
 import ColorLine from "../../components/ColorLine";
+import BlankSquare from "../../components/BlankSquare.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faCoffee,
@@ -43,15 +44,16 @@ const LottoList = (props) => {
     <>
       <NavBar navigation={navigation} screenName={"LottoList"} />
       
-      <Container>
-        <ScrollView>
-        <View
-        style={{ width: "100%", height: "1%", backgroundColor: "#FF0000" }}
-      ></View>  
-      <View
-        style={{ backgroundColor: "#F2F2F2", width: "100%", height: 100 }}
-      ></View>
-        
+    <Container>
+    <ScrollView>
+      <View style={homestyles.container}>
+            <View>
+              <BlankSquare />
+            </View>
+          {/* </View> */}
+          <View
+            style={{ width: "100%", height: "2%", backgroundColor: "red" }}
+          ></View>
 
           <List
             style={{
@@ -224,7 +226,7 @@ const LottoList = (props) => {
             <Text>הסבר על הגרלת האוטו</Text>
             <Button><Text>+</Text></Button>
             <Text>עוד..</Text>
-</View>
+          </View>
           <View
             style={{  padding: 1,backgroundColor:"#F2F2F2"}}
           >
@@ -245,6 +247,7 @@ const LottoList = (props) => {
       <View style={{ width: '25%', height: 1, backgroundColor: "#009943" }}></View>
       <View style={{ width: '25%', height: 1, backgroundColor: "#E62321" }}></View>
       <View style={{ width: '25%', height: 1, backgroundColor: "#FF6B00" }}></View>
+    </View>
     </View>
       
           

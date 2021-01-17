@@ -50,7 +50,21 @@ const NavBar = (props) => {
           </View>
         </Body>
       )}
-
+      {props.screenName === "LottoList" && (
+        <Body>
+          <View>
+            <Text
+              style={{
+                color: "white",
+                marginLeft: 50,
+              }}
+            >
+            הגרלת לוטו
+            </Text>
+          </View>
+        </Body>
+      )}
+  
       <Right>
         <View style={{ flexDirection: "row" }}>
           <Button
@@ -89,20 +103,7 @@ const NavBar = (props) => {
               </View>
             </Button>
           )}
-          {props.screenName === "ChooseGame" && (
-            <Body>
-              <View>
-                <Text
-                  style={{
-                    color: "white",
-                    marginLeft: 50,
-                  }}
-                >
-                  הגרלת לוטו
-                </Text>
-              </View>
-            </Body>
-          )}
+       
         </View>
       </Right>
     </Header>

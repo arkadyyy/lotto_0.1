@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import {
@@ -26,22 +26,22 @@ const LottoPage = ({ navigation }) => {
         <BlankSquare color='#E62321' />
         <View
           style={{
-            backgroundColor: "blue",
             flexDirection: "row",
-            justifyContent: "space-between",
           }}
         >
           <View
             style={{
               flexDirection: "row",
               justifyContent: "space-evenly",
+              alignItems: "center",
               padding: 15,
+              flex: 2,
             }}
           >
             <Text>בחר סוג טופס</Text>
             <View>
               <Button
-                style={{ backgroundColor: "white", margin: 10 }}
+                style={{ backgroundColor: "white", padding: 10 }}
                 small
                 rounded
               >
@@ -51,7 +51,7 @@ const LottoPage = ({ navigation }) => {
 
             <View>
               <Button
-                style={{ backgroundColor: "#E62321", margin: 10 }}
+                style={{ backgroundColor: "#E62321", padding: 10 }}
                 small
                 rounded
               >
@@ -59,9 +59,17 @@ const LottoPage = ({ navigation }) => {
               </Button>
             </View>
           </View>
-          <View style={{ backgroundColor: "#E62321", padding: 3 }}>
+          <View
+            style={{
+              backgroundColor: "#E62321",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              paddingLeft: 20,
+            }}
+          >
             <Button
-              style={{ backgroundColor: "white", margin: 10 }}
+              style={{ backgroundColor: "white", padding: 10 }}
               small
               rounded
             >
@@ -69,12 +77,13 @@ const LottoPage = ({ navigation }) => {
             </Button>
           </View>
         </View>
-        <Container style={{ margin: 20 }}>
-          <View style={{ backgroundColor: "#E62321" }}>
+        <View style={{ margin: 15 }}>
+          <View style={{ backgroundColor: "#E62321", paddingBottom: 20 }}>
             <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
+                padding: 30,
               }}
             >
               <View
@@ -91,7 +100,7 @@ const LottoPage = ({ navigation }) => {
               >
                 <Text style={{ fontSize: 20, color: "#E62321" }}>1</Text>
               </View>
-              <Text>מלא את הטופס</Text>
+              <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
             </View>
             <View
               style={{
@@ -106,14 +115,14 @@ const LottoPage = ({ navigation }) => {
               <Text style={{ fontSize: 15, color: "white" }}>
                 בחר מספר טבלאות למילוי
               </Text>
-              <View>
+              <View style={{}}>
                 <View style={{ flexDirection: "row" }}>
                   <View
                     style={{
-                      width: 30,
-                      height: 30,
+                      width: 25,
+                      height: 25,
                       borderRadius: 30,
-                      backgroundColor: "#263742",
+                      backgroundColor: "white",
                       borderColor: "white",
                       borderWidth: 1,
                       margin: 5,
@@ -121,12 +130,12 @@ const LottoPage = ({ navigation }) => {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={{ color: "white" }}>7</Text>
+                    <Text style={{ color: "black" }}>7</Text>
                   </View>
                   <View
                     style={{
-                      width: 30,
-                      height: 30,
+                      width: 25,
+                      height: 25,
                       borderRadius: 30,
                       backgroundColor: "white",
                       margin: 5,
@@ -138,10 +147,10 @@ const LottoPage = ({ navigation }) => {
                   </View>
                   <View
                     style={{
-                      width: 30,
-                      height: 30,
+                      width: 25,
+                      height: 25,
                       borderRadius: 30,
-                      backgroundColor: "#FFFF00",
+                      backgroundColor: "white",
                       margin: 5,
                       justifyContent: "center",
                       alignItems: "center",
@@ -151,8 +160,8 @@ const LottoPage = ({ navigation }) => {
                   </View>
                   <View
                     style={{
-                      width: 30,
-                      height: 30,
+                      width: 25,
+                      height: 25,
                       borderRadius: 30,
                       backgroundColor: "white",
                       margin: 5,
@@ -164,8 +173,8 @@ const LottoPage = ({ navigation }) => {
                   </View>
                   <View
                     style={{
-                      width: 30,
-                      height: 30,
+                      width: 25,
+                      height: 25,
                       borderRadius: 30,
                       backgroundColor: "white",
                       margin: 5,
@@ -177,8 +186,8 @@ const LottoPage = ({ navigation }) => {
                   </View>
                   <View
                     style={{
-                      width: 30,
-                      height: 30,
+                      width: 25,
+                      height: 25,
                       borderRadius: 30,
                       backgroundColor: "white",
                       margin: 5,
@@ -190,8 +199,8 @@ const LottoPage = ({ navigation }) => {
                   </View>
                   <View
                     style={{
-                      width: 30,
-                      height: 30,
+                      width: 25,
+                      height: 25,
                       borderRadius: 30,
                       backgroundColor: "white",
                       margin: 5,
@@ -204,23 +213,52 @@ const LottoPage = ({ navigation }) => {
                 </View>
               </View>
             </View>
-            <Text style={{ color: "white", fontSize: 15 }}>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 15,
+                marginLeft: 12,
+                marginBottom: 10,
+              }}
+            >
               בחר 6 מספרים וחזק
             </Text>
             <View
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
+                flexWrap: "wrap",
               }}
             >
-              <Button style={{ borderColor: "white" }} small rounded bordered>
-                <Text style={{ color: "white" }}>מלא טבלה אוטומטית</Text>
+              <Button
+                style={{ borderColor: "white", margin: 5 }}
+                small
+                rounded
+                bordered
+              >
+                <Text style={{ color: "white", fontSize: 10 }}>
+                  מלא טבלה אוטומטית
+                </Text>
               </Button>
-              <Button style={{ borderColor: "white" }} small rounded bordered>
-                <Text style={{ color: "white" }}>מחק טבלה אוטומטית</Text>
+              <Button
+                style={{ borderColor: "white", margin: 5 }}
+                small
+                rounded
+                bordered
+              >
+                <Text style={{ color: "white", fontSize: 10 }}>
+                  מחק טבלה אוטומטית
+                </Text>
               </Button>
-              <Button style={{ borderColor: "white" }} small rounded bordered>
-                <Text style={{ color: "white" }}>מלא טופס אוטומטי</Text>
+              <Button
+                style={{ borderColor: "white", margin: 5 }}
+                small
+                rounded
+                bordered
+              >
+                <Text style={{ color: "white", fontSize: 10 }}>
+                  מלא טופס אוטומטי
+                </Text>
               </Button>
             </View>
             <View
@@ -234,9 +272,126 @@ const LottoPage = ({ navigation }) => {
                 marginTop: 20,
               }}
             >
-              <List>
-                <ListItem style={{ backgroundColor: "#8CC63F" }}>
-                  <Text>tesdt123</Text>
+              <List
+                style={{
+                  alignItems: "flex-start",
+                }}
+              >
+                <ListItem
+                  style={{
+                    backgroundColor: "#8CC63F",
+
+                    marginTop: 4,
+                  }}
+                >
+                  <Text>טבלה 1</Text>
+                  <View style={{ flexDirection: "row" }}>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "black" }}>7</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>6</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>5</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>4</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>3</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>2</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>1</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: 35,
+                      height: 35,
+                      backgroundColor: "green",
+                      borderRadius: 20,
+                      position: "relative",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ color: "white" }}>X2</Text>
+                  </View>
                 </ListItem>
               </List>
             </View>
@@ -248,18 +403,30 @@ const LottoPage = ({ navigation }) => {
               }}
             >
               <Button
-                bordered
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#8CC63F",
                   borderColor: "white",
+                  borderWidth: 2,
                 }}
               >
-                <Text style={{ color: "white" }}>שלח טופס</Text>
+                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
               </Button>
             </View>
           </View>
-        </Container>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ fontSize: 18 }}>הסבר על הגרלות לוטו</Text>
+            <TouchableOpacity>
+              <Text>עוד</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </ScrollView>
     </>
   );
