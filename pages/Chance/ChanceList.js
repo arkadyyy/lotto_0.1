@@ -43,12 +43,12 @@ const ChanceList = (props) => {
   return (
     <>
       <NavBar navigation={navigation} screenName={"ChanceList"} />
-      <View
-            style={{ width: "100%", height: "1%", backgroundColor: "#009C4A" }}></View>
+      <View style={{ width: "100%", height: "1%", backgroundColor: "#009C4A" }}></View>
     <Container>
     <ScrollView>
                   <View style={homestyles.container}>
-                      
+      <View style={{ width: "100%", height: "15%", backgroundColor: "#F2F2F2" }}></View>
+                          
             <View>
               <BlankSquare />
             </View>
@@ -151,7 +151,7 @@ const ChanceList = (props) => {
               }}
             >
               <Left>
-                <View>
+          <View>
                 <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
                     צ'אנס שיטתי
                   </Text>
@@ -184,7 +184,8 @@ const ChanceList = (props) => {
             </ListItem>
            
           </List>
-            <View style={{ flexDirection: "row", marginTop:'50%'}}>
+                      <View style={{ flexDirection: "row" }}>
+                          <View style={{height:'50%',,backgroundColor:"white"}}></View>
             <Text style={{flex:3, fontSize:25,}}>הסבר על הגרלת צ'אנס</Text>
             <TouchableOpacity
         style={ChanceListstyles.roundButton1}>

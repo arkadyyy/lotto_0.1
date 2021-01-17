@@ -319,9 +319,9 @@ const BlankSquare = ({ color }) => {
               </View>
             </View>
           </View>
-          <View
+          {/* <View
             style={{ width: "100%", height: 7, backgroundColor: color }}
-          ></View>
+          ></View> */}
           <Image
             resizeMode='contain'
             style={{
@@ -340,21 +340,21 @@ const BlankSquare = ({ color }) => {
       )}
       {route.name === "ChanceList" && (
         <View>
-          <View
-            style={{ width: "100%", height: 7, backgroundColor: color }}
-          ></View>
+          {/* <View
+            style={{ width: "100%", height: 1, backgroundColor: color }}
+          ></View> */}
           <View
             style={{
               backgroundColor: "white",
               width: "100%",
-              height: 100,
+              height: '12%',
               flexDirection: "row",
               justifyContent: "space-evenly",
             }}
           >
             <View>
-              <Text style={{ fontSize: 19 }}>הגרלת צ'אנס </Text>
-              <Text>עד 10,000,000 </Text>
+              <Text style={{ fontSize: 19,fontWeight:"bold" }}>הגרלת צ'אנס </Text>
+              <Text  style={{ fontSize: 19,fontWeight:"bold" }}>עד 10,000,000 </Text>
             </View>
             <View style={{ flexDirection: "row" }}>
               <View>

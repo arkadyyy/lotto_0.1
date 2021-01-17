@@ -67,10 +67,13 @@ const NavBar = (props) => {
       {props.screenName === "ChanceList" && (
         <Body>
           <View>
-            <Text
+            <Text 
               style={{
                 color: "white",
                 marginLeft: 50,
+                fontWeight: "bold",
+                fontSize: 18,
+                
               }}
             >
             הגרלת צ'אנס
