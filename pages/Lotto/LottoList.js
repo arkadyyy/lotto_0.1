@@ -5,7 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  Touchable,
+  TouchableOpacity,
   View,
   Image,
 } from "react-native";
@@ -35,6 +35,7 @@ import {
   faPlus,
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import LottoListstyles from "./LottoListStyles";
 //////////////////////////////////////////////////////////////
 
 const LottoList = (props) => {
@@ -71,7 +72,7 @@ const LottoList = (props) => {
             >
               <Left>
                 <View>
-                  <Text style={{ fontSize: 24, color: "white" }}>
+                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
                     לוטו רגיל
                   </Text>
                 </View>
@@ -111,7 +112,7 @@ const LottoList = (props) => {
             >
               <Left>
                 <View>
-                  <Text style={{ fontSize: 24, color: "white" }}>
+                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
                     דאבל לוטו
                   </Text>
                 </View>
@@ -151,7 +152,7 @@ const LottoList = (props) => {
             >
               <Left>
                 <View>
-                  <Text style={{ fontSize: 24, color: "white" }}>
+                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
                     לוטו שיטתי
                   </Text>
                 </View>
@@ -191,7 +192,7 @@ const LottoList = (props) => {
             >
               <Left>
                 <View>
-                  <Text style={{ fontSize: 24, color: "white" }}>
+                  <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
                     לוטו שיטתי חזק
                   </Text>
                 </View>
@@ -215,17 +216,21 @@ const LottoList = (props) => {
                         padding: 15,
                       }}
                     >
-                      לוטו שיטתי חזק{" "}
+                      שחק עכשיו!
                     </Text>
                   </Button>
                 </View>
               </Right>
             </ListItem>
           </List>
-          <View>
-            <Text>הסבר על הגרלת האוטו</Text>
-            <Button><Text>+</Text></Button>
-            <Text>עוד..</Text>
+            <View style={{ flexDirection: "row" }}>
+            <Text style={{flex:3, fontSize:25,}}>הסבר על הגרלת הלוטו</Text>
+            <TouchableOpacity
+        style={LottoListstyles.roundButton1}>
+                <Text style={{ fontSize: 20, color: "white"}}>+</Text>
+      </TouchableOpacity>
+              
+            <Text style={{flex:1}}>עוד</Text>
           </View>
           <View
             style={{  padding: 1,backgroundColor:"#F2F2F2"}}

@@ -26,7 +26,6 @@ import Hr from "react-native-hr-component";
 import NavBar from "../../components/NavBar";
 import styles from "../../styles";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import ChooseGame from "../../pages/Lotto/ChooseGame";
 import {
   faCoffee,
   faPlus,

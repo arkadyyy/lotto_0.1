@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-import { ScrollView, StyleSheet, Text, Touchable, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import signInstyles from "../SignIn/SignInStyles";
 import {
   Container,
