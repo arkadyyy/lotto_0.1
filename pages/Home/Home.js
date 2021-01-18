@@ -112,6 +112,9 @@ export default function Home({ navigation }) {
               </View>
               <View style={homestyles.btnWrapper}>
                 <Button
+                   onPress={() => {
+                    navigation.navigate("Sheva77List");
+                  }}
                   style={[
                     homestyles.openingPageBtn,
                     { backgroundColor: "#EB2874" },
