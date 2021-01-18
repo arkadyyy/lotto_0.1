@@ -280,11 +280,12 @@ const LottoPage = ({ navigation }) => {
                 <ListItem
                   style={{
                     backgroundColor: "#8CC63F",
-
+                    flexWrap: "wrap",
                     marginTop: 4,
+                    height: 55,
                   }}
                 >
-                  <Text>טבלה 1</Text>
+                  <Text style={{ color: "white" }}>טבלה 1</Text>
                   <View style={{ flexDirection: "row" }}>
                     <View
                       style={{
@@ -383,9 +384,372 @@ const LottoPage = ({ navigation }) => {
                     style={{
                       width: 35,
                       height: 35,
-                      backgroundColor: "green",
+                      backgroundColor: "#FF838C",
+                      borderWidth: 2,
+                      borderColor: "white",
                       borderRadius: 20,
-                      position: "relative",
+                      position: "absolute",
+                      left: 255,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ color: "white" }}>X2</Text>
+                  </View>
+                </ListItem>
+                <ListItem
+                  style={{
+                    backgroundColor: "#8CC63F",
+                    flexWrap: "wrap",
+                    marginTop: 4,
+                    height: 55,
+                  }}
+                >
+                  <Text style={{ color: "white" }}>טבלה 1</Text>
+                  <View style={{ flexDirection: "row" }}>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "black" }}>7</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>6</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>5</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>4</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>3</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>2</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>1</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: 35,
+                      height: 35,
+                      backgroundColor: "#FF838C",
+                      borderWidth: 2,
+                      borderColor: "white",
+                      borderRadius: 20,
+                      position: "absolute",
+                      left: 255,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ color: "white" }}>X2</Text>
+                  </View>
+                </ListItem>
+                <ListItem
+                  style={{
+                    backgroundColor: "#C1272D",
+                    flexWrap: "wrap",
+                    height: 55,
+                    marginTop: 4,
+                  }}
+                >
+                  <Text style={{ color: "white" }}>טבלה 1</Text>
+                  <View style={{ flexDirection: "row" }}>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "black" }}>7</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>6</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>5</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>4</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>3</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>2</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>1</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: 35,
+                      height: 35,
+                      backgroundColor: "#FF838C",
+                      borderWidth: 2,
+                      borderColor: "white",
+                      borderRadius: 20,
+                      position: "absolute",
+                      left: 255,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ color: "white" }}>X2</Text>
+                  </View>
+                </ListItem>
+                <ListItem
+                  style={{
+                    backgroundColor: "#C1272D",
+                    flexWrap: "wrap",
+                    height: 55,
+                    marginTop: 4,
+                  }}
+                >
+                  <Text style={{ color: "white" }}>טבלה 1</Text>
+                  <View style={{ flexDirection: "row" }}>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "black" }}>7</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>6</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>5</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>4</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>3</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>2</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 5,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text>1</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: 35,
+                      height: 35,
+                      backgroundColor: "#FF838C",
+                      borderWidth: 2,
+                      borderColor: "white",
+                      borderRadius: 20,
+                      position: "absolute",
+                      left: 255,
                       justifyContent: "center",
                       alignItems: "center",
                     }}
