@@ -177,51 +177,8 @@ const ChanceList = (props) => {
                     >
                       צ'אנס שיטתי
                     </Text>
-<<<<<<< HEAD
                   </View>
                 </Left>
-=======
-                  </Button>
-                </View>
-              </Right>
-            </ListItem>
-           
-          </List>
-                      <View style={{ flexDirection: "row" }}>
-                          <View style={{height:'50%',backgroundColor:"white"}}></View>
-            <Text style={{flex:3, fontSize:25,}}>הסבר על הגרלת צ'אנס</Text>
-            <TouchableOpacity
-        style={ChanceListstyles.roundButton1}>
-                <Text style={{ fontSize: 20, color: "white"}}>+</Text>
-      </TouchableOpacity>
-              
-            <Text style={{flex:1}}>   עוד..</Text>
-          </View>
-          <View
-            style={{  padding: 1,backgroundColor:"#F2F2F2"}}
-          >
-            <Text style={{fontSize: 10}}>
-            לאחר התשלום אנו בלוטומטיק מקבלים את הטופס שמילאתם ושולחים אותו עבורכם בנקודת מכירה מורשית של מפעל הפיס, את הטופס שמילאנו עבורגם בנקודה אנו סורקים ושולחים לכם לתיבת הדואר האלקטרוני ומעלים את הטופס הסרוק לאזור האישי שלכם באפליקציה. הטופס מהקורי יישמר אצלנו במשרדי החברה ובמידה וזכיתם בסכום העולה על 11,000 ש"ח יימסר לכם הטופס באופן אישי.
-            </Text>
-          </View>
-          <View
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        width:"100%",
-        padding: 30,
-      }}
-    >
-      <View style={{ width: '25%', height: 1, backgroundColor: "#EB2874" }}></View>
-      <View style={{ width: '25%', height: 1, backgroundColor: "#009943" }}></View>
-      <View style={{ width: '25%', height: 1, backgroundColor: "#E62321" }}></View>
-      <View style={{ width: '25%', height: 1, backgroundColor: "#FF6B00" }}></View>
-    </View>
-    </View>
-      
-          
->>>>>>> 8e4f3fe9de10178ba11eb15491ccdfa55a2a1a74
 
                 <Right>
                   <View>

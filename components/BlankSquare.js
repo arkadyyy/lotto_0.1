@@ -498,14 +498,18 @@ const BlankSquare = ({ color }) => {
             style={{
               backgroundColor: "white",
               width: "100%",
-              height: '12%',
+              height: "12%",
               flexDirection: "row",
               justifyContent: "space-evenly",
             }}
           >
             <View>
-              <Text style={{ fontSize: 19,fontWeight:"bold" }}>הגרלת 777 </Text>
-              <Text  style={{ fontSize: 19,fontWeight:"bold" }}>עד 10,000,000 </Text>
+              <Text style={{ fontSize: 19, fontWeight: "bold" }}>
+                הגרלת 777{" "}
+              </Text>
+              <Text style={{ fontSize: 19, fontWeight: "bold" }}>
+                עד 10,000,000{" "}
+              </Text>
             </View>
             <View style={{ flexDirection: "row" }}>
               <View>
@@ -637,7 +641,8 @@ const BlankSquare = ({ color }) => {
 
               marginBottom: -30,
             }}
-            source={require("../../lotto_0.1/assets/home/seven.png")}
+            // source={require("../../lotto_0.1/assets/home/seven.png")}
+            source={require("C:/fullstack/lottoMatic/assets/home/seven.png")}
           />
         </View>
       )}

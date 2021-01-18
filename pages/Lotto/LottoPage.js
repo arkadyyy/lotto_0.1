@@ -263,18 +263,20 @@ const LottoPage = ({ navigation }) => {
             </View>
             <View
               style={{
-                height: 200,
                 borderColor: "white",
                 borderRadius: 7,
                 borderWidth: 1,
-                width: "90%",
+                width: "83.7%",
                 alignSelf: "center",
                 marginTop: 20,
               }}
             >
               <List
                 style={{
-                  alignItems: "flex-start",
+                  alignItems: "flex-end",
+                  // backgroundColor: "yellow",
+                  marginLeft: -17,
+                  flexWrap: "wrap",
                 }}
               >
                 <ListItem
@@ -283,103 +285,106 @@ const LottoPage = ({ navigation }) => {
                     flexWrap: "wrap",
                     marginTop: 4,
                     height: 55,
+                    alignItems: "center",
                   }}
                 >
                   <Text style={{ color: "white" }}>טבלה 1</Text>
-                  <View style={{ flexDirection: "row" }}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
+                  <TouchableOpacity>
+                    <View style={{ flexDirection: "row" }}>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
 
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text style={{ color: "black" }}>7</Text>
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={{ color: "black" }}>7</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>6</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>5</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>4</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>3</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>2</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>1</Text>
+                      </View>
                     </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>6</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>5</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>4</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>3</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>2</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>1</Text>
-                    </View>
-                  </View>
+                  </TouchableOpacity>
                   <View
                     style={{
                       width: 35,
@@ -406,100 +411,102 @@ const LottoPage = ({ navigation }) => {
                   }}
                 >
                   <Text style={{ color: "white" }}>טבלה 1</Text>
-                  <View style={{ flexDirection: "row" }}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
+                  <TouchableOpacity>
+                    <View style={{ flexDirection: "row" }}>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
 
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text style={{ color: "black" }}>7</Text>
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={{ color: "black" }}>7</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>6</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>5</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>4</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>3</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>2</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>1</Text>
+                      </View>
                     </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>6</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>5</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>4</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>3</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>2</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>1</Text>
-                    </View>
-                  </View>
+                  </TouchableOpacity>
                   <View
                     style={{
                       width: 35,
@@ -526,105 +533,107 @@ const LottoPage = ({ navigation }) => {
                   }}
                 >
                   <Text style={{ color: "white" }}>טבלה 1</Text>
-                  <View style={{ flexDirection: "row" }}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
+                  <TouchableOpacity>
+                    <View style={{ flexDirection: "row" }}>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
 
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text style={{ color: "black" }}>7</Text>
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={{ color: "black" }}>7</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>6</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>5</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>4</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>3</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>2</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>1</Text>
+                      </View>
                     </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>6</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>5</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>4</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>3</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>2</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>1</Text>
-                    </View>
-                  </View>
+                  </TouchableOpacity>
                   <View
                     style={{
                       width: 35,
                       height: 35,
-                      backgroundColor: "#FF838C",
+                      backgroundColor: "#C1272D",
                       borderWidth: 2,
                       borderColor: "white",
                       borderRadius: 20,
@@ -634,9 +643,10 @@ const LottoPage = ({ navigation }) => {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={{ color: "white" }}>X2</Text>
+                    <Text style={{ color: "white" }}>X4</Text>
                   </View>
                 </ListItem>
+
                 <ListItem
                   style={{
                     backgroundColor: "#C1272D",
@@ -646,105 +656,107 @@ const LottoPage = ({ navigation }) => {
                   }}
                 >
                   <Text style={{ color: "white" }}>טבלה 1</Text>
-                  <View style={{ flexDirection: "row" }}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
+                  <TouchableOpacity>
+                    <View style={{ flexDirection: "row" }}>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
 
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text style={{ color: "black" }}>7</Text>
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={{ color: "black" }}>7</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>6</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>5</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>4</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>3</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>2</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: 30,
+                          backgroundColor: "white",
+                          margin: 5,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text>1</Text>
+                      </View>
                     </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>6</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>5</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>4</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>3</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>2</Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 20,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>1</Text>
-                    </View>
-                  </View>
+                  </TouchableOpacity>
                   <View
                     style={{
                       width: 35,
                       height: 35,
-                      backgroundColor: "#FF838C",
+                      backgroundColor: "#C1272D",
                       borderWidth: 2,
                       borderColor: "white",
                       borderRadius: 20,
@@ -754,7 +766,7 @@ const LottoPage = ({ navigation }) => {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={{ color: "white" }}>X2</Text>
+                    <Text style={{ color: "white" }}>X6</Text>
                   </View>
                 </ListItem>
               </List>
@@ -764,6 +776,7 @@ const LottoPage = ({ navigation }) => {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
+                marginTop: 25,
               }}
             >
               <Button
@@ -772,6 +785,7 @@ const LottoPage = ({ navigation }) => {
                   backgroundColor: "#8CC63F",
                   borderColor: "white",
                   borderWidth: 2,
+                  padding: 10,
                 }}
               >
                 <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
