@@ -34,16 +34,16 @@ import {
   faPlus,
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import ChanceListstyles from "./ChanceListStyles";
+import Sheva77Liststyles from "./Sheva77ListStyles";
 //////////////////////////////////////////////////////////////
 
-const ChanceList = (props) => {
+const Seva77List = (props) => {
   const { navigation } = props;
 
   return (
     <>
-      <NavBar navigation={navigation} screenName={"ChanceList"} />
-      <View style={{ width: "100%", height: "1%", backgroundColor: "#009C4A" }}></View>
+      <NavBar navigation={navigation} screenName={"Seva77List"} />
+      <View style={{ width: "100%", height: "1%", backgroundColor: "#FE7BA7" }}></View>
     <Container>
     <ScrollView>
                   <View style={homestyles.container}>
@@ -54,7 +54,7 @@ const ChanceList = (props) => {
             </View>
         
           <View
-            style={{ width: "100%", height: "1%", backgroundColor: "#009C4A" }}
+            style={{ width: "100%", height: "1%", backgroundColor: "#FF096A" }}
           ></View>
 
           <List
@@ -64,7 +64,7 @@ const ChanceList = (props) => {
           >
             <ListItem
               style={{
-                backgroundColor: "#009C4B",
+                backgroundColor: "#FF006A",
                 width: "100%",
                 marginLeft: null,
                 marginVertical: "2%",
@@ -73,7 +73,7 @@ const ChanceList = (props) => {
               <Left>
                 <View>
                 <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    צ'אנס רגיל
+                   777
                   </Text>
                 </View>
               </Left>
@@ -86,12 +86,13 @@ const ChanceList = (props) => {
                       borderRadius: 13,
                       backgroundColor: "white",
                     }}
-                    onPress={() => navigation.navigate("ChancePage")}
+                      onPress={() => navigation.navigate("Sheva77Page")}
+
                   >
                     <Text
                       style={{
                         fontWeight: "bold",
-                        color: "#009C4B",
+                        color: "#FF3C8E",
                         fontSize: 10,
                         padding: 15,
                       }}
@@ -104,7 +105,7 @@ const ChanceList = (props) => {
             </ListItem>
             <ListItem
               style={{
-                backgroundColor: "#009C4B",
+                backgroundColor: "#E2005B",
                 width: "100%",
                 marginLeft: null,
                 marginVertical: "2%",
@@ -113,8 +114,8 @@ const ChanceList = (props) => {
               <Left>
                 <View>
                 <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                   רב צ'אנס
-                  </Text>
+`{'777'}+{"שיטתי"}+{'8'}`
+                    </Text>
                 </View>
               </Left>
 
@@ -131,7 +132,7 @@ const ChanceList = (props) => {
                    <Text
                       style={{
                         fontWeight: "bold",
-                        color: "#009C4B",
+                        color: "#FF73A5",
                         fontSize: 10,
                         padding: 15,
                       }}
@@ -144,7 +145,7 @@ const ChanceList = (props) => {
             </ListItem>
             <ListItem
               style={{
-                backgroundColor: "#00552B",
+                backgroundColor: "#E2005B",
                 width: "100%",
                 marginLeft: null,
                 marginVertical: "2%",
@@ -153,7 +154,8 @@ const ChanceList = (props) => {
               <Left>
           <View>
                 <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    צ'אנס שיטתי
+                `{'777'}+{"שיטתי"}+{'8'}`
+
                   </Text>
                 </View>
               </Left>
@@ -171,7 +173,7 @@ const ChanceList = (props) => {
                     <Text
                       style={{
                         fontWeight: "bold",
-                        color: "#009C4B",
+                        color: "#FF73A5",
                         fontSize: 10,
                         padding: 15,
                       }}
@@ -186,9 +188,9 @@ const ChanceList = (props) => {
           </List>
                       <View style={{ flexDirection: "row" }}>
                           <View style={{height:'50%',backgroundColor:"white"}}></View>
-            <Text style={{flex:3, fontSize:25,}}>הסבר על הגרלת צ'אנס</Text>
+            <Text style={{flex:3, fontSize:25,}}> 777 הסבר על הגרלות </Text>
             <TouchableOpacity
-        style={ChanceListstyles.roundButton1}>
+        style={Sheva77Liststyles.roundButton1}>
                 <Text style={{ fontSize: 20, color: "white"}}>+</Text>
       </TouchableOpacity>
               
@@ -228,4 +230,4 @@ const ChanceList = (props) => {
   );
 };
 
-export default ChanceList;
+export default Seva77List;
