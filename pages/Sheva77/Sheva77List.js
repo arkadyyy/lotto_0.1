@@ -42,7 +42,7 @@ const Seva77List = (props) => {
 
   return (
     <>
-      <NavBar navigation={navigation} screenName={"Seva77List"} />
+      <NavBar navigation={navigation} screenName={"Seva77List"}  />
       <View style={{ width: "100%", height: "1%", backgroundColor: "#FE7BA7" }}></View>
     <Container>
     <ScrollView>

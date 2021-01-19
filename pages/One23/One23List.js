@@ -35,15 +35,15 @@ import {
   faPlus,
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import LottoListstyles from "./LottoListStyles";
+import LottoListstyles from "../Lotto/LottoListStyles";
 //////////////////////////////////////////////////////////////
 
-const LottoList = (props) => {
+const One23List = (props) => {
   const { navigation } = props;
 
   return (
     <>
-      <NavBar navigation={navigation} screenName={"LottoList"}  />
+      <NavBar navigation={navigation} screenName={"One23List"}/>
       
     <Container>
     <ScrollView>
@@ -266,4 +266,4 @@ const LottoList = (props) => {
   );
 };
 
-export default LottoList;
+export default One23List;

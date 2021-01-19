@@ -181,6 +181,7 @@ const BlankSquare = ({ color }) => {
 
               marginBottom: -30,
             }}
+            // source={require("C:/fullstack/lottoMatic/assets/LottoPage/lotto_page_balls.png")}
             source={require("C:/fullstack/lottoMatic/assets/LottoPage/lotto_page_balls.png")}
           />
         </View>

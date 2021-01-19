@@ -14,6 +14,7 @@ import LottoList from "./pages/Lotto/LottoList";
 import ChanceList from "./pages/Chance/ChanceList";
 import ChancePage from "./pages/Chance/ChancePage";
 import Sheva77List from "./pages/Sheva77/Sheva77List";
+import One23List from "./pages/One23/One23List";
 
 // import { Provider } from "react-redux";
 // import { store } from "./redux/store";
@@ -41,7 +42,7 @@ export default function App() {
           <Drawer.Screen name='Sheva77Page' component={LottoPage} />
           <Drawer.Screen name='One23Page' component={LottoPage} />
           <Drawer.Screen name='Sheva77List' component={Sheva77List} />
-          {/* <Drawer.Screen name='One23List' component={One23List} /> */}
+          <Drawer.Screen name='One23List' component={One23List} />
         </Drawer.Navigator>
       </NavigationContainer>
       {/* </Provider> */}

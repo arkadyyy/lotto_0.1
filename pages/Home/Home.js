@@ -145,6 +145,9 @@ export default function Home({ navigation }) {
             <View style={homestyles.openingPageBtns}>
               <View style={homestyles.btnWrapper}>
                 <Button
+                   onPress={() => {
+                    navigation.navigate("One23List");
+                  }}
                   style={[
                     homestyles.openingPageBtn,
                     {

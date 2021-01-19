@@ -16,18 +16,29 @@ import {
 } from "native-base";
 import Sidebar from "../components/SideBar";
 import { useState } from "react";
+import { useRoute } from "@react-navigation/native";
+import { useEffect } from "react";
 
 const NavBar = (props) => {
   const { navigation } = props;
-  // let propsTitleText;
-  // if (props.titleText === 'הרשם') { propsTitleText = styles.homeNav }
-  // else if (props.titleText === 'הרשמה ופרטי תשלום') { propsTitleText = styles.signNav };
-  let propsScreenName;
-  if (props.screenName === "home") {
-    propsScreenName = styles.homeNav;
-  } else if (props.screenName === "signIn") {
-    propsScreenName = styles.signNav;
-  }
+  const route = useRoute();
+  const [navBarTitle, setNavBarTitle] = useState('');
+
+
+  useEffect(() => {  
+    if  (route.name === "LottoList") 
+      setNavBarTitle('הגרלת לוטו');
+    else if (route.name === "ChanceList") {
+      setNavBarTitle(`הגרלת צ'אנס`);
+    }else if (route.name === "Sheva77List") {
+      setNavBarTitle(`הגרלת 777`);
+    }else if (route.name === "One23List") {
+      setNavBarTitle(`הגרלת 123`);
+    }else if (route.name === "SignIn") {
+      setNavBarTitle(`הרשמה ופרטי תשלום`);
+    
+    } 
+    }, [route.name])
 
   return (
     <Header style={styles.navbar}>
@@ -36,7 +47,21 @@ const NavBar = (props) => {
           <Icon name='menu' />
         </Button>
       </Left>
-      {props.screenName === "signIn" && (
+     
+        <Body>
+          <View>
+            <Text
+              style={{
+                color: "white",
+                marginLeft: 50,
+              }}
+            >
+              { navBarTitle}
+            </Text>
+          </View>
+        </Body>
+      
+      {/* {props.screenName === "signIn" && (
         <Body>
           <View>
             <Text
@@ -93,11 +118,28 @@ const NavBar = (props) => {
                 
               }}
             >
-            הגרלת צ'777
+            הגרלת 777
             </Text>
           </View>
         </Body>
       )}
+      {props.screenName === "One23List" && (
+        <Body>
+          <View>
+            <Text 
+              style={{
+                color: "white",
+                marginLeft: 50,
+                fontWeight: "bold",
+                fontSize: 18,
+                
+              }}
+            >
+            הגרלת 123
+            </Text>
+          </View>
+        </Body>
+      )} */}
   
       <Right>
         <View style={{ flexDirection: "row" }}>
