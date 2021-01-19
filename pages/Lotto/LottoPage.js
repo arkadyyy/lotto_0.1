@@ -144,6 +144,7 @@ const LottoPage = ({ navigation }) => {
                 alignItems: "center",
                 justifyContent: "center",
                 marginTop: 25,
+                zIndex: 1,
               }}
             >
               <Button
@@ -164,6 +165,7 @@ const LottoPage = ({ navigation }) => {
               flexDirection: "row",
               justifyContent: "space-around",
               alignItems: "center",
+              zIndex: -2,
             }}
           >
             <Text style={{ fontSize: 18 }}>הסבר על הגרלות לוטו</Text>

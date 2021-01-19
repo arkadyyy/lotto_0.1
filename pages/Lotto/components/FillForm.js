@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-
+import { Text, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Container,
   Header,
@@ -16,6 +16,11 @@ import {
   ListItem,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faArrowAltCircleRight,
+  faArrowAltCircleLeft,
+} from "@fortawesome/free-regular-svg-icons";
 
 const Num = ({ num }) => {
   return (
@@ -31,7 +36,28 @@ const Num = ({ num }) => {
           margin: 3,
         }}
       >
-        <Text>1</Text>
+        <Text>{num}</Text>
+      </TouchableOpacity>
+    </>
+  );
+};
+
+const StrongNum = ({ num }) => {
+  return (
+    <>
+      <TouchableOpacity
+        style={{
+          width: 35,
+          height: 35,
+          borderWidth: 1,
+          borderColor: "white",
+          borderRadius: 25,
+          justifyContent: "center",
+          alignItems: "center",
+          margin: 2,
+        }}
+      >
+        <Text style={{ color: "white" }}>{num}</Text>
       </TouchableOpacity>
     </>
   );
@@ -47,11 +73,12 @@ const FillForm = ({ setshowTable, double }) => {
           backgroundColor: "#263742",
           width: "100%",
           top: "39%",
-          height: 320,
+          height: 420,
           position: "absolute",
           zIndex: 2000,
         }}
       >
+        {/* {top 90 deg box} */}
         <View
           style={{
             backgroundColor: "#263742",
@@ -59,38 +86,54 @@ const FillForm = ({ setshowTable, double }) => {
             height: 70,
             position: "relative",
             top: -40,
-            left: "46.5%",
-            zIndex: 2000,
+            left: "35.4%",
+            zIndex: 2001,
             flexDirection: "row",
             justifyContent: "space-around",
+            alignItems: "center",
           }}
         >
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity>
-              <Text style={{ color: "white", fontSize: 20 }}>{">"}</Text>
+              <FontAwesomeIcon
+                color='white'
+                border={true}
+                inverse
+                icon={faArrowAltCircleRight}
+              />
             </TouchableOpacity>
             <Text style={{ color: "white", fontSize: 13 }}>טבלאות</Text>
             <TouchableOpacity>
-              <Text style={{ color: "white", fontSize: 20 }}>{"<"}</Text>
+              <FontAwesomeIcon
+                color='white'
+                border={true}
+                inverse
+                icon={faArrowAltCircleLeft}
+              />
             </TouchableOpacity>
           </View>
           <TouchableOpacity
             style={{
-              padding: 20,
+              height: 25,
+              padding: 7,
               backgroundColor: "white",
+              borderRadius: 13,
+              justifyContent: "center",
+              alignItems: "center",
             }}
             onPress={() => {
               setshowTable(false);
             }}
           >
-            <Text>X</Text>
+            <Text style={{ color: "red" }}>סגור חלון</Text>
           </TouchableOpacity>
         </View>
+        {/* {fill numbers} */}
         <View
           style={{
             borderColor: "white",
             width: "90%",
-            height: "60%",
+            height: "65%",
             borderWidth: 1,
             borderRadius: 8,
             alignSelf: "center",
@@ -99,491 +142,53 @@ const FillForm = ({ setshowTable, double }) => {
             padding: 10,
           }}
         >
-          <Text style={{ color: "white", marginBottom: 5 }}>מלא את טבלה 1</Text>
-          <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 30,
-                height: 30,
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Text>1</Text>
-            </TouchableOpacity>
-          </View>
-          <Text style={{ color: "white" }}>בחר מספר חזק</Text>
           <View
             style={{
-              width: "100%",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "space-around",
+              alignItems: "center",
+              marginBottom: 7,
+            }}
+          >
+            <Text style={{ color: "white", marginBottom: 5, fontSize: 10 }}>
+              מלא את טבלה 1
+            </Text>
+            <Button small rounded>
+              <Text style={{ fontSize: 10 }}>מלא טבלה אוטומטית</Text>
+            </Button>
+            <Button small rounded>
+              <Text style={{ fontSize: 10 }}>מחק טבלה אוטומטית</Text>
+            </Button>
+          </View>
+
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            {Array.from(Array(37)).map((x, index) => (
+              <Num num={index + 1} key={index} />
+            ))}
+          </View>
+        </View>
+        <View style={{ marginTop: -16 }}>
+          <Text style={{ color: "white", marginHorizontal: 15 }}>
+            בחר מספר חזק
+          </Text>
+          <View
+            style={{
+              width: "90%",
               height: 50,
               borderColor: "white",
               borderWidth: 1,
               borderRadius: 7,
               flexDirection: "row",
-              justifyContent: "flex-start",
+              justifyContent: "space-evenly",
               alignItems: "center",
+              alignSelf: "center",
               margin: 2,
             }}
           >
-            <TouchableOpacity
-              style={{
-                width: 35,
-                height: 35,
-                borderWidth: 1,
-                borderColor: "white",
-                borderRadius: 25,
-                justifyContent: "center",
-                alignItems: "center",
-                margin: 2,
-              }}
-            >
-              <Text style={{ color: "white" }}>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 35,
-                height: 35,
-                borderWidth: 1,
-                borderColor: "white",
-                borderRadius: 25,
-                justifyContent: "center",
-                alignItems: "center",
-                margin: 2,
-              }}
-            >
-              <Text style={{ color: "white" }}>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 35,
-                height: 35,
-                borderWidth: 1,
-                borderColor: "white",
-                borderRadius: 25,
-                justifyContent: "center",
-                alignItems: "center",
-                margin: 2,
-              }}
-            >
-              <Text style={{ color: "white" }}>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 35,
-                height: 35,
-                borderWidth: 1,
-                borderColor: "white",
-                borderRadius: 25,
-                justifyContent: "center",
-                alignItems: "center",
-                margin: 2,
-              }}
-            >
-              <Text style={{ color: "white" }}>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 35,
-                height: 35,
-                borderWidth: 1,
-                borderColor: "white",
-                borderRadius: 25,
-                justifyContent: "center",
-                alignItems: "center",
-                margin: 2,
-              }}
-            >
-              <Text style={{ color: "white" }}>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 35,
-                height: 35,
-                borderWidth: 1,
-                borderColor: "white",
-                borderRadius: 25,
-                justifyContent: "center",
-                alignItems: "center",
-                margin: 2,
-              }}
-            >
-              <Text style={{ color: "white" }}>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 35,
-                height: 35,
-                borderWidth: 1,
-                borderColor: "white",
-                borderRadius: 25,
-                justifyContent: "center",
-                alignItems: "center",
-                margin: 2,
-              }}
-            >
-              <Text style={{ color: "white" }}>1</Text>
-            </TouchableOpacity>
+            {Array.from(Array(7)).map((x, index) => (
+              <StrongNum num={index + 1} key={index} />
+            ))}
           </View>
         </View>
       </View>
