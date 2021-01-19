@@ -12,8 +12,8 @@ import DrawerContent from "./pages/DrawerContent/DrawerContent";
 import LottoPage from "./pages/Lotto/LottoPage";
 import LottoList from "./pages/Lotto/LottoList";
 import ChanceList from "./pages/Chance/ChanceList";
+import ChancePage from "./pages/Chance/ChancePage";
 import Sheva77List from "./pages/Sheva77/Sheva77List";
-
 
 // import { Provider } from "react-redux";
 // import { store } from "./redux/store";
@@ -35,11 +35,11 @@ export default function App() {
           <Drawer.Screen name='UserArea' component={UserArea} />
           <Drawer.Screen name='SignIn' component={SignIn} />
           <Drawer.Screen name='LottoPage' component={LottoPage} />
-          <Drawer.Screen name='ChancePage' component={LottoPage} />
+          <Drawer.Screen name='ChanceList' component={ChanceList} />
+          <Drawer.Screen name='ChancePage' component={ChancePage} />
+          <Drawer.Screen name='LottoList' component={LottoList} />
           <Drawer.Screen name='Sheva77Page' component={LottoPage} />
           <Drawer.Screen name='One23Page' component={LottoPage} />
-          <Drawer.Screen name='LottoList' component={LottoList} />
-          <Drawer.Screen name='ChanceList' component={ChanceList} />
           <Drawer.Screen name='Sheva77List' component={Sheva77List} />
           {/* <Drawer.Screen name='One23List' component={One23List} /> */}
         </Drawer.Navigator>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Container,
@@ -21,6 +21,7 @@ import {
   faArrowAltCircleRight,
   faArrowAltCircleLeft,
 } from "@fortawesome/free-regular-svg-icons";
+import chanceListstyles from "../ChanceListStyles";
 
 const Num = ({ num }) => {
   return (
@@ -82,7 +83,38 @@ const autoFill = (amount) => {
   return { randomNumbers, powerNum };
 };
 
-const FillForm = ({ setshowTable, double }) => {
+const FillFormBtnSize = () => {
+  return (
+    <>
+      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
+        <Text>7</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
+        <Text>8</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
+        <Text>9</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
+        <Text>10</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
+        <Text>J</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
+        <Text>K</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
+        <Text>Q</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
+        <Text>A</Text>
+      </TouchableOpacity>
+    </>
+  );
+};
+
+const FillForm = ({ setshowTable, double, tableNum }) => {
   var myMap = new Map();
   myMap.size = 4;
   return (
@@ -91,7 +123,7 @@ const FillForm = ({ setshowTable, double }) => {
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "39%",
+          top: "50%",
           height: 420,
           position: "absolute",
           zIndex: 2000,
@@ -171,7 +203,7 @@ const FillForm = ({ setshowTable, double }) => {
             }}
           >
             <Text style={{ color: "white", marginBottom: 5, fontSize: 10 }}>
-              מלא את טבלה 1
+              מלא צירוף
             </Text>
             <Button
               onPress={() => {
@@ -188,11 +220,92 @@ const FillForm = ({ setshowTable, double }) => {
             </Button>
           </View>
 
-          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-            {Array.from(Array(37)).map((x, index) => (
-              <Num num={index + 1} key={index} />
-            ))}
-          </View>
+          {tableNum >= 1 && (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                resizeMode='contain'
+                style={{
+                  width: 40,
+                  height: 50,
+                  borderRadius: 7,
+                  marginHorizontal: 4,
+                }}
+                source={require("C:/fullstack/lottoMatic/assets/chance/spades_table_fill.png")}
+              />
+              <FillFormBtnSize />
+            </View>
+          )}
+
+          {tableNum >= 2 && (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                resizeMode='contain'
+                style={{
+                  width: 40,
+                  height: 50,
+                  borderRadius: 7,
+                  marginHorizontal: 4,
+                }}
+                source={require("C:/fullstack/lottoMatic/assets/chance/heart_table_fill.png")}
+              />
+              <FillFormBtnSize />
+            </View>
+          )}
+
+          {tableNum >= 3 && (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                resizeMode='contain'
+                style={{
+                  width: 40,
+                  height: 50,
+                  borderRadius: 7,
+                  marginHorizontal: 4,
+                }}
+                source={require("C:/fullstack/lottoMatic/assets/chance/diamond_table_fill.png")}
+              />
+              <FillFormBtnSize />
+            </View>
+          )}
+          {tableNum >= 4 && (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                resizeMode='contain'
+                style={{
+                  width: 40,
+                  height: 50,
+                  borderRadius: 7,
+                  marginHorizontal: 4,
+                }}
+                source={require("C:/fullstack/lottoMatic/assets/chance/clubs_table_fill.png")}
+              />
+              <FillFormBtnSize />
+            </View>
+          )}
         </View>
         <View style={{ marginTop: -16 }}>
           <Text style={{ color: "white", marginHorizontal: 15 }}>

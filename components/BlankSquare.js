@@ -492,6 +492,158 @@ const BlankSquare = ({ color }) => {
           />
         </View>
       )}
+      {route.name === "ChancePage" && (
+        <View>
+          <View
+            style={{ width: "100%", height: 7, backgroundColor: color }}
+          ></View>
+          <View
+            style={{
+              backgroundColor: "white",
+              width: "100%",
+              height: 100,
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <View>
+              <Text style={{ fontSize: 19 }}>הגרלת לוטו </Text>
+              <Text>עד 10,000,000 </Text>
+            </View>
+            <View style={{ flexDirection: "row" }}>
+              <View>
+                <View>
+                  <View style={{ margin: 5, flexDirection: "row" }}>
+                    <View
+                      style={{
+                        width: 25,
+                        height: 25,
+                        borderRadius: 30,
+                        backgroundColor: color,
+
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "white" }}>00</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 25,
+                        height: 25,
+                        borderRadius: 30,
+                        backgroundColor: color,
+
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "white" }}>00</Text>
+                    </View>
+                  </View>
+                  <Text style={{ marginLeft: 15, fontSize: 10 }}>שניות</Text>
+                </View>
+              </View>
+              <View>
+                <View>
+                  <View style={{ margin: 5, flexDirection: "row" }}>
+                    <View
+                      style={{
+                        width: 25,
+                        height: 25,
+                        borderRadius: 30,
+                        backgroundColor: color,
+
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "white" }}>00</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 25,
+                        height: 25,
+                        borderRadius: 30,
+                        backgroundColor: color,
+
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "white" }}>00</Text>
+                    </View>
+                  </View>
+                  <Text style={{ marginLeft: 15, fontSize: 10 }}>דקות</Text>
+                </View>
+              </View>
+              <View>
+                <View>
+                  <View style={{ margin: 5, flexDirection: "row" }}>
+                    <View
+                      style={{
+                        width: 25,
+                        height: 25,
+                        borderRadius: 30,
+                        backgroundColor: color,
+
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "white" }}>00</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: 25,
+                        height: 25,
+                        borderRadius: 30,
+                        backgroundColor: color,
+
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "white" }}>00</Text>
+                    </View>
+                  </View>
+                  <Text style={{ marginLeft: 15, fontSize: 10 }}>שעות</Text>
+                </View>
+                <Button
+                  small
+                  rounded
+                  bordered
+                  style={{
+                    backgroundColor: "white",
+                    borderColor: color,
+                    padding: 3,
+                  }}
+                >
+                  <Text style={{ color: color, fontSize: 10 }}>
+                    ארכיון תוצאות
+                  </Text>
+                </Button>
+              </View>
+            </View>
+          </View>
+          <View
+            style={{ width: "100%", height: 7, backgroundColor: color }}
+          ></View>
+          <Image
+            resizeMode='contain'
+            style={{
+              width: 110,
+              height: 60,
+              position: "relative",
+              left: "35%",
+              top: -30,
+
+              marginBottom: -30,
+            }}
+            source={require("C:/fullstack/lottoMatic/assets/chance/chance_page.png")}
+          />
+        </View>
+      )}
       {route.name === "Sheva77List" && (
         <View>
           <View
