@@ -19,6 +19,15 @@ const chanceListstyles = StyleSheet.create({
     alignItems: "center",
     marginHorizontal: 3,
   },
+  investBtnSelected: {
+    width: 25,
+    height: 25,
+    backgroundColor: "#8CC63F",
+    borderRadius: 13,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 3,
+  },
   fillFormCardSize: {
     backgroundColor: "white",
     width: 25,

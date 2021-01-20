@@ -14,7 +14,8 @@ import LottoList from "./pages/Lotto/LottoList";
 import ChanceList from "./pages/Chance/ChanceList";
 import ChancePage from "./pages/Chance/ChancePage";
 import Sheva77List from "./pages/Sheva77/Sheva77List";
-// import One23List from "./pages/One23/One23List";
+import One23List from "./pages/One23/One23List";
+import One23Page from "./pages/One23/One23Page";
 import Sheva77Page from "./pages/Sheva77/Sheva77Page";
 import Sheva778Page from "./pages/Sheva77/Sheva778Page";
 import Sheva779Page from "./pages/Sheva77/Sheva779Page";
@@ -37,16 +38,16 @@ export default function App() {
           <Drawer.Screen name='Home' component={Home} />
           <Drawer.Screen name='UserArea' component={UserArea} />
           <Drawer.Screen name='SignIn' component={SignIn} />
+          <Drawer.Screen name='LottoList' component={LottoList} />
           <Drawer.Screen name='LottoPage' component={LottoPage} />
           <Drawer.Screen name='ChanceList' component={ChanceList} />
           <Drawer.Screen name='ChancePage' component={ChancePage} />
-          <Drawer.Screen name='LottoList' component={LottoList} />
+          <Drawer.Screen name='Sheva77List' component={Sheva77List} />
           <Drawer.Screen name='Sheva77Page' component={Sheva77Page} />
           <Drawer.Screen name='Sheva778Page' component={Sheva778Page} />
           <Drawer.Screen name='Sheva779Page' component={Sheva779Page} />
-          <Drawer.Screen name='One23Page' component={LottoPage} />
-          <Drawer.Screen name='Sheva77List' component={Sheva77List} />
-          {/* <Drawer.Screen name='One23List' component={One23List} /> */}
+          <Drawer.Screen name='One23List' component={One23List} />
+          <Drawer.Screen name='One23Page' component={One23Page} />
         </Drawer.Navigator>
       </NavigationContainer>
       {/* </Provider> */}

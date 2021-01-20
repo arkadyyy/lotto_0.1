@@ -26,6 +26,7 @@ import chanceListstyles from "./ChanceListStyles";
 const ChancePage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
+  const [investNum, setinvestNum] = useState(5);
   const [double, setdouble] = useState(false);
   return (
     <>
@@ -111,28 +112,100 @@ const ChancePage = ({ navigation }) => {
                 בחר את סכום ההשקעה{" "}
               </Text>
               <View style={{ flexDirection: "row" }}>
-                <TouchableOpacity style={chanceListstyles.investBtn}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setinvestNum(5);
+                  }}
+                  style={
+                    investNum === 5
+                      ? chanceListstyles.investBtnSelected
+                      : chanceListstyles.investBtn
+                  }
+                >
                   <Text>5</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={chanceListstyles.investBtn}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setinvestNum(10);
+                  }}
+                  style={
+                    investNum === 10
+                      ? chanceListstyles.investBtnSelected
+                      : chanceListstyles.investBtn
+                  }
+                >
                   <Text>10</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={chanceListstyles.investBtn}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setinvestNum(25);
+                  }}
+                  style={
+                    investNum === 25
+                      ? chanceListstyles.investBtnSelected
+                      : chanceListstyles.investBtn
+                  }
+                >
                   <Text>25</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={chanceListstyles.investBtn}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setinvestNum(50);
+                  }}
+                  style={
+                    investNum === 50
+                      ? chanceListstyles.investBtnSelected
+                      : chanceListstyles.investBtn
+                  }
+                >
                   <Text>50</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={chanceListstyles.investBtn}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setinvestNum(70);
+                  }}
+                  style={
+                    investNum === 70
+                      ? chanceListstyles.investBtnSelected
+                      : chanceListstyles.investBtn
+                  }
+                >
                   <Text>70</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={chanceListstyles.investBtn}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setinvestNum(100);
+                  }}
+                  style={
+                    investNum === 100
+                      ? chanceListstyles.investBtnSelected
+                      : chanceListstyles.investBtn
+                  }
+                >
                   <Text>100</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={chanceListstyles.investBtn}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setinvestNum(250);
+                  }}
+                  style={
+                    investNum === 250
+                      ? chanceListstyles.investBtnSelected
+                      : chanceListstyles.investBtn
+                  }
+                >
                   <Text>250</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={chanceListstyles.investBtn}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setinvestNum(500);
+                  }}
+                  style={
+                    investNum === 500
+                      ? chanceListstyles.investBtnSelected
+                      : chanceListstyles.investBtn
+                  }
+                >
                   <Text>500</Text>
                 </TouchableOpacity>
               </View>
