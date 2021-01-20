@@ -49,11 +49,11 @@ const One23List = (props) => {
     <ScrollView>
       <View style={homestyles.container}>
             <View>
-              <BlankSquare />
+              <BlankSquare color={'#FF5F00'} />
             </View>
         
           <View
-            style={{ width: "100%", height: "2%", backgroundColor: "red" }}
+            style={{ width: "100%", height: "2%", backgroundColor: "#FF5F00" }}
           ></View>
 
           <List
@@ -64,7 +64,7 @@ const One23List = (props) => {
           >
             <ListItem
               style={{
-                backgroundColor: "red",
+                backgroundColor: "#FF5F00",
                 width: "100%",
                 marginLeft: null,
                 marginVertical: "2%",
@@ -72,8 +72,8 @@ const One23List = (props) => {
             >
               <Left>
                 <View>
-                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    לוטו רגיל
+                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold",marginHorizontal:"5%" }}>
+                    123
                   </Text>
                 </View>
               </Left>
@@ -102,126 +102,7 @@ const One23List = (props) => {
                 </View>
               </Right>
             </ListItem>
-            <ListItem
-              style={{
-                backgroundColor: "red",
-                width: "100%",
-                marginLeft: null,
-                marginVertical: "2%",
-              }}
-            >
-              <Left>
-                <View>
-                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    דאבל לוטו
-                  </Text>
-                </View>
-              </Left>
-
-              <Right>
-                <View>
-                  <Button
-                    small
-                    style={{
-                      borderRadius: 13,
-                      backgroundColor: "white",
-                    }}
-                    // onPress={() => navigation.navigate("Home")}
-                  >
-                    <Text
-                      style={{
-                        fontWeight: "bold",
-                        color: "red",
-                        fontSize: 10,
-                        padding: 15,
-                      }}
-                    >
-                      שחק עכשיו
-                    </Text>
-                  </Button>
-                </View>
-              </Right>
-            </ListItem>
-            <ListItem
-              style={{
-                backgroundColor: "#E50000",
-                width: "100%",
-                marginLeft: null,
-                marginVertical: "2%",
-              }}
-            >
-              <Left>
-                <View>
-                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    לוטו שיטתי
-                  </Text>
-                </View>
-              </Left>
-
-              <Right>
-                <View>
-                  <Button
-                    small
-                    style={{
-                      borderRadius: 13,
-                      backgroundColor: "white",
-                    }}
-                    // onPress={() => navigation.navigate("Home")}
-                  >
-                    <Text
-                      style={{
-                        fontWeight: "bold",
-                        color: "red",
-                        fontSize: 10,
-                        padding: 15,
-                      }}
-                    >
-                      שחק עכשיו
-                    </Text>
-                  </Button>
-                </View>
-              </Right>
-            </ListItem>
-            <ListItem
-              style={{
-                backgroundColor: "#D10000",
-                width: "100%",
-                marginLeft: null,
-                marginVertical: "2%",
-              }}
-            >
-              <Left>
-                <View>
-                  <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    לוטו שיטתי חזק
-                  </Text>
-                </View>
-              </Left>
-
-              <Right>
-                <View>
-                  <Button
-                    small
-                    style={{
-                      borderRadius: 13,
-                      backgroundColor: "white",
-                    }}
-                    // onPress={() => navigation.navigate("Home")}
-                  >
-                    <Text
-                      style={{
-                        fontWeight: "bold",
-                        color: "red",
-                        fontSize: 10,
-                        padding: 15,
-                      }}
-                    >
-                      שחק עכשיו!
-                    </Text>
-                  </Button>
-                </View>
-              </Right>
-            </ListItem>
+           
           </List>
             <View style={{ flexDirection: "row" }}>
             <Text style={{flex:3, fontSize:25,}}>הסבר על הגרלת הלוטו</Text>
@@ -245,7 +126,8 @@ const One23List = (props) => {
         alignItems: "center",
         justifyContent: "center",
         width:"100%",
-        padding: 30,
+                              padding: 30,
+        
       }}
     >
       <View style={{ width: '25%', height: 1, backgroundColor: "#EB2874" }}></View>
