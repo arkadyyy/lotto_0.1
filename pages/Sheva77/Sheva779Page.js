@@ -22,7 +22,7 @@ import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 
-const Sheva77Page = ({ navigation }) => {
+const Sheva779Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [double, setdouble] = useState(false);
@@ -58,7 +58,7 @@ const Sheva77Page = ({ navigation }) => {
               <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
             </View>
 
-            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
+            {/* <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} /> */}
 
             <Text
               style={{
@@ -68,7 +68,7 @@ const Sheva77Page = ({ navigation }) => {
                 marginBottom: 10,
               }}
             >
-              בחר 7 מספרים בכל טבלה
+              בחר 9 מספרים בטבלה
             </Text>
             <View
               style={{
@@ -174,4 +174,4 @@ const Sheva77Page = ({ navigation }) => {
     </>
   );
 };
-export default Sheva77Page;
+export default Sheva779Page;

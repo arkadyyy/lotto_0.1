@@ -18,14 +18,10 @@ import {
 
 const BlankSquare = ({ color }) => {
   const route = useRoute();
-  const [routeName, setrouteName] = useState("");
 
-  useEffect(() => {
-    setrouteName(route.name);
-  }, [route.name]);
   return (
     <>
-      {route.name === "UserArea" && (
+      {route.name === "UserArea" ? (
         <View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}
@@ -37,6 +33,7 @@ const BlankSquare = ({ color }) => {
             style={{ width: "100%", height: 7, backgroundColor: color }}
           ></View>
         </View>
+<<<<<<< HEAD
       )}
       {route.name === "LottoPage" && (
         <View>
@@ -959,6 +956,9 @@ const BlankSquare = ({ color }) => {
       )}
 
       {route.name === "one23Page" && (
+=======
+      ) : (
+>>>>>>> b7dfcdfa091c8503100d013aed2ceede716fe403
         <View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}
@@ -1095,19 +1095,91 @@ const BlankSquare = ({ color }) => {
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}
           ></View>
-          <Image
-            resizeMode='contain'
-            style={{
-              width: 100,
-              height: 50,
-              position: "relative",
-              left: "35%",
-              top: -30,
+          {route.name === "LottoList" ? (
+            <Image
+              resizeMode='contain'
+              style={{
+                width: 100,
+                height: 50,
+                position: "relative",
+                left: "35%",
+                top: -30,
 
-              marginBottom: -30,
-            }}
-            source={require("C:/fullstack/lottoMatic/assets/777/777.png")}
-          />
+                marginBottom: -30,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/LottoPage/lotto_page_balls.png")}
+            />
+          ) : route.name === "LottoPage" ? (
+            <Image
+              resizeMode='contain'
+              style={{
+                width: 100,
+                height: 50,
+                position: "relative",
+                left: "35%",
+                top: -30,
+
+                marginBottom: -30,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/LottoPage/lotto_page_balls.png")}
+            />
+          ) : route.name === "ChanceList" ? (
+            <Image
+              resizeMode='contain'
+              style={{
+                width: 100,
+                height: 50,
+                position: "relative",
+                left: "35%",
+                top: -30,
+
+                marginBottom: -30,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/chance/chance_page.png")}
+            />
+          ) : route.name === "ChancePage" ? (
+            <Image
+              resizeMode='contain'
+              style={{
+                width: 100,
+                height: 50,
+                position: "relative",
+                left: "35%",
+                top: -30,
+
+                marginBottom: -30,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/chance/chance_page.png")}
+            />
+          ) : route.name === "Sheva77List" ? (
+            <Image
+              resizeMode='contain'
+              style={{
+                width: 100,
+                height: 50,
+                position: "relative",
+                left: "35%",
+                top: -30,
+
+                marginBottom: -30,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/777/777.png")}
+            />
+          ) : route.name === "Sheva77Page" ? (
+            <Image
+              resizeMode='contain'
+              style={{
+                width: 100,
+                height: 50,
+                position: "relative",
+                left: "35%",
+                top: -30,
+
+                marginBottom: -30,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/777/777.png")}
+            />
+          ) : null}
         </View>
       )}
     </>

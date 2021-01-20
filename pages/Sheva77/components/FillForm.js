@@ -75,8 +75,6 @@ const autoFill = (amount) => {
     randomNumbers.push(num);
   }
 
-  powerNum = Math.floor(Math.random() * 7) + 1;
-
   console.log(randomNumbers);
   console.log(powerNum);
   return { randomNumbers, powerNum };
