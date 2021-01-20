@@ -18,21 +18,7 @@ import {
 
 const BlankSquare = ({ color }) => {
   const route = useRoute();
-  const [imgUrl, setimgUrl] = useState(
-    "C:/fullstack/lottoMatic/assets/LottoPage/lotto_page_balls.png"
-  );
 
-  useEffect(() => {
-    if (route.name === "LottoList" || route.name === "LottoPage") {
-      setimgUrl(
-        "C:/fullstack/lottoMatic/assets/LottoPage/lotto_page_balls.png"
-      );
-    } else if (route.name === "ChanceList" || route.name === "ChancePage") {
-      setimgUrl("C:/fullstack/lottoMatic/assets/chance/chance_page.png");
-    } else if (route.name === "Sheva77List" || route.name === "Sheva77Page") {
-      setimgUrl("C:/fullstack/lottoMatic/assets/777/777.png");
-    }
-  }, [route.name]);
   return (
     <>
       {route.name === "UserArea" ? (
