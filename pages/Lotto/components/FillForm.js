@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
@@ -22,18 +22,41 @@ import {
   faArrowAltCircleLeft,
 } from "@fortawesome/free-regular-svg-icons";
 
-const Num = ({ num }) => {
+const checkIfPressed = (type) => {
+  if (type === "regular") {
+  }
+};
+
+const Num = ({ num, choosenNums, setchoosenNums }) => {
+  const [isDisabled, setisDisabled] = useState(false);
   return (
     <>
       <TouchableOpacity
+        disabled={
+          choosenNums.includes(num)
+            ? false
+            : choosenNums.length >= 6
+            ? true
+            : false
+        }
         onPress={() => {
-          autoFill(37);
-          console.log("iam working 4");
+          // autoFill(37);
+          // console.log("iam working 4");
+          choosenNums.length < 6 && setchoosenNums([...choosenNums, num]);
+
+          // if (choosenNums.length >= 6) {
+          //   console.log(num);
+
+          //   let index = choosenNums.indexOf(num);
+          //   setchoosenNums(choosenNums.filter((x) => x !== num));
+          //   console.log("choosenNums : ", choosenNums);
+          // }
+          console.log(choosenNums);
         }}
         style={{
           width: 30,
           height: 30,
-          backgroundColor: "white",
+          backgroundColor: choosenNums.includes(num) ? "red" : "white",
           justifyContent: "center",
           alignItems: "center",
           borderRadius: 23,
@@ -46,10 +69,14 @@ const Num = ({ num }) => {
   );
 };
 
-const StrongNum = ({ num }) => {
+const StrongNum = ({ num, strongNum, setstrongNum }) => {
   return (
     <>
       <TouchableOpacity
+        onPress={() => {
+          console.log(strongNum);
+          setstrongNum(num);
+        }}
         style={{
           width: 35,
           height: 35,
@@ -82,9 +109,13 @@ const autoFill = (amount) => {
   return { randomNumbers, powerNum };
 };
 
-const FillForm = ({ setshowTable, double }) => {
-  var myMap = new Map();
-  myMap.size = 4;
+const FillForm = ({ setshowTable, double, opendTableNum }) => {
+  const [strongNum, setstrongNum] = useState(0);
+  const [choosenNums, setchoosenNums] = useState([]);
+
+  // useState(()=>{
+
+  // },[choosenNums,strongNum])
   return (
     <>
       <View
@@ -171,7 +202,7 @@ const FillForm = ({ setshowTable, double }) => {
             }}
           >
             <Text style={{ color: "white", marginBottom: 5, fontSize: 10 }}>
-              מלא את טבלה 1
+              מלא את טבלה {opendTableNum}
             </Text>
             <Button
               onPress={() => {
@@ -190,7 +221,12 @@ const FillForm = ({ setshowTable, double }) => {
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             {Array.from(Array(37)).map((x, index) => (
-              <Num num={index + 1} key={index} />
+              <Num
+                setchoosenNums={setchoosenNums}
+                choosenNums={choosenNums}
+                num={index + 1}
+                key={index}
+              />
             ))}
           </View>
         </View>
@@ -213,7 +249,12 @@ const FillForm = ({ setshowTable, double }) => {
             }}
           >
             {Array.from(Array(7)).map((x, index) => (
-              <StrongNum num={index + 1} key={index} />
+              <StrongNum
+                setstrongNum={setstrongNum}
+                strongNum={strongNum}
+                num={index + 1}
+                key={index}
+              />
             ))}
           </View>
         </View>

@@ -28,6 +28,7 @@ const ChancePage = ({ navigation }) => {
   const [tableNum, settableNum] = useState(1);
   const [investNum, setinvestNum] = useState(5);
   const [double, setdouble] = useState(false);
+  const [filledForm, setfilledForm] = useState([]);
   return (
     <>
       <ScrollView>

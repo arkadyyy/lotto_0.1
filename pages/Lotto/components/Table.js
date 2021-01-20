@@ -17,7 +17,9 @@ import {
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 
-const Table = ({ setshowTable, double }) => {
+const Table = ({ setshowTable, double, index, setopendTableNum }) => {
+  const index1 = index * 2 - 1;
+  const index2 = index * 2;
   return (
     <>
       <ListItem
@@ -29,10 +31,11 @@ const Table = ({ setshowTable, double }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "white" }}>טבלה 1</Text>
+        <Text style={{ color: "white", fontSize: 13 }}>טבלה {index1} </Text>
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);
+            setopendTableNum(index1);
           }}
         >
           <View style={{ flexDirection: "row" }}>
@@ -158,13 +161,14 @@ const Table = ({ setshowTable, double }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "white" }}>טבלה 1</Text>
+        <Text style={{ color: "white", fontSize: 13 }}>טבלה {index2}</Text>
         <TouchableOpacity
           onPress={() => {
+            setopendTableNum(index2);
             setshowTable(true);
           }}
         >
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", flex: 1 }}>
             <View
               style={{
                 width: 20,

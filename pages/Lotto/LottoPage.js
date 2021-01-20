@@ -26,6 +26,9 @@ const LottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [double, setdouble] = useState(false);
+  const [fullTables, setFullTables] = useState({});
+  const [indexOfTable, setIndexOfTable] = useState("");
+  const [opendTableNum, setopendTableNum] = useState(0);
   return (
     <>
       <ScrollView>
@@ -108,7 +111,15 @@ const LottoPage = ({ navigation }) => {
                 </Text>
               </Button>
             </View>
-            {showTable && <FillForm setshowTable={setshowTable} />}
+            {showTable && (
+              <FillForm
+                setshowTable={setshowTable}
+                setFullTables={setFullTables}
+                fullTables={fullTables}
+                indexOfTable={indexOfTable}
+                opendTableNum={opendTableNum}
+              />
+            )}
             <View
               style={{
                 borderColor: "white",
@@ -132,7 +143,11 @@ const LottoPage = ({ navigation }) => {
                     <Table
                       double={double}
                       key={index}
+                      index={index + 1}
                       setshowTable={setshowTable}
+                      setIndexOfTable={setIndexOfTable}
+                      fullTables={fullTables}
+                      setopendTableNum={setopendTableNum}
                     />
                   ))}
                 </ScrollView>
