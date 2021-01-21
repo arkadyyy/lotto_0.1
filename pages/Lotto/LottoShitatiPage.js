@@ -22,9 +22,10 @@ import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 
-const LottoShitatyPage = ({ navigation }) => {
+const LottoShitatiPage = ({ navigation }) => {
     const [showTable, setshowTable] = useState(false);
     const [tableNum, settableNum] = useState(8);
+    const [tzerufimNumber, setTzerufimNumber] = useState(8);
     const [double, setdouble] = useState(false);
     const [fullTables, setFullTables] = useState({});
     const [indexOfTable, setIndexOfTable] = useState("");
@@ -61,7 +62,7 @@ const LottoShitatyPage = ({ navigation }) => {
               <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
             </View>
 
-            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
+            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} tzerufimNumber={tzerufimNumber} setTzerufimNumber={setTzerufimNumber}/>
 
             <Text
               style={{
@@ -193,4 +194,4 @@ const LottoShitatyPage = ({ navigation }) => {
     </>
   );
 };
-export default LottoShitatyPage;
+export default LottoShitatiPage;

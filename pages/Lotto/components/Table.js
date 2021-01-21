@@ -141,7 +141,7 @@ const Table = ({ setshowTable, double, index, setopendTableNum }) => {
                 </View>
                 </>
             )}
-            {route.name === "LottoShitatyPage" && (
+            {route.name === "LottoShitatiPage" && (
               <>
               
             <View

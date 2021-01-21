@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
+import { useRoute } from "@react-navigation/native";
 
 import {
   Container,
@@ -18,6 +19,8 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 
 const ChooseNumOfTables = ({ settableNum, tableNum }) => {
+  const route = useRoute();
+
   return (
     <>
       <View
@@ -30,6 +33,7 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
           padding: 10,
         }}
       >
+        
         <Text style={{ fontSize: 15, color: "white" }}>
           בחר מספר טבלאות למילוי
         </Text>

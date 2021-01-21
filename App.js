@@ -41,7 +41,7 @@ export default function App() {
           <Drawer.Screen name='SignIn' component={SignIn} />
           <Drawer.Screen name='LottoList' component={LottoList} />
           <Drawer.Screen name='LottoPage' component={LottoPage} />
-          <Drawer.Screen name='LottoShitatyPage' component={LottoShitatiPage} />
+          <Drawer.Screen name='LottoShitatiPage' component={LottoShitatiPage} />
           <Drawer.Screen name='ChanceList' component={ChanceList} />
           <Drawer.Screen name='ChancePage' component={ChancePage} />
           <Drawer.Screen name='Sheva77List' component={Sheva77List} />
