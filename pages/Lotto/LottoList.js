@@ -161,7 +161,7 @@ const LottoList = (props) => {
               <Right>
                 <View>
                     <Button
-                                          onPress={() => navigation.navigate("LottoShitatyPage")}
+                                          onPress={() => navigation.navigate("LottoShitatiPage")}
 
                     small
                     style={{

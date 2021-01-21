@@ -39,7 +39,7 @@ const NavBar = (props) => {
       setNavBarTitle(`הרשמה ופרטי תשלום`);
     }else if (route.name === "LottoPage") {
       setNavBarTitle(`דאבל לוטו`);
-    }else if (route.name === "LottoShitatyPage") {
+    }else if (route.name === "LottoShitatiPage") {
       setNavBarTitle(`לוטו שיטתי`);
     
     } 

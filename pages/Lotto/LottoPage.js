@@ -24,7 +24,7 @@ import Table from "./components/Table";
 // { tableNum: 1, choosenNums: [1, 2, 3, 4, 5, 6], strongNum: 7 },
 const LottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
-  const [tableNum, settableNum] = useState(1);
+  const [tableNum, settableNum] = useState(2);
   const [double, setdouble] = useState(false);
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
