@@ -140,17 +140,17 @@ const LottoShitatiPage = ({ navigation }) => {
                 }}
               >
                 <ScrollView>
-                  {Array.from(Array(tableNum)).map((x, index) => (
+                  {/* {Array.from(Array(tableNum)).map((x, index) => ( */}
                     <Table
                       double={double}
-                      key={index}
-                      index={index + 1}
+                      key={1}
+                      index={1}
                       setshowTable={setshowTable}
-                      setIndexOfTable={setIndexOfTable}
+                      setIndexOfTable={1}
                       fullTables={fullTables}
                       setopendTableNum={setopendTableNum}
                     />
-                  ))}
+                  {/* ))} */}
                 </ScrollView>
               </List>
             </View>
