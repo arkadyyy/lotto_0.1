@@ -22,13 +22,9 @@ import {
   faArrowAltCircleLeft,
 } from "@fortawesome/free-regular-svg-icons";
 
-const checkIfPressed = (type) => {
-  if (type === "regular") {
-  }
-};
+const checkIfPressed = (type) => {};
 
 const Num = ({ num, choosenNums, setchoosenNums }) => {
-  const [isDisabled, setisDisabled] = useState(false);
   return (
     <>
       <TouchableOpacity
@@ -40,18 +36,11 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
             : false
         }
         onPress={() => {
-          // autoFill(37);
-          // console.log("iam working 4");
           choosenNums.length < 6 && setchoosenNums([...choosenNums, num]);
 
-          // if (choosenNums.length >= 6) {
-          //   console.log(num);
-
-          //   let index = choosenNums.indexOf(num);
-          //   setchoosenNums(choosenNums.filter((x) => x !== num));
-          //   console.log("choosenNums : ", choosenNums);
-          // }
-          console.log(choosenNums);
+          if (choosenNums.includes(num)) {
+            setchoosenNums(choosenNums.filter((x) => x !== num));
+          }
         }}
         style={{
           width: 30,
@@ -73,14 +62,18 @@ const StrongNum = ({ num, strongNum, setstrongNum }) => {
   return (
     <>
       <TouchableOpacity
+        disabled={strongNum === num ? false : strongNum > 1 ? true : false}
         onPress={() => {
-          console.log(strongNum);
-          setstrongNum(num);
+          strongNum === 0 && setstrongNum(num);
+          if (strongNum === num) {
+            setstrongNum(0);
+          }
         }}
         style={{
           width: 35,
           height: 35,
           borderWidth: 1,
+          backgroundColor: strongNum === num ? "red" : "transparent",
           borderColor: "white",
           borderRadius: 25,
           justifyContent: "center",
@@ -96,26 +89,67 @@ const StrongNum = ({ num, strongNum, setstrongNum }) => {
 
 const autoFill = (amount) => {
   let randomNumbers = [];
-  let powerNum = 0;
+  let strongNum = 0;
   for (let i = amount; i > 0; i--) {
     let num = Math.floor(Math.random() * 37) + 1;
-    randomNumbers.push(num);
+    if (randomNumbers.indexOf(num) < 0) {
+      randomNumbers.push(num);
+    } else {
+      i++;
+    }
   }
 
-  powerNum = Math.floor(Math.random() * 7) + 1;
+  strongNum = Math.floor(Math.random() * 7) + 1;
 
-  console.log(randomNumbers);
-  console.log(powerNum);
-  return { randomNumbers, powerNum };
+  return { randomNumbers, strongNum };
 };
 
-const FillForm = ({ setshowTable, double, opendTableNum }) => {
+const FillForm = ({
+  setshowTable,
+  double,
+  opendTableNum,
+  setFullTables,
+  fullTables,
+}) => {
   const [strongNum, setstrongNum] = useState(0);
   const [choosenNums, setchoosenNums] = useState([]);
+  const [usedTable, setusedTable] = useState({
+    tableNum: 0,
+    choosenNums: choosenNums,
+    strongNum: strongNum,
+  });
+  const [indexOfTable, setindexOfTable] = useState(-1);
 
-  // useState(()=>{
+  // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
 
-  // },[choosenNums,strongNum])
+  useEffect(() => {
+    fullTables.forEach((table, index) => {
+      if (table.tableNum === opendTableNum) {
+        setchoosenNums(table.choosenNums);
+        setstrongNum(table.strongNum);
+
+        setindexOfTable(index);
+        setusedTable(table);
+      }
+    });
+  }, []);
+
+  // useeffect that urns when choosennums or strongnum changes
+  useEffect(() => {
+    setusedTable({
+      tableNum: opendTableNum,
+      choosenNums: choosenNums,
+      strongNum: strongNum,
+    });
+
+    // setFullTables([
+    //   {
+    //     tableNum: opendTableNum,
+    //     choosenNums: choosenNums,
+    //     strongNum: strongNum,
+    //   },
+    // ]);
+  }, [choosenNums, strongNum]);
   return (
     <>
       <View
@@ -173,6 +207,12 @@ const FillForm = ({ setshowTable, double, opendTableNum }) => {
             }}
             onPress={() => {
               setshowTable(false);
+              if (indexOfTable !== -1) {
+                let x = fullTables.splice(indexOfTable, 1);
+                setFullTables([...fullTables, usedTable]);
+              } else {
+                setFullTables([...fullTables, usedTable]);
+              }
             }}
           >
             <Text style={{ color: "red" }}>סגור חלון</Text>
@@ -205,16 +245,25 @@ const FillForm = ({ setshowTable, double, opendTableNum }) => {
               מלא את טבלה {opendTableNum}
             </Text>
             <Button
+              disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
-                autoFill(6);
-                console.log("iam working 4");
+                let numbers = autoFill(6);
+                setchoosenNums(numbers.randomNumbers);
+                setstrongNum(numbers.strongNum);
               }}
               small
               rounded
             >
               <Text style={{ fontSize: 10 }}>מלא טבלה אוטומטית</Text>
             </Button>
-            <Button small rounded>
+            <Button
+              onPress={() => {
+                setchoosenNums([]);
+                setstrongNum(0);
+              }}
+              small
+              rounded
+            >
               <Text style={{ fontSize: 10 }}>מחק טבלה אוטומטית</Text>
             </Button>
           </View>

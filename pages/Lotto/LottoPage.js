@@ -21,12 +21,12 @@ import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
-
+// { tableNum: 1, choosenNums: [1, 2, 3, 4, 5, 6], strongNum: 7 },
 const LottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [double, setdouble] = useState(false);
-  const [fullTables, setFullTables] = useState({});
+  const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
   return (
@@ -113,11 +113,10 @@ const LottoPage = ({ navigation }) => {
             </View>
             {showTable && (
               <FillForm
-                setshowTable={setshowTable}
-                setFullTables={setFullTables}
-                fullTables={fullTables}
-                indexOfTable={indexOfTable}
                 opendTableNum={opendTableNum}
+                setshowTable={setshowTable}
+                fullTables={fullTables}
+                setFullTables={setFullTables}
               />
             )}
             <View
@@ -163,6 +162,9 @@ const LottoPage = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={() => {
+                  console.log(fullTables);
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#8CC63F",
