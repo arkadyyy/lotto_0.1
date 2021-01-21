@@ -26,6 +26,7 @@ const NavBar = (props) => {
 
 
   useEffect(() => {  
+    
     if  (route.name === "LottoList") 
       setNavBarTitle('הגרלת לוטו');
     else if (route.name === "ChanceList") {
@@ -36,6 +37,10 @@ const NavBar = (props) => {
       setNavBarTitle(`הגרלת 123`);
     }else if (route.name === "SignIn") {
       setNavBarTitle(`הרשמה ופרטי תשלום`);
+    }else if (route.name === "LottoPage") {
+      setNavBarTitle(`דאבל לוטו`);
+    }else if (route.name === "LottoShitatyPage") {
+      setNavBarTitle(`לוטו שיטתי`);
     
     } 
     }, [route.name])
