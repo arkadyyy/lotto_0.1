@@ -222,11 +222,32 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
           }}
         >
             <Text style={{ fontSize: 15, color: "white" }}>
-              בחר מספר צירופים למילוי
+              בחר סוג טופס למילוי
             </Text>
           
           <View style={{}}>
             <View style={{ flexDirection: "row" }}>
+           
+              <TouchableOpacity
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 30,
+                  backgroundColor: tzerufimNumber === 5 ? "#8CC63F" : "white",
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onPress={() => {
+                 setTzerufimNumber(5)
+                }
+                }
+              >
+               <Text style={{ color: tzerufimNumber === 5 ? "white" : "#E62321" }}>6=5</Text>
+                  
+
+
+              </TouchableOpacity>
               <TouchableOpacity
                 style={{
                   width: 25,
@@ -253,35 +274,7 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                    
                 {/* <Text style={{ color: "black" }}>7</Text> */}
               </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: 25,
-                  height: 25,
-                  borderRadius: 30,
-                  backgroundColor: tzerufimNumber === 5 ? "#8CC63F" : "white",
-                  margin: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                onPress={() => {
-                 
-                     
-                        setTzerufimNumber(5)
-                      
-                
-              
-                }
-                }
-              >
-             
 
-                
-                
-                      <Text style={{ color: tzerufimNumber === 5 ? "white" : "#E62321" }}>6=5</Text>
-                  
-
-
-              </TouchableOpacity>
               <TouchableOpacity
                 style={{
                   width: 25,

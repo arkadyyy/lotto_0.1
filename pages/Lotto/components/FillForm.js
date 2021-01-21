@@ -108,6 +108,7 @@ const FillForm = ({
   setshowTable,
   double,
   opendTableNum,
+  opendTableTzerufimNum,
   setFullTables,
   fullTables,
 }) => {
