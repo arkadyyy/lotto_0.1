@@ -43,7 +43,8 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
                 width: 25,
                 height: 25,
                 borderRadius: 30,
-                backgroundColor: tableNum === 7||8 ? "#8CC63F" : "white",
+                
+                backgroundColor: route.name==="LottoPage" && tableNum === 2 || route.name==="LottoShitatiPage" && tableNum === 8 ? "#8CC63F" : "white",
                 borderColor: "white",
                 borderWidth: 1,
                 margin: 5,
@@ -53,12 +54,12 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
               }}
               onPress={() => {
                 {
-                  route.name === "LottoList" ? (
+                  route.name === "LottoPage" ? (
                     
-                    settableNum(7)
-                  ) :
-                  route.name === "LottoShitatyList" ?(
-                    settableNum(8)
+                    settableNum(2)
+                  // ) :
+                  // route.name === "LottoShitatyList" ?(
+                  //   settableNum(8)
                 ) : null
                 } 
 
@@ -66,10 +67,10 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
             >
                  {
                   route.name === "LottoPage" ? (
-                  <Text style={{ color: tableNum === 7 ? "white" : "#8CC63F" }}>7</Text>
+                  <Text style={{ color: tableNum === 2 ? "white" : "#E62321" }}>2</Text>
                     ) :
                   route.name === "LottoShitatyPage" ?(
-                    <Text style={{ color: tableNum === 8 ? "white" : "#8CC63F" }}>8</Text>
+                    <Text style={{ color: tableNum === 8 ? "white" : "#E62321" }}>8</Text>
                     ) : null
                 }
               {/* <Text style={{ color: "black" }}>7</Text> */}
@@ -79,37 +80,34 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
                 width: 25,
                 height: 25,
                 borderRadius: 30,
-                backgroundColor: tableNum === 6 ? "#8CC63F" : "white",
+                backgroundColor: tableNum === 4 ? "#8CC63F" : "white",
                 margin: 5,
                 justifyContent: "center",
                 alignItems: "center",
               }}
               onPress={() => {
-                // settableNum(6);
+                settableNum(4);
                 
-                route.name === "LottoList" ? (
+              //   route.name === "LottoList" ? (
 
-                  settableNum(6)
-                ) :
-                  route.name === "LottoShitatyList" ? (
-                    settableNum(0)
-              ) : null
+              //     settableNum(6)
+              //   ) :
+              //     route.name === "LottoShitatyList" ? (
+              //       settableNum(0)
+              // ) : null
               } 
               }
             >
               {/* <Text>6</Text> */}
 
-              {
-                route.name === "LottoPage" ? (
-
-                  <Text
-                    style={{ color: "black" }}>6</Text>
-                ) :
-                  route.name === "LottoShitatyPage" ? (
-                    <Text style={{ color: tableNum === 6  ? "white" : "black" }}>6=5</Text>
+                {
+                  route.name === "LottoPage" ? (
+                  <Text style={{ color: tableNum === 4 ? "white" : "#E62321" }}>4</Text>
+                    ) :
+                  route.name === "LottoShitatyPage" ?(
+                    <Text style={{ color: tableNum === 6 ? "white" : "#E62321" }}>6=5</Text>
                     ) : null
                 }
-
 
 
             </TouchableOpacity>
@@ -118,7 +116,8 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
                 width: 25,
                 height: 25,
                 borderRadius: 30,
-                backgroundColor: tableNum === 5|| tableNum === 9 ? "#8CC63F" : "white",
+                // backgroundColor: tableNum === 5|| tableNum === 9 ? "#8CC63F" : "white",
+                backgroundColor: tableNum === 6 ? "#8CC63F" : "white",
                 margin: 5,
                 justifyContent: "center",
                 alignItems: "center",
@@ -127,39 +126,59 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
                 // settableNum(5);
 
 
-                route.name === "LottoList" ? (
+                route.name === "LottoPage" ? (
 
-                  settableNum(5)
-                ) :
-                route.name === "LottoShitatyList" ?(
-                  settableNum(9)
+                  settableNum(6)
+                // ) :
+                // route.name === "LottoShitatyList" ?(
+                //   settableNum(9)
               ) : null
               } 
 
               }
             >
-              {/* <Text>5</Text> */}
-              {route.name === "LottoPage" ? (<Text>5</Text>)
-                : route.name === "LottoShitatyPage" ? (<Text>9</Text>) 
-            : null }
+              
+              
+              {
+                  route.name === "LottoPage" ? (
+                  <Text style={{ color: tableNum === 6 ? "white" : "#E62321" }}>6</Text>
+                    ) :
+                  route.name === "LottoShitatyPage" ?(
+                    <Text style={{ color: tableNum === 9 ? "white" : "#E62321" }}>9</Text>
+                    ) : null
+                }
+
+
             </TouchableOpacity>
             <TouchableOpacity
+                
               style={{
+
+              
+
                 width: 25,
                 height: 25,
                 borderRadius: 30,
-                backgroundColor: tableNum === 4|| tableNum ===10 ? "#8CC63F" : "white",
+                
+                backgroundColor: route.name==="LottoPage" && tableNum === 8 || route.name==="LottoShitatiPage" && tableNum === 10 ? "#8CC63F" : "white",
+
                 margin: 5,
                 justifyContent: "center",
                 alignItems: "center",
+                         
+        
+             
               }}
+
+          
+          
               onPress={() => {
-                // settableNum(4);
+                
 
                 {
-                  route.name === "LottoList" ? (
+                  route.name === "LottoPage" ? (
   
-                    settableNum(4)
+                    settableNum(8)
                   ) :
                   route.name === "LottoShitatyList" ?(
                     settableNum(10)
@@ -169,43 +188,51 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
               }}
             >
 
-              {route.name === "LottoList" ? (
-              <Text>4</Text>                
-              ) :
-              <Text>10</Text>
-              }
 
-               {/* <Text>4</Text> */}
+                  {
+                  route.name === "LottoPage" ? (
+                  <Text style={{ color: tableNum === 8 ? "white" : "#E62321" }}>8</Text>
+                    ) :
+                  route.name === "LottoShitatyPage" ?(
+                    <Text style={{ color: tableNum === 10 ? "white" : "#E62321" }}>10</Text>
+                    ) : null
+                }
+
+
+           
             </TouchableOpacity>
             <TouchableOpacity
               style={{
                 width: 25,
                 height: 25,
                 borderRadius: 30,
-                backgroundColor: tableNum === 3 || tableNum === 11 ? "#8CC63F" : "white",
+                backgroundColor: tableNum === 10 || tableNum === 11 ? "#8CC63F" : "white",
                 margin: 5,
                 justifyContent: "center",
                 alignItems: "center",
               }}
               onPress={() => {
-                // settableNum(3);
+              
                 {
-                  route.name === "LottoList" ? (
+                  route.name === "LottoPage" ? (
   
-                    settableNum(3)
+                    settableNum(10)
                   ) :
-                  route.name === "LottoShitatyList" ?(
+                  route.name === "LottoShitatyPage" ?(
                     settableNum(11)
                 ) : null
                 } 
               }}
             >
-              {/* <Text>3</Text> */}
-              {route.name === "LottoList" ? (
-              <Text>3</Text>                
-              ) :
-              <Text>11</Text>
-              }
+              
+              {
+                  route.name === "LottoPage" ? (
+                  <Text style={{ color: tableNum === 10 ? "white" : "#E62321" }}>10</Text>
+                    ) :
+                  route.name === "LottoShitatyPage" ?(
+                    <Text style={{ color: tableNum === 11 ? "white" : "#E62321" }}>11</Text>
+                    ) : null
+                }
 
             </TouchableOpacity>
             <TouchableOpacity
@@ -213,7 +240,7 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
                 width: 25,
                 height: 25,
                 borderRadius: 30,
-                backgroundColor: tableNum === 2 || tableNum === 12 ? "#8CC63F" : "white",
+                backgroundColor: tableNum === 12 ? "#8CC63F" : "white",
                 margin: 5,
                 justifyContent: "center",
                 alignItems: "center",
@@ -221,9 +248,9 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
               onPress={() => {
                 // settableNum(2);
                 {
-                  route.name === "LottoList" ? (
+                  route.name === "LottoPage" ? (
   
-                    settableNum(2)
+                    settableNum(12)
                   ) :
                   route.name === "LottoShitatyList" ?(
                     settableNum(12)
@@ -231,29 +258,38 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
                 } 
               }}
             >
-              {/* <Text>2</Text> */}
-              {route.name === "LottoList" ? (
-              <Text>2</Text>                
-              ) :
-              <Text>12</Text>
-              }
+              
+              {
+                  route.name === "LottoPage" ? (
+                  <Text style={{ color: tableNum === 12 ? "white" : "#E62321" }}>12</Text>
+                    ) :
+                  route.name === "LottoShitatyPage" ?(
+                    <Text style={{ color: tableNum === 12 ? "white" : "#E62321" }}>12</Text>
+                    ) : null
+                }
+
             </TouchableOpacity>
-            {route.name === "LottoList" && (
+            {route.name === "LottoPage" && (
               <TouchableOpacity
                 style={{
                   width: 25,
                   height: 25,
                   borderRadius: 30,
-                  backgroundColor: tableNum === 1 || tableNum === 12 ? "#8CC63F" : "white",
+                  backgroundColor: tableNum === 14 ? "#8CC63F" : "white",
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
                 }}
                 onPress={() => {
-                  settableNum(1);
+                  settableNum(14);
                 }}
               >
-                <Text>1</Text>
+                 {
+                  route.name === "LottoPage" ? (
+                  <Text style={{ color: tableNum === 14 ? "white" : "#E62321" }}>14</Text>
+                    
+                    ) : null
+                }
               </TouchableOpacity>
             )}
           </View>
