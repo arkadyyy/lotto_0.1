@@ -143,7 +143,7 @@ const Table = ({ setshowTable, double, index, setopendTableNum }) => {
             )}
             {route.name === "LottoShitatyPage" && (
               <>
-                <Row>
+                {/* <Row> */}
                   {/* <Col> */}
             <View
               style={{
@@ -205,8 +205,8 @@ const Table = ({ setshowTable, double, index, setopendTableNum }) => {
               <Text>5</Text>
                     </View>
                     {/* </Col> */}
-                    </Row>
-                  <Row>
+                    {/* </Row> */}
+                  {/* <Row> */}
                   {/* <Col> */}
             <View
               style={{
@@ -267,7 +267,7 @@ const Table = ({ setshowTable, double, index, setopendTableNum }) => {
               <Text>7</Text>
                       </View>
                       {/* </Col> */}
-                  </Row>
+                  {/* </Row> */}
                 </>
             )}
               
@@ -404,6 +404,137 @@ const Table = ({ setshowTable, double, index, setopendTableNum }) => {
                   <Text>1</Text>
                 </View>
               </>)}
+            
+              {route.name === "LottoShitatyPage" && (
+              <>
+                {/* <Row> */}
+                  {/* <Col> */}
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ color: "black" }}>2</Text>
+                    </View>
+                    {/* </Col> */}
+                  {/* <Col> */}
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>3</Text>
+                    </View>
+                    {/* </Col> */}
+                  {/* <Col> */}
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>4</Text>
+                    </View>
+                    {/* </Col> */}
+                    {/* <Col> */}
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>5</Text>
+                    </View>
+                    {/* </Col> */}
+                    {/* </Row> */}
+                  {/* <Row> */}
+                  {/* <Col> */}
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>6</Text>
+                      </View>
+                      {/* </Col> */}
+                      {/* <Col> */}
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>7</Text>
+                      </View>
+                      {/* </Col> */}
+                      {/* <Col> */}
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>6</Text>
+                      </View>
+                    {/* </Col> */}
+                    {/* <Col> */}
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>7</Text>
+                      </View>
+                      {/* </Col> */}
+                  {/* </Row> */}
+                </>
+            )
+            }
           </View>
         </TouchableOpacity>
         {double && (
