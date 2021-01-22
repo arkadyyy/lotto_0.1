@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
@@ -22,18 +22,28 @@ import {
   faArrowAltCircleLeft,
 } from "@fortawesome/free-regular-svg-icons";
 
-const Num = ({ num }) => {
+const Num = ({ num, choosenNums, setchoosenNums }) => {
   return (
     <>
       <TouchableOpacity
+        disabled={
+          choosenNums.includes(num)
+            ? false
+            : choosenNums.length >= 3
+            ? true
+            : false
+        }
         onPress={() => {
-          autoFill(37);
-          console.log("iam working 4");
+          choosenNums.length < 3 && setchoosenNums([...choosenNums, num]);
+
+          if (choosenNums.includes(num)) {
+            setchoosenNums(choosenNums.filter((x) => x !== num));
+          }
         }}
         style={{
           width: 30,
           height: 30,
-          backgroundColor: "white",
+          backgroundColor: choosenNums.includes(num) ? "red" : "white",
           justifyContent: "center",
           alignItems: "center",
           borderRadius: 23,
@@ -46,7 +56,7 @@ const Num = ({ num }) => {
   );
 };
 
-const StrongNum = ({ num }) => {
+const DisplayChoosenNums = ({ num }) => {
   return (
     <>
       <TouchableOpacity
@@ -69,22 +79,63 @@ const StrongNum = ({ num }) => {
 
 const autoFill = (amount) => {
   let randomNumbers = [];
-  let powerNum = 0;
+  let strongNum = 0;
   for (let i = amount; i > 0; i--) {
-    let num = Math.floor(Math.random() * 37) + 1;
-    randomNumbers.push(num);
+    let num = Math.floor(Math.random() * 9) + 1;
+    if (randomNumbers.indexOf(num) < 0) {
+      randomNumbers.push(num);
+    } else {
+      i++;
+    }
   }
 
-  powerNum = Math.floor(Math.random() * 7) + 1;
+  strongNum = Math.floor(Math.random() * 7) + 1;
 
-  console.log(randomNumbers);
-  console.log(powerNum);
-  return { randomNumbers, powerNum };
+  return { randomNumbers, strongNum };
 };
 
-const FillForm = ({ setshowTable, double }) => {
-  var myMap = new Map();
-  myMap.size = 4;
+const FillForm = ({
+  setshowTable,
+  fullTables,
+  opendTableNum,
+  setFullTables,
+}) => {
+  const [choosenNums, setchoosenNums] = useState([]);
+  const [usedTable, setusedTable] = useState({
+    tableNum: 0,
+    choosenNums: choosenNums,
+  });
+  const [indexOfTable, setindexOfTable] = useState(-1);
+
+  useEffect(() => {
+    fullTables.forEach((table, index) => {
+      if (table.tableNum === opendTableNum) {
+        let filteredChoosenNums = table.choosenNums.filter(
+          (num) => num !== "-"
+        );
+        setchoosenNums(filteredChoosenNums);
+
+        setindexOfTable(index);
+        setusedTable(table);
+      }
+    });
+  }, []);
+  // useeffect that urns when choosennums  changes
+  useEffect(() => {
+    setusedTable({
+      tableNum: opendTableNum,
+      choosenNums: choosenNums,
+    });
+
+    // setFullTables([
+    //   {
+    //     tableNum: opendTableNum,
+    //     choosenNums: choosenNums,
+    //     strongNum: strongNum,
+    //   },
+    // ]);
+  }, [choosenNums]);
+
   return (
     <>
       <View
@@ -142,6 +193,18 @@ const FillForm = ({ setshowTable, double }) => {
             }}
             onPress={() => {
               setshowTable(false);
+              //if we have already a object for this table , remove the previos one and put a new one
+              if (indexOfTable !== -1) {
+                let fullTablesCopy = fullTables.filter(
+                  (table) => table.tableNum !== opendTableNum
+                );
+
+                // let x = fullTables.splice(indexOfTable, 1);
+                setFullTables([...fullTablesCopy, usedTable]);
+                //if we dont have already object for this table,just create one
+              } else {
+                setFullTables([...fullTables, usedTable]);
+              }
             }}
           >
             <Text style={{ color: "red" }}>סגור חלון</Text>
@@ -174,23 +237,35 @@ const FillForm = ({ setshowTable, double }) => {
               מלא את טבלה 1
             </Text>
             <Button
+              disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
-                autoFill(6);
-                console.log("iam working 4");
+                let numbers = autoFill(3);
+                setchoosenNums(numbers.randomNumbers);
               }}
               small
               rounded
             >
               <Text style={{ fontSize: 10 }}>מלא טבלה אוטומטית</Text>
             </Button>
-            <Button small rounded>
+            <Button
+              onPress={() => {
+                setchoosenNums([]);
+              }}
+              small
+              rounded
+            >
               <Text style={{ fontSize: 10 }}>מחק טבלה אוטומטית</Text>
             </Button>
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             {Array.from(Array(10)).map((x, index) => (
-              <Num num={index} key={index} />
+              <Num
+                setchoosenNums={setchoosenNums}
+                choosenNums={choosenNums}
+                num={index}
+                key={index}
+              />
             ))}
           </View>
         </View>
@@ -226,11 +301,12 @@ const FillForm = ({ setshowTable, double }) => {
               justifyContent: "space-evenly",
               alignItems: "center",
               alignSelf: "center",
+              flexDirection: "row-reverse",
               margin: 2,
             }}
           >
             {Array.from(Array(3)).map((x, index) => (
-              <StrongNum num={index + 1} key={index} />
+              <DisplayChoosenNums num={choosenNums[index]} key={index} />
             ))}
           </View>
         </View>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 
 import {
@@ -17,7 +17,53 @@ import {
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 
-const Table = ({ setshowTable, double }) => {
+const Num = ({ num }) => {
+  return (
+    <>
+      <View
+        style={{
+          width: 20,
+          height: 20,
+          borderRadius: 30,
+          backgroundColor: "white",
+
+          margin: 5,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "black" }}>{num}</Text>
+      </View>
+    </>
+  );
+};
+
+const Table = ({
+  setshowTable,
+  opendTableNum,
+  setopendTableNum,
+  fullTables,
+}) => {
+  const [table, settable] = useState(["-", "-", "-"]);
+
+  useEffect(() => {
+    let fullTable = 0;
+
+    let x;
+    fullTables.forEach((table) => {
+      if (+table.tableNum === +opendTableNum) {
+        fullTable = table;
+
+        if (fullTable.choosenNums.length < 3) {
+          x = 3 - fullTable.choosenNums.length;
+          for (x; x > 0; x--) {
+            fullTable.choosenNums.push("-");
+          }
+        }
+        settable(fullTable.choosenNums);
+      }
+    });
+  }, [fullTables]);
   return (
     <>
       <ListItem
@@ -27,107 +73,28 @@ const Table = ({ setshowTable, double }) => {
           marginTop: 4,
           height: 55,
           alignItems: "center",
+          width: 400,
         }}
       >
-        <Text style={{ color: "white" }}>טבלה 1</Text>
+        <Text
+          style={{ color: "white", marginHorizontal: 4 }}
+        >{`טבלה ${opendTableNum}`}</Text>
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);
+            setopendTableNum(opendTableNum);
           }}
         >
-          <View style={{ flexDirection: "row" }}>
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ color: "black" }}>7</Text>
-            </View>
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text>6</Text>
-            </View>
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text>5</Text>
-            </View>
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text>4</Text>
-            </View>
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text>3</Text>
-            </View>
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text>2</Text>
-            </View>
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text>1</Text>
-            </View>
+          <View
+            style={{
+              flexDirection: "row",
+              flexDirection: "row-reverse",
+              width: "100%",
+            }}
+          >
+            {table.map((num, index) => (
+              <Num key={index} num={num} />
+            ))}
           </View>
         </TouchableOpacity>
       </ListItem>

@@ -27,13 +27,16 @@ const LottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [investNum, setinvestNum] = useState(1);
-  const [double, setdouble] = useState(false);
+
+  const [fullTables, setFullTables] = useState([]);
+  const [indexOfTable, setIndexOfTable] = useState("");
+  const [opendTableNum, setopendTableNum] = useState(0);
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare color='#FF6B00' />
-        <ChooseForm setdouble={setdouble} />
+        <ChooseForm />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#FF6B00", paddingBottom: 20 }}>
             <View
@@ -122,7 +125,14 @@ const LottoPage = ({ navigation }) => {
                 </Text>
               </Button>
             </View>
-            {showTable && <FillForm setshowTable={setshowTable} />}
+            {showTable && (
+              <FillForm
+                setFullTables={setFullTables}
+                fullTables={fullTables}
+                setshowTable={setshowTable}
+                opendTableNum={opendTableNum}
+              />
+            )}
             <View
               style={{
                 borderColor: "white",
@@ -144,9 +154,11 @@ const LottoPage = ({ navigation }) => {
                 <ScrollView>
                   {Array.from(Array(tableNum)).map((x, index) => (
                     <Table
-                      double={double}
+                      opendTableNum={index + 1}
                       key={index}
                       setshowTable={setshowTable}
+                      setopendTableNum={setopendTableNum}
+                      fullTables={fullTables}
                     />
                   ))}
                 </ScrollView>
@@ -264,6 +276,9 @@ const LottoPage = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={() => {
+                  console.log({ 123: { fullTables, investNum } });
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",

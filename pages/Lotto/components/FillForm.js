@@ -211,9 +211,15 @@ const FillForm = ({
             }}
             onPress={() => {
               setshowTable(false);
+              //if we have already a object for this table , remove the previos one and put a new one
               if (indexOfTable !== -1) {
+                let fullTablesCopy = fullTables.filter(
+                  (table) => table.tableNum !== opendTableNum
+                );
+
                 // let x = fullTables.splice(indexOfTable, 1);
-                setFullTables([...fullTables, usedTable]);
+                setFullTables([...fullTablesCopy, usedTable]);
+                //if we dont have already object for this table,just create one
               } else {
                 setFullTables([...fullTables, usedTable]);
               }

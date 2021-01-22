@@ -164,7 +164,8 @@ const LottoPage = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  console.log(fullTables);
+                  let summary = { regularLotto: fullTables };
+                  console.log(summary);
                 }}
                 style={{
                   borderRadius: 17,
