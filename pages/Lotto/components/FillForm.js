@@ -130,20 +130,14 @@ const FillForm = ({
           setchoosenNums(table.choosenNums);
           setstrongNum(table.strongNum);
 
-          setindexOfTable(index);
-          setusedTable(table);
-        }
-      });
-    }, []);
-  // }
-  
-  // {
-  //   LottoShitatiPage &&
-  //   useEffect(() => {
-  //     fullTables.forEach((table, index) => {
-  //       if (table.tableNum === opendTableNum) {
-  //         setchoosenNums(table.choosenNums);
-  //         setstrongNum(table.strongNum);
+  useEffect(() => {
+    fullTables.forEach((table, index) => {
+      if (table.tableNum === opendTableNum) {
+        let filteredChoosenNums = table.choosenNums.filter(
+          (num) => num !== "-"
+        );
+        setchoosenNums(filteredChoosenNums);
+        setstrongNum(table.strongNum);
 
   //         setindexOfTable(index);
   //         setusedTable(table);
