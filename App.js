@@ -12,6 +12,7 @@ import DrawerContent from "./pages/DrawerContent/DrawerContent";
 import LottoPage from "./pages/Lotto/LottoPage";
 import LottoList from "./pages/Lotto/LottoList";
 import LottoShitatiPage from "./pages/Lotto/LottoShitatiPage";
+import LottoShitatiHazakPage from "./pages/Lotto/LottoShitatiHazakPage";
 import ChanceList from "./pages/Chance/ChanceList";
 import ChancePage from "./pages/Chance/ChancePage";
 import Sheva77List from "./pages/Sheva77/Sheva77List";
@@ -42,6 +43,7 @@ export default function App() {
           <Drawer.Screen name='LottoList' component={LottoList} />
           <Drawer.Screen name='LottoPage' component={LottoPage} />
           <Drawer.Screen name='LottoShitatiPage' component={LottoShitatiPage} />
+          <Drawer.Screen name='LottoShitatiHazakPage' component={LottoShitatiHazakPage} />
           <Drawer.Screen name='ChanceList' component={ChanceList} />
           <Drawer.Screen name='ChancePage' component={ChancePage} />
           <Drawer.Screen name='Sheva77List' component={Sheva77List} />

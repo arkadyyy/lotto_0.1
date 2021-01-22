@@ -21,6 +21,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
 
+<<<<<<< HEAD
 const Num = ({ num }) => {
   return (
     <>
@@ -49,6 +50,9 @@ const Table = ({
   setopendTableNum,
   fullTables,
 }) => {
+=======
+const Table = ({ setshowTable, double, index, setopendTableNum,tzerufimNumber,setopendTableTzerufimNum }) => {
+>>>>>>> ffc7d68e469ff9ec1d0289c3ba4fa7b36848416a
   const index1 = index * 2 - 1;
   const index2 = index * 2;
   const route = useRoute();
@@ -99,7 +103,7 @@ const Table = ({
           backgroundColor: "#8CC63F",
           flexWrap: "wrap",
           marginTop: 4,
-          height: 55,
+          height: 95,
           alignItems: "center",
         }}
       >
@@ -108,15 +112,452 @@ const Table = ({
           onPress={() => {
             setshowTable(true);
             setopendTableNum(index1);
+            // setopendTableTzerufimNum(tzerufimNumber);
           }}
         >
           <View style={{ flexDirection: "row" }}>
             {route.name === "LottoPage" && (
               <>
+<<<<<<< HEAD
                 {table1.map((num, index) => (
                   <Num key={index} num={num} />
                 ))}
               </>
+=======
+              
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ color: "black" }}>2</Text>
+                    </View>
+                   
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>3</Text>
+                    </View>
+                   
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>4</Text>
+                    </View>
+                   
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>5</Text>
+                </View>
+                
+
+
+                  
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "white",
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>6</Text>
+                </View>
+                
+
+                {tzerufimNumber ===  8  && (
+          <>        
+                  <View
+                    style={{
+                      width: 20,
+                      height: 20,
+                      borderRadius: 30,
+                      backgroundColor: "white",
+                      margin: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text>7</Text>
+                  </View>
+                  <View
+                    style={{
+                      width: 20,
+                      height: 20,
+                      borderRadius: 30,
+                      backgroundColor: "white",
+                      margin: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text>8</Text>
+                  </View>
+                  <View
+                    style={{
+                      width: 20,
+                      height: 20,
+                      borderRadius: 30,
+                      backgroundColor: "white",
+                      margin: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text>9</Text>
+                  </View>
+                </>
+                
+              )} 
+              {tzerufimNumber ===  9  && (
+                
+                <>        
+                  <View
+                    style={{
+                      width: 20,
+                      height: 20,
+                      borderRadius: 30,
+                      backgroundColor: "white",
+                      margin: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text>7</Text>
+                  </View>
+                  <View
+                    style={{
+                      width: 20,
+                      height: 20,
+                      borderRadius: 30,
+                      backgroundColor: "white",
+                      margin: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text>8</Text>
+                  </View>
+                  <View
+                    style={{
+                      width: 20,
+                      height: 20,
+                      borderRadius: 30,
+                      backgroundColor: "white",
+                      margin: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text>9</Text>
+                  </View>
+                  <View
+                    style={{
+                      width: 20,
+                      height: 20,
+                      borderRadius: 30,
+                      backgroundColor: "white",
+                      margin: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text>10</Text>
+                  </View>
+                </>
+              
+              )} 
+              
+              {tzerufimNumber ===  10  && (
+                
+                <>        
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>7</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>8</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>9</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>10</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>11</Text>
+                </View>
+              </>
+              
+              )} 
+              {tzerufimNumber === 11  && (
+                
+                <>        
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>7</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>8</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>9</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>10</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>11</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>12</Text>
+                </View>
+              </>
+              
+              )} 
+              {tzerufimNumber === 12 && (
+                <>        
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>7</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>8</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>9</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>10</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>11</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>12</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>13</Text>
+                </View>
+              </>
+              
+              )}  
+                
+        
+                </>
+>>>>>>> ffc7d68e469ff9ec1d0289c3ba4fa7b36848416a
             )}
             {route.name === "LottoShitatiPage" && (
               <>

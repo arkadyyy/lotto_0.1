@@ -202,7 +202,8 @@ const LottoList = (props) => {
 
               <Right>
                 <View>
-                  <Button
+                    <Button
+                    onPress={() => navigation.navigate("LottoShitatiHazakPage")}
                     small
                     style={{
                       borderRadius: 13,

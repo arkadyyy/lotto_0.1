@@ -22,7 +22,7 @@ import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 
-const LottoShitatiPage = ({ navigation }) => {
+const LottoShitatiHazakPage = ({ navigation }) => {
     const [showTable, setshowTable] = useState(false);
     const [tableNum, settableNum] = useState(8);
     const [tzerufimNumber, setTzerufimNumber] = useState(8);
@@ -200,4 +200,4 @@ const LottoShitatiPage = ({ navigation }) => {
     </>
   );
 };
-export default LottoShitatiPage;
+export default LottoShitatiHazakPage;
