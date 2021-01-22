@@ -140,6 +140,7 @@ const LottoPage = ({ navigation }) => {
                 <ScrollView>
                   {Array.from(Array(tableNum)).map((x, index) => (
                     <Table
+                      fullTables={fullTables}
                       double={double}
                       key={index}
                       index={index + 1}

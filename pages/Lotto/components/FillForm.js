@@ -125,7 +125,10 @@ const FillForm = ({
   useEffect(() => {
     fullTables.forEach((table, index) => {
       if (table.tableNum === opendTableNum) {
-        setchoosenNums(table.choosenNums);
+        let filteredChoosenNums = table.choosenNums.filter(
+          (num) => num !== "-"
+        );
+        setchoosenNums(filteredChoosenNums);
         setstrongNum(table.strongNum);
 
         setindexOfTable(index);
