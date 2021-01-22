@@ -122,13 +122,6 @@ const FillForm = ({
   const [indexOfTable, setindexOfTable] = useState(-1);
 
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
-  // {
-    // LottoPage &&
-    useEffect(() => {
-      fullTables.forEach((table, index) => {
-        if (table.tableNum === opendTableNum) {
-          setchoosenNums(table.choosenNums);
-          setstrongNum(table.strongNum);
 
   useEffect(() => {
     fullTables.forEach((table, index) => {
@@ -139,12 +132,11 @@ const FillForm = ({
         setchoosenNums(filteredChoosenNums);
         setstrongNum(table.strongNum);
 
-  //         setindexOfTable(index);
-  //         setusedTable(table);
-  //       }
-  //     });
-  //   }, []);
-  // }
+        setindexOfTable(index);
+        setusedTable(table);
+      }
+    });
+  }, []);
 
   // useeffect that urns when choosennums or strongnum changes
   useEffect(() => {
