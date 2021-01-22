@@ -35,6 +35,9 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
             ? true
             : false
         }
+
+// לעשות סטייט  בדף לוטו שיטתי שמשתנה גרן בטופס שיטתי ומחליף את המספר 6
+
         onPress={() => {
           choosenNums.length < 6 && setchoosenNums([...choosenNums, num]);
 
@@ -42,6 +45,14 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
             setchoosenNums(choosenNums.filter((x) => x !== num));
           }
         }}
+
+        // onPress={() => {
+        //   choosenNums.length < {משתנה} && setchoosenNums([...choosenNums, num]);
+
+        //   if (choosenNums.includes(num)) {
+        //     setchoosenNums(choosenNums.filter((x) => x !== num));
+        //   }
+        // }}
         style={{
           width: 30,
           height: 30,
@@ -104,7 +115,7 @@ const autoFill = (amount) => {
   return { randomNumbers, strongNum };
 };
 
-const FillForm = ({
+const ShitatiFillForm = ({
   setshowTable,
   double,
   opendTableNum,
@@ -122,8 +133,7 @@ const FillForm = ({
   const [indexOfTable, setindexOfTable] = useState(-1);
 
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
-  // {
-    // LottoPage &&
+  
     useEffect(() => {
       fullTables.forEach((table, index) => {
         if (table.tableNum === opendTableNum) {
@@ -135,23 +145,8 @@ const FillForm = ({
         }
       });
     }, []);
-  // }
   
-  // {
-  //   LottoShitatiPage &&
-  //   useEffect(() => {
-  //     fullTables.forEach((table, index) => {
-  //       if (table.tableNum === opendTableNum) {
-  //         setchoosenNums(table.choosenNums);
-  //         setstrongNum(table.strongNum);
-
-  //         setindexOfTable(index);
-  //         setusedTable(table);
-  //       }
-  //     });
-  //   }, []);
-  // }
-
+  
   // useeffect that urns when choosennums or strongnum changes
   useEffect(() => {
     setusedTable({
@@ -330,4 +325,4 @@ const FillForm = ({
   );
 };
 
-export default FillForm;
+export default ShitatiFillForm;

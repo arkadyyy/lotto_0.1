@@ -28,7 +28,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
     const [tzerufimNumber, setTzerufimNumber] = useState(8);
     const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
     const [double, setdouble] = useState(false);
-    const [fullTables, setFullTables] = useState({});
+    const [fullTables, setFullTables] = useState([]);
     const [indexOfTable, setIndexOfTable] = useState("");
     const [opendTableNum, setopendTableNum] = useState(0);
   return (

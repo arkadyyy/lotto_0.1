@@ -19,18 +19,18 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
-import FillForm from "./components/FillForm";
-import Table from "./components/Table";
+import ShitatiFillForm from "./components/ShitatiFillForm";
+import ShitatiTable from "./components/ShitatiTable";
 
 const LottoShitatiPage = ({ navigation }) => {
     const [showTable, setshowTable] = useState(false);
-    const [tableNum, settableNum] = useState(8);
+    const [tableNum, settableNum] = useState(1);
     const [tzerufimNumber, setTzerufimNumber] = useState(8);
     const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
     const [double, setdouble] = useState(false);
-    const [fullTables, setFullTables] = useState({});
-    const [indexOfTable, setIndexOfTable] = useState("");
-    const [opendTableNum, setopendTableNum] = useState(0);
+    const [fullTables, setFullTables] = useState([]);
+    const [indexOfTable, setIndexOfTable] = useState(1);
+    const [opendTableNum, setopendTableNum] = useState(1);
   return (
     <>
       <ScrollView>
@@ -63,7 +63,8 @@ const LottoShitatiPage = ({ navigation }) => {
               <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
             </View>
 
-            <ChooseNumOfTables  tzerufimNumber={tzerufimNumber} setTzerufimNumber={setTzerufimNumber}/>
+            {/* <ChooseNumOfTables  tzerufimNumber={tzerufimNumber} setTzerufimNumber={setTzerufimNumber}/> */}
+            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} tzerufimNumber={tzerufimNumber} setTzerufimNumber={setTzerufimNumber}/>
 
             
             <Text
@@ -115,13 +116,13 @@ const LottoShitatiPage = ({ navigation }) => {
               </Button>
             </View>
             {showTable && (
-              <FillForm
+              <ShitatiFillForm
                 setshowTable={setshowTable}
                 setFullTables={setFullTables}
                 fullTables={fullTables}
                 indexOfTable={indexOfTable}
-                // opendTableNum={opendTableNum}
-                opendTableTzerufimNum={opendTableTzerufimNum}
+                opendTableNum={opendTableNum}
+                // opendTableTzerufimNum={opendTableTzerufimNum}
               />
             )}
             <View
@@ -144,7 +145,7 @@ const LottoShitatiPage = ({ navigation }) => {
               >
                 <ScrollView>
                   {/* {Array.from(Array(tableNum)).map((x, index) => ( */}
-                  <Table
+                  <ShitatiTable
                     tzerufimNumber={tzerufimNumber}
                       double={double}
                       key={1}
@@ -170,6 +171,8 @@ const LottoShitatiPage = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={() => console.log(fullTables)
+                }
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#8CC63F",
