@@ -38,7 +38,7 @@ const Num = ({ num }) => {
   );
 };
 
-const Table = ({
+const Table9 = ({
   setshowTable,
   indexOfTable,
   fullTables,
@@ -46,7 +46,17 @@ const Table = ({
   opendTableNum,
   tableNum,
 }) => {
-  const [table, settable] = useState(["-", "-", "-", "-", "-", "-", "-"]);
+  const [table, settable] = useState([
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+  ]);
 
   useEffect(() => {
     let fullTable = 0;
@@ -57,8 +67,8 @@ const Table = ({
       if (+table.tableNum === +tableNum) {
         fullTable = table;
 
-        if (fullTable.choosenNums.length < 7) {
-          x = 7 - fullTable.choosenNums.length;
+        if (fullTable.choosenNums.length < 9) {
+          x = 9 - fullTable.choosenNums.length;
           for (x; x > 0; x--) {
             fullTable.choosenNums.push("-");
           }
@@ -74,11 +84,13 @@ const Table = ({
           backgroundColor: "#FBB03B",
           flexWrap: "wrap",
           marginTop: 4,
-          height: 55,
+          height: 65,
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "white" }}>{`טבלה ${tableNum}`}</Text>
+        <Text
+          style={{ color: "white", marginLeft: 5 }}
+        >{`טבלה ${tableNum}`}</Text>
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);
@@ -96,4 +108,4 @@ const Table = ({
   );
 };
 
-export default Table;
+export default Table9;

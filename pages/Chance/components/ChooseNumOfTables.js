@@ -33,7 +33,6 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
           padding: 10,
         }}
       >
-        
         <Text style={{ fontSize: 15, color: "white" }}>
           בחר מספר טבלאות למילוי
         </Text>
@@ -102,14 +101,6 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
               }}
             >
               <Text>1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ alignSelf: "center", marginHorizontal: 5 }}
-              onPress={() => {
-                settableNum(1);
-              }}
-            >
-              <Text style={{ color: "white" }}>רב צ'אנס</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -29,6 +29,7 @@ const ChancePage = ({ navigation }) => {
   const [investNum, setinvestNum] = useState(5);
   const [double, setdouble] = useState(false);
   const [filledForm, setfilledForm] = useState([]);
+
   return (
     <>
       <ScrollView>
@@ -71,17 +72,17 @@ const ChancePage = ({ navigation }) => {
                 borderColor: showTable ? "transparent" : "white",
                 borderRadius: 7,
                 borderWidth: 1,
-                width: "85%",
+                width: "95%",
                 alignSelf: "center",
                 marginTop: 20,
+                padding: 2,
               }}
             >
               <List
                 style={{
                   alignItems: "flex-end",
-                  height: 130,
+                  height: 400,
                   marginLeft: -17,
-                  flexWrap: "wrap",
                 }}
               >
                 <Text

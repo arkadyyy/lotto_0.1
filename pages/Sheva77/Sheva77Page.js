@@ -25,13 +25,16 @@ import Table from "./components/Table";
 const Sheva77Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
-  const [double, setdouble] = useState(false);
+
+  const [fullTables, setFullTables] = useState([]);
+  const [indexOfTable, setIndexOfTable] = useState(0);
+  const [opendTableNum, setopendTableNum] = useState(0);
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare color='#CC1D64' />
-        <ChooseForm setdouble={setdouble} />
+        <ChooseForm />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20 }}>
             <View
@@ -108,7 +111,14 @@ const Sheva77Page = ({ navigation }) => {
                 </Text>
               </Button>
             </View>
-            {showTable && <FillForm setshowTable={setshowTable} />}
+            {showTable && (
+              <FillForm
+                setFullTables={setFullTables}
+                fullTables={fullTables}
+                setshowTable={setshowTable}
+                opendTableNum={opendTableNum}
+              />
+            )}
             <View
               style={{
                 borderColor: "white",
@@ -129,7 +139,14 @@ const Sheva77Page = ({ navigation }) => {
               >
                 <ScrollView>
                   {Array.from(Array(tableNum)).map((x, index) => (
-                    <Table key={index} setshowTable={setshowTable} />
+                    <Table
+                      key={index}
+                      fullTables={fullTables}
+                      openedTableNum={opendTableNum}
+                      setshowTable={setshowTable}
+                      setopendTableNum={setopendTableNum}
+                      tableNum={index + 1}
+                    />
                   ))}
                 </ScrollView>
               </List>
@@ -144,6 +161,9 @@ const Sheva77Page = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={() => {
+                  console.log("xxx : ", fullTables);
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",

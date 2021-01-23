@@ -21,6 +21,7 @@ import {
   faArrowAltCircleRight,
   faArrowAltCircleLeft,
 } from "@fortawesome/free-regular-svg-icons";
+import { useRoute } from "@react-navigation/native";
 
 const Num = ({ num, choosenNums, setchoosenNums }) => {
   return (
@@ -29,12 +30,12 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
         disabled={
           choosenNums.includes(num)
             ? false
-            : choosenNums.length >= 7
+            : choosenNums.length >= 8
             ? true
             : false
         }
         onPress={() => {
-          choosenNums.length < 7 && setchoosenNums([...choosenNums, num]);
+          choosenNums.length < 8 && setchoosenNums([...choosenNums, num]);
 
           if (choosenNums.includes(num)) {
             setchoosenNums(choosenNums.filter((x) => x !== num));
@@ -56,32 +57,11 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
   );
 };
 
-const StrongNum = ({ num }) => {
-  return (
-    <>
-      <TouchableOpacity
-        style={{
-          width: 35,
-          height: 35,
-          borderWidth: 1,
-          borderColor: "white",
-          borderRadius: 25,
-          justifyContent: "center",
-          alignItems: "center",
-          margin: 2,
-        }}
-      >
-        <Text style={{ color: "white" }}>{num}</Text>
-      </TouchableOpacity>
-    </>
-  );
-};
-
 const autoFill = (amount) => {
   let randomNumbers = [];
   let strongNum = 0;
   for (let i = amount; i > 0; i--) {
-    let num = Math.floor(Math.random() * 37) + 1;
+    let num = Math.floor(Math.random() * 70) + 1;
     if (randomNumbers.indexOf(num) < 0) {
       randomNumbers.push(num);
     } else {
@@ -94,12 +74,11 @@ const autoFill = (amount) => {
   return { randomNumbers, strongNum };
 };
 
-const FillForm = ({
+const FillFormShitati8 = ({
   setshowTable,
-  double,
+  setFullTables,
   fullTables,
   opendTableNum,
-  setFullTables,
 }) => {
   const [choosenNums, setchoosenNums] = useState([]);
   const [usedTable, setusedTable] = useState({
@@ -107,6 +86,8 @@ const FillForm = ({
     choosenNums: choosenNums,
   });
   const [indexOfTable, setindexOfTable] = useState(-1);
+
+  const route = useRoute();
 
   useEffect(() => {
     fullTables.forEach((table, index) => {
@@ -136,13 +117,14 @@ const FillForm = ({
     //   },
     // ]);
   }, [choosenNums]);
+
   return (
     <>
       <View
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "18%",
+          top: "21.8%",
           height: 525,
           position: "absolute",
           zIndex: 2000,
@@ -234,12 +216,12 @@ const FillForm = ({
             }}
           >
             <Text style={{ color: "white", marginBottom: 5, fontSize: 10 }}>
-              {`מלא את טבלה ${opendTableNum}`}
+              מלא את טבלה 1
             </Text>
             <Button
               disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
-                let numbers = autoFill(7);
+                let numbers = autoFill(8);
                 setchoosenNums(numbers.randomNumbers);
               }}
               small
@@ -274,4 +256,4 @@ const FillForm = ({
   );
 };
 
-export default FillForm;
+export default FillFormShitati8;

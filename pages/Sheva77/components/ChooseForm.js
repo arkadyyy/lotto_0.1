@@ -17,7 +17,7 @@ import {
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 
-const ChooseForm = ({ setdouble }) => {
+const ChooseForm = ({}) => {
   return (
     <>
       <View

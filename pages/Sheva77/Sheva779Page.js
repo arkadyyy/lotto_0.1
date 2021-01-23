@@ -20,18 +20,22 @@ import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
-import Table from "./components/Table";
+import Table9 from "./components/Table9";
+import FillFormShitati9 from "./components/FillFormShitati9";
 
 const Sheva779Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
-  const [double, setdouble] = useState(false);
+
+  const [fullTables, setFullTables] = useState([]);
+  const [indexOfTable, setIndexOfTable] = useState(1);
+  const [opendTableNum, setopendTableNum] = useState(1);
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare color='#CC1D64' />
-        <ChooseForm setdouble={setdouble} />
+        <ChooseForm />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20 }}>
             <View
@@ -57,8 +61,6 @@ const Sheva779Page = ({ navigation }) => {
               </View>
               <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
             </View>
-
-            {/* <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} /> */}
 
             <Text
               style={{
@@ -108,7 +110,14 @@ const Sheva779Page = ({ navigation }) => {
                 </Text>
               </Button>
             </View>
-            {showTable && <FillForm setshowTable={setshowTable} />}
+            {showTable && (
+              <FillFormShitati9
+                setFullTables={setFullTables}
+                fullTables={fullTables}
+                setshowTable={setshowTable}
+                opendTableNum={opendTableNum}
+              />
+            )}
             <View
               style={{
                 borderColor: "white",
@@ -122,14 +131,21 @@ const Sheva779Page = ({ navigation }) => {
               <List
                 style={{
                   alignItems: "flex-end",
-                  height: 250,
+                  height: 150,
                   marginLeft: -17,
                   flexWrap: "wrap",
                 }}
               >
                 <ScrollView>
                   {Array.from(Array(tableNum)).map((x, index) => (
-                    <Table key={index} setshowTable={setshowTable} />
+                    <Table9
+                      opendTableNum={1}
+                      key={index}
+                      setshowTable={setshowTable}
+                      setopendTableNum={setopendTableNum}
+                      fullTables={fullTables}
+                      tableNum={index + 1}
+                    />
                   ))}
                 </ScrollView>
               </List>
