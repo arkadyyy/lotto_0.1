@@ -24,35 +24,29 @@ import {
 
 const checkIfPressed = (type) => {};
 
-const Num = ({ num, choosenNums, setchoosenNums }) => {
+const Num = ({ num, choosenNums, setchoosenNums,tzerufimNumber }) => {
   return (
     <>
+      {console.log(tzerufimNumber)}
       <TouchableOpacity
         disabled={
           choosenNums.includes(num)
             ? false
-            : choosenNums.length >= 6
+            : choosenNums.length >=  tzerufimNumber 
             ? true
             : false
         }
 
-// לעשות סטייט  בדף לוטו שיטתי שמשתנה גרן בטופס שיטתי ומחליף את המספר 6
+// לעשות סטייט  בדף לוטו שיטתי שמשתנה כאן בטופס שיטתי ומחליף את המספר 6
 
         onPress={() => {
-          choosenNums.length < 6 && setchoosenNums([...choosenNums, num]);
+          choosenNums.length < tzerufimNumber && setchoosenNums([...choosenNums, num]);
 
           if (choosenNums.includes(num)) {
             setchoosenNums(choosenNums.filter((x) => x !== num));
           }
         }}
 
-        // onPress={() => {
-        //   choosenNums.length < {משתנה} && setchoosenNums([...choosenNums, num]);
-
-        //   if (choosenNums.includes(num)) {
-        //     setchoosenNums(choosenNums.filter((x) => x !== num));
-        //   }
-        // }}
         style={{
           width: 30,
           height: 30,
@@ -122,6 +116,7 @@ const ShitatiFillForm = ({
   opendTableTzerufimNum,
   setFullTables,
   fullTables,
+  tzerufimNumber
 }) => {
   const [strongNum, setstrongNum] = useState(0);
   const [choosenNums, setchoosenNums] = useState([]);
@@ -260,7 +255,7 @@ const ShitatiFillForm = ({
             <Button
               disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
-                let numbers = autoFill(6);
+                let numbers = autoFill(tzerufimNumber);
                 setchoosenNums(numbers.randomNumbers);
                 setstrongNum(numbers.strongNum);
               }}
@@ -288,6 +283,7 @@ const ShitatiFillForm = ({
                 choosenNums={choosenNums}
                 num={index + 1}
                 key={index}
+                tzerufimNumber={tzerufimNumber}
               />
             ))}
           </View>

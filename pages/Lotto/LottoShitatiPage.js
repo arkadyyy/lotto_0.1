@@ -25,7 +25,7 @@ import ShitatiTable from "./components/ShitatiTable";
 const LottoShitatiPage = ({ navigation }) => {
     const [showTable, setshowTable] = useState(false);
     const [tableNum, settableNum] = useState(1);
-    const [tzerufimNumber, setTzerufimNumber] = useState(8);
+    const [tzerufimNumber, setTzerufimNumber] = useState(5);
     const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
     const [double, setdouble] = useState(false);
     const [fullTables, setFullTables] = useState([]);
@@ -122,6 +122,7 @@ const LottoShitatiPage = ({ navigation }) => {
                 fullTables={fullTables}
                 indexOfTable={indexOfTable}
                 opendTableNum={opendTableNum}
+                tzerufimNumber={tzerufimNumber}
                 // opendTableTzerufimNum={opendTableTzerufimNum}
               />
             )}
