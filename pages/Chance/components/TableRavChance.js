@@ -17,14 +17,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
 
-const Num = ({
-  symbol,
-  setpressed,
-  pressed,
-  setcounter,
-  counter,
-  tableNum,
-}) => {
+const Num = ({ symbol, setpressed, pressed, setcounter, counter }) => {
   return (
     <>
       <TouchableOpacity
@@ -32,8 +25,6 @@ const Num = ({
           pressed.symbolsPressed.includes(symbol)
             ? false
             : pressed.symbolsPressed.length > 0
-            ? true
-            : counter >= tableNum
             ? true
             : false
         }
@@ -64,7 +55,6 @@ const Num = ({
               numberOfPress: ++pressed.numberOfPress,
               symbolsPressed: [...pressed.symbolsPressed, symbol],
             });
-            setcounter(counter + 1);
           }
 
           console.log(pressed);
@@ -107,9 +97,7 @@ const Table = ({ tableNum }) => {
   const [counter, setcounter] = useState(0);
 
   useEffect(() => {
-    // setcounter(counter + 1);
-    console.log("i am herererere", counter);
-    console.log("i am herererere", tableNum);
+    setcounter(counter + 1);
   }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
 
   return (
@@ -146,7 +134,6 @@ const Table = ({ tableNum }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
-                tableNum={tableNum}
               />
             ))}
           </View>
@@ -185,7 +172,6 @@ const Table = ({ tableNum }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
-                tableNum={tableNum}
               />
             ))}
           </View>
@@ -224,7 +210,6 @@ const Table = ({ tableNum }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
-                tableNum={tableNum}
               />
             ))}
           </View>
@@ -265,7 +250,6 @@ const Table = ({ tableNum }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
-                tableNum={tableNum}
               />
             ))}
           </View>
