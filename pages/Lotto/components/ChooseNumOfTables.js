@@ -18,7 +18,14 @@ import {
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 
-const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNumber,hazakimNumber,setHazakimNumber }) => {
+const ChooseNumOfTables = ({
+  settableNum,
+  tableNum,
+  tzerufimNumber,
+  setTzerufimNumber,
+  hazakimNumber,
+  setHazakimNumber,
+}) => {
   const route = useRoute();
 
   return (
@@ -35,8 +42,8 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
           }}
         >
           <Text style={{ fontSize: 15, color: "white" }}>
-              בחר מספר טבלאות למילוי
-            </Text>
+            בחר מספר טבלאות למילוי
+          </Text>
           <View style={{}}>
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
@@ -50,17 +57,14 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   justifyContent: "center",
                   alignItems: "center",
                   backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
-                 
-
                 }}
                 onPress={() => {
-                  settableNum(2)
-
-
+                  settableNum(2);
                 }}
               >
-                                 <Text style={{ color: tableNum === 2 ? "white" : "#E62321" }}>2</Text>
-
+                <Text style={{ color: tableNum === 2 ? "white" : "#E62321" }}>
+                  2
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -73,17 +77,12 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   alignItems: "center",
                 }}
                 onPress={() => {
-                  settableNum(4)
-                            
-                }
-                }
+                  settableNum(4);
+                }}
               >
-             
-
-             <Text style={{ color: tableNum === 4 ? "white" : "#E62321" }}>4</Text>
-
-
-
+                <Text style={{ color: tableNum === 4 ? "white" : "#E62321" }}>
+                  4
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -96,25 +95,15 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   alignItems: "center",
                 }}
                 onPress={() => {
-                  settableNum(6)
-
-                }
-
-                }
+                  settableNum(6);
+                }}
               >
-              
-              
-              <Text style={{ color: tableNum === 6 ? "white" : "#E62321" }}>6</Text>
-
-
-
+                <Text style={{ color: tableNum === 6 ? "white" : "#E62321" }}>
+                  6
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                
                 style={{
-
-              
-
                   width: 25,
                   height: 25,
                   borderRadius: 30,
@@ -123,64 +112,49 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-
-          
-          
                 onPress={() => {
-                
-
-                  settableNum(8)
-
-
+                  settableNum(8);
                 }}
               >
-
-
-<Text style={{ color: tableNum === 8 ? "white" : "#E62321" }}>8</Text>
-
-
-           
+                <Text style={{ color: tableNum === 8 ? "white" : "#E62321" }}>
+                  8
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
                   width: 25,
                   height: 25,
                   borderRadius: 30,
-                  backgroundColor: tableNum === 10  ? "#8CC63F" : "white",
+                  backgroundColor: tableNum === 10 ? "#8CC63F" : "white",
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
                 }}
                 onPress={() => {
-              
-                  settableNum(10)
-
+                  settableNum(10);
                 }}
               >
-              
-              <Text style={{ color: tableNum === 10 ? "white" : "#E62321" }}>10</Text>
-
-
+                <Text style={{ color: tableNum === 10 ? "white" : "#E62321" }}>
+                  10
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
                   width: 25,
                   height: 25,
                   borderRadius: 30,
-                  backgroundColor: tableNum === 12  ? "#8CC63F" : "white",
+                  backgroundColor: tableNum === 12 ? "#8CC63F" : "white",
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
                 }}
                 onPress={() => {
-                  settableNum(12)
-
+                  settableNum(12);
                 }}
               >
-              
-              <Text style={{ color: tableNum === 12 ? "white" : "#E62321" }}>12</Text>
-
-
+                <Text style={{ color: tableNum === 12 ? "white" : "#E62321" }}>
+                  12
+                </Text>
               </TouchableOpacity>
               {route.name === "LottoPage" && (
                 <TouchableOpacity
@@ -197,12 +171,13 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                     settableNum(14);
                   }}
                 >
-                  {
-                    route.name === "LottoPage" ? (
-                      <Text style={{ color: tableNum === 14 ? "white" : "#E62321" }}>14</Text>
-                    
-                    ) : null
-                  }
+                  {route.name === "LottoPage" ? (
+                    <Text
+                      style={{ color: tableNum === 14 ? "white" : "#E62321" }}
+                    >
+                      14
+                    </Text>
+                  ) : null}
                 </TouchableOpacity>
               )}
             </View>
@@ -210,7 +185,7 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
         </View>
       )}
 
-{route.name === "LottoShitatiPage" && (
+      {route.name === "LottoShitatiPage" && (
         <View
           style={{
             borderColor: "white",
@@ -221,13 +196,12 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
             padding: 10,
           }}
         >
-            <Text style={{ fontSize: 15, color: "white" }}>
-              בחר סוג טופס למילוי
-            </Text>
-          
+          <Text style={{ fontSize: 15, color: "white" }}>
+            בחר סוג טופס למילוי
+          </Text>
+
           <View style={{}}>
             <View style={{ flexDirection: "row" }}>
-           
               <TouchableOpacity
                 style={{
                   width: 25,
@@ -239,14 +213,14 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   alignItems: "center",
                 }}
                 onPress={() => {
-                 setTzerufimNumber(5)
-                }
-                }
+                  setTzerufimNumber(5);
+                }}
               >
-               <Text style={{ color: tzerufimNumber === 5 ? "white" : "#E62321" }}>6=5</Text>
-                  
-
-
+                <Text
+                  style={{ color: tzerufimNumber === 5 ? "white" : "#E62321" }}
+                >
+                  6=5
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -259,19 +233,17 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   justifyContent: "center",
                   alignItems: "center",
                   backgroundColor: tzerufimNumber === 8 ? "#8CC63F" : "white",
-                 
                 }}
                 onPress={() => {
-                 
-                      
-                        setTzerufimNumber(8)
-                    
-
+                  setTzerufimNumber(8);
                 }}
               >
-               
-                      <Text style={{ color: tzerufimNumber === 8 ? "white" : "#E62321" }}>8</Text>
-                   
+                <Text
+                  style={{ color: tzerufimNumber === 8 ? "white" : "#E62321" }}
+                >
+                  8
+                </Text>
+
                 {/* <Text style={{ color: "black" }}>7</Text> */}
               </TouchableOpacity>
 
@@ -281,31 +253,23 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   height: 25,
                   borderRadius: 30,
                   // backgroundColor: tableNum === 5|| tableNum === 9 ? "#8CC63F" : "white",
-                  backgroundColor:  tzerufimNumber === 9 ? "#8CC63F" : "white",
+                  backgroundColor: tzerufimNumber === 9 ? "#8CC63F" : "white",
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
                 }}
                 onPress={() => {
-                  setTzerufimNumber(9)
-
-                }
-
-                }
+                  setTzerufimNumber(9);
+                }}
               >
-              
-              
-              <Text style={{ color: tzerufimNumber === 9 ? "white" : "#E62321" }}>9</Text>
-
-
-
+                <Text
+                  style={{ color: tzerufimNumber === 9 ? "white" : "#E62321" }}
+                >
+                  9
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                
                 style={{
-
-              
-
                   width: 25,
                   height: 25,
                   borderRadius: 30,
@@ -314,22 +278,15 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-
-          
-          
                 onPress={() => {
-                
-
-                  setTzerufimNumber(10)
-
-
+                  setTzerufimNumber(10);
                 }}
               >
-
-<Text style={{ color: tzerufimNumber === 10 ? "white" : "#E62321" }}>10</Text>
-
-
-           
+                <Text
+                  style={{ color: tzerufimNumber === 10 ? "white" : "#E62321" }}
+                >
+                  10
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -342,43 +299,41 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   alignItems: "center",
                 }}
                 onPress={() => {
-              
-                  setTzerufimNumber(11)
-
+                  setTzerufimNumber(11);
                 }}
               >
-              
-              <Text style={{ color: tzerufimNumber === 11 ? "white" : "#E62321" }}>11</Text>
-
-
+                <Text
+                  style={{ color: tzerufimNumber === 11 ? "white" : "#E62321" }}
+                >
+                  11
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
                   width: 25,
                   height: 25,
                   borderRadius: 30,
-                  backgroundColor:  tzerufimNumber === 12 ? "#8CC63F" : "white",
+                  backgroundColor: tzerufimNumber === 12 ? "#8CC63F" : "white",
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
                 }}
                 onPress={() => {
-                  setTzerufimNumber(12)
-
+                  setTzerufimNumber(12);
                 }}
               >
-              
-              <Text style={{ color: tzerufimNumber === 12 ? "white" : "#E62321" }}>12</Text>
-
-
+                <Text
+                  style={{ color: tzerufimNumber === 12 ? "white" : "#E62321" }}
+                >
+                  12
+                </Text>
               </TouchableOpacity>
-              
             </View>
           </View>
         </View>
       )}
 
-{route.name === "LottoShitatiHazakPage" && (
+      {route.name === "LottoShitatiHazakPage" && (
         <View
           style={{
             borderColor: "white",
@@ -389,13 +344,12 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
             padding: 10,
           }}
         >
-            <Text style={{ fontSize: 15, color: "white" }}>
-              בחר סוג טופס למילוי
-            </Text>
-          
+          <Text style={{ fontSize: 15, color: "white" }}>
+            בחר סוג טופס למילוי
+          </Text>
+
           <View style={{}}>
             <View style={{ flexDirection: "row" }}>
-           
               <TouchableOpacity
                 style={{
                   width: 25,
@@ -407,14 +361,14 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   alignItems: "center",
                 }}
                 onPress={() => {
-                  setHazakimNumber(4)
-                }
-                }
+                  setHazakimNumber(4);
+                }}
               >
-               <Text style={{ color: hazakimNumber === 4 ? "white" : "#E62321" }}>4</Text>
-                  
-
-
+                <Text
+                  style={{ color: hazakimNumber === 4 ? "white" : "#E62321" }}
+                >
+                  4
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -427,19 +381,17 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   justifyContent: "center",
                   alignItems: "center",
                   backgroundColor: hazakimNumber === 5 ? "#8CC63F" : "white",
-                 
                 }}
                 onPress={() => {
-                 
-                      
-                  setHazakimNumber(5)
-                    
-
+                  setHazakimNumber(5);
                 }}
               >
-               
-                      <Text style={{ color: hazakimNumber === 5 ? "white" : "#E62321" }}>5</Text>
-                   
+                <Text
+                  style={{ color: hazakimNumber === 5 ? "white" : "#E62321" }}
+                >
+                  5
+                </Text>
+
                 {/* <Text style={{ color: "black" }}>7</Text> */}
               </TouchableOpacity>
 
@@ -449,31 +401,23 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   height: 25,
                   borderRadius: 30,
                   // backgroundColor: tableNum === 5|| tableNum === 9 ? "#8CC63F" : "white",
-                  backgroundColor:  hazakimNumber === 6 ? "#8CC63F" : "white",
+                  backgroundColor: hazakimNumber === 6 ? "#8CC63F" : "white",
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
                 }}
                 onPress={() => {
-                  setHazakimNumber(6)
-
-                }
-
-                }
+                  setHazakimNumber(6);
+                }}
               >
-              
-              
-              <Text style={{ color: hazakimNumber === 6 ? "white" : "#E62321" }}>6</Text>
-
-
-
+                <Text
+                  style={{ color: hazakimNumber === 6 ? "white" : "#E62321" }}
+                >
+                  6
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                
                 style={{
-
-              
-
                   width: 25,
                   height: 25,
                   borderRadius: 30,
@@ -482,30 +426,20 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-
-          
-          
                 onPress={() => {
-                
-
-                  setHazakimNumber(7)
-
-
+                  setHazakimNumber(7);
                 }}
               >
-
-<Text style={{ color: hazakimNumber === 7 ? "white" : "#E62321" }}>7</Text>
-
-
-           
+                <Text
+                  style={{ color: hazakimNumber === 7 ? "white" : "#E62321" }}
+                >
+                  7
+                </Text>
               </TouchableOpacity>
-             
-              
             </View>
           </View>
         </View>
       )}
-
     </>
   );
 };

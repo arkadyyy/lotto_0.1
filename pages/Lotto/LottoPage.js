@@ -131,7 +131,7 @@ const LottoPage = ({ navigation }) => {
             >
               <List
                 style={{
-                  alignItems: "flex-end",
+                  alignItems: "flex-start",
                   height: 250,
                   marginLeft: -17,
                   flexWrap: "wrap",

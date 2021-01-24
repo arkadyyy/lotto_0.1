@@ -187,18 +187,18 @@ const ShitatiFillForm = ({
         <View
           style={{
             backgroundColor: "#263742",
-            width: "55%",
+            width: "45%",
             height: 70,
             position: "relative",
             top: -40,
-            left: "35.4%",
+            left: "43.2%",
             zIndex: 2001,
             flexDirection: "row",
             justifyContent: "space-around",
             alignItems: "center",
           }}
         >
-          <View style={{ flexDirection: "row" }}>
+          {/* <View style={{ flexDirection: "row" }}>
             <TouchableOpacity>
               <FontAwesomeIcon
                 color='white'
@@ -216,7 +216,7 @@ const ShitatiFillForm = ({
                 icon={faArrowAltCircleLeft}
               />
             </TouchableOpacity>
-          </View>
+          </View> */}
           <TouchableOpacity
             style={{
               height: 25,
