@@ -12,7 +12,7 @@ import DrawerContent from "./pages/DrawerContent/DrawerContent";
 import LottoPage from "./pages/Lotto/LottoPage";
 import LottoList from "./pages/Lotto/LottoList";
 import LottoShitatiPage from "./pages/Lotto/LottoShitatiPage";
-import LottoShitatiHazakPage from "./pages/Lotto/LottoShitatiHazakPage";
+import LottoShitatiHazakPage from "./pages/Lotto/LotoShitatiHazak/LottoShitatiHazakPage";
 import ChanceList from "./pages/Chance/ChanceList";
 import ChancePage from "./pages/Chance/ChancePage";
 import Sheva77List from "./pages/Sheva77/Sheva77List";

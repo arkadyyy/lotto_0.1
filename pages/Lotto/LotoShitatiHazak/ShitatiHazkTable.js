@@ -42,51 +42,68 @@ const Num = ({ num }) => {
   );
 };
 
-const Table = ({
+const StrongNum = ({ strongNum }) => {
+  return (
+    <>
+      <View
+        style={{
+          width: 20,
+          height: 20,
+          borderRadius: 30,
+          backgroundColor: "yellow",
+
+          margin: 5,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "red" }}>{strongNum}</Text>
+      </View>
+    </>
+  );
+};
+
+const ShitatiHazakTable = ({
   setshowTable,
   double,
   index,
   setopendTableNum,
-  fullTables,
+    fullTables,
+    hazakimNumber
 }) => {
-  const index1 = index * 2 - 1;
-  const index2 = index * 2;
+//   const index1 = index * 2 - 1;
+  const index1 = 1;
   const route = useRoute();
 
-  const [table1, settable1] = useState(["-", "-", "-", "-", "-", "-"]);
-  const [strongNum1, setstrongNum1] = useState(0);
-  const [table2, settable2] = useState(["-", "-", "-", "-", "-", "-"]);
-  const [strongNum2, setstrongNum2] = useState(0);
+  const [table1, setTable1] = useState(["-", "-", "-", "-", "-", "-", "-"]);
+  const [strongNumbers, setStrongNumbers] = useState(["-", "-", "-", "-", ]);
 
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
 
   useEffect(() => {
     let fullTable1 = 0;
-    let fullTable2 = 0;
+   
     let x;
     fullTables.forEach((table) => {
       if (+table.tableNum === +index1) {
         fullTable1 = table;
 
-        if (fullTable1.choosenNums.length < 6) {
-          x = 6 - fullTable1.choosenNums.length;
+        if (fullTable1.choosenNums.length < 7) {
+          x = 7 - fullTable1.choosenNums.length;
           for (x; x > 0; x--) {
             fullTable1.choosenNums.push("-");
           }
         }
-        settable1(fullTable1.choosenNums);
-      }
-      if (+table.tableNum === +index2) {
-        fullTable2 = table;
-
-        if (fullTable2.choosenNums.length < 6) {
-          x = 6 - fullTable2.choosenNums.length;
+        if (fullTable1.choosenStrongNums.length < hazakimNumber) {
+          x = hazakimNumber - fullTable1.choosenStrongNums.length;
           for (x; x > 0; x--) {
-            fullTable2.choosenNums.push("-");
+            fullTable1.choosenStrongNums.push("-");
           }
-        }
-        settable2(fullTable2.choosenNums);
+          }
+        setTable1(fullTable1.choosenNums);
+        setStrongNumbers(fullTable1.choosenStrongNums);
       }
+   
     });
 
     console.log("table1 : ", table1);
@@ -111,14 +128,19 @@ const Table = ({
             // setopendTableTzerufimNum(tzerufimNumber);
           }}
         >
-          <View style={{ flexDirection: "row" }}>
-            {route.name === "LottoPage" && (
-              <>
+          <View style={{ flexDirection: "column" }}>
+           
+              <View style={{ flexDirection: "row" }}>
                 {table1.map((num, index) => (
                   <Num key={index} num={num} />
                 ))}
-              </>
-            )}
+                      </View>
+                      <View style={{ flexDirection: "row" }}>
+                {strongNumbers.map((strongNum, index) => (
+                  <StrongNum key={index} strongNum={strongNum} />
+                ))}
+              </View>
+           
             
           </View>
         </TouchableOpacity>
@@ -142,54 +164,10 @@ const Table = ({
         )}
       </ListItem>
     
-          <ListItem
-            style={{
-              backgroundColor: "#8CC63F",
-              flexWrap: "wrap",
-              marginTop: 4,
-              height: 55,
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ color: "white", fontSize: 13 }}>טבלה {index2}</Text>
-            <TouchableOpacity
-              onPress={() => {
-                setopendTableNum(index2);
-                setshowTable(true);
-              }}
-            >
-              <View style={{ flexDirection: "row", flex: 1 }}>
-                <>
-                  {table2.map((num, index) => (
-                    <Num key={index} num={num} />
-                  ))}
-                </>
-              </View>
-            </TouchableOpacity>
-            {double && (
-              <View
-                style={{
-                  width: 35,
-                  height: 35,
-                  backgroundColor: "#FF838C",
-                  borderWidth: 2,
-                  borderColor: "white",
-                  borderRadius: 20,
-                  position: "absolute",
-                  left: 255,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  zIndex: 3,
-                }}
-              >
-                <Text style={{ color: "white" }}>X2</Text>
-              </View>
-            )}
-          </ListItem>
       
       
     </>
   );
 };
 
-export default Table;
+export default ShitatiHazakTable;

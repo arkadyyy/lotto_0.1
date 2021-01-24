@@ -139,7 +139,7 @@ const LottoShitatiPage = ({ navigation }) => {
               <List
                 style={{
                   alignItems: "flex-end",
-                  height: 250,
+                  height: 50,
                   marginLeft: -17,
                   flexWrap: "wrap",
                 }}

@@ -55,7 +55,7 @@ const ChooseForm = ({ setdouble }) => {
               rounded
               onPress={() => {
                 setdouble(true);
-                console.log("test444");
+                console.log("double setted");
               }}
             >
               <Text>דאבל</Text>

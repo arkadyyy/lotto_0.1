@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-import NavBar from "../../components/NavBar";
-import BlankSquare from "../../components/BlankSquare";
+import NavBar from "../../../components/NavBar";
+import BlankSquare from "../../../components/BlankSquare";
 import {
   Container,
   Header,
@@ -17,16 +17,18 @@ import {
   ListItem,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
-import ChooseNumOfTables from "./components/ChooseNumOfTables";
-import ChooseForm from "./components/ChooseForm";
-import FillForm from "./components/FillForm";
-import Table from "./components/Table";
+import ChooseNumOfTables from "../../Lotto/components/ChooseNumOfTables";
+import ChooseForm from "../components/ChooseForm";
+import ShitatiHazakFillForm from "./ShitatiHazakFillForm";
+import ShitatiHazakTable from "./ShitatiHazkTable";
 
 const LottoShitatiHazakPage = ({ navigation }) => {
     const [showTable, setshowTable] = useState(false);
     const [tableNum, settableNum] = useState(8);
-    const [tzerufimNumber, setTzerufimNumber] = useState(8);
-    const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
+    // const [tzerufimNumber, setTzerufimNumber] = useState(8);
+    const [hazakimNumber, setHazakimNumber] = useState(4);
+    // const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
+    const [opendTableHazakimNumber, setOpendTableHazakimNumber] = useState(4);
     const [double, setdouble] = useState(false);
     const [fullTables, setFullTables] = useState([]);
     const [indexOfTable, setIndexOfTable] = useState("");
@@ -63,7 +65,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
               <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
             </View>
 
-            <ChooseNumOfTables  tzerufimNumber={tzerufimNumber} setTzerufimNumber={setTzerufimNumber}/>
+            <ChooseNumOfTables hazakimNumber={hazakimNumber} setHazakimNumber={setHazakimNumber}/>
 
             
             <Text
@@ -74,7 +76,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                 marginBottom: 10,
               }}
             >
-              בחר {tzerufimNumber} מספרים וחזק
+בחר 7 מספרים ו-{hazakimNumber} מספרים חזקים
             </Text>
             <View
               style={{
@@ -115,13 +117,14 @@ const LottoShitatiHazakPage = ({ navigation }) => {
               </Button>
             </View>
             {showTable && (
-              <FillForm
+              <ShitatiHazakFillForm
                 setshowTable={setshowTable}
                 setFullTables={setFullTables}
                 fullTables={fullTables}
                 indexOfTable={indexOfTable}
+                hazakimNumber={hazakimNumber}
                 // opendTableNum={opendTableNum}
-                opendTableTzerufimNum={opendTableTzerufimNum}
+                // opendTableTzerufimNum={opendTableTzerufimNum}
               />
             )}
             <View
@@ -137,15 +140,16 @@ const LottoShitatiHazakPage = ({ navigation }) => {
               <List
                 style={{
                   alignItems: "flex-end",
-                  height: 250,
+                  height: 50,
                   marginLeft: -17,
                   flexWrap: "wrap",
                 }}
               >
                 <ScrollView>
                   {/* {Array.from(Array(tableNum)).map((x, index) => ( */}
-                  <Table
-                    tzerufimNumber={tzerufimNumber}
+                  <ShitatiHazakTable
+                    // tzerufimNumber={tzerufimNumber}
+                    hazakimNumber={hazakimNumber}
                       double={double}
                       key={1}
                       index={1}
@@ -153,8 +157,8 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                       setIndexOfTable={1}
                       fullTables={fullTables}
                     setopendTableNum={setopendTableNum}
-                    setOpendTableTzerufimNum={setOpendTableTzerufimNum}
-                    opendTableTzerufimNum={opendTableTzerufimNum}
+                    // setOpendTableTzerufimNum={setOpendTableTzerufimNum}
+                    // opendTableTzerufimNum={opendTableTzerufimNum}
                     />
                   {/* ))} */}
                 </ScrollView>
