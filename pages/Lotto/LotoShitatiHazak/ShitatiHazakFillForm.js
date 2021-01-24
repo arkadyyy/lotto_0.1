@@ -297,7 +297,7 @@ const ShitatiHazakFillForm = ({
             ))}
           </View>
         </View>
-        <View style={{ marginTop: -160 }}>
+        <View style={{ marginTop: -10 }}>
           <Text style={{ color: "white", marginHorizontal: 15 }}>
             בחר מספר חזק
           </Text>

@@ -40,7 +40,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
         <BlankSquare color='#E62321' />
         <ChooseForm setdouble={setdouble} />
         <View style={{ margin: 15 }}>
-          <View style={{ backgroundColor: "#E62321", paddingBottom: 20 }}>
+          <View style={{ backgroundColor: "#E62321", paddingBottom: 20, height: 600, }}>
             <View
               style={{
                 flexDirection: "row",
