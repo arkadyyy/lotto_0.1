@@ -18,7 +18,7 @@ import {
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 
-const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNumber }) => {
+const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNumber,hazakimNumber,setHazakimNumber }) => {
   const route = useRoute();
 
   return (
@@ -372,6 +372,134 @@ const ChooseNumOfTables = ({ settableNum, tableNum, tzerufimNumber,setTzerufimNu
 
 
               </TouchableOpacity>
+              
+            </View>
+          </View>
+        </View>
+      )}
+
+{route.name === "LottoShitatiHazakPage" && (
+        <View
+          style={{
+            borderColor: "white",
+            borderWidth: 1,
+            borderRadius: 7,
+            width: "90%",
+            margin: 10,
+            padding: 10,
+          }}
+        >
+            <Text style={{ fontSize: 15, color: "white" }}>
+              בחר סוג טופס למילוי
+            </Text>
+          
+          <View style={{}}>
+            <View style={{ flexDirection: "row" }}>
+           
+              <TouchableOpacity
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 30,
+                  backgroundColor: hazakimNumber === 4 ? "#8CC63F" : "white",
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onPress={() => {
+                  setHazakimNumber(4)
+                }
+                }
+              >
+               <Text style={{ color: hazakimNumber === 4 ? "white" : "#E62321" }}>4</Text>
+                  
+
+
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 30,
+                  borderColor: "white",
+                  borderWidth: 1,
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: hazakimNumber === 5 ? "#8CC63F" : "white",
+                 
+                }}
+                onPress={() => {
+                 
+                      
+                  setHazakimNumber(5)
+                    
+
+                }}
+              >
+               
+                      <Text style={{ color: hazakimNumber === 5 ? "white" : "#E62321" }}>5</Text>
+                   
+                {/* <Text style={{ color: "black" }}>7</Text> */}
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 30,
+                  // backgroundColor: tableNum === 5|| tableNum === 9 ? "#8CC63F" : "white",
+                  backgroundColor:  hazakimNumber === 6 ? "#8CC63F" : "white",
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onPress={() => {
+                  setHazakimNumber(6)
+
+                }
+
+                }
+              >
+              
+              
+              <Text style={{ color: hazakimNumber === 6 ? "white" : "#E62321" }}>6</Text>
+
+
+
+              </TouchableOpacity>
+              <TouchableOpacity
+                
+                style={{
+
+              
+
+                  width: 25,
+                  height: 25,
+                  borderRadius: 30,
+                  backgroundColor: hazakimNumber === 7 ? "#8CC63F" : "white",
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+
+          
+          
+                onPress={() => {
+                
+
+                  setHazakimNumber(7)
+
+
+                }}
+              >
+
+<Text style={{ color: hazakimNumber === 7 ? "white" : "#E62321" }}>7</Text>
+
+
+           
+              </TouchableOpacity>
+             
               
             </View>
           </View>

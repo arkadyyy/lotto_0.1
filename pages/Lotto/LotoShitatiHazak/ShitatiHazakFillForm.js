@@ -24,28 +24,25 @@ import {
 
 const checkIfPressed = (type) => {};
 
-const Num = ({ num, choosenNums, setchoosenNums,tzerufimNumber }) => {
+const Num = ({ num, choosenNums, setchoosenNums }) => {
   return (
     <>
+      
       <TouchableOpacity
         disabled={
           choosenNums.includes(num)
             ? false
-            : choosenNums.length >=  tzerufimNumber 
+            : choosenNums.length >= 7
             ? true
             : false
         }
-
-// לעשות סטייט  בדף לוטו שיטתי שמשתנה כאן בטופס שיטתי ומחליף את המספר 6
-
         onPress={() => {
-          choosenNums.length < tzerufimNumber && setchoosenNums([...choosenNums, num]);
+          choosenNums.length < 7 && setchoosenNums([...choosenNums, num]);
 
           if (choosenNums.includes(num)) {
             setchoosenNums(choosenNums.filter((x) => x !== num));
           }
         }}
-
         style={{
           width: 30,
           height: 30,
@@ -57,27 +54,30 @@ const Num = ({ num, choosenNums, setchoosenNums,tzerufimNumber }) => {
         }}
       >
         <Text>{num}</Text>
+       
       </TouchableOpacity>
     </>
   );
 };
 
-const StrongNum = ({ num, strongNum, setstrongNum }) => {
+const StrongNum = ({ num, choosenStrongNums, setChoosenStrongNums,hazakimNumber }) => {
   return (
-    <>
+      <>
+          
       <TouchableOpacity
-        disabled={strongNum === num ? false : strongNum > 1 ? true : false}
+        // disabled={
+        //     choosenStrongNums === num ? false : choosenStrongNums > hazakimNumber ? true : false}
         onPress={() => {
-          strongNum === 0 && setstrongNum(num);
-          if (strongNum === num) {
-            setstrongNum(0);
-          }
+            choosenStrongNums.length < hazakimNumber && setChoosenStrongNums([...choosenStrongNums,num]);
+        //   if (choosenStrongNums === num) {
+            // setChoosenStrongNums(0);
+        //   }
         }}
         style={{
           width: 35,
           height: 35,
           borderWidth: 1,
-          backgroundColor: strongNum === num ? "red" : "transparent",
+          backgroundColor: choosenStrongNums.includes(num) ? "red" : "transparent",
           borderColor: "white",
           borderRadius: 25,
           justifyContent: "center",
@@ -91,38 +91,47 @@ const StrongNum = ({ num, strongNum, setstrongNum }) => {
   );
 };
 
-const autoFill = (amount) => {
+const autoFill = (hazakimNumber) => {
   let randomNumbers = [];
-  let strongNum = 0;
-  for (let i = amount; i > 0; i--) {
+  for (let i = 7; i > 0; i--) {
     let num = Math.floor(Math.random() * 37) + 1;
     if (randomNumbers.indexOf(num) < 0) {
       randomNumbers.push(num);
     } else {
       i++;
     }
+    }
+
+    let randomChoosenStrongNums = [];
+  for (let index = hazakimNumber; index > 0; index--) {
+    let strongNum = Math.floor(Math.random() * 7) + 1;
+    if (randomChoosenStrongNums.indexOf(strongNum) < 0) {
+        randomChoosenStrongNums.push(strongNum);
+    } else {
+      index++;
+    }
   }
+//   choosenStrongNums = Math.floor(Math.random() * 7) + 1;
 
-  strongNum = Math.floor(Math.random() * 7) + 1;
-
-  return { randomNumbers, strongNum };
+  return { randomNumbers, randomChoosenStrongNums };
 };
 
-const ShitatiFillForm = ({
+const ShitatiHazakFillForm = ({
   setshowTable,
   double,
   opendTableNum,
   opendTableTzerufimNum,
   setFullTables,
   fullTables,
-  tzerufimNumber
+    tzerufimNumber,
+    hazakimNumber
 }) => {
-  const [strongNum, setstrongNum] = useState(0);
+  const [choosenStrongNums, setChoosenStrongNums] = useState([]);
   const [choosenNums, setchoosenNums] = useState([]);
   const [usedTable, setusedTable] = useState({
     tableNum: 0,
     choosenNums: choosenNums,
-    strongNum: strongNum,
+    choosenStrongNums: choosenStrongNums,
   });
   const [indexOfTable, setindexOfTable] = useState(-1);
 
@@ -132,7 +141,7 @@ const ShitatiFillForm = ({
       fullTables.forEach((table, index) => {
         if (table.tableNum === opendTableNum) {
           setchoosenNums(table.choosenNums);
-          setstrongNum(table.strongNum);
+          setChoosenStrongNums(table.choosenStrongNums);
 
           setindexOfTable(index);
           setusedTable(table);
@@ -141,30 +150,12 @@ const ShitatiFillForm = ({
     }, []);
   
   
-  
-  
-  // להשוות לנ"ל!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-    // useEffect(() => {
-    //   fullTables.forEach((table, index) => {
-    //     if (table.tableNum === opendTableNum) {
-    //       let filteredChoosenNums = table.choosenNums.filter(
-    //         (num) => num !== "-"
-    //       );
-    //       setchoosenNums(filteredChoosenNums);
-    //       setstrongNum(table.strongNum);
-  
-    //       setindexOfTable(index);
-    //       setusedTable(table);
-    //     }
-    //   });
-    // }, []);
-  // useeffect that urns when choosennums or strongnum changes
+  // useeffect that urns when choosennums or choosenStrongNums changes
   useEffect(() => {
     setusedTable({
       tableNum: opendTableNum,
       choosenNums: choosenNums,
-      strongNum: strongNum,
+      choosenStrongNums: choosenStrongNums,
     });
 
     // setFullTables([
@@ -174,7 +165,7 @@ const ShitatiFillForm = ({
     //     strongNum: strongNum,
     //   },
     // ]);
-  }, [choosenNums, strongNum]);
+  }, [choosenNums, choosenStrongNums]);
   return (
     <>
       <View
@@ -272,9 +263,10 @@ const ShitatiFillForm = ({
             <Button
               disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
-                let numbers = autoFill(tzerufimNumber);
-                setchoosenNums(numbers.randomNumbers);
-                setstrongNum(numbers.strongNum);
+                let numbers = autoFill(7);
+                  setchoosenNums(numbers.randomNumbers);
+                  let strongNumbers = autoFill(hazakimNumber);
+                setChoosenStrongNums(strongNumbers.randomChoosenStrongNums);
               }}
               small
               rounded
@@ -284,7 +276,7 @@ const ShitatiFillForm = ({
             <Button
               onPress={() => {
                 setchoosenNums([]);
-                setstrongNum(0);
+                setChoosenStrongNums([]);
               }}
               small
               rounded
@@ -321,15 +313,15 @@ const ShitatiFillForm = ({
               alignItems: "center",
               alignSelf: "center",
               margin: 2,
-              
             }}
           >
             {Array.from(Array(7)).map((x, index) => (
               <StrongNum
-                setstrongNum={setstrongNum}
-                strongNum={strongNum}
+                setChoosenStrongNums={setChoosenStrongNums}
+                choosenStrongNums={choosenStrongNums}
                 num={index + 1}
-                key={index}
+                    key={index}
+                    hazakimNumber={hazakimNumber}
               />
             ))}
           </View>
@@ -339,4 +331,4 @@ const ShitatiFillForm = ({
   );
 };
 
-export default ShitatiFillForm;
+export default ShitatiHazakFillForm;
