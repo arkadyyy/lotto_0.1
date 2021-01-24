@@ -140,12 +140,12 @@ const LottoShitatiHazakPage = ({ navigation }) => {
               <List
                 style={{
                   alignItems: "flex-end",
-                  height: 50,
+                  height: 80,
                   marginLeft: -17,
                   flexWrap: "wrap",
                 }}
               >
-                <ScrollView>
+                <ScrollView >
                   {/* {Array.from(Array(tableNum)).map((x, index) => ( */}
                   <ShitatiHazakTable
                     // tzerufimNumber={tzerufimNumber}
