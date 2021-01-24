@@ -16,11 +16,18 @@ import {
   List,
   ListItem,
   // Col,
-  Row
+  Row,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 
-const ShitatiTable = ({ setshowTable, double, index, setopendTableNum,tzerufimNumber,setopendTableTzerufimNum }) => {
+const ShitatiTable = ({
+  setshowTable,
+  double,
+  index,
+  setopendTableNum,
+  tzerufimNumber,
+  setopendTableTzerufimNum,
+}) => {
   const index1 = index * 2 - 1;
   const index2 = index * 2;
   const route = useRoute();
@@ -45,11 +52,9 @@ const ShitatiTable = ({ setshowTable, double, index, setopendTableNum,tzerufimNu
           }}
         >
           <View style={{ flexDirection: "row" }}>
-           
-            
             {/* {route.name === "LottoShitatiPage" && (
               <> */}
-              
+
             <View
               style={{
                 width: 20,
@@ -63,8 +68,8 @@ const ShitatiTable = ({ setshowTable, double, index, setopendTableNum,tzerufimNu
               }}
             >
               <Text style={{ color: "black" }}>2</Text>
-                    </View>
-                   
+            </View>
+
             <View
               style={{
                 width: 20,
@@ -77,8 +82,8 @@ const ShitatiTable = ({ setshowTable, double, index, setopendTableNum,tzerufimNu
               }}
             >
               <Text>3</Text>
-                    </View>
-                   
+            </View>
+
             <View
               style={{
                 width: 20,
@@ -91,8 +96,8 @@ const ShitatiTable = ({ setshowTable, double, index, setopendTableNum,tzerufimNu
               }}
             >
               <Text>4</Text>
-                    </View>
-                   
+            </View>
+
             <View
               style={{
                 width: 20,
@@ -105,11 +110,8 @@ const ShitatiTable = ({ setshowTable, double, index, setopendTableNum,tzerufimNu
               }}
             >
               <Text>5</Text>
-                </View>
-                
+            </View>
 
-
-                  
             <View
               style={{
                 width: 20,
@@ -122,115 +124,110 @@ const ShitatiTable = ({ setshowTable, double, index, setopendTableNum,tzerufimNu
               }}
             >
               <Text>6</Text>
-                </View>
-                
+            </View>
 
-                {tzerufimNumber ===  8  && (
-          <>        
-                  <View
-                    style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: 30,
-                      backgroundColor: "white",
-                      margin: 5,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text>7</Text>
-                  </View>
-                  <View
-                    style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: 30,
-                      backgroundColor: "white",
-                      margin: 5,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text>8</Text>
-                  </View>
-                  <View
-                    style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: 30,
-                      backgroundColor: "white",
-                      margin: 5,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text>9</Text>
-                  </View>
-                </>
-                
-              )} 
-              {tzerufimNumber ===  9  && (
-                
-                <>        
-                  <View
-                    style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: 30,
-                      backgroundColor: "white",
-                      margin: 5,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text>7</Text>
-                  </View>
-                  <View
-                    style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: 30,
-                      backgroundColor: "white",
-                      margin: 5,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text>8</Text>
-                  </View>
-                  <View
-                    style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: 30,
-                      backgroundColor: "white",
-                      margin: 5,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text>9</Text>
-                  </View>
-                  <View
-                    style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: 30,
-                      backgroundColor: "white",
-                      margin: 5,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text>10</Text>
-                  </View>
-                </>
-              
-              )} 
-              
-              {tzerufimNumber ===  10  && (
-                
-                <>        
+            {tzerufimNumber === 8 && (
+              <>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>7</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>8</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>9</Text>
+                </View>
+              </>
+            )}
+            {tzerufimNumber === 9 && (
+              <>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>7</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>8</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>9</Text>
+                </View>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>10</Text>
+                </View>
+              </>
+            )}
+
+            {tzerufimNumber === 10 && (
+              <>
                 <View
                   style={{
                     width: 20,
@@ -297,11 +294,9 @@ const ShitatiTable = ({ setshowTable, double, index, setopendTableNum,tzerufimNu
                   <Text>11</Text>
                 </View>
               </>
-              
-              )} 
-              {tzerufimNumber === 11  && (
-                
-                <>        
+            )}
+            {tzerufimNumber === 11 && (
+              <>
                 <View
                   style={{
                     width: 20,
@@ -381,10 +376,9 @@ const ShitatiTable = ({ setshowTable, double, index, setopendTableNum,tzerufimNu
                   <Text>12</Text>
                 </View>
               </>
-              
-              )} 
-              {tzerufimNumber === 12 && (
-                <>        
+            )}
+            {tzerufimNumber === 12 && (
+              <>
                 <View
                   style={{
                     width: 20,
@@ -477,11 +471,7 @@ const ShitatiTable = ({ setshowTable, double, index, setopendTableNum,tzerufimNu
                   <Text>13</Text>
                 </View>
               </>
-              
-              )}  
-                
-        
-              
+            )}
           </View>
         </TouchableOpacity>
         {double && (
@@ -503,7 +493,6 @@ const ShitatiTable = ({ setshowTable, double, index, setopendTableNum,tzerufimNu
           </View>
         )}
       </ListItem>
-    
     </>
   );
 };

@@ -24,28 +24,27 @@ import {
 
 const checkIfPressed = (type) => {};
 
-const Num = ({ num, choosenNums, setchoosenNums,tzerufimNumber }) => {
+const Num = ({ num, choosenNums, setchoosenNums, tzerufimNumber }) => {
   return (
     <>
       <TouchableOpacity
         disabled={
           choosenNums.includes(num)
             ? false
-            : choosenNums.length >=  tzerufimNumber 
+            : choosenNums.length >= tzerufimNumber
             ? true
             : false
         }
-
-// לעשות סטייט  בדף לוטו שיטתי שמשתנה כאן בטופס שיטתי ומחליף את המספר 6
+        // לעשות סטייט  בדף לוטו שיטתי שמשתנה כאן בטופס שיטתי ומחליף את המספר 6
 
         onPress={() => {
-          choosenNums.length < tzerufimNumber && setchoosenNums([...choosenNums, num]);
+          choosenNums.length < tzerufimNumber &&
+            setchoosenNums([...choosenNums, num]);
 
           if (choosenNums.includes(num)) {
             setchoosenNums(choosenNums.filter((x) => x !== num));
           }
         }}
-
         style={{
           width: 30,
           height: 30,
@@ -115,7 +114,7 @@ const ShitatiFillForm = ({
   opendTableTzerufimNum,
   setFullTables,
   fullTables,
-  tzerufimNumber
+  tzerufimNumber,
 }) => {
   const [strongNum, setstrongNum] = useState(0);
   const [choosenNums, setchoosenNums] = useState([]);
@@ -127,38 +126,35 @@ const ShitatiFillForm = ({
   const [indexOfTable, setindexOfTable] = useState(-1);
 
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
-  
-    useEffect(() => {
-      fullTables.forEach((table, index) => {
-        if (table.tableNum === opendTableNum) {
-          setchoosenNums(table.choosenNums);
-          setstrongNum(table.strongNum);
 
-          setindexOfTable(index);
-          setusedTable(table);
-        }
-      });
-    }, []);
-  
-  
-  
-  
+  useEffect(() => {
+    fullTables.forEach((table, index) => {
+      if (table.tableNum === opendTableNum) {
+        setchoosenNums(table.choosenNums);
+        setstrongNum(table.strongNum);
+
+        setindexOfTable(index);
+        setusedTable(table);
+      }
+    });
+  }, []);
+
   // להשוות לנ"ל!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    // useEffect(() => {
-    //   fullTables.forEach((table, index) => {
-    //     if (table.tableNum === opendTableNum) {
-    //       let filteredChoosenNums = table.choosenNums.filter(
-    //         (num) => num !== "-"
-    //       );
-    //       setchoosenNums(filteredChoosenNums);
-    //       setstrongNum(table.strongNum);
-  
-    //       setindexOfTable(index);
-    //       setusedTable(table);
-    //     }
-    //   });
-    // }, []);
+  // useEffect(() => {
+  //   fullTables.forEach((table, index) => {
+  //     if (table.tableNum === opendTableNum) {
+  //       let filteredChoosenNums = table.choosenNums.filter(
+  //         (num) => num !== "-"
+  //       );
+  //       setchoosenNums(filteredChoosenNums);
+  //       setstrongNum(table.strongNum);
+
+  //       setindexOfTable(index);
+  //       setusedTable(table);
+  //     }
+  //   });
+  // }, []);
   // useeffect that urns when choosennums or strongnum changes
   useEffect(() => {
     setusedTable({
@@ -181,7 +177,7 @@ const ShitatiFillForm = ({
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "39%",
+          top: "41.5%",
           height: 420,
           position: "absolute",
           zIndex: 2000,
@@ -305,7 +301,7 @@ const ShitatiFillForm = ({
             ))}
           </View>
         </View>
-        <View style={{ marginTop: -160 }}>
+        <View style={{ marginTop: "-10%" }}>
           <Text style={{ color: "white", marginHorizontal: 15 }}>
             בחר מספר חזק
           </Text>
@@ -321,7 +317,6 @@ const ShitatiFillForm = ({
               alignItems: "center",
               alignSelf: "center",
               margin: 2,
-              
             }}
           >
             {Array.from(Array(7)).map((x, index) => (

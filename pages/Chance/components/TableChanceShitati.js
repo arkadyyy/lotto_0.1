@@ -26,19 +26,29 @@ const Num = ({
   tablesUsed,
   settablesUsed,
   tableNum,
+  typeArr,
+  settypeArr,
 }) => {
+  const disabled = (pressed, tablesUsed, tableNum, typeArr) => {
+    if (pressed.symbolsPressed.includes(symbol)) {
+      return false;
+    } else if (typeArr.length > tableNum) {
+      return true;
+    } else if (pressed.numberOfPress >= 4) {
+      return true;
+    } else if (tablesUsed >= tableNum && pressed.symbolsPressed.length >= 4) {
+      return true;
+    } else if (pressed.symbolsPressed.length >= 4) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <>
       <TouchableOpacity
-        disabled={
-          pressed.symbolsPressed.includes(symbol)
-            ? false
-            : // : tablesUsed < tableNum
-            // ? true
-            pressed.symbolsPressed.length >= 4
-            ? true
-            : false
-        }
+        disabled={disabled(pressed, tablesUsed, tableNum, typeArr)}
         style={{
           width: 21,
           height: 35,
@@ -53,29 +63,43 @@ const Num = ({
         }}
         onPress={() => {
           // {numberOfPress :0 ,symbolsPressed : []}
-          if (pressed.symbolsPressed.includes(symbol)) {
+          if (
+            pressed.symbolsPressed.includes(symbol) &&
+            pressed.symbolsPressed.length === 1
+          ) {
+            settypeArr(typeArr.filter((type) => type !== pressed.type));
+            settablesUsed(tablesUsed - 1);
             setpressed({
               numberOfPress: pressed.numberOfPress - 1,
               symbolsPressed: pressed.symbolsPressed.filter(
                 (x) => x !== symbol
               ),
+              type: pressed.type,
             });
             setcounter(counter - 1);
-            if (pressed.symbolsPressed.length < 1) {
-              settablesUsed(tablesUsed - 1);
-            }
+          } else if (pressed.symbolsPressed.includes(symbol)) {
+            setpressed({
+              numberOfPress: pressed.numberOfPress - 1,
+              symbolsPressed: pressed.symbolsPressed.filter(
+                (x) => x !== symbol
+              ),
+              type: pressed.type,
+            });
+            setcounter(counter - 1);
           } else {
             setpressed({
-              numberOfPress: ++pressed.numberOfPress,
+              numberOfPress: pressed.numberOfPress + 1,
               symbolsPressed: [...pressed.symbolsPressed, symbol],
+              type: pressed.type,
             });
 
             if (pressed.symbolsPressed.length === 0) {
+              settypeArr([...typeArr, pressed.type]);
               settablesUsed(tablesUsed + 1);
             }
           }
 
-          console.log(pressed);
+          console.log("pressed : ", pressed);
         }}
       >
         <Text style={{ color: "black" }}>{symbol}</Text>
@@ -98,22 +122,27 @@ const TableChanceShitati = ({ tableNum }) => {
   const [pressedSpade, setpressedSpade] = useState({
     numberOfPress: 0,
     symbolsPressed: [],
+    type: "spade",
   });
   const [pressedHeart, setpressedHeart] = useState({
     numberOfPress: 0,
     symbolsPressed: [],
+    type: "heart",
   });
   const [pressedDiamond, setpressedDiamond] = useState({
     numberOfPress: 0,
     symbolsPressed: [],
+    type: "diamond",
   });
   const [pressedClubs, setpressedClubs] = useState({
     numberOfPress: 0,
     symbolsPressed: [],
+    type: "clubs",
   });
 
   const [counter, setcounter] = useState(0);
   const [tablesUsed, settablesUsed] = useState(0);
+  const [typeArr, settypeArr] = useState([]);
 
   useEffect(() => {
     setcounter(counter + 1);
@@ -135,8 +164,10 @@ const TableChanceShitati = ({ tableNum }) => {
     //   settablesUsed(tablesUsed + 1);
     // }
 
-    console.log("tablesUsed : ", tablesUsed);
-    console.log("tableNum : ", tableNum);
+    // console.log("tablesUsed : ", tablesUsed);
+    // console.log("tableNum : ", tableNum);
+    console.log("typeArr : ", typeArr);
+    console.log("counter : ", counter);
   }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
 
   return (
@@ -176,6 +207,8 @@ const TableChanceShitati = ({ tableNum }) => {
                 tablesUsed={tablesUsed}
                 settablesUsed={settablesUsed}
                 tableNum={tableNum}
+                typeArr={typeArr}
+                settypeArr={settypeArr}
               />
             ))}
           </View>
@@ -217,6 +250,8 @@ const TableChanceShitati = ({ tableNum }) => {
                 tablesUsed={tablesUsed}
                 settablesUsed={settablesUsed}
                 tableNum={tableNum}
+                typeArr={typeArr}
+                settypeArr={settypeArr}
               />
             ))}
           </View>
@@ -258,6 +293,8 @@ const TableChanceShitati = ({ tableNum }) => {
                 tablesUsed={tablesUsed}
                 settablesUsed={settablesUsed}
                 tableNum={tableNum}
+                typeArr={typeArr}
+                settypeArr={settypeArr}
               />
             ))}
           </View>
@@ -301,6 +338,8 @@ const TableChanceShitati = ({ tableNum }) => {
                 tablesUsed={tablesUsed}
                 settablesUsed={settablesUsed}
                 tableNum={tableNum}
+                typeArr={typeArr}
+                settypeArr={settypeArr}
               />
             ))}
           </View>

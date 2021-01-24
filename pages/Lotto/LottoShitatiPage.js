@@ -23,14 +23,14 @@ import ShitatiFillForm from "./components/ShitatiFillForm";
 import ShitatiTable from "./components/ShitatiTable";
 
 const LottoShitatiPage = ({ navigation }) => {
-    const [showTable, setshowTable] = useState(false);
-    const [tableNum, settableNum] = useState(1);
-    const [tzerufimNumber, setTzerufimNumber] = useState(5);
-    const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
-    const [double, setdouble] = useState(false);
-    const [fullTables, setFullTables] = useState([]);
-    const [indexOfTable, setIndexOfTable] = useState(1);
-    const [opendTableNum, setopendTableNum] = useState(1);
+  const [showTable, setshowTable] = useState(false);
+  const [tableNum, settableNum] = useState(1);
+  const [tzerufimNumber, setTzerufimNumber] = useState(5);
+  const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
+  const [double, setdouble] = useState(false);
+  const [fullTables, setFullTables] = useState([]);
+  const [indexOfTable, setIndexOfTable] = useState(1);
+  const [opendTableNum, setopendTableNum] = useState(1);
   return (
     <>
       <ScrollView>
@@ -38,7 +38,13 @@ const LottoShitatiPage = ({ navigation }) => {
         <BlankSquare color='#E62321' />
         <ChooseForm setdouble={setdouble} />
         <View style={{ margin: 15 }}>
-          <View style={{ backgroundColor: "#E62321", paddingBottom: 20 }}>
+          <View
+            style={{
+              backgroundColor: "#E62321",
+              paddingBottom: 20,
+              height: 600,
+            }}
+          >
             <View
               style={{
                 flexDirection: "row",
@@ -64,9 +70,13 @@ const LottoShitatiPage = ({ navigation }) => {
             </View>
 
             {/* <ChooseNumOfTables  tzerufimNumber={tzerufimNumber} setTzerufimNumber={setTzerufimNumber}/> */}
-            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} tzerufimNumber={tzerufimNumber} setTzerufimNumber={setTzerufimNumber}/>
+            <ChooseNumOfTables
+              settableNum={settableNum}
+              tableNum={tableNum}
+              tzerufimNumber={tzerufimNumber}
+              setTzerufimNumber={setTzerufimNumber}
+            />
 
-            
             <Text
               style={{
                 color: "white",
@@ -139,7 +149,7 @@ const LottoShitatiPage = ({ navigation }) => {
               <List
                 style={{
                   alignItems: "flex-end",
-                  height: 50,
+                  height: 180,
                   marginLeft: -17,
                   flexWrap: "wrap",
                 }}
@@ -148,16 +158,16 @@ const LottoShitatiPage = ({ navigation }) => {
                   {/* {Array.from(Array(tableNum)).map((x, index) => ( */}
                   <ShitatiTable
                     tzerufimNumber={tzerufimNumber}
-                      double={double}
-                      key={1}
-                      index={1}
-                      setshowTable={setshowTable}
-                      setIndexOfTable={1}
-                      fullTables={fullTables}
+                    double={double}
+                    key={1}
+                    index={1}
+                    setshowTable={setshowTable}
+                    setIndexOfTable={1}
+                    fullTables={fullTables}
                     setopendTableNum={setopendTableNum}
                     setOpendTableTzerufimNum={setOpendTableTzerufimNum}
                     opendTableTzerufimNum={opendTableTzerufimNum}
-                    />
+                  />
                   {/* ))} */}
                 </ScrollView>
               </List>
@@ -172,8 +182,7 @@ const LottoShitatiPage = ({ navigation }) => {
               }}
             >
               <Button
-                onPress={() => console.log(fullTables)
-                }
+                onPress={() => console.log(fullTables)}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#8CC63F",
