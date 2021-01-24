@@ -35,7 +35,6 @@ const Num = ({ num, choosenNums, setchoosenNums, tzerufimNumber }) => {
             ? true
             : false
         }
-        // לעשות סטייט  בדף לוטו שיטתי שמשתנה כאן בטופס שיטתי ומחליף את המספר 6
 
         onPress={() => {
           choosenNums.length < tzerufimNumber &&
@@ -61,16 +60,16 @@ const Num = ({ num, choosenNums, setchoosenNums, tzerufimNumber }) => {
   );
 };
 
-const StrongNum = ({ num, strongNum, setstrongNum }) => {
+const StrongNum = ({ num, strongNum, setStrongNum,choosenStrongNums,setChoosenStrongNums }) => {
   return (
     <>
       <TouchableOpacity
-        disabled={strongNum === num ? false : strongNum > 1 ? true : false}
+        // disabled={strongNum === num ? false : strongNum > 1 ? true : false}
         onPress={() => {
-          strongNum === 0 && setstrongNum(num);
-          if (strongNum === num) {
-            setstrongNum(0);
-          }
+          strongNum === 0 && setStrongNum(num);
+          // if (strongNum === num) {
+          //   setstrongNum(0);
+          // }
         }}
         style={{
           width: 35,
@@ -116,10 +115,10 @@ const ShitatiFillForm = ({
   fullTables,
   tzerufimNumber,
 }) => {
-  const [strongNum, setstrongNum] = useState(0);
+  const [strongNum, setStrongNum] = useState([]);
   const [choosenNums, setchoosenNums] = useState([]);
   const [usedTable, setusedTable] = useState({
-    tableNum: 0,
+    tableNum: 1,
     choosenNums: choosenNums,
     strongNum: strongNum,
   });
@@ -131,7 +130,7 @@ const ShitatiFillForm = ({
     fullTables.forEach((table, index) => {
       if (table.tableNum === opendTableNum) {
         setchoosenNums(table.choosenNums);
-        setstrongNum(table.strongNum);
+        setStrongNum(table.strongNum);
 
         setindexOfTable(index);
         setusedTable(table);
@@ -158,7 +157,7 @@ const ShitatiFillForm = ({
   // useeffect that urns when choosennums or strongnum changes
   useEffect(() => {
     setusedTable({
-      tableNum: opendTableNum,
+      tableNum: 1,
       choosenNums: choosenNums,
       strongNum: strongNum,
     });
@@ -270,7 +269,8 @@ const ShitatiFillForm = ({
               onPress={() => {
                 let numbers = autoFill(tzerufimNumber);
                 setchoosenNums(numbers.randomNumbers);
-                setstrongNum(numbers.strongNum);
+                setStrongNum(numbers.strongNum);
+                // console.log('fullTable1:',fullTable1);
               }}
               small
               rounded
@@ -280,7 +280,7 @@ const ShitatiFillForm = ({
             <Button
               onPress={() => {
                 setchoosenNums([]);
-                setstrongNum(0);
+                setStrongNum(0);
               }}
               small
               rounded
@@ -321,7 +321,7 @@ const ShitatiFillForm = ({
           >
             {Array.from(Array(7)).map((x, index) => (
               <StrongNum
-                setstrongNum={setstrongNum}
+                setStrongNum={setStrongNum}
                 strongNum={strongNum}
                 num={index + 1}
                 key={index}

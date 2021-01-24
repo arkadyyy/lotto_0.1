@@ -71,7 +71,6 @@ const ShitatiHazakTable = ({
   fullTables,
   hazakimNumber,
 }) => {
-  //   const index1 = index * 2 - 1;
   const index1 = 1;
   const route = useRoute();
 
@@ -85,7 +84,6 @@ const ShitatiHazakTable = ({
 
     let x;
     fullTables.forEach((table) => {
-      if (+table.tableNum === +index1) {
         fullTable1 = table;
 
         if (fullTable1.choosenNums.length < 7) {
@@ -102,7 +100,7 @@ const ShitatiHazakTable = ({
         }
         setTable1(fullTable1.choosenNums);
         setStrongNumbers(fullTable1.choosenStrongNums);
-      }
+      // }
     });
 
     console.log("table1 : ", table1);
@@ -124,7 +122,6 @@ const ShitatiHazakTable = ({
           onPress={() => {
             setshowTable(true);
             setopendTableNum(index1);
-            // setopendTableTzerufimNum(tzerufimNumber);
           }}
         >
           <View style={{ flexDirection: "column" }}>

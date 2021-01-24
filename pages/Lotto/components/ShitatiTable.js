@@ -20,6 +20,51 @@ import {
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
+
+const Num = ({ num }) => {
+  return (
+    <>
+      <View
+        style={{
+          width: 20,
+          height: 20,
+          borderRadius: 30,
+          backgroundColor: "white",
+
+          margin: 5,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "black" }}>{num}</Text>
+      </View>
+    </>
+  );
+};
+
+const StrongNum = ({ strongNumber }) => {
+  return (
+    <>
+      <View
+        style={{
+          width: 20,
+          height: 20,
+          borderRadius: 30,
+          backgroundColor: "yellow",
+
+          margin: 5,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "red" }}>{strongNumber}</Text>
+      </View>
+    </>
+  );
+};
+
+
+
 const ShitatiTable = ({
   setshowTable,
   double,
@@ -32,7 +77,7 @@ const ShitatiTable = ({
   const index1 = 1;
  const route = useRoute();
  const [table1, setTable1] = useState(["-", "-", "-", "-", "-", "-", "-"]);
- const [strongNumbers, setStrongNumbers] = useState(["-", "-", "-", "-", ]);
+ const [strongNumber, setStrongNumber] = useState(0);
   
  useEffect(() => {
   let fullTable1 = 0;
@@ -41,26 +86,30 @@ const ShitatiTable = ({
   fullTables.forEach((table) => {
   
       fullTable1 = table;
-
-      if (fullTable1.choosenNums.length < 7) {
-        x = 7 - fullTable1.choosenNums.length;
+      console.log("fullTable1 : ", fullTable1);
+      if (fullTable1.choosenNums.length < tzerufimNumber) {
+        x = tzerufimNumber - fullTable1.choosenNums.length;
         for (x; x > 0; x--) {
           fullTable1.choosenNums.push("-");
         }
-      }
-      if (fullTable1.choosenStrongNums.length < hazakimNumber) {
-        x = hazakimNumber - fullTable1.choosenStrongNums.length;
-        for (x; x > 0; x--) {
-          fullTable1.choosenStrongNums.push("-");
-        }
-        }
+       
+
+    }
+      //  if (fullTable1.choosenStrongNums.length < 1) {
+      //  x = hazakimNumber - fullTable1.choosenStrongNums.length;
+      //  for (x; x > 0; x--) {
+      //      fullTable1.choosenStrongNums.push("-");
+      //    }
+      //    console.log(fullTable1);
+      // }
       setTable1(fullTable1.choosenNums);
-      setStrongNumbers(fullTable1.choosenStrongNums);
+      setStrongNumber(fullTable1.strongNum);
     
  
   });
 
-  console.log("table1 : ", table1);
+ 
+  console.log("fullTables : ", fullTables);
 }, [fullTables]);
   return (
     <>
@@ -69,7 +118,7 @@ const ShitatiTable = ({
           backgroundColor: "#8CC63F",
           flexWrap: "wrap",
           marginTop: 4,
-          height: 95,
+          height: 130,
           alignItems: "center",
         }}
       >
@@ -78,86 +127,46 @@ const ShitatiTable = ({
           onPress={() => {
             setshowTable(true);
             setopendTableNum(index1);
-            // setopendTableTzerufimNum(tzerufimNumber);
-          }}
+            }}
         >
-                    {/* <View style={{ flexDirection: "column" }}> */}
 
-          {/* <View style={{ flexDirection: "row" }}>
-          
-
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ color: "black" }}>2</Text>
+<View style={{ flexDirection: "row",flexWrap: "wrap" }}>
+            <View style={{ flexDirection: "row",flexWrap: "wrap" }}>
+              {table1.map((num, index) => (
+                <Num key={index} num={num} />
+              ))}
             </View>
-
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text>3</Text>
+            <View style={{ flexDirection: "row",height:10 }}>
+                <StrongNum key={index} strongNumber={strongNumber} />
             </View>
+          </View>   
+          </TouchableOpacity>
+        {double && (
+          <View
+            style={{
+              width: 35,
+              height: 35,
+              backgroundColor: "#FF838C",
+              borderWidth: 2,
+              borderColor: "white",
+              borderRadius: 20,
+              position: "absolute",
+              left: 255,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ color: "white" }}>X2</Text>
+          </View>
+        )}
+      </ListItem>
+    </>
+  );
+};
 
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text>4</Text>
-            </View>
+export default ShitatiTable;
 
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text>5</Text>
-            </View>
-
-            <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text>6</Text>
-            </View> */}
-
-            {tzerufimNumber === 8 && (
+            {/* {tzerufimNumber === 8 && (
               <>
                 <View
                   style={{
@@ -255,9 +264,9 @@ const ShitatiTable = ({
                   <Text>10</Text>
                 </View>
               </>
-            )}
+            )} */}
 
-            {tzerufimNumber === 10 && (
+            {/* {tzerufimNumber === 10 && (
               <>
                 <View
                   style={{
@@ -502,30 +511,6 @@ const ShitatiTable = ({
                   <Text>13</Text>
                 </View>
               </>
-            )}
+            )} */}
           {/* </View> */}
-        </TouchableOpacity>
-        {double && (
-          <View
-            style={{
-              width: 35,
-              height: 35,
-              backgroundColor: "#FF838C",
-              borderWidth: 2,
-              borderColor: "white",
-              borderRadius: 20,
-              position: "absolute",
-              left: 255,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ color: "white" }}>X2</Text>
-          </View>
-        )}
-      </ListItem>
-    </>
-  );
-};
-
-export default ShitatiTable;
+      
