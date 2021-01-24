@@ -41,6 +41,26 @@ const Num = ({ num }) => {
     </>
   );
 };
+const StrongNum = ({ num }) => {
+  return (
+    <>
+      <View
+        style={{
+          width: 20,
+          height: 20,
+          borderRadius: 30,
+          backgroundColor: "yellow",
+
+          margin: 5,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "black" }}>{num}</Text>
+      </View>
+    </>
+  );
+};
 
 const Table = ({
   setshowTable,
@@ -75,6 +95,7 @@ const Table = ({
           }
         }
         settable1(fullTable1.choosenNums);
+        setstrongNum1(fullTable1.strongNum);
       }
       if (+table.tableNum === +index2) {
         fullTable2 = table;
@@ -86,6 +107,7 @@ const Table = ({
           }
         }
         settable2(fullTable2.choosenNums);
+        setstrongNum2(fullTable2.strongNum);
       }
     });
 
@@ -99,7 +121,7 @@ const Table = ({
           backgroundColor: "#8CC63F",
           flexWrap: "wrap",
           marginTop: 4,
-          height: 95,
+          height: 55,
           alignItems: "center",
         }}
       >
@@ -111,7 +133,7 @@ const Table = ({
             // setopendTableTzerufimNum(tzerufimNumber);
           }}
         >
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row-reverse" }}>
             {route.name === "LottoPage" && (
               <>
                 {table1.map((num, index) => (
@@ -119,7 +141,7 @@ const Table = ({
                 ))}
               </>
             )}
-            
+            <StrongNum num={strongNum1} />
           </View>
         </TouchableOpacity>
         {double && (
@@ -141,53 +163,97 @@ const Table = ({
           </View>
         )}
       </ListItem>
-    
-          <ListItem
+      <ListItem
+        style={{
+          backgroundColor: "#8CC63F",
+          flexWrap: "wrap",
+          marginTop: 4,
+          height: 55,
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "white", fontSize: 13 }}>טבלה {index2} </Text>
+        <TouchableOpacity
+          onPress={() => {
+            setopendTableNum(index2);
+            setshowTable(true);
+          }}
+        >
+          <View style={{ flexDirection: "row-reverse" }}>
+            {route.name === "LottoPage" && (
+              <>
+                {table2.map((num, index) => (
+                  <Num key={index} num={num} />
+                ))}
+              </>
+            )}
+            <StrongNum num={strongNum2} />
+          </View>
+        </TouchableOpacity>
+        {double && (
+          <View
             style={{
-              backgroundColor: "#8CC63F",
-              flexWrap: "wrap",
-              marginTop: 4,
-              height: 55,
+              width: 35,
+              height: 35,
+              backgroundColor: "#FF838C",
+              borderWidth: 2,
+              borderColor: "white",
+              borderRadius: 20,
+              position: "absolute",
+              left: 255,
+              justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <Text style={{ color: "white", fontSize: 13 }}>טבלה {index2}</Text>
-            <TouchableOpacity
-              onPress={() => {
-                setopendTableNum(index2);
-                setshowTable(true);
-              }}
-            >
-              <View style={{ flexDirection: "row", flex: 1 }}>
-                <>
-                  {table2.map((num, index) => (
-                    <Num key={index} num={num} />
-                  ))}
-                </>
-              </View>
-            </TouchableOpacity>
-            {double && (
-              <View
-                style={{
-                  width: 35,
-                  height: 35,
-                  backgroundColor: "#FF838C",
-                  borderWidth: 2,
-                  borderColor: "white",
-                  borderRadius: 20,
-                  position: "absolute",
-                  left: 255,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  zIndex: 3,
-                }}
-              >
-                <Text style={{ color: "white" }}>X2</Text>
-              </View>
-            )}
-          </ListItem>
-      
-      
+            <Text style={{ color: "white" }}>X2</Text>
+          </View>
+        )}
+      </ListItem>
+
+      {/* <ListItem
+        style={{
+          backgroundColor: "#8CC63F",
+          flexWrap: "wrap",
+          marginTop: 4,
+          height: 55,
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "white", fontSize: 13 }}>טבלה {index2}</Text>
+        <TouchableOpacity
+          onPress={() => {
+            setopendTableNum(index2);
+            setshowTable(true);
+          }}
+        >
+          <View style={{ flexDirection: "row", backgroundColor: "blue" }}>
+            <View>
+              {table2.map((num, index) => (
+                <Num key={index} num={num} />
+              ))}
+            </View>
+          </View>
+        </TouchableOpacity>
+        {double && (
+          <View
+            style={{
+              width: 35,
+              height: 35,
+              backgroundColor: "#FF838C",
+              borderWidth: 2,
+              borderColor: "white",
+              borderRadius: 20,
+              position: "absolute",
+              left: 255,
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 3,
+            }}
+          >
+            <Text style={{ color: "white" }}>X2</Text>
+          </View>
+        )}
+      </ListItem> */}
     </>
   );
 };

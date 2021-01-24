@@ -134,7 +134,7 @@ const ShitatiHazakFillForm = ({
   const [choosenStrongNums, setChoosenStrongNums] = useState([]);
   const [choosenNums, setchoosenNums] = useState([]);
   const [usedTable, setusedTable] = useState({
-    tableNum: 0,
+    tableNum: 1,
     choosenNums: choosenNums,
     choosenStrongNums: choosenStrongNums,
   });
@@ -157,7 +157,7 @@ const ShitatiHazakFillForm = ({
   // useeffect that urns when choosennums or choosenStrongNums changes
   useEffect(() => {
     setusedTable({
-      tableNum: opendTableNum,
+      tableNum: 1,
       choosenNums: choosenNums,
       choosenStrongNums: choosenStrongNums,
     });
@@ -281,6 +281,7 @@ const ShitatiHazakFillForm = ({
               onPress={() => {
                 setchoosenNums([]);
                 setChoosenStrongNums([]);
+                
               }}
               small
               rounded

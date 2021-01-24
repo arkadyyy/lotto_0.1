@@ -31,8 +31,8 @@ const LottoShitatiHazakPage = ({ navigation }) => {
   const [opendTableHazakimNumber, setOpendTableHazakimNumber] = useState(4);
   const [double, setdouble] = useState(false);
   const [fullTables, setFullTables] = useState([]);
-  const [indexOfTable, setIndexOfTable] = useState("");
-  const [opendTableNum, setopendTableNum] = useState(0);
+  const [indexOfTable, setIndexOfTable] = useState(1);
+  const [opendTableNum, setopendTableNum] = useState(1);
   return (
     <>
       <ScrollView>
@@ -183,6 +183,9 @@ const LottoShitatiHazakPage = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={() => {
+                  console.log("fullTables:", fullTables);
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#8CC63F",
