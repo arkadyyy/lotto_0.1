@@ -17,14 +17,25 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
 
-const Num = ({ symbol, setpressed, pressed, setcounter, counter }) => {
+const Num = ({
+  symbol,
+  setpressed,
+  pressed,
+  setcounter,
+  counter,
+  tablesUsed,
+  settablesUsed,
+  tableNum,
+}) => {
   return (
     <>
       <TouchableOpacity
         disabled={
           pressed.symbolsPressed.includes(symbol)
             ? false
-            : pressed.symbolsPressed.length > 0
+            : // : tablesUsed < tableNum
+            // ? true
+            pressed.symbolsPressed.length >= 4
             ? true
             : false
         }
@@ -50,11 +61,18 @@ const Num = ({ symbol, setpressed, pressed, setcounter, counter }) => {
               ),
             });
             setcounter(counter - 1);
+            if (pressed.symbolsPressed.length < 1) {
+              settablesUsed(tablesUsed - 1);
+            }
           } else {
             setpressed({
               numberOfPress: ++pressed.numberOfPress,
               symbolsPressed: [...pressed.symbolsPressed, symbol],
             });
+
+            if (pressed.symbolsPressed.length === 0) {
+              settablesUsed(tablesUsed + 1);
+            }
           }
 
           console.log(pressed);
@@ -66,7 +84,7 @@ const Num = ({ symbol, setpressed, pressed, setcounter, counter }) => {
   );
 };
 
-const Table = ({ tableNum }) => {
+const TableChanceShitati = ({ tableNum }) => {
   const [symbols, setsymbols] = useState([
     "A",
     "K",
@@ -95,9 +113,30 @@ const Table = ({ tableNum }) => {
   });
 
   const [counter, setcounter] = useState(0);
+  const [tablesUsed, settablesUsed] = useState(0);
 
   useEffect(() => {
     setcounter(counter + 1);
+
+    // if (
+    //   pressedSpade.numberOfPress === 0 ||
+    //   pressedHeart.numberOfPress === 0 ||
+    //   pressedDiamond.numberOfPress === 0 ||
+    //   pressedClubs.numberOfPress === 0
+    // ) {
+    //   settablesUsed(tablesUsed - 1);
+    // }
+    // if (
+    //   pressedSpade.numberOfPress === 1 ||
+    //   pressedHeart.numberOfPress === 1 ||
+    //   pressedDiamond.numberOfPress === 1 ||
+    //   pressedClubs.numberOfPress === 1
+    // ) {
+    //   settablesUsed(tablesUsed + 1);
+    // }
+
+    console.log("tablesUsed : ", tablesUsed);
+    console.log("tableNum : ", tableNum);
   }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
 
   return (
@@ -134,6 +173,9 @@ const Table = ({ tableNum }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
+                tablesUsed={tablesUsed}
+                settablesUsed={settablesUsed}
+                tableNum={tableNum}
               />
             ))}
           </View>
@@ -172,6 +214,9 @@ const Table = ({ tableNum }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
+                tablesUsed={tablesUsed}
+                settablesUsed={settablesUsed}
+                tableNum={tableNum}
               />
             ))}
           </View>
@@ -210,6 +255,9 @@ const Table = ({ tableNum }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
+                tablesUsed={tablesUsed}
+                settablesUsed={settablesUsed}
+                tableNum={tableNum}
               />
             ))}
           </View>
@@ -250,6 +298,9 @@ const Table = ({ tableNum }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
+                tablesUsed={tablesUsed}
+                settablesUsed={settablesUsed}
+                tableNum={tableNum}
               />
             ))}
           </View>
@@ -259,4 +310,4 @@ const Table = ({ tableNum }) => {
   );
 };
 
-export default Table;
+export default TableChanceShitati;

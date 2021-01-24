@@ -142,7 +142,7 @@ const ChanceList = (props) => {
                         borderRadius: 13,
                         backgroundColor: "white",
                       }}
-                      // onPress={() => navigation.navigate("Home")}
+                      onPress={() => navigation.navigate("RavChancePage")}
                     >
                       <Text
                         style={{
@@ -188,7 +188,7 @@ const ChanceList = (props) => {
                         borderRadius: 13,
                         backgroundColor: "white",
                       }}
-                      // onPress={() => navigation.navigate("Home")}
+                      onPress={() => navigation.navigate("ChanceShitatiPage")}
                     >
                       <Text
                         style={{

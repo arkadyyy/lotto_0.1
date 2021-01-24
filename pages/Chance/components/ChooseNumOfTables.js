@@ -18,7 +18,7 @@ import {
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 
-const ChooseNumOfTables = ({ settableNum, tableNum }) => {
+const ChooseNumOfTables = ({ settableNum, tableNum, shitati }) => {
   const route = useRoute();
 
   return (
@@ -102,6 +102,23 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
             >
               <Text>1</Text>
             </TouchableOpacity>
+            {shitati && (
+              <TouchableOpacity
+                style={{
+                  borderRadius: 30,
+                  backgroundColor: tableNum === 4 ? "#8CC63F" : "white",
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingHorizontal: 3,
+                }}
+                onPress={() => {
+                  settableNum(4);
+                }}
+              >
+                <Text>רב צ'אנס</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       </View>
