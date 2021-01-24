@@ -68,21 +68,21 @@ const ShitatiHazakTable = ({
   double,
   index,
   setopendTableNum,
-    fullTables,
-    hazakimNumber
+  fullTables,
+  hazakimNumber,
 }) => {
-//   const index1 = index * 2 - 1;
+  //   const index1 = index * 2 - 1;
   const index1 = 1;
   const route = useRoute();
 
   const [table1, setTable1] = useState(["-", "-", "-", "-", "-", "-", "-"]);
-  const [strongNumbers, setStrongNumbers] = useState(["-", "-", "-", "-", ]);
+  const [strongNumbers, setStrongNumbers] = useState(["-", "-", "-", "-"]);
 
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
 
   useEffect(() => {
     let fullTable1 = 0;
-   
+
     let x;
     fullTables.forEach((table) => {
       if (+table.tableNum === +index1) {
@@ -99,11 +99,10 @@ const ShitatiHazakTable = ({
           for (x; x > 0; x--) {
             fullTable1.choosenStrongNums.push("-");
           }
-          }
+        }
         setTable1(fullTable1.choosenNums);
         setStrongNumbers(fullTable1.choosenStrongNums);
       }
-   
     });
 
     console.log("table1 : ", table1);
@@ -116,7 +115,7 @@ const ShitatiHazakTable = ({
           backgroundColor: "#8CC63F",
           flexWrap: "wrap",
           marginTop: 4,
-          height: 95,
+          height: 85,
           alignItems: "center",
         }}
       >
@@ -129,19 +128,16 @@ const ShitatiHazakTable = ({
           }}
         >
           <View style={{ flexDirection: "column" }}>
-           
-              <View style={{ flexDirection: "row" }}>
-                {table1.map((num, index) => (
-                  <Num key={index} num={num} />
-                ))}
-                      </View>
-                      <View style={{ flexDirection: "row" }}>
-                {strongNumbers.map((strongNum, index) => (
-                  <StrongNum key={index} strongNum={strongNum} />
-                ))}
-              </View>
-           
-            
+            <View style={{ flexDirection: "row" }}>
+              {table1.map((num, index) => (
+                <Num key={index} num={num} />
+              ))}
+            </View>
+            <View style={{ flexDirection: "row" }}>
+              {strongNumbers.map((strongNum, index) => (
+                <StrongNum key={index} strongNum={strongNum} />
+              ))}
+            </View>
           </View>
         </TouchableOpacity>
         {double && (
@@ -163,9 +159,6 @@ const ShitatiHazakTable = ({
           </View>
         )}
       </ListItem>
-    
-      
-      
     </>
   );
 };

@@ -23,16 +23,16 @@ import ShitatiHazakFillForm from "./ShitatiHazakFillForm";
 import ShitatiHazakTable from "./ShitatiHazkTable";
 
 const LottoShitatiHazakPage = ({ navigation }) => {
-    const [showTable, setshowTable] = useState(false);
-    const [tableNum, settableNum] = useState(8);
-    // const [tzerufimNumber, setTzerufimNumber] = useState(8);
-    const [hazakimNumber, setHazakimNumber] = useState(4);
-    // const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
-    const [opendTableHazakimNumber, setOpendTableHazakimNumber] = useState(4);
-    const [double, setdouble] = useState(false);
-    const [fullTables, setFullTables] = useState([]);
-    const [indexOfTable, setIndexOfTable] = useState("");
-    const [opendTableNum, setopendTableNum] = useState(0);
+  const [showTable, setshowTable] = useState(false);
+  const [tableNum, settableNum] = useState(8);
+  // const [tzerufimNumber, setTzerufimNumber] = useState(8);
+  const [hazakimNumber, setHazakimNumber] = useState(4);
+  // const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
+  const [opendTableHazakimNumber, setOpendTableHazakimNumber] = useState(4);
+  const [double, setdouble] = useState(false);
+  const [fullTables, setFullTables] = useState([]);
+  const [indexOfTable, setIndexOfTable] = useState("");
+  const [opendTableNum, setopendTableNum] = useState(0);
   return (
     <>
       <ScrollView>
@@ -40,7 +40,13 @@ const LottoShitatiHazakPage = ({ navigation }) => {
         <BlankSquare color='#E62321' />
         <ChooseForm setdouble={setdouble} />
         <View style={{ margin: 15 }}>
-          <View style={{ backgroundColor: "#E62321", paddingBottom: 20, height: 600, }}>
+          <View
+            style={{
+              backgroundColor: "#E62321",
+              paddingBottom: 20,
+              height: 640,
+            }}
+          >
             <View
               style={{
                 flexDirection: "row",
@@ -65,18 +71,21 @@ const LottoShitatiHazakPage = ({ navigation }) => {
               <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
             </View>
 
-            <ChooseNumOfTables hazakimNumber={hazakimNumber} setHazakimNumber={setHazakimNumber}/>
+            <ChooseNumOfTables
+              hazakimNumber={hazakimNumber}
+              setHazakimNumber={setHazakimNumber}
+            />
 
-            
             <Text
               style={{
                 color: "white",
                 fontSize: 15,
                 marginLeft: 12,
-                marginBottom: 10,
+                marginBottom: 15,
+                fontSize: 13,
               }}
             >
-בחר 7 מספרים ו-{hazakimNumber} מספרים חזקים
+              בחר 7 מספרים ו-{hazakimNumber} מספרים חזקים
             </Text>
             <View
               style={{
@@ -140,7 +149,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
               <List
                 style={{
                   alignItems: "flex-end",
-                  height: 50,
+                  height: 100,
                   marginLeft: -17,
                   flexWrap: "wrap",
                 }}
@@ -150,16 +159,16 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                   <ShitatiHazakTable
                     // tzerufimNumber={tzerufimNumber}
                     hazakimNumber={hazakimNumber}
-                      double={double}
-                      key={1}
-                      index={1}
-                      setshowTable={setshowTable}
-                      setIndexOfTable={1}
-                      fullTables={fullTables}
+                    double={double}
+                    key={1}
+                    index={1}
+                    setshowTable={setshowTable}
+                    setIndexOfTable={1}
+                    fullTables={fullTables}
                     setopendTableNum={setopendTableNum}
                     // setOpendTableTzerufimNum={setOpendTableTzerufimNum}
                     // opendTableTzerufimNum={opendTableTzerufimNum}
-                    />
+                  />
                   {/* ))} */}
                 </ScrollView>
               </List>

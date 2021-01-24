@@ -27,7 +27,6 @@ const checkIfPressed = (type) => {};
 const Num = ({ num, choosenNums, setchoosenNums }) => {
   return (
     <>
-      
       <TouchableOpacity
         disabled={
           choosenNums.includes(num)
@@ -54,30 +53,36 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
         }}
       >
         <Text>{num}</Text>
-       
       </TouchableOpacity>
     </>
   );
 };
 
-const StrongNum = ({ num, choosenStrongNums, setChoosenStrongNums,hazakimNumber }) => {
+const StrongNum = ({
+  num,
+  choosenStrongNums,
+  setChoosenStrongNums,
+  hazakimNumber,
+}) => {
   return (
-      <>
-          
+    <>
       <TouchableOpacity
         // disabled={
         //     choosenStrongNums === num ? false : choosenStrongNums > hazakimNumber ? true : false}
         onPress={() => {
-            choosenStrongNums.length < hazakimNumber && setChoosenStrongNums([...choosenStrongNums,num]);
-        //   if (choosenStrongNums === num) {
-            // setChoosenStrongNums(0);
-        //   }
+          choosenStrongNums.length < hazakimNumber &&
+            setChoosenStrongNums([...choosenStrongNums, num]);
+          //   if (choosenStrongNums === num) {
+          // setChoosenStrongNums(0);
+          //   }
         }}
         style={{
           width: 35,
           height: 35,
           borderWidth: 1,
-          backgroundColor: choosenStrongNums.includes(num) ? "red" : "transparent",
+          backgroundColor: choosenStrongNums.includes(num)
+            ? "red"
+            : "transparent",
           borderColor: "white",
           borderRadius: 25,
           justifyContent: "center",
@@ -100,18 +105,18 @@ const autoFill = (hazakimNumber) => {
     } else {
       i++;
     }
-    }
+  }
 
-    let randomChoosenStrongNums = [];
+  let randomChoosenStrongNums = [];
   for (let index = hazakimNumber; index > 0; index--) {
     let strongNum = Math.floor(Math.random() * 7) + 1;
     if (randomChoosenStrongNums.indexOf(strongNum) < 0) {
-        randomChoosenStrongNums.push(strongNum);
+      randomChoosenStrongNums.push(strongNum);
     } else {
       index++;
     }
   }
-//   choosenStrongNums = Math.floor(Math.random() * 7) + 1;
+  //   choosenStrongNums = Math.floor(Math.random() * 7) + 1;
 
   return { randomNumbers, randomChoosenStrongNums };
 };
@@ -123,8 +128,8 @@ const ShitatiHazakFillForm = ({
   opendTableTzerufimNum,
   setFullTables,
   fullTables,
-    tzerufimNumber,
-    hazakimNumber
+  tzerufimNumber,
+  hazakimNumber,
 }) => {
   const [choosenStrongNums, setChoosenStrongNums] = useState([]);
   const [choosenNums, setchoosenNums] = useState([]);
@@ -136,20 +141,19 @@ const ShitatiHazakFillForm = ({
   const [indexOfTable, setindexOfTable] = useState(-1);
 
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
-  
-    useEffect(() => {
-      fullTables.forEach((table, index) => {
-        if (table.tableNum === opendTableNum) {
-          setchoosenNums(table.choosenNums);
-          setChoosenStrongNums(table.choosenStrongNums);
 
-          setindexOfTable(index);
-          setusedTable(table);
-        }
-      });
-    }, []);
-  
-  
+  useEffect(() => {
+    fullTables.forEach((table, index) => {
+      if (table.tableNum === opendTableNum) {
+        setchoosenNums(table.choosenNums);
+        setChoosenStrongNums(table.choosenStrongNums);
+
+        setindexOfTable(index);
+        setusedTable(table);
+      }
+    });
+  }, []);
+
   // useeffect that urns when choosennums or choosenStrongNums changes
   useEffect(() => {
     setusedTable({
@@ -182,18 +186,18 @@ const ShitatiHazakFillForm = ({
         <View
           style={{
             backgroundColor: "#263742",
-            width: "55%",
+            width: "35%",
             height: 70,
             position: "relative",
             top: -40,
-            left: "35.4%",
+            left: "51%",
             zIndex: 2001,
             flexDirection: "row",
             justifyContent: "space-around",
             alignItems: "center",
           }}
         >
-          <View style={{ flexDirection: "row" }}>
+          {/* <View style={{ flexDirection: "row" }}>
             <TouchableOpacity>
               <FontAwesomeIcon
                 color='white'
@@ -211,7 +215,7 @@ const ShitatiHazakFillForm = ({
                 icon={faArrowAltCircleLeft}
               />
             </TouchableOpacity>
-          </View>
+          </View> */}
           <TouchableOpacity
             style={{
               height: 25,
@@ -264,8 +268,8 @@ const ShitatiHazakFillForm = ({
               disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
                 let numbers = autoFill(7);
-                  setchoosenNums(numbers.randomNumbers);
-                  let strongNumbers = autoFill(hazakimNumber);
+                setchoosenNums(numbers.randomNumbers);
+                let strongNumbers = autoFill(hazakimNumber);
                 setChoosenStrongNums(strongNumbers.randomChoosenStrongNums);
               }}
               small
@@ -320,8 +324,8 @@ const ShitatiHazakFillForm = ({
                 setChoosenStrongNums={setChoosenStrongNums}
                 choosenStrongNums={choosenStrongNums}
                 num={index + 1}
-                    key={index}
-                    hazakimNumber={hazakimNumber}
+                key={index}
+                hazakimNumber={hazakimNumber}
               />
             ))}
           </View>
