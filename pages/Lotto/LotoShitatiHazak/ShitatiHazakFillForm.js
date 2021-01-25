@@ -154,7 +154,7 @@ const ShitatiHazakFillForm = ({
     });
   }, []);
 
-  // useeffect that urns when choosennums or choosenStrongNums changes
+  // useeffect that runs when choosennums or choosenStrongNums changes
   useEffect(() => {
     setusedTable({
       tableNum: 1,
@@ -162,6 +162,9 @@ const ShitatiHazakFillForm = ({
       choosenStrongNums: choosenStrongNums,
     });
 
+
+    
+    
     // setFullTables([
     //   {
     //     tableNum: opendTableNum,

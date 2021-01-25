@@ -74,10 +74,8 @@ const ShitatiTable = ({
   setopendTableTzerufimNum,
   fullTables
 }) => {
-  console.log("tzerufimNumber:",  tzerufimNumber );
   const index1 = 1;
  const route = useRoute();
-//  const [table1, setTable1] = useState([" ", " ", " ", " ", " "]);
   const [strongNumber, setStrongNumber] = useState();
   
   const tableFunction = () => {

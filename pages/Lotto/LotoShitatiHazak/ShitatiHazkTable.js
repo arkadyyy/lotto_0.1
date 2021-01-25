@@ -73,9 +73,25 @@ const ShitatiHazakTable = ({
 }) => {
   const index1 = 1;
   const route = useRoute();
+  const [table1, setTable1] = useState([" ", " ", " ", " ", " ", " ", " "]);
 
-  const [table1, setTable1] = useState(["-", "-", "-", "-", "-", "-", "-"]);
-  const [strongNumbers, setStrongNumbers] = useState(["-", "-", "-", "-"]);
+  useEffect(() => {
+    setTable1([" ", " ", " ", " ", " ", " ", " "])
+    setStrongNumbers(hazakimFunction())
+  },
+ [hazakimNumber])
+  
+
+  const hazakimFunction = () => {
+    let table = [];
+    if (!hazakimNumber){hazakimNumber=4}
+    let x = hazakimNumber;
+    for (x; x > 0; x--) {
+      table.push(" ");
+    }
+    return (table)
+  }
+  const [strongNumbers, setStrongNumbers] = useState(hazakimFunction());
 
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
 
