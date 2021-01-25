@@ -162,7 +162,7 @@ const Sheva77Page = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  console.log("xxx : ", fullTables);
+                  console.log("777 : ", fullTables);
                 }}
                 style={{
                   borderRadius: 17,

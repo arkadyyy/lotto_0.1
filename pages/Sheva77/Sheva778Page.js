@@ -160,6 +160,9 @@ const Sheva778Page = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={() => {
+                  console.log({ sheva78: fullTables });
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",

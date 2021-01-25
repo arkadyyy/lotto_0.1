@@ -43,228 +43,257 @@ const LottoList = (props) => {
 
   return (
     <>
-      <NavBar navigation={navigation} screenName={"LottoList"}  />
-      
-    <Container>
-    <ScrollView>
-      <View style={homestyles.container}>
+      <NavBar navigation={navigation} screenName={"LottoList"} />
+
+      <Container>
+        <ScrollView>
+          <View style={homestyles.container}>
             <View>
               <BlankSquare />
             </View>
-        
-          <View
-            style={{ width: "100%", height: "2%", backgroundColor: "red" }}
-          ></View>
 
-          <List
-            style={{
-              width: "100%",
-              marginTop: "10%",
-            }}
-          >
-            <ListItem
+            <View
+              style={{ width: "100%", height: "2%", backgroundColor: "red" }}
+            ></View>
+
+            <List
               style={{
-                backgroundColor: "red",
                 width: "100%",
-                marginLeft: null,
-                marginVertical: "2%",
+                marginTop: "10%",
               }}
             >
-              <Left>
-                <View>
-                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    לוטו רגיל
-                  </Text>
-                </View>
-              </Left>
-
-              <Right>
-                <View>
-                  <Button
-                    small
-                    style={{
-                      borderRadius: 13,
-                      backgroundColor: "white",
-                    }}
-                    onPress={() => navigation.navigate("LottoPage")}
-                  >
+              <ListItem
+                style={{
+                  backgroundColor: "red",
+                  width: "100%",
+                  marginLeft: null,
+                  marginVertical: "2%",
+                }}
+              >
+                <Left>
+                  <View>
                     <Text
                       style={{
+                        fontSize: 33,
+                        color: "white",
                         fontWeight: "bold",
-                        color: "red",
-                        fontSize: 10,
-                        padding: 15,
                       }}
                     >
-                      שחק עכשיו
+                      לוטו רגיל
                     </Text>
-                  </Button>
-                </View>
-              </Right>
-            </ListItem>
-            <ListItem
-              style={{
-                backgroundColor: "red",
-                width: "100%",
-                marginLeft: null,
-                marginVertical: "2%",
-              }}
-            >
-              <Left>
-                <View>
-                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    דאבל לוטו
-                  </Text>
-                </View>
-              </Left>
+                  </View>
+                </Left>
 
-              <Right>
-                <View>
-                  <Button
-                    small
-                    style={{
-                      borderRadius: 13,
-                      backgroundColor: "white",
-                    }}
-                    // onPress={() => navigation.navigate("Home")}
-                  >
-                    <Text
-                      style={{
-                        fontWeight: "bold",
-                        color: "red",
-                        fontSize: 10,
-                        padding: 15,
-                      }}
-                    >
-                      שחק עכשיו
-                    </Text>
-                  </Button>
-                </View>
-              </Right>
-            </ListItem>
-            <ListItem
-              style={{
-                backgroundColor: "#E50000",
-                width: "100%",
-                marginLeft: null,
-                marginVertical: "2%",
-              }}
-            >
-              <Left>
-                <View>
-                <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    לוטו שיטתי
-                  </Text>
-                </View>
-              </Left>
-
-              <Right>
-                <View>
+                <Right>
+                  <View>
                     <Button
-                                          onPress={() => navigation.navigate("LottoShitatiPage")}
-
-                    small
-                    style={{
-                      borderRadius: 13,
-                      backgroundColor: "white",
-                    }}
-                    // onPress={() => navigation.navigate("Home")}
-                  >
+                      small
+                      style={{
+                        borderRadius: 13,
+                        backgroundColor: "white",
+                      }}
+                      onPress={() => navigation.navigate("LottoPage")}
+                    >
+                      <Text
+                        style={{
+                          fontWeight: "bold",
+                          color: "red",
+                          fontSize: 10,
+                          padding: 15,
+                        }}
+                      >
+                        שחק עכשיו
+                      </Text>
+                    </Button>
+                  </View>
+                </Right>
+              </ListItem>
+              <ListItem
+                style={{
+                  backgroundColor: "red",
+                  width: "100%",
+                  marginLeft: null,
+                  marginVertical: "2%",
+                }}
+              >
+                <Left>
+                  <View>
                     <Text
                       style={{
+                        fontSize: 33,
+                        color: "white",
                         fontWeight: "bold",
-                        color: "red",
-                        fontSize: 10,
-                        padding: 15,
                       }}
                     >
-                      שחק עכשיו
+                      דאבל לוטו
                     </Text>
-                  </Button>
-                </View>
-              </Right>
-            </ListItem>
-            <ListItem
-              style={{
-                backgroundColor: "#D10000",
-                width: "100%",
-                marginLeft: null,
-                marginVertical: "2%",
-              }}
-            >
-              <Left>
-                <View>
-                  <Text style={{ fontSize: 33, color: "white",  fontWeight: "bold" }}>
-                    לוטו שיטתי חזק
-                  </Text>
-                </View>
-              </Left>
+                  </View>
+                </Left>
 
-              <Right>
-                <View>
+                <Right>
+                  <View>
                     <Button
-                    onPress={() => navigation.navigate("LottoShitatiHazakPage")}
-                    small
-                    style={{
-                      borderRadius: 13,
-                      backgroundColor: "white",
-                    }}
-                    // onPress={() => navigation.navigate("Home")}
-                  >
+                      small
+                      style={{
+                        borderRadius: 13,
+                        backgroundColor: "white",
+                      }}
+                      onPress={() => navigation.navigate("DoubleLottoPage")}
+                    >
+                      <Text
+                        style={{
+                          fontWeight: "bold",
+                          color: "red",
+                          fontSize: 10,
+                          padding: 15,
+                        }}
+                      >
+                        שחק עכשיו
+                      </Text>
+                    </Button>
+                  </View>
+                </Right>
+              </ListItem>
+              <ListItem
+                style={{
+                  backgroundColor: "#E50000",
+                  width: "100%",
+                  marginLeft: null,
+                  marginVertical: "2%",
+                }}
+              >
+                <Left>
+                  <View>
                     <Text
                       style={{
+                        fontSize: 33,
+                        color: "white",
                         fontWeight: "bold",
-                        color: "red",
-                        fontSize: 10,
-                        padding: 15,
                       }}
                     >
-                      שחק עכשיו!
+                      לוטו שיטתי
                     </Text>
-                  </Button>
-                </View>
-              </Right>
-            </ListItem>
-          </List>
+                  </View>
+                </Left>
+
+                <Right>
+                  <View>
+                    <Button
+                      onPress={() => navigation.navigate("LottoShitatiPage")}
+                      small
+                      style={{
+                        borderRadius: 13,
+                        backgroundColor: "white",
+                      }}
+                      // onPress={() => navigation.navigate("Home")}
+                    >
+                      <Text
+                        style={{
+                          fontWeight: "bold",
+                          color: "red",
+                          fontSize: 10,
+                          padding: 15,
+                        }}
+                      >
+                        שחק עכשיו
+                      </Text>
+                    </Button>
+                  </View>
+                </Right>
+              </ListItem>
+              <ListItem
+                style={{
+                  backgroundColor: "#D10000",
+                  width: "100%",
+                  marginLeft: null,
+                  marginVertical: "2%",
+                }}
+              >
+                <Left>
+                  <View>
+                    <Text
+                      style={{
+                        fontSize: 33,
+                        color: "white",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      לוטו שיטתי חזק
+                    </Text>
+                  </View>
+                </Left>
+
+                <Right>
+                  <View>
+                    <Button
+                      onPress={() =>
+                        navigation.navigate("LottoShitatiHazakPage")
+                      }
+                      small
+                      style={{
+                        borderRadius: 13,
+                        backgroundColor: "white",
+                      }}
+                      // onPress={() => navigation.navigate("Home")}
+                    >
+                      <Text
+                        style={{
+                          fontWeight: "bold",
+                          color: "red",
+                          fontSize: 10,
+                          padding: 15,
+                        }}
+                      >
+                        שחק עכשיו!
+                      </Text>
+                    </Button>
+                  </View>
+                </Right>
+              </ListItem>
+            </List>
             <View style={{ flexDirection: "row" }}>
-            <Text style={{flex:3, fontSize:25,}}>הסבר על הגרלת הלוטו</Text>
-            <TouchableOpacity
-        style={LottoListstyles.roundButton1}>
-                <Text style={{ fontSize: 20, color: "white"}}>+</Text>
-      </TouchableOpacity>
-              
-            <Text style={{flex:1}}>עוד</Text>
-          </View>
-          <View
-            style={{  padding: 1,backgroundColor:"#F2F2F2"}}
-          >
-            <Text style={{fontSize: 10}}>
-            לאחר התשלום אנו בלוטומטיק מקבלים את הטופס שמילאתם ושולחים אותו עבורכם בנקודת מכירה מורשית של מפעל הפיס, את הטופס שמילאנו עבורגם בנקודה אנו סורקים ושולחים לכם לתיבת הדואר האלקטרוני ומעלים את הטופס הסרוק לאזור האישי שלכם באפליקציה. הטופס מהקורי יישמר אצלנו במשרדי החברה ובמידה וזכיתם בסכום העולה על 11,000 ש"ח יימסר לכם הטופס באופן אישי.
-            </Text>
-          </View>
-          <View
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        width:"100%",
-        padding: 30,
-      }}
-    >
-      <View style={{ width: '25%', height: 1, backgroundColor: "#EB2874" }}></View>
-      <View style={{ width: '25%', height: 1, backgroundColor: "#009943" }}></View>
-      <View style={{ width: '25%', height: 1, backgroundColor: "#E62321" }}></View>
-      <View style={{ width: '25%', height: 1, backgroundColor: "#FF6B00" }}></View>
-    </View>
-    </View>
-      
-          
+              <Text style={{ flex: 3, fontSize: 25 }}>הסבר על הגרלת הלוטו</Text>
+              <TouchableOpacity style={LottoListstyles.roundButton1}>
+                <Text style={{ fontSize: 20, color: "white" }}>+</Text>
+              </TouchableOpacity>
 
-
+              <Text style={{ flex: 1 }}>עוד</Text>
+            </View>
+            <View style={{ padding: 1, backgroundColor: "#F2F2F2" }}>
+              <Text style={{ fontSize: 10 }}>
+                לאחר התשלום אנו בלוטומטיק מקבלים את הטופס שמילאתם ושולחים אותו
+                עבורכם בנקודת מכירה מורשית של מפעל הפיס, את הטופס שמילאנו עבורגם
+                בנקודה אנו סורקים ושולחים לכם לתיבת הדואר האלקטרוני ומעלים את
+                הטופס הסרוק לאזור האישי שלכם באפליקציה. הטופס מהקורי יישמר אצלנו
+                במשרדי החברה ובמידה וזכיתם בסכום העולה על 11,000 ש"ח יימסר לכם
+                הטופס באופן אישי.
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                padding: 30,
+              }}
+            >
+              <View
+                style={{ width: "25%", height: 1, backgroundColor: "#EB2874" }}
+              ></View>
+              <View
+                style={{ width: "25%", height: 1, backgroundColor: "#009943" }}
+              ></View>
+              <View
+                style={{ width: "25%", height: 1, backgroundColor: "#E62321" }}
+              ></View>
+              <View
+                style={{ width: "25%", height: 1, backgroundColor: "#FF6B00" }}
+              ></View>
+            </View>
+          </View>
         </ScrollView>
-
       </Container>
-      
     </>
   );
 };

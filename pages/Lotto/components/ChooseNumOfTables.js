@@ -184,6 +184,160 @@ const ChooseNumOfTables = ({
           </View>
         </View>
       )}
+      {route.name === "DoubleLottoPage" && (
+        <View
+          style={{
+            borderColor: "white",
+            borderWidth: 1,
+            borderRadius: 7,
+            width: "90%",
+            margin: 10,
+            padding: 10,
+          }}
+        >
+          <Text style={{ fontSize: 15, color: "white" }}>
+            בחר מספר טבלאות למילוי
+          </Text>
+          <View style={{}}>
+            <View style={{ flexDirection: "row" }}>
+              <TouchableOpacity
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 30,
+                  borderColor: "white",
+                  borderWidth: 1,
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+                }}
+                onPress={() => {
+                  settableNum(2);
+                }}
+              >
+                <Text style={{ color: tableNum === 2 ? "white" : "#E62321" }}>
+                  2
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 30,
+                  backgroundColor: tableNum === 4 ? "#8CC63F" : "white",
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onPress={() => {
+                  settableNum(4);
+                }}
+              >
+                <Text style={{ color: tableNum === 4 ? "white" : "#E62321" }}>
+                  4
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 30,
+                  backgroundColor: tableNum === 6 ? "#8CC63F" : "white",
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onPress={() => {
+                  settableNum(6);
+                }}
+              >
+                <Text style={{ color: tableNum === 6 ? "white" : "#E62321" }}>
+                  6
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 30,
+                  backgroundColor: tableNum === 8 ? "#8CC63F" : "white",
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onPress={() => {
+                  settableNum(8);
+                }}
+              >
+                <Text style={{ color: tableNum === 8 ? "white" : "#E62321" }}>
+                  8
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 30,
+                  backgroundColor: tableNum === 10 ? "#8CC63F" : "white",
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onPress={() => {
+                  settableNum(10);
+                }}
+              >
+                <Text style={{ color: tableNum === 10 ? "white" : "#E62321" }}>
+                  10
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  width: 25,
+                  height: 25,
+                  borderRadius: 30,
+                  backgroundColor: tableNum === 12 ? "#8CC63F" : "white",
+                  margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onPress={() => {
+                  settableNum(12);
+                }}
+              >
+                <Text style={{ color: tableNum === 12 ? "white" : "#E62321" }}>
+                  12
+                </Text>
+              </TouchableOpacity>
+              {route.name === "LottoPage" && (
+                <TouchableOpacity
+                  style={{
+                    width: 25,
+                    height: 25,
+                    borderRadius: 30,
+                    backgroundColor: tableNum === 14 ? "#8CC63F" : "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  onPress={() => {
+                    settableNum(14);
+                  }}
+                >
+                  {route.name === "LottoPage" ? (
+                    <Text
+                      style={{ color: tableNum === 14 ? "white" : "#E62321" }}
+                    >
+                      14
+                    </Text>
+                  ) : null}
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
+        </View>
+      )}
 
       {route.name === "LottoShitatiPage" && (
         <View

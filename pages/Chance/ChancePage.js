@@ -29,7 +29,7 @@ const ChancePage = ({ navigation }) => {
   const [investNum, setinvestNum] = useState(5);
   const [double, setdouble] = useState(false);
   const [filledForm, setfilledForm] = useState([]);
-
+  const [fullTables, setfullTables] = useState([]);
   return (
     <>
       <ScrollView>
@@ -64,9 +64,9 @@ const ChancePage = ({ navigation }) => {
 
             <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
 
-            {showTable && (
+            {/* {showTable && (
               <FillForm tableNum={tableNum} setshowTable={setshowTable} />
-            )}
+            )} */}
             <View
               style={{
                 borderColor: showTable ? "transparent" : "white",
@@ -95,7 +95,13 @@ const ChancePage = ({ navigation }) => {
                 >
                   בחר צירוף
                 </Text>
-                <Table tableNum={tableNum} setshowTable={setshowTable} />
+                <Table
+                  tableNum={tableNum}
+                  fullTables={fullTables}
+                  setfullTables={setfullTables}
+                  tableNum={tableNum}
+                  setshowTable={setshowTable}
+                />
               </List>
             </View>
             <View
@@ -222,6 +228,9 @@ const ChancePage = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={() => {
+                  console.log({ chance: fullTables, investNum });
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#E62321",

@@ -19,59 +19,16 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
-import ShitatiFillForm from "./components/ShitatiFillForm";
-import ShitatiTable from "./components/ShitatiTable";
-
-const Num = ({ num }) => {
-  return (
-    <>
-      <View
-        style={{
-          width: 20,
-          height: 20,
-          borderRadius: 30,
-          backgroundColor: "white",
-
-          margin: 5,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ color: "black" }}>{num}</Text>
-      </View>
-    </>
-  );
-};
-const StrongNum = ({ num }) => {
-  return (
-    <>
-      <View
-        style={{
-          width: 20,
-          height: 20,
-          borderRadius: 30,
-          backgroundColor: "yellow",
-
-          margin: 5,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ color: "black" }}>{num}</Text>
-      </View>
-    </>
-  );
-};
-
-const LottoShitatiPage = ({ navigation }) => {
+import FillForm from "./components/FillForm";
+import Table from "./components/Table";
+// { tableNum: 1, choosenNums: [1, 2, 3, 4, 5, 6], strongNum: 7 },
+const DoubleLottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
-  const [tableNum, settableNum] = useState(1);
-  const [tzerufimNumber, setTzerufimNumber] = useState(5);
-  const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
+  const [tableNum, settableNum] = useState(2);
   const [double, setdouble] = useState(false);
   const [fullTables, setFullTables] = useState([]);
-  const [indexOfTable, setIndexOfTable] = useState(1);
-  const [opendTableNum, setopendTableNum] = useState(1);
+  const [indexOfTable, setIndexOfTable] = useState("");
+  const [opendTableNum, setopendTableNum] = useState(0);
   return (
     <>
       <ScrollView>
@@ -79,13 +36,7 @@ const LottoShitatiPage = ({ navigation }) => {
         <BlankSquare color='#E62321' />
         <ChooseForm setdouble={setdouble} />
         <View style={{ margin: 15 }}>
-          <View
-            style={{
-              backgroundColor: "#E62321",
-              paddingBottom: 20,
-              height: 600,
-            }}
-          >
+          <View style={{ backgroundColor: "#E62321", paddingBottom: 20 }}>
             <View
               style={{
                 flexDirection: "row",
@@ -110,13 +61,7 @@ const LottoShitatiPage = ({ navigation }) => {
               <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
             </View>
 
-            {/* <ChooseNumOfTables  tzerufimNumber={tzerufimNumber} setTzerufimNumber={setTzerufimNumber}/> */}
-            <ChooseNumOfTables
-              settableNum={settableNum}
-              tableNum={tableNum}
-              tzerufimNumber={tzerufimNumber}
-              setTzerufimNumber={setTzerufimNumber}
-            />
+            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
 
             <Text
               style={{
@@ -126,7 +71,7 @@ const LottoShitatiPage = ({ navigation }) => {
                 marginBottom: 10,
               }}
             >
-              בחר {tzerufimNumber} מספרים וחזק
+              בחר 6 מספרים וחזק
             </Text>
             <View
               style={{
@@ -167,14 +112,11 @@ const LottoShitatiPage = ({ navigation }) => {
               </Button>
             </View>
             {showTable && (
-              <ShitatiFillForm
-                setshowTable={setshowTable}
-                setFullTables={setFullTables}
-                fullTables={fullTables}
-                indexOfTable={indexOfTable}
+              <FillForm
                 opendTableNum={opendTableNum}
-                tzerufimNumber={tzerufimNumber}
-                // opendTableTzerufimNum={opendTableTzerufimNum}
+                setshowTable={setshowTable}
+                fullTables={fullTables}
+                setFullTables={setFullTables}
               />
             )}
             <View
@@ -189,27 +131,25 @@ const LottoShitatiPage = ({ navigation }) => {
             >
               <List
                 style={{
-                  alignItems: "flex-end",
-                  height: 180,
+                  alignItems: "flex-start",
+                  height: 250,
                   marginLeft: -17,
                   flexWrap: "wrap",
                 }}
               >
                 <ScrollView>
-                  {/* {Array.from(Array(tableNum)).map((x, index) => ( */}
-                  <ShitatiTable
-                    tzerufimNumber={tzerufimNumber}
-                    double={double}
-                    key={1}
-                    index={1}
-                    setshowTable={setshowTable}
-                    setIndexOfTable={1}
-                    fullTables={fullTables}
-                    setopendTableNum={setopendTableNum}
-                    setOpendTableTzerufimNum={setOpendTableTzerufimNum}
-                    opendTableTzerufimNum={opendTableTzerufimNum}
-                  />
-                  {/* ))} */}
+                  {Array.from(Array(tableNum)).map((x, index) => (
+                    <Table
+                      fullTables={fullTables}
+                      double={double}
+                      key={index}
+                      index={index + 1}
+                      setshowTable={setshowTable}
+                      setIndexOfTable={setIndexOfTable}
+                      fullTables={fullTables}
+                      setopendTableNum={setopendTableNum}
+                    />
+                  ))}
                 </ScrollView>
               </List>
             </View>
@@ -223,7 +163,10 @@ const LottoShitatiPage = ({ navigation }) => {
               }}
             >
               <Button
-                onPress={() => console.log(fullTables)}
+                onPress={() => {
+                  let summary = { doubleLotto: fullTables };
+                  console.log(summary);
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#8CC63F",
@@ -254,4 +197,4 @@ const LottoShitatiPage = ({ navigation }) => {
     </>
   );
 };
-export default LottoShitatiPage;
+export default DoubleLottoPage;

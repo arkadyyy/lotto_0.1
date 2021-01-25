@@ -24,7 +24,12 @@ const Num = ({
   setcounter,
   counter,
   tableNum,
+  fullTables,
+  setfullTables,
 }) => {
+  // useEffect(() => {
+  //   console.log(pressed);
+  // }, [pressed]);
   return (
     <>
       <TouchableOpacity
@@ -60,6 +65,16 @@ const Num = ({
             });
             setcounter(counter - 1);
           } else {
+            if (tableNum >= pressed.symbolsPressed.length) {
+              setfullTables([
+                ...fullTables,
+                {
+                  chanceType: tableNum,
+                  tableSymbol: pressed.type,
+                  cards: pressed.symbolsPressed,
+                },
+              ]);
+            }
             setpressed({
               numberOfPress: ++pressed.numberOfPress,
               symbolsPressed: [...pressed.symbolsPressed, symbol],
@@ -76,7 +91,7 @@ const Num = ({
   );
 };
 
-const Table = ({ tableNum }) => {
+const Table = ({ tableNum, fullTables, setfullTables }) => {
   const [symbols, setsymbols] = useState([
     "A",
     "K",
@@ -90,18 +105,22 @@ const Table = ({ tableNum }) => {
   const [pressedSpade, setpressedSpade] = useState({
     numberOfPress: 0,
     symbolsPressed: [],
+    type: "spade",
   });
   const [pressedHeart, setpressedHeart] = useState({
     numberOfPress: 0,
     symbolsPressed: [],
+    type: "heart",
   });
   const [pressedDiamond, setpressedDiamond] = useState({
     numberOfPress: 0,
     symbolsPressed: [],
+    type: "diamond",
   });
   const [pressedClubs, setpressedClubs] = useState({
     numberOfPress: 0,
     symbolsPressed: [],
+    type: "clubs",
   });
 
   const [counter, setcounter] = useState(0);
@@ -147,6 +166,8 @@ const Table = ({ tableNum }) => {
                 setcounter={setcounter}
                 counter={counter}
                 tableNum={tableNum}
+                fullTables={fullTables}
+                setfullTables={setfullTables}
               />
             ))}
           </View>
@@ -186,6 +207,8 @@ const Table = ({ tableNum }) => {
                 setcounter={setcounter}
                 counter={counter}
                 tableNum={tableNum}
+                fullTables={fullTables}
+                setfullTables={setfullTables}
               />
             ))}
           </View>
@@ -225,6 +248,8 @@ const Table = ({ tableNum }) => {
                 setcounter={setcounter}
                 counter={counter}
                 tableNum={tableNum}
+                fullTables={fullTables}
+                setfullTables={setfullTables}
               />
             ))}
           </View>
@@ -266,6 +291,8 @@ const Table = ({ tableNum }) => {
                 setcounter={setcounter}
                 counter={counter}
                 tableNum={tableNum}
+                setfullTables={setfullTables}
+                fullTables={fullTables}
               />
             ))}
           </View>

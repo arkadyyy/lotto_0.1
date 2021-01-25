@@ -10,6 +10,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import StackWrapper from "./StackWrapper";
 import DrawerContent from "./pages/DrawerContent/DrawerContent";
 import LottoPage from "./pages/Lotto/LottoPage";
+import DoubleLottoPage from "./pages/Lotto/DoubleLottoPage";
 import LottoList from "./pages/Lotto/LottoList";
 import LottoShitatiPage from "./pages/Lotto/LottoShitatiPage";
 import LottoShitatiHazakPage from "./pages/Lotto/LotoShitatiHazak/LottoShitatiHazakPage";
@@ -44,6 +45,7 @@ export default function App() {
           <Drawer.Screen name='SignIn' component={SignIn} />
           <Drawer.Screen name='LottoList' component={LottoList} />
           <Drawer.Screen name='LottoPage' component={LottoPage} />
+          <Drawer.Screen name='DoubleLottoPage' component={DoubleLottoPage} />
           <Drawer.Screen name='LottoShitatiPage' component={LottoShitatiPage} />
           <Drawer.Screen
             name='LottoShitatiHazakPage'

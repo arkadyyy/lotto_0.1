@@ -37,7 +37,13 @@ const Sheva779Page = ({ navigation }) => {
         <BlankSquare color='#CC1D64' />
         <ChooseForm />
         <View style={{ margin: 15 }}>
-          <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20 }}>
+          <View
+            style={{
+              backgroundColor: "#CC1D64",
+              paddingBottom: 20,
+              height: 650,
+            }}
+          >
             <View
               style={{
                 flexDirection: "row",
@@ -65,7 +71,7 @@ const Sheva779Page = ({ navigation }) => {
             <Text
               style={{
                 color: "white",
-                fontSize: 15,
+                fontSize: 13,
                 marginLeft: 12,
                 marginBottom: 10,
               }}
@@ -160,6 +166,9 @@ const Sheva779Page = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={() => {
+                  console.log({ sheva79: fullTables });
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",

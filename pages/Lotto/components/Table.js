@@ -125,7 +125,7 @@ const Table = ({
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "white", fontSize: 13 }}>טבלה {index1} </Text>
+        <Text style={{ color: "white", fontSize: 11 }}>טבלה {index1} </Text>
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);
@@ -135,6 +135,13 @@ const Table = ({
         >
           <View style={{ flexDirection: "row-reverse" }}>
             {route.name === "LottoPage" && (
+              <>
+                {table1.map((num, index) => (
+                  <Num key={index} num={num} />
+                ))}
+              </>
+            )}
+            {route.name === "DoubleLottoPage" && (
               <>
                 {table1.map((num, index) => (
                   <Num key={index} num={num} />
@@ -172,7 +179,7 @@ const Table = ({
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "white", fontSize: 13 }}>טבלה {index2} </Text>
+        <Text style={{ color: "white", fontSize: 11 }}>טבלה {index2} </Text>
         <TouchableOpacity
           onPress={() => {
             setopendTableNum(index2);
@@ -181,6 +188,13 @@ const Table = ({
         >
           <View style={{ flexDirection: "row-reverse" }}>
             {route.name === "LottoPage" && (
+              <>
+                {table2.map((num, index) => (
+                  <Num key={index} num={num} />
+                ))}
+              </>
+            )}
+            {route.name === "DoubleLottoPage" && (
               <>
                 {table2.map((num, index) => (
                   <Num key={index} num={num} />
@@ -209,51 +223,6 @@ const Table = ({
           </View>
         )}
       </ListItem>
-
-      {/* <ListItem
-        style={{
-          backgroundColor: "#8CC63F",
-          flexWrap: "wrap",
-          marginTop: 4,
-          height: 55,
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ color: "white", fontSize: 13 }}>טבלה {index2}</Text>
-        <TouchableOpacity
-          onPress={() => {
-            setopendTableNum(index2);
-            setshowTable(true);
-          }}
-        >
-          <View style={{ flexDirection: "row", backgroundColor: "blue" }}>
-            <View>
-              {table2.map((num, index) => (
-                <Num key={index} num={num} />
-              ))}
-            </View>
-          </View>
-        </TouchableOpacity>
-        {double && (
-          <View
-            style={{
-              width: 35,
-              height: 35,
-              backgroundColor: "#FF838C",
-              borderWidth: 2,
-              borderColor: "white",
-              borderRadius: 20,
-              position: "absolute",
-              left: 255,
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 3,
-            }}
-          >
-            <Text style={{ color: "white" }}>X2</Text>
-          </View>
-        )}
-      </ListItem> */}
     </>
   );
 };

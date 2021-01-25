@@ -26,24 +26,18 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
   return (
     <>
       <TouchableOpacity
-        disabled={
-          choosenNums.includes(num)
-            ? false
-            : choosenNums.length >= 3
-            ? true
-            : false
-        }
+        disabled={choosenNums.length >= 3 ? true : false}
         onPress={() => {
           choosenNums.length < 3 && setchoosenNums([...choosenNums, num]);
 
-          if (choosenNums.includes(num)) {
-            setchoosenNums(choosenNums.filter((x) => x !== num));
-          }
+          // if (choosenNums.includes(num)) {
+          //   setchoosenNums(choosenNums.filter((x) => x !== num));
+          // }
         }}
         style={{
           width: 30,
           height: 30,
-          backgroundColor: choosenNums.includes(num) ? "red" : "white",
+          backgroundColor: "white",
           justifyContent: "center",
           alignItems: "center",
           borderRadius: 23,
@@ -56,10 +50,23 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
   );
 };
 
-const DisplayChoosenNums = ({ num }) => {
+const DisplayChoosenNums = ({
+  num,
+  setchoosenNums,
+  choosenNums,
+
+  choosenNumIndex,
+}) => {
+  const [displayedNums, setdisplayedNums] = useState(choosenNums);
   return (
     <>
       <TouchableOpacity
+        onPress={() => {
+          let updatedChoosenNums = choosenNums;
+          choosenNums.splice(choosenNumIndex, 1);
+          let index = choosenNums.indexOf(num);
+          setchoosenNums(updatedChoosenNums);
+        }}
         style={{
           width: 35,
           height: 35,
@@ -305,8 +312,14 @@ const FillForm = ({
               margin: 2,
             }}
           >
-            {Array.from(Array(3)).map((x, index) => (
-              <DisplayChoosenNums num={choosenNums[index]} key={index} />
+            {choosenNums.map((x, index) => (
+              <DisplayChoosenNums
+                choosenNums={choosenNums}
+                setchoosenNums={setchoosenNums}
+                num={x}
+                choosenNumIndex={index}
+                key={index}
+              />
             ))}
           </View>
         </View>
