@@ -74,10 +74,28 @@ const ShitatiTable = ({
   setopendTableTzerufimNum,
   fullTables
 }) => {
+  console.log("tzerufimNumber:",  tzerufimNumber );
   const index1 = 1;
  const route = useRoute();
- const [table1, setTable1] = useState(["-", "-", "-", "-", "-", "-", "-"]);
- const [strongNumber, setStrongNumber] = useState(0);
+//  const [table1, setTable1] = useState([" ", " ", " ", " ", " "]);
+  const [strongNumber, setStrongNumber] = useState();
+  
+  const tableFunction = () => {
+    let table = [''];
+    let x = tzerufimNumber;
+    for (x; x > 0; x--) {
+      table.push(" ");
+    }
+    return (table)
+  }
+
+  useEffect(() => {
+    setTable1(tableFunction())
+    setStrongNumber(' ')
+  },
+ [tzerufimNumber])
+  
+  const [table1, setTable1] = useState(tableFunction());
   
  useEffect(() => {
   let fullTable1 = 0;
@@ -90,18 +108,10 @@ const ShitatiTable = ({
       if (fullTable1.choosenNums.length < tzerufimNumber) {
         x = tzerufimNumber - fullTable1.choosenNums.length;
         for (x; x > 0; x--) {
-          fullTable1.choosenNums.push("-");
+          fullTable1.choosenNums.push(" ");
         }
-       
-
     }
-      //  if (fullTable1.choosenStrongNums.length < 1) {
-      //  x = hazakimNumber - fullTable1.choosenStrongNums.length;
-      //  for (x; x > 0; x--) {
-      //      fullTable1.choosenStrongNums.push("-");
-      //    }
-      //    console.log(fullTable1);
-      // }
+    
       setTable1(fullTable1.choosenNums);
       setStrongNumber(fullTable1.strongNum);
     
@@ -113,6 +123,8 @@ const ShitatiTable = ({
 }, [fullTables]);
   return (
     <>
+      {console.log("tzerufimNumber:", tzerufimNumber)}
+      
       <ListItem
         style={{
           backgroundColor: "#8CC63F",

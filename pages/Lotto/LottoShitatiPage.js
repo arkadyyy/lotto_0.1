@@ -66,7 +66,7 @@ const StrongNum = ({ num }) => {
 const LottoShitatiPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
-  const [tzerufimNumber, setTzerufimNumber] = useState(5);
+  const [tzerufimNumber, setTzerufimNumber] = useState('');
   const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
   const [double, setdouble] = useState(false);
   const [fullTables, setFullTables] = useState([]);
