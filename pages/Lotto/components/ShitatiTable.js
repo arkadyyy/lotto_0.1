@@ -81,7 +81,8 @@ const ShitatiTable = ({
   const [strongNumber, setStrongNumber] = useState();
   
   const tableFunction = () => {
-    let table = [''];
+    let table = [];
+    if (!tzerufimNumber){tzerufimNumber=5}
     let x = tzerufimNumber;
     for (x; x > 0; x--) {
       table.push(" ");
@@ -89,13 +90,14 @@ const ShitatiTable = ({
     return (table)
   }
 
+  const [table1, setTable1] = useState(tableFunction());
+
   useEffect(() => {
     setTable1(tableFunction())
     setStrongNumber(' ')
   },
  [tzerufimNumber])
   
-  const [table1, setTable1] = useState(tableFunction());
   
  useEffect(() => {
   let fullTable1 = 0;
@@ -121,6 +123,7 @@ const ShitatiTable = ({
  
   console.log("fullTables : ", fullTables);
 }, [fullTables]);
+
   return (
     <>
       {console.log("tzerufimNumber:", tzerufimNumber)}

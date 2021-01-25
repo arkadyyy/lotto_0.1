@@ -208,6 +208,7 @@ const LottoShitatiPage = ({ navigation }) => {
                     setopendTableNum={setopendTableNum}
                     setOpendTableTzerufimNum={setOpendTableTzerufimNum}
                     opendTableTzerufimNum={opendTableTzerufimNum}
+                    
                   />
                   {/* ))} */}
                 </ScrollView>

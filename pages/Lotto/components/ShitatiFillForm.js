@@ -138,6 +138,10 @@ const ShitatiFillForm = ({
     });
   }, []);
 
+  useEffect(() => {
+    setchoosenNums([]);
+    setStrongNum(0);
+  },[tzerufimNumber])
   // להשוות לנ"ל!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   // useEffect(() => {
@@ -280,7 +284,7 @@ const ShitatiFillForm = ({
             <Button
               onPress={() => {
                 setchoosenNums([]);
-                setStrongNum(0);
+                setStrongNum();
               }}
               small
               rounded
