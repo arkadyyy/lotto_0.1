@@ -58,6 +58,10 @@ const DisplayChoosenNums = ({
   choosenNumIndex,
 }) => {
   const [displayedNums, setdisplayedNums] = useState(choosenNums);
+
+  useEffect(() => {
+    setdisplayedNums(choosenNums);
+  }, [choosenNums]);
   return (
     <>
       <TouchableOpacity
@@ -65,7 +69,13 @@ const DisplayChoosenNums = ({
           let updatedChoosenNums = choosenNums;
           choosenNums.splice(choosenNumIndex, 1);
           let index = choosenNums.indexOf(num);
+          console.log(updatedChoosenNums);
           setchoosenNums(updatedChoosenNums);
+          setdisplayedNums(
+            choosenNums.filter(
+              (choosenNum) => choosenNum !== displayedNums[choosenNumIndex]
+            )
+          );
         }}
         style={{
           width: 35,
@@ -78,7 +88,7 @@ const DisplayChoosenNums = ({
           margin: 2,
         }}
       >
-        <Text style={{ color: "white" }}>{num}</Text>
+        <Text style={{ color: "white" }}>{displayedNums[choosenNumIndex]}</Text>
       </TouchableOpacity>
     </>
   );
@@ -312,11 +322,11 @@ const FillForm = ({
               margin: 2,
             }}
           >
-            {choosenNums.map((x, index) => (
+            {Array.from(Array(3)).map((x, index) => (
               <DisplayChoosenNums
                 choosenNums={choosenNums}
                 setchoosenNums={setchoosenNums}
-                num={x}
+                num={choosenNums[index]}
                 choosenNumIndex={index}
                 key={index}
               />
