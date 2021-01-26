@@ -95,27 +95,9 @@ const DoubleLottoPage = ({ navigation }) => {
                 flexWrap: "wrap",
               }}
             >
+            
               <Button
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
-              >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מלא טבלה אוטומטית
-                </Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
-              >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מחק טבלה אוטומטית
-                </Text>
-              </Button>
-              <Button
+                 onPress={autoFillForm}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
@@ -125,6 +107,17 @@ const DoubleLottoPage = ({ navigation }) => {
                   מלא טופס אוטומטי
                 </Text>
               </Button>
+              <Button
+                style={{ borderColor: "white", margin: 5 }}
+                small
+                rounded
+                bordered
+              >
+                <Text style={{ color: "white", fontSize: 10 }}>
+                מחק טופס אוטומטי
+                </Text>
+              </Button>
+             
             </View>
             {showTable && (
               <FillForm
