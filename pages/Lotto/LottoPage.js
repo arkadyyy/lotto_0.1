@@ -98,6 +98,7 @@ const LottoPage = ({ navigation }) => {
                 flexWrap: "wrap",
               }}
             >
+              
               <Button
                 style={{ borderColor: "white", margin: 5 }}
                 small
@@ -105,17 +106,7 @@ const LottoPage = ({ navigation }) => {
                 bordered
               >
                 <Text style={{ color: "white", fontSize: 10 }}>
-                  מלא טבלה אוטומטית
-                </Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
-              >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מחק טבלה אוטומטית
+                  מחק טופס אוטומטית
                 </Text>
               </Button>
 

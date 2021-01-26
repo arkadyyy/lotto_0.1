@@ -21,6 +21,7 @@ import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import ShitatiFillForm from "./components/ShitatiFillForm";
 import ShitatiTable from "./components/ShitatiTable";
+import { autoFill } from "../Lotto/components/FillForm";
 
 const Num = ({ num }) => {
   return (
@@ -72,6 +73,21 @@ const LottoShitatiPage = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState(1);
   const [opendTableNum, setopendTableNum] = useState(1);
+  
+
+  const autoFillForm=()=>{
+    let fullTabels1=[];
+   for (let i=1;i<tableNum*2+1;i++){
+    let numbers= autoFill(tzerufimNumber);
+      let table={
+        tableNum: i,
+        choosenNums: numbers.randomNumbers,
+        strongNum: numbers.strongNum,
+      }
+      fullTabels1=[...fullTabels1, table]}
+      setFullTables(fullTabels1);     
+  }
+
   return (
     <>
       <ScrollView>
@@ -136,26 +152,7 @@ const LottoShitatiPage = ({ navigation }) => {
               }}
             >
               <Button
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
-              >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מלא טבלה אוטומטית
-                </Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
-              >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מחק טבלה אוטומטית
-                </Text>
-              </Button>
-              <Button
+                onPress={autoFillForm}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
@@ -165,6 +162,17 @@ const LottoShitatiPage = ({ navigation }) => {
                   מלא טופס אוטומטי
                 </Text>
               </Button>
+              <Button
+                style={{ borderColor: "white", margin: 5 }}
+                small
+                rounded
+                bordered
+              >
+                <Text style={{ color: "white", fontSize: 10 }}>
+                  מחק טופס אוטומטי
+                </Text>
+              </Button>
+            
             </View>
             {showTable && (
               <ShitatiFillForm
