@@ -96,7 +96,7 @@ const StrongNum = ({
   );
 };
 
-const autoFill = (hazakimNumber) => {
+ export const autoFill = (hazakimNumber) => {
   let randomNumbers = [];
   for (let i = 7; i > 0; i--) {
     let num = Math.floor(Math.random() * 37) + 1;
@@ -163,15 +163,6 @@ const ShitatiHazakFillForm = ({
     });
 
 
-    
-    
-    // setFullTables([
-    //   {
-    //     tableNum: opendTableNum,
-    //     choosenNums: choosenNums,
-    //     strongNum: strongNum,
-    //   },
-    // ]);
   }, [choosenNums, choosenStrongNums]);
   return (
     <>
@@ -200,25 +191,7 @@ const ShitatiHazakFillForm = ({
             alignItems: "center",
           }}
         >
-          {/* <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity>
-              <FontAwesomeIcon
-                color='white'
-                border={true}
-                inverse
-                icon={faArrowAltCircleRight}
-              />
-            </TouchableOpacity>
-            <Text style={{ color: "white", fontSize: 13 }}>טבלאות</Text>
-            <TouchableOpacity>
-              <FontAwesomeIcon
-                color='white'
-                border={true}
-                inverse
-                icon={faArrowAltCircleLeft}
-              />
-            </TouchableOpacity>
-          </View> */}
+        
           <TouchableOpacity
             style={{
               height: 25,

@@ -97,7 +97,6 @@ const ShitatiHazakTable = ({
 
   useEffect(() => {
     let fullTable1 = 0;
-
     let x;
     fullTables.forEach((table) => {
         fullTable1 = table;

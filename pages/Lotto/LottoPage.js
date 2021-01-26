@@ -100,6 +100,7 @@ const LottoPage = ({ navigation }) => {
             >
               
               <Button
+                onPress={()=>setFullTables([])}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded

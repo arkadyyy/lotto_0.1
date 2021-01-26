@@ -81,35 +81,42 @@ const Table = ({
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
 
   useEffect(() => {
-    let fullTable1 = 0;
-    let fullTable2 = 0;
-    let x;
-    fullTables.forEach((table) => {
-      if (+table.tableNum === +index1) {
-        fullTable1 = table;
+    if (fullTables.length !== 0) {
 
-        if (fullTable1.choosenNums.length < 6) {
-          x = 6 - fullTable1.choosenNums.length;
-          for (x; x > 0; x--) {
-            fullTable1.choosenNums.push(" ");
-          }
-        }
-        settable1(fullTable1.choosenNums);
-        setstrongNum1(fullTable1.strongNum);
-      }
-      if (+table.tableNum === +index2) {
-        fullTable2 = table;
+      let fullTable1 = 0;
+      let fullTable2 = 0;
+      let x;
+      fullTables.forEach((table) => {
+        if (+table.tableNum === +index1) {
+          fullTable1 = table;
 
-        if (fullTable2.choosenNums.length < 6) {
-          x = 6 - fullTable2.choosenNums.length;
-          for (x; x > 0; x--) {
-            fullTable2.choosenNums.push(" ");
+          if (fullTable1.choosenNums.length < 6) {
+            x = 6 - fullTable1.choosenNums.length;
+            for (x; x > 0; x--) {
+              fullTable1.choosenNums.push(" ");
+            }
           }
+          settable1(fullTable1.choosenNums);
+          setstrongNum1(fullTable1.strongNum);
         }
-        settable2(fullTable2.choosenNums);
-        setstrongNum2(fullTable2.strongNum);
-      }
-    });
+        if (+table.tableNum === +index2) {
+          fullTable2 = table;
+
+          if (fullTable2.choosenNums.length < 6) {
+            x = 6 - fullTable2.choosenNums.length;
+            for (x; x > 0; x--) {
+              fullTable2.choosenNums.push(" ");
+            }
+          }
+          settable2(fullTable2.choosenNums);
+          setstrongNum2(fullTable2.strongNum);
+        }
+      });
+    }
+    else {
+      settable1(["-", "-", "-", "-", "-", "-"]);
+      settable2(["-", "-", "-", "-", "-", "-"]);
+    }
 
     console.log("table1 : ", table1);
   }, [fullTables]);
