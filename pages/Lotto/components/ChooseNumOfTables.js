@@ -292,24 +292,7 @@ const ChooseNumOfTables = ({
                   10
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: 25,
-                  height: 25,
-                  borderRadius: 30,
-                  backgroundColor: tableNum === 12 ? "#8CC63F" : "white",
-                  margin: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                onPress={() => {
-                  settableNum(12);
-                }}
-              >
-                <Text style={{ color: tableNum === 12 ? "white" : "#E62321" }}>
-                  12
-                </Text>
-              </TouchableOpacity>
+              
               {route.name === "LottoPage" && (
                 <TouchableOpacity
                   style={{

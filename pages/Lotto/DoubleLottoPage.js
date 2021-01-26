@@ -21,7 +21,8 @@ import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
-// { tableNum: 1, choosenNums: [1, 2, 3, 4, 5, 6], strongNum: 7 },
+import { autoFill } from "./components/FillForm";
+
 const DoubleLottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(2);
@@ -29,6 +30,20 @@ const DoubleLottoPage = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
+
+  const autoFillForm=()=>{
+    let fullTabels1=[];
+   for (let i=1;i<tableNum*2+1;i++){
+    let numbers= autoFill(6);
+      let table={
+        tableNum: i,
+        choosenNums: numbers.randomNumbers,
+        strongNum: numbers.strongNum,
+      }
+      fullTabels1=[...fullTabels1, table]}
+      setFullTables(fullTabels1);     
+  }
+
   return (
     <>
       <ScrollView>
