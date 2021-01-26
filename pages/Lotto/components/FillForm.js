@@ -87,7 +87,7 @@ const StrongNum = ({ num, strongNum, setstrongNum }) => {
   );
 };
 
-const autoFill = (amount) => {
+ export const autoFill = (amount) => {
   let randomNumbers = [];
   let strongNum = 0;
   for (let i = amount; i > 0; i--) {
@@ -103,6 +103,7 @@ const autoFill = (amount) => {
 
   return { randomNumbers, strongNum };
 };
+
 
 const FillForm = ({
   setshowTable,
@@ -138,22 +139,33 @@ const FillForm = ({
     });
   }, []);
 
-  // useeffect that urns when choosennums or strongnum changes
+  // useeffect that runs when choosennums or strongnum changes
   useEffect(() => {
     setusedTable({
       tableNum: opendTableNum,
       choosenNums: choosenNums,
       strongNum: strongNum,
     });
-
-    // setFullTables([
-    //   {
-    //     tableNum: opendTableNum,
-    //     choosenNums: choosenNums,
-    //     strongNum: strongNum,
-    //   },
-    // ]);
+   
   }, [choosenNums, strongNum]);
+
+  // useEffect(() => {
+  //   setusedTable({
+  //     tableNum: ,
+  //     choosenNums: ,
+  //     strongNum: ,
+  //   })
+  // }, [fullTables])
+  
+
+  useEffect(() => {
+    fullTables.forEach((table, index) => {
+      
+        setusedTable(table);
+      
+    });
+  }, [fullTables]);
+
   return (
     <>
       <View

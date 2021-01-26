@@ -91,7 +91,7 @@ const Table = ({
         if (fullTable1.choosenNums.length < 6) {
           x = 6 - fullTable1.choosenNums.length;
           for (x; x > 0; x--) {
-            fullTable1.choosenNums.push("-");
+            fullTable1.choosenNums.push(" ");
           }
         }
         settable1(fullTable1.choosenNums);
@@ -103,7 +103,7 @@ const Table = ({
         if (fullTable2.choosenNums.length < 6) {
           x = 6 - fullTable2.choosenNums.length;
           for (x; x > 0; x--) {
-            fullTable2.choosenNums.push("-");
+            fullTable2.choosenNums.push(" ");
           }
         }
         settable2(fullTable2.choosenNums);

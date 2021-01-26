@@ -21,6 +21,7 @@ import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
+import { autoFill } from "./components/FillForm";
 // { tableNum: 1, choosenNums: [1, 2, 3, 4, 5, 6], strongNum: 7 },
 const LottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -29,6 +30,23 @@ const LottoPage = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
+
+
+  const autoFillForm=()=>{
+    let fullTabels1=[];
+   for (let i=1;i<tableNum*2+1;i++){
+    let numbers= autoFill(6);
+      let table={
+        tableNum: i,
+        choosenNums: numbers.randomNumbers,
+        strongNum: numbers.strongNum,
+      }
+      fullTabels1=[...fullTabels1, table]}
+      setFullTables(fullTabels1);     
+  }
+
+    
+  
   return (
     <>
       <ScrollView>
@@ -100,7 +118,9 @@ const LottoPage = ({ navigation }) => {
                   מחק טבלה אוטומטית
                 </Text>
               </Button>
+
               <Button
+                onPress={autoFillForm}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
@@ -117,6 +137,7 @@ const LottoPage = ({ navigation }) => {
                 setshowTable={setshowTable}
                 fullTables={fullTables}
                 setFullTables={setFullTables}
+                autoFillForm={autoFillForm}
               />
             )}
             <View
@@ -146,7 +167,6 @@ const LottoPage = ({ navigation }) => {
                       index={index + 1}
                       setshowTable={setshowTable}
                       setIndexOfTable={setIndexOfTable}
-                      fullTables={fullTables}
                       setopendTableNum={setopendTableNum}
                     />
                   ))}
