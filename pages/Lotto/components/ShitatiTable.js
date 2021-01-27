@@ -97,30 +97,32 @@ const ShitatiTable = ({
  [tzerufimNumber])
   
   
- useEffect(() => {
-  let fullTable1 = 0;
- 
-  let x;
-  fullTables.forEach((table) => {
-  
-      fullTable1 = table;
-      console.log("fullTable1 : ", fullTable1);
-      if (fullTable1.choosenNums.length < tzerufimNumber) {
-        x = tzerufimNumber - fullTable1.choosenNums.length;
-        for (x; x > 0; x--) {
-          fullTable1.choosenNums.push(" ");
-        }
-    }
-    
-      setTable1(fullTable1.choosenNums);
-      setStrongNumber(fullTable1.strongNum);
-    
- 
-  });
+  useEffect(() => {
+    if (fullTables.length !== 0) {
 
+      let fullTable1 = 0;
  
-  console.log("fullTables : ", fullTables);
-}, [fullTables]);
+      let x;
+      fullTables.forEach((table) => {
+  
+        fullTable1 = table;
+        console.log("fullTable1 : ", fullTable1);
+        if (fullTable1.choosenNums.length < tzerufimNumber) {
+          x = tzerufimNumber - fullTable1.choosenNums.length;
+          for (x; x > 0; x--) {
+            fullTable1.choosenNums.push(" ");
+          }
+        }
+    
+        setTable1(fullTable1.choosenNums);
+        setStrongNumber(fullTable1.strongNum);
+    
+      });
+    } else {
+      setTable1(tableFunction())
+    setStrongNumber(' ')
+    }
+ }, [fullTables]);
 
   return (
     <>
