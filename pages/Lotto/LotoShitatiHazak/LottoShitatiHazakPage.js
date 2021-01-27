@@ -123,14 +123,14 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                 </Text>
               </Button>
               <Button
-               
+                onPress={()=>setFullTables([])}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
                 bordered
               >
                 <Text style={{ color: "white", fontSize: 10 }}>
-                  מחק טבלה אוטומטית
+                  מחק טופס אוטומטית
                 </Text>
               </Button>
             
