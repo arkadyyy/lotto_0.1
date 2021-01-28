@@ -49,7 +49,7 @@ const One23List = (props) => {
         <ScrollView>
           <View style={homestyles.container}>
             <View>
-              <BlankSquare color={"#FF5F00"} />
+              <BlankSquare color={"#FF5F00"} gameName="הגרלת 123" />
             </View>
 
             <View
@@ -115,7 +115,7 @@ const One23List = (props) => {
               </ListItem>
             </List>
             <View style={{ flexDirection: "row" }}>
-              <Text style={{ flex: 3, fontSize: 25 }}>הסבר על הגרלת הלוטו</Text>
+              <Text style={{ flex: 3, fontSize: 25 }}>הסבר על הגרלת 123</Text>
               <TouchableOpacity style={LottoListstyles.roundButton1}>
                 <Text style={{ fontSize: 20, color: "white" }}>+</Text>
               </TouchableOpacity>

@@ -142,23 +142,7 @@ const ShitatiFillForm = ({
     setchoosenNums([]);
     setStrongNum(0);
   },[tzerufimNumber])
-  // להשוות לנ"ל!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-  // useEffect(() => {
-  //   fullTables.forEach((table, index) => {
-  //     if (table.tableNum === opendTableNum) {
-  //       let filteredChoosenNums = table.choosenNums.filter(
-  //         (num) => num !== "-"
-  //       );
-  //       setchoosenNums(filteredChoosenNums);
-  //       setstrongNum(table.strongNum);
-
-  //       setindexOfTable(index);
-  //       setusedTable(table);
-  //     }
-  //   });
-  // }, []);
-  // useeffect that urns when choosennums or strongnum changes
+  
   useEffect(() => {
     setusedTable({
       tableNum: 1,

@@ -20,6 +20,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
+import {autoFill} from "./components/FillForm";
 import Table8 from "./components/Table8";
 import FillFormShitati8 from "./components/FillFormShitati8";
 
@@ -30,6 +31,19 @@ const Sheva778Page = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState(1);
   const [opendTableNum, setopendTableNum] = useState(1);
+
+  const autoFillForm=()=>{
+    let fullTabels1=[];
+   for (let i=1;i<tableNum+1;i++){
+     let numbers= autoFill(8);
+      let table={
+        tableNum: i,
+        choosenNums: numbers.randomNumbers,
+      }
+      fullTabels1=[...fullTabels1, table]}
+      setFullTables(fullTabels1);     
+  }
+
   return (
     <>
       <ScrollView>
@@ -75,8 +89,9 @@ const Sheva778Page = ({ navigation }) => {
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "center",
+                justifyContent: "flex-start",
                 flexWrap: "wrap",
+                marginLeft:20
               }}
             >
               <Button
@@ -84,9 +99,10 @@ const Sheva778Page = ({ navigation }) => {
                 small
                 rounded
                 bordered
+                onPress={autoFillForm}
               >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מלא טבלה אוטומטית
+                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
+                 מלא טופס אוטומטי
                 </Text>
               </Button>
               <Button
@@ -94,21 +110,13 @@ const Sheva778Page = ({ navigation }) => {
                 small
                 rounded
                 bordered
+                onPress={()=>setFullTables([])}
               >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מחק טבלה אוטומטית
+                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
+                  מחק טופס אוטומטי
                 </Text>
               </Button>
-              <Button
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
-              >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מלא טופס אוטומטי
-                </Text>
-              </Button>
+              
             </View>
             {showTable && (
               <FillFormShitati8

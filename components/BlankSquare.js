@@ -16,7 +16,7 @@ import {
   ListItem,
 } from "native-base";
 
-const BlankSquare = ({ color }) => {
+const BlankSquare = ({ color,gameName }) => {
   const route = useRoute();
 
   return (
@@ -48,7 +48,7 @@ const BlankSquare = ({ color }) => {
             }}
           >
             <View>
-              <Text style={{ fontSize: 19 }}>הגרלת לוטו </Text>
+              <Text style={{ fontSize: 19 }}>{gameName} </Text>
               <Text>עד 10,000,000 </Text>
             </View>
             <View style={{ flexDirection: "row" }}>
@@ -240,7 +240,7 @@ const BlankSquare = ({ color }) => {
               }}
               source={require("C:/fullstack/lottoMatic/assets/777/777.png")}
             />
-          ) : route.name === "Sheva77Page" ? (
+              ) : route.name === "One23List" ? (
             <Image
               resizeMode='contain'
               style={{

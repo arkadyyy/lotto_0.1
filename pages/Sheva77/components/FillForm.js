@@ -77,11 +77,11 @@ const StrongNum = ({ num }) => {
   );
 };
 
-const autoFill = (amount) => {
+export const autoFill = (amount) => {
   let randomNumbers = [];
   let strongNum = 0;
   for (let i = amount; i > 0; i--) {
-    let num = Math.floor(Math.random() * 37) + 1;
+    let num = Math.floor(Math.random() * 70) + 1;
     if (randomNumbers.indexOf(num) < 0) {
       randomNumbers.push(num);
     } else {
@@ -112,7 +112,7 @@ const FillForm = ({
     fullTables.forEach((table, index) => {
       if (table.tableNum === opendTableNum) {
         let filteredChoosenNums = table.choosenNums.filter(
-          (num) => num !== "-"
+          (num) => num !== " "
         );
         setchoosenNums(filteredChoosenNums);
 

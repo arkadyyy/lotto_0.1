@@ -67,7 +67,7 @@ const StrongNum = ({ num }) => {
 const LottoShitatiPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
-  const [tzerufimNumber, setTzerufimNumber] = useState('');
+  const [tzerufimNumber, setTzerufimNumber] = useState(5);
   const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
   const [double, setdouble] = useState(false);
   const [fullTables, setFullTables] = useState([]);
@@ -76,16 +76,13 @@ const LottoShitatiPage = ({ navigation }) => {
   
 
   const autoFillForm=()=>{
-    let fullTabels1=[];
-   for (let i=1;i<tableNum*2+1;i++){
-    let numbers= autoFill(tzerufimNumber);
+      let numbers= autoFill(tzerufimNumber);
       let table={
-        tableNum: i,
+        tableNum: 1,
         choosenNums: numbers.randomNumbers,
         strongNum: numbers.strongNum,
       }
-      fullTabels1=[...fullTabels1, table]}
-      setFullTables(fullTabels1);     
+      setFullTables([...fullTables, table]);     
   }
 
   return (
@@ -147,8 +144,9 @@ const LottoShitatiPage = ({ navigation }) => {
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "center",
+                justifyContent: "flex-start",
                 flexWrap: "wrap",
+                marginLeft:20
               }}
             >
               <Button
@@ -158,17 +156,18 @@ const LottoShitatiPage = ({ navigation }) => {
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10 }}>
+                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
                   מלא טופס אוטומטי
                 </Text>
               </Button>
               <Button
+                onPress={()=>setFullTables([])}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10 }}>
+                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
                   מחק טופס אוטומטי
                 </Text>
               </Button>

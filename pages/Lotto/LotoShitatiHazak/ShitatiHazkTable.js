@@ -96,30 +96,35 @@ const ShitatiHazakTable = ({
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
 
   useEffect(() => {
-    let fullTable1 = 0;
-
-    let x;
-    fullTables.forEach((table) => {
+    if (fullTables.length !== 0) {
+      let fullTable1 = 0;
+      let x;
+      fullTables.forEach((table) => {
         fullTable1 = table;
 
         if (fullTable1.choosenNums.length < 7) {
           x = 7 - fullTable1.choosenNums.length;
           for (x; x > 0; x--) {
-            fullTable1.choosenNums.push("-");
+            fullTable1.choosenNums.push(" ");
           }
         }
         if (fullTable1.choosenStrongNums.length < hazakimNumber) {
           x = hazakimNumber - fullTable1.choosenStrongNums.length;
           for (x; x > 0; x--) {
-            fullTable1.choosenStrongNums.push("-");
+            fullTable1.choosenStrongNums.push(" ");
           }
         }
         setTable1(fullTable1.choosenNums);
         setStrongNumbers(fullTable1.choosenStrongNums);
-      // }
-    });
+        // }
+      });
+    }
+    else {
+      setTable1([" ", " ", " ", " ", " ", " ", " "]);
+      setStrongNumbers(hazakimFunction());
+    }
+    
 
-    console.log("table1 : ", table1);
   }, [fullTables]);
 
   return (
