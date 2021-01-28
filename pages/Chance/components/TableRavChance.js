@@ -23,15 +23,10 @@ const Num = ({
   pressed,
   setcounter,
   counter,
-  tablesUsed,
-  settablesUsed,
   tableNum,
-  typeArr,
-  settypeArr,
   fullTables,
   setfullTables,
 }) => {
-  const [isDisabled, setisDisabled] = useState(false);
   useEffect(() => {
     //if we pressed on a card and we added it to pressed.symbolsPressed ...
     if (pressed.symbolsPressed.length >= 1) {
@@ -52,49 +47,12 @@ const Num = ({
         ],
       });
     }
-  }, [pressed]);
-
-  useEffect(() => {
-    let x = disabled(pressed, tablesUsed, tableNum, typeArr);
-    console.log("x : ", x);
-    setisDisabled(x);
+    console.log(" pressed : ", pressed);
   }, [counter]);
-
-  // useEffect(() => {
-  //   setpressed({
-  //     numberOfPress: 0,
-  //     symbolsPressed: [],
-  //     type: pressed.type,
-  //   });
-  // }, [tableNum]);
-
-  const disabled = (pressed, tablesUsed, tableNum, typeArr) => {
-    if (pressed.symbolsPressed.includes(symbol)) {
-      return false;
-    } else if (typeArr.length === tableNum && counter % 4 === 0) {
-      return true;
-    }
-    // else if (pressed.numberOfPress >= 4) {
-    //   return true;
-    // }
-    //  else if (tablesUsed >= tableNum && pressed.symbolsPressed.length >= 4) {
-    //   return true;
-    // }
-    else if (pressed.symbolsPressed.length >= 4) {
-      return true;
-    }
-    // else if (counter % 4 === 0) {
-    //   return true;
-    // }
-    else {
-      return false;
-    }
-  };
 
   return (
     <>
       <TouchableOpacity
-        disabled={isDisabled}
         style={{
           width: 21,
           height: 35,
@@ -107,14 +65,17 @@ const Num = ({
           justifyContent: "center",
           alignItems: "center",
         }}
+        disabled={
+          pressed.symbolsPressed.includes(symbol)
+            ? false
+            : pressed.symbolsPressed.length > 0
+            ? true
+            : counter > 4
+            ? true
+            : false
+        }
         onPress={() => {
-          // {numberOfPress :0 ,symbolsPressed : []}
-          if (
-            pressed.symbolsPressed.includes(symbol) &&
-            pressed.symbolsPressed.length === 1
-          ) {
-            settypeArr(typeArr.filter((type) => type !== pressed.type));
-            settablesUsed(tablesUsed - 1);
+          if (pressed.symbolsPressed.includes(symbol)) {
             setpressed({
               numberOfPress: pressed.numberOfPress - 1,
               symbolsPressed: pressed.symbolsPressed.filter(
@@ -122,33 +83,17 @@ const Num = ({
               ),
               type: pressed.type,
             });
-
-            setcounter(counter - 1);
-          } else if (pressed.symbolsPressed.includes(symbol)) {
-            setpressed({
-              numberOfPress: pressed.numberOfPress - 1,
-              symbolsPressed: pressed.symbolsPressed.filter(
-                (x) => x !== symbol
-              ),
-              type: pressed.type,
-            });
-
             setcounter(counter - 1);
           } else {
             setpressed({
-              numberOfPress: pressed.numberOfPress + 1,
+              numberOfPress: ++pressed.numberOfPress,
               symbolsPressed: [...pressed.symbolsPressed, symbol],
               type: pressed.type,
             });
-
-            if (pressed.symbolsPressed.length === 0) {
-              settypeArr([...typeArr, pressed.type]);
-              settablesUsed(tablesUsed + 1);
-            }
             setcounter(counter + 1);
           }
 
-          console.log("pressed : ", pressed);
+          console.log(pressed);
         }}
       >
         <Text style={{ color: "black" }}>{symbol}</Text>
@@ -157,7 +102,7 @@ const Num = ({
   );
 };
 
-const TableChanceShitati = ({ tableNum, fullTables, setfullTables }) => {
+const TableRavChance = ({ tableNum, fullTables, setfullTables }) => {
   const [symbols, setsymbols] = useState([
     "A",
     "K",
@@ -190,8 +135,6 @@ const TableChanceShitati = ({ tableNum, fullTables, setfullTables }) => {
   });
 
   const [counter, setcounter] = useState(0);
-  const [tablesUsed, settablesUsed] = useState(0);
-  const [typeArr, settypeArr] = useState([]);
 
   useEffect(() => {
     setfullTables({
@@ -207,41 +150,6 @@ const TableChanceShitati = ({ tableNum, fullTables, setfullTables }) => {
       ],
     });
   }, [counter]);
-
-  useEffect(() => {
-    setcounter(0);
-
-    setfullTables({
-      gameType: 1,
-      choosenCards: [
-        {
-          cardType: "heart",
-          card: ["K"],
-        },
-      ],
-    });
-
-    setpressedSpade({
-      numberOfPress: 0,
-      symbolsPressed: [],
-      type: "spade",
-    });
-    setpressedHeart({
-      numberOfPress: 0,
-      symbolsPressed: [],
-      type: "heart",
-    });
-    setpressedDiamond({
-      numberOfPress: 0,
-      symbolsPressed: [],
-      type: "diamond",
-    });
-    setpressedClubs({
-      numberOfPress: 0,
-      symbolsPressed: [],
-      type: "clubs",
-    });
-  }, [tableNum]);
 
   return (
     <>
@@ -277,11 +185,7 @@ const TableChanceShitati = ({ tableNum, fullTables, setfullTables }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
-                tablesUsed={tablesUsed}
-                settablesUsed={settablesUsed}
                 tableNum={tableNum}
-                typeArr={typeArr}
-                settypeArr={settypeArr}
                 fullTables={fullTables}
                 setfullTables={setfullTables}
               />
@@ -322,11 +226,7 @@ const TableChanceShitati = ({ tableNum, fullTables, setfullTables }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
-                tablesUsed={tablesUsed}
-                settablesUsed={settablesUsed}
                 tableNum={tableNum}
-                typeArr={typeArr}
-                settypeArr={settypeArr}
                 fullTables={fullTables}
                 setfullTables={setfullTables}
               />
@@ -367,11 +267,7 @@ const TableChanceShitati = ({ tableNum, fullTables, setfullTables }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
-                tablesUsed={tablesUsed}
-                settablesUsed={settablesUsed}
                 tableNum={tableNum}
-                typeArr={typeArr}
-                settypeArr={settypeArr}
                 fullTables={fullTables}
                 setfullTables={setfullTables}
               />
@@ -414,13 +310,9 @@ const TableChanceShitati = ({ tableNum, fullTables, setfullTables }) => {
                 symbol={symbol}
                 setcounter={setcounter}
                 counter={counter}
-                tablesUsed={tablesUsed}
-                settablesUsed={settablesUsed}
                 tableNum={tableNum}
-                typeArr={typeArr}
-                settypeArr={settypeArr}
-                fullTables={fullTables}
                 setfullTables={setfullTables}
+                fullTables={fullTables}
               />
             ))}
           </View>
@@ -430,4 +322,4 @@ const TableChanceShitati = ({ tableNum, fullTables, setfullTables }) => {
   );
 };
 
-export default TableChanceShitati;
+export default TableRavChance;

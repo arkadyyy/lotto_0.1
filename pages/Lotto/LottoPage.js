@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
+import axios from "axios";
 import {
   Container,
   Header,
@@ -22,7 +23,9 @@ import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 import { autoFill } from "./components/FillForm";
+import { useEffect } from "react";
 // { tableNum: 1, choosenNums: [1, 2, 3, 4, 5, 6], strongNum: 7 },
+
 const LottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(2);
@@ -31,22 +34,28 @@ const LottoPage = ({ navigation }) => {
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
 
-
-  const autoFillForm=()=>{
-    let fullTabels1=[];
-   for (let i=1;i<tableNum*2+1;i++){
-    let numbers= autoFill(6);
-      let table={
+  const autoFillForm = () => {
+    let fullTabels1 = [];
+    for (let i = 1; i < tableNum * 2 + 1; i++) {
+      let numbers = autoFill(6);
+      let table = {
         tableNum: i,
         choosenNums: numbers.randomNumbers,
         strongNum: numbers.strongNum,
-      }
-      fullTabels1=[...fullTabels1, table]}
-      setFullTables(fullTabels1);     
-  }
+      };
+      fullTabels1 = [...fullTabels1, table];
+    }
+    setFullTables(fullTabels1);
+  };
 
-    
-  
+  useEffect(() => {
+    axios
+      .get("http://52.90.122.190:5000/games/lotto/type/regular/0")
+      .then((res) => {
+        console.log(res);
+      });
+  }, []);
+
   return (
     <>
       <ScrollView>
@@ -98,7 +107,6 @@ const LottoPage = ({ navigation }) => {
                 flexWrap: "wrap",
               }}
             >
-              
               <Button
                 style={{ borderColor: "white", margin: 5 }}
                 small

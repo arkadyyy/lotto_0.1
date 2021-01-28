@@ -29,7 +29,15 @@ const ChancePage = ({ navigation }) => {
   const [investNum, setinvestNum] = useState(5);
   const [double, setdouble] = useState(false);
   const [filledForm, setfilledForm] = useState([]);
-  const [fullTables, setfullTables] = useState([]);
+  const [fullTables, setfullTables] = useState({
+    gameType: 1,
+    choosenCards: [
+      {
+        cardType: "heart",
+        card: ["K"],
+      },
+    ],
+  });
   return (
     <>
       <ScrollView>
@@ -99,7 +107,6 @@ const ChancePage = ({ navigation }) => {
                   tableNum={tableNum}
                   fullTables={fullTables}
                   setfullTables={setfullTables}
-                  tableNum={tableNum}
                   setshowTable={setshowTable}
                 />
               </List>

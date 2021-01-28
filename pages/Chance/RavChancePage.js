@@ -20,15 +20,19 @@ import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
-import Table from "./components/Table";
+import TableRavChance from "./components/TableRavChance";
 import chanceListstyles from "./ChanceListStyles";
 
 const RavChancePage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
-  const [tableNum, settableNum] = useState(4);
+  const [tableNum, settableNum] = useState("RavChance");
   const [investNum, setinvestNum] = useState(5);
   const [double, setdouble] = useState(false);
   const [filledForm, setfilledForm] = useState([]);
+  const [fullTables, setfullTables] = useState({
+    gameType: 1,
+    choosenCards: [],
+  });
 
   return (
     <>
@@ -93,7 +97,12 @@ const RavChancePage = ({ navigation }) => {
                 >
                   בחר צירוף
                 </Text>
-                <Table tableNum={tableNum} setshowTable={setshowTable} />
+                <TableRavChance
+                  fullTables={fullTables}
+                  setfullTables={setfullTables}
+                  tableNum={tableNum}
+                  setshowTable={setshowTable}
+                />
               </List>
             </View>
             <View
@@ -220,6 +229,10 @@ const RavChancePage = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={() => {
+                  console.log("RavChance : ", fullTables);
+                  console.log("investNum : ", investNum);
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#E62321",

@@ -29,6 +29,15 @@ const ChanceShitatiPage = ({ navigation }) => {
   const [investNum, setinvestNum] = useState(5);
   const [double, setdouble] = useState(false);
   const [filledForm, setfilledForm] = useState([]);
+  const [fullTables, setfullTables] = useState({
+    gameType: 1,
+    choosenCards: [
+      {
+        cardType: "heart",
+        card: ["K"],
+      },
+    ],
+  });
 
   return (
     <>
@@ -101,6 +110,8 @@ const ChanceShitatiPage = ({ navigation }) => {
                 </Text>
                 <TableChanceShitati
                   tableNum={tableNum}
+                  fullTables={fullTables}
+                  setfullTables={setfullTables}
                   setshowTable={setshowTable}
                 />
               </List>
@@ -229,6 +240,9 @@ const ChanceShitatiPage = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={() => {
+                  console.log("chance shitati : ", fullTables);
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#E62321",
