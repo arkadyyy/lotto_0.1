@@ -20,6 +20,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
+import {autoFill} from "./components/FillForm";
 import Table from "./components/Table";
 
 const Sheva77Page = ({ navigation }) => {
@@ -29,6 +30,19 @@ const Sheva77Page = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState(0);
   const [opendTableNum, setopendTableNum] = useState(0);
+
+  const autoFillForm=()=>{
+    let fullTabels1=[];
+   for (let i=1;i<tableNum+1;i++){
+     let numbers= autoFill(7);
+      let table={
+        tableNum: i,
+        choosenNums: numbers.randomNumbers,
+      }
+      fullTabels1=[...fullTabels1, table]}
+      setFullTables(fullTabels1);     
+  }
+
   return (
     <>
       <ScrollView>
@@ -85,31 +99,24 @@ const Sheva77Page = ({ navigation }) => {
                 small
                 rounded
                 bordered
-              >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מלא טבלה אוטומטית
-                </Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
-              >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מחק טבלה אוטומטית
-                </Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
+                onPress={autoFillForm}
               >
                 <Text style={{ color: "white", fontSize: 10 }}>
                   מלא טופס אוטומטי
                 </Text>
               </Button>
+              <Button
+                style={{ borderColor: "white", margin: 5 }}
+                small
+                rounded
+                bordered
+                onPress={()=>setFullTables([])}
+              >
+                <Text style={{ color: "white", fontSize: 10 }}>
+                  מחק טופס אוטומטי
+                </Text>
+              </Button>
+              
             </View>
             {showTable && (
               <FillForm

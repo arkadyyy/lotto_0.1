@@ -49,6 +49,7 @@ const Table = ({
   const [table, settable] = useState(["-", "-", "-", "-", "-", "-", "-"]);
 
   useEffect(() => {
+    if (fullTables.length>0){
     let fullTable = 0;
     console.log(" fullTables : ", fullTables);
     console.log(" tableNum : ", tableNum);
@@ -65,7 +66,8 @@ const Table = ({
         }
         settable(fullTable.choosenNums);
       }
-    });
+    });}
+    else {settable(["-", "-", "-", "-", "-", "-", "-"])}
   }, [fullTables]);
   return (
     <>
