@@ -115,7 +115,7 @@ const One23List = (props) => {
               </ListItem>
             </List>
             <View style={{ flexDirection: "row" }}>
-              <Text style={{ flex: 3, fontSize: 25 }}>הסבר על הגרלת הלוטו</Text>
+              <Text style={{ flex: 3, fontSize: 25 }}>הסבר על הגרלת 123</Text>
               <TouchableOpacity style={LottoListstyles.roundButton1}>
                 <Text style={{ fontSize: 20, color: "white" }}>+</Text>
               </TouchableOpacity>

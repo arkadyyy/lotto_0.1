@@ -22,8 +22,9 @@ import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 import one23listStyles from "./One23listStyles";
+import { autoFill } from "./components/FillForm";
 
-const LottoPage = ({ navigation }) => {
+const One23Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [investNum, setinvestNum] = useState(1);
@@ -31,6 +32,21 @@ const LottoPage = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
+  
+  const autoFillForm = () => {
+    let fullTabels=[];
+    for (let i = 1; i < tableNum + 1; i++) {
+      let numbers = autoFill(3);
+      let table = {
+        tableNum: i,
+        choosenNums: numbers.randomNumbers,
+        // strongNum: null,
+      }
+      fullTabels=[...fullTabels, table]}
+      setFullTables(fullTabels);     
+    
+  }
+
   return (
     <>
       <ScrollView>
@@ -96,6 +112,7 @@ const LottoPage = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={autoFillForm}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
@@ -106,6 +123,7 @@ const LottoPage = ({ navigation }) => {
                 </Text>
               </Button>
               <Button
+                onPress={()=>setFullTables([])}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
@@ -291,7 +309,7 @@ const LottoPage = ({ navigation }) => {
               zIndex: -2,
             }}
           >
-            <Text style={{ fontSize: 18 }}>הסבר על הגרלות לוטו</Text>
+            <Text style={{ fontSize: 18 }}>הסבר על הגרלות 123</Text>
             <TouchableOpacity>
               <Text>עוד</Text>
             </TouchableOpacity>
@@ -301,4 +319,4 @@ const LottoPage = ({ navigation }) => {
     </>
   );
 };
-export default LottoPage;
+export default One23Page;

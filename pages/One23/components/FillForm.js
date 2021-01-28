@@ -94,9 +94,8 @@ const DisplayChoosenNums = ({
   );
 };
 
-const autoFill = (amount) => {
+export const autoFill = (amount) => {
   let randomNumbers = [];
-  let strongNum = 0;
   for (let i = amount; i > 0; i--) {
     let num = Math.floor(Math.random() * 9) + 1;
     if (randomNumbers.indexOf(num) < 0) {
@@ -106,9 +105,8 @@ const autoFill = (amount) => {
     }
   }
 
-  strongNum = Math.floor(Math.random() * 7) + 1;
 
-  return { randomNumbers, strongNum };
+  return { randomNumbers};
 };
 
 const FillForm = ({

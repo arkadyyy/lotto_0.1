@@ -44,25 +44,30 @@ const Table = ({
   setopendTableNum,
   fullTables,
 }) => {
-  const [table, settable] = useState(["-", "-", "-"]);
+  const [table, setTable] = useState([" ", " ", " "]);
 
   useEffect(() => {
-    let fullTable = 0;
+    if (fullTables.length !== 0) {
 
-    let x;
-    fullTables.forEach((table) => {
-      if (+table.tableNum === +opendTableNum) {
-        fullTable = table;
+      let fullTable = 0;
 
-        if (fullTable.choosenNums.length < 3) {
-          x = 3 - fullTable.choosenNums.length;
-          for (x; x > 0; x--) {
-            fullTable.choosenNums.push("-");
+      let x;
+      fullTables.forEach((table) => {
+        if (+table.tableNum === +opendTableNum) {
+          fullTable = table;
+
+          if (fullTable.choosenNums.length < 3) {
+            x = 3 - fullTable.choosenNums.length;
+            for (x; x > 0; x--) {
+              fullTable.choosenNums.push("-");
+            }
           }
+          setTable(fullTable.choosenNums);
         }
-        settable(fullTable.choosenNums);
-      }
-    });
+      });
+    } else {
+      setTable([" "," "," "])
+    }
   }, [fullTables]);
   return (
     <>
