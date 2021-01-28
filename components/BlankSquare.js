@@ -240,7 +240,7 @@ const BlankSquare = ({ color,gameName }) => {
               }}
               source={require("C:/fullstack/lottoMatic/assets/777/777.png")}
             />
-          ) : route.name === "Sheva77Page" ? (
+              ) : route.name === "One23List" ? (
             <Image
               resizeMode='contain'
               style={{
