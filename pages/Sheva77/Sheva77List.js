@@ -35,19 +35,19 @@ const Seva77List = (props) => {
   return (
     <>
       <NavBar navigation={navigation} screenName={"Seva77List"} />
-      <View
+      {/* <View
         style={{ width: "100%", height: "1%", backgroundColor: "#FF006A" }}
-      ></View>
-      <Container>
+      ></View> */}
+      {/* <Container> */}
         <ScrollView>
           <View style={homestyles.container}>
-            <View
+            {/* <View
               style={{
                 width: "100%",
                 height: "15%",
                 backgroundColor: "#F2F2F2",
               }}
-            ></View>
+            ></View> */}
 
             <View>
             <BlankSquare color={"#FF006A"} gameName="הגרלת 123" />
@@ -251,7 +251,7 @@ const Seva77List = (props) => {
             </View>
           </View>
         </ScrollView>
-      </Container>
+      {/* </Container> */}
     </>
   );
 };

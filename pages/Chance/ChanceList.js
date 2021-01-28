@@ -35,19 +35,19 @@ const ChanceList = (props) => {
   return (
     <>
       <NavBar navigation={navigation} screenName={"ChanceList"} />
-      <View
+      {/* <View
         style={{ width: "100%", height: "1%", backgroundColor: "#009C4A" }}
-      ></View>
+      ></View> */}
       {/* <Container> */}
         <ScrollView>
           {/* <View style={homestyles.container}> */}
-            <View
+            {/* <View
               style={{
                 width: "100%",
                 height: "15%",
                 backgroundColor: "#F2F2F2",
               }}
-            ></View>
+            ></View> */}
 
             <View>
               <BlankSquare color='#009C4A' gameName="הגרלת צ'אנס" />
