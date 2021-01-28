@@ -20,6 +20,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
+import {autoFill} from "./components/FillForm";
 import Table9 from "./components/Table9";
 import FillFormShitati9 from "./components/FillFormShitati9";
 
@@ -30,6 +31,19 @@ const Sheva779Page = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState(1);
   const [opendTableNum, setopendTableNum] = useState(1);
+
+  const autoFillForm=()=>{
+    let fullTabels1=[];
+   for (let i=1;i<tableNum+1;i++){
+     let numbers= autoFill(9);
+      let table={
+        tableNum: i,
+        choosenNums: numbers.randomNumbers,
+      }
+      fullTabels1=[...fullTabels1, table]}
+      setFullTables(fullTabels1);     
+  }
+
   return (
     <>
       <ScrollView>
@@ -92,18 +106,8 @@ const Sheva779Page = ({ navigation }) => {
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מלא טבלה אוטומטית
-                </Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
-              >
-                <Text style={{ color: "white", fontSize: 10 }}>
-                  מחק טבלה אוטומטית
+                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
+                  מלא טופס אוטומטי
                 </Text>
               </Button>
               <Button
@@ -113,9 +117,10 @@ const Sheva779Page = ({ navigation }) => {
                 bordered
               >
                 <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
-                  מלא טופס אוטומטי
+                  מחק טופס אוטומטי
                 </Text>
               </Button>
+             
             </View>
             {showTable && (
               <FillFormShitati9

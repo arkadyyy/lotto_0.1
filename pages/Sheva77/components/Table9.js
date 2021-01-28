@@ -47,18 +47,19 @@ const Table9 = ({
   tableNum,
 }) => {
   const [table, settable] = useState([
-    "-",
-    "-",
-    "-",
-    "-",
-    "-",
-    "-",
-    "-",
-    "-",
-    "-",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
   ]);
 
   useEffect(() => {
+    if (fullTables.length>0){
     let fullTable = 0;
     console.log(" fullTables : ", fullTables);
     console.log(" tableNum : ", tableNum);
@@ -75,7 +76,16 @@ const Table9 = ({
         }
         settable(fullTable.choosenNums);
       }
-    });
+    });}
+    else {settable([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",])}
   }, [fullTables]);
   return (
     <>
