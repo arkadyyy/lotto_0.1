@@ -49,7 +49,7 @@ const One23List = (props) => {
         <ScrollView>
           <View style={homestyles.container}>
             <View>
-              <BlankSquare color={"#FF5F00"} />
+              <BlankSquare color={"#FF5F00"} gameName="הגרלת 123" />
             </View>
 
             <View

@@ -71,21 +71,13 @@ const Table9 = ({
         if (fullTable.choosenNums.length < 9) {
           x = 9 - fullTable.choosenNums.length;
           for (x; x > 0; x--) {
-            fullTable.choosenNums.push("-");
+            fullTable.choosenNums.push( );
           }
         }
         settable(fullTable.choosenNums);
       }
     });}
-    else {settable([
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",])}
+    else {settable([" "," "," "," "," "," "," "," ",])}
   }, [fullTables]);
   return (
     <>

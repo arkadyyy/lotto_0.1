@@ -105,13 +105,13 @@ const ShitatiHazakTable = ({
         if (fullTable1.choosenNums.length < 7) {
           x = 7 - fullTable1.choosenNums.length;
           for (x; x > 0; x--) {
-            fullTable1.choosenNums.push("-");
+            fullTable1.choosenNums.push(" ");
           }
         }
         if (fullTable1.choosenStrongNums.length < hazakimNumber) {
           x = hazakimNumber - fullTable1.choosenStrongNums.length;
           for (x; x > 0; x--) {
-            fullTable1.choosenStrongNums.push("-");
+            fullTable1.choosenStrongNums.push(" ");
           }
         }
         setTable1(fullTable1.choosenNums);

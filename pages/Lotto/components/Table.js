@@ -73,10 +73,10 @@ const Table = ({
   const index2 = index * 2;
   const route = useRoute();
 
-  const [table1, settable1] = useState(["-", "-", "-", "-", "-", "-"]);
-  const [strongNum1, setstrongNum1] = useState(0);
-  const [table2, settable2] = useState(["-", "-", "-", "-", "-", "-"]);
-  const [strongNum2, setstrongNum2] = useState(0);
+  const [table1, settable1] = useState([" ", " ", " ", " ", " ", " "]);
+  const [strongNum1, setstrongNum1] = useState(' ');
+  const [table2, settable2] = useState([" ", " ", " ", " ", " ", " "]);
+  const [strongNum2, setstrongNum2] = useState('');
 
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
 
@@ -114,8 +114,8 @@ const Table = ({
       });
     }
     else {
-      settable1(["-", "-", "-", "-", "-", "-"]);
-      settable2(["-", "-", "-", "-", "-", "-"]);
+      settable1([" ", " ", " ", " ", " ", " "]);
+      settable2([" ", " ", " ", " ", " ", " "]);
     }
 
     console.log("table1 : ", table1);

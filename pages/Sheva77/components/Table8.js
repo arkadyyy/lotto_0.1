@@ -61,7 +61,7 @@ const Table8 = ({
         if (fullTable.choosenNums.length < 8) {
           x = 8 - fullTable.choosenNums.length;
           for (x; x > 0; x--) {
-            fullTable.choosenNums.push("-");
+            fullTable.choosenNums.push(" ");
           }
         }
         settable(fullTable.choosenNums);

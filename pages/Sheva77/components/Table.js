@@ -46,7 +46,7 @@ const Table = ({
   opendTableNum,
   tableNum,
 }) => {
-  const [table, settable] = useState(["-", "-", "-", "-", "-", "-", "-"]);
+  const [table, settable] = useState([" ", " ", " ", " ", " ", " ", " "]);
 
   useEffect(() => {
     if (fullTables.length>0){
@@ -61,13 +61,13 @@ const Table = ({
         if (fullTable.choosenNums.length < 7) {
           x = 7 - fullTable.choosenNums.length;
           for (x; x > 0; x--) {
-            fullTable.choosenNums.push("-");
+            fullTable.choosenNums.push(" ");
           }
         }
         settable(fullTable.choosenNums);
       }
     });}
-    else {settable(["-", "-", "-", "-", "-", "-", "-"])}
+    else {settable([" ", " ", " ", " ", " ", " ", " "])}
   }, [fullTables]);
   return (
     <>

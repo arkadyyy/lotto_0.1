@@ -112,7 +112,7 @@ const FillForm = ({
     fullTables.forEach((table, index) => {
       if (table.tableNum === opendTableNum) {
         let filteredChoosenNums = table.choosenNums.filter(
-          (num) => num !== "-"
+          (num) => num !== " "
         );
         setchoosenNums(filteredChoosenNums);
 

@@ -36,7 +36,7 @@ const Seva77List = (props) => {
     <>
       <NavBar navigation={navigation} screenName={"Seva77List"} />
       <View
-        style={{ width: "100%", height: "1%", backgroundColor: "#FE7BA7" }}
+        style={{ width: "100%", height: "1%", backgroundColor: "#FF006A" }}
       ></View>
       <Container>
         <ScrollView>
@@ -50,7 +50,7 @@ const Seva77List = (props) => {
             ></View>
 
             <View>
-              <BlankSquare />
+            <BlankSquare color={"#FF006A"} gameName="הגרלת 123" />
             </View>
 
             <View

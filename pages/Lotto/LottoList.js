@@ -49,7 +49,7 @@ const LottoList = (props) => {
         <ScrollView>
           <View style={homestyles.container}>
             <View>
-              <BlankSquare />
+              <BlankSquare gameName="הגרלת לוטו" color={"red"} />
             </View>
 
             <View

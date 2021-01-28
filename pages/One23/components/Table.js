@@ -59,7 +59,7 @@ const Table = ({
           if (fullTable.choosenNums.length < 3) {
             x = 3 - fullTable.choosenNums.length;
             for (x; x > 0; x--) {
-              fullTable.choosenNums.push("-");
+              fullTable.choosenNums.push(" ");
             }
           }
           setTable(fullTable.choosenNums);
