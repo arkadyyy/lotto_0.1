@@ -94,8 +94,9 @@ const LottoPage = ({ navigation }) => {
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "center",
+                justifyContent: "flex-start",
                 flexWrap: "wrap",
+                marginLeft:20
               }}
             >
               
@@ -106,7 +107,7 @@ const LottoPage = ({ navigation }) => {
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10 }}>
+                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
                   מחק טופס אוטומטית
                 </Text>
               </Button>
@@ -118,7 +119,7 @@ const LottoPage = ({ navigation }) => {
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10 }}>
+                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
                   מלא טופס אוטומטי
                 </Text>
               </Button>

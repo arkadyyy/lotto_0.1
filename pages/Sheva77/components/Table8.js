@@ -46,9 +46,10 @@ const Table8 = ({
   opendTableNum,
   tableNum,
 }) => {
-  const [table, settable] = useState(["-", "-", "-", "-", "-", "-", "-", "-"]);
+  const [table, settable] = useState(["", "", "", "", "", "", "", ""]);
 
   useEffect(() => {
+    if (fullTables.length>0){
     let fullTable = 0;
     console.log(" fullTables : ", fullTables);
     console.log(" tableNum : ", tableNum);
@@ -65,7 +66,8 @@ const Table8 = ({
         }
         settable(fullTable.choosenNums);
       }
-    });
+    });}
+    else (settable(["", "", "", "", "", "", "", ""]))
   }, [fullTables]);
   return (
     <>

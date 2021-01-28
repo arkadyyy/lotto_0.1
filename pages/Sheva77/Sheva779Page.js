@@ -81,8 +81,9 @@ const Sheva779Page = ({ navigation }) => {
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "center",
+                justifyContent: "flex-start",
                 flexWrap: "wrap",
+                marginLeft:20
               }}
             >
               <Button
@@ -111,7 +112,7 @@ const Sheva779Page = ({ navigation }) => {
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10 }}>
+                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
                   מלא טופס אוטומטי
                 </Text>
               </Button>
