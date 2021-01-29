@@ -43,6 +43,8 @@ const NavBar = (props) => {
       setNavBarTitle(`לוטו שיטתי`);
     }else if (route.name === "LottoShitatiHazakPage") {
       setNavBarTitle('לוטו שיטתי חזק');
+    }else if (route.name === "LottoShitatiHazakPage") {
+      setNavBarTitle('לוטו שיטתי חזק');
     
     } 
     }, [route.name])
