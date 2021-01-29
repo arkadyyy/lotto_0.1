@@ -27,11 +27,33 @@ import ChanceShitatiPage from "./pages/Chance/ChanceShitatiPage";
 // import { Provider } from "react-redux";
 // import { store } from "./redux/store";
 
+// import Amplify, { Auth } from "aws-amplify-react-native";
+import Amplify, { Auth } from "aws-amplify";
+import awsconfig from "./aws-exports";
+import { useEffect } from "react";
+// const currentConfig = Auth.configure();
+// Amplify.configure(currentConfig);
+
+// Amplify.configure(awsconfig);
+
+// const currentConfig = Auth.configure();
+// Amplify.configure(currentConfig);
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 export default function App() {
   I18nManager.forceRTL(true);
+
+  useEffect(() => {
+    Auth.currentSession().then((res) => {
+      let accessToken = res.getAccessToken();
+      let jwt = accessToken.getJwtToken();
+      //You can print them to see the full objects
+      console.log(`myAccessToken: ${JSON.stringify(accessToken)}`);
+      console.log(`myJwt: ${jwt}`);
+    });
+  }, []);
   return (
     <>
       {/* <Provider store={store} > */}

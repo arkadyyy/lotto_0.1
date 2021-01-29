@@ -1,0 +1,33 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lottomatic-dev-144445-authRole",
+      "UnauthRoleArn": "arn:aws:iam::272599460974:role/amplify-lottomatic-dev-144445-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::272599460974:role/amplify-lottomatic-dev-144445-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lottomatic-dev-144445-deployment",
+      "UnauthRoleName": "amplify-lottomatic-dev-144445-unauthRole",
+      "StackName": "amplify-lottomatic-dev-144445",
+      "StackId": "arn:aws:cloudformation:us-east-1:272599460974:stack/amplify-lottomatic-dev-144445/c77e24d0-622f-11eb-95c5-12be65336f97",
+      "AmplifyAppId": "d3okhncv7hji8q"
+    },
+    "categories": {
+      "auth": {
+        "lottomaticaf01de9e": {
+          "userPoolId": "us-east-1_83dRNmvNP",
+          "userPoolName": "lottomatic-dev",
+          "webClientId": "1jpc646626lpuc9a18mpjgrp5j",
+          "nativeClientId": "4uj7frd1lmt9mtdmq070si4j2t",
+          "identityPoolId": "us-east-1:e1f5cb63-6c02-4f7c-922d-4dd6b99d97a4",
+          "identityPoolName": "lottomatic__dev",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::272599460974:role/amplify-lottomatic-dev-151633-authRole",
+          "authRoleName": "amplify-lottomatic-dev-151633-authRole",
+          "unauthRoleArn": "arn:aws:iam::272599460974:role/amplify-lottomatic-dev-151633-unauthRole",
+          "unauthRoleName": "amplify-lottomatic-dev-151633-unauthRole",
+          "googleClientId": "1"
+        }
+      }
+    }
+  }
+}

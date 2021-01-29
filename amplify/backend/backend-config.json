@@ -1,0 +1,11 @@
+{
+  "auth": {
+    "lottomaticaf01de9e": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

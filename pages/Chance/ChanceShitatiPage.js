@@ -31,12 +31,7 @@ const ChanceShitatiPage = ({ navigation }) => {
   const [filledForm, setfilledForm] = useState([]);
   const [fullTables, setfullTables] = useState({
     gameType: 1,
-    choosenCards: [
-      {
-        cardType: "heart",
-        card: ["K"],
-      },
-    ],
+    choosenCards: [],
   });
 
   return (

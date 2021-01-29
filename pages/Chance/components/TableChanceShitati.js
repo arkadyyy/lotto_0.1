@@ -56,8 +56,9 @@ const Num = ({
 
   useEffect(() => {
     let x = disabled(pressed, tablesUsed, tableNum, typeArr);
-    console.log("x : ", x);
+
     setisDisabled(x);
+    console.log(counter);
   }, [counter]);
 
   // useEffect(() => {
@@ -70,8 +71,10 @@ const Num = ({
 
   const disabled = (pressed, tablesUsed, tableNum, typeArr) => {
     if (pressed.symbolsPressed.includes(symbol)) {
+      console.log("i am in first if");
       return false;
-    } else if (typeArr.length === tableNum && counter % 4 === 0) {
+    } else if (typeArr.length === tableNum && counter / 4 === tableNum) {
+      console.log("i am in secend if");
       return true;
     }
     // else if (pressed.numberOfPress >= 4) {
@@ -81,6 +84,7 @@ const Num = ({
     //   return true;
     // }
     else if (pressed.symbolsPressed.length >= 4) {
+      console.log("i am in third if");
       return true;
     }
     // else if (counter % 4 === 0) {
@@ -241,6 +245,7 @@ const TableChanceShitati = ({ tableNum, fullTables, setfullTables }) => {
       symbolsPressed: [],
       type: "clubs",
     });
+    settypeArr([]);
   }, [tableNum]);
 
   return (
