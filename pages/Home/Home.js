@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
+import EStyleSheet from "react-native-extended-stylesheet";
 import {
   ScrollView,
   StyleSheet,
@@ -80,9 +80,9 @@ export default function Home({ navigation }) {
               </View>
               <View style={[homestyles.btnWrapper]}>
                 <Button
-                    onPress={() => {
-                      navigation.navigate("ChanceList");
-                    }}
+                  onPress={() => {
+                    navigation.navigate("ChanceList");
+                  }}
                   style={[
                     homestyles.openingPageBtn,
                     { backgroundColor: "#009943" },
@@ -112,7 +112,7 @@ export default function Home({ navigation }) {
               </View>
               <View style={homestyles.btnWrapper}>
                 <Button
-                   onPress={() => {
+                  onPress={() => {
                     navigation.navigate("Sheva77List");
                   }}
                   style={[
@@ -145,7 +145,7 @@ export default function Home({ navigation }) {
             <View style={homestyles.openingPageBtns}>
               <View style={homestyles.btnWrapper}>
                 <Button
-                   onPress={() => {
+                  onPress={() => {
                     navigation.navigate("One23List");
                   }}
                   style={[

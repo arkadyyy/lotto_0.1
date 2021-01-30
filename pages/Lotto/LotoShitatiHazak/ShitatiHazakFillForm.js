@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View } from "react-native";
+import { Text, View, Dimensions } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Container,
@@ -21,8 +21,8 @@ import {
   faArrowAltCircleRight,
   faArrowAltCircleLeft,
 } from "@fortawesome/free-regular-svg-icons";
-
-const checkIfPressed = (type) => {};
+import EStyleSheet from "react-native-extended-stylesheet";
+const { width, height } = Dimensions.get("window");
 
 const Num = ({ num, choosenNums, setchoosenNums }) => {
   return (
@@ -96,7 +96,7 @@ const StrongNum = ({
   );
 };
 
- export const autoFill = (hazakimNumber) => {
+export const autoFill = (hazakimNumber) => {
   let randomNumbers = [];
   for (let i = 7; i > 0; i--) {
     let num = Math.floor(Math.random() * 37) + 1;
@@ -161,8 +161,6 @@ const ShitatiHazakFillForm = ({
       choosenNums: choosenNums,
       choosenStrongNums: choosenStrongNums,
     });
-
-
   }, [choosenNums, choosenStrongNums]);
   return (
     <>
@@ -184,14 +182,13 @@ const ShitatiHazakFillForm = ({
             height: 70,
             position: "relative",
             top: -40,
-            left: "51%",
+            left: EStyleSheet.value("$rem") * 227,
             zIndex: 2001,
             flexDirection: "row",
             justifyContent: "space-around",
             alignItems: "center",
           }}
         >
-        
           <TouchableOpacity
             style={{
               height: 25,
@@ -257,7 +254,6 @@ const ShitatiHazakFillForm = ({
               onPress={() => {
                 setchoosenNums([]);
                 setChoosenStrongNums([]);
-                
               }}
               small
               rounded
@@ -278,22 +274,29 @@ const ShitatiHazakFillForm = ({
             ))}
           </View>
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-          {(choosenNums.length>0) && (<Text style={{color:"white", marginTop:7}}>המספרים שנבחרו</Text>)}
-            {choosenNums.slice(0).reverse().map((num) => (
-              <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "pink",      
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ color: "black" }}>{num}</Text>
-            </View>
-            ))}
+            {choosenNums.length > 0 && (
+              <Text style={{ color: "white", marginTop: 7 }}>
+                המספרים שנבחרו
+              </Text>
+            )}
+            {choosenNums
+              .slice(0)
+              .reverse()
+              .map((num) => (
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "pink",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ color: "black" }}>{num}</Text>
+                </View>
+              ))}
           </View>
         </View>
         <View style={{ marginTop: -10 }}>

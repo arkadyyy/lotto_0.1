@@ -21,7 +21,7 @@ import ChooseNumOfTables from "../../Lotto/components/ChooseNumOfTables";
 import ChooseForm from "../components/ChooseForm";
 import ShitatiHazakFillForm from "./ShitatiHazakFillForm";
 import ShitatiHazakTable from "./ShitatiHazkTable";
-import {autoFill} from "./ShitatiHazakFillForm";
+import { autoFill } from "./ShitatiHazakFillForm";
 
 const LottoShitatiHazakPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -35,26 +35,23 @@ const LottoShitatiHazakPage = ({ navigation }) => {
   const [indexOfTable, setIndexOfTable] = useState(1);
   const [opendTableNum, setopendTableNum] = useState(1);
 
-  const autoFillForm=()=>{
-    let numbers= autoFill(hazakimNumber);
-  
-      let table={
-        tableNum: 1,
-        choosenNums: numbers.randomNumbers,
-        // strongNum: numbers.randomChoosenStrongNums,
-        choosenStrongNums: numbers.randomChoosenStrongNums,
-      } 
-    setFullTables([...fullTables, table]);     
+  const autoFillForm = () => {
+    let numbers = autoFill(hazakimNumber);
 
-  }
+    let table = {
+      tableNum: 1,
+      choosenNums: numbers.randomNumbers,
+      // strongNum: numbers.randomChoosenStrongNums,
+      choosenStrongNums: numbers.randomChoosenStrongNums,
+    };
+    setFullTables([...fullTables, table]);
+  };
 
-
-  
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
-        <BlankSquare color='#E62321' />
+        <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         <ChooseForm setdouble={setdouble} />
         <View style={{ margin: 15 }}>
           <View
@@ -109,7 +106,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 flexWrap: "wrap",
-                marginLeft:20
+                marginLeft: 20,
               }}
             >
               <Button
@@ -119,22 +116,35 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
-                מלא טופס אוטומטי
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    width: 70,
+                    textAlign: "center",
+                  }}
+                >
+                  מלא טופס אוטומטי
                 </Text>
               </Button>
               <Button
-                onPress={()=>setFullTables([])}
+                onPress={() => setFullTables([])}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    width: 70,
+                    textAlign: "center",
+                  }}
+                >
                   מחק טופס אוטומטית
                 </Text>
               </Button>
-            
             </View>
             {showTable && (
               <ShitatiHazakFillForm
@@ -165,7 +175,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                   flexWrap: "wrap",
                 }}
               >
-                <ScrollView >
+                <ScrollView>
                   {/* {Array.from(Array(tableNum)).map((x, index) => ( */}
                   <ShitatiHazakTable
                     // tzerufimNumber={tzerufimNumber}

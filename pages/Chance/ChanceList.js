@@ -39,9 +39,9 @@ const ChanceList = (props) => {
         style={{ width: "100%", height: "1%", backgroundColor: "#009C4A" }}
       ></View> */}
       {/* <Container> */}
-        <ScrollView>
-          {/* <View style={homestyles.container}> */}
-            {/* <View
+      <ScrollView>
+        {/* <View style={homestyles.container}> */}
+        {/* <View
               style={{
                 width: "100%",
                 height: "15%",
@@ -49,205 +49,197 @@ const ChanceList = (props) => {
               }}
             ></View> */}
 
-            <View>
-              <BlankSquare color='#009C4A' gameName="הגרלת צ'אנס" />
-            </View>
+        <View>
+          <BlankSquare color='#009C4A' gameName="הגרלת צ'אנס" />
+        </View>
 
-            <View
-              style={{
-                width: "100%",
-                height: "1%",
-                backgroundColor: "#009C4A",
-              }}
-            ></View>
+        <List
+          style={{
+            width: "100%",
+          }}
+        >
+          <ListItem
+            style={{
+              backgroundColor: "#009C4B",
+              width: "100%",
+              marginLeft: null,
+              marginVertical: "2%",
+            }}
+          >
+            <Left>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 33,
+                    color: "white",
+                    fontWeight: "bold",
+                  }}
+                >
+                  צ'אנס רגיל
+                </Text>
+              </View>
+            </Left>
 
-            <List
-              style={{
-                width: "100%",
-              }}
-            >
-              <ListItem
-                style={{
-                  backgroundColor: "#009C4B",
-                  width: "100%",
-                  marginLeft: null,
-                  marginVertical: "2%",
-                }}
-              >
-                <Left>
-                  <View>
-                    <Text
-                      style={{
-                        fontSize: 33,
-                        color: "white",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      צ'אנס רגיל
-                    </Text>
-                  </View>
-                </Left>
+            <Right>
+              <View>
+                <Button
+                  small
+                  style={{
+                    borderRadius: 13,
+                    backgroundColor: "white",
+                  }}
+                  onPress={() => navigation.navigate("ChancePage")}
+                >
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                      color: "#009C4B",
+                      fontSize: 10,
+                      padding: 15,
+                    }}
+                  >
+                    שחק עכשיו
+                  </Text>
+                </Button>
+              </View>
+            </Right>
+          </ListItem>
+          <ListItem
+            style={{
+              backgroundColor: "#009C4B",
+              width: "100%",
+              marginLeft: null,
+              marginVertical: "2%",
+            }}
+          >
+            <Left>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 33,
+                    color: "white",
+                    fontWeight: "bold",
+                  }}
+                >
+                  רב צ'אנס
+                </Text>
+              </View>
+            </Left>
 
-                <Right>
-                  <View>
-                    <Button
-                      small
-                      style={{
-                        borderRadius: 13,
-                        backgroundColor: "white",
-                      }}
-                      onPress={() => navigation.navigate("ChancePage")}
-                    >
-                      <Text
-                        style={{
-                          fontWeight: "bold",
-                          color: "#009C4B",
-                          fontSize: 10,
-                          padding: 15,
-                        }}
-                      >
-                        שחק עכשיו
-                      </Text>
-                    </Button>
-                  </View>
-                </Right>
-              </ListItem>
-              <ListItem
-                style={{
-                  backgroundColor: "#009C4B",
-                  width: "100%",
-                  marginLeft: null,
-                  marginVertical: "2%",
-                }}
-              >
-                <Left>
-                  <View>
-                    <Text
-                      style={{
-                        fontSize: 33,
-                        color: "white",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      רב צ'אנס
-                    </Text>
-                  </View>
-                </Left>
+            <Right>
+              <View>
+                <Button
+                  small
+                  style={{
+                    borderRadius: 13,
+                    backgroundColor: "white",
+                  }}
+                  onPress={() => navigation.navigate("RavChancePage")}
+                >
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                      color: "#009C4B",
+                      fontSize: 10,
+                      padding: 15,
+                    }}
+                  >
+                    שחק עכשיו
+                  </Text>
+                </Button>
+              </View>
+            </Right>
+          </ListItem>
+          <ListItem
+            style={{
+              backgroundColor: "#00552B",
+              width: "100%",
+              marginLeft: null,
+              marginVertical: "2%",
+            }}
+          >
+            <Left>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 33,
+                    color: "white",
+                    fontWeight: "bold",
+                  }}
+                >
+                  צ'אנס שיטתי
+                </Text>
+              </View>
+            </Left>
 
-                <Right>
-                  <View>
-                    <Button
-                      small
-                      style={{
-                        borderRadius: 13,
-                        backgroundColor: "white",
-                      }}
-                      onPress={() => navigation.navigate("RavChancePage")}
-                    >
-                      <Text
-                        style={{
-                          fontWeight: "bold",
-                          color: "#009C4B",
-                          fontSize: 10,
-                          padding: 15,
-                        }}
-                      >
-                        שחק עכשיו
-                      </Text>
-                    </Button>
-                  </View>
-                </Right>
-              </ListItem>
-              <ListItem
-                style={{
-                  backgroundColor: "#00552B",
-                  width: "100%",
-                  marginLeft: null,
-                  marginVertical: "2%",
-                }}
-              >
-                <Left>
-                  <View>
-                    <Text
-                      style={{
-                        fontSize: 33,
-                        color: "white",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      צ'אנס שיטתי
-                    </Text>
-                  </View>
-                </Left>
+            <Right>
+              <View>
+                <Button
+                  small
+                  style={{
+                    borderRadius: 13,
+                    backgroundColor: "white",
+                  }}
+                  onPress={() => navigation.navigate("ChanceShitatiPage")}
+                >
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                      color: "#009C4B",
+                      fontSize: 10,
+                      padding: 15,
+                    }}
+                  >
+                    שחק עכשיו
+                  </Text>
+                </Button>
+              </View>
+            </Right>
+          </ListItem>
+        </List>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ height: "50%", backgroundColor: "white" }}></View>
+          <Text style={{ flex: 3, fontSize: 25 }}>הסבר על הגרלת צ'אנס</Text>
+          <TouchableOpacity style={ChanceListstyles.roundButton1}>
+            <Text style={{ fontSize: 20, color: "white" }}>+</Text>
+          </TouchableOpacity>
 
-                <Right>
-                  <View>
-                    <Button
-                      small
-                      style={{
-                        borderRadius: 13,
-                        backgroundColor: "white",
-                      }}
-                      onPress={() => navigation.navigate("ChanceShitatiPage")}
-                    >
-                      <Text
-                        style={{
-                          fontWeight: "bold",
-                          color: "#009C4B",
-                          fontSize: 10,
-                          padding: 15,
-                        }}
-                      >
-                        שחק עכשיו
-                      </Text>
-                    </Button>
-                  </View>
-                </Right>
-              </ListItem>
-            </List>
-            <View style={{ flexDirection: "row" }}>
-              <View style={{ height: "50%", backgroundColor: "white" }}></View>
-              <Text style={{ flex: 3, fontSize: 25 }}>הסבר על הגרלת צ'אנס</Text>
-              <TouchableOpacity style={ChanceListstyles.roundButton1}>
-                <Text style={{ fontSize: 20, color: "white" }}>+</Text>
-              </TouchableOpacity>
-
-              <Text style={{ flex: 1 }}> עוד..</Text>
-            </View>
-            <View style={{ padding: 1, backgroundColor: "#F2F2F2" }}>
-              <Text style={{ fontSize: 10 }}>
-                לאחר התשלום אנו בלוטומטיק מקבלים את הטופס שמילאתם ושולחים אותו
-                עבורכם בנקודת מכירה מורשית של מפעל הפיס, את הטופס שמילאנו עבורגם
-                בנקודה אנו סורקים ושולחים לכם לתיבת הדואר האלקטרוני ומעלים את
-                הטופס הסרוק לאזור האישי שלכם באפליקציה. הטופס מהקורי יישמר אצלנו
-                במשרדי החברה ובמידה וזכיתם בסכום העולה על 11,000 ש"ח יימסר לכם
-                הטופס באופן אישי.
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-                padding: 30,
-              }}
-            >
-              <View
-                style={{ width: "25%", height: 1, backgroundColor: "#EB2874" }}
-              ></View>
-              <View
-                style={{ width: "25%", height: 1, backgroundColor: "#009943" }}
-              ></View>
-              <View
-                style={{ width: "25%", height: 1, backgroundColor: "#E62321" }}
-              ></View>
-              <View
-                style={{ width: "25%", height: 1, backgroundColor: "#FF6B00" }}
-              ></View>
-            </View>
-          {/* </View> */}
-        </ScrollView>
+          <Text style={{ flex: 1 }}> עוד..</Text>
+        </View>
+        <View style={{ padding: 1, backgroundColor: "#F2F2F2" }}>
+          <Text style={{ fontSize: 10 }}>
+            לאחר התשלום אנו בלוטומטיק מקבלים את הטופס שמילאתם ושולחים אותו
+            עבורכם בנקודת מכירה מורשית של מפעל הפיס, את הטופס שמילאנו עבורגם
+            בנקודה אנו סורקים ושולחים לכם לתיבת הדואר האלקטרוני ומעלים את הטופס
+            הסרוק לאזור האישי שלכם באפליקציה. הטופס מהקורי יישמר אצלנו במשרדי
+            החברה ובמידה וזכיתם בסכום העולה על 11,000 ש"ח יימסר לכם הטופס באופן
+            אישי.
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            padding: 30,
+          }}
+        >
+          <View
+            style={{ width: "25%", height: 1, backgroundColor: "#EB2874" }}
+          ></View>
+          <View
+            style={{ width: "25%", height: 1, backgroundColor: "#009943" }}
+          ></View>
+          <View
+            style={{ width: "25%", height: 1, backgroundColor: "#E62321" }}
+          ></View>
+          <View
+            style={{ width: "25%", height: 1, backgroundColor: "#FF6B00" }}
+          ></View>
+        </View>
+        {/* </View> */}
+      </ScrollView>
       {/* </Container> */}
     </>
   );

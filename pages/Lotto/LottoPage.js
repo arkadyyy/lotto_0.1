@@ -24,7 +24,26 @@ import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 import { autoFill } from "./components/FillForm";
 import { useEffect } from "react";
+import Amplify, { Auth } from "aws-amplify";
+import awsconfig from "../../aws-exports";
+Amplify.configure(awsconfig);
 // { tableNum: 1, choosenNums: [1, 2, 3, 4, 5, 6], strongNum: 7 },
+
+async function signIn() {
+  try {
+    const user = await Auth.signIn("dlevkovich05@gmail.com", "Dekel1145");
+    // console.log(user);
+  } catch (error) {
+    console.log("error signing in", error);
+  }
+  Auth.currentSession().then((res) => {
+    let accessToken = res.getAccessToken();
+    let jwt = accessToken.getJwtToken();
+    //You can print them to see the full objects
+    console.log(`myAccessToken: ${JSON.stringify(accessToken)}`);
+    console.log(`myJwt: ${jwt}`);
+  });
+}
 
 const LottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -33,6 +52,10 @@ const LottoPage = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
+
+  useEffect(() => {
+    signIn();
+  }, []);
 
   const autoFillForm = () => {
     let fullTabels1 = [];
@@ -50,7 +73,13 @@ const LottoPage = ({ navigation }) => {
 
   useEffect(() => {
     axios
-      .get("http://52.90.122.190:5000/games/lotto/type/regular/0")
+      .get("http://52.90.122.190:5000/games/lotto/type/regular/0", {
+        headers: {
+          //the token is myjwt :
+          authorization:
+            "eyJraWQiOiI3OTNMc2t1K3lDQ3FtTWlGc3UyWFE2R0dOREFxbDJWaDJDT0JJaWNVS1BrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJkMDBlNjUzMC1kN2VhLTQzM2EtYTE2OS01OWU3MjM2MmE5NmEiLCJjb2duaXRvOmdyb3VwcyI6WyJjbGllbnRzIiwiYWRtaW5zIl0sImV2ZW50X2lkIjoiODZkMmQwNzUtNWY4Ny00NTFiLWI2ZGItODczMGRlOGJmNjNiIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJhd3MuY29nbml0by5zaWduaW4udXNlci5hZG1pbiIsImF1dGhfdGltZSI6MTYxMjAyNzMxNSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfODNkUk5tdk5QIiwiZXhwIjoxNjEyMDMwOTE1LCJpYXQiOjE2MTIwMjczMTUsImp0aSI6IjdkMmY4ZGMyLTRiNWYtNDAyOS1hNGYxLWE0ZGJhYjY4NjY4MyIsImNsaWVudF9pZCI6IjFqcGM2NDY2MjZscHVjOWExOG1wamdycDVqIiwidXNlcm5hbWUiOiJkMDBlNjUzMC1kN2VhLTQzM2EtYTE2OS01OWU3MjM2MmE5NmEifQ.T5_doXmlGi_ICR8iu1Tfr4CVaMnfSDDNxsH6FJB60GKaDpbNjuJJI06Gke7JdCASlckMQDZqJ784baWl4WjW-lns9-Ums6keL7OQWQMryNGF7-X56y09wQ3ucWp9GVyjJdECqiJJneeKrD-H_b39oBP72it9B8Ba9YC13i6JW78lJLa09Y-ayl8kTLMUqlQkcZqMS4jMsANDZgm6LeQHyazZe91BtosNgvPU53UQIz4n8y1Ad3sjNBBNBXKDssCwiGQnTHFK3WkilK6mBQRil5Kj0WRSor8BuWkg3qDAifttWRnDVKHS4tGkHsng2dIwzElIkk38kBWTumt7kxX-WQ",
+        },
+      })
       .then((res) => {
         console.log(res);
       });
@@ -60,7 +89,7 @@ const LottoPage = ({ navigation }) => {
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
-        <BlankSquare color='#E62321' />
+        <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         <ChooseForm setdouble={setdouble} />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#E62321", paddingBottom: 20 }}>

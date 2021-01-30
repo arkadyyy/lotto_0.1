@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
 import {
@@ -20,6 +20,8 @@ import {
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
+
+const { width, height } = Dimensions.get("window");
 
 const Num = ({ num }) => {
   return (
@@ -63,8 +65,6 @@ const StrongNum = ({ strongNumber }) => {
   );
 };
 
-
-
 const ShitatiTable = ({
   setshowTable,
   double,
@@ -72,39 +72,37 @@ const ShitatiTable = ({
   setopendTableNum,
   tzerufimNumber,
   setopendTableTzerufimNum,
-  fullTables
+  fullTables,
 }) => {
   const index1 = 1;
- const route = useRoute();
+  const route = useRoute();
   const [strongNumber, setStrongNumber] = useState();
-  
+
   const tableFunction = () => {
     let table = [];
-    if (!tzerufimNumber){tzerufimNumber=5}
+    if (!tzerufimNumber) {
+      tzerufimNumber = 5;
+    }
     let x = tzerufimNumber;
     for (x; x > 0; x--) {
       table.push(" ");
     }
-    return (table)
-  }
+    return table;
+  };
 
   const [table1, setTable1] = useState(tableFunction());
 
   useEffect(() => {
-    setTable1(tableFunction())
-    setStrongNumber(' ')
-  },
- [tzerufimNumber])
-  
-  
+    setTable1(tableFunction());
+    setStrongNumber(" ");
+  }, [tzerufimNumber]);
+
   useEffect(() => {
     if (fullTables.length !== 0) {
-
       let fullTable1 = 0;
- 
+
       let x;
       fullTables.forEach((table) => {
-  
         fullTable1 = table;
         console.log("fullTable1 : ", fullTable1);
         if (fullTable1.choosenNums.length < tzerufimNumber) {
@@ -113,28 +111,28 @@ const ShitatiTable = ({
             fullTable1.choosenNums.push(" ");
           }
         }
-    
+
         setTable1(fullTable1.choosenNums);
         setStrongNumber(fullTable1.strongNum);
-    
       });
     } else {
-      setTable1(tableFunction())
-    setStrongNumber(' ')
+      setTable1(tableFunction());
+      setStrongNumber(" ");
     }
- }, [fullTables]);
+  }, [fullTables]);
 
   return (
     <>
       {console.log("tzerufimNumber:", tzerufimNumber)}
-      
+
       <ListItem
         style={{
           backgroundColor: "#8CC63F",
           flexWrap: "wrap",
           marginTop: 4,
-          height: 130,
+          height: height / 5.3,
           alignItems: "center",
+          width: width / 1.3,
         }}
       >
         <Text style={{ color: "white", fontSize: 13 }}>טבלה {index1} </Text>
@@ -142,20 +140,19 @@ const ShitatiTable = ({
           onPress={() => {
             setshowTable(true);
             setopendTableNum(index1);
-            }}
+          }}
         >
-
-<View style={{ flexDirection: "row",flexWrap: "wrap" }}>
-            <View style={{ flexDirection: "row",flexWrap: "wrap" }}>
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
               {table1.map((num, index) => (
                 <Num key={index} num={num} />
               ))}
             </View>
-            <View style={{ flexDirection: "row",height:10 }}>
-                <StrongNum key={index} strongNumber={strongNumber} />
+            <View style={{ flexDirection: "row", height: 10 }}>
+              <StrongNum key={index} strongNumber={strongNumber} />
             </View>
-          </View>   
-          </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
         {double && (
           <View
             style={{

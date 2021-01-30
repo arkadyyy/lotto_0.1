@@ -49,31 +49,34 @@ const Table = ({
   const [table, settable] = useState([" ", " ", " ", " ", " ", " ", " "]);
 
   useEffect(() => {
-    if (fullTables.length>0){
-    let fullTable = 0;
-    console.log(" fullTables : ", fullTables);
-    console.log(" tableNum : ", tableNum);
-    let x;
-    fullTables.forEach((table) => {
-      if (+table.tableNum === +tableNum) {
-        fullTable = table;
+    if (fullTables.length > 0) {
+      let fullTable = 0;
+      console.log(" fullTables : ", fullTables);
+      console.log(" tableNum : ", tableNum);
+      let x;
+      fullTables.forEach((table) => {
+        if (+table.tableNum === +tableNum) {
+          fullTable = table;
 
-        if (fullTable.choosenNums.length < 7) {
-          x = 7 - fullTable.choosenNums.length;
-          for (x; x > 0; x--) {
-            fullTable.choosenNums.push(" ");
+          if (fullTable.choosenNums.length < 7) {
+            x = 7 - fullTable.choosenNums.length;
+            for (x; x > 0; x--) {
+              fullTable.choosenNums.push(" ");
+            }
           }
+          settable(fullTable.choosenNums);
         }
-        settable(fullTable.choosenNums);
-      }
-    });}
-    else {settable([" ", " ", " ", " ", " ", " ", " "])}
+      });
+    } else {
+      settable([" ", " ", " ", " ", " ", " ", " "]);
+    }
   }, [fullTables]);
   return (
     <>
       <ListItem
         style={{
           backgroundColor: "#FBB03B",
+          backgroundColor: !table.includes(" ") ? "#FBB03B" : "#AA1B55",
           flexWrap: "wrap",
           marginTop: 4,
           height: 55,

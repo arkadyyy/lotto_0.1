@@ -17,6 +17,7 @@ import {
   ListItem,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import chanceListstyles from "../ChanceListStyles";
 
 const ChooseNumOfTables = ({ settableNum, tableNum, shitati }) => {
   const route = useRoute();
@@ -39,15 +40,11 @@ const ChooseNumOfTables = ({ settableNum, tableNum, shitati }) => {
         <View style={{}}>
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 30,
-                backgroundColor: tableNum === 4 ? "#8CC63F" : "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={
+                tableNum === 4
+                  ? chanceListstyles.investBtnSelected
+                  : chanceListstyles.investBtn
+              }
               onPress={() => {
                 settableNum(4);
               }}
@@ -55,15 +52,11 @@ const ChooseNumOfTables = ({ settableNum, tableNum, shitati }) => {
               <Text>4</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 30,
-                backgroundColor: tableNum === 3 ? "#8CC63F" : "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={
+                tableNum === 3
+                  ? chanceListstyles.investBtnSelected
+                  : chanceListstyles.investBtn
+              }
               onPress={() => {
                 settableNum(3);
               }}
@@ -71,15 +64,11 @@ const ChooseNumOfTables = ({ settableNum, tableNum, shitati }) => {
               <Text>3</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 30,
-                backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={
+                tableNum === 2
+                  ? chanceListstyles.investBtnSelected
+                  : chanceListstyles.investBtn
+              }
               onPress={() => {
                 settableNum(2);
               }}
@@ -87,15 +76,11 @@ const ChooseNumOfTables = ({ settableNum, tableNum, shitati }) => {
               <Text>2</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 30,
-                backgroundColor: tableNum === 1 ? "#8CC63F" : "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={
+                tableNum === 1
+                  ? chanceListstyles.investBtnSelected
+                  : chanceListstyles.investBtn
+              }
               onPress={() => {
                 settableNum(1);
               }}
@@ -104,16 +89,13 @@ const ChooseNumOfTables = ({ settableNum, tableNum, shitati }) => {
             </TouchableOpacity>
             {shitati && (
               <TouchableOpacity
-                style={{
-                  borderRadius: 30,
-                  backgroundColor: tableNum === 4 ? "#8CC63F" : "white",
-                  margin: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  paddingHorizontal: 3,
-                }}
+                style={
+                  tableNum === 5
+                    ? chanceListstyles.investBtnSelected
+                    : chanceListstyles.investBtn
+                }
                 onPress={() => {
-                  settableNum(4);
+                  settableNum(5);
                 }}
               >
                 <Text>רב צ'אנס</Text>

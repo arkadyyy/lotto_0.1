@@ -16,7 +16,7 @@ import {
   ListItem,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
-
+import one23listStyles from "../One23listStyles";
 const ChooseNumOfTables = ({ settableNum, tableNum }) => {
   return (
     <>
@@ -36,15 +36,11 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
         <View style={{}}>
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 30,
-                backgroundColor: tableNum === 5 ? "#A53200" : "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={
+                tableNum === 5
+                  ? one23listStyles.investBtnSelected
+                  : one23listStyles.investBtn
+              }
               onPress={() => {
                 settableNum(5);
               }}
@@ -54,15 +50,11 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 30,
-                backgroundColor: tableNum === 4 ? "#A53200" : "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={
+                tableNum === 4
+                  ? one23listStyles.investBtnSelected
+                  : one23listStyles.investBtn
+              }
               onPress={() => {
                 settableNum(4);
               }}
@@ -72,15 +64,11 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 30,
-                backgroundColor: tableNum === 3 ? "#A53200" : "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={
+                tableNum === 3
+                  ? one23listStyles.investBtnSelected
+                  : one23listStyles.investBtn
+              }
               onPress={() => {
                 settableNum(3);
               }}
@@ -90,15 +78,11 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 30,
-                backgroundColor: tableNum === 2 ? "#A53200" : "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={
+                tableNum === 2
+                  ? one23listStyles.investBtnSelected
+                  : one23listStyles.investBtn
+              }
               onPress={() => {
                 settableNum(2);
               }}
@@ -108,15 +92,11 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 30,
-                backgroundColor: tableNum === 1 ? "#A53200" : "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={
+                tableNum === 1
+                  ? one23listStyles.investBtnSelected
+                  : one23listStyles.investBtn
+              }
               onPress={() => {
                 settableNum(1);
               }}

@@ -31,24 +31,25 @@ const DoubleLottoPage = ({ navigation }) => {
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
 
-  const autoFillForm=()=>{
-    let fullTabels1=[];
-   for (let i=1;i<tableNum*2+1;i++){
-    let numbers= autoFill(6);
-      let table={
+  const autoFillForm = () => {
+    let fullTabels1 = [];
+    for (let i = 1; i < tableNum * 2 + 1; i++) {
+      let numbers = autoFill(6);
+      let table = {
         tableNum: i,
         choosenNums: numbers.randomNumbers,
         strongNum: numbers.strongNum,
-      }
-      fullTabels1=[...fullTabels1, table]}
-      setFullTables(fullTabels1);     
-  }
+      };
+      fullTabels1 = [...fullTabels1, table];
+    }
+    setFullTables(fullTabels1);
+  };
 
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
-        <BlankSquare color='#E62321' />
+        <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         <ChooseForm setdouble={setdouble} />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#E62321", paddingBottom: 20 }}>
@@ -93,18 +94,24 @@ const DoubleLottoPage = ({ navigation }) => {
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 flexWrap: "wrap",
-                marginLeft:20
+                marginLeft: 20,
               }}
             >
-            
               <Button
-                 onPress={autoFillForm}
+                onPress={autoFillForm}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    width: 70,
+                    textAlign: "center",
+                  }}
+                >
                   מלא טופס אוטומטי
                 </Text>
               </Button>
@@ -114,11 +121,17 @@ const DoubleLottoPage = ({ navigation }) => {
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
-                מחק טופס אוטומטי
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    width: 70,
+                    textAlign: "center",
+                  }}
+                >
+                  מחק טופס אוטומטי
                 </Text>
               </Button>
-             
             </View>
             {showTable && (
               <FillForm

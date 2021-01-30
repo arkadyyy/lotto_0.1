@@ -37,8 +37,8 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity
               style={{
-                width: 25,
-                height: 25,
+                width: 30,
+                height: 30,
                 borderRadius: 30,
                 backgroundColor: tableNum === 3 ? "#FBB03B" : "white",
                 margin: 5,
@@ -53,8 +53,8 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={{
-                width: 25,
-                height: 25,
+                width: 30,
+                height: 30,
                 borderRadius: 30,
                 backgroundColor: tableNum === 2 ? "#FBB03B" : "white",
                 margin: 5,
@@ -69,8 +69,8 @@ const ChooseNumOfTables = ({ settableNum, tableNum }) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={{
-                width: 25,
-                height: 25,
+                width: 30,
+                height: 30,
                 borderRadius: 30,
                 backgroundColor: tableNum === 1 ? "#FBB03B" : "white",
                 margin: 5,

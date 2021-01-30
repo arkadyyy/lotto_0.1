@@ -73,23 +73,22 @@ const LottoShitatiPage = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState(1);
   const [opendTableNum, setopendTableNum] = useState(1);
-  
 
-  const autoFillForm=()=>{
-      let numbers= autoFill(tzerufimNumber);
-      let table={
-        tableNum: 1,
-        choosenNums: numbers.randomNumbers,
-        strongNum: numbers.strongNum,
-      }
-      setFullTables([...fullTables, table]);     
-  }
+  const autoFillForm = () => {
+    let numbers = autoFill(tzerufimNumber);
+    let table = {
+      tableNum: 1,
+      choosenNums: numbers.randomNumbers,
+      strongNum: numbers.strongNum,
+    };
+    setFullTables([...fullTables, table]);
+  };
 
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
-        <BlankSquare color='#E62321' />
+        <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         <ChooseForm setdouble={setdouble} />
         <View style={{ margin: 15 }}>
           <View
@@ -146,7 +145,7 @@ const LottoShitatiPage = ({ navigation }) => {
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 flexWrap: "wrap",
-                marginLeft:20
+                marginLeft: 20,
               }}
             >
               <Button
@@ -156,22 +155,35 @@ const LottoShitatiPage = ({ navigation }) => {
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    width: 70,
+                    textAlign: "center",
+                  }}
+                >
                   מלא טופס אוטומטי
                 </Text>
               </Button>
               <Button
-                onPress={()=>setFullTables([])}
+                onPress={() => setFullTables([])}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    width: 70,
+                    textAlign: "center",
+                  }}
+                >
                   מחק טופס אוטומטי
                 </Text>
               </Button>
-            
             </View>
             {showTable && (
               <ShitatiFillForm
@@ -215,7 +227,6 @@ const LottoShitatiPage = ({ navigation }) => {
                     setopendTableNum={setopendTableNum}
                     setOpendTableTzerufimNum={setOpendTableTzerufimNum}
                     opendTableTzerufimNum={opendTableTzerufimNum}
-                    
                   />
                   {/* ))} */}
                 </ScrollView>

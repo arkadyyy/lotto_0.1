@@ -38,7 +38,7 @@ const ChanceShitatiPage = ({ navigation }) => {
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
-        <BlankSquare color='#009943' />
+        <BlankSquare gameName="הגרלת צ'אנס" color='#009943' />
         <ChooseForm color='#009943' setdouble={setdouble} />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#009943", paddingBottom: 20 }}>
@@ -111,22 +111,11 @@ const ChanceShitatiPage = ({ navigation }) => {
                 />
               </List>
             </View>
-            <View
-              style={{
-                borderColor: "white",
-                borderRadius: 7,
-                borderWidth: 1,
-                width: "85%",
-                height: 80,
-                alignSelf: "center",
-                marginTop: 20,
-                padding: 10,
-              }}
-            >
+            <View style={chanceListstyles.investNumBox}>
               <Text style={{ color: "white", marginVertical: 7 }}>
                 בחר את סכום ההשקעה{" "}
               </Text>
-              <View style={{ flexDirection: "row" }}>
+              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                 <TouchableOpacity
                   onPress={() => {
                     setinvestNum(5);

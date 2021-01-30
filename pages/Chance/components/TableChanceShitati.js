@@ -73,6 +73,7 @@ const Num = ({
     if (pressed.symbolsPressed.includes(symbol)) {
       console.log("i am in first if");
       return false;
+      //instead of counter / 4 === tableNum i need to replace it with pressed.numberOfPress >= 4
     } else if (typeArr.length === tableNum && counter / 4 === tableNum) {
       console.log("i am in secend if");
       return true;

@@ -20,7 +20,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
-import {autoFill} from "./components/FillForm";
+import { autoFill } from "./components/FillForm";
 import Table8 from "./components/Table8";
 import FillFormShitati8 from "./components/FillFormShitati8";
 
@@ -32,23 +32,24 @@ const Sheva778Page = ({ navigation }) => {
   const [indexOfTable, setIndexOfTable] = useState(1);
   const [opendTableNum, setopendTableNum] = useState(1);
 
-  const autoFillForm=()=>{
-    let fullTabels1=[];
-   for (let i=1;i<tableNum+1;i++){
-     let numbers= autoFill(8);
-      let table={
+  const autoFillForm = () => {
+    let fullTabels1 = [];
+    for (let i = 1; i < tableNum + 1; i++) {
+      let numbers = autoFill(8);
+      let table = {
         tableNum: i,
         choosenNums: numbers.randomNumbers,
-      }
-      fullTabels1=[...fullTabels1, table]}
-      setFullTables(fullTabels1);     
-  }
+      };
+      fullTabels1 = [...fullTabels1, table];
+    }
+    setFullTables(fullTabels1);
+  };
 
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
-        <BlankSquare color='#CC1D64' />
+        <BlankSquare gameName='הגרלת 777' color='#CC1D64' />
         <ChooseForm />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20 }}>
@@ -91,7 +92,7 @@ const Sheva778Page = ({ navigation }) => {
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 flexWrap: "wrap",
-                marginLeft:20
+                marginLeft: 20,
               }}
             >
               <Button
@@ -101,8 +102,15 @@ const Sheva778Page = ({ navigation }) => {
                 bordered
                 onPress={autoFillForm}
               >
-                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
-                 מלא טופס אוטומטי
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    width: 70,
+                    textAlign: "center",
+                  }}
+                >
+                  מלא טופס אוטומטי
                 </Text>
               </Button>
               <Button
@@ -110,13 +118,19 @@ const Sheva778Page = ({ navigation }) => {
                 small
                 rounded
                 bordered
-                onPress={()=>setFullTables([])}
+                onPress={() => setFullTables([])}
               >
-                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    width: 70,
+                    textAlign: "center",
+                  }}
+                >
                   מחק טופס אוטומטי
                 </Text>
               </Button>
-              
             </View>
             {showTable && (
               <FillFormShitati8
