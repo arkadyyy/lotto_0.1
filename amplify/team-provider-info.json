@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-lottomatic-dev-150809-authRole",
-      "UnauthRoleArn": "arn:aws:iam::272599460974:role/amplify-lottomatic-dev-150809-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::272599460974:role/amplify-lottomatic-dev-150809-authRole",
+      "AuthRoleName": "amplify-lottomatic-dev-144445-authRole",
+      "UnauthRoleArn": "arn:aws:iam::272599460974:role/amplify-lottomatic-dev-144445-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::272599460974:role/amplify-lottomatic-dev-144445-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-lottomatic-dev-150809-deployment",
-      "UnauthRoleName": "amplify-lottomatic-dev-150809-unauthRole",
-      "StackName": "amplify-lottomatic-dev-150809",
-      "StackId": "arn:aws:cloudformation:us-east-1:272599460974:stack/amplify-lottomatic-dev-150809/0d792770-6233-11eb-9c24-1264a8f6165d",
-      "AmplifyAppId": "d1loib8fhcf7qs"
+      "DeploymentBucketName": "amplify-lottomatic-dev-144445-deployment",
+      "UnauthRoleName": "amplify-lottomatic-dev-144445-unauthRole",
+      "StackName": "amplify-lottomatic-dev-144445",
+      "StackId": "arn:aws:cloudformation:us-east-1:272599460974:stack/amplify-lottomatic-dev-144445/c77e24d0-622f-11eb-95c5-12be65336f97",
+      "AmplifyAppId": "d3okhncv7hji8q"
     },
     "categories": {
       "auth": {
-        "lottomaticc89c6d05": {
+        "lottomaticaf01de9e": {
           "userPoolId": "us-east-1_83dRNmvNP",
           "userPoolName": "lottomatic-dev",
           "webClientId": "1jpc646626lpuc9a18mpjgrp5j",

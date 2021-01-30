@@ -20,21 +20,25 @@ import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
-import Table from "./components/Table";
+import TableRavChance from "./components/TableRavChance";
 import chanceListstyles from "./ChanceListStyles";
 
 const RavChancePage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
-  const [tableNum, settableNum] = useState(4);
+  const [tableNum, settableNum] = useState("RavChance");
   const [investNum, setinvestNum] = useState(5);
   const [double, setdouble] = useState(false);
   const [filledForm, setfilledForm] = useState([]);
+  const [fullTables, setfullTables] = useState({
+    gameType: 1,
+    choosenCards: [],
+  });
 
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
-        <BlankSquare color='#009943' />
+        <BlankSquare gameName="הגרלת צ'אנס" color='#009943' />
         <ChooseForm color='#009943' setdouble={setdouble} />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#009943", paddingBottom: 20 }}>
@@ -93,25 +97,19 @@ const RavChancePage = ({ navigation }) => {
                 >
                   בחר צירוף
                 </Text>
-                <Table tableNum={tableNum} setshowTable={setshowTable} />
+                <TableRavChance
+                  fullTables={fullTables}
+                  setfullTables={setfullTables}
+                  tableNum={tableNum}
+                  setshowTable={setshowTable}
+                />
               </List>
             </View>
-            <View
-              style={{
-                borderColor: "white",
-                borderRadius: 7,
-                borderWidth: 1,
-                width: "85%",
-                height: 80,
-                alignSelf: "center",
-                marginTop: 20,
-                padding: 10,
-              }}
-            >
+            <View style={chanceListstyles.investNumBox}>
               <Text style={{ color: "white", marginVertical: 7 }}>
                 בחר את סכום ההשקעה{" "}
               </Text>
-              <View style={{ flexDirection: "row" }}>
+              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                 <TouchableOpacity
                   onPress={() => {
                     setinvestNum(5);
@@ -220,6 +218,10 @@ const RavChancePage = ({ navigation }) => {
               }}
             >
               <Button
+                onPress={() => {
+                  console.log("RavChance : ", fullTables);
+                  console.log("investNum : ", investNum);
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#E62321",

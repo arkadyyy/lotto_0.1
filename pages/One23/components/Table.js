@@ -48,7 +48,6 @@ const Table = ({
 
   useEffect(() => {
     if (fullTables.length !== 0) {
-
       let fullTable = 0;
 
       let x;
@@ -66,14 +65,20 @@ const Table = ({
         }
       });
     } else {
-      setTable([" "," "," "])
+      setTable([" ", " ", " "]);
     }
   }, [fullTables]);
+
+  // useEffect(()=>{
+
+  //   if()
+
+  // },[table])
   return (
     <>
       <ListItem
         style={{
-          backgroundColor: "#FBB03B",
+          backgroundColor: !table.includes(" ") ? "#FBB03B" : "#A53200",
           flexWrap: "wrap",
           marginTop: 4,
           height: 55,

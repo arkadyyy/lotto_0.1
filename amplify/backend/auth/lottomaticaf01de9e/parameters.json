@@ -1,0 +1,6 @@
+{
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "lottomaticaf01de9e",
+  "serviceType": "imported",
+  "region": "us-east-1"
+}

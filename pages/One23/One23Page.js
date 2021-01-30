@@ -32,26 +32,26 @@ const One23Page = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
-  
+
   const autoFillForm = () => {
-    let fullTabels=[];
+    let fullTabels = [];
     for (let i = 1; i < tableNum + 1; i++) {
       let numbers = autoFill(3);
       let table = {
         tableNum: i,
         choosenNums: numbers.randomNumbers,
         // strongNum: null,
-      }
-      fullTabels=[...fullTabels, table]}
-      setFullTables(fullTabels);     
-    
-  }
+      };
+      fullTabels = [...fullTabels, table];
+    }
+    setFullTables(fullTabels);
+  };
 
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
-        <BlankSquare color='#FF6B00' />
+        <BlankSquare gameName='הגרלת 123' color='#FF6B00' />
         <ChooseForm />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#FF6B00", paddingBottom: 20 }}>
@@ -108,7 +108,7 @@ const One23Page = ({ navigation }) => {
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 flexWrap: "wrap",
-                marginLeft:20
+                marginLeft: 20,
               }}
             >
               <Button
@@ -118,22 +118,35 @@ const One23Page = ({ navigation }) => {
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    width: 70,
+                    textAlign: "center",
+                  }}
+                >
                   מלא טופס אוטומטי
                 </Text>
               </Button>
               <Button
-                onPress={()=>setFullTables([])}
+                onPress={() => setFullTables([])}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
                 bordered
               >
-                <Text style={{ color: "white", fontSize: 10,width:70,textAlign:"center" }}>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    width: 70,
+                    textAlign: "center",
+                  }}
+                >
                   מחק טופס אוטומטי
                 </Text>
               </Button>
-             
             </View>
             {showTable && (
               <FillForm
@@ -184,7 +197,7 @@ const One23Page = ({ navigation }) => {
                 borderRadius: 7,
                 borderWidth: 1,
                 width: "85%",
-                height: 80,
+                height: 90,
                 alignSelf: "center",
                 marginTop: 20,
                 padding: 10,

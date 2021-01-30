@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View } from "react-native";
+import { Text, View, Dimensions } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Container,
@@ -21,8 +21,8 @@ import {
   faArrowAltCircleRight,
   faArrowAltCircleLeft,
 } from "@fortawesome/free-regular-svg-icons";
-
-const checkIfPressed = (type) => {};
+import EStyleSheet from "react-native-extended-stylesheet";
+const { width, height } = Dimensions.get("window");
 
 const Num = ({ num, choosenNums, setchoosenNums, tzerufimNumber }) => {
   return (
@@ -35,7 +35,6 @@ const Num = ({ num, choosenNums, setchoosenNums, tzerufimNumber }) => {
             ? true
             : false
         }
-
         onPress={() => {
           choosenNums.length < tzerufimNumber &&
             setchoosenNums([...choosenNums, num]);
@@ -60,7 +59,13 @@ const Num = ({ num, choosenNums, setchoosenNums, tzerufimNumber }) => {
   );
 };
 
-const StrongNum = ({ num, strongNum, setStrongNum,choosenStrongNums,setChoosenStrongNums }) => {
+const StrongNum = ({
+  num,
+  strongNum,
+  setStrongNum,
+  choosenStrongNums,
+  setChoosenStrongNums,
+}) => {
   return (
     <>
       <TouchableOpacity
@@ -141,8 +146,8 @@ const ShitatiFillForm = ({
   useEffect(() => {
     setchoosenNums([]);
     setStrongNum(0);
-  },[tzerufimNumber])
-  
+  }, [tzerufimNumber]);
+
   useEffect(() => {
     setusedTable({
       tableNum: 1,
@@ -164,9 +169,9 @@ const ShitatiFillForm = ({
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "41.5%",
+          top: EStyleSheet.value("$rem") * -37,
           height: 420,
-          position: "absolute",
+          position: "relative",
           zIndex: 2000,
         }}
       >
@@ -174,11 +179,13 @@ const ShitatiFillForm = ({
         <View
           style={{
             backgroundColor: "#263742",
-            width: "45%",
+
             height: 70,
             position: "relative",
             top: -40,
-            left: "43.2%",
+            left: EStyleSheet.value("$rem") * 210,
+            width: EStyleSheet.value("$rem") * 140,
+
             zIndex: 2001,
             flexDirection: "row",
             justifyContent: "space-around",
@@ -289,22 +296,29 @@ const ShitatiFillForm = ({
             ))}
           </View>
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-          {(choosenNums.length>0) && (<Text style={{color:"white", marginTop:7}}>המספרים שנבחרו</Text>)}
-            {choosenNums.slice(0).reverse().map((num) => (
-              <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "pink",      
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ color: "black" }}>{num}</Text>
-            </View>
-            ))}
+            {choosenNums.length > 0 && (
+              <Text style={{ color: "white", marginTop: 7 }}>
+                המספרים שנבחרו
+              </Text>
+            )}
+            {choosenNums
+              .slice(0)
+              .reverse()
+              .map((num) => (
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "pink",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ color: "black" }}>{num}</Text>
+                </View>
+              ))}
           </View>
         </View>
         <View style={{ marginTop: "-10%" }}>

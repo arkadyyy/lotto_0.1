@@ -19,6 +19,7 @@ import {
   Row,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import EStyleSheet from "react-native-extended-stylesheet";
 import { useEffect } from "react";
 
 const Num = ({ num }) => {
@@ -76,21 +77,21 @@ const ShitatiHazakTable = ({
   const [table1, setTable1] = useState([" ", " ", " ", " ", " ", " ", " "]);
 
   useEffect(() => {
-    setTable1([" ", " ", " ", " ", " ", " ", " "])
-    setStrongNumbers(hazakimFunction())
-  },
- [hazakimNumber])
-  
+    setTable1([" ", " ", " ", " ", " ", " ", " "]);
+    setStrongNumbers(hazakimFunction());
+  }, [hazakimNumber]);
 
   const hazakimFunction = () => {
     let table = [];
-    if (!hazakimNumber){hazakimNumber=4}
+    if (!hazakimNumber) {
+      hazakimNumber = 4;
+    }
     let x = hazakimNumber;
     for (x; x > 0; x--) {
       table.push(" ");
     }
-    return (table)
-  }
+    return table;
+  };
   const [strongNumbers, setStrongNumbers] = useState(hazakimFunction());
 
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
@@ -118,13 +119,10 @@ const ShitatiHazakTable = ({
         setStrongNumbers(fullTable1.choosenStrongNums);
         // }
       });
-    }
-    else {
+    } else {
       setTable1([" ", " ", " ", " ", " ", " ", " "]);
       setStrongNumbers(hazakimFunction());
     }
-    
-
   }, [fullTables]);
 
   return (
@@ -134,7 +132,8 @@ const ShitatiHazakTable = ({
           backgroundColor: "#8CC63F",
           flexWrap: "wrap",
           marginTop: 4,
-          height: 85,
+          height: EStyleSheet.value("$rem") * 90,
+          width: EStyleSheet.value("$rem") * 292,
           alignItems: "center",
         }}
       >

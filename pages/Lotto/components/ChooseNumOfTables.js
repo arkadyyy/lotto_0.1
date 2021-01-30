@@ -48,8 +48,8 @@ const ChooseNumOfTables = ({
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   borderColor: "white",
                   borderWidth: 1,
@@ -68,8 +68,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tableNum === 4 ? "#8CC63F" : "white",
                   margin: 5,
@@ -86,8 +86,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tableNum === 6 ? "#8CC63F" : "white",
                   margin: 5,
@@ -104,8 +104,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tableNum === 8 ? "#8CC63F" : "white",
                   margin: 5,
@@ -122,8 +122,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tableNum === 10 ? "#8CC63F" : "white",
                   margin: 5,
@@ -140,8 +140,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tableNum === 12 ? "#8CC63F" : "white",
                   margin: 5,
@@ -159,8 +159,8 @@ const ChooseNumOfTables = ({
               {route.name === "LottoPage" && (
                 <TouchableOpacity
                   style={{
-                    width: 25,
-                    height: 25,
+                    width: 30,
+                    height: 30,
                     borderRadius: 30,
                     backgroundColor: tableNum === 14 ? "#8CC63F" : "white",
                     margin: 5,
@@ -202,8 +202,8 @@ const ChooseNumOfTables = ({
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   borderColor: "white",
                   borderWidth: 1,
@@ -222,8 +222,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tableNum === 4 ? "#8CC63F" : "white",
                   margin: 5,
@@ -240,8 +240,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tableNum === 6 ? "#8CC63F" : "white",
                   margin: 5,
@@ -258,8 +258,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tableNum === 8 ? "#8CC63F" : "white",
                   margin: 5,
@@ -276,8 +276,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tableNum === 10 ? "#8CC63F" : "white",
                   margin: 5,
@@ -292,12 +292,12 @@ const ChooseNumOfTables = ({
                   10
                 </Text>
               </TouchableOpacity>
-              
+
               {route.name === "LottoPage" && (
                 <TouchableOpacity
                   style={{
-                    width: 25,
-                    height: 25,
+                    width: 30,
+                    height: 30,
                     borderRadius: 30,
                     backgroundColor: tableNum === 14 ? "#8CC63F" : "white",
                     margin: 5,
@@ -341,8 +341,8 @@ const ChooseNumOfTables = ({
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tzerufimNumber === 5 ? "#8CC63F" : "white",
                   margin: 5,
@@ -361,8 +361,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   borderColor: "white",
                   borderWidth: 1,
@@ -386,8 +386,8 @@ const ChooseNumOfTables = ({
 
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   // backgroundColor: tableNum === 5|| tableNum === 9 ? "#8CC63F" : "white",
                   backgroundColor: tzerufimNumber === 9 ? "#8CC63F" : "white",
@@ -407,8 +407,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tzerufimNumber === 10 ? "#8CC63F" : "white",
                   margin: 5,
@@ -427,8 +427,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tzerufimNumber === 11 ? "#8CC63F" : "white",
                   margin: 5,
@@ -447,8 +447,8 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   borderRadius: 30,
                   backgroundColor: tzerufimNumber === 12 ? "#8CC63F" : "white",
                   margin: 5,

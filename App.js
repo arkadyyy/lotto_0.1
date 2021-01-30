@@ -1,8 +1,9 @@
 import "react-native-gesture-handler";
 import * as React from "react";
+import { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { I18nManager, TouchableOpacity } from "react-native";
+import { I18nManager, TouchableOpacity, Dimensions } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./pages/Home/Home";
 import UserArea from "./pages/UserArea/UserArea";
@@ -26,12 +27,53 @@ import RavChancePage from "./pages/Chance/RavChancePage";
 import ChanceShitatiPage from "./pages/Chance/ChanceShitatiPage";
 // import { Provider } from "react-redux";
 // import { store } from "./redux/store";
+import EStyleSheet from "react-native-extended-stylesheet";
+import { withAuthenticator } from "aws-amplify-react-native";
+// import Amplify, { Auth } from "aws-amplify-react-native";
+import Amplify, { Auth } from "aws-amplify";
+import awsconfig from "./aws-exports";
+Amplify.configure(awsconfig);
+
+const entireScreenWidth = Dimensions.get("window").width;
+EStyleSheet.build({
+  $textColor: "#0275d8",
+  $rem: entireScreenWidth / 380,
+});
+
+async function signIn() {
+  try {
+    const user = await Auth.signIn("dlevkovich05@gmail.com", "Dekel1145");
+    // console.log(user);
+  } catch (error) {
+    console.log("error signing in", error);
+  }
+  Auth.currentSession().then((res) => {
+    let accessToken = res.getAccessToken();
+    let jwt = accessToken.getJwtToken();
+    //You can print them to see the full objects
+    console.log(`myAccessToken: ${JSON.stringify(accessToken)}`);
+    console.log(`myJwt: ${jwt}`);
+  });
+}
+
+// import awsconfig from "./aws-exports";
+// const currentConfig = Auth.configure();
+// Amplify.configure(currentConfig);
+
+// Amplify.configure(awsconfig);
+
+// const currentConfig = Auth.configure();
+// Amplify.configure(currentConfig);
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 export default function App() {
   I18nManager.forceRTL(true);
+
+  // useEffect(() => {
+  //   signIn();
+  // }, []);
   return (
     <>
       {/* <Provider store={store} > */}

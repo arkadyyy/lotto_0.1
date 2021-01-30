@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-
-const homestyles = StyleSheet.create({
+import EStyleSheet from "react-native-extended-stylesheet";
+// width: () => EStyleSheet.value("$rem") / 10,
+const homestyles = EStyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -46,13 +47,13 @@ const homestyles = StyleSheet.create({
     borderRadius: 7,
   },
   openingPageBtnBorder: {
-    borderWidth: 1.5,
+    borderWidth: () => EStyleSheet.value("$rem") * 1.5,
     borderColor: "white",
     borderRadius: 7,
 
-    paddingLeft: "15%",
-    paddingRight: "15%",
-    paddingBottom: "5%",
+    paddingLeft: () => EStyleSheet.value("$rem") * 12,
+    paddingRight: () => EStyleSheet.value("$rem") * 12,
+    paddingBottom: () => EStyleSheet.value("$rem") * 1.5,
     justifyContent: "flex-end",
     alignItems: "center",
   },

@@ -27,21 +27,32 @@ const Num = ({
   fullTables,
   setfullTables,
 }) => {
-  // useEffect(() => {
-  //   console.log(pressed);
-  // }, [pressed]);
+  useEffect(() => {
+    //if we pressed on a card and we added it to pressed.symbolsPressed ...
+    if (pressed.symbolsPressed.length >= 1) {
+      //first of all , remove its old object in fullTables be4 we put its new object
+      let filtered = fullTables.choosenCards.filter(
+        (x) => x.cardType !== pressed.type
+      );
+
+      //now we set updated fulltables
+      setfullTables({
+        gameType: tableNum,
+        choosenCards: [
+          ...filtered,
+          {
+            cardType: pressed.type,
+            card: pressed.symbolsPressed,
+          },
+        ],
+      });
+    }
+    console.log(tableNum);
+  }, [counter]);
+
   return (
     <>
       <TouchableOpacity
-        disabled={
-          pressed.symbolsPressed.includes(symbol)
-            ? false
-            : pressed.symbolsPressed.length > 0
-            ? true
-            : counter >= tableNum
-            ? true
-            : false
-        }
         style={{
           width: 21,
           height: 35,
@@ -54,30 +65,30 @@ const Num = ({
           justifyContent: "center",
           alignItems: "center",
         }}
+        disabled={
+          pressed.symbolsPressed.includes(symbol)
+            ? false
+            : pressed.symbolsPressed.length > 0
+            ? true
+            : counter > tableNum - 1
+            ? true
+            : false
+        }
         onPress={() => {
-          // {numberOfPress :0 ,symbolsPressed : []}
           if (pressed.symbolsPressed.includes(symbol)) {
             setpressed({
               numberOfPress: pressed.numberOfPress - 1,
               symbolsPressed: pressed.symbolsPressed.filter(
                 (x) => x !== symbol
               ),
+              type: pressed.type,
             });
             setcounter(counter - 1);
           } else {
-            if (tableNum >= pressed.symbolsPressed.length) {
-              setfullTables([
-                ...fullTables,
-                {
-                  chanceType: tableNum,
-                  tableSymbol: pressed.type,
-                  cards: pressed.symbolsPressed,
-                },
-              ]);
-            }
             setpressed({
               numberOfPress: ++pressed.numberOfPress,
               symbolsPressed: [...pressed.symbolsPressed, symbol],
+              type: pressed.type,
             });
             setcounter(counter + 1);
           }
@@ -126,10 +137,34 @@ const Table = ({ tableNum, fullTables, setfullTables }) => {
   const [counter, setcounter] = useState(0);
 
   useEffect(() => {
-    // setcounter(counter + 1);
-    console.log("i am herererere", counter);
-    console.log("i am herererere", tableNum);
-  }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
+    setfullTables({
+      gameType: tableNum,
+      choosenCards: [],
+    });
+
+    setcounter(0);
+
+    setpressedSpade({
+      numberOfPress: 0,
+      symbolsPressed: [],
+      type: "spade",
+    });
+    setpressedHeart({
+      numberOfPress: 0,
+      symbolsPressed: [],
+      type: "heart",
+    });
+    setpressedDiamond({
+      numberOfPress: 0,
+      symbolsPressed: [],
+      type: "diamond",
+    });
+    setpressedClubs({
+      numberOfPress: 0,
+      symbolsPressed: [],
+      type: "clubs",
+    });
+  }, [tableNum]);
 
   return (
     <>
