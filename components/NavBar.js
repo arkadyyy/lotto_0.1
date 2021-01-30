@@ -43,8 +43,14 @@ const NavBar = (props) => {
       setNavBarTitle(`לוטו שיטתי`);
     }else if (route.name === "LottoShitatiHazakPage") {
       setNavBarTitle('לוטו שיטתי חזק');
-    }else if (route.name === "LottoShitatiHazakPage") {
-      setNavBarTitle('לוטו שיטתי חזק');
+    }else if (route.name === "Sheva77Page") {
+      setNavBarTitle(`777`);
+    }else if (route.name === "Sheva778Page") {
+      setNavBarTitle(`778`);
+    }else if (route.name === "Sheva779Page") {
+      setNavBarTitle(`779`);
+    }else if (route.name === "One23Page") {
+      setNavBarTitle(`123`);
     
     } 
     }, [route.name])
@@ -58,7 +64,7 @@ const NavBar = (props) => {
       </Left>
      
         <Body>
-          <View>
+          <View style={{alignSelf:"center"}}>
             <Text
               style={{
                 color: "white",

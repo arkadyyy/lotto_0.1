@@ -171,7 +171,11 @@ const One23Page = ({ navigation }) => {
                       fullTables={fullTables}
                     />
                   ))}
+                  <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+        
+          </View>
                 </ScrollView>
+                
               </List>
             </View>
             <View
