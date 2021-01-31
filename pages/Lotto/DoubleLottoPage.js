@@ -150,6 +150,7 @@ const DoubleLottoPage = ({ navigation }) => {
                 </Text>
               </Button>
               <Button
+                onPress={()=>setFullTables([])}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded

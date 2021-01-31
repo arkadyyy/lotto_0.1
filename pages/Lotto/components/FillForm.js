@@ -111,8 +111,8 @@ const FillForm = ({
   opendTableTzerufimNum,
   setFullTables,
   fullTables,
-  tableRowColor,
-  setTableRowColor
+  // tableRowColor,
+  // setTableRowColor
 }) => {
   const [strongNum, setstrongNum] = useState(0);
   const [choosenNums, setchoosenNums] = useState([]);
@@ -270,7 +270,7 @@ const FillForm = ({
                 let numbers = autoFill(6);
                 setchoosenNums(numbers.randomNumbers);
                 setstrongNum(numbers.strongNum);
-                setTableRowColor("#78C849")
+                // setTableRowColor("#78C849")
               }}
               small
               rounded
@@ -281,7 +281,7 @@ const FillForm = ({
               onPress={() => {
                 setchoosenNums([]);
                 setstrongNum(' ');
-                setTableRowColor('#D60617')
+                // setTableRowColor('#D60617')
               }}
               small
               rounded
