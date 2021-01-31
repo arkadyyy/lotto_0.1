@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
@@ -22,6 +22,10 @@ import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 import { autoFill } from "./components/FillForm";
+import Amplify, { Auth } from "aws-amplify";
+import { useSelector, useDispatch } from "react-redux";
+import { LogIn } from "../../redux/actions/actions";
+/////////////////////////////////////////////////////////////////////////////////
 
 const DoubleLottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -30,6 +34,10 @@ const DoubleLottoPage = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
+  const [jwtState, setjwtState] = useState({});
+
+  const store = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const autoFillForm = () => {
     let fullTabels1 = [];
@@ -45,6 +53,32 @@ const DoubleLottoPage = ({ navigation }) => {
     setFullTables(fullTabels1);
   };
 
+  useEffect(() => {
+    //redux dispatch , LogIn action get executed ../redux/actions/action
+    dispatch(LogIn("dlevkovich05@gmail.com", "Dekel1145"));
+
+    let accessToken;
+    let jwt;
+    Auth.currentSession().then((res) => {
+      accessToken = res.getAccessToken();
+      jwt = accessToken.getJwtToken();
+      setjwtState(jwt);
+    });
+
+    //the get request is in timout right now because we are doing for now the login and the request together and the request happens
+    //be4 the login response,this is just temporary until we make regular login
+    // setTimeout(() => {
+    //   axios
+    //     .get("http://52.90.122.190:5000/games/lotto/type/regular/0", {
+    //       headers: {
+    //         authorization: jwt,
+    //       },
+    //     })
+    //     .then((res) => {
+    //       console.log("this is res from server request !@!@ : ", res);
+    //     });
+    // }, 4000);
+  }, []);
   return (
     <>
       <ScrollView>
