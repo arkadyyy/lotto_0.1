@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import userAreaStyles from "./UserAreaStyles";
 import {
   ScrollView,
@@ -35,9 +35,18 @@ import Withdrawal from "./Withdrawal/WithDrawal";
 import MyWins from "./MyWins/MyWins";
 import PaymentHistory from "./PaymentHistory/PaymentHistory";
 import HistoryRefund from "./HistoryRefund/HistoryRefund";
-
+import { useSelector, useDispatch } from "react-redux";
 const UserArea = ({ navigation }) => {
   const [screen, setScreen] = useState("activeForms");
+  const store = useSelector((state) => state);
+  const username = useSelector((state) => state.user.attributes.name);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("user from userarea !@#$@!#$!@#!@# : ", store);
+  }, []);
+
   return (
     <>
       <NavBar navigation={navigation} />
@@ -203,7 +212,9 @@ const UserArea = ({ navigation }) => {
                 marginTop: 20,
               }}
             >
-              <Text style={{ fontSize: 20, color: "black" }}>שלום , לקוח</Text>
+              <Text style={{ fontSize: 20, color: "black" }}>
+                שלום , {username}
+              </Text>
               <Button
                 style={{
                   paddingLeft: 23,

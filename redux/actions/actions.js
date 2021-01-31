@@ -9,10 +9,10 @@ const LogIn = (username, password) => async (dispatch) => {
     user = await Auth.signIn(username, password);
 
     console.log("log in from action was succsessful !@!@!@!@!@!@!@!@");
-
+    let x = JSON.parse(user);
     dispatch({
       type: "LOGIN_SUCCESS",
-      payload: { user },
+      payload: x,
     });
   } catch (error) {
     console.log(error);

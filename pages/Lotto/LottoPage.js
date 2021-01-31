@@ -3,20 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-} from "native-base";
+import { Button, List } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
@@ -29,7 +16,6 @@ import awsconfig from "../../aws-exports";
 import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
 Amplify.configure(awsconfig);
-// { tableNum: 1, choosenNums: [1, 2, 3, 4, 5, 6], strongNum: 7 },
 
 const LottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -73,6 +59,7 @@ const LottoPage = ({ navigation }) => {
     Auth.currentSession().then((res) => {
       accessToken = res.getAccessToken();
       jwt = accessToken.getJwtToken();
+
       setjwtState(jwt);
     });
 
@@ -247,7 +234,7 @@ const LottoPage = ({ navigation }) => {
                 onPress={() => {
                   let summary = { regularLotto: fullTables };
                   console.log(summary);
-                  // console.log("store.user : ", store.user.signInUserSession);
+                  console.log("store.user : ", store.user.signInUserSession);
                   // console.log("jwtState : ", jwtState);
 
                   axios
@@ -256,6 +243,11 @@ const LottoPage = ({ navigation }) => {
                       {
                         tables: {
                           tables: [
+                            {
+                              table_number: 1,
+                              numbers: [11, 12, 13, 14, 15, 16],
+                              strong_number: 6,
+                            },
                             {
                               table_number: 2,
                               numbers: [1, 2, 3, 4, 5, 6],

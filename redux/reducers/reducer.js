@@ -1,4 +1,7 @@
-const initialState = {};
+const initialState = {
+  test: "this is a test hahaha",
+  user: -1,
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

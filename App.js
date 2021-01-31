@@ -8,6 +8,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./pages/Home/Home";
 import UserArea from "./pages/UserArea/UserArea";
 import SignIn from "./pages/SignIn/SignIn";
+import LogInPage from "./pages/LogIn/LogInPage";
 import StackWrapper from "./StackWrapper";
 import DrawerContent from "./pages/DrawerContent/DrawerContent";
 import LottoPage from "./pages/Lotto/LottoPage";
@@ -59,6 +60,7 @@ export default function App() {
             <Drawer.Screen name='Home' component={Home} />
             <Drawer.Screen name='UserArea' component={UserArea} />
             <Drawer.Screen name='SignIn' component={SignIn} />
+            <Drawer.Screen name='LogInPage' component={LogInPage} />
             <Drawer.Screen name='LottoList' component={LottoList} />
             <Drawer.Screen name='LottoPage' component={LottoPage} />
             <Drawer.Screen name='DoubleLottoPage' component={DoubleLottoPage} />
