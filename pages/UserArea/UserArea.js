@@ -39,13 +39,11 @@ import { useSelector, useDispatch } from "react-redux";
 const UserArea = ({ navigation }) => {
   const [screen, setScreen] = useState("activeForms");
   const store = useSelector((state) => state);
-  const username = useSelector((state) => state.user.attributes.name);
+  const username = store.user.attributes.name;
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log("user from userarea !@#$@!#$!@#!@# : ", store);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
