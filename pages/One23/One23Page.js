@@ -23,6 +23,12 @@ import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 import one23listStyles from "./One23listStyles";
 import { autoFill } from "./components/FillForm";
+import { useEffect } from "react";
+import Amplify, { Auth } from "aws-amplify";
+import awsconfig from "../../aws-exports";
+import { useSelector, useDispatch } from "react-redux";
+import { LogIn } from "../../redux/actions/actions";
+Amplify.configure(awsconfig);
 
 const One23Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -32,6 +38,9 @@ const One23Page = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
+
+  const store = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const autoFillForm = () => {
     let fullTabels = [];
@@ -46,6 +55,10 @@ const One23Page = ({ navigation }) => {
     }
     setFullTables(fullTabels);
   };
+
+  useEffect(() => {
+    dispatch(LogIn("dlevkovich05@gmail.com", "Dekel1145"));
+  }, []);
 
   return (
     <>
@@ -184,11 +197,10 @@ const One23Page = ({ navigation }) => {
                       fullTables={fullTables}
                     />
                   ))}
-                  <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-        
-          </View>
+                  <View
+                    style={{ flexDirection: "row", flexWrap: "wrap" }}
+                  ></View>
                 </ScrollView>
-                
               </List>
             </View>
             <View

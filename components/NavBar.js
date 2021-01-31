@@ -18,42 +18,59 @@ import Sidebar from "../components/SideBar";
 import { useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { useEffect } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import LogIn from "../redux/actions/actions";
+import Amplify, { Auth } from "aws-amplify";
+import awsconfig from "../aws-exports";
+Amplify.configure(awsconfig);
 const NavBar = (props) => {
   const { navigation } = props;
   const route = useRoute();
-  const [navBarTitle, setNavBarTitle] = useState('');
+  const [navBarTitle, setNavBarTitle] = useState("");
+  const [btnText, setbtnText] = useState("אזור אישי");
 
+  const store = useSelector((state) => state);
 
-  useEffect(() => {  
-    
-    if  (route.name === "LottoList") 
-      setNavBarTitle('הגרלת לוטו');
+  useEffect(() => {
+    if (route.name === "LottoList") setNavBarTitle("הגרלת לוטו");
     else if (route.name === "ChanceList") {
       setNavBarTitle(`הגרלת צ'אנס`);
-    }else if (route.name === "Sheva77List") {
+    } else if (route.name === "Sheva77List") {
       setNavBarTitle(`הגרלת 777`);
-    }else if (route.name === "One23List") {
+    } else if (route.name === "One23List") {
       setNavBarTitle(`הגרלת 123`);
-    }else if (route.name === "SignIn") {
+    } else if (route.name === "SignIn") {
       setNavBarTitle(`הרשמה ופרטי תשלום`);
-    }else if (route.name === "LottoPage") {
+    } else if (route.name === "LottoPage") {
       setNavBarTitle(`דאבל לוטו`);
-    }else if (route.name === "LottoShitatiPage") {
+    } else if (route.name === "LottoShitatiPage") {
       setNavBarTitle(`לוטו שיטתי`);
-    }else if (route.name === "LottoShitatiHazakPage") {
-      setNavBarTitle('לוטו שיטתי חזק');
-    }else if (route.name === "Sheva77Page") {
+    } else if (route.name === "LottoShitatiHazakPage") {
+      setNavBarTitle("לוטו שיטתי חזק");
+    } else if (route.name === "Sheva77Page") {
       setNavBarTitle(`777`);
-    }else if (route.name === "Sheva778Page") {
+    } else if (route.name === "Sheva778Page") {
       setNavBarTitle(`778`);
-    }else if (route.name === "Sheva779Page") {
+    } else if (route.name === "Sheva779Page") {
       setNavBarTitle(`779`);
-    }else if (route.name === "One23Page") {
+    } else if (route.name === "One23Page") {
       setNavBarTitle(`123`);
-    
-    } 
-    }, [route.name])
+    }
+  }, [route.name]);
+
+  useEffect(() => {
+    console.log("store in navbar : ", store);
+    if (store.user === -1) {
+      setbtnText("התחבר");
+    } else if (typeof store.user === Object) {
+      setbtnText("אזור אישי");
+    }
+  }, [store]);
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(LogIn("dlevkovich05@gmail.com", "Dekel1145"));
+  // }, []);
 
   return (
     <Header style={styles.navbar}>
@@ -62,26 +79,30 @@ const NavBar = (props) => {
           <Icon name='menu' />
         </Button>
       </Left>
-     
-        <Body>
-          <View style={{alignSelf:"center"}}>
-            <Text
-              style={{
-                color: "white",
-                marginLeft: 50,
-              }}
-            >
-              { navBarTitle}
-            </Text>
-          </View>
-        </Body>
-      
-  
+
+      <Body>
+        <View style={{ alignSelf: "center" }}>
+          <Text
+            style={{
+              color: "white",
+              marginLeft: 50,
+              fontSize: 12,
+            }}
+          >
+            {navBarTitle}
+          </Text>
+        </View>
+      </Body>
+
       <Right>
         <View style={{ flexDirection: "row" }}>
           <Button
             onPress={() => {
-              navigation.navigate("UserArea");
+              if (store.user !== -1) {
+                navigation.navigate("UserArea");
+              } else {
+                navigation.navigate("LogInPage");
+              }
             }}
             style={styles.headerBtns}
             small
@@ -115,7 +136,6 @@ const NavBar = (props) => {
               </View>
             </Button>
           )}
-       
         </View>
       </Right>
     </Header>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
@@ -22,6 +22,7 @@ import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 import chanceListstyles from "./ChanceListStyles";
+import { useSelector, useDispatch } from "react-redux";
 
 const ChancePage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -38,6 +39,8 @@ const ChancePage = ({ navigation }) => {
       },
     ],
   });
+  const dispatch = useDispatch();
+
   return (
     <>
       <ScrollView>
