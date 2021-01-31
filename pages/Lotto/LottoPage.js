@@ -56,7 +56,7 @@ const LottoPage = ({ navigation }) => {
       fullTabels1 = [...fullTabels1, table];
     }
     setFullTables(fullTabels1);
-    setTableRowColor("#78C849");
+    // setTableRowColor("#78C849");
   };
 
   const deletForm = () => {
@@ -196,7 +196,7 @@ const LottoPage = ({ navigation }) => {
                 setFullTables={setFullTables}
                 autoFillForm={autoFillForm}
                 tableRowColor={tableRowColor}
-                setTableRowColor={setTableRowColor}
+                // setTableRowColor={setTableRowColor}
               />
             )}
             <View
@@ -228,7 +228,8 @@ const LottoPage = ({ navigation }) => {
                       setIndexOfTable={setIndexOfTable}
                       setopendTableNum={setopendTableNum}
                       tableRowColor={tableRowColor}
-                      setTableRowColor={setTableRowColor}
+                      // setTableRowColor={setTableRowColor}
+
                     />
                   ))}
                 </ScrollView>

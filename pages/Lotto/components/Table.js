@@ -117,6 +117,8 @@ const Table = ({
     else {
       settable1([" ", " ", " ", " ", " ", " "]);
       settable2([" ", " ", " ", " ", " ", " "]);
+      setstrongNum1("");
+      setstrongNum2("");
     }
 
     console.log("table1 : ", table1);
@@ -125,10 +127,8 @@ const Table = ({
   return (
     <>
       <ListItem
-        style={{
-          // backgroundColor: "#8CC63F",
-          // backgroundColor: "#D60617",
-          backgroundColor: tableRowColor,
+        style={{ 
+          backgroundColor: !table1.includes(" ") ? "#78C849" : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
           height: 55,
@@ -182,7 +182,7 @@ const Table = ({
       </ListItem>
       <ListItem
         style={{
-          backgroundColor: tableRowColor,
+          backgroundColor: !table2.includes(" ") ? "#78C849" : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
           height: 55,
