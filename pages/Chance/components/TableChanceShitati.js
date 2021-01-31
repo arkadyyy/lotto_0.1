@@ -77,21 +77,12 @@ const Num = ({
     } else if (typeArr.length === tableNum && counter / 4 === tableNum) {
       console.log("i am in secend if");
       return true;
-    }
-    // else if (pressed.numberOfPress >= 4) {
-    //   return true;
-    // }
-    //  else if (tablesUsed >= tableNum && pressed.symbolsPressed.length >= 4) {
-    //   return true;
-    // }
-    else if (pressed.symbolsPressed.length >= 4) {
+    } else if (pressed.symbolsPressed.length >= 4) {
       console.log("i am in third if");
       return true;
-    }
-    // else if (counter % 4 === 0) {
-    //   return true;
-    // }
-    else {
+    } else if (typeArr.length === tableNum && !typeArr.includes(pressed.type)) {
+      return true;
+    } else {
       return false;
     }
   };
