@@ -124,7 +124,7 @@ const FillFormShitati8 = ({
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "21.8%",
+          top: "20.8%",
           height: 525,
           position: "absolute",
           zIndex: 2000,
@@ -138,7 +138,7 @@ const FillFormShitati8 = ({
             height: 70,
             position: "relative",
             top: -40,
-            left: "28.5%",
+            left: "28.25%",
             zIndex: 2001,
             flexDirection: "row",
             justifyContent: "space-around",
@@ -249,7 +249,27 @@ const FillFormShitati8 = ({
                 key={index}
               />
             ))}
+         
           </View>
+          {(choosenNums.length > 0) && (<Text style={{ color: "white", top: "9%", }}>המספרים שנבחרו</Text>)}
+            <View style={{ flexDirection: "row", flexWrap: "wrap",top:"12.5%" }}>
+
+            {choosenNums.slice(0).reverse().map((num) => (
+              <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 30,
+                backgroundColor: "pink",      
+                margin: 5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ color: "black" }}>{num}</Text>
+              </View>
+            ))}
+            </View>
         </View>
       </View>
     </>

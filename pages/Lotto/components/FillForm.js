@@ -111,6 +111,8 @@ const FillForm = ({
   opendTableTzerufimNum,
   setFullTables,
   fullTables,
+  tableRowColor,
+  setTableRowColor
 }) => {
   const [strongNum, setstrongNum] = useState(0);
   const [choosenNums, setchoosenNums] = useState([]);
@@ -168,7 +170,7 @@ const FillForm = ({
           backgroundColor: "#263742",
           width: "100%",
           top: "39%",
-          height: 420,
+          height: 450,
           position: "absolute",
           zIndex: 2000,
         }}
@@ -182,7 +184,7 @@ const FillForm = ({
             position: "relative",
             top: -40,
 
-            left: EStyleSheet.value("$rem") * 157.8,
+            left: EStyleSheet.value("$rem") * 156.8,
             zIndex: 2001,
             flexDirection: "row",
             justifyContent: "space-around",
@@ -241,7 +243,7 @@ const FillForm = ({
           style={{
             borderColor: "white",
             width: "90%",
-            height: "65%",
+            height: "60%",
             borderWidth: 1,
             borderRadius: 8,
             alignSelf: "center",
@@ -268,6 +270,7 @@ const FillForm = ({
                 let numbers = autoFill(6);
                 setchoosenNums(numbers.randomNumbers);
                 setstrongNum(numbers.strongNum);
+                setTableRowColor("#78C849")
               }}
               small
               rounded
@@ -277,7 +280,8 @@ const FillForm = ({
             <Button
               onPress={() => {
                 setchoosenNums([]);
-                setstrongNum(0);
+                setstrongNum(' ');
+                setTableRowColor('#D60617')
               }}
               small
               rounded
@@ -296,12 +300,13 @@ const FillForm = ({
               />
             ))}
           </View>
-          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             {choosenNums.length > 0 && (
-              <Text style={{ color: "white", marginTop: 7 }}>
+              <Text style={{ color: "white", top:"3%",right:8 }}>
                 המספרים שנבחרו
               </Text>
-            )}
+          )}
+                    <View style={{ flexDirection: "row", flexWrap: "wrap",top:"3%" }}>
+
             {choosenNums
               .slice(0)
               .reverse()
@@ -322,8 +327,8 @@ const FillForm = ({
               ))}
           </View>
         </View>
-        <View style={{ marginTop: -16 }}>
-          <Text style={{ color: "white", marginHorizontal: 15 }}>
+        <View>
+          <Text style={{ color: "white", marginHorizontal: 15,top:"14%" }}>
             בחר מספר חזק
           </Text>
           <View
@@ -338,6 +343,7 @@ const FillForm = ({
               alignItems: "center",
               alignSelf: "center",
               margin: 2,
+              top:"5%"
             }}
           >
             {Array.from(Array(7)).map((x, index) => (

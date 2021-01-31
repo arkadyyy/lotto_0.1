@@ -52,7 +52,7 @@ const Sheva778Page = ({ navigation }) => {
         <BlankSquare gameName='הגרלת 777' color='#CC1D64' />
         <ChooseForm />
         <View style={{ margin: 15 }}>
-          <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20 }}>
+          <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20,height:660}}>
             <View
               style={{
                 flexDirection: "row",
@@ -169,6 +169,7 @@ const Sheva778Page = ({ navigation }) => {
                       tableNum={index + 1}
                     />
                   ))}
+                  
                 </ScrollView>
               </List>
             </View>
@@ -182,9 +183,7 @@ const Sheva778Page = ({ navigation }) => {
               }}
             >
               <Button
-                onPress={() => {
-                  console.log({ sheva78: fullTables });
-                }}
+             
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",

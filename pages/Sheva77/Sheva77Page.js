@@ -170,24 +170,6 @@ const Sheva77Page = ({ navigation }) => {
                       tableNum={index + 1}
                     />
                   ))}
-                  <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-          {(tableNum.length>0) && (<Text style={{color:"white", marginTop:7}}>המספרים שנבחרו</Text>)}
-            {tableNum.slice(0).reverse().map((num) => (
-              <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "pink",      
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ color: "black" }}>{num}</Text>
-            </View>
-            ))}
-          </View>
                 </ScrollView>
               </List>
             </View>
@@ -201,9 +183,7 @@ const Sheva77Page = ({ navigation }) => {
               }}
             >
               <Button
-                onPress={() => {
-                  console.log("777 : ", fullTables);
-                }}
+                
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",

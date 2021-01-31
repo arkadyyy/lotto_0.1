@@ -36,7 +36,6 @@ Amplify.configure(awsconfig);
 
 const entireScreenWidth = Dimensions.get("window").width;
 EStyleSheet.build({
-  $textColor: "#0275d8",
   $rem: entireScreenWidth / 380,
 });
 

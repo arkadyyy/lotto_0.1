@@ -68,6 +68,8 @@ const Table = ({
   index,
   setopendTableNum,
   fullTables,
+  tableRowColor,
+  setTableRowColor
 }) => {
   const index1 = index * 2 - 1;
   const index2 = index * 2;
@@ -77,7 +79,6 @@ const Table = ({
   const [strongNum1, setstrongNum1] = useState(' ');
   const [table2, settable2] = useState([" ", " ", " ", " ", " ", " "]);
   const [strongNum2, setstrongNum2] = useState('');
-
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
 
   useEffect(() => {
@@ -125,7 +126,9 @@ const Table = ({
     <>
       <ListItem
         style={{
-          backgroundColor: "#8CC63F",
+          // backgroundColor: "#8CC63F",
+          // backgroundColor: "#D60617",
+          backgroundColor: tableRowColor,
           flexWrap: "wrap",
           marginTop: 4,
           height: 55,
@@ -179,7 +182,7 @@ const Table = ({
       </ListItem>
       <ListItem
         style={{
-          backgroundColor: "#8CC63F",
+          backgroundColor: tableRowColor,
           flexWrap: "wrap",
           marginTop: 4,
           height: 55,

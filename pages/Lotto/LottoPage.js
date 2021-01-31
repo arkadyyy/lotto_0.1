@@ -52,6 +52,7 @@ const LottoPage = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
+  const[tableRowColor,setTableRowColor]=useState('D60617')
 
   useEffect(() => {
     signIn();
@@ -69,8 +70,13 @@ const LottoPage = ({ navigation }) => {
       fullTabels1 = [...fullTabels1, table];
     }
     setFullTables(fullTabels1);
+    setTableRowColor('#78C849')
   };
 
+  const deletForm = () => {
+    setFullTables([]);
+    setTableRowColor('#D60617')
+}
   useEffect(() => {
     axios
       .get("http://52.90.122.190:5000/games/lotto/type/regular/0", {
@@ -89,10 +95,10 @@ const LottoPage = ({ navigation }) => {
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
-        <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
+        <BlankSquare gameName='הגרלת לוטו' color='#FF0000' />
         <ChooseForm setdouble={setdouble} />
         <View style={{ margin: 15 }}>
-          <View style={{ backgroundColor: "#E62321", paddingBottom: 20 }}>
+          <View style={{ backgroundColor: "#FF0000", paddingBottom: 20,height:730 }}>
             <View
               style={{
                 flexDirection: "row",
@@ -112,7 +118,7 @@ const LottoPage = ({ navigation }) => {
                   marginRight: 20,
                 }}
               >
-                <Text style={{ fontSize: 20, color: "#E62321" }}>1</Text>
+                <Text style={{ fontSize: 20, color: "#FF0000" }}>1</Text>
               </View>
               <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
             </View>
@@ -138,7 +144,8 @@ const LottoPage = ({ navigation }) => {
               }}
             >
               <Button
-                onPress={() => setFullTables([])}
+                // onPress={() =>setFullTables([])}
+                onPress={deletForm}
                 style={{ borderColor: "white", margin: 5 }}
                 small
                 rounded
@@ -182,6 +189,8 @@ const LottoPage = ({ navigation }) => {
                 fullTables={fullTables}
                 setFullTables={setFullTables}
                 autoFillForm={autoFillForm}
+                tableRowColor={tableRowColor}
+                setTableRowColor={setTableRowColor}
               />
             )}
             <View
@@ -212,6 +221,8 @@ const LottoPage = ({ navigation }) => {
                       setshowTable={setshowTable}
                       setIndexOfTable={setIndexOfTable}
                       setopendTableNum={setopendTableNum}
+                      tableRowColor={tableRowColor}
+                setTableRowColor={setTableRowColor}
                     />
                   ))}
                 </ScrollView>

@@ -56,7 +56,7 @@ const Sheva779Page = ({ navigation }) => {
             style={{
               backgroundColor: "#CC1D64",
               paddingBottom: 20,
-              height: 650,
+              height: 660,
             }}
           >
             <View
