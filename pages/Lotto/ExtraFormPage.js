@@ -22,7 +22,8 @@ import { faShekelSign } from "@fortawesome/free-solid-svg-icons";
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
-const ExtraFormPage = ({ navigation }) => {
+const ExtraFormPage = ({ route, navigation }) => {
+  
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [double, setdouble] = useState(false);
@@ -43,6 +44,7 @@ const ExtraFormPage = ({ navigation }) => {
   return (
     <>
       <ScrollView>
+
         <NavBar navigation={navigation} />
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         <ChooseForm setdouble={setdouble} />

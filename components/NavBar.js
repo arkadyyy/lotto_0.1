@@ -41,7 +41,7 @@ const NavBar = (props) => {
       setNavBarTitle(`הגרלת 123`);
     } else if (route.name === "SignIn") {
       setNavBarTitle(`הרשמה ופרטי תשלום`);
-    } else if (route.name === "LottoPage") {
+    } else if (route.name === "LottoPage" ||route.name === "LottoPage") {
       setNavBarTitle(`דאבל לוטו`);
     } else if (route.name === "LottoShitatiPage") {
       setNavBarTitle(`לוטו שיטתי`);

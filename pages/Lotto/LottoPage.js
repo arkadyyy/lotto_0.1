@@ -237,50 +237,8 @@ const LottoPage = ({ navigation }) => {
               <Button
                 onPress={() => {
                   let summary = { regularLotto: fullTables };
-                  // console.log(summary);
-                  // console.log("store.user : ", store.user.signInUserSession);
-                  // // console.log("jwtState : ", jwtState);
-
-                  // axios
-                  //   .post(
-                  //     "http://52.90.122.190:5000/games/lotto/type/regular/0",
-                  //     {
-                  //       tables: {
-                  //         tables: [
-                  //           {
-                  //             table_number: 1,
-                  //             numbers: [11, 12, 13, 14, 15, 16],
-                  //             strong_number: 6,
-                  //           },
-                  //           {
-                  //             table_number: 2,
-                  //             numbers: [1, 2, 3, 4, 5, 6],
-                  //             strong_number: 6,
-                  //           },
-                  //         ],
-
-                  //         extra: false,
-                  //         multi_lottery: 6,
-                  //         lottomatic: 10,
-                  //       },
-                  //       type: "regular_lotto",
-                  //       userName: "dlevkovich05@gmail.com",
-                  //       timestamp: new Date(),
-                  //       status: "completed",
-                  //     },
-                  //     {
-                  //       headers: {
-                  //         authorization: jwtState,
-                  //       },
-                  //     }
-                  //   )
-                  //   .then((res) => {
-                  //     console.log(
-                  //       "this is res from post server request $$$$ : ",
-                  //       res
-                  //     );
-                  //   });
-                  navigation.navigate("ExtraFormPage");
+                 
+                  navigation.navigate("ExtraFormPage",{screenName:'LottoPage'});
                 }}
                 style={{
                   borderRadius: 17,
