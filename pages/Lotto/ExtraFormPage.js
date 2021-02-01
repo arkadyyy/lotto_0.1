@@ -58,7 +58,7 @@ const ExtraFormPage = ({ navigation }) => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                padding: 30,
+                padding: 10,
               }}
             >
               <View
@@ -70,7 +70,7 @@ const ExtraFormPage = ({ navigation }) => {
                   borderRadius: 33,
                   justifyContent: "center",
                   alignItems: "center",
-                  marginRight: 20,
+                  marginRight: 10,
                 }}
               >
                 <Text style={{ fontSize: 20, color: "#FF0000" }}>2</Text>
@@ -85,7 +85,7 @@ const ExtraFormPage = ({ navigation }) => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                padding: 30,
+                padding: 10,
               }}
             >
               <View
@@ -97,33 +97,34 @@ const ExtraFormPage = ({ navigation }) => {
                   borderRadius: 33,
                   justifyContent: "center",
                   alignItems: "center",
-                  marginRight: 20,
+                  marginRight: 10,
                 }}
               >
                 <FontAwesomeIcon icon={faShekelSign} color="red"/ >
               </View>
+              
               <Text style={{ fontSize: 27, color: "white" }}>סיכום ושליחת טופס</Text>
             </View>
-           
-            <View>
-              <Text>סה"ב {tableNum}טבלאות</Text>
-              <Text> {hagralot}הגרלות</Text>
+           <View style={{flexDirection:"column"}}>
+            <View style={{ flexDirection: "row", alignItems: "center",marginHorizontal:15 }}>
+                <Text style={{ fontSize: 27, color: "yellow" }}>סה"כ {tableNum}טבלאות</Text>
+<View style={{marginLeft:10, borderLeftColor:"yellow",height:20,width:10,borderLeftWidth:1 }}></View>
+              <Text style={{ fontSize: 27, color: "yellow" }}> {hagralot}הגרלות</Text>
+            </View>
+            
               <View
               style={{
                 flexDirection: "row",
                 
-                width: 50,
-                height: 50,
-                borderRadius: 33,
-                justifyContent: "center",
-                alignItems: "center",
-                marginRight: 20,
               }}
               >
-              <Text color="white">{price}</Text>
-              <FontAwesomeIcon icon={faShekelSign} color="white"/>
+                <Text color="white" style={{ fontSize: 27, color: "white", marginLeft: 15 }}>לתשלום: {price} </Text>
+                <View style={{height:10}}>
+                  <FontAwesomeIcon style={{ marginVertical: 7, marginLeft: -4, }} icon={faShekelSign} color="white"/>
                 </View>
-            </View>
+                </View>
+                </View>
+            
          
             <View
               style={{

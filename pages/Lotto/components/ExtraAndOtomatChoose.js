@@ -76,7 +76,8 @@ const ExtraAndOtomatChoose = ({
                   borderRadius: 30,
                   borderColor: "#8CC63F",
                   borderWidth: 1,
-                  margin: 5,
+              margin: 5,
+                  
                   justifyContent: "center",
                   alignItems: "center",
                   backgroundColor: "#FF0000",
@@ -85,11 +86,12 @@ const ExtraAndOtomatChoose = ({
                   settableNum(2);
                 }}
               >
-                <Text style={{ color:  "white" }}>
+                <Text style={{ color:"white" }}>
                           כן אוטומטי מתחדש
                 </Text>
            
               </TouchableOpacity>
+              <View style={{ marginLeft:4,marginTop:9, borderLeftColor:"white",height:20,width:10,borderLeftWidth:1 }}></View>
 
               <View style={{
               borderRadius: 30,
@@ -198,6 +200,7 @@ const ExtraAndOtomatChoose = ({
                 </Text>
            
               </TouchableOpacity>
+              <View style={{ marginLeft:4,marginTop:9, borderLeftColor:"white",height:20,width:10,borderLeftWidth:1 }}></View>
 
               <View style={{
               borderRadius: 30,
