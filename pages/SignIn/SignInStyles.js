@@ -70,6 +70,8 @@ const signInstyles = StyleSheet.create({
     borderWidth: 1,
     marginLeft: 15,
   },
+ 
+  
 });
 
 export default signInstyles;

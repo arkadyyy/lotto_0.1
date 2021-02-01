@@ -23,7 +23,7 @@ Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
 const ExtraFormPage = ({ route, navigation }) => {
-  
+  const { screenName } = route.params;
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [double, setdouble] = useState(false);
@@ -32,7 +32,7 @@ const ExtraFormPage = ({ route, navigation }) => {
   const [opendTableNum, setopendTableNum] = useState(0);
   const [tableRowColor, setTableRowColor] = useState("D60617");
   const [jwtState, setjwtState] = useState({});
-
+  const [gameName, setGameName] = useState('');
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -41,13 +41,19 @@ const ExtraFormPage = ({ route, navigation }) => {
   const [price, setPrice] = useState(11);
   // const [tableNum, settableNum] = useState(1);
 
+  useEffect(() => {
+    if ( screenName  === "LottoPage") { setGameName("הגרלת לוטו") }
+    else if (screenName === "ChancePage") {setGameName("הגרלת צ'אנס") };
+      
+  }, []);
+
   return (
     <>
       <ScrollView>
 
-        <NavBar navigation={navigation} />
+        <NavBar navigation={navigation} navBarTitle={'לוטו- שליחת טופס'}/>
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
-        <ChooseForm setdouble={setdouble} />
+        <ChooseForm setdouble={setdouble} double={double} />
         <View style={{ margin: 15 }}>
           <View
             style={{

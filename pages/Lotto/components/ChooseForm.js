@@ -16,8 +16,9 @@ import {
   ListItem,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import chooseFormStyles from "./chooseFormStyles";
 
-const ChooseForm = ({ setdouble }) => {
+const ChooseForm = ({ double,setdouble }) => {
   return (
     <>
       <View
@@ -37,26 +38,28 @@ const ChooseForm = ({ setdouble }) => {
           <Text>בחר סוג טופס</Text>
           <View>
             <Button
-              style={{ backgroundColor: "white", padding: 10 }}
               small
               rounded
-              onPress={() => {
-                setdouble(false);
-              }}
-            >
+              style={
+                double === false
+                ? chooseFormStyles.radioRegularButon
+                : chooseFormStyles.radioDubbleButon
+               }
+               onPress={() => {setdouble(false)}}
+>
               <Text>רגיל</Text>
             </Button>
           </View>
 
           <View>
             <Button
-              style={{ backgroundColor: "#E62321", padding: 10 }}
               small
               rounded
-              onPress={() => {
-                setdouble(true);
-                console.log("double setted");
-              }}
+                 style={ double === true
+                  ? chooseFormStyles.radioRegularButon
+                  : chooseFormStyles.radioDubbleButon
+                 }
+                 onPress={() => {setdouble(true)}}
             >
               <Text>דאבל</Text>
             </Button>

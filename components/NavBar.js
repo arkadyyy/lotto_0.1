@@ -55,6 +55,8 @@ const NavBar = (props) => {
       setNavBarTitle(`779`);
     } else if (route.name === "One23Page") {
       setNavBarTitle(`123`);
+    } else if (route.name === "ExtraFormPage") {
+      setNavBarTitle(`לוטו-שליחת טופס`);
     }
   }, [route.name]);
 
