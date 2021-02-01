@@ -6,7 +6,7 @@ import axios from "axios";
 import { Button, List } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
-import ExtraAndOtomatChoose from "./components/ExtraAndOtomatChoose";
+import ExtraAndOtomatChoose from "./components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
@@ -23,9 +23,9 @@ Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
 const ExtraFormPage = ({ route, navigation }) => {
-  const { screenName } = route.params;
+  const { screenName,tableNum } = route.params;
   const [showTable, setshowTable] = useState(false);
-  const [tableNum, settableNum] = useState(1);
+  // const [tableNum, settableNum] = useState(1);
   const [double, setdouble] = useState(false);
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
@@ -86,7 +86,7 @@ const ExtraFormPage = ({ route, navigation }) => {
               <Text style={{ fontSize: 27, color: "white" }}>שדרג את הטופס</Text>
             </View>
 
-            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum }/>
+            <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
 <ExtraAndOtomatChoose/>
           
 <View

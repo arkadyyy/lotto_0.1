@@ -17,6 +17,7 @@ import {
   ListItem,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import { set } from "react-native-reanimated";
 
 const ChooseNumOfTables = ({
   settableNum,
@@ -25,6 +26,8 @@ const ChooseNumOfTables = ({
   setTzerufimNumber,
   hazakimNumber,
   setHazakimNumber,
+  hagralot,
+  setHagralot
 }) => {
   const route = useRoute();
 
@@ -210,10 +213,11 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: tableNum === 1 ?  "#8CC63F": "#FF0000" ,
+                  backgroundColor: hagralot === 1 ?  "#8CC63F": "#FF0000" ,
                 }}
                 onPress={() => {
-                  settableNum(1);
+                  // settableNum(1);
+                  setHagralot(1)
                 }}
               >
                 <Text style={{ color: "white" }}>
@@ -230,10 +234,11 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: tableNum === 4 ?  "#8CC63F": "#FF0000" ,
+                  backgroundColor: hagralot === 4 ?  "#8CC63F": "#FF0000" ,
                 }}
                 onPress={() => {
-                  settableNum(4);
+                  // settableNum(4);
+                  setHagralot(4)
                 }}
               >
                 <Text style={{ color: "white" }}>
@@ -250,10 +255,11 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: tableNum === 6 ?  "#8CC63F": "#FF0000" ,
+                  backgroundColor: hagralot === 6 ?  "#8CC63F": "#FF0000" ,
                 }}
                 onPress={() => {
-                  settableNum(6);
+                  // settableNum(6);
+                  setHagralot(6)
                 }}
               >
                 <Text style={{ color: "white" }}>
@@ -270,10 +276,11 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: tableNum === 8 ?  "#8CC63F": "#FF0000" ,
+                  backgroundColor: hagralot === 8 ?  "#8CC63F": "#FF0000" ,
                 }}
                 onPress={() => {
-                  settableNum(8);
+                  // settableNum(8);
+                  setHagralot(8);
                 }}
               >
                 <Text style={{ color: "white" }}>

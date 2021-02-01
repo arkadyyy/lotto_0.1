@@ -238,7 +238,7 @@ const LottoPage = ({ navigation }) => {
                 onPress={() => {
                   let summary = { regularLotto: fullTables };
                  
-                  navigation.navigate("ExtraFormPage",{screenName:'LottoPage'});
+                  navigation.navigate("ExtraFormPage",{tableNum:tableNum});
                 }}
                 style={{
                   borderRadius: 17,

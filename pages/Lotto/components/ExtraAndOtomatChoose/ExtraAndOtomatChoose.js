@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
+import ExtraAndOtomatChooseStyles from "./ExtraAndOtomatChooseStyles.js"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
     faCheck,faCheckCircle,faTimes,faQuestion, faQuestionCircle
@@ -30,7 +31,8 @@ const ExtraAndOtomatChoose = ({
   setHazakimNumber,
 }) => {
   const route = useRoute();
-
+  const [otomatic, setOtomatic] = useState(true);
+  const [extra, setExtra] = useState(true);
   return (
     <>
         <View
@@ -51,7 +53,7 @@ const ExtraAndOtomatChoose = ({
         <View style={{ flexDirection: "row"  }}>
         <View style={{
               borderRadius: 30,
-              borderColor: "#8CC63F",
+              borderColor:otomatic === false ? 'white' : "#8CC63F",
               borderWidth: 2,
               // margin: 5,
               justifyContent: "center",
@@ -64,26 +66,20 @@ const ExtraAndOtomatChoose = ({
           <FontAwesomeIcon
             
             icon={faCheck}
-            color='#8CC63F'
+            color={otomatic === false ? 'white' : "#8CC63F"}
             />
           </View>
       
         
               <TouchableOpacity
-                style={{
-                  width: 90,
-                  height: 30,
-                  borderRadius: 30,
-                  borderColor: "#8CC63F",
-                  borderWidth: 1,
-              margin: 5,
-                  
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "#FF0000",
-                }}
-                onPress={() => {
-                  settableNum(2);
+            style={
+              
+              otomatic === true
+                ? ExtraAndOtomatChooseStyles.selectedRadioButon
+                : ExtraAndOtomatChooseStyles.notSelectedRadioButon
+            }
+            onPress={() => {
+                  setOtomatic(true);
                 }}
               >
                 <Text style={{ color:"white" }}>
@@ -95,7 +91,7 @@ const ExtraAndOtomatChoose = ({
 
               <View style={{
               borderRadius: 30,
-              borderColor: "white",
+              borderColor: otomatic === true ? 'white' : "#8CC63F",
               borderWidth: 2,
               // margin: 5,
               justifyContent: "center",
@@ -107,25 +103,19 @@ const ExtraAndOtomatChoose = ({
             }}>
           <FontAwesomeIcon
             
-            icon={faTimes}
-            color='white'
+              icon={faTimes}
+              color={otomatic === true ? 'white' : "#8CC63F"}
             />
           </View>
 
               <TouchableOpacity
-                style={{
-                  width: 90,
-                  height: 30,
-                  borderRadius: 30,
-                  borderColor: "white",
-                  borderWidth: 1,
-                  margin: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "#FF0000",
-                }}
+            style={
+              otomatic=== true
+                ? ExtraAndOtomatChooseStyles.notSelectedRadioButon
+            : ExtraAndOtomatChooseStyles.selectedRadioButon
+              }
                 onPress={() => {
-                  settableNum(2);
+                  setOtomatic(false);
                 }}
               >
                 <Text style={{ color:  "white" }}>
@@ -161,7 +151,7 @@ const ExtraAndOtomatChoose = ({
         <View style={{ flexDirection: "row"  }}>
         <View style={{
               borderRadius: 30,
-              borderColor: "#8CC63F",
+              borderColor: extra===true ? "#8CC63F" : "white",
               borderWidth: 2,
               // margin: 5,
               justifyContent: "center",
@@ -174,25 +164,19 @@ const ExtraAndOtomatChoose = ({
           <FontAwesomeIcon
             
             icon={faCheck}
-            color='#8CC63F'
+            color={extra === false ? 'white' : "#8CC63F"}
             />
           </View>
       
         
               <TouchableOpacity
-                style={{
-                  width: 90,
-                  height: 30,
-                  borderRadius: 30,
-                  borderColor: "#8CC63F",
-                  borderWidth: 1,
-                  margin: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "#FF0000",
-                }}
+            style={
+              extra === true
+                ? ExtraAndOtomatChooseStyles.selectedRadioButon
+                : ExtraAndOtomatChooseStyles.notSelectedRadioButon
+             }
                 onPress={() => {
-                  settableNum(2);
+                  setExtra(true);
                 }}
               >
                 <Text style={{ color:  "white" }}>
@@ -204,7 +188,7 @@ const ExtraAndOtomatChoose = ({
 
               <View style={{
               borderRadius: 30,
-              borderColor: "white",
+              borderColor: extra === true ? 'white' : "#8CC63F",
               borderWidth: 2,
               // margin: 5,
               justifyContent: "center",
@@ -217,24 +201,19 @@ const ExtraAndOtomatChoose = ({
           <FontAwesomeIcon
             
             icon={faTimes}
-            color='white'
+            color={extra === true ? 'white' : "#8CC63F"}
             />
           </View>
 
               <TouchableOpacity
-                style={{
-                  width: 90,
-                  height: 30,
-                  borderRadius: 30,
-                  borderColor: "white",
-                  borderWidth: 1,
-                  margin: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "#FF0000",
-                }}
+            style={
+              extra === false
+                ? ExtraAndOtomatChooseStyles.selectedRadioButon
+                : ExtraAndOtomatChooseStyles.notSelectedRadioButon
+            
+            }
                 onPress={() => {
-                  settableNum(2);
+                  setExtra(false);
                 }}
               >
                 <Text style={{ color:  "white" }}>
