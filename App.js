@@ -12,6 +12,7 @@ import LogInPage from "./pages/LogIn/LogInPage";
 import StackWrapper from "./StackWrapper";
 import DrawerContent from "./pages/DrawerContent/DrawerContent";
 import LottoPage from "./pages/Lotto/LottoPage";
+import ExtraFormPage from "./pages/Lotto/ExtraFormPage";
 import DoubleLottoPage from "./pages/Lotto/DoubleLottoPage";
 import LottoList from "./pages/Lotto/LottoList";
 import LottoShitatiPage from "./pages/Lotto/LottoShitatiPage";
@@ -85,6 +86,7 @@ export default function App() {
             <Drawer.Screen name='Sheva779Page' component={Sheva779Page} />
             <Drawer.Screen name='One23List' component={One23List} />
             <Drawer.Screen name='One23Page' component={One23Page} />
+            <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
           </Drawer.Navigator>
         </NavigationContainer>
       </Provider>

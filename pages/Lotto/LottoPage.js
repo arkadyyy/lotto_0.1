@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity,Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
@@ -16,6 +16,7 @@ import awsconfig from "../../aws-exports";
 import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
 Amplify.configure(awsconfig);
+const { width, height } = Dimensions.get("window");
 
 const LottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -82,7 +83,7 @@ const LottoPage = ({ navigation }) => {
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
-        <BlankSquare gameName='הגרלת לוטו' color='#FF0000' />
+        <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         <ChooseForm setdouble={setdouble} />
         <View style={{ margin: 15 }}>
           <View
@@ -224,59 +225,21 @@ const LottoPage = ({ navigation }) => {
             </View>
             <View
               style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                marginTop: 25,
+                flexDirection: "column",
+                // alignItems: "center",
+                // justifyContent: "center",
+                marginTop: height/25,
                 zIndex: 1,
+                marginHorizontal: width/5,
+                width: width / 1.5,
+                height: height / 10,
+                
+                
               }}
             >
               <Button
                 onPress={() => {
-                  let summary = { regularLotto: fullTables };
-                  console.log(summary);
-                  console.log("store.user : ", store.user.signInUserSession);
-                  // console.log("jwtState : ", jwtState);
-
-                  axios
-                    .post(
-                      "http://52.90.122.190:5000/games/lotto/type/regular/0",
-                      {
-                        tables: {
-                          tables: [
-                            {
-                              table_number: 1,
-                              numbers: [11, 12, 13, 14, 15, 16],
-                              strong_number: 6,
-                            },
-                            {
-                              table_number: 2,
-                              numbers: [1, 2, 3, 4, 5, 6],
-                              strong_number: 6,
-                            },
-                          ],
-
-                          extra: false,
-                          multi_lottery: 6,
-                          lottomatic: 10,
-                        },
-                        type: "regular_lotto",
-                        userName: "dlevkovich05@gmail.com",
-                        timestamp: new Date(),
-                        status: "completed",
-                      },
-                      {
-                        headers: {
-                          authorization: jwtState,
-                        },
-                      }
-                    )
-                    .then((res) => {
-                      console.log(
-                        "this is res from post server request $$$$ : ",
-                        res
-                      );
-                    });
+                  navigation.navigate("ExtraFormPage");
                 }}
                 style={{
                   borderRadius: 17,
@@ -286,8 +249,9 @@ const LottoPage = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
+<Text style={{color: "white", fontSize:28, textAlign:"center"}}>המשך לשליחת טופס</Text>
               </Button>
+             
             </View>
           </View>
           <View

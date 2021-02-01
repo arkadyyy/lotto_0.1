@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity,Dimensions } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
 import {
@@ -21,6 +21,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { useEffect } from "react";
+const { width, height } = Dimensions.get("window");
 
 const Num = ({ num }) => {
   return (
@@ -127,16 +128,38 @@ const ShitatiHazakTable = ({
 
   return (
     <>
-      <ListItem
+      {/* <ListItem
         style={{
-          backgroundColor: "#8CC63F",
+          backgroundColor: !table1.includes(" ") ? "#C1272D " : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
           height: EStyleSheet.value("$rem") * 90,
           width: EStyleSheet.value("$rem") * 292,
           alignItems: "center",
         }}
+      > */}
+
+{/* <ListItem
+        style={{
+          backgroundColor: !table1.includes(" ") ? "#C1272D " : "#D60617",
+          flexWrap: "wrap",
+          marginTop: 4,
+          height: height / 8,
+          alignItems: "center",
+          width: width / 1.3,
+        }}
+      > */}
+
+<ListItem
+        style={{ 
+          backgroundColor: !table1.includes(" ") ? "#78C849" : "#D60617",
+          flexWrap: "wrap",
+          marginTop: 4,
+          height: 80,
+          alignItems: "center",
+        }}
       >
+      
         <Text style={{ color: "white", fontSize: 13 }}>טבלה {index1} </Text>
         <TouchableOpacity
           onPress={() => {
