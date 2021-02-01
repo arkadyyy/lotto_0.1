@@ -36,14 +36,20 @@ import MyWins from "./MyWins/MyWins";
 import PaymentHistory from "./PaymentHistory/PaymentHistory";
 import HistoryRefund from "./HistoryRefund/HistoryRefund";
 import { useSelector, useDispatch } from "react-redux";
+import { LogOut } from "../../redux/actions/actions";
 const UserArea = ({ navigation }) => {
   const [screen, setScreen] = useState("activeForms");
+  const [username, setusername] = useState("אורח");
   const store = useSelector((state) => state);
-  const username = store.user.attributes.name;
-
+  const name = useSelector((state) => state.name);
   const dispatch = useDispatch();
-
-  useEffect(() => {}, []);
+  // useEffect(() => {
+  //   if (store.user.attributes.name) {
+  //     setusername(store.user.attributes.name);
+  //   } else {
+  //     setusername("אורח");
+  //   }
+  // }, [store]);
 
   return (
     <>
@@ -210,10 +216,12 @@ const UserArea = ({ navigation }) => {
                 marginTop: 20,
               }}
             >
-              <Text style={{ fontSize: 20, color: "black" }}>
-                שלום , {username}
-              </Text>
+              <Text style={{ fontSize: 20, color: "black" }}>שלום ,{name}</Text>
               <Button
+                onPress={async () => {
+                  await navigation.navigate("Home");
+                  dispatch(LogOut());
+                }}
                 style={{
                   paddingLeft: 23,
                   paddingRight: 23,

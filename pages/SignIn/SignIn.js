@@ -1,7 +1,14 @@
 import React from "react";
 import { useState } from "react";
 
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  TextInput,
+} from "react-native";
 import signInstyles from "../SignIn/SignInStyles";
 import {
   Container,
@@ -20,11 +27,32 @@ import {
   Radio,
   ListItem,
   CheckBox,
+  Label,
 } from "native-base";
+import { Auth } from "aws-amplify";
 
 import NavBar from "../../components/NavBar";
 import { color } from "react-native-reanimated";
 import ColorLine from "../../components/ColorLine";
+import { useSelector } from "react-redux";
+
+async function signUp(username, password, email, phone_number, ID, address) {
+  try {
+    const { user } = await Auth.signUp({
+      username,
+      password,
+      attributes: {
+        email,
+        phone_number, // optional - E.164 number convention
+        ID,
+        address,
+      },
+    });
+    console.log(user);
+  } catch (error) {
+    console.log("error signing up:", error);
+  }
+}
 
 const SignIn = ({ navigation }) => {
   const [gender, setGender] = useState("");
@@ -35,7 +63,8 @@ const SignIn = ({ navigation }) => {
   const [Email, setEmail] = useState("");
   const [age, setAge] = useState(false);
   const [agreement, setAgreement] = useState(false);
-
+  const [showPassword, setshowPassword] = useState(true);
+  const store = useSelector((state) => state);
   return (
     <>
       <NavBar navigation={navigation} screenName={"signIn"} />
@@ -64,25 +93,27 @@ const SignIn = ({ navigation }) => {
               </Text>
 
               <View>
-                <Button
-                  small
-                  style={{
-                    borderRadius: 13,
-                    backgroundColor: "#000000",
-                  }}
-                  onPress={() => navigation.navigate("Home")}
-                >
-                  <Text
+                {store.user.attributes ? null : (
+                  <Button
+                    small
                     style={{
-                      fontWeight: "bold",
-                      color: "white",
-                      fontSize: 10,
-                      padding: 15,
+                      borderRadius: 13,
+                      backgroundColor: "#000000",
                     }}
+                    onPress={() => navigation.navigate("LogInPage")}
                   >
-                    רשום? התחבר עכשיו
-                  </Text>
-                </Button>
+                    <Text
+                      style={{
+                        fontWeight: "bold",
+                        color: "white",
+                        fontSize: 10,
+                        padding: 15,
+                      }}
+                    >
+                      רשום? התחבר עכשיו
+                    </Text>
+                  </Button>
+                )}
               </View>
             </View>
 
@@ -115,10 +146,14 @@ const SignIn = ({ navigation }) => {
                     <Button
                       small
                       rounded
-                      style={signInstyles.radioGenderButon}
-                      onPress={() => setGender("men")}
+                      style={
+                        gender === "male"
+                          ? signInstyles.radioGenderButonSelected
+                          : signInstyles.radioGenderButon
+                      }
+                      onPress={() => setGender("male")}
                     >
-                      <Text style={{ color: "white" }}>גבר</Text>
+                      <Text style={{ color: "white" }}>זכר</Text>
                     </Button>
                   </View>
 
@@ -126,56 +161,128 @@ const SignIn = ({ navigation }) => {
                     <Button
                       small
                       rounded
-                      style={signInstyles.radioGenderButon}
-                      onPress={() => setGender("women")}
+                      style={
+                        gender === "female"
+                          ? signInstyles.radioGenderButonSelected
+                          : signInstyles.radioGenderButon
+                      }
+                      onPress={() => setGender("female")}
                     >
-                      <Text style={{ color: "white" }}>אישה</Text>
+                      <Text style={{ color: "white" }}>נקבה</Text>
                     </Button>
                   </View>
                 </View>
               </View>
 
               <View style={signInstyles.signInPageInputs}>
-                <Item style={signInstyles.signInPageInput}>
-                  <Input
-                    placeholder='שם פרטי'
+                <View
+                  style={{
+                    alignItems: "stretch",
+
+                    flex: 1,
+                  }}
+                >
+                  <Label style={{ fontSize: 12, marginLeft: 10 }}>
+                    שם פרטי
+                  </Label>
+                  <TextInput
+                    key={"FIRST_NAME"}
+                    style={signInstyles.signInPageInput}
                     onChangeText={(text) => setFirstName(text)}
                   />
-                </Item>
-                <Item style={signInstyles.signInPageInput}>
-                  <Input
-                    placeholder='טלפון נייד'
+                </View>
+                <View
+                  style={{
+                    alignItems: "stretch",
+
+                    flex: 1,
+                  }}
+                >
+                  <Label style={{ fontSize: 12, marginLeft: 10 }}>נייד</Label>
+                  <TextInput
+                    key={"PHONE_NUM"}
+                    style={signInstyles.signInPageInput}
                     onChangeText={(text) => setPhoneNum(text)}
                   />
-                </Item>
+                </View>
               </View>
               <View style={signInstyles.signInPageInputs}>
-                <Item style={signInstyles.signInPageInput}>
-                  <Input
-                    placeholder='שם משפחה'
+                <View
+                  style={{
+                    alignItems: "stretch",
+
+                    flex: 1,
+                  }}
+                >
+                  <Label style={{ fontSize: 12, marginLeft: 10 }}>
+                    שם משפחה
+                  </Label>
+                  <TextInput
+                    style={signInstyles.signInPageInput}
+                    key={"LAST_NAME"}
                     onChangeText={(text) => setLastName(text)}
                   />
-                </Item>
-                <Item style={signInstyles.signInPageInput}>
-                  <Input
-                    placeholder='מספר תעודת זהות'
+                </View>
+
+                <View
+                  style={{
+                    alignItems: "stretch",
+                    flex: 1,
+                  }}
+                >
+                  <Label style={{ fontSize: 12, marginLeft: 10 }}>ת"ז</Label>
+                  <TextInput
+                    key={"ID"}
+                    style={signInstyles.signInPageInput}
                     onChangeText={(text) => setID(text)}
                   />
-                </Item>
+                </View>
               </View>
-
-              <Item last rounded style={signInstyles.signInPageInput}>
-                <Input
+              <View
+                style={{
+                  alignItems: "stretch",
+                }}
+              >
+                <Label style={{ fontSize: 12, marginLeft: 10 }}>אימייל</Label>
+                <TextInput
+                  key={"EMAIL"}
+                  style={signInstyles.signInPageInput}
                   fontSize={12}
-                  placeholder='דוא"ל'
                   onChangeText={(text) => setEmail(text)}
                 />
-              </Item>
+              </View>
+              <View
+                style={{
+                  alignItems: "stretch",
+                  marginVertical: 8,
+                }}
+              >
+                <View style={{ flexDirection: "row" }}>
+                  <Label style={{ fontSize: 12, marginLeft: 10 }}>סיסמה</Label>
+                  <TouchableOpacity
+                    style={{ marginHorizontal: 10 }}
+                    onPress={() => {
+                      setshowPassword(!showPassword);
+                    }}
+                  >
+                    <Text>
+                      {showPassword === true ? " הראה סיסמה" : "הסתר סיסמה"}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                <TextInput
+                  secureTextEntry={showPassword}
+                  key={"EMAIL"}
+                  style={signInstyles.signInPageInput}
+                  fontSize={12}
+                  onChangeText={(text) => setEmail(text)}
+                />
+              </View>
 
               <ListItem noBorder>
                 <CheckBox
                   style={{ borderRadius: 13 }}
-                  color='white'
+                  color='#263742'
                   checked={age}
                   onPress={() => {
                     setAge(!age);
@@ -191,7 +298,7 @@ const SignIn = ({ navigation }) => {
                 <CheckBox
                   style={{ borderRadius: 13 }}
                   checked={agreement}
-                  color='white'
+                  color='#263742'
                   onPress={() => {
                     setAgreement(!agreement);
                   }}

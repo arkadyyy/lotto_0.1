@@ -50,33 +50,33 @@ const LottoPage = ({ navigation }) => {
     setTableRowColor("#D60617");
   };
 
-  useEffect(() => {
-    //redux dispatch , LogIn action get executed ../redux/actions/action
-    dispatch(LogIn("dlevkovich05@gmail.com", "Dekel1145"));
+  // useEffect(() => {
+  //   //redux dispatch , LogIn action get executed ../redux/actions/action
+  //   dispatch(LogIn("dlevkovich05@gmail.com", "Dekel1145"));
 
-    let accessToken;
-    let jwt;
-    Auth.currentSession().then((res) => {
-      accessToken = res.getAccessToken();
-      jwt = accessToken.getJwtToken();
+  //   let accessToken;
+  //   let jwt;
+  //   Auth.currentSession().then((res) => {
+  //     accessToken = res.getAccessToken();
+  //     jwt = accessToken.getJwtToken();
 
-      setjwtState(jwt);
-    });
+  //     setjwtState(jwt);
+  //   });
 
-    //the get request is in timout right now because we are doing for now the login and the request together and the request happens
-    //be4 the login response,this is just temporary until we make regular login
-    setTimeout(() => {
-      axios
-        .get("http://52.90.122.190:5000/games/lotto/type/regular/0", {
-          headers: {
-            authorization: jwt,
-          },
-        })
-        .then((res) => {
-          console.log("this is res from server request !@!@ : ", res);
-        });
-    }, 4000);
-  }, []);
+  //   //the get request is in timout right now because we are doing for now the login and the request together and the request happens
+  //   //be4 the login response,this is just temporary until we make regular login
+  //   setTimeout(() => {
+  //     axios
+  //       .get("http://52.90.122.190:5000/games/lotto/type/regular/0", {
+  //         headers: {
+  //           authorization: jwt,
+  //         },
+  //       })
+  //       .then((res) => {
+  //         console.log("this is res from server request !@!@ : ", res);
+  //       });
+  //   }, 4000);
+  // }, []);
 
   return (
     <>
@@ -216,7 +216,6 @@ const LottoPage = ({ navigation }) => {
                       setopendTableNum={setopendTableNum}
                       tableRowColor={tableRowColor}
                       // setTableRowColor={setTableRowColor}
-
                     />
                   ))}
                 </ScrollView>
@@ -234,49 +233,49 @@ const LottoPage = ({ navigation }) => {
               <Button
                 onPress={() => {
                   let summary = { regularLotto: fullTables };
-                  console.log(summary);
-                  console.log("store.user : ", store.user.signInUserSession);
-                  // console.log("jwtState : ", jwtState);
+                  // console.log(summary);
+                  // console.log("store.user : ", store.user.signInUserSession);
+                  // // console.log("jwtState : ", jwtState);
 
-                  axios
-                    .post(
-                      "http://52.90.122.190:5000/games/lotto/type/regular/0",
-                      {
-                        tables: {
-                          tables: [
-                            {
-                              table_number: 1,
-                              numbers: [11, 12, 13, 14, 15, 16],
-                              strong_number: 6,
-                            },
-                            {
-                              table_number: 2,
-                              numbers: [1, 2, 3, 4, 5, 6],
-                              strong_number: 6,
-                            },
-                          ],
+                  // axios
+                  //   .post(
+                  //     "http://52.90.122.190:5000/games/lotto/type/regular/0",
+                  //     {
+                  //       tables: {
+                  //         tables: [
+                  //           {
+                  //             table_number: 1,
+                  //             numbers: [11, 12, 13, 14, 15, 16],
+                  //             strong_number: 6,
+                  //           },
+                  //           {
+                  //             table_number: 2,
+                  //             numbers: [1, 2, 3, 4, 5, 6],
+                  //             strong_number: 6,
+                  //           },
+                  //         ],
 
-                          extra: false,
-                          multi_lottery: 6,
-                          lottomatic: 10,
-                        },
-                        type: "regular_lotto",
-                        userName: "dlevkovich05@gmail.com",
-                        timestamp: new Date(),
-                        status: "completed",
-                      },
-                      {
-                        headers: {
-                          authorization: jwtState,
-                        },
-                      }
-                    )
-                    .then((res) => {
-                      console.log(
-                        "this is res from post server request $$$$ : ",
-                        res
-                      );
-                    });
+                  //         extra: false,
+                  //         multi_lottery: 6,
+                  //         lottomatic: 10,
+                  //       },
+                  //       type: "regular_lotto",
+                  //       userName: "dlevkovich05@gmail.com",
+                  //       timestamp: new Date(),
+                  //       status: "completed",
+                  //     },
+                  //     {
+                  //       headers: {
+                  //         authorization: jwtState,
+                  //       },
+                  //     }
+                  //   )
+                  //   .then((res) => {
+                  //     console.log(
+                  //       "this is res from post server request $$$$ : ",
+                  //       res
+                  //     );
+                  //   });
                 }}
                 style={{
                   borderRadius: 17,

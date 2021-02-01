@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
@@ -22,6 +22,7 @@ import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import { autoFill } from "./components/FillForm";
 import Table from "./components/Table";
+import { useDispatch, useSelector } from "react-redux";
 
 const Sheva77Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -30,6 +31,12 @@ const Sheva77Page = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState(0);
   const [opendTableNum, setopendTableNum] = useState(0);
+
+  const store = useSelector((state) => state);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log(store);
+  }, []);
 
   const autoFillForm = () => {
     let fullTabels1 = [];
@@ -183,7 +190,6 @@ const Sheva77Page = ({ navigation }) => {
               }}
             >
               <Button
-                
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",

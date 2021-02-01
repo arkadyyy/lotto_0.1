@@ -58,19 +58,7 @@ const NavBar = (props) => {
     }
   }, [route.name]);
 
-  useEffect(() => {
-    console.log("store in navbar : ", store);
-    if (store.user === -1) {
-      setbtnText("התחבר");
-    } else if (typeof store.user === Object) {
-      setbtnText("אזור אישי");
-    }
-  }, [store]);
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(LogIn("dlevkovich05@gmail.com", "Dekel1145"));
-  // }, []);
 
   return (
     <Header style={styles.navbar}>
@@ -98,10 +86,12 @@ const NavBar = (props) => {
         <View style={{ flexDirection: "row" }}>
           <Button
             onPress={() => {
-              if (store.user !== -1) {
-                navigation.navigate("UserArea");
-              } else {
+              if (store.user === "LOGIN_FAILED") {
                 navigation.navigate("LogInPage");
+              } else if (store.user === -1) {
+                navigation.navigate("LogInPage");
+              } else {
+                navigation.navigate("UserArea");
               }
             }}
             style={styles.headerBtns}
@@ -111,7 +101,7 @@ const NavBar = (props) => {
             rounded
           >
             <Text style={[{ color: "white" }, styles.userAreaBtn]}>
-              אזור אישי
+              {store.user.attributes ? "אזור אישי" : "התחבר"}
             </Text>
           </Button>
           {props.screenName === "home" && (
