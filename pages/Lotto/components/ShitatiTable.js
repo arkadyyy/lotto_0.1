@@ -127,10 +127,10 @@ const ShitatiTable = ({
 
       <ListItem
         style={{
-          backgroundColor: "#8CC63F",
+          backgroundColor: !table1.includes(" ") ? "#C1272D " : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
-          height: height / 5.3,
+          height: height / 10,
           alignItems: "center",
           width: width / 1.3,
         }}
