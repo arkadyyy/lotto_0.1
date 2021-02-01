@@ -36,7 +36,7 @@ import { color } from "react-native-reanimated";
 import ColorLine from "../../components/ColorLine";
 import { useSelector } from "react-redux";
 
-async function signUp(username, password, email, phone_number, ID, address) {
+async function signUp(username, password, email, phone_number, ID, gender) {
   try {
     const { user } = await Auth.signUp({
       username,
@@ -45,10 +45,10 @@ async function signUp(username, password, email, phone_number, ID, address) {
         email,
         phone_number, // optional - E.164 number convention
         ID,
-        address,
+        gender,
       },
     });
-    console.log(user);
+    console.log("singup was succsessful @!@!~~~~ : ", user);
   } catch (error) {
     console.log("error signing up:", error);
   }
@@ -63,6 +63,7 @@ const SignIn = ({ navigation }) => {
   const [Email, setEmail] = useState("");
   const [age, setAge] = useState(false);
   const [agreement, setAgreement] = useState(false);
+  const [password, setpassword] = useState(null);
   const [showPassword, setshowPassword] = useState(true);
   const store = useSelector((state) => state);
   return (
@@ -275,7 +276,7 @@ const SignIn = ({ navigation }) => {
                   key={"EMAIL"}
                   style={signInstyles.signInPageInput}
                   fontSize={12}
-                  onChangeText={(text) => setEmail(text)}
+                  onChangeText={(text) => setpassword(text)}
                 />
               </View>
 
@@ -321,7 +322,7 @@ const SignIn = ({ navigation }) => {
 
                   marginHorizontal: 70,
                 }}
-                onPress={() =>
+                onPress={() => {
                   console.log({
                     gender: gender,
                     firstName: firstName,
@@ -331,8 +332,9 @@ const SignIn = ({ navigation }) => {
                     Email: Email,
                     age: age,
                     agreement: agreement,
-                  })
-                }
+                  });
+                  signUp(Email, password, Email, phoneNum, ID, gender);
+                }}
               >
                 <Text
                   style={{
