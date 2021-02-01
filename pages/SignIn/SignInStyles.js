@@ -31,12 +31,12 @@ const signInstyles = StyleSheet.create({
   },
 
   signInPageInput: {
-    borderRadius: 13,
+    borderRadius: 7,
     flex: 1,
     backgroundColor: "white",
     height: 30,
-    alignItems: "flex-start",
-    flexDirection: "column",
+    // alignItems: "flex-start",
+    // flexDirection: "column",
     margin: 10,
   },
   signInPageInputs: {
@@ -57,6 +57,15 @@ const signInstyles = StyleSheet.create({
     width: 80,
     justifyContent: "center",
     backgroundColor: "#00ADEF",
+    borderColor: "white",
+    borderWidth: 1,
+    marginLeft: 15,
+  },
+  radioGenderButonSelected: {
+    flexDirection: "row",
+    width: 80,
+    justifyContent: "center",
+    backgroundColor: "#263742",
     borderColor: "white",
     borderWidth: 1,
     marginLeft: 15,
