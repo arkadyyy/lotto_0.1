@@ -25,7 +25,6 @@ const { width, height } = Dimensions.get("window");
 const ExtraFormPage = ({ route, navigation }) => {
   const { screenName, tableNum } = route.params;
   const [showTable, setshowTable] = useState(false);
-  // const [tableNum, settableNum] = useState(1);
   const [double, setdouble] = useState(false);
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");

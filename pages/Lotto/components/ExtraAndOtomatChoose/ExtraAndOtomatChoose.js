@@ -25,11 +25,8 @@ import {
   ListItem,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
-<<<<<<< HEAD
 import ExtraFormPage from "../../ExtraFormPage.js";
-=======
 import EStyleSheet from "react-native-extended-stylesheet";
->>>>>>> e0da5a797cd47eecf45e2404ce063cdd3bbccd7a
 
 const ExtraAndOtomatChoose = ({
   settableNum,
@@ -159,7 +156,6 @@ const ExtraAndOtomatChoose = ({
           <Left>
             <FontAwesomeIcon
               icon={faQuestionCircle}
-<<<<<<< HEAD
             color='white'
             backgroundColor="white"
             inverse />
@@ -177,22 +173,6 @@ const ExtraAndOtomatChoose = ({
             borderRadius: 7,
             width: "90%",
             margin: 10,
-=======
-              color='white'
-              backgroundColor='white'
-              inverse
-            />
-          </Left>
-        </View>
-      </View>
-      <View
-        style={{
-          borderColor: "white",
-          borderWidth: 1,
-          borderRadius: 7,
-          width: "90%",
-          margin: 10,
->>>>>>> e0da5a797cd47eecf45e2404ce063cdd3bbccd7a
           padding: 10,
         }}
       >
@@ -299,7 +279,6 @@ const ExtraAndOtomatChoose = ({
           <Left>
             <FontAwesomeIcon
               icon={faQuestionCircle}
-<<<<<<< HEAD
             color='white'
             backgroundColor="white"
             inverse />
@@ -311,15 +290,6 @@ const ExtraAndOtomatChoose = ({
         </>
       }
      
-=======
-              color='white'
-              backgroundColor='white'
-              inverse
-            />
-          </Left>
-        </View>
-      </View>
->>>>>>> e0da5a797cd47eecf45e2404ce063cdd3bbccd7a
     </>
   );
 };
