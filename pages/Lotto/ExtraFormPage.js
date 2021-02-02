@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity,Dimensions } from "react-native";
+import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
@@ -18,12 +18,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faShekelSign } from "@fortawesome/free-solid-svg-icons";
-
+import EStyleSheet from "react-native-extended-stylesheet";
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
 const ExtraFormPage = ({ route, navigation }) => {
-  const { screenName,tableNum } = route.params;
+  const { screenName, tableNum } = route.params;
   const [showTable, setshowTable] = useState(false);
   // const [tableNum, settableNum] = useState(1);
   const [double, setdouble] = useState(false);
@@ -32,31 +32,32 @@ const ExtraFormPage = ({ route, navigation }) => {
   const [opendTableNum, setopendTableNum] = useState(0);
   const [tableRowColor, setTableRowColor] = useState("D60617");
   const [jwtState, setjwtState] = useState({});
-  const [gameName, setGameName] = useState('');
+  const [gameName, setGameName] = useState("");
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  
   const [hagralot, setHagralot] = useState(1);
   const [price, setPrice] = useState(11);
   // const [tableNum, settableNum] = useState(1);
 
   useEffect(() => {
-    if ( screenName  === "LottoPage") { setGameName("הגרלת לוטו") }
-    else if (screenName === "ChancePage") {setGameName("הגרלת צ'אנס") };
-      
+    if (screenName === "LottoPage") {
+      setGameName("הגרלת לוטו");
+    } else if (screenName === "ChancePage") {
+      setGameName("הגרלת צ'אנס");
+    }
   }, []);
 
   return (
     <>
       <ScrollView>
-        <NavBar navigation={navigation} screenName={screenName}/>
+        <NavBar navigation={navigation} screenName={screenName} />
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         <ChooseForm setdouble={setdouble} double={double} />
         <View style={{ margin: 15 }}>
           <View
             style={{
-              backgroundColor: "#FF0000",
+              backgroundColor: "#E62321",
               paddingBottom: 20,
               height: 730,
             }}
@@ -80,15 +81,17 @@ const ExtraFormPage = ({ route, navigation }) => {
                   marginRight: 10,
                 }}
               >
-                <Text style={{ fontSize: 20, color: "#FF0000" }}>2</Text>
+                <Text style={{ fontSize: 20, color: "#E62321" }}>2</Text>
               </View>
-              <Text style={{ fontSize: 27, color: "white" }}>שדרג את הטופס</Text>
+              <Text style={{ fontSize: 27, color: "white" }}>
+                שדרג את הטופס
+              </Text>
             </View>
 
             <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
-<ExtraAndOtomatChoose/>
-          
-<View
+            <ExtraAndOtomatChoose />
+
+            <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -107,48 +110,88 @@ const ExtraFormPage = ({ route, navigation }) => {
                   marginRight: 10,
                 }}
               >
-                <FontAwesomeIcon icon={faShekelSign} color="red"/ >
+                <FontAwesomeIcon icon={faShekelSign} color='red' />
               </View>
-              
-              <Text style={{ fontSize: 27, color: "white" }}>סיכום ושליחת טופס</Text>
-            </View>
-           <View style={{flexDirection:"column"}}>
-            <View style={{ flexDirection: "row", alignItems: "center",marginHorizontal:15 }}>
-                <Text style={{ fontSize: 27, color: "yellow" }}>סה"כ {tableNum}טבלאות</Text>
-<View style={{marginLeft:10, borderLeftColor:"yellow",height:20,width:10,borderLeftWidth:1 }}></View>
-              <Text style={{ fontSize: 27, color: "yellow" }}> {hagralot}הגרלות</Text>
-            </View>
-            
-              <View
-              style={{
-                flexDirection: "row",
-                
-              }}
+
+              <Text
+                style={{
+                  fontSize: EStyleSheet.value("$rem") * 22,
+                  color: "white",
+                }}
               >
-                <Text color="white" style={{ fontSize: 27, color: "white", marginLeft: 15 }}>לתשלום: {price} </Text>
-                <View style={{height:10}}>
-                  <FontAwesomeIcon style={{ marginVertical: 7, marginLeft: -4, }} icon={faShekelSign} color="white"/>
+                סיכום ושליחת טופס
+              </Text>
+            </View>
+            <View style={{ flexDirection: "column" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginHorizontal: 15,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: EStyleSheet.value("$rem") * 22,
+                    color: "yellow",
+                  }}
+                >
+                  סה"כ {tableNum}טבלאות
+                </Text>
+                <View
+                  style={{
+                    marginLeft: 10,
+                    borderLeftColor: "yellow",
+                    height: 20,
+                    width: 10,
+                    borderLeftWidth: 1,
+                  }}
+                ></View>
+                <Text
+                  style={{
+                    fontSize: EStyleSheet.value("$rem") * 22,
+                    color: "yellow",
+                  }}
+                >
+                  {" "}
+                  {hagralot}הגרלות
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <Text
+                  color='white'
+                  style={{
+                    fontSize: EStyleSheet.value("$rem") * 22,
+                    color: "white",
+                    marginLeft: 15,
+                  }}
+                >
+                  לתשלום: {price}{" "}
+                </Text>
+                <View style={{ height: 10 }}>
+                  <FontAwesomeIcon
+                    style={{ marginVertical: 7, marginLeft: -4 }}
+                    icon={faShekelSign}
+                    color='white'
+                  />
                 </View>
-                </View>
-                </View>
-            
-         
+              </View>
+            </View>
+
             <View
               style={{
-                flexDirection: "column",
-                // alignItems: "center",
-                // justifyContent: "center",
-                marginTop: height/25,
+                alignSelf: "center",
+                marginTop: height / 20,
                 zIndex: 1,
-                marginHorizontal: width/5,
-                width: width / 1.5,
-                height: height / 10,   
               }}
             >
-           
-           <Button
+              <Button
                 onPress={() => {
-                  
                   let summary = { regularLotto: fullTables };
                   console.log(summary);
                   console.log("store.user : ", store.user.signInUserSession);
@@ -195,9 +238,7 @@ const ExtraFormPage = ({ route, navigation }) => {
                     });
                   {
                   }
-                }
-              
-                }
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#8CC63F",
@@ -210,7 +251,6 @@ const ExtraFormPage = ({ route, navigation }) => {
               </Button>
             </View>
           </View>
-        
         </View>
       </ScrollView>
     </>
