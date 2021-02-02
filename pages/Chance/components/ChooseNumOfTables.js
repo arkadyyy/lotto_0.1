@@ -115,7 +115,7 @@ const ChooseNumOfTables = ({
         </>
       }
       
-      {route.name === "SumPageChance"
+      {route.name === "SumPageChance" 
         
       
         && (

@@ -30,6 +30,7 @@ import RavChancePage from "./pages/Chance/RavChancePage";
 import ChanceShitatiPage from "./pages/Chance/ChanceShitatiPage";
 import SumPageChance from "./pages/Chance/SumPageChance"
 import SumPage777 from "./pages/Sheva77/SumPage777"
+import SumPage123 from "./pages/One23/SumPage123"
 import { Provider } from "react-redux";
 
 import store from "./redux/store";
@@ -81,7 +82,7 @@ export default function App() {
             <Drawer.Screen name='One23List' component={One23List} />
             <Drawer.Screen name='One23Page' component={One23Page} />
             <Drawer.Screen name='SumPageChance' component={SumPageChance} />
-            {/* <Drawer.Screen name='SumPage123' component={SumPage123} /> */}
+            <Drawer.Screen name='SumPage123' component={SumPage123} />
             <Drawer.Screen name='SumPage777' component={SumPage777} />
              
             <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />

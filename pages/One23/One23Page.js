@@ -316,8 +316,13 @@ const One23Page = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  console.log({ 123: { fullTables, investNum } });
+                  let summary = { 123: { fullTables ,investNum} };
+                  navigation.navigate("SumPage123", {
+                    tableNum: tableNum,
+                    screenName: "123",
+                  });
                 }}
+
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",
@@ -326,7 +331,9 @@ const One23Page = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
+
+
+                <Text style={{ color: "white", fontSize: 28 }}>המשך לשליחת טופס</Text>
               </Button>
             </View>
           </View>
