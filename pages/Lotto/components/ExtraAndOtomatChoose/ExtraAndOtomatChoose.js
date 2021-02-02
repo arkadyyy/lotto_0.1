@@ -25,6 +25,7 @@ import {
   ListItem,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import ExtraFormPage from "../../ExtraFormPage.js";
 import EStyleSheet from "react-native-extended-stylesheet";
 
 const ExtraAndOtomatChoose = ({
@@ -34,7 +35,9 @@ const ExtraAndOtomatChoose = ({
   setTzerufimNumber,
   hazakimNumber,
   setHazakimNumber,
+  screenName
 }) => {
+  
   const route = useRoute();
   const [otomatic, setOtomatic] = useState(true);
   const [extra, setExtra] = useState(true);
@@ -153,20 +156,23 @@ const ExtraAndOtomatChoose = ({
           <Left>
             <FontAwesomeIcon
               icon={faQuestionCircle}
-              color='white'
-              backgroundColor='white'
-              inverse
-            />
-          </Left>
+            color='white'
+            backgroundColor="white"
+            inverse />
+              </Left>
         </View>
+         
+        
       </View>
-      <View
-        style={{
-          borderColor: "white",
-          borderWidth: 1,
-          borderRadius: 7,
-          width: "90%",
-          margin: 10,
+      {screenName==="lottoPages" &&
+        <>
+        <View
+          style={{
+            borderColor: "white",
+            borderWidth: 1,
+            borderRadius: 7,
+            width: "90%",
+            margin: 10,
           padding: 10,
         }}
       >
@@ -273,13 +279,17 @@ const ExtraAndOtomatChoose = ({
           <Left>
             <FontAwesomeIcon
               icon={faQuestionCircle}
-              color='white'
-              backgroundColor='white'
-              inverse
-            />
-          </Left>
+            color='white'
+            backgroundColor="white"
+            inverse />
+              </Left>
         </View>
-      </View>
+    
+        
+        </View>
+        </>
+      }
+     
     </>
   );
 };

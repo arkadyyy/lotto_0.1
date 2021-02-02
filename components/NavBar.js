@@ -34,8 +34,14 @@ const NavBar = (props) => {
   const store = useSelector((state) => state);
 
   useEffect(() => {
-    if (route.name === "LottoList") setNavBarTitle("הגרלת לוטו");
-    else if (route.name === "ChanceList") {
+    if (
+      route.name === "LottoList") setNavBarTitle("הגרלת לוטו");
+    else if (route.name === "ChanceList"
+      || route.name === "ChancePage"
+      || route.name === "RavChancePage"
+      || route.name === "ChanceShitatiPage"
+      || route.name === "SumPageChance"
+    ) {
       setNavBarTitle(`הגרלת צ'אנס`);
     } else if (route.name === "Sheva77List") {
       setNavBarTitle(`הגרלת 777`);
