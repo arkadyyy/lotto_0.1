@@ -67,6 +67,7 @@ const ExtraFormPage = ({ route, navigation }) => {
                 flexDirection: "row",
                 alignItems: "center",
                 padding: 10,
+                marginTop: 20,
               }}
             >
               <View
@@ -78,7 +79,7 @@ const ExtraFormPage = ({ route, navigation }) => {
                   borderRadius: 33,
                   justifyContent: "center",
                   alignItems: "center",
-                  marginRight: 10,
+                  marginRight: 15,
                 }}
               >
                 <Text style={{ fontSize: 20, color: "#E62321" }}>2</Text>
