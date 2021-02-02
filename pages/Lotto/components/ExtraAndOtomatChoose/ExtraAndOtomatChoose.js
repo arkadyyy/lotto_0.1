@@ -21,6 +21,7 @@ import {
   ListItem,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import ExtraFormPage from "../../ExtraFormPage.js";
 
 const ExtraAndOtomatChoose = ({
   settableNum,
@@ -29,7 +30,9 @@ const ExtraAndOtomatChoose = ({
   setTzerufimNumber,
   hazakimNumber,
   setHazakimNumber,
+  screenName
 }) => {
+  
   const route = useRoute();
   const [otomatic, setOtomatic] = useState(true);
   const [extra, setExtra] = useState(true);
@@ -132,7 +135,9 @@ const ExtraAndOtomatChoose = ({
         </View>
          
         
-        </View>
+      </View>
+      {screenName==="lottoPages" &&
+        <>
         <View
           style={{
             borderColor: "white",
@@ -228,10 +233,11 @@ const ExtraAndOtomatChoose = ({
             inverse />
               </Left>
         </View>
-         
+    
         
         </View>
-      
+        </>
+      }
      
     </>
   );

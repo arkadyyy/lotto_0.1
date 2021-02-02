@@ -228,7 +228,8 @@ const ChancePage = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  console.log({ chance: fullTables, investNum });
+                  let summary = { chance: fullTables, investNum };
+                  navigation.navigate("SumPageChance",{tableNum:tableNum,investNum:investNum});
                 }}
                 style={{
                   borderRadius: 17,
@@ -238,7 +239,7 @@ const ChancePage = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
+                <Text style={{ color: "white", fontSize: 28 }}>המשך לשליחת טופס</Text>
               </Button>
             </View>
           </View>

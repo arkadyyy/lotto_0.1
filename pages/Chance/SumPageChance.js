@@ -6,7 +6,7 @@ import axios from "axios";
 import { Button, List } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
-import ExtraAndOtomatChoose from "./components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
+import ExtraAndOtomatChoose from "../../pages/Lotto/components/ExtraAndOtomatChoose/ExtraAndOtomatChoose"
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
@@ -17,12 +17,12 @@ import awsconfig from "../../aws-exports";
 import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faShekelSign } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faShekelSign } from "@fortawesome/free-solid-svg-icons";
 
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
-const ExtraFormPage = ({ route, navigation }) => {
+const SumPageChance = ({ route, navigation }) => {
   const { screenName,tableNum } = route.params;
   const [showTable, setshowTable] = useState(false);
   // const [tableNum, settableNum] = useState(1);
@@ -32,31 +32,31 @@ const ExtraFormPage = ({ route, navigation }) => {
   const [opendTableNum, setopendTableNum] = useState(0);
   const [tableRowColor, setTableRowColor] = useState("D60617");
   const [jwtState, setjwtState] = useState({});
-  const [gameName, setGameName] = useState('');
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  
-  const [hagralot, setHagralot] = useState(1);
   const [price, setPrice] = useState(11);
+
+  const [hagralot, setHagralot] = useState(1);
+  
   // const [tableNum, settableNum] = useState(1);
 
-  useEffect(() => {
-    if ( screenName  === "LottoPage") { setGameName("הגרלת לוטו") }
-    else if (screenName === "ChancePage") {setGameName("הגרלת צ'אנס") };
+//   useEffect(() => {
+//     if ( screenName  === "LottoPage") { setGameName("הגרלת לוטו") }
+//     else if (screenName === "ChancePage") {setGameName("הגרלת צ'אנס") };
       
-  }, []);
+//   }, []);
 
   return (
     <>
       <ScrollView>
-        <NavBar navigation={navigation} screenName={screenName}/>
-        <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
+        <NavBar navigation={navigation} screenName={screenName} />
+        <BlankSquare gameName="הגרלת צ'אנס" color='#009943' />
         <ChooseForm setdouble={setdouble} double={double} />
         <View style={{ margin: 15 }}>
           <View
             style={{
-              backgroundColor: "#FF0000",
+              backgroundColor: "#009943",
               paddingBottom: 20,
               height: 730,
             }}
@@ -86,8 +86,23 @@ const ExtraFormPage = ({ route, navigation }) => {
             </View>
 
             <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
-<ExtraAndOtomatChoose screenName="lottoPages"/>
-          
+<ExtraAndOtomatChoose screenName="chancePages"/>
+
+            <View style={{ flexDirection: "column",marginLeft:10 }}>
+            <View style={{ flexDirection: "row" }}>
+            <FontAwesomeIcon icon={faCheck} color="white"/ >
+<Text style={{color:"white"}}>סיכויי הזכיה גבוהים מאד</Text>
+              </View>
+            <View style={{ flexDirection: "row" }}>
+                <FontAwesomeIcon icon={faCheck} color="white" />
+<Text style={{color:"white"}}>קבל פרס על ניחוש חלקי</Text>
+          </View>
+            <View style={{ flexDirection: "row" }}>
+              <FontAwesomeIcon icon={faCheck} color="white" />
+<Text style={{color:"white"}}>נחש קלף אחד</Text>
+              </View>
+              </View>
+              
 <View
               style={{
                 flexDirection: "row",
@@ -149,50 +164,50 @@ const ExtraFormPage = ({ route, navigation }) => {
            <Button
                 onPress={() => {
                   
-                  let summary = { regularLotto: fullTables };
+                  let summary = { chance: fullTables, investNum };
                   console.log(summary);
                   console.log("store.user : ", store.user.signInUserSession);
                   // console.log("jwtState : ", jwtState);
 
-                  axios
-                    .post(
-                      "http://52.90.122.190:5000/games/lotto/type/regular/0",
-                      {
-                        tables: {
-                          tables: [
-                            {
-                              table_number: 1,
-                              numbers: [11, 12, 13, 14, 15, 16],
-                              strong_number: 6,
-                            },
-                            {
-                              table_number: 2,
-                              numbers: [1, 2, 3, 4, 5, 6],
-                              strong_number: 6,
-                            },
-                          ],
+                //   axios
+                //     .post(
+                //       "http://52.90.122.190:5000/games/lotto/type/regular/0",
+                //       {
+                //         tables: {
+                //           tables: [
+                //             {
+                //               table_number: 1,
+                //               numbers: [11, 12, 13, 14, 15, 16],
+                //               strong_number: 6,
+                //             },
+                //             {
+                //               table_number: 2,
+                //               numbers: [1, 2, 3, 4, 5, 6],
+                //               strong_number: 6,
+                //             },
+                //           ],
 
-                          extra: false,
-                          multi_lottery: 6,
-                          lottomatic: 10,
-                        },
-                        type: "regular_lotto",
-                        userName: "dlevkovich05@gmail.com",
-                        timestamp: new Date(),
-                        status: "completed",
-                      },
-                      {
-                        headers: {
-                          authorization: jwtState,
-                        },
-                      }
-                    )
-                    .then((res) => {
-                      console.log(
-                        "this is res from post server request $$$$ : ",
-                        res
-                      );
-                    });
+                //           extra: false,
+                //           multi_lottery: 6,
+                //           lottomatic: 10,
+                //         },
+                //         type: "regular_lotto",
+                //         userName: "dlevkovich05@gmail.com",
+                //         timestamp: new Date(),
+                //         status: "completed",
+                //       },
+                //       {
+                //         headers: {
+                //           authorization: jwtState,
+                //         },
+                //       }
+                //     )
+                //     .then((res) => {
+                //       console.log(
+                //         "this is res from post server request $$$$ : ",
+                //         res
+                //       );
+                //     });
                   {
                   }
                 }
@@ -216,4 +231,4 @@ const ExtraFormPage = ({ route, navigation }) => {
     </>
   );
 };
-export default ExtraFormPage;
+export default SumPageChance;
