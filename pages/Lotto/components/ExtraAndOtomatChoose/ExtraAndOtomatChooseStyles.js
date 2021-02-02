@@ -11,7 +11,7 @@ const ExtraAndOtomatChooseStyles = StyleSheet.create({
 
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#E62321",
+    // backgroundColor: "#E62321",
   },
   notSelectedRadioButon: {
     width: 90,
@@ -22,7 +22,7 @@ const ExtraAndOtomatChooseStyles = StyleSheet.create({
     margin: 5,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#E62321",
+    // backgroundColor: "#E62321",
   },
 });
 
