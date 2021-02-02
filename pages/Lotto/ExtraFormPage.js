@@ -89,15 +89,10 @@ const ExtraFormPage = ({ route, navigation }) => {
             </View>
 
             <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
-<<<<<<< HEAD
 <ExtraAndOtomatChoose screenName="lottoPages"/>
           
-<View
-=======
-            <ExtraAndOtomatChoose />
 
             <View
->>>>>>> e0da5a797cd47eecf45e2404ce063cdd3bbccd7a
               style={{
                 flexDirection: "row",
                 alignItems: "center",
