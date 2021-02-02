@@ -25,7 +25,7 @@ import { autoFill } from "./ShitatiHazakFillForm";
 
 const LottoShitatiHazakPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
-  const [tableNum, settableNum] = useState(8);
+  const [tableNum, settableNum] = useState(1);
   // const [tzerufimNumber, setTzerufimNumber] = useState(8);
   const [hazakimNumber, setHazakimNumber] = useState(4);
   // const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
@@ -203,9 +203,11 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                 zIndex: 1,
               }}
             >
-              <Button
+             <Button
                 onPress={() => {
-                  console.log("fullTables:", fullTables);
+                  let summary = { lotoShitatiHhazak: fullTables };
+                 
+                  navigation.navigate("ExtraFormPage",{tableNum:tableNum,screenName:'לוטו שיטתי'});
                 }}
                 style={{
                   borderRadius: 17,
@@ -215,7 +217,11 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
+                <Text
+                  style={{ color: "white", fontSize: 28, textAlign: "center" }}
+                >
+                  המשך לשליחת טופס
+                </Text>
               </Button>
             </View>
           </View>

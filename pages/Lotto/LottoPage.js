@@ -15,6 +15,9 @@ import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../../aws-exports";
 import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
+import { useRoute } from "@react-navigation/native";
+
+
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
@@ -30,6 +33,7 @@ const LottoPage = ({ navigation }) => {
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
+  const route = useRoute();
 
   const autoFillForm = () => {
     let fullTabels1 = [];
@@ -238,7 +242,7 @@ const LottoPage = ({ navigation }) => {
                 onPress={() => {
                   let summary = { regularLotto: fullTables };
                  
-                  navigation.navigate("ExtraFormPage",{tableNum:tableNum});
+                  navigation.navigate("ExtraFormPage",{tableNum:tableNum,screenName:'לוטו'});
                 }}
                 style={{
                   borderRadius: 17,

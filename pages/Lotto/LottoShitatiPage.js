@@ -241,8 +241,12 @@ const LottoShitatiPage = ({ navigation }) => {
                 zIndex: 1,
               }}
             >
-              <Button
-                onPress={() => console.log(fullTables)}
+             <Button
+                onPress={() => {
+                  let summary = { lotoShitati: fullTables };
+                 
+                  navigation.navigate("ExtraFormPage",{tableNum:tableNum,screenName:'לוטו שיטתי'});
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#8CC63F",
@@ -251,7 +255,11 @@ const LottoShitatiPage = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
+                <Text
+                  style={{ color: "white", fontSize: 28, textAlign: "center" }}
+                >
+                  המשך לשליחת טופס
+                </Text>
               </Button>
             </View>
           </View>

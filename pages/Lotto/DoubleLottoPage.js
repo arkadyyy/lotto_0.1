@@ -219,10 +219,12 @@ const DoubleLottoPage = ({ navigation }) => {
                 zIndex: 1,
               }}
             >
+
               <Button
                 onPress={() => {
                   let summary = { doubleLotto: fullTables };
-                  console.log(summary);
+                 
+                  navigation.navigate("ExtraFormPage",{tableNum:tableNum, screenName:'דאבל לוטו'});
                 }}
                 style={{
                   borderRadius: 17,
@@ -232,8 +234,14 @@ const DoubleLottoPage = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
+                <Text
+                  style={{ color: "white", fontSize: 28, textAlign: "center" }}
+                >
+                  המשך לשליחת טופס
+                </Text>
               </Button>
+
+
             </View>
           </View>
           <View

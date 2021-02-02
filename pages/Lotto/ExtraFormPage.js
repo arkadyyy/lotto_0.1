@@ -50,8 +50,7 @@ const ExtraFormPage = ({ route, navigation }) => {
   return (
     <>
       <ScrollView>
-
-        <NavBar navigation={navigation} navBarTitle={'לוטו- שליחת טופס'}/>
+        <NavBar navigation={navigation} screenName={screenName}/>
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         <ChooseForm setdouble={setdouble} double={double} />
         <View style={{ margin: 15 }}>

@@ -23,8 +23,10 @@ import LogIn from "../redux/actions/actions";
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../aws-exports";
 Amplify.configure(awsconfig);
+
 const NavBar = (props) => {
   const { navigation } = props;
+  const { screenName } = props;
   const route = useRoute();
   const [navBarTitle, setNavBarTitle] = useState("");
   const [btnText, setbtnText] = useState("אזור אישי");
@@ -41,7 +43,7 @@ const NavBar = (props) => {
       setNavBarTitle(`הגרלת 123`);
     } else if (route.name === "SignIn") {
       setNavBarTitle(`הרשמה ופרטי תשלום`);
-    } else if (route.name === "LottoPage" ||route.name === "LottoPage") {
+    } else if (route.name === "LottoPage") {
       setNavBarTitle(`דאבל לוטו`);
     } else if (route.name === "LottoShitatiPage") {
       setNavBarTitle(`לוטו שיטתי`);
@@ -56,9 +58,11 @@ const NavBar = (props) => {
     } else if (route.name === "One23Page") {
       setNavBarTitle(`123`);
     } else if (route.name === "ExtraFormPage") {
-      setNavBarTitle(`לוטו-שליחת טופס`);
+      setNavBarTitle( `לוטו-שליחת טופס`);
     }
-  }, [route.name]);
+    
+    
+  }, [route.name,screenName]);
 
   const dispatch = useDispatch();
 
