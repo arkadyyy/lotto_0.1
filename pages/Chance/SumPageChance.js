@@ -18,6 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCheck, faShekelSign } from "@fortawesome/free-solid-svg-icons";
+import EStyleSheet from "react-native-extended-stylesheet";
 
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
@@ -91,15 +92,15 @@ const SumPageChance = ({ route, navigation }) => {
             <View style={{ flexDirection: "column",marginLeft:10 }}>
             <View style={{ flexDirection: "row" }}>
             <FontAwesomeIcon icon={faCheck} color="white"/ >
-<Text style={{color:"white"}}>סיכויי הזכיה גבוהים מאד</Text>
+<Text style={{color:"white",marginLeft:5}}>סיכויי הזכיה גבוהים מאד</Text>
               </View>
             <View style={{ flexDirection: "row" }}>
                 <FontAwesomeIcon icon={faCheck} color="white" />
-<Text style={{color:"white"}}>קבל פרס על ניחוש חלקי</Text>
+<Text style={{color:"white",marginLeft:5}}>קבל פרס על ניחוש חלקי</Text>
           </View>
             <View style={{ flexDirection: "row" }}>
               <FontAwesomeIcon icon={faCheck} color="white" />
-<Text style={{color:"white"}}>נחש קלף אחד</Text>
+<Text style={{color:"white",marginLeft:5}}>נחש קלף אחד</Text>
               </View>
               </View>
               
@@ -125,13 +126,30 @@ const SumPageChance = ({ route, navigation }) => {
                 <FontAwesomeIcon icon={faShekelSign} color="red"/ >
               </View>
               
-              <Text style={{ fontSize: 27, color: "white" }}>סיכום ושליחת טופס</Text>
+              <Text
+                style={{
+                  fontSize: EStyleSheet.value("$rem") * 22,
+                  color: "white"
+                }}
+              >
+                סיכום ושליחת טופס</Text>
             </View>
            <View style={{flexDirection:"column"}}>
             <View style={{ flexDirection: "row", alignItems: "center",marginHorizontal:15 }}>
-                <Text style={{ fontSize: 27, color: "yellow" }}>סה"כ {tableNum}טבלאות</Text>
+                <Text
+                  style={{
+                    fontSize: EStyleSheet.value("$rem") * 22,
+                    color: "yellow"
+                  }}
+                >
+                  סה"כ {tableNum}טבלאות</Text>
 <View style={{marginLeft:10, borderLeftColor:"yellow",height:20,width:10,borderLeftWidth:1 }}></View>
-              <Text style={{ fontSize: 27, color: "yellow" }}> {hagralot}הגרלות</Text>
+                <Text
+                  style={{
+                    fontSize: EStyleSheet.value("$rem") * 22,
+
+                    color: "yellow"
+                  }}> {hagralot}הגרלות</Text>
             </View>
             
               <View
@@ -140,9 +158,15 @@ const SumPageChance = ({ route, navigation }) => {
                 
               }}
               >
-                <Text color="white" style={{ fontSize: 27, color: "white", marginLeft: 15 }}>לתשלום: {price} </Text>
+                <Text
+                  color="white"
+                  style={{
+                    fontSize: EStyleSheet.value("$rem") * 22,
+
+                    color: "white", marginLeft: 15
+                  }}>לתשלום: {price} </Text>
                 <View style={{height:10}}>
-                  <FontAwesomeIcon style={{ marginVertical: 7, marginLeft: -4, }} icon={faShekelSign} color="white"/>
+                  <FontAwesomeIcon style={{ marginVertical: 7, marginLeft: -4, }} icon={faShekelSign} color="white" />
                 </View>
                 </View>
                 </View>
@@ -150,14 +174,9 @@ const SumPageChance = ({ route, navigation }) => {
          
             <View
               style={{
-                flexDirection: "column",
-                // alignItems: "center",
-                // justifyContent: "center",
-                marginTop: height/25,
+                alignSelf: "center",
+                marginTop: height / 20,
                 zIndex: 1,
-                marginHorizontal: width/5,
-                width: width / 1.5,
-                height: height / 10,   
               }}
             >
            
