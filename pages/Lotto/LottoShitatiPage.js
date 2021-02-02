@@ -89,7 +89,7 @@ const LottoShitatiPage = ({ navigation }) => {
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
-        <ChooseForm setdouble={setdouble} />
+        <ChooseForm setdouble={setdouble} double={double} />
         <View style={{ margin: 15 }}>
           <View
             style={{
