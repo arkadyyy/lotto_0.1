@@ -70,7 +70,15 @@ const ChancePage = ({ navigation }) => {
               >
                 <Text style={{ fontSize: 20, color: "#009943" }}>1</Text>
               </View>
-              <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
+              <Text
+                style={{
+                  fontSize: 17,
+                  color: "white",
+                  fontFamily: "FbSpacerRegular",
+                }}
+              >
+                מלא את הטופס
+              </Text>
             </View>
 
             <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
@@ -229,7 +237,10 @@ const ChancePage = ({ navigation }) => {
               <Button
                 onPress={() => {
                   let summary = { chance: fullTables, investNum };
-                  navigation.navigate("SumPageChance",{tableNum:tableNum,investNum:investNum});
+                  navigation.navigate("SumPageChance", {
+                    tableNum: tableNum,
+                    investNum: investNum,
+                  });
                 }}
                 style={{
                   borderRadius: 17,
@@ -239,7 +250,9 @@ const ChancePage = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>המשך לשליחת טופס</Text>
+                <Text style={{ color: "white", fontSize: 28 }}>
+                  המשך לשליחת טופס
+                </Text>
               </Button>
             </View>
           </View>

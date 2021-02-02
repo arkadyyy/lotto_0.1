@@ -7,11 +7,8 @@ const styles = StyleSheet.create({
   },
   signNav: {
     // backgroundColor: 'red',
-    
   },
-  homeNav: {
-    
-  },
+  homeNav: {},
   userAreaBtn: {
     fontSize: 10,
     paddingLeft: 8,

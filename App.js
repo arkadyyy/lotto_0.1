@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { I18nManager, TouchableOpacity, Dimensions } from "react-native";
@@ -28,7 +28,7 @@ import Sheva778Page from "./pages/Sheva77/Sheva778Page";
 import Sheva779Page from "./pages/Sheva77/Sheva779Page";
 import RavChancePage from "./pages/Chance/RavChancePage";
 import ChanceShitatiPage from "./pages/Chance/ChanceShitatiPage";
-import SumPageChance from "./pages/Chance/SumPageChance"
+import SumPageChance from "./pages/Chance/SumPageChance";
 import { Provider } from "react-redux";
 
 import store from "./redux/store";
@@ -37,7 +37,18 @@ import { withAuthenticator } from "aws-amplify-react-native";
 
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "./aws-exports";
+
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
 ////////////////////////////////////////////////////////////////////////
+
+// const loaderFonts = () => {
+//   return Font.loadAsync({
+//     FbSpacerRegular: require("./assets/fonts/FbSpacerRegular.otf"),
+//     FbSpacerBold: require("./assets/fonts/FbSpacerBold.otf"),
+//   });
+// };
 
 Amplify.configure(awsconfig);
 
@@ -50,45 +61,69 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    FbSpacerRegular: require("./assets/fonts/FbSpacerRegular.otf"),
+    FbSpacerBold: require("./assets/fonts/FbSpacerBold.otf"),
+  });
   I18nManager.forceRTL(true);
 
-  return (
-    <>
-      <Provider store={store}>
-        <NavigationContainer>
-          <Drawer.Navigator
-            drawerContent={(props) => <DrawerContent {...props} />}
-            initialRouteName='Home'
-          >
-            <Drawer.Screen name='Home' component={Home} />
-            <Drawer.Screen name='UserArea' component={UserArea} />
-            <Drawer.Screen name='SignIn' component={SignIn} />
-            <Drawer.Screen name='LogInPage' component={LogInPage} />
-            <Drawer.Screen name='LottoList' component={LottoList} />
-            <Drawer.Screen name='LottoPage' component={LottoPage} />
-            <Drawer.Screen name='DoubleLottoPage' component={DoubleLottoPage} />
-            <Drawer.Screen name='LottoShitatiPage'component={LottoShitatiPage}/>
-            <Drawer.Screen name='LottoShitatiHazakPage'component={LottoShitatiHazakPage}/>
-            <Drawer.Screen name='ChanceList' component={ChanceList} />
-            <Drawer.Screen name='ChancePage' component={ChancePage} />
-            <Drawer.Screen name='RavChancePage' component={RavChancePage} />
-            <Drawer.Screen name='ChanceShitatiPage'component={ChanceShitatiPage}/>
-            <Drawer.Screen name='Sheva77List' component={Sheva77List} />
-            <Drawer.Screen name='Sheva77Page' component={Sheva77Page} />
-            <Drawer.Screen name='Sheva778Page' component={Sheva778Page} />
-            <Drawer.Screen name='Sheva779Page' component={Sheva779Page} />
-            <Drawer.Screen name='One23List' component={One23List} />
-            <Drawer.Screen name='One23Page' component={One23Page} />
-            <Drawer.Screen name='SumPageChance' component={SumPageChance} />
-            {/* <Drawer.Screen name='SumPage123' component={SumPage123} /> */}
-            {/* <Drawer.Screen name='SumPage777' component={SumPage777} /> */}
-             
-            <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
-          </Drawer.Navigator>
-        </NavigationContainer>
-      </Provider>
-    </>
-  );
+  if (!fontsLoaded) {
+    return (
+      <>
+        <AppLoading />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Provider store={store}>
+          <NavigationContainer>
+            <Drawer.Navigator
+              drawerContent={(props) => <DrawerContent {...props} />}
+              initialRouteName='Home'
+            >
+              <Drawer.Screen name='Home' component={Home} />
+              <Drawer.Screen name='UserArea' component={UserArea} />
+              <Drawer.Screen name='SignIn' component={SignIn} />
+              <Drawer.Screen name='LogInPage' component={LogInPage} />
+              <Drawer.Screen name='LottoList' component={LottoList} />
+              <Drawer.Screen name='LottoPage' component={LottoPage} />
+              <Drawer.Screen
+                name='DoubleLottoPage'
+                component={DoubleLottoPage}
+              />
+              <Drawer.Screen
+                name='LottoShitatiPage'
+                component={LottoShitatiPage}
+              />
+              <Drawer.Screen
+                name='LottoShitatiHazakPage'
+                component={LottoShitatiHazakPage}
+              />
+              <Drawer.Screen name='ChanceList' component={ChanceList} />
+              <Drawer.Screen name='ChancePage' component={ChancePage} />
+              <Drawer.Screen name='RavChancePage' component={RavChancePage} />
+              <Drawer.Screen
+                name='ChanceShitatiPage'
+                component={ChanceShitatiPage}
+              />
+              <Drawer.Screen name='Sheva77List' component={Sheva77List} />
+              <Drawer.Screen name='Sheva77Page' component={Sheva77Page} />
+              <Drawer.Screen name='Sheva778Page' component={Sheva778Page} />
+              <Drawer.Screen name='Sheva779Page' component={Sheva779Page} />
+              <Drawer.Screen name='One23List' component={One23List} />
+              <Drawer.Screen name='One23Page' component={One23Page} />
+              <Drawer.Screen name='SumPageChance' component={SumPageChance} />
+              {/* <Drawer.Screen name='SumPage123' component={SumPage123} /> */}
+              {/* <Drawer.Screen name='SumPage777' component={SumPage777} /> */}
+
+              <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
+            </Drawer.Navigator>
+          </NavigationContainer>
+        </Provider>
+      </>
+    );
+  }
 }
 
 {
