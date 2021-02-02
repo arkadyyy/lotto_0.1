@@ -17,7 +17,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
 import { useRoute } from "@react-navigation/native";
 
-
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
@@ -88,11 +87,11 @@ const LottoPage = ({ navigation }) => {
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
-        <ChooseForm setdouble={setdouble} double={double}/>
+        <ChooseForm setdouble={setdouble} double={double} />
         <View style={{ margin: 15 }}>
           <View
             style={{
-              backgroundColor: "#FF0000",
+              backgroundColor: "#E62321",
               paddingBottom: 20,
               height: 730,
             }}
@@ -228,21 +227,21 @@ const LottoPage = ({ navigation }) => {
             </View>
             <View
               style={{
-                flexDirection: "column",
-                // alignItems: "center",
-                // justifyContent: "center",
-                marginTop: height / 25,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 25,
                 zIndex: 1,
-                marginHorizontal: width / 5,
-                width: width / 1.5,
-                height: height / 10,
               }}
             >
               <Button
                 onPress={() => {
                   let summary = { regularLotto: fullTables };
-                 
-                  navigation.navigate("ExtraFormPage",{tableNum:tableNum,screenName:'לוטו'});
+
+                  navigation.navigate("ExtraFormPage", {
+                    tableNum: tableNum,
+                    screenName: "לוטו",
+                  });
                 }}
                 style={{
                   borderRadius: 17,

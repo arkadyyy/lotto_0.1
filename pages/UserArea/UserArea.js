@@ -31,7 +31,7 @@ import ViewForm from "./ViewForm";
 import BlankSquare from "../../components/BlankSquare";
 import SendHistory from "./SendHistory/SendHistory";
 import ActiveForms from "./ActiveForms/ActiveForms";
-import Withdrawal from "./WithDrawal/WithDrawal";
+import Withdrawal from "./Withdrawal/WithDrawal";
 import MyWins from "./MyWins/MyWins";
 import PaymentHistory from "./PaymentHistory/PaymentHistory";
 import HistoryRefund from "./HistoryRefund/HistoryRefund";
@@ -39,17 +39,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { LogOut } from "../../redux/actions/actions";
 const UserArea = ({ navigation }) => {
   const [screen, setScreen] = useState("activeForms");
-  const [username, setusername] = useState("אורח");
   const store = useSelector((state) => state);
   const name = useSelector((state) => state.name);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (store.user.attributes.name) {
-  //     setusername(store.user.attributes.name);
-  //   } else {
-  //     setusername("אורח");
-  //   }
-  // }, [store]);
 
   return (
     <>
