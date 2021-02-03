@@ -118,10 +118,7 @@ const ChooseNumOfTables = ({
         </View>
       }
 
-{route.name === "SumPage123" 
-        
-      
-        && (
+{route.name === "SumPage123" && (
         <View
           style={{
             borderColor: "white",
