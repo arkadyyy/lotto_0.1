@@ -18,6 +18,7 @@ import {
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import chanceListstyles from "../ChanceListStyles";
+import EStyleSheet from "react-native-extended-stylesheet";
 
 const ChooseNumOfTables = ({
   settableNum,
@@ -167,7 +168,7 @@ const ChooseNumOfTables = ({
               </TouchableOpacity>
               {shitati && (
                 <TouchableOpacity
-                  style={
+                style={
                     tableNum === 5
                       ? chanceListstyles.investBtnSelected
                       : chanceListstyles.investBtn
@@ -176,7 +177,13 @@ const ChooseNumOfTables = ({
                     settableNum(5);
                   }}
                 >
-                  <Text>רב צ'אנס</Text>
+                  <Text
+                  style={{
+                   textAlign:"center",
+                    fontSize: EStyleSheet.value("$rem") * 13,
+                  
+                }}  
+                >רב צ'אנס</Text>
                 </TouchableOpacity>
               )}
             </View>
