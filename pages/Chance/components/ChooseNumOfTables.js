@@ -117,7 +117,26 @@ const ChooseNumOfTables = ({
             בחר מספר טבלאות למילוי
           </Text>
           <View style={{}}>
-            <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row" }}>
+              <TouchableOpacity
+                style={
+                    tableNum === 5
+                      ? chanceListstyles.investBtnSelected
+                      : chanceListstyles.investBtn
+                  }
+                  onPress={() => {
+                    settableNum(5);
+                  }}
+                >
+                  <Text
+                  style={{
+                   textAlign:"center",
+                    fontSize: EStyleSheet.value("$rem") * 13,
+                  
+                }}  
+                >רב צ'אנס</Text>
+                </TouchableOpacity>
+              
               <TouchableOpacity
                 style={
                   tableNum === 4
@@ -166,26 +185,8 @@ const ChooseNumOfTables = ({
               >
                 <Text>1</Text>
               </TouchableOpacity>
-              {shitati && (
-                <TouchableOpacity
-                style={
-                    tableNum === 5
-                      ? chanceListstyles.investBtnSelected
-                      : chanceListstyles.investBtn
-                  }
-                  onPress={() => {
-                    settableNum(5);
-                  }}
-                >
-                  <Text
-                  style={{
-                   textAlign:"center",
-                    fontSize: EStyleSheet.value("$rem") * 13,
-                  
-                }}  
-                >רב צ'אנס</Text>
-                </TouchableOpacity>
-              )}
+              
+              
             </View>
           </View>
         </View>
