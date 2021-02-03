@@ -13,7 +13,7 @@ const LogIn = (username, password) => async (dispatch) => {
     user = await Auth.signIn(username, password);
 
     console.log("log in from action was succsessful !@!@!@!@!@!@!@!@");
-
+    console.log(user);
     dispatch({
       type: "LOGIN_SUCCESS",
       payload: { user },

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   ScrollView,
@@ -29,6 +29,7 @@ import {
   CheckBox,
   Label,
 } from "native-base";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { Auth } from "aws-amplify";
 
 import NavBar from "../../components/NavBar";
@@ -36,23 +37,49 @@ import { color } from "react-native-reanimated";
 import ColorLine from "../../components/ColorLine";
 import { useSelector } from "react-redux";
 
-async function signUp(username, password, email, phone_number, ID, gender) {
-  try {
-    const { user } = await Auth.signUp({
-      username,
-      password,
-      attributes: {
-        email,
-        phone_number, // optional - E.164 number convention
-        ID,
-        gender,
-      },
-    });
-    console.log("singup was succsessful @!@!~~~~ : ", user);
-  } catch (error) {
-    console.log("error signing up:", error);
-  }
-}
+// signUp(
+//   Email,
+//   password,
+//   phoneNum,
+//   lastName,
+//   address,
+//   gender,
+//   date,
+//   firstName,
+//   ID
+// );
+
+// async function signUp(
+//   email,
+//   password,
+//   phone_number,
+//   family_name,
+//   address,
+//   gender,
+//   birthdate,
+//   name,
+//   customID
+// ) {
+//   try {
+//     const { user } = await Auth.signUp({
+//       username: email,
+//       password,
+//       attributes: {
+//         email,
+//         phone_number, // optional - E.164 number convention
+//         family_name,
+//         address,
+//         gender,
+//         birthdate,
+//         name,
+//         "custom:ID": customID,
+//       },
+//     });
+//     console.log("singup was succsessful @!@!~~~~ : ", user);
+//   } catch (error) {
+//     console.log("error signing up:", error);
+//   }
+// }
 
 const SignIn = ({ navigation }) => {
   const [gender, setGender] = useState("");
@@ -62,10 +89,45 @@ const SignIn = ({ navigation }) => {
   const [phoneNum, setPhoneNum] = useState("");
   const [Email, setEmail] = useState("");
   const [age, setAge] = useState(false);
+  const [address, setaddress] = useState("");
+  const [bidrthday, setbidrthday] = useState("");
   const [agreement, setAgreement] = useState(false);
+  // const [date, setdate] = useState("");
   const [password, setpassword] = useState(null);
   const [showPassword, setshowPassword] = useState(true);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === "ios");
+    let x = String(currentDate).split("T")[0].split(" ");
+    let y = [];
+    y.push(x[2], x[1], x[3]);
+
+    setDate(y.join());
+  };
+
+  /////
+
+  const [date, setDate] = useState("");
+
+  const [show, setShow] = useState(false);
+
   const store = useSelector((state) => state);
+
+  // useEffect(() => {
+  //   // email,
+  //   // password,
+  //   // phone_number,
+  //   // family_name,
+  //   // address,
+  //   // gender,
+  //   // birthdate,
+  //   // name,
+  //   // customID
+
+  //   console.log("i am here");
+  // }, []);
+
   return (
     <>
       <NavBar navigation={navigation} screenName={"signIn"} />
@@ -255,6 +317,50 @@ const SignIn = ({ navigation }) => {
               <View
                 style={{
                   alignItems: "stretch",
+                }}
+              >
+                <Label style={{ fontSize: 12, marginLeft: 10 }}>כתובת</Label>
+                <TextInput
+                  key={"ADDRESS"}
+                  style={signInstyles.signInPageInput}
+                  fontSize={12}
+                  onChangeText={(text) => setaddress(text)}
+                />
+              </View>
+              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+                <TouchableOpacity
+                  style={{
+                    borderColor: "white",
+                    borderWidth: 2,
+                    borderRadius: 7,
+                    padding: 7,
+
+                    flex: 1,
+                  }}
+                  onPress={() => {
+                    setShow(true);
+                  }}
+                >
+                  <Text>בחר תאריך לידה</Text>
+                </TouchableOpacity>
+                <Text style={{ flex: 2 }}>
+                  {date === "" ? "בחר תאריך" : String(date)}
+                </Text>
+                {show && (
+                  <DateTimePicker
+                    testID='dateTimePicker'
+                    value={new Date()}
+                    mode='date'
+                    is24Hour={false}
+                    display='spinner'
+                    onChange={onChange}
+                  />
+                )}
+              </View>
+
+              <View
+                style={{
+                  alignItems: "stretch",
                   marginVertical: 8,
                 }}
               >
@@ -322,18 +428,58 @@ const SignIn = ({ navigation }) => {
 
                   marginHorizontal: 70,
                 }}
-                onPress={() => {
-                  console.log({
-                    gender: gender,
-                    firstName: firstName,
-                    lastName: lastName,
-                    phoneNum: phoneNum,
-                    ID: ID,
-                    Email: Email,
-                    age: age,
-                    agreement: agreement,
+                onPress={async () => {
+                  // console.log({
+                  //   gender: gender,
+                  //   firstName: firstName,
+                  //   lastName: lastName,
+                  //   phoneNum: phoneNum,
+                  //   ID: ID,
+                  //   Email: Email,
+                  //   date: date,
+                  // });
+                  // signUp(
+                  //   Email,
+                  //   password,
+                  //   phoneNum,
+                  //   lastName,
+                  //   address,
+                  //   gender,
+                  //   date,
+                  //   firstName,
+                  //   ID
+                  // );
+                  // signUp(
+                  //   "arkados2@gmail.com",
+                  //   "Arkady555",
+                  //   "0527323002",
+                  //   "likovizki",
+                  //   "geva binyamin yasmin 4",
+                  //   "male",
+                  //   "13/5/1996",
+                  //   "arkady",
+                  //   "321352262"
+                  // );
+                  await Auth.signUp({
+                    username: "arkados2@gmail.com",
+                    password: "arkady555",
+                    attributes: {
+                      email: "arkados2@gmail.com",
+                      phone_number: "+972527323002", // optional - E.164 number convention
+                      family_name: "likovizki",
+                      address: " geva binyamin yasmin 4",
+                      gender: "male",
+                      birthdate: "13.05.1996",
+                      name: "arkady",
+                      "custom:ID": "321352262",
+                    },
                   });
-                  signUp(Email, password, Email, phoneNum, ID, gender);
+
+                  try {
+                    await Auth.confirmSignUp("arkados2@gmail.com", "351364");
+                  } catch (error) {
+                    console.log("error confirming sign up", error);
+                  }
                 }}
               >
                 <Text

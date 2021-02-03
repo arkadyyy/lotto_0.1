@@ -225,7 +225,8 @@ const ChanceShitatiPage = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  console.log("chance shitati : ", fullTables);
+                  let summary = { RavChance: fullTables,investNum:investNum };
+                  navigation.navigate("SumPageChance",{tableNum:4,investNum:investNum});
                 }}
                 style={{
                   borderRadius: 17,
@@ -235,7 +236,7 @@ const ChanceShitatiPage = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
+                <Text style={{ color: "white", fontSize: 28 }}>המשך לשליחת טופס</Text>
               </Button>
             </View>
           </View>
