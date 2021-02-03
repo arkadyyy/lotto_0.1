@@ -165,24 +165,26 @@ const ShitatiHazakFillForm = ({
   return (
     <>
       <View
-        style={{
-          backgroundColor: "#263742",
-          width: "100%",
-          top: "39%",
-          height: 420,
-          position: "absolute",
-          zIndex: 2000,
-        }}
+       style={{
+        backgroundColor: "#263742",
+        width: "100%",
+        top: EStyleSheet.value("$rem") * -37,
+        height: 500,
+        position: "relative",
+        zIndex: 2000,
+      }}
       >
         {/* {top 90 deg box} */}
         <View
           style={{
             backgroundColor: "#263742",
-            width: "35%",
-            height: 70,
+          
+            height: 60,
             position: "relative",
             top: -40,
-            left: EStyleSheet.value("$rem") * 227,
+            left: EStyleSheet.value("$rem") * 210,
+            width: EStyleSheet.value("$rem") * 140,
+
             zIndex: 2001,
             flexDirection: "row",
             justifyContent: "space-around",
@@ -216,7 +218,7 @@ const ShitatiHazakFillForm = ({
           style={{
             borderColor: "white",
             width: "90%",
-            height: "65%",
+            height: "60%",
             borderWidth: 1,
             borderRadius: 8,
             alignSelf: "center",
@@ -275,13 +277,14 @@ const ShitatiHazakFillForm = ({
           </View>
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             {choosenNums.length > 0 && (
-              <Text style={{ color: "white", marginTop: 7 }}>
-                המספרים שנבחרו
+              <Text style={{ color: "white", top:"3%",right:4 }}>
+              המספרים שנבחרו
               </Text>
             )}
-            {choosenNums
-              .slice(0)
-              .reverse()
+            {choosenNums.sort(function(a, b){return b-a})
+
+              // .slice(0)
+              // .reverse()
               .map((num) => (
                 <View
                   style={{
@@ -289,7 +292,7 @@ const ShitatiHazakFillForm = ({
                     height: 20,
                     borderRadius: 30,
                     backgroundColor: "pink",
-                    margin: 5,
+                    margin: 3,
                     justifyContent: "center",
                     alignItems: "center",
                   }}

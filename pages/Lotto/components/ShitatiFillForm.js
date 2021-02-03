@@ -170,7 +170,7 @@ const ShitatiFillForm = ({
           backgroundColor: "#263742",
           width: "100%",
           top: EStyleSheet.value("$rem") * -37,
-          height: 420,
+          height: 500,
           position: "relative",
           zIndex: 2000,
         }}
@@ -180,7 +180,7 @@ const ShitatiFillForm = ({
           style={{
             backgroundColor: "#263742",
 
-            height: 70,
+            height: 60,
             position: "relative",
             top: -40,
             left: EStyleSheet.value("$rem") * 210,
@@ -238,7 +238,7 @@ const ShitatiFillForm = ({
           style={{
             borderColor: "white",
             width: "90%",
-            height: "65%",
+            height: "60%",
             borderWidth: 1,
             borderRadius: 8,
             alignSelf: "center",
@@ -297,13 +297,12 @@ const ShitatiFillForm = ({
           </View>
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             {choosenNums.length > 0 && (
-              <Text style={{ color: "white", marginTop: 7 }}>
-                המספרים שנבחרו
+              <Text style={{ color: "white", top:"3%",right:8 }}>
+              המספרים שנבחרו
               </Text>
             )}
-            {choosenNums
-              .slice(0)
-              .reverse()
+            {choosenNums.sort(function(a, b){return b-a})
+            
               .map((num) => (
                 <View
                   style={{

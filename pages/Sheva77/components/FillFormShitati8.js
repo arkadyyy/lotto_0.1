@@ -254,7 +254,8 @@ const FillFormShitati8 = ({
           {(choosenNums.length > 0) && (<Text style={{ color: "white", top: "9%", }}>המספרים שנבחרו</Text>)}
             <View style={{ flexDirection: "row", flexWrap: "wrap",top:"12.5%" }}>
 
-            {choosenNums.slice(0).reverse().map((num) => (
+            {choosenNums.sort(function(a, b){return b-a})
+              .map((num) => (
               <View
               style={{
                 width: 20,

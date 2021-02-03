@@ -302,7 +302,6 @@ const FillForm = ({
               הרצף הנבחר לטבלה 1
             </Text>
             <TouchableOpacity>
-              <Text>מחק רצף</Text>
             </TouchableOpacity>
           </View>
           <View
