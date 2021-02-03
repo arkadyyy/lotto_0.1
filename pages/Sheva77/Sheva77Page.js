@@ -192,7 +192,7 @@ const Sheva77Page = ({ navigation }) => {
               <Button
                onPress={() => {
                 let summary = { 777: fullTables };
-                navigation.navigate("SumPage777", { tableNum: 1 });
+                navigation.navigate("SumPage777", { tableNum: tableNum });
               }}
                   style = {{
                   borderRadius: 17,

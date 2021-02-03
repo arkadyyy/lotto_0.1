@@ -30,6 +30,7 @@ import RavChancePage from "./pages/Chance/RavChancePage";
 import ChanceShitatiPage from "./pages/Chance/ChanceShitatiPage";
 import SumPageChance from "./pages/Chance/SumPageChance";
 import SumPage777 from "./pages/Sheva77/SumPage777";
+import SumPage123 from "./pages/One23/SumPage123";
 import { Provider } from "react-redux";
 
 import store from "./redux/store";

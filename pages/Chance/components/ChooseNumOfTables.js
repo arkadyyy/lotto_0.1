@@ -115,7 +115,7 @@ const ChooseNumOfTables = ({
         </>
       }
       
-      {route.name === "SumPageChance"
+      {route.name === "SumPageChance" 
         
       
         && (
@@ -144,7 +144,7 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: hagralot === 1 ?  "#8CC63F": "#FF0000" ,
+                  backgroundColor: hagralot === 1 ?  "#8CC63F":null ,
                 }}
                 onPress={() => {
                   // settableNum(1);
@@ -165,7 +165,7 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: hagralot === 4 ?  "#8CC63F": "#FF0000" ,
+                  backgroundColor: hagralot === 4 ?  "#8CC63F": null ,
                 }}
                 onPress={() => {
                   // settableNum(4);
@@ -186,7 +186,7 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: hagralot === 6 ?  "#8CC63F": "#FF0000" ,
+                  backgroundColor: hagralot === 6 ?  "#8CC63F": null ,
                 }}
                 onPress={() => {
                   // settableNum(6);
@@ -207,7 +207,7 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: hagralot === 8 ?  "#8CC63F": "#FF0000" ,
+                  backgroundColor: hagralot === 8 ?  "#8CC63F": null ,
                 }}
                 onPress={() => {
                   // settableNum(8);
