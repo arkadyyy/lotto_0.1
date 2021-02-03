@@ -34,7 +34,7 @@ import {
 
 //////////////////////////////////////////////////////////////
 
-export default function Home({ navigation }) {
+export default function HowItWorks({ navigation }) {
   return (
     <>
       <NavBar navigation={navigation} screenName={"aboutUs"} />
@@ -44,29 +44,29 @@ export default function Home({ navigation }) {
                   source={require("../../lottoMatic/assets/home/logo.png")}
               />
               <View style={{ backgroundColor: "lightblue", width: "80%", height: 600, alignSelf: "center", margin: 10 }}>
-                  <Text style={{fontSize: EStyleSheet.value("$rem") * 30,}}>קצת עלינו...</Text>
+                  <Text style={{fontSize: EStyleSheet.value("$rem") * 30,}}>איך זה עובד? 
+</Text>
                   <Text style={{direction: "rtl",fontSize: EStyleSheet.value("$rem") * 20}}>
                       
-                      לוטומטיק - פשוט לשלוח בקליק, מכל מקום, בכל מצב, ובכל רגע נתון. 
-</Text>
+                  לאחר התשלום אנו בלוטומטיק מקבלים את הטופס שמילאתם ושולחים אותו עבורכם בנקודת מכירה מורשית של מפעל הפיס.</Text>
                       <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20 }}>
 
-                      העיקרון המנחה שלנו הינו הנוחות שלכם.
+                      את הטופס ששלחנו עבורכם בנקודה אנו סורקים ומעבירים לכם לתיבת הדואר האלקטרוני, ובנוסף מעלים את הטופס הסרוק לאזור האישי שלכם באפליקציה. </Text>
+                      <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20 }}>
+
+                      הטופס המקורי יישמר אצלנו במשרדי החברה ובמידה וזכיתם בסכום  העולה על 11,000 ש״ח יימסר לכם הטופס באופן אישי. 
 </Text>
                       <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20 }}>
  
-                      כלומר, אנו בלוטומטיק נעשה כל שביכולתנו כדי לספק לכם את החוויה למלא טפסי לוטו, צ׳אנס, 777, ו- 123, מבלי להטריח את עצמכם, ונעניק לכם את האפשרות לעשות זאת מכל מקום בכל שעה, וכל זה בלחיצת כפתור, בלי ללכת לנקודה של מפעל הפיס, בלי לעמוד בתור, בלי לצאת מהבית, ובלי להיות מוגבלים בזמן, הכל נעשה באפליקציה או דרך אתר האינטרנט שלנו. 
+                      במידה וסכום הזכייה שלכם הינו מ11,000 ש״ח או נמוך ממנו החשבון שלכם באתר יזוכה באופן אוטומטי ותקבלו על כך הודעה, אתם תוכלו למשוך את הכסף מהחשבון שכלם באתר לתוך חשבון הבנק שלכם או שתבחרו לנצל את היתרה לשליחת טפסים חדשים. 
 </Text>
                       <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20 }}>
 
-                      כל שלכם נותר לעשות הוא פשוט להיכנס לאתר או לאפליקציה שלנו, להזין את הפרטים שלכם, לבחור את סוג הטופס שבו אתם חפצים, לבחור את המספרים שלכם ו/או לבחור באפשרות של מילוי טופס באופן אוטומטי, ללחוץ על שליחת טופס, לשלם בכרטיס האשראי, והינה הטופס שמילאתם כבר נסרק, ובדרך לתיבת המייל שלכם ולאיזור האישי שלכם באפליקציה.
+                      אנו מאחלים לכם חווית שימוש והנאה מרבית מהשירות שלנו ומלאי תקווה שנביא לכם את המזל. 
 </Text>
-                      <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20 }}>
- 
-                  </Text>
+                   
                   <Text style={{direction: "rtl",fontSize: EStyleSheet.value("$rem") * 20}}>
 
-אנו מאחלים לכם חווית שימוש והנאה מרבית מהשירות שלנו ומלאי תקווה שנביא לכם את המזל. 
 בהצלחה! 
 
            </Text>
