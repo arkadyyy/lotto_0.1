@@ -116,7 +116,7 @@ export default function App() {
               <Drawer.Screen name='One23List' component={One23List} />
               <Drawer.Screen name='One23Page' component={One23Page} />
               <Drawer.Screen name='SumPageChance' component={SumPageChance} />
-              {/* <Drawer.Screen name='SumPage123' component={SumPage123} /> */}
+              <Drawer.Screen name='SumPage123' component={SumPage123} />
               <Drawer.Screen name='SumPage777' component={SumPage777} />
 
               <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />

@@ -36,35 +36,44 @@ const NavBar = (props) => {
   useEffect(() => {
     if (
       route.name === "LottoList") setNavBarTitle("הגרלת לוטו");
-    else if (route.name === "ChanceList"
-      || route.name === "ChancePage"
-      || route.name === "RavChancePage"
-      || route.name === "ChanceShitatiPage"
-      || route.name === "SumPageChance"
-    ) {
+    else if (route.name === "ChanceList"|| route.name === "ChancePage") {
       setNavBarTitle(`הגרלת צ'אנס`);
+    } else if (route.name === "RavChancePage") {
+      setNavBarTitle(`רב צ'אנס`);
+    } else if (route.name === "ChanceShitatiPage") {
+      setNavBarTitle(`צ'אנס שיטתי`);
+    } else if (route.name === "SumPageChance") {
+      setNavBarTitle(`הגרלות צ'אנס- שליחת טופס`);
+    } else if (route.name === "SumPage123") {
+      setNavBarTitle(`הגרלת 123- שליחת טופס`);
+    } else if (route.name === "SumPage777") {
+      setNavBarTitle(`הגרלות 777- שליחת טופס`);
     } else if (route.name === "Sheva77List") {
-      setNavBarTitle(`הגרלת 777`);
+      setNavBarTitle(`הגרלות 777`);
     } else if (route.name === "One23List") {
+      setNavBarTitle(`הגרלות 123`);
+    } else if (route.name === "One23Page") {
       setNavBarTitle(`הגרלת 123`);
     } else if (route.name === "SignIn") {
       setNavBarTitle(`הרשמה ופרטי תשלום`);
     } else if (route.name === "LottoPage") {
+      setNavBarTitle(`לוטו`);
+    } else if (route.name === "DoubleLottoPage") {
       setNavBarTitle(`דאבל לוטו`);
     } else if (route.name === "LottoShitatiPage") {
       setNavBarTitle(`לוטו שיטתי`);
     } else if (route.name === "LottoShitatiHazakPage") {
       setNavBarTitle("לוטו שיטתי חזק");
     } else if (route.name === "Sheva77Page") {
-      setNavBarTitle(`777`);
+      setNavBarTitle(`הגרלת 777 `);
     } else if (route.name === "Sheva778Page") {
-      setNavBarTitle(`778`);
+      setNavBarTitle(`הגרלת 778`);
     } else if (route.name === "Sheva779Page") {
-      setNavBarTitle(`779`);
+      setNavBarTitle(`הגרלת 779`);
     } else if (route.name === "One23Page") {
       setNavBarTitle(`123`);
     } else if (route.name === "ExtraFormPage") {
-      setNavBarTitle( `לוטו-שליחת טופס`);
+      setNavBarTitle( `הגרלות לוטו- שליחת טופס`);
     }
     
     
@@ -85,7 +94,7 @@ const NavBar = (props) => {
           <Text
             style={{
               color: "white",
-              marginLeft: 50,
+              marginLeft: 40,
               fontSize: 12,
             }}
           >
