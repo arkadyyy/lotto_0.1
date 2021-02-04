@@ -177,6 +177,9 @@ export default function Home({ navigation }) {
               </View>
               <View style={[homestyles.btnWrapper, { marginBottom: 25 }]}>
                 <Button
+                  onPress={() => {
+                    navigation.navigate("HowItWorks");
+                  }}
                   style={[
                     homestyles.openingPageBtn,
                     homestyles.openingPageBtnLastBtns,
@@ -200,6 +203,10 @@ export default function Home({ navigation }) {
               <View style={homestyles.btnWrapper}>
                 <View>
                   <Button
+                    onPress={() => {
+                      navigation.navigate("AboutUs");
+                    }}
+                    
                     style={[
                       homestyles.openingPageBtn,
                       homestyles.openingPageBtnLastBtns,

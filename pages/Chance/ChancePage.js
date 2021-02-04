@@ -19,7 +19,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
-import FillForm from "./components/FillForm";
+// import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 import chanceListstyles from "./ChanceListStyles";
 import { useSelector, useDispatch } from "react-redux";

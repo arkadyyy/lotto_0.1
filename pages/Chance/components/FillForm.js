@@ -331,7 +331,9 @@ const FillForm = ({ setshowTable, double, tableNum }) => {
           </View>
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
           {(choosenNums.length>0) && (<Text style={{color:"white", marginTop:7}}>המספרים שנבחרו</Text>)}
-            {choosenNums.slice(0).reverse().map((num) => (
+            {choosenNums
+              .slice(0).reverse()
+              .map((num) => (
               <View
               style={{
                 width: 20,

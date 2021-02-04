@@ -307,9 +307,9 @@ const FillForm = ({
           )}
                     <View style={{ flexDirection: "row", flexWrap: "wrap",top:"3%" }}>
 
-            {choosenNums
-              .slice(0)
-              .reverse()
+            {choosenNums.sort(function(a, b){return b-a})
+              // .slice(0)
+              // .reverse()
               .map((num) => (
                 <View
                   style={{
