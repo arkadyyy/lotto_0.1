@@ -233,11 +233,13 @@ const SumPage123 = ({ route, navigation }) => {
               
                 }
                 style={{
+                  width:200,
                   borderRadius: 17,
-                  backgroundColor: "#8CC63F",
+                  backgroundColor: "#FBB03B",
                   borderColor: "white",
                   borderWidth: 2,
-                  padding: 10,
+                  padding: 50,
+                  // :"center"
                 }}
               >
                 <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
