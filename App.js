@@ -33,6 +33,7 @@ import SumPage777 from "./pages/Sheva77/SumPage777";
 import SumPage123 from "./pages/One23/SumPage123";
 import AboutUs from "./pages/AboutUs";
 import HowItWorks from "./pages/HowItWorks";
+import Results from "./pages/Results";
 import { Provider } from "react-redux";
 
 import store from "./redux/store";
@@ -122,6 +123,7 @@ export default function App() {
               <Drawer.Screen name='SumPage777' component={SumPage777} />
               <Drawer.Screen name='AboutUs' component={AboutUs} />
               <Drawer.Screen name="HowItWorks" component={HowItWorks} />
+              <Drawer.Screen name="Results" component={Results} />
 
               <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
             </Drawer.Navigator>
