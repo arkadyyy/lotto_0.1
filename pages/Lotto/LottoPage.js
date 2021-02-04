@@ -17,6 +17,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
 import { useRoute } from "@react-navigation/native";
 import EStyleSheet from "react-native-extended-stylesheet";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {faPlusCircle,
+} from "@fortawesome/free-solid-svg-icons";
 
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
@@ -170,7 +173,7 @@ const LottoPage = ({ navigation }) => {
             style={{
               backgroundColor: "#E62321",
               paddingBottom: 20,
-              height: 730,
+              height: 650,
             }}
           >
             <View
@@ -336,51 +339,24 @@ const LottoPage = ({ navigation }) => {
               </Button>
             </View>
           </View>
-          {/* <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-              zIndex: -2,
-            }}
-          > */}
+      
           
-          
-          <View style={{ backgroundColor: "lightblue", width: "100%", height: 600, alignSelf: "center", margin: 10 }}>
-            <View style={{flexDirection:"row", justifyContent:"space-between"}}>
-              <Text style={{ fontSize: EStyleSheet.value("$rem") * 30 }}>קצת עלינו...</Text>
-              <TouchableOpacity>
-              <Text>עוד</Text>
-            </TouchableOpacity>
-            </View>
-              <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20 }}>
-                      
-                      לוטומטיק - פשוט לשלוח בקליק, מכל מקום, בכל מצב, ובכל רגע נתון. 
-</Text>
-                      <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20 }}>
-
-                      העיקרון המנחה שלנו הינו הנוחות שלכם.
-</Text>
-                      <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20 }}>
- 
-                      כלומר, אנו בלוטומטיק נעשה כל שביכולתנו כדי לספק לכם את החוויה למלא טפסי לוטו, צ׳אנס, 777, ו- 123, מבלי להטריח את עצמכם, ונעניק לכם את האפשרות לעשות זאת מכל מקום בכל שעה, וכל זה בלחיצת כפתור, בלי ללכת לנקודה של מפעל הפיס, בלי לעמוד בתור, בלי לצאת מהבית, ובלי להיות מוגבלים בזמן, הכל נעשה באפליקציה או דרך אתר האינטרנט שלנו. 
-</Text>
-                      <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20 }}>
-
-                      כל שלכם נותר לעשות הוא פשוט להיכנס לאתר או לאפליקציה שלנו, להזין את הפרטים שלכם, לבחור את סוג הטופס שבו אתם חפצים, לבחור את המספרים שלכם ו/או לבחור באפשרות של מילוי טופס באופן אוטומטי, ללחוץ על שליחת טופס, לשלם בכרטיס האשראי, והינה הטופס שמילאתם כבר נסרק, ובדרך לתיבת המייל שלכם ולאיזור האישי שלכם באפליקציה.
-</Text>
-                      <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20 }}>
- 
-                  </Text>
-                  <Text style={{direction: "rtl",fontSize: EStyleSheet.value("$rem") * 20}}>
-
-אנו מאחלים לכם חווית שימוש והנאה מרבית מהשירות שלנו ומלאי תקווה שנביא לכם את המזל. 
-בהצלחה! 
-
-           </Text>
-           
-          </View>
-          {/* </View> */}
+          <View style={{  width: "100%", height: 30, margin: 10,flexDirection:"row", justifyContent:"space-between" }}>
+              <Text style={{ fontSize: EStyleSheet.value("$rem") * 25 }}>הסבר על הגרלות לוטו</Text>
+            <View style={{flexDirection:"row",paddingTop:5}}>
+              <FontAwesomeIcon
+                  color='#263742'
+                    border={true}
+                    inverse
+                icon={faPlusCircle}
+                onPress={() => {
+                  navigation.navigate("HowItWorks")
+                }}
+                  />
+              <Text style={{marginRight:10,paddingRight:5,paddingTop:2,fontSize:EStyleSheet.value("$rem") * 15}}>עוד...</Text>
+              </View>
+              </View>
+            
         </View>
       </ScrollView>
     </>

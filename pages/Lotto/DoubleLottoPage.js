@@ -25,6 +25,10 @@ import { autoFill } from "./components/FillForm";
 import Amplify, { Auth } from "aws-amplify";
 import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
+import EStyleSheet from "react-native-extended-stylesheet";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {faPlusCircle,
+} from "@fortawesome/free-solid-svg-icons";
 /////////////////////////////////////////////////////////////////////////////////
 
 const DoubleLottoPage = ({ navigation }) => {
@@ -244,19 +248,25 @@ const DoubleLottoPage = ({ navigation }) => {
 
             </View>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-              zIndex: -2,
-            }}
-          >
-            <Text style={{ fontSize: 18 }}>הסבר על הגרלות לוטו</Text>
-            <TouchableOpacity>
-              <Text>עוד</Text>
-            </TouchableOpacity>
-          </View>
+        
+
+ 
+          <View style={{  width: "100%", height: 30, margin: 10,flexDirection:"row", justifyContent:"space-between" }}>
+              <Text style={{ fontSize: EStyleSheet.value("$rem") * 25 }}>הסבר על הגרלות לוטו</Text>
+            <View style={{flexDirection:"row",paddingTop:5}}>
+              <FontAwesomeIcon
+                  color='#263742'
+                    border={true}
+                    inverse
+                icon={faPlusCircle}
+                onPress={() => {
+                  navigation.navigate("HowItWorks")
+                }}
+                  />
+              <Text style={{marginRight:10,paddingRight:5,paddingTop:2,fontSize:EStyleSheet.value("$rem") * 15}}>עוד...</Text>
+              </View>
+              </View>
+          
         </View>
       </ScrollView>
     </>
