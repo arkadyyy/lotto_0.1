@@ -29,10 +29,12 @@ import {
   Drawer,
 } from "native-base";
 import ColorLine from "../../components/ColorLine";
+import { useSelector, useDispatch } from "react-redux";
 
 //////////////////////////////////////////////////////////
 
 export default function DrawerContent(props) {
+  const store = useSelector((state) => state);
   return (
     <View style={{ flex: 1, backgroundColor: "#263742" }}>
       <DrawerContentScrollView {...props}>
@@ -43,36 +45,58 @@ export default function DrawerContent(props) {
             marginRight: 25,
           }}
         >
-          <View>
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              <Text style={drawerstyles.text}>שלום משתמש</Text>
-              <Text style={drawerstyles.text}>0.00</Text>
-            </View>
-            <Hr text={null} lineColor='#eee' width={1} />
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              <TouchableOpacity>
-                <Text style={[drawerstyles.text, { fontSize: 12 }]}>
-                  טפסים פעילים
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={[drawerstyles.text, { fontSize: 12 }]}>
-                  היסטורית שליחות
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={[drawerstyles.text, { fontSize: 12 }]}>
-                  הגדרות
-                </Text>
-              </TouchableOpacity>
-            </View>
+          {store.name === "אורח" ? (
+            <View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={drawerstyles.text}>שלום {store.name}</Text>
+              </View>
+              <Hr text={null} lineColor='#eee' width={1} />
 
-            <ColorLine />
-          </View>
+              <ColorLine />
+            </View>
+          ) : (
+            <View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={drawerstyles.text}>שלום {store.name}</Text>
+                <Text style={drawerstyles.text}>0.00</Text>
+              </View>
+              <Hr text={null} lineColor='#eee' width={1} />
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <TouchableOpacity>
+                  <Text style={[drawerstyles.text, { fontSize: 12 }]}>
+                    טפסים פעילים
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Text style={[drawerstyles.text, { fontSize: 12 }]}>
+                    היסטורית שליחות
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Text style={[drawerstyles.text, { fontSize: 12 }]}>
+                    הגדרות
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
+              <ColorLine />
+            </View>
+          )}
         </View>
 
         <View style={{ marginLeft: 8 }}>
@@ -87,7 +111,7 @@ export default function DrawerContent(props) {
             labelStyle={drawerstyles.labelStyle}
             label='תוצאות הגרלה'
             onPress={() => {
-              props.navigation.navigate("Home");
+              props.navigation.navigate("LottteryResults");
             }}
           />
           <DrawerItem

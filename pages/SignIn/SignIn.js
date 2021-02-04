@@ -9,6 +9,14 @@ import {
   View,
   TextInput,
 } from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faCheck,
+  faCheckCircle,
+  faTimes,
+  faQuestion,
+  faQuestionCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import signInstyles from "../SignIn/SignInStyles";
 import {
   Container,
@@ -40,49 +48,53 @@ import { useSelector, useDispatch } from "react-redux";
 import { SignUp, SignUpConfirmation } from "../../redux/actions/actions";
 import axios from "axios";
 
-// signUp(
-//   Email,
-//   password,
-//   phoneNum,
-//   lastName,
-//   address,
-//   gender,
-//   date,
-//   firstName,
-//   ID
-// );
+///////////////////////////////////////////////////////////////////////
 
-// async function signUp(
-//   email,
-//   password,
-//   phone_number,
-//   family_name,
-//   address,
-//   gender,
-//   birthdate,
-//   name,
-//   customID
-// ) {
-//   try {
-//     const { user } = await Auth.signUp({
-//       username: email,
-//       password,
-//       attributes: {
-//         email,
-//         phone_number, // optional - E.164 number convention
-//         family_name,
-//         address,
-//         gender,
-//         birthdate,
-//         name,
-//         "custom:ID": customID,
-//       },
-//     });
-//     console.log("singup was succsessful @!@!~~~~ : ", user);
-//   } catch (error) {
-//     console.log("error signing up:", error);
-//   }
-// }
+const getAge = (birthDate) => {
+  let age = +Math.floor(
+    (new Date() - new Date(birthDate).getTime()) / 3.15576e10
+  );
+  return +age;
+};
+
+const validateEmail = (text) => {
+  console.log(text);
+  let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (reg.test(text) === false) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+const validateID = (text) => {
+  if (text.length === 9 && text !== "") {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const validatePhoneNum = (text) => {
+  let isnum = /^\d+$/.test(text);
+  let length = text.length;
+
+  // console.log("isnum : ", isnum);
+
+  if (length === 10 && isnum) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const validatePassword = (text) => {
+  if (text.length >= 8) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 function CheckFields(
   setfieldCheck,
@@ -106,7 +118,7 @@ function CheckFields(
     setfieldCheck(true);
   } else if (ID === "") {
     setfieldCheck(true);
-  } else if (phoneNum === "" || phoneNum.length !== 10 || phoneNum.includes()) {
+  } else if (phoneNum === "" || phoneNum.length !== 10) {
     setfieldCheck(true);
   } else if (Email === "") {
     setfieldCheck(true);
@@ -123,6 +135,9 @@ function CheckFields(
   } else {
     setfieldCheck(false);
   }
+
+  if (/^\d+$/.test(phoneNum) && phoneNum.length === 10) {
+  }
 }
 
 const SignIn = ({ navigation }) => {
@@ -137,7 +152,7 @@ const SignIn = ({ navigation }) => {
   const [bidrthday, setbidrthday] = useState("");
   const [agreement, setAgreement] = useState(false);
   // const [date, setdate] = useState("");
-  const [password, setpassword] = useState(null);
+  const [password, setpassword] = useState("");
   const [showPassword, setshowPassword] = useState(true);
   const [fieldCheck, setfieldCheck] = useState(true);
 
@@ -174,27 +189,27 @@ const SignIn = ({ navigation }) => {
     }
   }, [store]);
 
-  useEffect(() => {
-    let accessToken;
-    let jwt;
-    Auth.currentSession().then((res) => {
-      accessToken = res.getAccessToken();
-      jwt = accessToken.getJwtToken();
+  // useEffect(() => {
+  //   let accessToken;
+  //   let jwt;
+  //   Auth.currentSession().then((res) => {
+  //     accessToken = res.getAccessToken();
+  //     jwt = accessToken.getJwtToken();
 
-      setjwtState(jwt);
-    });
+  //     setjwtState(jwt);
+  //   });
 
-    setTimeout(() => {
-      axios
-        .get("http://52.90.122.190:5000/my_space/active_forms", {
-          headers: {
-            Authorization: jwt,
-          },
-        })
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err));
-    }, 5000);
-  }, []);
+  //   setTimeout(() => {
+  //     axios
+  //       .get("http://52.90.122.190:5000/my_space/active_forms", {
+  //         headers: {
+  //           Authorization: jwt,
+  //         },
+  //       })
+  //       .then((res) => console.log(res.data))
+  //       .catch((err) => console.log(err));
+  //   }, 5000);
+  // }, []);
 
   useEffect(() => {
     CheckFields(
@@ -211,7 +226,8 @@ const SignIn = ({ navigation }) => {
       agreement,
       password
     );
-    console.log(fieldCheck);
+    // console.log("checkfields : ", fieldCheck);
+    // console.log("validatephonenum : ", validatePhoneNum(phoneNum));
   }, [
     gender,
     firstName,
@@ -361,7 +377,7 @@ const SignIn = ({ navigation }) => {
 
                     <View style={signInstyles.radioGenderButons}>
                       <View>
-                        <Button
+                        <TouchableOpacity
                           small
                           rounded
                           style={
@@ -372,11 +388,11 @@ const SignIn = ({ navigation }) => {
                           onPress={() => setGender("male")}
                         >
                           <Text style={{ color: "white" }}>זכר</Text>
-                        </Button>
+                        </TouchableOpacity>
                       </View>
 
                       <View>
-                        <Button
+                        <TouchableOpacity
                           small
                           rounded
                           style={
@@ -387,76 +403,157 @@ const SignIn = ({ navigation }) => {
                           onPress={() => setGender("female")}
                         >
                           <Text style={{ color: "white" }}>נקבה</Text>
-                        </Button>
+                        </TouchableOpacity>
                       </View>
                     </View>
                   </View>
 
-                  <View style={signInstyles.signInPageInputs}>
-                    <View
-                      style={{
-                        alignItems: "stretch",
+                  <View
+                    style={{
+                      alignItems: "stretch",
 
-                        flex: 1,
-                      }}
-                    >
-                      <Label style={{ fontSize: 12, marginLeft: 10 }}>
+                      flex: 1,
+                    }}
+                  >
+                    <View style={{ flexDirection: "row" }}>
+                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
                         שם פרטי
                       </Label>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
                       <TextInput
                         key={"FIRST_NAME"}
                         style={signInstyles.signInPageInput}
                         onChangeText={(text) => setFirstName(text)}
                       />
-                    </View>
-                    <View
-                      style={{
-                        alignItems: "stretch",
-
-                        flex: 1,
-                      }}
-                    >
-                      <Label style={{ fontSize: 12, marginLeft: 10 }}>
-                        נייד
-                      </Label>
-                      <TextInput
-                        key={"PHONE_NUM"}
-                        style={signInstyles.signInPageInput}
-                        onChangeText={(text) => setPhoneNum(text)}
+                      <FontAwesomeIcon
+                        style={{
+                          color: firstName === "" ? "transparent" : "black",
+                        }}
+                        icon={faCheckCircle}
                       />
                     </View>
                   </View>
-                  <View style={signInstyles.signInPageInputs}>
-                    <View
-                      style={{
-                        alignItems: "stretch",
+                  <View
+                    style={{
+                      alignItems: "stretch",
 
-                        flex: 1,
-                      }}
+                      flex: 1,
+                    }}
+                  >
+                    <View style={{ flexDirection: "row" }}>
+                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
+                        נייד
+                      </Label>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Label style={{ fontSize: 12, marginLeft: 10 }}>
+                      <TextInput
+                        maxLength={10}
+                        key={"PHONE_NUM"}
+                        style={signInstyles.signInPageInput}
+                        onChangeText={(text) => {
+                          validatePhoneNum(text);
+                          setPhoneNum(text);
+                        }}
+                      />
+                      <FontAwesomeIcon
+                        style={{
+                          color: validatePhoneNum(phoneNum)
+                            ? "black"
+                            : "transparent",
+                        }}
+                        icon={faCheckCircle}
+                      />
+                    </View>
+                  </View>
+
+                  <View
+                    style={{
+                      alignItems: "stretch",
+
+                      flex: 1,
+                    }}
+                  >
+                    <View style={{ flexDirection: "row" }}>
+                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
                         שם משפחה
                       </Label>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
                       <TextInput
                         style={signInstyles.signInPageInput}
                         key={"LAST_NAME"}
                         onChangeText={(text) => setLastName(text)}
                       />
+                      <FontAwesomeIcon
+                        style={{
+                          color: lastName === "" ? "transparent" : "black",
+                        }}
+                        icon={faCheckCircle}
+                      />
                     </View>
+                  </View>
 
-                    <View
-                      style={{
-                        alignItems: "stretch",
-                        flex: 1,
-                      }}
-                    >
-                      <Label style={{ fontSize: 12, marginLeft: 10 }}>
+                  <View
+                    style={{
+                      alignItems: "stretch",
+                      flex: 1,
+                    }}
+                  >
+                    <View style={{ flexDirection: "row" }}>
+                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
                         ת"ז
                       </Label>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
                       <TextInput
                         key={"ID"}
                         style={signInstyles.signInPageInput}
                         onChangeText={(text) => setID(text)}
+                      />
+                      <FontAwesomeIcon
+                        style={{
+                          color: !validateID(ID) ? "transparent" : "black",
+                        }}
+                        icon={faCheckCircle}
+                      />
+                    </View>
+                  </View>
+
+                  <View
+                    style={{
+                      alignItems: "stretch",
+                    }}
+                  >
+                    <View style={{ flexDirection: "row" }}>
+                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
+                        אימייל
+                      </Label>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <TextInput
+                        key={"EMAIL"}
+                        style={signInstyles.signInPageInput}
+                        fontSize={12}
+                        onChangeText={(text) => {
+                          setEmail(text);
+                        }}
+                      />
+                      <FontAwesomeIcon
+                        style={{
+                          color: validateEmail(Email) ? "black" : "transparent",
+                        }}
+                        icon={faCheckCircle}
                       />
                     </View>
                   </View>
@@ -465,50 +562,72 @@ const SignIn = ({ navigation }) => {
                       alignItems: "stretch",
                     }}
                   >
-                    <Label style={{ fontSize: 12, marginLeft: 10 }}>
-                      אימייל
-                    </Label>
-                    <TextInput
-                      key={"EMAIL"}
-                      style={signInstyles.signInPageInput}
-                      fontSize={12}
-                      onChangeText={(text) => setEmail(text)}
-                    />
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
+                        כתובת
+                      </Label>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <TextInput
+                        key={"ADDRESS"}
+                        style={signInstyles.signInPageInput}
+                        fontSize={12}
+                        onChangeText={(text) => setaddress(text)}
+                      />
+                      <FontAwesomeIcon
+                        style={{
+                          color: address === "" ? "transparent" : "black",
+                        }}
+                        icon={faCheckCircle}
+                      />
+                    </View>
                   </View>
-                  <View
-                    style={{
-                      alignItems: "stretch",
-                    }}
-                  >
-                    <Label style={{ fontSize: 12, marginLeft: 10 }}>
-                      כתובת
-                    </Label>
-                    <TextInput
-                      key={"ADDRESS"}
-                      style={signInstyles.signInPageInput}
-                      fontSize={12}
-                      onChangeText={(text) => setaddress(text)}
-                    />
-                  </View>
-                  <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
                     <TouchableOpacity
                       style={{
                         borderColor: "white",
-                        borderWidth: 2,
+                        borderWidth: 1,
                         borderRadius: 7,
                         padding: 7,
-
+                        fontSize: 10,
                         flex: 1,
                       }}
                       onPress={() => {
                         setShow(true);
                       }}
                     >
-                      <Text>בחר תאריך לידה</Text>
+                      <Text style={{ fontSize: 10, color: "white" }}>
+                        בחר תאריך לידה
+                      </Text>
                     </TouchableOpacity>
-                    <Text style={{ flex: 2 }}>
-                      {date === "" ? "תאריך לא נבחר" : String(date)}
-                    </Text>
+                    <TextInput
+                      editable={false}
+                      disabled={true}
+                      value={date === "" ? "תאריך לא נבחר" : String(date)}
+                      style={[
+                        signInstyles.signInPageInput,
+                        {
+                          flex: 2,
+                          fontSize: 12,
+                          color: "black",
+                          textAlign: "center",
+                        },
+                      ]}
+                    />
+                    <FontAwesomeIcon
+                      style={{
+                        color: date === "" ? "transparent" : "black",
+                      }}
+                      icon={faCheckCircle}
+                    />
+
                     {show && (
                       <DateTimePicker
                         testID='dateTimePicker'
@@ -542,31 +661,59 @@ const SignIn = ({ navigation }) => {
                         </Text>
                       </TouchableOpacity>
                     </View>
-                    <TextInput
-                      secureTextEntry={showPassword}
-                      key={"EMAIL"}
-                      style={signInstyles.signInPageInput}
-                      fontSize={12}
-                      onChangeText={(text) => setpassword(text)}
-                    />
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <TextInput
+                        secureTextEntry={showPassword}
+                        key={"EMAIL"}
+                        style={signInstyles.signInPageInput}
+                        fontSize={12}
+                        onChangeText={(text) => setpassword(text)}
+                      />
+                      <FontAwesomeIcon
+                        style={{
+                          color: validatePassword(password)
+                            ? "black"
+                            : "transparent",
+                        }}
+                        icon={faCheckCircle}
+                      />
+                    </View>
                   </View>
 
                   <ListItem noBorder>
                     <CheckBox
+                      disabled={
+                        getAge(date.replace(/\./g, "/")) < 18 ? true : false
+                      }
                       style={{ borderRadius: 13 }}
                       color='#263742'
                       checked={age}
                       onPress={() => {
                         setAge(!age);
+                        console.log("age : ", getAge(date.replace(/\./g, "/")));
                       }}
                     />
                     <Body style={{ marginLeft: 20 }}>
-                      <Text style={{ color: "white", fontSize: 10 }}>
-                        אני מעל גיל 18
-                      </Text>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Text style={{ color: "white", fontSize: 10 }}>
+                          אני מעל גיל 18
+                        </Text>
+                        {getAge(date.replace(/\./g, "/")) < 18 && (
+                          <Text style={{ color: "darkred", fontSize: 10 }}>
+                            תאריך הלידה שהוזן אינו חוקי
+                          </Text>
+                        )}
+                      </View>
                     </Body>
                   </ListItem>
-                  <ListItem noBorder>
+                  <ListItem style={{ alignItems: "center" }} noBorder>
                     <CheckBox
                       style={{ borderRadius: 13 }}
                       checked={agreement}
@@ -581,6 +728,11 @@ const SignIn = ({ navigation }) => {
                       </Text>
                     </Body>
                   </ListItem>
+                  <TouchableOpacity
+                    style={{ marginLeft: 57, marginBottom: 40 }}
+                  >
+                    <Text style={{ fontSize: 10 }}>קרא תקנון</Text>
+                  </TouchableOpacity>
 
                   <Button
                     disabled={fieldCheck}
@@ -594,7 +746,7 @@ const SignIn = ({ navigation }) => {
 
                       marginHorizontal: 70,
                     }}
-                    onPress={async () => {
+                    onPress={() => {
                       dispatch(
                         SignUp(
                           Email,
@@ -619,48 +771,6 @@ const SignIn = ({ navigation }) => {
                         date: date,
                         address: address,
                       });
-                      // signUp(
-                      //   Email,
-                      //   password,
-                      //   phoneNum,
-                      //   lastName,
-                      //   address,
-                      //   gender,
-                      //   date,
-                      //   firstName,
-                      //   ID
-                      // );
-                      // signUp(
-                      //   "arkados2@gmail.com",
-                      //   "Arkady555",
-                      //   "0527323002",
-                      //   "likovizki",
-                      //   "geva binyamin yasmin 4",
-                      //   "male",
-                      //   "13/5/1996",
-                      //   "arkady",
-                      //   "321352262"
-                      // );
-                      // await Auth.signUp({
-                      //   username: Email,
-                      //   password: password,
-                      //   attributes: {
-                      //     email: Email,
-                      //     phone_number: phoneNum, // optional - E.164 number convention .replace('0', '+972')
-                      //     family_name: lastName,
-                      //     address: address,
-                      //     gender: gender,
-                      //     birthdate: "13.05.1996",
-                      //     name: firstName,
-                      //     "custom:ID": ID,
-                      //   },
-                      // });
-
-                      // try {
-                      //   await Auth.confirmSignUp("arkados2@gmail.com", "351364");
-                      // } catch (error) {
-                      //   console.log("error confirming sign up", error);
-                      // }
                     }}
                   >
                     <Text
@@ -687,3 +797,12 @@ const SignIn = ({ navigation }) => {
 };
 
 export default SignIn;
+
+// console.log(
+//   "month : ",
+//   new Date(date.replace(/\./g, "/")).getMonth()
+// );
+// console.log(
+//   new Date().getFullYear() -
+//     new Date(date.replace(/\./g, "/")).getFullYear()
+// );

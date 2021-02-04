@@ -59,7 +59,9 @@ const signInstyles = StyleSheet.create({
     backgroundColor: "#00ADEF",
     borderColor: "white",
     borderWidth: 1,
-    marginLeft: 15,
+    marginLeft: 10,
+    padding: 4,
+    borderRadius: 12,
   },
   radioGenderButonSelected: {
     flexDirection: "row",
@@ -68,10 +70,10 @@ const signInstyles = StyleSheet.create({
     backgroundColor: "#263742",
     borderColor: "white",
     borderWidth: 1,
-    marginLeft: 15,
+    marginLeft: 10,
+    padding: 4,
+    borderRadius: 12,
   },
- 
-  
 });
 
 export default signInstyles;
