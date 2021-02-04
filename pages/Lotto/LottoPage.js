@@ -65,88 +65,59 @@ const LottoPage = ({ navigation }) => {
     });
     setTimeout(() => {
       axios
-        .get(
+        .post(
           "http://52.90.122.190:5000/games/lotto/type/regular/0",
-          // {
-          //   extra: false,
-          //   multi_lottery: -1,
-          //   tables: [
-          //     {
-          //       numbers: [15, 18, 24, 28, 30, 32],
-          //       strong_number: [6],
-          //       table_number: 1,
-          //     },
-          //     {
-          //       numbers: [5, 8, 12, 16, 18, 34],
-          //       strong_number: [6],
-          //       table_number: 2,
-          //     },
-          //     {
-          //       numbers: [1, 17, 18, 34, 35, 36],
-          //       strong_number: [6],
-          //       table_number: 3,
-          //     },
-          //     {
-          //       numbers: [12, 16, 17, 30, 31, 37],
-          //       strong_number: [6],
-          //       table_number: 4,
-          //     },
-          //     {
-          //       numbers: [11, 16, 20, 23, 29, 32],
-          //       strong_number: [5],
-          //       table_number: 5,
-          //     },
-          //     {
-          //       numbers: [8, 10, 12, 16, 31, 36],
-          //       strong_number: [5],
-          //       table_number: 6,
-          //     },
-          //     {
-          //       numbers: [4, 13, 18, 27, 36, 37],
-          //       strong_number: [2],
-          //       table_number: 7,
-          //     },
-          //     {
-          //       numbers: [1, 3, 4, 33, 36, 37],
-          //       strong_number: [5],
-          //       table_number: 8,
-          //     },
-          //     {
-          //       numbers: [],
-          //       strong_number: [],
-          //       table_number: 9,
-          //     },
-          //     {
-          //       numbers: [],
-          //       strong_number: [],
-          //       table_number: 10,
-          //     },
-          //     {
-          //       numbers: [],
-          //       strong_number: [],
-          //       table_number: 11,
-          //     },
-          //     {
-          //       numbers: [],
-          //       strong_number: [],
-          //       table_number: 12,
-          //     },
-          //     {
-          //       numbers: [],
-          //       strong_number: [],
-          //       table_number: 13,
-          //     },
-          //     {
-          //       numbers: [],
-          //       strong_number: [],
-          //       table_number: 14,
-          //     },
-          //   ],
-          // }
-          // ,
+          {
+            extra: false,
+            multi_lottery: -1,
+            tables: [
+              {
+                numbers: [15, 18, 24, 28, 30, 32],
+                strong_number: [6],
+                table_number: 1,
+              },
+              {
+                numbers: [5, 8, 12, 16, 18, 34],
+                strong_number: [6],
+                table_number: 2,
+              },
+              {
+                numbers: [1, 17, 18, 34, 35, 36],
+                strong_number: [6],
+                table_number: 3,
+              },
+              {
+                numbers: [12, 16, 17, 30, 31, 37],
+                strong_number: [6],
+                table_number: 4,
+              },
+              {
+                numbers: [11, 16, 20, 23, 29, 32],
+                strong_number: [5],
+                table_number: 5,
+              },
+              {
+                numbers: [8, 10, 12, 16, 31, 36],
+                strong_number: [5],
+                table_number: 6,
+              },
+              {
+                numbers: [4, 13, 18, 27, 36, 37],
+                strong_number: [2],
+                table_number: 7,
+              },
+              {
+                numbers: [1, 3, 4, 33, 36, 37],
+                strong_number: [5],
+                table_number: 8,
+              },
+            ],
+          },
           {
             headers: {
-              authorization: jwt,
+              Authorization: jwt,
+              Accept: "application/json",
+              "Content-Type": "application/json",
             },
           }
         )

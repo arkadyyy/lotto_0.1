@@ -9,6 +9,8 @@ const initialState = {
   last_name: null,
   address: null,
   ID: null,
+  signUp: -1,
+  message: null,
 };
 const middleware = [thunk];
 const store = createStore(

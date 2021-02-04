@@ -5,6 +5,8 @@ const initialState = {
   last_name: null,
   address: null,
   ID: null,
+  signUp: -1,
+  message: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -36,9 +38,46 @@ const reducer = (state = initialState, action) => {
         name: "אורח",
       };
     }
+
     case "LOGOUT_FAILED": {
       return {
         ...state,
+      };
+    }
+    ///////////
+
+    case "SIGNUP_ATTEMPT": {
+      return {
+        ...state,
+        signUp: 1,
+      };
+    }
+
+    case "SIGNUP_SUCCESS": {
+      return {
+        ...state,
+        signUp: 2,
+      };
+    }
+
+    case "SIGNUP_FAIL": {
+      return {
+        ...state,
+        signUp: -2,
+        message: "something went wrong....",
+      };
+    }
+
+    case "SIGNUP_CONFIRMATION_SUCCESS": {
+      return {
+        ...state,
+        signUp: 3,
+      };
+    }
+    case "RESET_SIGNUP": {
+      return {
+        ...state,
+        signUp: -1,
       };
     }
 

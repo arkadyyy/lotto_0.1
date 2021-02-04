@@ -130,6 +130,8 @@ const LogInPage = ({ navigation }) => {
                         console.log("~~~ : ", store.user);
                         // navigation.navigate("Sheva77Page");
                       }
+
+                      dispatch({ key: "RESET_SIGNUP" });
                     }}
                   >
                     <Text
