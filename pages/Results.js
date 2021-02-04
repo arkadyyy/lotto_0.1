@@ -34,29 +34,44 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 //////////////////////////////////////////////////////////////
 
 export default function Result({ navigation }) {
-    const [game, setGame] = useState("lotto");
+    const [game, setGame] = useState("chance");
     const [data, setData] = useState([]);
 
     useEffect(() => {
         let accessToken;
         let jwt;
         Auth.currentSession().then((res) => {
-          accessToken = res.getAccessToken();
-          jwt = accessToken.getJwtToken();
+            accessToken = res.getAccessToken();
+            jwt = accessToken.getJwtToken();
     
         });
-        setTimeout(() => {
-            axios
-                .get(`http://52.90.122.190:5000/results/${game}`, {
-                    headers: {
-                        Authorization: jwt,
-                    },
-                })
-                .then((res) => setData(res.data.data.rows))
+        if (game === "chance") {
+            setTimeout(() => {
+                axios
+                    .get(`http://52.90.122.190:5000/results/${ game }`, {
+                        headers: {
+                            Authorization: jwt,
+                        },
+                    })
+                    // .then((res) => setData(res.data.data.rows))
+                    .then((res) => console.log("chance/////////////////////////////////",res.data.data.rows.numbers))
             
-            .catch((err) => console.log(err));
-        }, 5000);
-        
+                    .catch((err) => console.log(err));
+            }, 5000);
+        }
+        else {
+            setTimeout(() => {
+                axios
+                    .get(`http://52.90.122.190:5000/results/${ game }`, {
+                        headers: {
+                            Authorization: jwt,
+                        },
+                    })
+                    .then((res) => setData(res.data.data.rows))
+            
+                    .catch((err) => console.log(err));
+            }, 5000);
+        }
     }, [game]);
     
     return (
@@ -180,18 +195,7 @@ export default function Result({ navigation }) {
                                     }
                                     </View>    
                                     
-  <View>
-    <Button
-      style={{ borderColor: "white", padding: 5 }}
-      small
-      bordered
-      onPress={() => {
-        setOpen(true);
-      }}
-    >
-      <Text style={{ fontSize: 12, color: "white" }}>שכפל או צפה</Text>
-    </Button>
-  </View>
+ 
             </ListItem>
                             
                         )}   
