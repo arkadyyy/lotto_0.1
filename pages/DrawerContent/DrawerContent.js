@@ -111,11 +111,7 @@ export default function DrawerContent(props) {
             labelStyle={drawerstyles.labelStyle}
             label='תוצאות הגרלה'
             onPress={() => {
-<<<<<<< HEAD
-              props.navigation.navigate("LottteryResults");
-=======
               props.navigation.navigate("Results");
->>>>>>> 66cf5375ed58fd53b65f79f0f26464df8661fe65
             }}
           />
           <DrawerItem
