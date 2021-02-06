@@ -48,15 +48,14 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 ////////////////////////////////////////////////////////////////////////
 
-// const loaderFonts = () => {
-//   return Font.loadAsync({
-//     FbSpacerRegular: require("./assets/fonts/FbSpacerRegular.otf"),
-//     FbSpacerBold: require("./assets/fonts/FbSpacerBold.otf"),
-//   });
-// };
-
 Amplify.configure(awsconfig);
 
+const fetchFonts = () => {
+  return Font.loadAsync({
+    "fb-Spacer": require("./assets/fonts/FbSpacerRegular.otf"),
+    "fb-Spacer-Bold": require("./assets/fonts/FbSpacerBold.otf"),
+  });
+};
 const entireScreenWidth = Dimensions.get("window").width;
 EStyleSheet.build({
   $rem: entireScreenWidth / 380,
@@ -66,72 +65,75 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 export default function App() {
-  let [fontsLoaded] = useFonts({
-    FbSpacerRegular: require("./assets/fonts/FbSpacerRegular.otf"),
-    FbSpacerBold: require("./assets/fonts/FbSpacerBold.otf"),
-  });
+  const [dataLoaded, setdataLoaded] = useState(false);
+
   I18nManager.forceRTL(true);
 
-  if (!fontsLoaded) {
+  if (dataLoaded === false) {
     return (
       <>
-        <AppLoading />
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Provider store={store}>
-          <NavigationContainer>
-            <Drawer.Navigator
-              drawerContent={(props) => <DrawerContent {...props} />}
-              initialRouteName='Home'
-            >
-              <Drawer.Screen name='Home' component={Home} />
-              <Drawer.Screen name='UserArea' component={UserArea} />
-              <Drawer.Screen name='SignIn' component={SignIn} />
-              <Drawer.Screen name='LogInPage' component={LogInPage} />
-              <Drawer.Screen name='LottoList' component={LottoList} />
-              <Drawer.Screen name='LottoPage' component={LottoPage} />
-              <Drawer.Screen
-                name='DoubleLottoPage'
-                component={DoubleLottoPage}
-              />
-              <Drawer.Screen
-                name='LottoShitatiPage'
-                component={LottoShitatiPage}
-              />
-              <Drawer.Screen
-                name='LottoShitatiHazakPage'
-                component={LottoShitatiHazakPage}
-              />
-              <Drawer.Screen name='ChanceList' component={ChanceList} />
-              <Drawer.Screen name='ChancePage' component={ChancePage} />
-              <Drawer.Screen name='RavChancePage' component={RavChancePage} />
-              <Drawer.Screen
-                name='ChanceShitatiPage'
-                component={ChanceShitatiPage}
-              />
-              <Drawer.Screen name='Sheva77List' component={Sheva77List} />
-              <Drawer.Screen name='Sheva77Page' component={Sheva77Page} />
-              <Drawer.Screen name='Sheva778Page' component={Sheva778Page} />
-              <Drawer.Screen name='Sheva779Page' component={Sheva779Page} />
-              <Drawer.Screen name='One23List' component={One23List} />
-              <Drawer.Screen name='One23Page' component={One23Page} />
-              <Drawer.Screen name='SumPageChance' component={SumPageChance} />
-              <Drawer.Screen name='SumPage123' component={SumPage123} />
-              <Drawer.Screen name='SumPage777' component={SumPage777} />
-              <Drawer.Screen name='AboutUs' component={AboutUs} />
-              <Drawer.Screen name="HowItWorks" component={HowItWorks} />
-              <Drawer.Screen name="Results" component={Results} />
-
-              <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
-            </Drawer.Navigator>
-          </NavigationContainer>
-        </Provider>
+        <AppLoading
+          startAsync={fetchFonts}
+          onFinish={() => {
+            setdataLoaded(true);
+          }}
+          onError={(err) => {
+            return err;
+          }}
+        />
       </>
     );
   }
+  return (
+    <>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Drawer.Navigator
+            drawerContent={(props) => <DrawerContent {...props} />}
+            initialRouteName='Home'
+          >
+            <Drawer.Screen name='Home' component={Home} />
+            <Drawer.Screen name='UserArea' component={UserArea} />
+            <Drawer.Screen name='SignIn' component={SignIn} />
+            <Drawer.Screen name='LogInPage' component={LogInPage} />
+            <Drawer.Screen name='LottoList' component={LottoList} />
+            <Drawer.Screen name='LottoPage' component={LottoPage} />
+            <Drawer.Screen name='DoubleLottoPage' component={DoubleLottoPage} />
+            <Drawer.Screen
+              name='LottoShitatiPage'
+              component={LottoShitatiPage}
+            />
+            <Drawer.Screen
+              name='LottoShitatiHazakPage'
+              component={LottoShitatiHazakPage}
+            />
+            <Drawer.Screen name='ChanceList' component={ChanceList} />
+            <Drawer.Screen name='ChancePage' component={ChancePage} />
+            <Drawer.Screen name='RavChancePage' component={RavChancePage} />
+            <Drawer.Screen
+              name='ChanceShitatiPage'
+              component={ChanceShitatiPage}
+            />
+            <Drawer.Screen name='Sheva77List' component={Sheva77List} />
+            <Drawer.Screen name='Sheva77Page' component={Sheva77Page} />
+            <Drawer.Screen name='Sheva778Page' component={Sheva778Page} />
+            <Drawer.Screen name='Sheva779Page' component={Sheva779Page} />
+            <Drawer.Screen name='One23List' component={One23List} />
+            <Drawer.Screen name='One23Page' component={One23Page} />
+            <Drawer.Screen name='SumPageChance' component={SumPageChance} />
+            <Drawer.Screen name='SumPage123' component={SumPage123} />
+            <Drawer.Screen name='SumPage777' component={SumPage777} />
+            <Drawer.Screen name='AboutUs' component={AboutUs} />
+            <Drawer.Screen name='HowItWorks' component={HowItWorks} />
+            <Drawer.Screen name='Results' component={Results} />
+
+            <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </Provider>
+    </>
+  );
+
   // return (
   //   <>
   //     <Provider store={store}>

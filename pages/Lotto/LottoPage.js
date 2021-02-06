@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LottoListstyles from "./LottoListStyles";
 import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
@@ -18,8 +19,7 @@ import { LogIn } from "../../redux/actions/actions";
 import { useRoute } from "@react-navigation/native";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {faPlusCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
@@ -67,70 +67,68 @@ const LottoPage = ({ navigation }) => {
 
       setjwtState(jwt);
     });
-    setTimeout(() => {
-      axios
-        .post(
-          "http://52.90.122.190:5000/games/lotto/type/regular/0",
-          {
-            extra: false,
-            multi_lottery: -1,
-            tables: [
-              {
-                numbers: [15, 18, 24, 28, 30, 32],
-                strong_number: [6],
-                table_number: 1,
-              },
-              {
-                numbers: [5, 8, 12, 16, 18, 34],
-                strong_number: [6],
-                table_number: 2,
-              },
-              {
-                numbers: [1, 17, 18, 34, 35, 36],
-                strong_number: [6],
-                table_number: 3,
-              },
-              {
-                numbers: [12, 16, 17, 30, 31, 37],
-                strong_number: [6],
-                table_number: 4,
-              },
-              {
-                numbers: [11, 16, 20, 23, 29, 32],
-                strong_number: [5],
-                table_number: 5,
-              },
-              {
-                numbers: [8, 10, 12, 16, 31, 36],
-                strong_number: [5],
-                table_number: 6,
-              },
-              {
-                numbers: [4, 13, 18, 27, 36, 37],
-                strong_number: [2],
-                table_number: 7,
-              },
-              {
-                numbers: [1, 3, 4, 33, 36, 37],
-                strong_number: [5],
-                table_number: 8,
-              },
-            ],
-          },
-          {
-            headers: {
-              Authorization: jwt,
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          console.log("this is res from server request !@!@ : ", res);
-        })
-        .catch((err) => console.log(err));
-      console.log("jwt i got in lottopage ~~~~~~~~~~~~ : ", jwt);
-    }, 5000);
+
+    // axios
+    //   .post(
+    //     "http://52.90.122.190:5000/games/lotto/type/regular/0",
+    //     {
+    //       extra: false,
+    //       multi_lottery: -1,
+    //       tables: [
+    //         {
+    //           numbers: [15, 18, 24, 28, 30, 32],
+    //           strong_number: [6],
+    //           table_number: 1,
+    //         },
+    //         {
+    //           numbers: [5, 8, 12, 16, 18, 34],
+    //           strong_number: [6],
+    //           table_number: 2,
+    //         },
+    //         {
+    //           numbers: [1, 17, 18, 34, 35, 36],
+    //           strong_number: [6],
+    //           table_number: 3,
+    //         },
+    //         {
+    //           numbers: [12, 16, 17, 30, 31, 37],
+    //           strong_number: [6],
+    //           table_number: 4,
+    //         },
+    //         {
+    //           numbers: [11, 16, 20, 23, 29, 32],
+    //           strong_number: [5],
+    //           table_number: 5,
+    //         },
+    //         {
+    //           numbers: [8, 10, 12, 16, 31, 36],
+    //           strong_number: [5],
+    //           table_number: 6,
+    //         },
+    //         {
+    //           numbers: [4, 13, 18, 27, 36, 37],
+    //           strong_number: [2],
+    //           table_number: 7,
+    //         },
+    //         {
+    //           numbers: [1, 3, 4, 33, 36, 37],
+    //           strong_number: [5],
+    //           table_number: 8,
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: store.jwt,
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log("this is res from server request !@!@ : ", res);
+    //   })
+    //   .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -140,95 +138,51 @@ const LottoPage = ({ navigation }) => {
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         <ChooseForm setdouble={setdouble} double={double} />
         <View style={{ margin: 15 }}>
-          <View
-            style={{
-              backgroundColor: "#E62321",
-              paddingBottom: 20,
-              height: 650,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                padding: 30,
-              }}
-            >
-              <View
+          <View style={LottoListstyles.lottoPageContainer}>
+            <View style={LottoListstyles.header}>
+              <View style={LottoListstyles.topNumCircle}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: "#FF0000",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  1
+                </Text>
+              </View>
+              <Text
                 style={{
-                  flexDirection: "row",
-                  backgroundColor: "white",
-                  width: 50,
-                  height: 50,
-                  borderRadius: 33,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginRight: 20,
+                  fontSize: 17,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
-                <Text style={{ fontSize: 20, color: "#FF0000" }}>1</Text>
-              </View>
-              <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
+                מלא את הטופס
+              </Text>
             </View>
 
             <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
 
-            <Text
-              style={{
-                color: "white",
-                fontSize: 15,
-                marginLeft: 12,
-                marginBottom: 10,
-              }}
-            >
-              בחר 6 מספרים וחזק
-            </Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                flexWrap: "wrap",
-                marginLeft: 20,
-              }}
-            >
-              <Button
-                // onPress={() =>setFullTables([])}
-                onPress={deletForm}
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 10,
-                    width: 70,
-                    textAlign: "center",
-                  }}
-                >
-                  מחק טופס אוטומטית
-                </Text>
-              </Button>
-
-              <Button
+            <Text style={LottoListstyles.subHeader}>בחר 6 מספרים וחזק</Text>
+            <View style={LottoListstyles.autoBtnContainer}>
+              <TouchableOpacity
                 onPress={autoFillForm}
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
+                style={LottoListstyles.autoBtn}
               >
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 10,
-                    width: 70,
-                    textAlign: "center",
-                  }}
-                >
+                <Text style={LottoListstyles.autoBtnText}>
                   מלא טופס אוטומטי
                 </Text>
-              </Button>
+              </TouchableOpacity>
+              <TouchableOpacity
+                // onPress={() =>setFullTables([])}
+                onPress={deletForm}
+                style={LottoListstyles.autoBtn}
+              >
+                <Text style={LottoListstyles.autoBtnText}>
+                  מחק טופס אוטומטית
+                </Text>
+              </TouchableOpacity>
             </View>
             {showTable && (
               <FillForm
@@ -241,24 +195,8 @@ const LottoPage = ({ navigation }) => {
                 // setTableRowColor={setTableRowColor}
               />
             )}
-            <View
-              style={{
-                borderColor: "white",
-                borderRadius: 7,
-                borderWidth: 1,
-                width: "83.7%",
-                alignSelf: "center",
-                marginTop: 20,
-              }}
-            >
-              <List
-                style={{
-                  alignItems: "flex-start",
-                  height: 250,
-                  marginLeft: -17,
-                  flexWrap: "wrap",
-                }}
-              >
+            <View style={LottoListstyles.listContainerBorder}>
+              <List style={LottoListstyles.listContainer}>
                 <ScrollView>
                   {Array.from(Array(tableNum)).map((x, index) => (
                     <Table
@@ -276,15 +214,7 @@ const LottoPage = ({ navigation }) => {
                 </ScrollView>
               </List>
             </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                marginTop: 25,
-                zIndex: 1,
-              }}
-            >
+            <View style={LottoListstyles.sendFormBtnContainer}>
               <Button
                 onPress={() => {
                   let summary = { regularLotto: fullTables };
@@ -294,40 +224,41 @@ const LottoPage = ({ navigation }) => {
                     screenName: "לוטו",
                   });
                 }}
-                style={{
-                  borderRadius: 17,
-                  backgroundColor: "#8CC63F",
-                  borderColor: "white",
-                  borderWidth: 2,
-                  padding: 10,
-                }}
+                style={LottoListstyles.sendFormBtn}
               >
-                <Text
-                  style={{ color: "white", fontSize: 28, textAlign: "center" }}
-                >
+                <Text style={LottoListstyles.sendFormBtnText}>
                   המשך לשליחת טופס
                 </Text>
               </Button>
             </View>
           </View>
-      
-          
-          <View style={{  width: "100%", height: 30, margin: 10,flexDirection:"row", justifyContent:"space-between" }}>
-              <Text style={{ fontSize: EStyleSheet.value("$rem") * 25 }}>הסבר על הגרלות לוטו</Text>
-            <View style={{flexDirection:"row",paddingTop:5}}>
+
+          <View style={LottoListstyles.lottoExplanationContainer}>
+            <Text style={{ fontSize: EStyleSheet.value("$rem") * 20 }}>
+              הסבר על הגרלות לוטו
+            </Text>
+            <View style={{ flexDirection: "row", paddingTop: 5 }}>
               <FontAwesomeIcon
-                  color='#263742'
-                    border={true}
-                    inverse
+                color='#263742'
+                border={true}
+                inverse
                 icon={faPlusCircle}
                 onPress={() => {
-                  navigation.navigate("HowItWorks")
+                  navigation.navigate("HowItWorks");
                 }}
-                  />
-              <Text style={{marginRight:10,paddingRight:5,paddingTop:2,fontSize:EStyleSheet.value("$rem") * 15}}>עוד...</Text>
-              </View>
-              </View>
-            
+              />
+              <Text
+                style={{
+                  marginRight: 10,
+                  paddingRight: 5,
+                  paddingTop: 2,
+                  fontSize: EStyleSheet.value("$rem") * 15,
+                }}
+              >
+                עוד...
+              </Text>
+            </View>
+          </View>
         </View>
       </ScrollView>
     </>

@@ -107,13 +107,15 @@ export default function DrawerContent(props) {
               props.navigation.navigate("Home");
             }}
           />
-          <DrawerItem
-            labelStyle={drawerstyles.labelStyle}
-            label='תוצאות הגרלה'
-            onPress={() => {
-              props.navigation.navigate("Results");
-            }}
-          />
+          {store.name !== "אורח" && (
+            <DrawerItem
+              labelStyle={drawerstyles.labelStyle}
+              label='תוצאות הגרלה'
+              onPress={() => {
+                props.navigation.navigate("Results");
+              }}
+            />
+          )}
           <DrawerItem
             labelStyle={drawerstyles.labelStyle}
             label='עזרה'

@@ -36,7 +36,7 @@ const Num = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
       </View>
     </>
   );
@@ -56,7 +56,7 @@ const StrongNum = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
       </View>
     </>
   );
@@ -69,21 +69,20 @@ const Table = ({
   setopendTableNum,
   fullTables,
   tableRowColor,
-  setTableRowColor
+  setTableRowColor,
 }) => {
   const index1 = index * 2 - 1;
   const index2 = index * 2;
   const route = useRoute();
 
   const [table1, settable1] = useState([" ", " ", " ", " ", " ", " "]);
-  const [strongNum1, setstrongNum1] = useState(' ');
+  const [strongNum1, setstrongNum1] = useState(" ");
   const [table2, settable2] = useState([" ", " ", " ", " ", " ", " "]);
-  const [strongNum2, setstrongNum2] = useState('');
+  const [strongNum2, setstrongNum2] = useState("");
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
 
   useEffect(() => {
     if (fullTables.length !== 0) {
-
       let fullTable1 = 0;
       let fullTable2 = 0;
       let x;
@@ -113,8 +112,7 @@ const Table = ({
           setstrongNum2(fullTable2.strongNum);
         }
       });
-    }
-    else {
+    } else {
       settable1([" ", " ", " ", " ", " ", " "]);
       settable2([" ", " ", " ", " ", " ", " "]);
       setstrongNum1("");
@@ -127,15 +125,25 @@ const Table = ({
   return (
     <>
       <ListItem
-        style={{ 
+        style={{
           backgroundColor: !table1.includes(" ") ? "#78C849" : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
           height: 55,
           alignItems: "center",
+          width: 400,
         }}
       >
-        <Text style={{ color: "white", fontSize: 11 }}>טבלה {index1} </Text>
+        <Text
+          style={{
+            color: "white",
+            fontSize: 11,
+            marginHorizontal: 10,
+            fontFamily: "fb-Spacer",
+          }}
+        >
+          טבלה {index1}
+        </Text>
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);
@@ -161,7 +169,7 @@ const Table = ({
             <StrongNum num={strongNum1} />
           </View>
         </TouchableOpacity>
-        {double && (
+        {/* {double && (
           <View
             style={{
               width: 35,
@@ -178,7 +186,7 @@ const Table = ({
           >
             <Text style={{ color: "white" }}>X2</Text>
           </View>
-        )}
+        )} */}
       </ListItem>
       <ListItem
         style={{
@@ -189,7 +197,16 @@ const Table = ({
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "white", fontSize: 11 }}>טבלה {index2} </Text>
+        <Text
+          style={{
+            color: "white",
+            fontSize: 11,
+            marginHorizontal: 10,
+            fontFamily: "fb-Spacer",
+          }}
+        >
+          טבלה {index2}
+        </Text>
         <TouchableOpacity
           onPress={() => {
             setopendTableNum(index2);
@@ -214,7 +231,7 @@ const Table = ({
             <StrongNum num={strongNum2} />
           </View>
         </TouchableOpacity>
-        {double && (
+        {/* {double && (
           <View
             style={{
               width: 35,
@@ -231,7 +248,7 @@ const Table = ({
           >
             <Text style={{ color: "white" }}>X2</Text>
           </View>
-        )}
+        )} */}
       </ListItem>
     </>
   );

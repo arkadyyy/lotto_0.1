@@ -16,7 +16,7 @@ import {
   Content,
 } from "native-base";
 
-const ActiveForms = () => {
+const ActiveForms = ({ activeforms }) => {
   return (
     <>
       <ScrollView style={{ flex: 1 }}>

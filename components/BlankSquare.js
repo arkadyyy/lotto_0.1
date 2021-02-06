@@ -260,7 +260,7 @@ const BlankSquare = ({ color, gameName }) => {
 
                 marginBottom: -30,
               }}
-              source={require("C:/fullstack/lottoMatic/assets/home/_123_sml.png")}
+              source={require("C:/fullstack/lottoMatic/assets/home/123_list.png")}
             />
           ) : null}
         </View>

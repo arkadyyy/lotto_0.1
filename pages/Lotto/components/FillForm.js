@@ -52,7 +52,7 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
           margin: 3,
         }}
       >
-        <Text>{num}</Text>
+        <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
       </TouchableOpacity>
     </>
   );
@@ -81,7 +81,7 @@ const StrongNum = ({ num, strongNum, setstrongNum }) => {
           margin: 2,
         }}
       >
-        <Text style={{ color: "white" }}>{num}</Text>
+        <Text style={{ color: "white", fontFamily: "fb-Spacer" }}>{num}</Text>
       </TouchableOpacity>
     </>
   );
@@ -169,8 +169,8 @@ const FillForm = ({
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "39%",
-          height: 450,
+          top: "35%",
+          height: 550,
           position: "absolute",
           zIndex: 2000,
         }}
@@ -179,16 +179,13 @@ const FillForm = ({
         <View
           style={{
             backgroundColor: "#263742",
-            width: "55%",
-            height: 70,
-            position: "relative",
-            top: -40,
 
-            left: EStyleSheet.value("$rem") * 156.8,
-            zIndex: 2001,
+            height: 70,
+
             flexDirection: "row",
-            justifyContent: "space-around",
+            justifyContent: "flex-end",
             alignItems: "center",
+            marginBottom: 30,
           }}
         >
           <View style={{ flexDirection: "row" }}>
@@ -200,7 +197,11 @@ const FillForm = ({
                 icon={faArrowAltCircleRight}
               />
             </TouchableOpacity>
-            <Text style={{ color: "white", fontSize: 13 }}>טבלאות</Text>
+            <Text
+              style={{ color: "white", fontSize: 13, fontFamily: "fb-Spacer" }}
+            >
+              טבלאות
+            </Text>
             <TouchableOpacity>
               <FontAwesomeIcon
                 color='white'
@@ -218,6 +219,7 @@ const FillForm = ({
               borderRadius: 13,
               justifyContent: "center",
               alignItems: "center",
+              marginHorizontal: 20,
             }}
             onPress={() => {
               setshowTable(false);
@@ -235,7 +237,9 @@ const FillForm = ({
               }
             }}
           >
-            <Text style={{ color: "red" }}>סגור חלון</Text>
+            <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
+              סגור חלון
+            </Text>
           </TouchableOpacity>
         </View>
         {/* {fill numbers} */}
@@ -261,10 +265,25 @@ const FillForm = ({
               marginBottom: 7,
             }}
           >
-            <Text style={{ color: "white", marginBottom: 5, fontSize: 10 }}>
+            <Text
+              style={{
+                color: "white",
+                marginBottom: 5,
+                fontSize: 10,
+                marginHorizontal: 5,
+                fontFamily: "fb-Spacer",
+              }}
+            >
               מלא את טבלה {opendTableNum}
             </Text>
-            <Button
+            <TouchableOpacity
+              style={{
+                borderColor: "white",
+                borderWidth: 1,
+                padding: 3,
+                borderRadius: 7,
+                marginHorizontal: 1,
+              }}
               disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
                 let numbers = autoFill(6);
@@ -272,22 +291,40 @@ const FillForm = ({
                 setstrongNum(numbers.strongNum);
                 // setTableRowColor("#78C849")
               }}
-              small
-              rounded
             >
-              <Text style={{ fontSize: 10 }}>מלא טבלה אוטומטית</Text>
-            </Button>
-            <Button
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מלא טבלה אוטומטית
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                borderColor: "white",
+                borderWidth: 1,
+                padding: 3,
+                borderRadius: 7,
+              }}
               onPress={() => {
                 setchoosenNums([]);
-                setstrongNum(' ');
+                setstrongNum(" ");
                 // setTableRowColor('#D60617')
               }}
-              small
-              rounded
             >
-              <Text style={{ fontSize: 10 }}>מחק טבלה אוטומטית</Text>
-            </Button>
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מחק טבלה אוטומטית
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
@@ -300,14 +337,23 @@ const FillForm = ({
               />
             ))}
           </View>
-            {choosenNums.length > 0 && (
-              <Text style={{ color: "white", top:"3%",right:8 }}>
-                המספרים שנבחרו
-              </Text>
+          {choosenNums.length > 0 && (
+            <Text
+              style={{
+                color: "white",
+                top: "3%",
+                right: 8,
+                fontFamily: "fb-Spacer-bold",
+              }}
+            >
+              המספרים שנבחרו
+            </Text>
           )}
-                    <View style={{ flexDirection: "row", flexWrap: "wrap",top:"3%" }}>
-
-            {choosenNums.sort(function(a, b){return b-a})
+          <View style={{ flexDirection: "row", flexWrap: "wrap", top: "3%" }}>
+            {choosenNums
+              .sort(function (a, b) {
+                return b - a;
+              })
               // .slice(0)
               // .reverse()
               .map((num) => (
@@ -322,13 +368,22 @@ const FillForm = ({
                     alignItems: "center",
                   }}
                 >
-                  <Text style={{ color: "black" }}>{num}</Text>
+                  <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>
+                    {num}
+                  </Text>
                 </View>
               ))}
           </View>
         </View>
-        <View>
-          <Text style={{ color: "white", marginHorizontal: 15,top:"14%" }}>
+        <View style={{ top: -40 }}>
+          <Text
+            style={{
+              color: "white",
+              marginTop: 15,
+              marginHorizontal: 20,
+              marginBottom: 5,
+            }}
+          >
             בחר מספר חזק
           </Text>
           <View
@@ -343,7 +398,6 @@ const FillForm = ({
               alignItems: "center",
               alignSelf: "center",
               margin: 2,
-              top:"5%"
             }}
           >
             {Array.from(Array(7)).map((x, index) => (

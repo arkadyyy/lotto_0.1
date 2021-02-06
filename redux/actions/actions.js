@@ -43,10 +43,7 @@ const SignUp = (
     console.log(error);
     await dispatch({
       type: "SIGNUP_FAIL",
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: { error },
     });
   }
 };
@@ -75,11 +72,18 @@ const LogIn = (username, password) => async (dispatch) => {
   try {
     user = await Auth.signIn(username, password);
 
+    let accessToken;
+    let jwt;
+    await Auth.currentSession().then((res) => {
+      accessToken = res.getAccessToken();
+      jwt = accessToken.getJwtToken();
+    });
+
     console.log("log in from action was succsessful !@!@!@!@!@!@!@!@");
     console.log(user);
     dispatch({
       type: "LOGIN_SUCCESS",
-      payload: { user },
+      payload: { user, jwt },
     });
   } catch (error) {
     console.log(error);

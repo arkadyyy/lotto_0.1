@@ -11,6 +11,7 @@ const initialState = {
   ID: null,
   signUp: -1,
   message: null,
+  jwt: null,
 };
 const middleware = [thunk];
 const store = createStore(

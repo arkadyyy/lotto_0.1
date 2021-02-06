@@ -1,9 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const ViewForm = () => {
+const ViewForm = ({ numbers, strongNum, tableNum }) => {
   return (
     <View style={{ flexDirection: "row" }}>
+      <Text>טבלה {tableNum}</Text>
       <View
         style={{
           width: 30,

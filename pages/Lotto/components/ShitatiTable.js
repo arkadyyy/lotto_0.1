@@ -130,12 +130,14 @@ const ShitatiTable = ({
           backgroundColor: !table1.includes(" ") ? "#C1272D " : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
-          height: height / 10,
+          height: height / 4.3,
           alignItems: "center",
-          width: width / 1.3,
+          width: width / 1.2,
         }}
       >
-        <Text style={{ color: "white", fontSize: 13 }}>טבלה {index1} </Text>
+        <Text style={{ color: "white", fontSize: 13, margin: 10 }}>
+          טבלה {index1}{" "}
+        </Text>
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);

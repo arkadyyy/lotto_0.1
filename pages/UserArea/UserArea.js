@@ -31,17 +31,95 @@ import ViewForm from "./ViewForm";
 import BlankSquare from "../../components/BlankSquare";
 import SendHistory from "./SendHistory/SendHistory";
 import ActiveForms from "./ActiveForms/ActiveForms";
-import Withdrawal from "./WithDrawal/WithDrawal";
+import Withdrawal from "./Withdrawal/WithDrawal";
 import MyWins from "./MyWins/MyWins";
 import PaymentHistory from "./PaymentHistory/PaymentHistory";
 import HistoryRefund from "./HistoryRefund/HistoryRefund";
 import { useSelector, useDispatch } from "react-redux";
 import { LogOut } from "../../redux/actions/actions";
+import axios from "axios";
+import { set } from "react-native-reanimated";
 const UserArea = ({ navigation }) => {
   const [screen, setScreen] = useState("activeForms");
   const store = useSelector((state) => state);
   const name = useSelector((state) => state.name);
   const dispatch = useDispatch();
+
+  const [pullings, setpullings] = useState([]);
+  const [refunds, setrefunds] = useState([]);
+  const [paymentHistory, setpaymentHistory] = useState([]);
+  const [activeForms, setactiveForms] = useState([]);
+  const [formsHistory, setformsHistory] = useState([]);
+  const [wins, setwins] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://52.90.122.190:5000/my_space/pullings", {
+        headers: {
+          Authorization: store.jwt,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setpullings(res.data.rows);
+      });
+    axios
+      .get("http://52.90.122.190:5000/my_space/refunds", {
+        headers: {
+          Authorization: store.jwt,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setrefunds(res.data.rows);
+      });
+    axios
+      .get("http://52.90.122.190:5000/my_space/payment_history", {
+        headers: {
+          Authorization: store.jwt,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setpaymentHistory(res.data.rows);
+      });
+    axios
+      .get("http://52.90.122.190:5000/my_space/active_forms", {
+        headers: {
+          Authorization: store.jwt,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setactiveForms(res.data.rows);
+      });
+    axios
+      .get("http://52.90.122.190:5000/my_space/forms_history", {
+        headers: {
+          Authorization: store.jwt,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setformsHistory(res.data.rows);
+      });
+    axios
+      .get("http://52.90.122.190:5000/my_space/wins", {
+        headers: {
+          Authorization: store.jwt,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setwins(res.data.rows);
+      });
+  }, []);
 
   return (
     <>
@@ -150,21 +228,6 @@ const UserArea = ({ navigation }) => {
                   >
                     <Text style={{ fontSize: 10 }}>היסטורית תשלומים</Text>
                   </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={[
-                      userAreaStyles.toucheable,
-                      screen === "myWins2" && {
-                        borderBottomColor: "black",
-                        borderBottomWidth: 1,
-                      },
-                    ]}
-                    onPress={() => {
-                      setScreen("myWins2");
-                    }}
-                  >
-                    <Text style={{ fontSize: 10 }}>הזכיות שלי</Text>
-                  </TouchableOpacity>
                 </View>
               </Card>
               <Card transparent style={{ flex: 1 }}>
@@ -227,13 +290,31 @@ const UserArea = ({ navigation }) => {
             </View>
             {/* {end of hello user} */}
 
-            {screen === "activeForms" && <ActiveForms />}
-            {screen === "sendHistory" && <SendHistory />}
-            {screen === "myWins" && <MyWins />}
-            {screen === "Withdrawal" && <Withdrawal />}
-            {screen === "PaymentHistory" && <PaymentHistory />}
-            {screen === "myWins2" && <SendHistory />}
-            {screen === "HistoryRefund" && <HistoryRefund />}
+            {screen === "activeForms" && (
+              <ActiveForms navigation={navigation} activeforms={activeForms} />
+            )}
+            {screen === "sendHistory" && (
+              <SendHistory
+                navigation={navigation}
+                formsHistory={formsHistory}
+              />
+            )}
+            {screen === "myWins" && (
+              <MyWins navigation={navigation} wins={wins} />
+            )}
+            {screen === "Withdrawal" && (
+              <Withdrawal navigation={navigation} pullings={pullings} />
+            )}
+            {screen === "PaymentHistory" && (
+              <PaymentHistory
+                navigation={navigation}
+                paymentHistory={paymentHistory}
+              />
+            )}
+
+            {screen === "HistoryRefund" && (
+              <HistoryRefund navigation={navigation} refunds={refunds} />
+            )}
 
             <ColorLine />
           </View>

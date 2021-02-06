@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, Touchable, View } from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faShekelSign } from "@fortawesome/free-solid-svg-icons";
 import {
   Container,
   Header,
@@ -17,8 +19,13 @@ import {
 } from "native-base";
 import ViewForm from "../ViewForm";
 
-const PaymentHistory = () => {
+const PaymentHistory = ({ paymentHistory }) => {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    console.log(paymentHistory);
+    console.log(paymentHistory[0]["תאריך ושעה"].split(" ")[0]);
+  }, []);
 
   return (
     <>
@@ -35,7 +42,7 @@ const PaymentHistory = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
-            flex: 0.5,
+            flex: 1.4,
           }}
         >
           מספר
@@ -48,7 +55,7 @@ const PaymentHistory = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
-            flex: 0.5,
+            flex: 1.2,
           }}
         >
           תאריך ושעה
@@ -61,7 +68,7 @@ const PaymentHistory = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
-            flex: 1.5,
+            flex: 0.7,
           }}
         >
           סה"כ בש"ח
@@ -78,106 +85,68 @@ const PaymentHistory = () => {
           marginTop: 10,
         }}
       >
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-          </View>
+        {paymentHistory.length === 0 ? (
           <View>
-            <Button
-              disabled
-              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
-              small
-              bordered
-              onPress={() => {
-                setOpen(true);
+            <View
+              style={{
+                flexDirection: "column",
+                height: 200,
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
-            </Button>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 20,
+                  borderBottomWidth: 1,
+                  borderBottomColor: "white",
+                  marginBottom: 10,
+                }}
+              >
+                לא התבצעו תשלומים
+              </Text>
+            </View>
           </View>
-        </ListItem>
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-          </View>
-          <View>
-            <Button
-              disabled
-              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
-              small
-              bordered
-              onPress={() => {
-                setOpen(true);
-              }}
-            >
-              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
-            </Button>
-          </View>
-        </ListItem>
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-          </View>
-          <View>
-            <Button
-              disabled
-              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
-              small
-              bordered
-              onPress={() => {
-                setOpen(true);
-              }}
-            >
-              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
-            </Button>
-          </View>
-        </ListItem>
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-          </View>
-          <View>
-            <Button
-              disabled
-              style={{ borderColor: "white", padding: 5, marginLeft: "30%" }}
-              small
-              bordered
-              onPress={() => {
-                setOpen(true);
-              }}
-            >
-              <Text style={{ fontSize: 12, color: "white" }}>חויב</Text>
-            </Button>
-          </View>
-        </ListItem>
+        ) : (
+          paymentHistory.map((payment, index) => {
+            return (
+              <ListItem key={index}>
+                <View style={{ marginRight: 45, flex: 2 }}>
+                  <Text style={{ fontSize: 12, color: "white" }}>
+                    {payment["מספר"]}
+                  </Text>
+                </View>
+                <View style={{ marginRight: 40, flex: 3 }}>
+                  <Text style={{ fontSize: 12, color: "white" }}>
+                    {payment["תאריך ושעה"]}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ fontSize: 12, color: "white" }}>
+                    {payment['סה"כ בשקלים']}{" "}
+                    {/* <FontAwesomeIcon
+                      style={{ marginVertical: 7, marginLeft: -4 }}
+                      icon={faShekelSign}
+                      color='white'
+                    /> */}
+                  </Text>
+                  <Text style={{ fontSize: 12, color: "white" }}>
+                    {payment["סטטוס חיוב"]}
+                  </Text>
+                </View>
+                <View></View>
+              </ListItem>
+            );
+          })
+        )}
       </List>
     </>
   );

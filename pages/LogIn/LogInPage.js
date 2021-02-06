@@ -51,6 +51,7 @@ const LogInPage = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(LogIn("dlevkovich05@gmail.com", "Dekel1145"));
+    dispatch({ type: "RESET_SIGNUP" });
   }, []);
   useEffect(() => {
     if (store.user.attributes) {

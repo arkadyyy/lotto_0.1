@@ -16,6 +16,8 @@ import {
   faTimes,
   faQuestion,
   faQuestionCircle,
+  faEye,
+  faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 import signInstyles from "../SignIn/SignInStyles";
 import {
@@ -47,6 +49,7 @@ import ColorLine from "../../components/ColorLine";
 import { useSelector, useDispatch } from "react-redux";
 import { SignUp, SignUpConfirmation } from "../../redux/actions/actions";
 import axios from "axios";
+import { useRoute } from "@react-navigation/native";
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -140,6 +143,32 @@ function CheckFields(
   }
 }
 
+const ResetInputs = (
+  setGender,
+  setFirstName,
+  setLastName,
+  setID,
+  setPhoneNum,
+  setEmail,
+  setAge,
+  setaddress,
+  setDate,
+  setAgreement,
+  setpassword
+) => {
+  setGender("");
+  setFirstName("");
+  setLastName("");
+  setID("");
+  setPhoneNum("");
+  setEmail("");
+  setAge(false);
+  setaddress("");
+  setDate("");
+  setAgreement(false);
+  setpassword("");
+};
+
 const SignIn = ({ navigation }) => {
   const [gender, setGender] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -181,35 +210,13 @@ const SignIn = ({ navigation }) => {
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
-
+  const route = useRoute();
   useEffect(() => {
     console.log(store.signUp);
     if (store.signUp === 3) {
       navigation.navigate("LogInPage");
     }
   }, [store]);
-
-  // useEffect(() => {
-  //   let accessToken;
-  //   let jwt;
-  //   Auth.currentSession().then((res) => {
-  //     accessToken = res.getAccessToken();
-  //     jwt = accessToken.getJwtToken();
-
-  //     setjwtState(jwt);
-  //   });
-
-  //   setTimeout(() => {
-  //     axios
-  //       .get("http://52.90.122.190:5000/my_space/active_forms", {
-  //         headers: {
-  //           Authorization: jwt,
-  //         },
-  //       })
-  //       .then((res) => console.log(res.data))
-  //       .catch((err) => console.log(err));
-  //   }, 5000);
-  // }, []);
 
   useEffect(() => {
     CheckFields(
@@ -260,7 +267,29 @@ const SignIn = ({ navigation }) => {
             {/* 00ADEF Deep Sky Blue*/}
             {/* {store.signUp === 3 && <LogInPage />} */}
             {store.signUp === 1 && <Spinner />}
-            {store.signUp === -2 && <Text>{store.message}</Text>}
+            {store.signUp === -2 && (
+              <>
+                <FontAwesomeIcon size={70} icon={faExclamationTriangle} />
+                <Text style={{ marginVertical: 13 }}>{store.message}</Text>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "#FBB03B",
+                    borderColor: "white",
+                    borderWidth: 2,
+                    borderRadius: 17,
+                    flex: 1,
+                    padding: 10,
+                    paddingHorizontal: 40,
+                    marginVertical: 50,
+                  }}
+                  onPress={() => {
+                    dispatch({ type: "RESET_SIGNUP" });
+                  }}
+                >
+                  <Text>חזרה</Text>
+                </TouchableOpacity>
+              </>
+            )}
             {store.signUp === 2 && (
               <>
                 <View
@@ -269,14 +298,28 @@ const SignIn = ({ navigation }) => {
                     { height: "80%", padding: 20 },
                   ]}
                 >
-                  <Text
+                  <View
                     style={{
-                      fontSize: 25,
-                      fontWeight: "bold",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
                     }}
                   >
-                    הכנס קוד
-                  </Text>
+                    <Text
+                      style={{
+                        fontSize: 25,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      הכנס קוד
+                    </Text>
+                    <TouchableOpacity
+                      onPress={() => {
+                        dispatch({ type: "RESET_SIGNUP" });
+                      }}
+                    >
+                      <Text>חזרה</Text>
+                    </TouchableOpacity>
+                  </View>
                   <TextInput
                     key={"PHONE_NUM"}
                     style={signInstyles.signInPageInput}
@@ -310,6 +353,19 @@ const SignIn = ({ navigation }) => {
                       הבא
                     </Text>
                   </Button>
+
+                  {/* <TouchableOpacity
+                    style={{
+                      alignSelf: "center",
+                      marginVertical: 17,
+
+                      borderBottomWidth: 1,
+                    }}
+                  >
+                    <Text>לא קיבלתי קוד</Text>
+                  </TouchableOpacity>
+
+                  <TextInput style={signInstyles.signInPageInput} /> */}
                 </View>
               </>
             )}
@@ -321,6 +377,7 @@ const SignIn = ({ navigation }) => {
                     style={{
                       fontSize: 25,
                       fontWeight: "bold",
+                      fontFamily: "fb-Spacer",
                     }}
                   >
                     לקוח חדש
@@ -424,6 +481,7 @@ const SignIn = ({ navigation }) => {
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <TextInput
+                        value={firstName}
                         key={"FIRST_NAME"}
                         style={signInstyles.signInPageInput}
                         onChangeText={(text) => setFirstName(text)}
@@ -452,6 +510,7 @@ const SignIn = ({ navigation }) => {
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <TextInput
+                        value={phoneNum}
                         maxLength={10}
                         key={"PHONE_NUM"}
                         style={signInstyles.signInPageInput}
@@ -487,6 +546,7 @@ const SignIn = ({ navigation }) => {
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <TextInput
+                        value={lastName}
                         style={signInstyles.signInPageInput}
                         key={"LAST_NAME"}
                         onChangeText={(text) => setLastName(text)}
@@ -515,6 +575,8 @@ const SignIn = ({ navigation }) => {
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <TextInput
+                        value={ID}
+                        maxLength={9}
                         key={"ID"}
                         style={signInstyles.signInPageInput}
                         onChangeText={(text) => setID(text)}
@@ -542,6 +604,7 @@ const SignIn = ({ navigation }) => {
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <TextInput
+                        value={Email}
                         key={"EMAIL"}
                         style={signInstyles.signInPageInput}
                         fontSize={12}
@@ -580,6 +643,7 @@ const SignIn = ({ navigation }) => {
                         style={signInstyles.signInPageInput}
                         fontSize={12}
                         onChangeText={(text) => setaddress(text)}
+                        value={address}
                       />
                       <FontAwesomeIcon
                         style={{
@@ -656,15 +720,14 @@ const SignIn = ({ navigation }) => {
                           setshowPassword(!showPassword);
                         }}
                       >
-                        <Text>
-                          {showPassword === true ? " הראה סיסמה" : "הסתר סיסמה"}
-                        </Text>
+                        <FontAwesomeIcon icon={faEye} />
                       </TouchableOpacity>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <TextInput
+                        value={password}
                         secureTextEntry={showPassword}
                         key={"EMAIL"}
                         style={signInstyles.signInPageInput}
@@ -747,6 +810,18 @@ const SignIn = ({ navigation }) => {
                       marginHorizontal: 70,
                     }}
                     onPress={() => {
+                      setGender(""),
+                        setFirstName(""),
+                        setLastName(""),
+                        setID(""),
+                        setPhoneNum(""),
+                        setEmail(""),
+                        setAge(false),
+                        setaddress(""),
+                        setDate(""),
+                        setAgreement(false),
+                        setpassword("");
+
                       dispatch(
                         SignUp(
                           Email,

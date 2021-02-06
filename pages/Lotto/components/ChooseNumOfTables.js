@@ -27,7 +27,7 @@ const ChooseNumOfTables = ({
   hazakimNumber,
   setHazakimNumber,
   hagralot,
-  setHagralot
+  setHagralot,
 }) => {
   const route = useRoute();
 
@@ -44,7 +44,13 @@ const ChooseNumOfTables = ({
             padding: 10,
           }}
         >
-          <Text style={{ fontSize: 15, color: "white" }}>
+          <Text
+            style={{
+              fontSize: 15,
+              color: "white",
+              fontFamily: "fb-Spacer",
+            }}
+          >
             בחר מספר טבלאות למילוי
           </Text>
           <View style={{}}>
@@ -65,7 +71,12 @@ const ChooseNumOfTables = ({
                   settableNum(2);
                 }}
               >
-                <Text style={{ color: tableNum === 2 ? "white" : "#E62321" }}>
+                <Text
+                  style={{
+                    color: tableNum === 2 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
                   2
                 </Text>
               </TouchableOpacity>
@@ -83,7 +94,12 @@ const ChooseNumOfTables = ({
                   settableNum(4);
                 }}
               >
-                <Text style={{ color: tableNum === 4 ? "white" : "#E62321" }}>
+                <Text
+                  style={{
+                    color: tableNum === 4 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
                   4
                 </Text>
               </TouchableOpacity>
@@ -101,7 +117,12 @@ const ChooseNumOfTables = ({
                   settableNum(6);
                 }}
               >
-                <Text style={{ color: tableNum === 6 ? "white" : "#E62321" }}>
+                <Text
+                  style={{
+                    color: tableNum === 6 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
                   6
                 </Text>
               </TouchableOpacity>
@@ -119,7 +140,12 @@ const ChooseNumOfTables = ({
                   settableNum(8);
                 }}
               >
-                <Text style={{ color: tableNum === 8 ? "white" : "#E62321" }}>
+                <Text
+                  style={{
+                    color: tableNum === 8 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
                   8
                 </Text>
               </TouchableOpacity>
@@ -137,7 +163,12 @@ const ChooseNumOfTables = ({
                   settableNum(10);
                 }}
               >
-                <Text style={{ color: tableNum === 10 ? "white" : "#E62321" }}>
+                <Text
+                  style={{
+                    color: tableNum === 10 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
                   10
                 </Text>
               </TouchableOpacity>
@@ -155,7 +186,12 @@ const ChooseNumOfTables = ({
                   settableNum(12);
                 }}
               >
-                <Text style={{ color: tableNum === 12 ? "white" : "#E62321" }}>
+                <Text
+                  style={{
+                    color: tableNum === 12 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
                   12
                 </Text>
               </TouchableOpacity>
@@ -176,7 +212,10 @@ const ChooseNumOfTables = ({
                 >
                   {route.name === "LottoPage" ? (
                     <Text
-                      style={{ color: tableNum === 14 ? "white" : "#E62321" }}
+                      style={{
+                        color: tableNum === 14 ? "white" : "#E62321",
+                        fontFamily: "fb-Spacer-bold",
+                      }}
                     >
                       14
                     </Text>
@@ -198,8 +237,10 @@ const ChooseNumOfTables = ({
             padding: 10,
           }}
         >
-          <Text style={{ fontSize: 15, color: "white" }}>
-          בחר מספר הגרלות
+          <Text
+            style={{ fontSize: 15, color: "white", fontFamily: "fb-Spacer" }}
+          >
+            בחר מספר הגרלות
           </Text>
           <View style={{}}>
             <View style={{ flexDirection: "row" }}>
@@ -213,14 +254,14 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: hagralot === 1 ?  "#8CC63F": null ,
+                  backgroundColor: hagralot === 1 ? "#8CC63F" : null,
                 }}
                 onPress={() => {
                   // settableNum(1);
-                  setHagralot(1)
+                  setHagralot(1);
                 }}
               >
-                <Text style={{ color: "white" }}>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
                   1
                 </Text>
               </TouchableOpacity>
@@ -234,14 +275,14 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: hagralot === 4 ?  "#8CC63F": null ,
+                  backgroundColor: hagralot === 4 ? "#8CC63F" : null,
                 }}
                 onPress={() => {
                   // settableNum(4);
-                  setHagralot(4)
+                  setHagralot(4);
                 }}
               >
-                <Text style={{ color: "white" }}>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
                   4
                 </Text>
               </TouchableOpacity>
@@ -255,14 +296,14 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: hagralot === 6 ?  "#8CC63F": null ,
+                  backgroundColor: hagralot === 6 ? "#8CC63F" : null,
                 }}
                 onPress={() => {
                   // settableNum(6);
-                  setHagralot(6)
+                  setHagralot(6);
                 }}
               >
-                <Text style={{ color: "white" }}>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
                   6
                 </Text>
               </TouchableOpacity>
@@ -276,20 +317,18 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: hagralot === 8 ?  "#8CC63F": null ,
+                  backgroundColor: hagralot === 8 ? "#8CC63F" : null,
                 }}
                 onPress={() => {
                   // settableNum(8);
                   setHagralot(8);
                 }}
               >
-                <Text style={{ color: "white" }}>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
                   8
                 </Text>
               </TouchableOpacity>
-              
-              
-              
+
               {route.name === "LottoPage" && (
                 <TouchableOpacity
                   style={{
@@ -307,7 +346,10 @@ const ChooseNumOfTables = ({
                 >
                   {route.name === "LottoPage" ? (
                     <Text
-                      style={{ color: tableNum === 14 ? "white" : "#E62321" }}
+                      style={{
+                        color: tableNum === 14 ? "white" : "#E62321",
+                        fontFamily: "fb-Spacer-bold",
+                      }}
                     >
                       14
                     </Text>
@@ -329,7 +371,9 @@ const ChooseNumOfTables = ({
             padding: 10,
           }}
         >
-          <Text style={{ fontSize: 15, color: "white" }}>
+          <Text
+            style={{ fontSize: 15, color: "white", fontFamily: "fb-Spacer" }}
+          >
             בחר מספר טבלאות למילוי
           </Text>
           <View style={{}}>
@@ -350,7 +394,12 @@ const ChooseNumOfTables = ({
                   settableNum(2);
                 }}
               >
-                <Text style={{ color: tableNum === 2 ? "white" : "#E62321" }}>
+                <Text
+                  style={{
+                    color: tableNum === 2 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
                   2
                 </Text>
               </TouchableOpacity>
@@ -368,7 +417,12 @@ const ChooseNumOfTables = ({
                   settableNum(4);
                 }}
               >
-                <Text style={{ color: tableNum === 4 ? "white" : "#E62321" }}>
+                <Text
+                  style={{
+                    color: tableNum === 4 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
                   4
                 </Text>
               </TouchableOpacity>
@@ -386,7 +440,12 @@ const ChooseNumOfTables = ({
                   settableNum(6);
                 }}
               >
-                <Text style={{ color: tableNum === 6 ? "white" : "#E62321" }}>
+                <Text
+                  style={{
+                    color: tableNum === 6 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
                   6
                 </Text>
               </TouchableOpacity>
@@ -404,7 +463,12 @@ const ChooseNumOfTables = ({
                   settableNum(8);
                 }}
               >
-                <Text style={{ color: tableNum === 8 ? "white" : "#E62321" }}>
+                <Text
+                  style={{
+                    color: tableNum === 8 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
                   8
                 </Text>
               </TouchableOpacity>
@@ -422,7 +486,12 @@ const ChooseNumOfTables = ({
                   settableNum(10);
                 }}
               >
-                <Text style={{ color: tableNum === 10 ? "white" : "#E62321" }}>
+                <Text
+                  style={{
+                    color: tableNum === 10 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
                   10
                 </Text>
               </TouchableOpacity>
@@ -444,7 +513,10 @@ const ChooseNumOfTables = ({
                 >
                   {route.name === "LottoPage" ? (
                     <Text
-                      style={{ color: tableNum === 14 ? "white" : "#E62321" }}
+                      style={{
+                        color: tableNum === 14 ? "white" : "#E62321",
+                        fontFamily: "fb-Spacer",
+                      }}
                     >
                       14
                     </Text>

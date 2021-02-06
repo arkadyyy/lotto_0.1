@@ -18,7 +18,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import chooseFormStyles from "./chooseFormStyles";
 
-const ChooseForm = ({ double,setdouble }) => {
+const ChooseForm = ({ double, setdouble }) => {
   return (
     <>
       <View
@@ -35,19 +35,21 @@ const ChooseForm = ({ double,setdouble }) => {
             flex: 2,
           }}
         >
-          <Text>בחר סוג טופס</Text>
+          <Text style={{ fontFamily: "fb-Spacer" }}>בחר סוג טופס</Text>
           <View>
             <Button
               small
               rounded
               style={
                 double === false
-                ? chooseFormStyles.radioRegularButon
-                : chooseFormStyles.radioDubbleButon
-               }
-               onPress={() => {setdouble(false)}}
->
-              <Text>רגיל</Text>
+                  ? chooseFormStyles.radioRegularButon
+                  : chooseFormStyles.radioDubbleButon
+              }
+              onPress={() => {
+                setdouble(false);
+              }}
+            >
+              <Text style={{ fontFamily: "fb-Spacer-bold" }}>רגיל</Text>
             </Button>
           </View>
 
@@ -55,13 +57,16 @@ const ChooseForm = ({ double,setdouble }) => {
             <Button
               small
               rounded
-                 style={ double === true
+              style={
+                double === true
                   ? chooseFormStyles.radioRegularButon
                   : chooseFormStyles.radioDubbleButon
-                 }
-                 onPress={() => {setdouble(true)}}
+              }
+              onPress={() => {
+                setdouble(true);
+              }}
             >
-              <Text>דאבל</Text>
+              <Text style={{ fontFamily: "fb-Spacer-bold" }}>דאבל</Text>
             </Button>
           </View>
         </View>
@@ -79,7 +84,9 @@ const ChooseForm = ({ double,setdouble }) => {
             small
             rounded
           >
-            <Text style={{ color: "#E62321" }}>שלח טופס</Text>
+            <Text style={{ color: "#E62321", fontFamily: "fb-Spacer-bold" }}>
+              שלח טופס
+            </Text>
           </Button>
         </View>
       </View>

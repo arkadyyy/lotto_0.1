@@ -7,6 +7,7 @@ const initialState = {
   ID: null,
   signUp: -1,
   message: null,
+  jwt: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +18,7 @@ const reducer = (state = initialState, action) => {
 
         user: action.payload.user,
         name: action.payload.user.attributes.name,
+        jwt: action.payload.jwt,
       };
     }
     case "LOGIN_ATTEMPT": {
@@ -64,7 +66,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         signUp: -2,
-        message: "something went wrong....",
+        message: action.payload.error.message,
       };
     }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, Touchable, View } from "react-native";
 import {
   Container,
@@ -16,8 +16,61 @@ import {
   Content,
 } from "native-base";
 import ViewForm from "../ViewForm";
-const SendHistory = () => {
-  const [open, setOpen] = useState(false);
+
+const SeeOrDupilcate = ({ index, open, form }) => {
+  if (index === open.index) {
+    return (
+      <View>
+        <View style={{ margin: 10 }}>
+          <Text
+            style={{
+              color: "#263742",
+              fontWeight: "bold",
+              padding: 10,
+            }}
+          >
+            הצירוף שלי
+          </Text>
+          <View>
+            {form.tables.map((table, index) => (
+              <ViewForm
+                numbers={table.numbers}
+                strongNum={table.strong_number}
+                tableNum={table.table_number}
+              />
+            ))}
+            <ViewForm />
+            <ViewForm />
+            <ViewForm />
+            <ViewForm />
+            <ViewForm />
+            <ViewForm />
+            <ViewForm />
+            <ViewForm />
+            <ViewForm />
+            <ViewForm />
+            <ViewForm />
+          </View>
+        </View>
+        <View
+          style={{
+            borderBottomColor: "black",
+            borderBottomWidth: 1,
+          }}
+        />
+      </View>
+    );
+  } else {
+    return null;
+  }
+};
+
+const SendHistory = ({ formsHistory }) => {
+  const [open, setOpen] = useState({ isOpen: false, index: -1 });
+
+  useEffect(() => {
+    console.log("formsHistory : ", formsHistory);
+  }, []);
   return (
     <>
       <View
@@ -33,6 +86,7 @@ const SendHistory = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
+            flex: 2,
           }}
         >
           משחק ומס' הגרלה
@@ -45,6 +99,7 @@ const SendHistory = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
+            flex: 2,
           }}
         >
           תאריך ושעה
@@ -57,6 +112,7 @@ const SendHistory = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
+            flex: 1,
           }}
         >
           עלות הטופס
@@ -69,6 +125,7 @@ const SendHistory = () => {
             padding: 7,
             marginLeft: 2,
             marginRight: 2,
+            flex: 1,
           }}
         >
           שכפול הטופס
@@ -85,181 +142,49 @@ const SendHistory = () => {
           marginTop: 10,
         }}
       >
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>דאבל לוטו</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-          </View>
-          <View>
-            <Button
-              style={{ borderColor: "white", padding: 5 }}
-              small
-              bordered
-              onPress={() => {
-                setOpen(true);
-              }}
-            >
-              <Text style={{ fontSize: 12, color: "white" }}>שכפל או צפה</Text>
-            </Button>
-          </View>
-        </ListItem>
+        {formsHistory.map((form, index) => {
+          let isOpen = false;
+          return (
+            <>
+              <ListItem key={index}>
+                <View style={{ marginRight: 45, flex: 2.2 }}>
+                  <Text style={{ fontSize: 12, color: "white" }}>
+                    {form["משחק ומס׳ הגרלה"]}
+                  </Text>
+                </View>
+                <View style={{ marginRight: 40, flex: 3 }}>
+                  <Text style={{ fontSize: 12, color: "white" }}>
+                    {form["תאריך ושעה"]}
+                  </Text>
+                </View>
+                <View style={{ marginRight: 40, flex: 1 }}>
+                  <Text style={{ fontSize: 12, color: "white" }}>
+                    {form["עלות הטופס"]}
+                  </Text>
+                </View>
 
-        {open && (
-          <View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <View>
-                <Text>סהכ זכייה</Text>
-              </View>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>צפה בטופס</Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>תוצאות הגרלה</Text>
-              </Button>
-              <Button
-                style={{ padding: 5 }}
-                small
-                onPress={() => {
-                  setOpen(false);
-                }}
-              >
-                <Text>סגור</Text>
-              </Button>
-            </View>
-            <View style={{ margin: 10 }}>
-              <Text
-                style={{
-                  color: "#263742",
-                  fontWeight: "bold",
-                  padding: 10,
-                }}
-              >
-                הצירוף שלי
-              </Text>
-              <View>
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-              </View>
-            </View>
-          </View>
-        )}
-
-        <ListItem>
-          <View style={{ marginRight: 45 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>דאבל לוטו</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-            <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
-          </View>
-          <View style={{ marginRight: 40 }}>
-            <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
-          </View>
-          <View>
-            <Button
-              style={{ borderColor: "white", padding: 5 }}
-              small
-              bordered
-              onPress={() => {
-                setOpen(true);
-              }}
-            >
-              <Text style={{ fontSize: 12, color: "white" }}>שכפל או צפה</Text>
-            </Button>
-          </View>
-        </ListItem>
-
-        {open && (
-          <View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-              }}
-            >
-              <View>
-                <Text>סהכ זכייה</Text>
-              </View>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>צפה בטופס</Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", padding: 5 }}
-                small
-                bordered
-              >
-                <Text>תוצאות הגרלה</Text>
-              </Button>
-              <Button
-                style={{ padding: 5 }}
-                small
-                onPress={() => {
-                  setOpen(false);
-                }}
-              >
-                <Text>סגור</Text>
-              </Button>
-            </View>
-            <View style={{ margin: 10 }}>
-              <Text
-                style={{
-                  color: "#263742",
-                  fontWeight: "bold",
-                  padding: 10,
-                }}
-              >
-                הצירוף שלי
-              </Text>
-              <View>
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-                <ViewForm />
-              </View>
-            </View>
-          </View>
-        )}
+                <Button
+                  // disabled={index === open.index ? false : true}
+                  style={{ borderColor: "white", padding: 5, flex: 1.2 }}
+                  small
+                  bordered
+                  onPress={() => {
+                    setOpen({ isOpen: !open.isOpen, index: index });
+                  }}
+                >
+                  <Text style={{ fontSize: 10, color: "white" }}>
+                    {open.isOpen && index === open.index
+                      ? "סגור"
+                      : "שכפל או צפה"}
+                  </Text>
+                </Button>
+              </ListItem>
+              {open.isOpen && (
+                <SeeOrDupilcate form={form} open={open} index={index} />
+              )}
+            </>
+          );
+        })}
       </List>
     </>
   );
