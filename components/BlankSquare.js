@@ -15,13 +15,40 @@ import {
   List,
   ListItem,
 } from "native-base";
-<<<<<<< HEAD
 import axios from "axios";
-=======
-import EStyleSheet from "react-native-extended-stylesheet";
->>>>>>> 4d4a5dcebd397a133c363723d2bebb1a0e94e295
 
-const Timer = ({ color }) => {
+const Timer = ({ color, usedDate }) => {
+  const [seconds, setseconds] = useState(null);
+  const [minutes, setminutes] = useState(null);
+  const [hours, sethours] = useState(null);
+  const [days, setdays] = useState(null);
+
+  setInterval(function () {
+    let countDownDate = new Date(usedDate).getTime();
+    let now = new Date().getTime();
+    let timeleft = countDownDate - now;
+
+    var daysLeft = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+
+    setdays(daysLeft);
+    var hoursLeft = Math.floor(
+      (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+
+    sethours(hoursLeft);
+    var minutesLeft = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+
+    setminutes(minutesLeft);
+    var secondsLeft = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+    setseconds(secondsLeft);
+
+    console.log("days : ", daysLeft);
+    console.log("hours : ", hoursLeft);
+    console.log("minutes : ", minutesLeft);
+    console.log("seconds : ", secondsLeft);
+  }, 1000);
+
   return (
     <>
       <View style={{ flexDirection: "row" }}>
@@ -38,7 +65,7 @@ const Timer = ({ color }) => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>0</Text>
+              <Text style={{ color: "white" }}>{seconds}</Text>
             </View>
             <View
               style={{
@@ -71,7 +98,7 @@ const Timer = ({ color }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>0</Text>
+                <Text style={{ color: "white" }}>{minutes}</Text>
               </View>
               <View
                 style={{
@@ -103,7 +130,7 @@ const Timer = ({ color }) => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>0</Text>
+              <Text style={{ color: "white" }}>{hours}</Text>
             </View>
             <View
               style={{
@@ -135,7 +162,7 @@ const Timer = ({ color }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>0</Text>
+                <Text style={{ color: "white" }}>{days}</Text>
               </View>
               <View
                 style={{
@@ -185,45 +212,59 @@ const Timer = ({ color }) => {
 const BlankSquare = ({ color, gameName }) => {
   const route = useRoute();
 
-  const [lottoDate, setlottoDate] = useState(null);
-  const [chanceDate, setchanceDate] = useState(null);
-  const [sheva77Date, setsheva77Date] = useState(null);
-  const [one23Date, setone23Date] = useState(null);
+  const [usedDate, setusedDate] = useState(0);
 
   useEffect(() => {
     axios
       .get("http://52.90.122.190:5000/games/time")
       .then((res) => {
-        setlottoDate(res.data["לוטו"]);
-        setchanceDate(res.data["צ'אנס"]);
-        setsheva77Date(res.data["777"]);
-        setone23Date(res.data["123"]);
-
         let days;
         let hours;
         let minutes;
         let seconds;
 
-        let countDownDate = new Date(res.data["777"]).getTime();
-        console.log("countdowndate : ", countDownDate);
+        if (route.name === "LottoPage" || route.name === "LottoList") {
+          setusedDate(res.data["לוטו"]);
+        } else if (route.name === "ChanceList" || route.name === "ChancePage") {
+          setusedDate(res.data["צ'אנס"]);
+        } else if (
+          route.name === "Sheva77List" ||
+          route.name === "Sheva77Page"
+        ) {
+          setusedDate(res.data["777"]);
+        } else if (route.name === "One23Page" || route.name === "One23List") {
+          setusedDate(res.data["123"]);
+        }
 
-        setInterval(function () {
-          let countDownDate = new Date(res.data["777"]).getTime();
-          let now = new Date().getTime();
-          let timeleft = countDownDate - now;
+        // let countDownDate = new Date(usedDate).getTime();
+        // console.log("countdowndate : ", countDownDate);
 
-          days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-          hours = Math.floor(
-            (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          );
-          minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-          seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+        // setInterval(function () {
+        //   let countDownDate = new Date(usedDate).getTime();
+        //   let now = new Date().getTime();
+        //   let timeleft = countDownDate - now;
 
-          // console.log("days : ", days);
-          // console.log("hours : ", hours);
-          // console.log("minutes : ", minutes);
-          // console.log("seconds : ", seconds);
-        }, 1000);
+        //   days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+        //   // settimer({ ...timer, days: days });
+        //   setdays(days);
+        //   hours = Math.floor(
+        //     (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        //   );
+        //   // settimer({ ...timer, hours: hours });
+        //   sethours(hours);
+        //   minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+        //   // settimer({ ...timer, minutes: minutes });
+        //   setminutes(minutes);
+        //   seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+        //   // settimer({ ...timer, seconds: seconds });
+        //   setseconds(seconds);
+
+        //   // console.log("days : ", days);
+        //   // console.log("hours : ", hours);
+        //   // console.log("minutes : ", minutes);
+        //   // console.log("seconds : ", seconds);
+        //   // console.log("timer : ", timer);
+        // }, 1000);
 
         console.log(res.data);
       })
@@ -232,8 +273,7 @@ const BlankSquare = ({ color, gameName }) => {
 
   return (
     <>
-      {route.name === "UserArea"
-        ? (
+      {route.name === "UserArea" ? (
         <View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}
@@ -245,41 +285,7 @@ const BlankSquare = ({ color, gameName }) => {
             style={{ width: "100%", height: 7, backgroundColor: color }}
           ></View>
         </View>
-        )
-      : route.name === "ResultList" 
-        ? (
-        <View>
-          <View
-            style={{ width: "100%", height: 7, backgroundColor: color }}
-          ></View>
-          <View
-            style={{ backgroundColor: "#F2F2F2", width: "100%", height: 100 }}
-              ></View>
-          <View
-            style={{ backgroundColor: "white", width: "100%", height: 100 }}
-              ></View>
-          <View
-            style={{ width: "100%", height: 7, backgroundColor: color }}
-          ></View>
-        </View>
-        )
-      : route.name === "ResultLotto" || "ResultChance" || "Result777" || "Result123" 
-        ? (
-        <View>
-          <View
-            style={{ width: "100%", height: 7, backgroundColor: color }}
-          ></View>
-         
-          <View
-            style={{ backgroundColor: "#F2F2F2", width: "100%", height: EStyleSheet.value("$rem") * 140 }}
-              ></View>
-          <View
-            style={{ width: "100%", height: 7, backgroundColor: color }}
-          ></View>
-        </View>
-        )
-       
-        : (
+      ) : (
         <View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}
@@ -299,7 +305,7 @@ const BlankSquare = ({ color, gameName }) => {
               </Text>
               <Text>עד 10,000,000 </Text>
             </View>
-            <Timer color={color} />
+            <Timer usedDate={usedDate} color={color} />
           </View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}

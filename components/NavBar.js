@@ -23,6 +23,7 @@ import LogIn from "../redux/actions/actions";
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../aws-exports";
 import EStyleSheet from "react-native-extended-stylesheet";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 Amplify.configure(awsconfig);
 
@@ -36,9 +37,8 @@ const NavBar = (props) => {
   const store = useSelector((state) => state);
 
   useEffect(() => {
-    if (
-      route.name === "LottoList") setNavBarTitle("הגרלת לוטו");
-    else if (route.name === "ChanceList"|| route.name === "ChancePage") {
+    if (route.name === "LottoList") setNavBarTitle("הגרלת לוטו");
+    else if (route.name === "ChanceList" || route.name === "ChancePage") {
       setNavBarTitle(`הגרלת צ'אנס`);
     } else if (route.name === "RavChancePage") {
       setNavBarTitle(`רב צ'אנס`);
@@ -75,99 +75,120 @@ const NavBar = (props) => {
     } else if (route.name === "One23Page") {
       setNavBarTitle(`123`);
     } else if (route.name === "ExtraFormPage") {
-      setNavBarTitle( `הגרלות לוטו- שליחת טופס`);
+      setNavBarTitle(`הגרלות לוטו- שליחת טופס`);
     } else if (route.name === "ResultList") {
-      setNavBarTitle( `תוצאות הגרלות`);
+      setNavBarTitle(`תוצאות הגרלות`);
     } else if (route.name === "ResultLotto") {
-      setNavBarTitle( `תוצאות הגרלת לוטו`);
+      setNavBarTitle(`תוצאות הגרלת לוטו`);
     }
-    
-    
-  }, [route.name,screenName]);
+  }, [route.name, screenName]);
 
   const dispatch = useDispatch();
 
   return (
-    <Header style={{
-      backgroundColor: "#263742",
-      flexDirection: "row",
-      justifyContent:"space-evenly"
-    }}>
-      
-        <Button style={{right:EStyleSheet.value("$rem") * 45}} onPress={() => navigation.toggleDrawer()} transparent>
-          <Icon name='menu'/>
-        </Button>
-      
-      
-        <View style={{ flexDirection:"row",justifyContent:"center" }}>
-          <Text
-            style={{
-              color: "white",
-            textAlign: "center",
-              textAlignVertical:"center",
-              paddingHorizontal: EStyleSheet.value("$rem") * 4,
-              fontSize: EStyleSheet.value("$rem") * 15,
-            fontFamily: "fb-Spacer-bold",
-            right:EStyleSheet.value("$rem") * 25
-            }}
-          >
-            {navBarTitle}
-          </Text>
-        </View>
-      
+    <Header
+      style={{
+        backgroundColor: "#263742",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "center",
+      }}
+    >
+      <Button
+        style={{ right: EStyleSheet.value("$rem") * 45 }}
+        onPress={() => navigation.toggleDrawer()}
+        transparent
+      >
+        <Icon name='menu' />
+      </Button>
 
-      
-        <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row" }}>
+        <Text
+          style={{
+            color: "white",
+            textAlign: "center",
+            textAlignVertical: "center",
+            paddingHorizontal: EStyleSheet.value("$rem") * 4,
+            fontSize: EStyleSheet.value("$rem") * 15,
+            fontFamily: "fb-Spacer",
+            right: EStyleSheet.value("$rem") * 25,
+          }}
+        >
+          {navBarTitle}
+        </Text>
+      </View>
+
+      <View
+        style={{
+          flexDirection: "row",
+          // backgroundColor: "yellow",
+          alignSelf: "center",
+          left: 15,
+        }}
+      >
+        <Button
+          onPress={() => {
+            if (store.user === "LOGIN_FAILED") {
+              navigation.navigate("LogInPage");
+            } else if (store.user === -1) {
+              navigation.navigate("LogInPage");
+            } else {
+              navigation.navigate("UserArea");
+            }
+          }}
+          style={[
+            styles.headerBtns,
+            {
+              marginHorizontal: 7,
+            },
+          ]}
+          small
+          light
+          bordered
+          rounded
+        >
+          <Text
+            style={[
+              {
+                color: "white",
+                fontSize: EStyleSheet.value("$rem") * 13,
+                fontFamily: "fb-Spacer",
+              },
+            ]}
+          >
+            {store.user.attributes ? "אזור אישי" : "התחבר"}
+          </Text>
+        </Button>
+        {props.screenName === "home" && (
           <Button
             onPress={() => {
-              if (store.user === "LOGIN_FAILED") {
-                navigation.navigate("LogInPage");
-              } else if (store.user === -1) {
-                navigation.navigate("LogInPage");
-              } else {
-                navigation.navigate("UserArea");
-              }
+              navigation.navigate("SignIn");
             }}
-            style={{right:EStyleSheet.value("$rem") * -15}}
+            style={[
+              styles.headerBtns,
+              {
+                marginHorizontal: 7,
+              },
+            ]}
             small
             light
-            bordered
+            transparent
             rounded
           >
-            <Text style={[{ color: "white",fontSize:EStyleSheet.value("$rem") * 15,fontFamily:"fb-Spacer-bold" }, styles.userAreaBtn]}>
-              {store.user.attributes ? "אזור אישי" : "התחבר"}
-            </Text>
-          </Button>
-          {props.screenName === "home" && (
-            <Button
-              onPress={() => {
-                navigation.navigate("SignIn");
-              }}
-              style={styles.headerBtns}
-              small
-              light
-              transparent
-              rounded
-            >
-              <View>
-                <Text
-                  style={{
+            <View>
+              <Text
+                style={{
                   color: "white",
-                  fontFamily: "fb-Spacer-bold",
-                  fontSize: EStyleSheet.value("$rem") * 20,
-                  fontFamily: "fb-Spacer-bold",
-                  left:EStyleSheet.value("$rem") * 25
-      
-      
-                  }}
-                >
-                  הרשם
-                </Text>
-              </View>
-            </Button>
-          )}
-        </View>
-      
+                  fontFamily: "fb-Spacer",
+                  fontSize: EStyleSheet.value("$rem") * 15,
+                }}
+              >
+                הרשם
+              </Text>
+            </View>
+          </Button>
+        )}
+      </View>
     </Header>
   );
 };
