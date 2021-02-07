@@ -22,6 +22,8 @@ import { useSelector, useDispatch } from "react-redux";
 import LogIn from "../redux/actions/actions";
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../aws-exports";
+import EStyleSheet from "react-native-extended-stylesheet";
+
 Amplify.configure(awsconfig);
 
 const NavBar = (props) => {
@@ -74,6 +76,10 @@ const NavBar = (props) => {
       setNavBarTitle(`123`);
     } else if (route.name === "ExtraFormPage") {
       setNavBarTitle( `הגרלות לוטו- שליחת טופס`);
+    } else if (route.name === "ResultList") {
+      setNavBarTitle( `תוצאות הגרלות`);
+    } else if (route.name === "ResultLotto") {
+      setNavBarTitle( `תוצאות הגרלת לוטו`);
     }
     
     
@@ -82,28 +88,35 @@ const NavBar = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <Header style={styles.navbar}>
-      <Left>
-        <Button onPress={() => navigation.toggleDrawer()} transparent>
-          <Icon name='menu' />
+    <Header style={{
+      backgroundColor: "#263742",
+      flexDirection: "row",
+      justifyContent:"space-evenly"
+    }}>
+      
+        <Button style={{right:EStyleSheet.value("$rem") * 45}} onPress={() => navigation.toggleDrawer()} transparent>
+          <Icon name='menu'/>
         </Button>
-      </Left>
-
-      <Body>
-        <View style={{ alignSelf: "center" }}>
+      
+      
+        <View style={{ flexDirection:"row",justifyContent:"center" }}>
           <Text
             style={{
               color: "white",
-              marginLeft: 40,
-              fontSize: 12,
+            textAlign: "center",
+              textAlignVertical:"center",
+              paddingHorizontal: 4,
+              fontSize: 20,
+            fontFamily: "fb-Spacer-bold",
+            right:EStyleSheet.value("$rem") * 25
             }}
           >
             {navBarTitle}
           </Text>
         </View>
-      </Body>
+      
 
-      <Right>
+      
         <View style={{ flexDirection: "row" }}>
           <Button
             onPress={() => {
@@ -115,7 +128,7 @@ const NavBar = (props) => {
                 navigation.navigate("UserArea");
               }
             }}
-            style={styles.headerBtns}
+            style={{right:EStyleSheet.value("$rem") * -15}}
             small
             light
             bordered
@@ -139,7 +152,13 @@ const NavBar = (props) => {
               <View>
                 <Text
                   style={{
-                    color: "white",
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                  fontSize: EStyleSheet.value("$rem") * 25,
+                  fontFamily: "fb-Spacer-bold",
+                  left:EStyleSheet.value("$rem") * 25
+      
+      
                   }}
                 >
                   הרשם
@@ -148,7 +167,7 @@ const NavBar = (props) => {
             </Button>
           )}
         </View>
-      </Right>
+      
     </Header>
   );
 };

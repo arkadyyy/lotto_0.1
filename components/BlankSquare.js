@@ -15,6 +15,7 @@ import {
   List,
   ListItem,
 } from "native-base";
+import EStyleSheet from "react-native-extended-stylesheet";
 
 const Timer = ({ color }) => {
   return (
@@ -141,7 +142,8 @@ const BlankSquare = ({ color, gameName }) => {
 
   return (
     <>
-      {route.name === "UserArea" ? (
+      {route.name === "UserArea"
+        ? (
         <View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}
@@ -153,7 +155,41 @@ const BlankSquare = ({ color, gameName }) => {
             style={{ width: "100%", height: 7, backgroundColor: color }}
           ></View>
         </View>
-      ) : (
+        )
+      : route.name === "ResultList" 
+        ? (
+        <View>
+          <View
+            style={{ width: "100%", height: 7, backgroundColor: color }}
+          ></View>
+          <View
+            style={{ backgroundColor: "#F2F2F2", width: "100%", height: 100 }}
+              ></View>
+          <View
+            style={{ backgroundColor: "white", width: "100%", height: 100 }}
+              ></View>
+          <View
+            style={{ width: "100%", height: 7, backgroundColor: color }}
+          ></View>
+        </View>
+        )
+      : route.name === "ResultLotto" || "ResultChance" || "Result777" || "Result123" 
+        ? (
+        <View>
+          <View
+            style={{ width: "100%", height: 7, backgroundColor: color }}
+          ></View>
+         
+          <View
+            style={{ backgroundColor: "#F2F2F2", width: "100%", height: EStyleSheet.value("$rem") * 140 }}
+              ></View>
+          <View
+            style={{ width: "100%", height: 7, backgroundColor: color }}
+          ></View>
+        </View>
+        )
+       
+        : (
         <View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}

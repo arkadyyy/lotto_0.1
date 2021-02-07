@@ -10,9 +10,10 @@ const styles = StyleSheet.create({
   },
   homeNav: {},
   userAreaBtn: {
-    fontSize: 10,
-    paddingLeft: 8,
-    paddingRight: 8,
+    fontSize: 16,
+    paddingLeft: 6,
+    paddingRight: 6,
+    fontFamily: "fb-Spacer-bold",
   },
   signIn: {
     fontSize: 10,
