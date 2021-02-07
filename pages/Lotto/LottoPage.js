@@ -162,7 +162,11 @@ const LottoPage = ({ navigation }) => {
               </Text>
             </View>
 
-            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
+            <ChooseNumOfTables
+              double={double}
+              settableNum={settableNum}
+              tableNum={tableNum}
+            />
 
             <Text style={LottoListstyles.subHeader}>בחר 6 מספרים וחזק</Text>
             <View style={LottoListstyles.autoBtnContainer}>
@@ -200,8 +204,10 @@ const LottoPage = ({ navigation }) => {
                 <ScrollView>
                   {Array.from(Array(tableNum)).map((x, index) => (
                     <Table
+                      settableNum={settableNum}
                       fullTables={fullTables}
                       double={double}
+                      tableNum={tableNum}
                       key={index}
                       index={index + 1}
                       setshowTable={setshowTable}
