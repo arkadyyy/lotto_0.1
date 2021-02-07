@@ -9,7 +9,7 @@ import {
   View,
   Image,
 } from "react-native";
-import homestyles from "../pages/Home/HomeStyles";
+import homestyles from "./Home/HomeStyles";
 import { List, ListItem, Button } from "native-base";
 import { Auth } from "aws-amplify";
 import axios from "axios";

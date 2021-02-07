@@ -112,7 +112,7 @@ export default function DrawerContent(props) {
               labelStyle={drawerstyles.labelStyle}
               label='תוצאות הגרלה'
               onPress={() => {
-                props.navigation.navigate("Results");
+                props.navigation.navigate("ResultList");
               }}
             />
           )}
