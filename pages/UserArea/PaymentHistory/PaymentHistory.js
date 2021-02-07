@@ -43,6 +43,7 @@ const PaymentHistory = ({ paymentHistory }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 1.4,
+            fontFamily: "fb-Spacer",
           }}
         >
           מספר
@@ -56,6 +57,7 @@ const PaymentHistory = ({ paymentHistory }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 1.2,
+            fontFamily: "fb-Spacer",
           }}
         >
           תאריך ושעה
@@ -69,6 +71,7 @@ const PaymentHistory = ({ paymentHistory }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 0.7,
+            fontFamily: "fb-Spacer",
           }}
         >
           סה"כ בש"ח
@@ -103,6 +106,7 @@ const PaymentHistory = ({ paymentHistory }) => {
                   borderBottomWidth: 1,
                   borderBottomColor: "white",
                   marginBottom: 10,
+                  fontFamily: "fb-Spacer",
                 }}
               >
                 לא התבצעו תשלומים
@@ -114,12 +118,24 @@ const PaymentHistory = ({ paymentHistory }) => {
             return (
               <ListItem key={index}>
                 <View style={{ marginRight: 45, flex: 2 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
                     {payment["מספר"]}
                   </Text>
                 </View>
                 <View style={{ marginRight: 40, flex: 3 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
                     {payment["תאריך ושעה"]}
                   </Text>
                 </View>
@@ -130,7 +146,13 @@ const PaymentHistory = ({ paymentHistory }) => {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={{ fontSize: 12, color: "white" }}>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
                     {payment['סה"כ בשקלים']}{" "}
                     {/* <FontAwesomeIcon
                       style={{ marginVertical: 7, marginLeft: -4 }}
@@ -138,7 +160,13 @@ const PaymentHistory = ({ paymentHistory }) => {
                       color='white'
                     /> */}
                   </Text>
-                  <Text style={{ fontSize: 12, color: "white" }}>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
                     {payment["סטטוס חיוב"]}
                   </Text>
                 </View>

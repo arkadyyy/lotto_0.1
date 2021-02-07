@@ -34,6 +34,7 @@ const ActiveForms = ({ activeforms }) => {
                 padding: 7,
                 marginLeft: 2,
                 marginRight: 2,
+                fontFamily: "fb-Spacer",
               }}
             >
               משחק ומס' הגרלה
@@ -46,6 +47,8 @@ const ActiveForms = ({ activeforms }) => {
                 padding: 7,
                 marginLeft: 2,
                 marginRight: 2,
+
+                fontFamily: "fb-Spacer",
               }}
             >
               תאריך ושעה
@@ -58,6 +61,7 @@ const ActiveForms = ({ activeforms }) => {
                 padding: 7,
                 marginLeft: 2,
                 marginRight: 2,
+                fontFamily: "fb-Spacer",
               }}
             >
               עלות הטופס
@@ -70,6 +74,7 @@ const ActiveForms = ({ activeforms }) => {
                 padding: 7,
                 marginLeft: 2,
                 marginRight: 2,
+                fontFamily: "fb-Spacer",
               }}
             >
               שכפול הטופס
@@ -82,7 +87,7 @@ const ActiveForms = ({ activeforms }) => {
               marginRight: 20,
               backgroundColor: "#00AEEF",
               height: 200,
-              width: "98%",
+              width: "100%",
               marginTop: 10,
               justifyContent: "center",
               alignItems: "center",
@@ -95,6 +100,7 @@ const ActiveForms = ({ activeforms }) => {
                 borderBottomWidth: 1,
                 borderBottomColor: "white",
                 marginBottom: 10,
+                fontFamily: "fb-Spacer",
               }}
             >
               אין ברשותך טפסים פעילים.
@@ -116,6 +122,7 @@ const ActiveForms = ({ activeforms }) => {
                   flex: 1,
                   fontSize: 30,
                   textAlign: "center",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
                 שלח טופס

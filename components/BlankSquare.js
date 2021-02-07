@@ -15,6 +15,7 @@ import {
   List,
   ListItem,
 } from "native-base";
+import axios from "axios";
 
 const Timer = ({ color }) => {
   return (
@@ -33,7 +34,7 @@ const Timer = ({ color }) => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>00</Text>
+              <Text style={{ color: "white" }}>0</Text>
             </View>
             <View
               style={{
@@ -46,7 +47,7 @@ const Timer = ({ color }) => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>00</Text>
+              <Text style={{ color: "white" }}>0</Text>
             </View>
           </View>
           <Text style={{ marginLeft: 18, fontSize: 10 }}>שניות</Text>
@@ -66,7 +67,7 @@ const Timer = ({ color }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>00</Text>
+                <Text style={{ color: "white" }}>0</Text>
               </View>
               <View
                 style={{
@@ -79,11 +80,42 @@ const Timer = ({ color }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>00</Text>
+                <Text style={{ color: "white" }}>0</Text>
               </View>
             </View>
             <Text style={{ marginLeft: 15, fontSize: 10 }}>דקות</Text>
           </View>
+        </View>
+        <View>
+          <View style={{ margin: 5, flexDirection: "row" }}>
+            <View
+              style={{
+                width: 25,
+                height: 25,
+                borderRadius: 7,
+                backgroundColor: color,
+
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ color: "white" }}>0</Text>
+            </View>
+            <View
+              style={{
+                width: 25,
+                height: 25,
+                borderRadius: 7,
+                backgroundColor: color,
+                marginHorizontal: 2,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ color: "white" }}>0</Text>
+            </View>
+          </View>
+          <Text style={{ marginLeft: 18, fontSize: 10 }}>שעות</Text>
         </View>
         <View>
           <View>
@@ -99,7 +131,7 @@ const Timer = ({ color }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>00</Text>
+                <Text style={{ color: "white" }}>0</Text>
               </View>
               <View
                 style={{
@@ -112,10 +144,10 @@ const Timer = ({ color }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>00</Text>
+                <Text style={{ color: "white" }}>0</Text>
               </View>
             </View>
-            <Text style={{ marginLeft: 15, fontSize: 10 }}>שעות</Text>
+            <Text style={{ marginLeft: 15, fontSize: 10 }}>ימים</Text>
           </View>
           <Button
             small
@@ -136,8 +168,63 @@ const Timer = ({ color }) => {
   );
 };
 
+// var myfunc = setInterval(function () {
+//   var now = new Date().getTime();
+//   var timeleft = countDownDate - now;
+
+//   var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+//   var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//   var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+//   var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+// }, 1000);
+
 const BlankSquare = ({ color, gameName }) => {
   const route = useRoute();
+
+  const [lottoDate, setlottoDate] = useState(null);
+  const [chanceDate, setchanceDate] = useState(null);
+  const [sheva77Date, setsheva77Date] = useState(null);
+  const [one23Date, setone23Date] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://52.90.122.190:5000/games/time")
+      .then((res) => {
+        setlottoDate(res.data["לוטו"]);
+        setchanceDate(res.data["צ'אנס"]);
+        setsheva77Date(res.data["777"]);
+        setone23Date(res.data["123"]);
+
+        let days;
+        let hours;
+        let minutes;
+        let seconds;
+
+        let countDownDate = new Date(res.data["777"]).getTime();
+        console.log("countdowndate : ", countDownDate);
+
+        setInterval(function () {
+          let countDownDate = new Date(res.data["777"]).getTime();
+          let now = new Date().getTime();
+          let timeleft = countDownDate - now;
+
+          days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+          hours = Math.floor(
+            (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+          seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+          // console.log("days : ", days);
+          // console.log("hours : ", hours);
+          // console.log("minutes : ", minutes);
+          // console.log("seconds : ", seconds);
+        }, 1000);
+
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>

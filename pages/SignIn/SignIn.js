@@ -375,9 +375,9 @@ const SignIn = ({ navigation }) => {
                 <View style={[signInstyles.whiteSquare]}>
                   <Text
                     style={{
-                      fontSize: 25,
-                      fontWeight: "bold",
-                      fontFamily: "fb-Spacer",
+                      fontSize: 27,
+
+                      fontFamily: "fb-Spacer-bold",
                     }}
                   >
                     לקוח חדש
@@ -395,10 +395,10 @@ const SignIn = ({ navigation }) => {
                       >
                         <Text
                           style={{
-                            fontWeight: "bold",
                             color: "white",
                             fontSize: 10,
                             padding: 15,
+                            fontFamily: "fb-Spacer-bold",
                           }}
                         >
                           רשום? התחבר עכשיו
@@ -427,6 +427,7 @@ const SignIn = ({ navigation }) => {
                       style={{
                         flex: 1,
                         color: "white",
+                        fontFamily: "fb-Spacer",
                       }}
                     >
                       פרטי לקוח
@@ -444,7 +445,14 @@ const SignIn = ({ navigation }) => {
                           }
                           onPress={() => setGender("male")}
                         >
-                          <Text style={{ color: "white" }}>זכר</Text>
+                          <Text
+                            style={{
+                              color: "white",
+                              fontFamily: "fb-Spacer-bold",
+                            }}
+                          >
+                            זכר
+                          </Text>
                         </TouchableOpacity>
                       </View>
 
@@ -459,7 +467,14 @@ const SignIn = ({ navigation }) => {
                           }
                           onPress={() => setGender("female")}
                         >
-                          <Text style={{ color: "white" }}>נקבה</Text>
+                          <Text
+                            style={{
+                              color: "white",
+                              fontFamily: "fb-Spacer-bold",
+                            }}
+                          >
+                            נקבה
+                          </Text>
                         </TouchableOpacity>
                       </View>
                     </View>
@@ -473,7 +488,13 @@ const SignIn = ({ navigation }) => {
                     }}
                   >
                     <View style={{ flexDirection: "row" }}>
-                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
+                      <Label
+                        style={{
+                          fontSize: 12,
+                          marginHorizontal: 10,
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
                         שם פרטי
                       </Label>
                     </View>
@@ -502,7 +523,13 @@ const SignIn = ({ navigation }) => {
                     }}
                   >
                     <View style={{ flexDirection: "row" }}>
-                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
+                      <Label
+                        style={{
+                          fontSize: 12,
+                          marginHorizontal: 10,
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
                         נייד
                       </Label>
                     </View>
@@ -538,7 +565,13 @@ const SignIn = ({ navigation }) => {
                     }}
                   >
                     <View style={{ flexDirection: "row" }}>
-                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
+                      <Label
+                        style={{
+                          fontSize: 12,
+                          marginHorizontal: 10,
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
                         שם משפחה
                       </Label>
                     </View>
@@ -567,7 +600,13 @@ const SignIn = ({ navigation }) => {
                     }}
                   >
                     <View style={{ flexDirection: "row" }}>
-                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
+                      <Label
+                        style={{
+                          fontSize: 12,
+                          marginHorizontal: 10,
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
                         ת"ז
                       </Label>
                     </View>
@@ -596,7 +635,13 @@ const SignIn = ({ navigation }) => {
                     }}
                   >
                     <View style={{ flexDirection: "row" }}>
-                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
+                      <Label
+                        style={{
+                          fontSize: 12,
+                          marginHorizontal: 10,
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
                         אימייל
                       </Label>
                     </View>
@@ -631,7 +676,13 @@ const SignIn = ({ navigation }) => {
                         justifyContent: "space-between",
                       }}
                     >
-                      <Label style={{ fontSize: 12, marginHorizontal: 10 }}>
+                      <Label
+                        style={{
+                          fontSize: 12,
+                          marginHorizontal: 10,
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
                         כתובת
                       </Label>
                     </View>
@@ -667,7 +718,13 @@ const SignIn = ({ navigation }) => {
                         setShow(true);
                       }}
                     >
-                      <Text style={{ fontSize: 10, color: "white" }}>
+                      <Text
+                        style={{
+                          fontSize: 10,
+                          color: "white",
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
                         בחר תאריך לידה
                       </Text>
                     </TouchableOpacity>
@@ -682,6 +739,8 @@ const SignIn = ({ navigation }) => {
                           fontSize: 12,
                           color: "black",
                           textAlign: "center",
+
+                          fontFamily: "fb-Spacer",
                         },
                       ]}
                     />
@@ -711,7 +770,13 @@ const SignIn = ({ navigation }) => {
                     }}
                   >
                     <View style={{ flexDirection: "row" }}>
-                      <Label style={{ fontSize: 12, marginLeft: 10 }}>
+                      <Label
+                        style={{
+                          fontSize: 12,
+                          marginLeft: 10,
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
                         סיסמה
                       </Label>
                       <TouchableOpacity
@@ -765,11 +830,23 @@ const SignIn = ({ navigation }) => {
                           justifyContent: "space-between",
                         }}
                       >
-                        <Text style={{ color: "white", fontSize: 10 }}>
+                        <Text
+                          style={{
+                            color: "white",
+                            fontSize: 10,
+                            fontFamily: "fb-Spacer",
+                          }}
+                        >
                           אני מעל גיל 18
                         </Text>
                         {getAge(date.replace(/\./g, "/")) < 18 && (
-                          <Text style={{ color: "darkred", fontSize: 10 }}>
+                          <Text
+                            style={{
+                              color: "darkred",
+                              fontSize: 10,
+                              fontFamily: "fb-Spacer",
+                            }}
+                          >
                             תאריך הלידה שהוזן אינו חוקי
                           </Text>
                         )}
@@ -786,7 +863,13 @@ const SignIn = ({ navigation }) => {
                       }}
                     />
                     <Body style={{ marginLeft: 20 }}>
-                      <Text style={{ color: "white", fontSize: 10 }}>
+                      <Text
+                        style={{
+                          color: "white",
+                          fontSize: 10,
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
                         אני מאשר את תנאי השימוש באתר ואת התקנון
                       </Text>
                     </Body>
@@ -794,7 +877,9 @@ const SignIn = ({ navigation }) => {
                   <TouchableOpacity
                     style={{ marginLeft: 57, marginBottom: 40 }}
                   >
-                    <Text style={{ fontSize: 10 }}>קרא תקנון</Text>
+                    <Text style={{ fontSize: 10, fontFamily: "fb-Spacer" }}>
+                      קרא תקנון
+                    </Text>
                   </TouchableOpacity>
 
                   <Button
@@ -854,6 +939,7 @@ const SignIn = ({ navigation }) => {
                         flex: 1,
                         fontSize: 30,
                         textAlign: "center",
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       הבא

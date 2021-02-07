@@ -95,7 +95,15 @@ const DoubleLottoPage = ({ navigation }) => {
               <View style={LottoListstyles.topNumCircle}>
                 <Text style={{ fontSize: 20, color: "#E62321" }}>1</Text>
               </View>
-              <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
+              <Text
+                style={{
+                  fontSize: 17,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מלא את הטופס
+              </Text>
             </View>
 
             <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />

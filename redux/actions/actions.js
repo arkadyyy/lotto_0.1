@@ -89,10 +89,7 @@ const LogIn = (username, password) => async (dispatch) => {
     console.log(error);
     dispatch({
       type: "LOGIN_FAIL",
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: { error },
     });
   }
 };

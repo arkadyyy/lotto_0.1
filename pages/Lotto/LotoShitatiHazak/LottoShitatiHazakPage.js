@@ -24,8 +24,7 @@ import ShitatiHazakTable from "./ShitatiHazkTable";
 import { autoFill } from "./ShitatiHazakFillForm";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {faPlusCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 const LottoShitatiHazakPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -86,7 +85,15 @@ const LottoShitatiHazakPage = ({ navigation }) => {
               >
                 <Text style={{ fontSize: 20, color: "#E62321" }}>1</Text>
               </View>
-              <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
+              <Text
+                style={{
+                  fontSize: 17,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מלא את הטופס
+              </Text>
             </View>
 
             <ChooseNumOfTables
@@ -207,11 +214,14 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                 zIndex: 1,
               }}
             >
-             <Button
+              <Button
                 onPress={() => {
                   let summary = { lotoShitatiHhazak: fullTables };
-                 
-                  navigation.navigate("ExtraFormPage",{tableNum:tableNum,screenName:'לוטו שיטתי'});
+
+                  navigation.navigate("ExtraFormPage", {
+                    tableNum: tableNum,
+                    screenName: "לוטו שיטתי",
+                  });
                 }}
                 style={{
                   borderRadius: 17,
@@ -229,24 +239,41 @@ const LottoShitatiHazakPage = ({ navigation }) => {
               </Button>
             </View>
           </View>
-        
-           
-          <View style={{  width: "100%", height: 30, margin: 10,flexDirection:"row", justifyContent:"space-between" }}>
-              <Text style={{ fontSize: EStyleSheet.value("$rem") * 25 }}>הסבר על הגרלות לוטו</Text>
-            <View style={{flexDirection:"row",paddingTop:5}}>
+
+          <View
+            style={{
+              width: "100%",
+              height: 30,
+              margin: 10,
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text style={{ fontSize: EStyleSheet.value("$rem") * 25 }}>
+              הסבר על הגרלות לוטו
+            </Text>
+            <View style={{ flexDirection: "row", paddingTop: 5 }}>
               <FontAwesomeIcon
-                  color='#263742'
-                    border={true}
-                    inverse
+                color='#263742'
+                border={true}
+                inverse
                 icon={faPlusCircle}
                 onPress={() => {
-                  navigation.navigate("HowItWorks")
+                  navigation.navigate("HowItWorks");
                 }}
-                  />
-              <Text style={{marginRight:10,paddingRight:5,paddingTop:2,fontSize:EStyleSheet.value("$rem") * 15}}>עוד...</Text>
-              </View>
-              </View>
-
+              />
+              <Text
+                style={{
+                  marginRight: 10,
+                  paddingRight: 5,
+                  paddingTop: 2,
+                  fontSize: EStyleSheet.value("$rem") * 15,
+                }}
+              >
+                עוד...
+              </Text>
+            </View>
+          </View>
         </View>
       </ScrollView>
     </>

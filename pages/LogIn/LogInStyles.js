@@ -9,7 +9,7 @@ const logInStyles = StyleSheet.create({
   blanksquare: {
     backgroundColor: "#F2F2F2",
 
-    height: 90,
+    height: 110,
     width: "100%",
   },
   whiteSquare: {
@@ -25,7 +25,6 @@ const logInStyles = StyleSheet.create({
     backgroundColor: "#263742",
 
     width: "90%",
-
     flex: 1,
     margin: 20,
   },

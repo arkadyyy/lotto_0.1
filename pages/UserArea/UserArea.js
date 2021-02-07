@@ -133,7 +133,11 @@ const UserArea = ({ navigation }) => {
             <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
               <Card transparent style={{ flex: 1 }}>
                 <CardItem style={{ backgroundColor: "#405A68" }}>
-                  <Text style={{ color: "white" }}>טפסים</Text>
+                  <Text
+                    style={{ color: "white", fontFamily: "fb-Spacer-bold" }}
+                  >
+                    טפסים
+                  </Text>
                 </CardItem>
                 <View
                   style={{
@@ -154,7 +158,11 @@ const UserArea = ({ navigation }) => {
                       setScreen("activeForms");
                     }}
                   >
-                    <Text style={{ fontSize: 10 }}>טפסים פעילים</Text>
+                    <Text
+                      style={{ fontSize: 10, fontFamily: "fb-Spacer-bold" }}
+                    >
+                      טפסים פעילים
+                    </Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity
@@ -169,7 +177,11 @@ const UserArea = ({ navigation }) => {
                       setScreen("sendHistory");
                     }}
                   >
-                    <Text style={{ fontSize: 10 }}>היסטורית שליחות</Text>
+                    <Text
+                      style={{ fontSize: 10, fontFamily: "fb-Spacer-bold" }}
+                    >
+                      היסטורית שליחות
+                    </Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity
@@ -184,13 +196,21 @@ const UserArea = ({ navigation }) => {
                       setScreen("myWins");
                     }}
                   >
-                    <Text style={{ fontSize: 10 }}>הזכיות שלי</Text>
+                    <Text
+                      style={{ fontSize: 10, fontFamily: "fb-Spacer-bold" }}
+                    >
+                      הזכיות שלי
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </Card>
               <Card transparent style={{ flex: 1 }}>
                 <CardItem style={{ backgroundColor: "#405A68" }}>
-                  <Text style={{ color: "white" }}>תשלומים</Text>
+                  <Text
+                    style={{ color: "white", fontFamily: "fb-Spacer-bold" }}
+                  >
+                    תשלומים
+                  </Text>
                 </CardItem>
                 <View
                   style={{
@@ -211,7 +231,11 @@ const UserArea = ({ navigation }) => {
                       setScreen("Withdrawal");
                     }}
                   >
-                    <Text style={{ fontSize: 10 }}>משיכות</Text>
+                    <Text
+                      style={{ fontSize: 10, fontFamily: "fb-Spacer-bold" }}
+                    >
+                      משיכות
+                    </Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity
@@ -226,13 +250,21 @@ const UserArea = ({ navigation }) => {
                       setScreen("PaymentHistory");
                     }}
                   >
-                    <Text style={{ fontSize: 10 }}>היסטורית תשלומים</Text>
+                    <Text
+                      style={{ fontSize: 10, fontFamily: "fb-Spacer-bold" }}
+                    >
+                      היסטורית תשלומים
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </Card>
               <Card transparent style={{ flex: 1 }}>
                 <CardItem style={{ backgroundColor: "#405A68" }}>
-                  <Text style={{ color: "white" }}>החזרים</Text>
+                  <Text
+                    style={{ color: "white", fontFamily: "fb-Spacer-bold" }}
+                  >
+                    החזרים
+                  </Text>
                 </CardItem>
                 <View
                   style={{
@@ -253,7 +285,11 @@ const UserArea = ({ navigation }) => {
                       setScreen("HistoryRefund");
                     }}
                   >
-                    <Text style={{ fontSize: 11 }}>היסטורית החזרים</Text>
+                    <Text
+                      style={{ fontSize: 11, fontFamily: "fb-Spacer-bold" }}
+                    >
+                      היסטורית החזרים
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </Card>
@@ -271,7 +307,15 @@ const UserArea = ({ navigation }) => {
                 marginTop: 20,
               }}
             >
-              <Text style={{ fontSize: 20, color: "black" }}>שלום ,{name}</Text>
+              <Text
+                style={{
+                  fontSize: 20,
+                  color: "black",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                שלום ,{name}
+              </Text>
               <Button
                 onPress={async () => {
                   await navigation.navigate("Home");
@@ -285,7 +329,15 @@ const UserArea = ({ navigation }) => {
                 rounded
                 small
               >
-                <Text style={{ color: "white", fontSize: 12 }}>התנתק</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 12,
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  התנתק
+                </Text>
               </Button>
             </View>
             {/* {end of hello user} */}
