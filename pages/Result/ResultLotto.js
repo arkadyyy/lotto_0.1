@@ -289,9 +289,7 @@ setSortedData(sortedData)
                     }}>
                     {" מתאריך "} 
                     {hagrala[Object.keys(hagrala)[1]]}
-                    </Text>
-                    
-                   
+                    </Text>                
                 </View>
                  
                 <View style={{
@@ -320,7 +318,8 @@ setSortedData(sortedData)
                   style={{ flexDirection: "column", alignItems: "flex-end" }}
                 >
                   <View style={{ flexDirection: "row" }}>
-                    {hagrala[Object.keys(hagrala)[2]].numbers.map((num) => (
+                    {hagrala[Object.keys(hagrala)[2]].numbers
+                      .map((num) => (
                       <Text
                         style={{
                           borderWidth: 2,
