@@ -40,7 +40,7 @@ const LottoPage = ({ navigation }) => {
 
   const autoFillForm = () => {
     let fullTabels1 = [];
-    for (let i = 1; i < tableNum * 2 + 1; i++) {
+    for (let i = 1; i < tableNum + 1; i++) {
       let numbers = autoFill(6);
       let table = {
         tableNum: i,
@@ -228,7 +228,7 @@ const LottoPage = ({ navigation }) => {
                   navigation.navigate("ExtraFormPage", {
                     tableNum: tableNum,
                     screenName: "לוטו",
-                    fullTables:fullTables
+                    fullTables: fullTables,
                   });
                 }}
                 style={LottoListstyles.sendFormBtn}

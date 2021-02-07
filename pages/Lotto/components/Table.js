@@ -95,7 +95,7 @@ const Table = ({
       let fullTable2 = 0;
       let x;
       fullTables.forEach((table) => {
-        if (+table.tableNum === +index1) {
+        if (+table.tableNum === index) {
           fullTable1 = table;
 
           if (fullTable1.choosenNums.length < 6) {
@@ -107,18 +107,18 @@ const Table = ({
           settable1(fullTable1.choosenNums);
           setstrongNum1(fullTable1.strongNum);
         }
-        if (+table.tableNum === +index2) {
-          fullTable2 = table;
+        // if (+table.tableNum === +index2) {
+        //   fullTable2 = table;
 
-          if (fullTable2.choosenNums.length < 6) {
-            x = 6 - fullTable2.choosenNums.length;
-            for (x; x > 0; x--) {
-              fullTable2.choosenNums.push(" ");
-            }
-          }
-          settable2(fullTable2.choosenNums);
-          setstrongNum2(fullTable2.strongNum);
-        }
+        //   if (fullTable2.choosenNums.length < 6) {
+        //     x = 6 - fullTable2.choosenNums.length;
+        //     for (x; x > 0; x--) {
+        //       fullTable2.choosenNums.push(" ");
+        //     }
+        //   }
+        //   settable2(fullTable2.choosenNums);
+        //   setstrongNum2(fullTable2.strongNum);
+        // }
       });
     } else {
       settable1([" ", " ", " ", " ", " ", " "]);
