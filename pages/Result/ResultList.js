@@ -156,7 +156,7 @@ const ResultList = (props) => {
                         justifyContent:"center"
                           
                       }}
-                      onPress={() => navigation.navigate("LottoPage")}
+                      onPress={() => navigation.navigate("ResultChance")}
                                       >
                       <Text
                             style={{

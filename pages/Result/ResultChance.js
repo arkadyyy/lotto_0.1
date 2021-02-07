@@ -44,9 +44,10 @@ import {
 
 
 
-const ResultLotto = (props) => {
+const ResultChance = (props) => {
   const { navigation } = props;
   const [data, setData] = useState([]);
+  const [sortedData, setSortedData] = useState([]);
 
   const [show, setShow] = useState(false);
   const [date, setDate] = useState("");
@@ -74,17 +75,23 @@ const ResultLotto = (props) => {
     });
     setTimeout(() => {
       axios
-        .get(`http://52.90.122.190:5000/results/lotto`, {
+        .get(`http://52.90.122.190:5000/results/chance`, {
           headers: {
             Authorization: jwt,
           },
         })
         .then((res) => setData(res.data.data.rows))
-
         .catch((err) => console.log(err));
     }, 5000);
   }, [date]);
 
+    useEffect(() => {
+        // console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", data);
+        const sortedData=data.sort((a, b) => parseFloat(a["מספר הגרלה"]) - parseFloat(b["מספר הגרלה"]));
+setSortedData(sortedData)
+// console.log("sortedddddddddddddddddddddddddd:" ,setData(data.sort((a, b) => parseFloat(a[1]) - parseFloat(b[1])))
+// console.log("sorted dataaaaaaaaaaaaaaaaaaaaaaaaaa:",data);
+    },[data])
   return (
     <>
       <NavBar navigation={navigation}  />
@@ -104,7 +111,7 @@ const ResultLotto = (props) => {
                 paddingRight: EStyleSheet.value("$rem") * 20
               }}
             >
-              תוצאות הגרלת לוטו
+              תוצאות הגרלת צ'אנס
           </Text>            
             
               <View
@@ -214,131 +221,86 @@ const ResultLotto = (props) => {
               marginTop: 10,
             }}
                   >
-                   
-            {data.map((hagrala, index) => (
-              <ListItem key={index} style={{flexDirection:"column"}}>
-                
-                <View style={{
-                  // alignSelf:"center",
-                  flexDirection: "row",
-                  left:EStyleSheet.value("$rem") * 14,
-                  backgroundColor: "white",
-                  borderRadius: 13,
-                  height: EStyleSheet.value("$rem") * 44,
-                  width: EStyleSheet.value("$rem") * 310,
-                  justifyContent:"center"
-                }}>
 
-                  <View
-                    style={{ alignSelf:"center" }}
-                  >
-                    <Text style={{
-                      fontSize:EStyleSheet.value("$rem") * 25,
-                      color: "#263742",
-                      fontFamily: "fb-Spacer-bold",
-                      // textAlignVertical: "center",
-                      // textAlign:"center"
-                    }}>
-                    {"  מספר הגרלה "} 
-                              {hagrala[Object.keys(hagrala)[0]]} 
-                  </Text>
-                </View>
-                  <View
-                  style={{ alignSelf:"center",flexDirection:"row" }}
-                  >
+                                  {sortedData
+                                      
 
-                    <Text style={{
-                      fontSize: EStyleSheet.value("$rem") * 25,  
-                      fontFamily: "fb-Spacer-bold",
+                                      .map((hagrala, index) => (
+                         
+                         <ListItem key={index}>
+                                              {/* {console.log("hagralaChans:",hagrala[Object.keys(hagrala)[2]].numbers)} */}
+                                              
+                             <View style={{ marginRight: 15 }}>
+                               <Text style={{ fontSize: 12, color: "black" }}>
+                                 {" "}
+                                 {hagrala[Object.keys(hagrala)[0]]}
+                               </Text>
+                             </View>
+                             <View style={{ marginRight: 40 }}>
+                               <Text style={{ fontSize: 12, color: "black" }}>
+                                 {" "}
+                                 {hagrala[Object.keys(hagrala)[1]]}
+                               </Text>
+                                               </View>
+                                              
+                            <View
+                               style={{ flexDirection: "column", alignItems: "flex-end" }}>
+                            {/* {console.log("???????????numbers??????????????",hagrala[Object.keys(hagrala)[2]])} */}
 
-                      color: "#263742"
-                    }}>
-                    {" מתאריך "} 
-                    {hagrala[Object.keys(hagrala)[1]]}
-                    </Text>
-                    
-                   
-                </View>
-                 
-                <View style={{
-                    alignSelf: "center",
-                    // left: EStyleSheet.value("$rem") * 1,
-                      width: EStyleSheet.value("$rem") * 28,
-                      height: EStyleSheet.value("$rem") * 28,
-                      borderColor: "white",
-                      borderRadius: 20,
-                    flexDirection: "row",
-                      justifyContent:"center",
-                      color: "white",
-                      fontSize: EStyleSheet.value("$rem") * 25,
-                    fontFamily: "fb-Spacer-bold",
-                      
-                      // marginLeft: EStyleSheet.value("$rem") * 5,
-                      // marginTop:EStyleSheet.value("$rem") * 10,
-                    backgroundColor: "#263742"
-                  }}>
-                  <FontAwesomeIcon size={EStyleSheet.value("$rem") * 30} icon={faCaretLeft} color={"white"} style={{left:EStyleSheet.value("$rem") * 2}} />
-                </View>
-                </View>
+                                                  
+                                                  
+                              <View style={{ flexDirection: "row" }}>
+                                                      {
+                           hagrala[Object.keys(hagrala)[2]].numbers
+                                                          
+                                .map((nums,key) => (
 
-               
-                <View
-                  style={{ flexDirection: "column", alignItems: "flex-end" }}
-                >
-                  <View style={{ flexDirection: "row" }}>
-                    {hagrala[Object.keys(hagrala)[2]].numbers.map((num) => (
-                      <Text
-                        style={{
-                          borderWidth: 2,
-                          width: EStyleSheet.value("$rem") * 35,
-                          height: EStyleSheet.value("$rem") * 35,
-                          borderColor: "white",
-                          borderRadius: 18,
-                          textAlign: "center",
-                          textAlignVertical: "center",
-                          color: "white",
-                          fontSize: EStyleSheet.value("$rem") * 33,
-                          fontFamily: "fb-Spacer-bold",
-                          marginLeft: EStyleSheet.value("$rem") * 5,
-                          marginTop:EStyleSheet.value("$rem") * 10
+                                    Object.keys(nums)
 
-                        }}
-                      >
-                        {num}
-                      </Text>
-                    ))}
-
-{hagrala[Object.keys(hagrala)[2]].strong_number && (
-                    <Text
-                        style={{
-                        marginLeft:EStyleSheet.value("$rem") * 14,
-                        borderWidth: 2,
-                        width: EStyleSheet.value("$rem") *35 ,
-                        height: EStyleSheet.value("$rem") * 35,
-                        borderColor: "black",
-                        borderRadius: 18,
-                        textAlign: "center",
-                        textAlignVertical: "center",
-                        color: "black",
-                          fontSize: EStyleSheet.value("$rem") * 33,
-                          fontFamily: "fb-Spacer-bold",
-                          marginTop:EStyleSheet.value("$rem") * 10
-
-
-                        
-                      }}
-                    >
-                      {hagrala[Object.keys(hagrala)[2]].strong_number}
-                    </Text>
-                  )}
-
-                  </View>
-                 
-                </View>
-
-              
-              </ListItem>
-            ))}
+                                        .map((num, index) => (
+                                    <View>
+                                    {/* {console.log("??????", nums[num])} */}
+                                                {/* {console.log("??????", num[key])} */}
+                                    
+                                    <Text>
+                                    {index===0 && "תלתן"}    
+                                    {index===1 && "יהלום"}    
+                                    {index===2 && "עלה"}    
+                                    {index===3 && "לב"}    
+                                    </Text>
+                                    <Text
+                                    style={{
+                                      width: 20,
+                                                    height: 20,
+                                                    borderRadius: 18,
+                                                    borderColor: "green",
+                                      borderWidth:2,
+                                      backgroundColor: "white",
+                                      textAlign: "center",
+                                      textAlignVertical: "center",
+                                      color: "green",
+                                      fontSize: EStyleSheet.value("$rem") * 14,
+                                    }}
+                                  >
+                                                {nums[num]}
+                                   </Text>
+                                                
+                                    </View>
+                                           
+                                // ))
+                                    )
+                                      )
+                                ))
+                                      
+                               
+                                }
+                              </View>
+                              
+                            </View> 
+            
+                           
+                        </ListItem>
+                                     ))}
                          
           </List>
           
@@ -380,4 +342,4 @@ const ResultLotto = (props) => {
   );
 };
 
-export default ResultLotto;
+export default ResultChance;
