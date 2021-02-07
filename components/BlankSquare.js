@@ -18,36 +18,42 @@ import {
 import axios from "axios";
 
 const Timer = ({ color, usedDate }) => {
-  const [seconds, setseconds] = useState(null);
-  const [minutes, setminutes] = useState(null);
-  const [hours, sethours] = useState(null);
-  const [days, setdays] = useState(null);
+  const [seconds, setseconds] = useState(0);
+  const [minutes, setminutes] = useState(0);
+  const [hours, sethours] = useState(0);
+  const [days, setdays] = useState(0);
 
-  setInterval(function () {
+  setInterval(() => {
     let countDownDate = new Date(usedDate).getTime();
     let now = new Date().getTime();
     let timeleft = countDownDate - now;
 
-    var daysLeft = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-
-    setdays(daysLeft);
-    var hoursLeft = Math.floor(
+    let daysLeft = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+    if (daysLeft > 0) {
+      setdays(daysLeft);
+    }
+    let hoursLeft = Math.floor(
       (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
+    if (hoursLeft > 0) {
+      sethours(hoursLeft);
+    }
+    let minutesLeft = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+    if (minutesLeft > 0) {
+      setminutes(minutesLeft);
+    }
+    let secondsLeft = Math.floor((timeleft % (1000 * 60)) / 1000);
+    if (secondsLeft > 0) {
+      setseconds(secondsLeft);
+    }
 
-    sethours(hoursLeft);
-    var minutesLeft = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-
-    setminutes(minutesLeft);
-    var secondsLeft = Math.floor((timeleft % (1000 * 60)) / 1000);
-
-    setseconds(secondsLeft);
-
-    console.log("days : ", daysLeft);
-    console.log("hours : ", hoursLeft);
-    console.log("minutes : ", minutesLeft);
-    console.log("seconds : ", secondsLeft);
+    // console.log("days : ", daysLeft);
+    // console.log("hours : ", hoursLeft);
+    // console.log("minutes : ", minutesLeft);
+    // console.log("seconds : ", secondsLeft);
   }, 1000);
+
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -60,12 +66,11 @@ const Timer = ({ color, usedDate }) => {
                 height: 25,
                 borderRadius: 7,
                 backgroundColor: color,
-
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>{seconds}</Text>
+              <Text style={{ color: "white" }}>{Math.floor(seconds % 10)}</Text>
             </View>
             <View
               style={{
@@ -78,7 +83,7 @@ const Timer = ({ color, usedDate }) => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>0</Text>
+              <Text style={{ color: "white" }}>{Math.floor(seconds / 10)}</Text>
             </View>
           </View>
           <Text style={{ marginLeft: 18, fontSize: 10 }}>שניות</Text>
@@ -98,7 +103,9 @@ const Timer = ({ color, usedDate }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>{minutes}</Text>
+                <Text style={{ color: "white" }}>
+                  {Math.floor(minutes % 10)}
+                </Text>
               </View>
               <View
                 style={{
@@ -111,7 +118,9 @@ const Timer = ({ color, usedDate }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>0</Text>
+                <Text style={{ color: "white" }}>
+                  {Math.floor(minutes / 10)}
+                </Text>
               </View>
             </View>
             <Text style={{ marginLeft: 15, fontSize: 10 }}>דקות</Text>
@@ -130,7 +139,7 @@ const Timer = ({ color, usedDate }) => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>{hours}</Text>
+              <Text style={{ color: "white" }}>{Math.floor(hours % 10)}</Text>
             </View>
             <View
               style={{
@@ -143,7 +152,7 @@ const Timer = ({ color, usedDate }) => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>0</Text>
+              <Text style={{ color: "white" }}>{Math.floor(hours / 10)}</Text>
             </View>
           </View>
           <Text style={{ marginLeft: 18, fontSize: 10 }}>שעות</Text>
@@ -162,7 +171,7 @@ const Timer = ({ color, usedDate }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>{days}</Text>
+                <Text style={{ color: "white" }}>{Math.floor(days % 10)}</Text>
               </View>
               <View
                 style={{
@@ -175,7 +184,7 @@ const Timer = ({ color, usedDate }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>0</Text>
+                <Text style={{ color: "white" }}>{Math.floor(days / 10)}</Text>
               </View>
             </View>
             <Text style={{ marginLeft: 15, fontSize: 10 }}>ימים</Text>
@@ -218,11 +227,6 @@ const BlankSquare = ({ color, gameName }) => {
     axios
       .get("http://52.90.122.190:5000/games/time")
       .then((res) => {
-        let days;
-        let hours;
-        let minutes;
-        let seconds;
-
         if (route.name === "LottoPage" || route.name === "LottoList") {
           setusedDate(res.data["לוטו"]);
         } else if (route.name === "ChanceList" || route.name === "ChancePage") {
