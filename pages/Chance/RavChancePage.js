@@ -220,7 +220,12 @@ const RavChancePage = ({ navigation }) => {
               <Button
                 onPress={() => {
                   let summary = { RavChance: fullTables,investNum:investNum };
-                  navigation.navigate("SumPageChance",{tableNum:4,investNum:investNum});
+                  navigation.navigate("SumPageChance",
+                    {
+                      tableNum: 4,
+                      investNum: investNum,
+                      fullTables:fullTables
+                    });
                 }}
                 style={{
                   borderRadius: 17,

@@ -229,6 +229,7 @@ const ChanceShitatiPage = ({ navigation }) => {
                   navigation.navigate("SumPageChance", {
                     tableNum: tableNum,
                     investNum: investNum,
+                    fullTables:fullTables
                   });
                 }}
                 style={{

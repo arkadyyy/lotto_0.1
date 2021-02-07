@@ -320,6 +320,7 @@ const One23Page = ({ navigation }) => {
                   navigation.navigate("SumPage123", {
                     tableNum: tableNum,
                     screenName: "123",
+                    fullTables:fullTables
                   });
                 }}
 

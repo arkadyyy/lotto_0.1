@@ -240,6 +240,7 @@ const ChancePage = ({ navigation }) => {
                   navigation.navigate("SumPageChance", {
                     tableNum: tableNum,
                     investNum: investNum,
+                    fullTables:fullTables
                   });
                 }}
                 style={{

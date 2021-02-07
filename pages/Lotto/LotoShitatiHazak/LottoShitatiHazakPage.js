@@ -221,6 +221,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                   navigation.navigate("ExtraFormPage", {
                     tableNum: tableNum,
                     screenName: "לוטו שיטתי",
+                    fullTables:fullTables
                   });
                 }}
                 style={{

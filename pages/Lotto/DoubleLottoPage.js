@@ -161,6 +161,7 @@ const DoubleLottoPage = ({ navigation }) => {
                   navigation.navigate("ExtraFormPage", {
                     tableNum: tableNum,
                     screenName: "דאבל לוטו",
+                    fullTables:fullTables
                   });
                 }}
                 style={LottoListstyles.sendFormBtn}

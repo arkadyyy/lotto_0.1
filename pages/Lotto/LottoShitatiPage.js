@@ -179,6 +179,7 @@ const LottoShitatiPage = ({ navigation }) => {
                   navigation.navigate("ExtraFormPage", {
                     tableNum: tableNum,
                     screenName: "לוטו שיטתי",
+                    fullTables:fullTables
                   });
                 }}
                 style={LottoListstyles.sendFormBtn}
