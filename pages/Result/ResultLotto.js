@@ -49,22 +49,41 @@ const ResultLotto = (props) => {
   const [data, setData] = useState([]);
   const [sortedData, setSortedData] = useState([]);
 
-  const [show, setShow] = useState(false);
-  const [date, setDate] = useState("");
+  const [showStart, setShowStart] = useState(false);
+  const [showEnd, setShowEnd] = useState(false);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setendDate] = useState("");
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
-    setShow(Platform.OS === "ios");
+    setShowStart(Platform.OS === "ios");
     let x = currentDate.toISOString().split("T")[0].split("-");
   
-    console.log("date1/////////",currentDate.toISOString().split("T")[0].split("-"));
+    console.log("dateStartstartstart",currentDate.toISOString().split("T")[0].split("-"));
   
     let y = [];
   
     y.push(x[2], ".", x[1], ".", x[0]);
   
     setDate(y.join(""));
-    console.log("date:///////////////////////////",date);
+    // console.log("date:///////////////////////////",date);
   };
+  const onChangeEnd = (event, selectedDateEnd) => {
+    const currentDateEnd = selectedDateEnd || date;
+    setShowEnd(Platform.OS === "ios");
+    let x = currentDateEnd.toISOString().split("T")[0].split("-");
+  
+    console.log("dateEnd",currentDateEnd.toISOString().split("T")[0].split("-"));
+  
+    let y = [];
+  
+    y.push(x[2], ".", x[1], ".", x[0]);
+  
+    setDateEnd(y.join(""));
+    // console.log("date:///////////////////////////",date);
+  };
+  const [date, setDate] = useState("");
+  const [dateEnd, setDateEnd] = useState("");
 
   useEffect(() => {
     let accessToken;
@@ -151,7 +170,7 @@ setSortedData(sortedData)
                         right: EStyleSheet.value("$rem") * 15
                       }}
                       onPress={() => {
-                        setShow(true);
+                        setShowStart(true);
                       }}
                 >
                   <Text
@@ -163,7 +182,7 @@ setSortedData(sortedData)
                   }}
                   >מתאריך</Text>
   
-                  {show && (
+                  {showStart && (
                       <DateTimePicker
                         testID='dateTimePicker'
                         value={new Date()}
@@ -187,7 +206,7 @@ setSortedData(sortedData)
                         right: EStyleSheet.value("$rem") * 10
                       }}
                       onPress={() => {
-                        setShow(true);
+                        setShowEnd(true);
                       }}
                 >
                   <Text
@@ -199,14 +218,14 @@ setSortedData(sortedData)
                   }}
                   >עד תאריך</Text>
   
-                  {show && (
+                  {showEnd && (
                       <DateTimePicker
                         testID='dateTimePicker'
                         value={new Date()}
                         mode='date'
                         is24Hour={false}
                         display='spinner'
-                        onChange={onChange}
+                        onChange={onChangeEnd}
                       />
                     )}
                 </TouchableOpacity>
