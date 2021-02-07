@@ -224,28 +224,78 @@ setSortedData(sortedData)
 
                                   {sortedData.map((hagrala, index) => (
                          
-                         <ListItem key={index}>
-                                              {/* {console.log("hagralaChans:",hagrala[Object.keys(hagrala)[2]].numbers)} */}
+                         <ListItem key={index} style={{flexDirection:"column"}}>
+                         {/* {console.log("hagralaChans:",hagrala[Object.keys(hagrala)[2]].numbers)} */}
                                               
-                             <View style={{ marginRight: 15 }}>
-                               <Text style={{ fontSize: 12, color: "black" }}>
-                                 {" "}
+                         <View style={{
+                  // alignSelf:"center",
+                  flexDirection: "row",
+                  left:EStyleSheet.value("$rem") * 14,
+                  backgroundColor: "white",
+                  borderRadius: 13,
+                  height: EStyleSheet.value("$rem") * 44,
+                  width: EStyleSheet.value("$rem") * 310,
+                  justifyContent:"center"
+                }}>
+
+                    <View
+                    style={{ alignSelf:"center" }}
+                     >
+                                              
+
+                    <Text style={{
+                      fontSize:EStyleSheet.value("$rem") * 25,
+                      color: "#263742",
+                      fontFamily: "fb-Spacer-bold",
+                      // textAlignVertical: "center",
+                      // textAlign:"center"
+                    }}>
+
+                      {" מספר הגרלה"}
                                  {hagrala[Object.keys(hagrala)[0]]}
                                </Text>
                              </View>
-                             <View style={{ marginRight: 40 }}>
-                               <Text style={{ fontSize: 12, color: "black" }}>
-                                 {" "}
+
+                             <View
+                                style={{ alignSelf:"center",flexDirection:"row" }}
+                                >
+                               
+
+                               <Text style={{
+                                fontSize: EStyleSheet.value("$rem") * 25,  
+                                fontFamily: "fb-Spacer-bold",
+
+                                color: "#263742"
+                                }}>
+                                {" מתאריך "}  
                                  {hagrala[Object.keys(hagrala)[1]]}
                                </Text>
-                                               </View>
+                                  </View>
                                               
-                            <View
-                               style={{ flexDirection: "column", alignItems: "flex-end" }}>
-                            {/* {console.log("???????????numbers??????????????",hagrala[Object.keys(hagrala)[2]])} */}
-
+                                  <View style={{
+                    alignSelf: "center",
+                    // left: EStyleSheet.value("$rem") * 1,
+                      width: EStyleSheet.value("$rem") * 28,
+                      height: EStyleSheet.value("$rem") * 28,
+                      borderColor: "white",
+                      borderRadius: 20,
+                    flexDirection: "row",
+                      justifyContent:"center",
+                      color: "white",
+                      fontSize: EStyleSheet.value("$rem") * 25,
+                    fontFamily: "fb-Spacer-bold",
+                      
+                      // marginLeft: EStyleSheet.value("$rem") * 5,
+                      // marginTop:EStyleSheet.value("$rem") * 10,
+                    backgroundColor: "#263742"
+                  }}>
                                                   
-                                                  
+                <FontAwesomeIcon size={EStyleSheet.value("$rem") * 30} icon={faCaretLeft} color={"white"} style={{left:EStyleSheet.value("$rem") * 2}} />
+                </View>
+                </View>
+                <View
+                  style={{ flexDirection: "column", alignItems: "flex-end" }}
+                >           
                               <View style={{ flexDirection: "row" }}>
                                                       {
                            hagrala[Object.keys(hagrala)[2]].numbers
