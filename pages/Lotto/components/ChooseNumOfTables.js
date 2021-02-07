@@ -28,6 +28,7 @@ const ChooseNumOfTables = ({
   setHazakimNumber,
   hagralot,
   setHagralot,
+  double,
 }) => {
   const route = useRoute();
 
@@ -172,30 +173,32 @@ const ChooseNumOfTables = ({
                   10
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: 30,
-                  height: 30,
-                  borderRadius: 30,
-                  backgroundColor: tableNum === 12 ? "#8CC63F" : "white",
-                  margin: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                onPress={() => {
-                  settableNum(12);
-                }}
-              >
-                <Text
+              {!double && (
+                <TouchableOpacity
                   style={{
-                    color: tableNum === 12 ? "white" : "#E62321",
-                    fontFamily: "fb-Spacer-bold",
+                    width: 30,
+                    height: 30,
+                    borderRadius: 30,
+                    backgroundColor: tableNum === 12 ? "#8CC63F" : "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  onPress={() => {
+                    settableNum(12);
                   }}
                 >
-                  12
-                </Text>
-              </TouchableOpacity>
-              {route.name === "LottoPage" && (
+                  <Text
+                    style={{
+                      color: tableNum === 12 ? "white" : "#E62321",
+                      fontFamily: "fb-Spacer-bold",
+                    }}
+                  >
+                    12
+                  </Text>
+                </TouchableOpacity>
+              )}
+              {route.name === "LottoPage" && !double && (
                 <TouchableOpacity
                   style={{
                     width: 30,

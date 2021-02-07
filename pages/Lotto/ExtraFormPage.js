@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LottoListstyles from "./LottoListStyles";
 import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
@@ -52,7 +53,7 @@ const ExtraFormPage = ({ route, navigation }) => {
       <ScrollView>
         <NavBar navigation={navigation} screenName={screenName} />
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
-        <ChooseForm setdouble={setdouble} double={double} />
+        {/* <ChooseForm setdouble={setdouble} double={double} /> */}
         <View style={{ margin: 15 }}>
           <View
             style={{
@@ -69,28 +70,30 @@ const ExtraFormPage = ({ route, navigation }) => {
                 marginTop: 20,
               }}
             >
-              <View
+              <View style={LottoListstyles.topNumCircle}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: "#FF0000",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  2
+                </Text>
+              </View>
+              <Text
                 style={{
-                  flexDirection: "row",
-                  backgroundColor: "white",
-                  width: 50,
-                  height: 50,
-                  borderRadius: 33,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginRight: 15,
+                  fontSize: 17,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
-                <Text style={{ fontSize: 20, color: "#E62321" }}>2</Text>
-              </View>
-              <Text style={{ fontSize: 27, color: "white" }}>
                 שדרג את הטופס
               </Text>
             </View>
 
             <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
-<ExtraAndOtomatChoose screenName="lottoPages"/>
-          
+            <ExtraAndOtomatChoose screenName='lottoPages' />
 
             <View
               style={{
@@ -118,6 +121,7 @@ const ExtraFormPage = ({ route, navigation }) => {
                 style={{
                   fontSize: EStyleSheet.value("$rem") * 22,
                   color: "white",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
                 סיכום ושליחת טופס
@@ -135,6 +139,7 @@ const ExtraFormPage = ({ route, navigation }) => {
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
                     color: "yellow",
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   סה"כ {tableNum}טבלאות
@@ -152,6 +157,7 @@ const ExtraFormPage = ({ route, navigation }) => {
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
                     color: "yellow",
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   {" "}
@@ -170,6 +176,7 @@ const ExtraFormPage = ({ route, navigation }) => {
                     fontSize: EStyleSheet.value("$rem") * 22,
                     color: "white",
                     marginLeft: 15,
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   לתשלום: {price}{" "}
@@ -198,45 +205,45 @@ const ExtraFormPage = ({ route, navigation }) => {
                   console.log("store.user : ", store.user.signInUserSession);
                   // console.log("jwtState : ", jwtState);
 
-                  axios
-                    .post(
-                      "http://52.90.122.190:5000/games/lotto/type/regular/0",
-                      {
-                        tables: {
-                          tables: [
-                            {
-                              table_number: 1,
-                              numbers: [11, 12, 13, 14, 15, 16],
-                              strong_number: 6,
-                            },
-                            {
-                              table_number: 2,
-                              numbers: [1, 2, 3, 4, 5, 6],
-                              strong_number: 6,
-                            },
-                          ],
+                  // axios
+                  //   .post(
+                  //     "http://52.90.122.190:5000/games/lotto/type/regular/0",
+                  //     {
+                  //       tables: {
+                  //         tables: [
+                  //           {
+                  //             table_number: 1,
+                  //             numbers: [11, 12, 13, 14, 15, 16],
+                  //             strong_number: 6,
+                  //           },
+                  //           {
+                  //             table_number: 2,
+                  //             numbers: [1, 2, 3, 4, 5, 6],
+                  //             strong_number: 6,
+                  //           },
+                  //         ],
 
-                          extra: false,
-                          multi_lottery: 6,
-                          lottomatic: 10,
-                        },
-                        type: "regular_lotto",
-                        userName: "dlevkovich05@gmail.com",
-                        timestamp: new Date(),
-                        status: "completed",
-                      },
-                      {
-                        headers: {
-                          authorization: jwtState,
-                        },
-                      }
-                    )
-                    .then((res) => {
-                      console.log(
-                        "this is res from post server request $$$$ : ",
-                        res
-                      );
-                    });
+                  //         extra: false,
+                  //         multi_lottery: 6,
+                  //         lottomatic: 10,
+                  //       },
+                  //       type: "regular_lotto",
+                  //       userName: "dlevkovich05@gmail.com",
+                  //       timestamp: new Date(),
+                  //       status: "completed",
+                  //     },
+                  //     {
+                  //       headers: {
+                  //         authorization: jwtState,
+                  //       },
+                  //     }
+                  //   )
+                  //   .then((res) => {
+                  //     console.log(
+                  //       "this is res from post server request $$$$ : ",
+                  //       res
+                  //     );
+                  //   });
                   {
                   }
                 }}

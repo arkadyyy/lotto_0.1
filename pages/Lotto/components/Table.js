@@ -70,6 +70,8 @@ const Table = ({
   fullTables,
   tableRowColor,
   setTableRowColor,
+  tableNum,
+  settableNum,
 }) => {
   const index1 = index * 2 - 1;
   const index2 = index * 2;
@@ -80,6 +82,12 @@ const Table = ({
   const [table2, settable2] = useState([" ", " ", " ", " ", " ", " "]);
   const [strongNum2, setstrongNum2] = useState("");
   // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
+
+  useEffect(() => {
+    if (double === true && tableNum > 10) {
+      settableNum(10);
+    }
+  }, [double]);
 
   useEffect(() => {
     if (fullTables.length !== 0) {
@@ -142,7 +150,7 @@ const Table = ({
             fontFamily: "fb-Spacer",
           }}
         >
-          טבלה {index1}
+          טבלה {index}
         </Text>
         <TouchableOpacity
           onPress={() => {
@@ -188,7 +196,7 @@ const Table = ({
           </View>
         )} */}
       </ListItem>
-      <ListItem
+      {/* <ListItem
         style={{
           backgroundColor: !table2.includes(" ") ? "#78C849" : "#D60617",
           flexWrap: "wrap",
@@ -249,7 +257,8 @@ const Table = ({
             <Text style={{ color: "white" }}>X2</Text>
           </View>
         )} */}
-      </ListItem>
+
+      {/* </ListItem> */}
     </>
   );
 };
