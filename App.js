@@ -19,6 +19,7 @@ import LottoShitatiPage from "./pages/Lotto/LottoShitatiPage";
 import LottoShitatiHazakPage from "./pages/Lotto/LotoShitatiHazak/LottoShitatiHazakPage";
 import ResultList from "./pages/Result/ResultList.js";
 import ResultLotto from "./pages/Result/ResultLotto.js";
+import ResultChance from "./pages/Result/ResultChance.js";
 
 import ChanceList from "./pages/Chance/ChanceList";
 import ChancePage from "./pages/Chance/ChancePage";
@@ -127,6 +128,7 @@ export default function App() {
             <Drawer.Screen name='AboutUs' component={AboutUs} />
             <Drawer.Screen name='HowItWorks' component={HowItWorks} />
             <Drawer.Screen name='ResultLotto' component={ResultLotto} />
+            <Drawer.Screen name='ResultChance' component={ResultChance} />
 
             <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
             <Drawer.Screen name='ResultList' component={ResultList} />

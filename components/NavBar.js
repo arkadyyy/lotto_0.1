@@ -105,8 +105,8 @@ const NavBar = (props) => {
               color: "white",
             textAlign: "center",
               textAlignVertical:"center",
-              paddingHorizontal: 4,
-              fontSize: 20,
+              paddingHorizontal: EStyleSheet.value("$rem") * 4,
+              fontSize: EStyleSheet.value("$rem") * 15,
             fontFamily: "fb-Spacer-bold",
             right:EStyleSheet.value("$rem") * 25
             }}
@@ -134,7 +134,7 @@ const NavBar = (props) => {
             bordered
             rounded
           >
-            <Text style={[{ color: "white" }, styles.userAreaBtn]}>
+            <Text style={[{ color: "white",fontSize:EStyleSheet.value("$rem") * 15,fontFamily:"fb-Spacer-bold" }, styles.userAreaBtn]}>
               {store.user.attributes ? "אזור אישי" : "התחבר"}
             </Text>
           </Button>
@@ -154,7 +154,7 @@ const NavBar = (props) => {
                   style={{
                   color: "white",
                   fontFamily: "fb-Spacer-bold",
-                  fontSize: EStyleSheet.value("$rem") * 25,
+                  fontSize: EStyleSheet.value("$rem") * 20,
                   fontFamily: "fb-Spacer-bold",
                   left:EStyleSheet.value("$rem") * 25
       
