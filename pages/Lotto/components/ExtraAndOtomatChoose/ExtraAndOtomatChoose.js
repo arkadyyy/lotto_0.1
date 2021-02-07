@@ -35,9 +35,8 @@ const ExtraAndOtomatChoose = ({
   setTzerufimNumber,
   hazakimNumber,
   setHazakimNumber,
-  screenName
+  screenName,
 }) => {
-  
   const route = useRoute();
   const [otomatic, setOtomatic] = useState(true);
   const [extra, setExtra] = useState(true);
@@ -59,6 +58,7 @@ const ExtraAndOtomatChoose = ({
             color: "white",
             marginTop: 10,
             marginBottom: 5,
+            fontFamily: "fb-Spacer",
           }}
         >
           אוטומטי מתחדש
@@ -98,6 +98,7 @@ const ExtraAndOtomatChoose = ({
               style={{
                 color: "white",
                 fontSize: EStyleSheet.value("$rem") * 10,
+                fontFamily: "fb-Spacer",
               }}
             >
               כן אוטומטי מתחדש
@@ -148,6 +149,7 @@ const ExtraAndOtomatChoose = ({
               style={{
                 color: "white",
                 fontSize: EStyleSheet.value("$rem") * 10,
+                fontFamily: "fb-Spacer",
               }}
             >
               לא אוטומטי מתחדש
@@ -156,140 +158,140 @@ const ExtraAndOtomatChoose = ({
           <Left>
             <FontAwesomeIcon
               icon={faQuestionCircle}
-            color='white'
-            backgroundColor="white"
-            inverse />
-              </Left>
+              color='white'
+              backgroundColor='white'
+              inverse
+            />
+          </Left>
         </View>
-         
-        
       </View>
-      {screenName==="lottoPages" &&
+      {screenName === "lottoPages" && (
         <>
-        <View
-          style={{
-            borderColor: "white",
-            borderWidth: 1,
-            borderRadius: 7,
-            width: "90%",
-            margin: 10,
-          padding: 10,
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 25,
-            color: "white",
-            marginTop: 10,
-            marginBottom: 5,
-          }}
-        >
-          אקסטרה
-        </Text>
-        <View style={{ flexDirection: "row" }}>
           <View
             style={{
-              borderRadius: 30,
-              borderColor: extra === true ? "#8CC63F" : "white",
-              borderWidth: 2,
-              // margin: 5,
-              justifyContent: "center",
-              alignItems: "center",
-              height: 25,
-              width: 25,
-              top: 6,
-              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
-            }}
-          >
-            <FontAwesomeIcon
-              icon={faCheck}
-              color={extra === false ? "white" : "#8CC63F"}
-            />
-          </View>
-
-          <TouchableOpacity
-            style={
-              extra === true
-                ? ExtraAndOtomatChooseStyles.selectedRadioButon
-                : ExtraAndOtomatChooseStyles.notSelectedRadioButon
-            }
-            onPress={() => {
-              setExtra(true);
+              borderColor: "white",
+              borderWidth: 1,
+              borderRadius: 7,
+              width: "90%",
+              margin: 10,
+              padding: 10,
             }}
           >
             <Text
               style={{
+                fontSize: 25,
                 color: "white",
-                fontSize: EStyleSheet.value("$rem") * 12,
+                marginTop: 10,
+                marginBottom: 5,
+                fontFamily: "fb-Spacer",
               }}
             >
-              כן אקסטרה
+              אקסטרה
             </Text>
-          </TouchableOpacity>
-          <View
-            style={{
-              marginLeft: 4,
-              marginTop: 9,
-              borderLeftColor: "white",
-              height: 20,
-              width: 10,
-              borderLeftWidth: 1,
-            }}
-          ></View>
+            <View style={{ flexDirection: "row" }}>
+              <View
+                style={{
+                  borderRadius: 30,
+                  borderColor: extra === true ? "#8CC63F" : "white",
+                  borderWidth: 2,
+                  // margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: 25,
+                  width: 25,
+                  top: 6,
+                  // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  color={extra === false ? "white" : "#8CC63F"}
+                />
+              </View>
 
-          <View
-            style={{
-              borderRadius: 30,
-              borderColor: extra === true ? "white" : "#8CC63F",
-              borderWidth: 2,
-              // margin: 5,
-              justifyContent: "center",
-              alignItems: "center",
-              height: 25,
-              width: 25,
-              top: 6,
-              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
-            }}
-          >
-            <FontAwesomeIcon
-              icon={faTimes}
-              color={extra === true ? "white" : "#8CC63F"}
-            />
-          </View>
+              <TouchableOpacity
+                style={
+                  extra === true
+                    ? ExtraAndOtomatChooseStyles.selectedRadioButon
+                    : ExtraAndOtomatChooseStyles.notSelectedRadioButon
+                }
+                onPress={() => {
+                  setExtra(true);
+                }}
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    fontFamily: "fb-Spacer",
+                    fontSize: EStyleSheet.value("$rem") * 12,
+                  }}
+                >
+                  כן אקסטרה
+                </Text>
+              </TouchableOpacity>
+              <View
+                style={{
+                  marginLeft: 4,
+                  marginTop: 9,
+                  borderLeftColor: "white",
+                  height: 20,
+                  width: 10,
+                  borderLeftWidth: 1,
+                }}
+              ></View>
 
-          <TouchableOpacity
-            style={
-              extra === false
-                ? ExtraAndOtomatChooseStyles.selectedRadioButon
-                : ExtraAndOtomatChooseStyles.notSelectedRadioButon
-            }
-            onPress={() => {
-              setExtra(false);
-            }}
-          >
-            <Text
-              style={{
-                color: "white",
-                fontSize: EStyleSheet.value("$rem") * 12,
-              }}
-            >
-              לא אקסטרה
-            </Text>
-          </TouchableOpacity>
-          <Left>
-            <FontAwesomeIcon
-              icon={faQuestionCircle}
-            color='white'
-            backgroundColor="white"
-            inverse />
+              <View
+                style={{
+                  borderRadius: 30,
+                  borderColor: extra === true ? "white" : "#8CC63F",
+                  borderWidth: 2,
+                  // margin: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: 25,
+                  width: 25,
+                  top: 6,
+                  // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faTimes}
+                  color={extra === true ? "white" : "#8CC63F"}
+                />
+              </View>
+
+              <TouchableOpacity
+                style={
+                  extra === false
+                    ? ExtraAndOtomatChooseStyles.selectedRadioButon
+                    : ExtraAndOtomatChooseStyles.notSelectedRadioButon
+                }
+                onPress={() => {
+                  setExtra(false);
+                }}
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: EStyleSheet.value("$rem") * 12,
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
+                  לא אקסטרה
+                </Text>
+              </TouchableOpacity>
+              <Left>
+                <FontAwesomeIcon
+                  icon={faQuestionCircle}
+                  color='white'
+                  backgroundColor='white'
+                  inverse
+                />
               </Left>
-        </View>
-    
-        
-        </View>
+            </View>
+          </View>
         </>
-      }
-     
+      )}
     </>
   );
 };
