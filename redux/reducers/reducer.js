@@ -30,7 +30,8 @@ const reducer = (state = initialState, action) => {
     case "LOGIN_FAIL": {
       return {
         ...state,
-        user: "LOGIN_FAILED",
+        message: action.payload.error.message,
+        user: -1,
       };
     }
     case "LOGOUT_SUCCESS": {
@@ -80,6 +81,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         signUp: -1,
+      };
+    }
+
+    case "RESET_MESSAGE": {
+      return {
+        ...state,
+        message: null,
       };
     }
 

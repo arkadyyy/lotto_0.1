@@ -58,6 +58,12 @@ const LogInPage = ({ navigation }) => {
       navigation.navigate("Home");
       navigation.reset({ index: 0, routes: [{ name: "Home" }] });
     }
+
+    if (store.message !== null) {
+      setTimeout(() => {
+        dispatch({ type: "RESET_MESSAGE" });
+      }, 2000);
+    }
   }, [store]);
 
   return (
@@ -148,6 +154,10 @@ const LogInPage = ({ navigation }) => {
                   </Button>
                 </>
               )}
+
+              <Text style={{ color: "red", alignSelf: "center" }}>
+                {store.message}
+              </Text>
             </View>
           </View>
 

@@ -51,10 +51,10 @@ const ResultLotto = (props) => {
 
   const [showStart, setShowStart] = useState(false);
   const [showEnd, setShowEnd] = useState(false);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setendDate] = useState("");
+  const [startDate, setStartDate] = useState(" ");
+  const [endDate, setendDate] = useState(" ");
 
-  const onChange = (event, selectedDate) => {
+  const onChangeStart = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowStart(Platform.OS === "ios");
     let x = currentDate.toISOString().split("T")[0].split("-");
@@ -66,7 +66,7 @@ const ResultLotto = (props) => {
     y.push(x[2], ".", x[1], ".", x[0]);
   
     setDate(y.join(""));
-    // console.log("date:///////////////////////////",date);
+
   };
   const onChangeEnd = (event, selectedDateEnd) => {
     const currentDateEnd = selectedDateEnd || date;

@@ -87,6 +87,7 @@ const SendHistory = ({ formsHistory }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 2,
+            fontFamily: "fb-Spacer",
           }}
         >
           משחק ומס' הגרלה
@@ -100,6 +101,7 @@ const SendHistory = ({ formsHistory }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 2,
+            fontFamily: "fb-Spacer",
           }}
         >
           תאריך ושעה
@@ -113,6 +115,7 @@ const SendHistory = ({ formsHistory }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 1,
+            fontFamily: "fb-Spacer",
           }}
         >
           עלות הטופס
@@ -126,6 +129,7 @@ const SendHistory = ({ formsHistory }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 1,
+            fontFamily: "fb-Spacer",
           }}
         >
           שכפול הטופס
@@ -148,17 +152,35 @@ const SendHistory = ({ formsHistory }) => {
             <>
               <ListItem key={index}>
                 <View style={{ marginRight: 45, flex: 2.2 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
                     {form["משחק ומס׳ הגרלה"]}
                   </Text>
                 </View>
                 <View style={{ marginRight: 40, flex: 3 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
                     {form["תאריך ושעה"]}
                   </Text>
                 </View>
                 <View style={{ marginRight: 40, flex: 1 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
                     {form["עלות הטופס"]}
                   </Text>
                 </View>
@@ -172,7 +194,13 @@ const SendHistory = ({ formsHistory }) => {
                     setOpen({ isOpen: !open.isOpen, index: index });
                   }}
                 >
-                  <Text style={{ fontSize: 10, color: "white" }}>
+                  <Text
+                    style={{
+                      fontSize: 10,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
                     {open.isOpen && index === open.index
                       ? "סגור"
                       : "שכפל או צפה"}

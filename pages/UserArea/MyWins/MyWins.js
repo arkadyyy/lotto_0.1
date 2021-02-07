@@ -39,6 +39,7 @@ const MyWins = ({ wins, navigation }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 1,
+            fontFamily: "fb-Spacer",
           }}
         >
           מספר זכיה
@@ -52,6 +53,7 @@ const MyWins = ({ wins, navigation }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 1,
+            fontFamily: "fb-Spacer",
           }}
         >
           תאריך ושעה
@@ -65,6 +67,7 @@ const MyWins = ({ wins, navigation }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 1,
+            fontFamily: "fb-Spacer",
           }}
         >
           סה"כ בש"ח
@@ -78,6 +81,7 @@ const MyWins = ({ wins, navigation }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 1,
+            fontFamily: "fb-Spacer",
           }}
         >
           משחק
@@ -91,6 +95,7 @@ const MyWins = ({ wins, navigation }) => {
             marginLeft: 2,
             marginRight: 2,
             flex: 1,
+            fontFamily: "fb-Spacer",
           }}
         >
           טופס
@@ -126,6 +131,7 @@ const MyWins = ({ wins, navigation }) => {
                   borderBottomWidth: 1,
                   borderBottomColor: "white",
                   marginBottom: 10,
+                  fontFamily: "fb-Spacer",
                 }}
               >
                 איך לך זכיות כרגע
@@ -151,6 +157,7 @@ const MyWins = ({ wins, navigation }) => {
                     flex: 1,
                     fontSize: 30,
                     textAlign: "center",
+                    fontFamily: "fb-Spacer-bold",
                   }}
                 >
                   שלח טופס
@@ -163,17 +170,57 @@ const MyWins = ({ wins, navigation }) => {
             <>
               <ListItem style={{ backgroundColor: "#00AEEF" }}>
                 <View style={{ marginRight: 20 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>01234</Text>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
+                    01234
+                  </Text>
                 </View>
                 <View style={{ marginRight: 40 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>01.02.20</Text>
-                  <Text style={{ fontSize: 12, color: "white" }}>15:00</Text>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
+                    01.02.20
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
+                    15:00
+                  </Text>
                 </View>
                 <View style={{ marginRight: 40 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>51.00</Text>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
+                    51.00
+                  </Text>
                 </View>
                 <View style={{ marginRight: 40 }}>
-                  <Text style={{ fontSize: 12, color: "white" }}>לוטו</Text>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      color: "white",
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
+                    לוטו
+                  </Text>
                 </View>
                 <View>
                   <Button
@@ -185,7 +232,13 @@ const MyWins = ({ wins, navigation }) => {
                     small
                     bordered
                   >
-                    <Text style={{ fontSize: 12, color: "white" }}>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        color: "white",
+                        fontFamily: "fb-Spacer",
+                      }}
+                    >
                       צפה בטופס
                     </Text>
                   </Button>
