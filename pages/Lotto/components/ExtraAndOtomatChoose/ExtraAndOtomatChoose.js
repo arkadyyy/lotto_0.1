@@ -36,10 +36,13 @@ const ExtraAndOtomatChoose = ({
   hazakimNumber,
   setHazakimNumber,
   screenName,
+  extra,
+  setExtra,
+  otomatic,
+  setOtomatic,
 }) => {
   const route = useRoute();
-  const [otomatic, setOtomatic] = useState(true);
-  const [extra, setExtra] = useState(true);
+
   return (
     <>
       <View

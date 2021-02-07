@@ -24,7 +24,7 @@ Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
 const ExtraFormPage = ({ route, navigation }) => {
-  const { screenName, tableNum,fullTables } = route.params;
+  const { screenName, tableNum, fullTables } = route.params;
   const [showTable, setshowTable] = useState(false);
   const [double, setdouble] = useState(false);
   // const [fullTables, setFullTables] = useState([]);
@@ -36,9 +36,35 @@ const ExtraFormPage = ({ route, navigation }) => {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [hagralot, setHagralot] = useState(1);
+  const [hagralot, setHagralot] = useState(-1);
   const [price, setPrice] = useState(11);
+  const [otomatic, setOtomatic] = useState(true);
+  const [extra, setExtra] = useState(true);
   // const [tableNum, settableNum] = useState(1);
+
+  const [sendToServer, setsendToServer] = useState({
+    extra: false,
+    multi_lottery: -1,
+    tables: [
+      //         {
+      //           numbers: [15, 18, 24, 28, 30, 32],
+      //           strong_number: [6],
+      //           table_number: 1,
+      //         },
+    ],
+  });
+
+  //     {
+  //       extra: false,
+  //       multi_lottery: -1,
+  //       tables: [
+  //         {
+  //           numbers: [15, 18, 24, 28, 30, 32],
+  //           strong_number: [6],
+  //           table_number: 1,
+  //         },
+  //       ],
+  //     },
 
   useEffect(() => {
     if (screenName === "LottoPage") {
@@ -46,7 +72,43 @@ const ExtraFormPage = ({ route, navigation }) => {
     } else if (screenName === "ChancePage") {
       setGameName("הגרלת צ'אנס");
     }
+
+    // axios
+    //   .post(
+    //     "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
+    //     {},
+    //     {
+    //       headers: {
+    //         Authorization: store.jwt,
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //       },
+    //     }
+    //   )
+    //   .then((res) => console.log("res from calculate price : ", res.data));
   }, []);
+
+  useEffect(() => {
+    //configure data sent to server
+
+    let x = fullTables.map((table, index) => {
+      return {
+        numbers: table.choosenNums,
+        strong_number: [table.strongNum],
+        table_number: table.tableNum,
+      };
+    });
+
+    console.log("x : ", x);
+
+    setsendToServer({
+      extra: extra,
+      multi_lottery: hagralot,
+      tables: x,
+    });
+
+    console.log("sendToServer : ", sendToServer);
+  }, [fullTables, extra, hagralot, otomatic]);
 
   return (
     <>
@@ -93,7 +155,13 @@ const ExtraFormPage = ({ route, navigation }) => {
             </View>
 
             <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
-            <ExtraAndOtomatChoose screenName='lottoPages' />
+            <ExtraAndOtomatChoose
+              extra={extra}
+              setExtra={setExtra}
+              otomatic={otomatic}
+              setOtomatic={setOtomatic}
+              screenName='lottoPages'
+            />
 
             <View
               style={{
@@ -200,50 +268,28 @@ const ExtraFormPage = ({ route, navigation }) => {
             >
               <Button
                 onPress={() => {
-                  let summary = { regularLotto: fullTables };
-                  console.log("summary",summary);
-                  console.log("store.user : ", store.user.signInUserSession);
-                  // console.log("jwtState : ", jwtState);
+                  console.log("sendToServer", sendToServer);
+                  // console.log("store.user : ", store.user.signInUserSession);
+                  console.log("jwtState : ", jwtState);
 
-                  // axios
-                  //   .post(
-                  //     "http://52.90.122.190:5000/games/lotto/type/regular/0",
-                  //     {
-                  //       tables: {
-                  //         tables: [
-                  //           {
-                  //             table_number: 1,
-                  //             numbers: [11, 12, 13, 14, 15, 16],
-                  //             strong_number: 6,
-                  //           },
-                  //           {
-                  //             table_number: 2,
-                  //             numbers: [1, 2, 3, 4, 5, 6],
-                  //             strong_number: 6,
-                  //           },
-                  //         ],
-
-                  //         extra: false,
-                  //         multi_lottery: 6,
-                  //         lottomatic: 10,
-                  //       },
-                  //       type: "regular_lotto",
-                  //       userName: "dlevkovich05@gmail.com",
-                  //       timestamp: new Date(),
-                  //       status: "completed",
-                  //     },
-                  //     {
-                  //       headers: {
-                  //         authorization: jwtState,
-                  //       },
-                  //     }
-                  //   )
-                  //   .then((res) => {
-                  //     console.log(
-                  //       "this is res from post server request $$$$ : ",
-                  //       res
-                  //     );
-                  //   });
+                  axios
+                    .post(
+                      "http://52.90.122.190:5000/games/lotto/type/regular/0",
+                      sendToServer,
+                      {
+                        headers: {
+                          Authorization: store.jwt,
+                          Accept: "application/json",
+                          "Content-Type": "application/json",
+                        },
+                      }
+                    )
+                    .then((res) => {
+                      console.log(
+                        "this is res from post server request $$$$ : ",
+                        res
+                      );
+                    });
                   {
                   }
                 }}

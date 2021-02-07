@@ -257,11 +257,11 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: hagralot === 1 ? "#8CC63F" : null,
+                  backgroundColor: hagralot === -1 ? "#8CC63F" : null,
                 }}
                 onPress={() => {
                   // settableNum(1);
-                  setHagralot(1);
+                  setHagralot(-1);
                 }}
               >
                 <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
