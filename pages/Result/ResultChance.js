@@ -86,12 +86,10 @@ const ResultChance = (props) => {
   }, [date]);
 
     useEffect(() => {
-        // console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", data);
         const sortedData=data.sort((a, b) => parseFloat(a["מספר הגרלה"]) - parseFloat(b["מספר הגרלה"]));
 setSortedData(sortedData)
-// console.log("sortedddddddddddddddddddddddddd:" ,setData(data.sort((a, b) => parseFloat(a[1]) - parseFloat(b[1])))
-// console.log("sorted dataaaaaaaaaaaaaaaaaaaaaaaaaa:",data);
-    },[data])
+    }, [data])
+    
   return (
     <>
       <NavBar navigation={navigation}  />
@@ -128,25 +126,28 @@ setSortedData(sortedData)
                 marginTop: EStyleSheet.value("$rem") * 15,
                 marginBottom: EStyleSheet.value("$rem") * 25,
               flexDirection:"row"
-              }}><Text
-                  style={{
-                    fontFamily: "fb-Spacer-bold",
-                    flex: 1.5,
-                    color: "white",
-                  fontSize:EStyleSheet.value("$rem") * 25
-                  }}
+            }}><Text
+            style={{
+              fontFamily: "fb-Spacer-bold",
+              flex: 1.5,
+              color: "white",
+              fontSize: EStyleSheet.value("$rem") * 20,
+              marginTop: EStyleSheet.value("$rem") * 10,
+              marginLeft: EStyleSheet.value("$rem") * 15,
+              textDecorationLine: 'underline',
+
+            }}
                 >בחר לפי תאריכים</Text>
   <TouchableOpacity
                       style={{
                         borderColor: "white",
                         borderWidth: 1,
                         borderRadius: 20,
-                        padding: 7,
-                    fontSize: 10,
-                        width:25,
+                        padding:  EStyleSheet.value("$rem") * 7,
                     flex: 1,
                     flexDirection: "row",
-                        justifyContent:"center"
+                    justifyContent: "center",
+                        right: EStyleSheet.value("$rem") * 15
                       }}
                       onPress={() => {
                         setShow(true);
@@ -155,7 +156,7 @@ setSortedData(sortedData)
                   <Text
                     style={{
                       color: "white",
-                      fontSize: EStyleSheet.value("$rem") * 25,
+                      fontSize: EStyleSheet.value("$rem") * 20,
                       fontFamily: "fb-Spacer-bold",
 
                   }}
@@ -178,12 +179,11 @@ setSortedData(sortedData)
                         borderColor: "white",
                         borderWidth: 1,
                         borderRadius: 20,
-                        padding: 7,
-                    fontSize: 10,
-                        width:25,
+                        padding:  EStyleSheet.value("$rem") * 7,
                     flex: 1,
                     flexDirection: "row",
-                        justifyContent:"center"
+                    justifyContent: "center",
+                        right: EStyleSheet.value("$rem") * 10
                       }}
                       onPress={() => {
                         setShow(true);
@@ -192,7 +192,7 @@ setSortedData(sortedData)
                   <Text
                     style={{
                       color: "white",
-                      fontSize: EStyleSheet.value("$rem") * 25,
+                      fontSize: EStyleSheet.value("$rem") * 20,
                       fontFamily: "fb-Spacer-bold",
 
                   }}
@@ -222,10 +222,7 @@ setSortedData(sortedData)
             }}
                   >
 
-                                  {sortedData
-                                      
-
-                                      .map((hagrala, index) => (
+                                  {sortedData.map((hagrala, index) => (
                          
                          <ListItem key={index}>
                                               {/* {console.log("hagralaChans:",hagrala[Object.keys(hagrala)[2]].numbers)} */}

@@ -47,6 +47,7 @@ import {
 const ResultLotto = (props) => {
   const { navigation } = props;
   const [data, setData] = useState([]);
+  const [sortedData, setSortedData] = useState([]);
 
   const [show, setShow] = useState(false);
   const [date, setDate] = useState("");
@@ -84,6 +85,11 @@ const ResultLotto = (props) => {
         .catch((err) => console.log(err));
     }, 5000);
   }, [date]);
+
+  useEffect(() => {
+    const sortedData=data.sort((a, b) => parseFloat(a["מספר הגרלה"]) - parseFloat(b["מספר הגרלה"]));
+setSortedData(sortedData)
+}, [data])
 
   return (
     <>
@@ -126,7 +132,11 @@ const ResultLotto = (props) => {
                     fontFamily: "fb-Spacer-bold",
                     flex: 1.5,
                     color: "white",
-                  fontSize:EStyleSheet.value("$rem") * 25
+                    fontSize: EStyleSheet.value("$rem") * 20,
+                    marginTop: EStyleSheet.value("$rem") * 10,
+                    marginLeft: EStyleSheet.value("$rem") * 15,
+                    textDecorationLine: 'underline',
+
                   }}
                 >בחר לפי תאריכים</Text>
   <TouchableOpacity
@@ -134,12 +144,11 @@ const ResultLotto = (props) => {
                         borderColor: "white",
                         borderWidth: 1,
                         borderRadius: 20,
-                        padding: 7,
-                    fontSize: 10,
-                        width:25,
+                        padding:  EStyleSheet.value("$rem") * 7,
                     flex: 1,
                     flexDirection: "row",
-                        justifyContent:"center"
+                    justifyContent: "center",
+                        right: EStyleSheet.value("$rem") * 15
                       }}
                       onPress={() => {
                         setShow(true);
@@ -148,7 +157,7 @@ const ResultLotto = (props) => {
                   <Text
                     style={{
                       color: "white",
-                      fontSize: EStyleSheet.value("$rem") * 25,
+                      fontSize: EStyleSheet.value("$rem") * 20,
                       fontFamily: "fb-Spacer-bold",
 
                   }}
@@ -171,12 +180,11 @@ const ResultLotto = (props) => {
                         borderColor: "white",
                         borderWidth: 1,
                         borderRadius: 20,
-                        padding: 7,
-                    fontSize: 10,
-                        width:25,
+                        padding:  EStyleSheet.value("$rem") * 7,
                     flex: 1,
                     flexDirection: "row",
-                        justifyContent:"center"
+                    justifyContent: "center",
+                        right: EStyleSheet.value("$rem") * 10
                       }}
                       onPress={() => {
                         setShow(true);
@@ -185,7 +193,7 @@ const ResultLotto = (props) => {
                   <Text
                     style={{
                       color: "white",
-                      fontSize: EStyleSheet.value("$rem") * 25,
+                      fontSize: EStyleSheet.value("$rem") * 20,
                       fontFamily: "fb-Spacer-bold",
 
                   }}
@@ -215,7 +223,10 @@ const ResultLotto = (props) => {
             }}
                   >
                    
-            {data.map((hagrala, index) => (
+                   {/* {sortedData */}
+
+                  
+            {sortedData.map((hagrala, index) => (
               <ListItem key={index} style={{flexDirection:"column"}}>
                 
                 <View style={{
