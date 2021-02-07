@@ -49,41 +49,45 @@ const ResultLotto = (props) => {
   const [data, setData] = useState([]);
   const [sortedData, setSortedData] = useState([]);
 
-  const [showStart, setShowStart] = useState(false);
-  const [showEnd, setShowEnd] = useState(false);
-  const [startDate, setStartDate] = useState(" ");
-  const [endDate, setendDate] = useState(" ");
+ 
+  const [dateStart, setDateStart] = useState(" ");
+  const [dateEnd, setDateEnd] = useState(" ");
 
-  const onChangeStart = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShowStart(Platform.OS === "ios");
-    let x = currentDate.toISOString().split("T")[0].split("-");
-  
-    console.log("dateStartstartstart",currentDate.toISOString().split("T")[0].split("-"));
-  
-    let y = [];
-  
-    y.push(x[2], ".", x[1], ".", x[0]);
-  
-    setDate(y.join(""));
+  const [showDateStart, setShowDateStart] = useState(false);
+  const [showDateEnd, setShowDateEnd] = useState(false);
 
+  const onChangeDateStart = (event, selectedDateStart) => {
+    const currentDateStart = selectedDateStart || dateStart;
+   setShowDateStart(Platform.OS === 'ios');
+   setDateStart(currentDateStart);
+   
   };
-  const onChangeEnd = (event, selectedDateEnd) => {
-    const currentDateEnd = selectedDateEnd || date;
-    setShowEnd(Platform.OS === "ios");
-    let x = currentDateEnd.toISOString().split("T")[0].split("-");
-  
-    console.log("dateEnd",currentDateEnd.toISOString().split("T")[0].split("-"));
-  
-    let y = [];
-  
-    y.push(x[2], ".", x[1], ".", x[0]);
-  
-    setDateEnd(y.join(""));
-    // console.log("date:///////////////////////////",date);
+
+  const onChangeDateEnd = (event, selectedDateEnd) => {
+    const currentDateEnd = selectedDateEnd || dateEnd;
+   setShowDateEnd(Platform.OS === 'ios');
+   setDateEnd(currentDateEnd);
+   
   };
-  const [date, setDate] = useState("");
-  const [dateEnd, setDateEnd] = useState("");
+  
+  useEffect(() => {
+    console.log("dateStart:", dateStart);
+    var start = new Date(dateStart);
+    console.log("start:",start);
+    var millisecondsStart = start.getTime();
+    console.log("millisecondsStart:",millisecondsStart);
+
+  }, [dateStart])
+  
+
+  useEffect(() => {
+    console.log("dateEnd:", dateEnd);
+    var end = new Date(dateEnd);
+    console.log("end:",end);
+    var millisecondsEnd = end.getTime();
+    console.log("millisecondsEnd:",millisecondsEnd);
+
+  },[dateEnd])
 
   useEffect(() => {
     let accessToken;
@@ -103,7 +107,7 @@ const ResultLotto = (props) => {
 
         .catch((err) => console.log(err));
     }, 5000);
-  }, [date]);
+  }, [dateStart]);
 
   useEffect(() => {
     const sortedData=data.sort((a, b) => parseFloat(a["מספר הגרלה"]) - parseFloat(b["מספר הגרלה"]));
@@ -170,7 +174,7 @@ setSortedData(sortedData)
                         right: EStyleSheet.value("$rem") * 15
                       }}
                       onPress={() => {
-                        setShowStart(true);
+                        setShowDateStart(true);
                       }}
                 >
                   <Text
@@ -182,14 +186,14 @@ setSortedData(sortedData)
                   }}
                   >מתאריך</Text>
   
-                  {showStart && (
+                  {showDateStart && (
                       <DateTimePicker
-                        testID='dateTimePicker'
+                        testID='dateTimePickerStart'
                         value={new Date()}
                         mode='date'
                         is24Hour={false}
                         display='spinner'
-                        onChange={onChange}
+                        onChange={onChangeDateStart}
                       />
                     )}
                 </TouchableOpacity>
@@ -206,7 +210,7 @@ setSortedData(sortedData)
                         right: EStyleSheet.value("$rem") * 10
                       }}
                       onPress={() => {
-                        setShowEnd(true);
+                        setShowDateEnd(true);
                       }}
                 >
                   <Text
@@ -218,14 +222,14 @@ setSortedData(sortedData)
                   }}
                   >עד תאריך</Text>
   
-                  {showEnd && (
+                  {showDateEnd && (
                       <DateTimePicker
-                        testID='dateTimePicker'
+                        testID='dateTimePickerEnd'
                         value={new Date()}
                         mode='date'
                         is24Hour={false}
                         display='spinner'
-                        onChange={onChangeEnd}
+                        onChange={onChangeDateEnd}
                       />
                     )}
                 </TouchableOpacity>

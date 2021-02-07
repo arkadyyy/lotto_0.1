@@ -222,6 +222,7 @@ const LottoPage = ({ navigation }) => {
                   navigation.navigate("ExtraFormPage", {
                     tableNum: tableNum,
                     screenName: "לוטו",
+                    fullTables:fullTables
                   });
                 }}
                 style={LottoListstyles.sendFormBtn}

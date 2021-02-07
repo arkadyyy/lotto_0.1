@@ -23,10 +23,10 @@ Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
 const ExtraFormPage = ({ route, navigation }) => {
-  const { screenName, tableNum } = route.params;
+  const { screenName, tableNum,fullTables } = route.params;
   const [showTable, setshowTable] = useState(false);
   const [double, setdouble] = useState(false);
-  const [fullTables, setFullTables] = useState([]);
+  // const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
   const [tableRowColor, setTableRowColor] = useState("D60617");
@@ -194,7 +194,7 @@ const ExtraFormPage = ({ route, navigation }) => {
               <Button
                 onPress={() => {
                   let summary = { regularLotto: fullTables };
-                  console.log(summary);
+                  console.log("summary",summary);
                   console.log("store.user : ", store.user.signInUserSession);
                   // console.log("jwtState : ", jwtState);
 
