@@ -32,7 +32,9 @@ const SeeOrDupilcate = ({ index, open, form }) => {
             הצירוף שלי
           </Text>
           <View>
-            {form.tables.map((table, index) => (
+            {/* {console.log("form6666666666666666666666",form)} */}
+            {/* {console.log("form.99999999:",form.marks.tables)} */}
+            {form.marks.tables.map((table, index) => (
               <ViewForm
                 numbers={table.numbers}
                 strongNum={table.strong_number}
