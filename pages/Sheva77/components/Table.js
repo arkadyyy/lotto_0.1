@@ -81,9 +81,17 @@ const Table = ({
           marginTop: 4,
           height: 55,
           alignItems: "center",
+          width: 400,
         }}
       >
-        <Text style={{ color: "white" }}>{`טבלה ${tableNum}`}</Text>
+        <Text
+          style={{
+            color: "white",
+            fontSize: 11,
+            marginHorizontal: 10,
+            fontFamily: "fb-Spacer",
+          }}
+        >{`טבלה ${tableNum}`}</Text>
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);

@@ -35,20 +35,9 @@ const Seva77List = (props) => {
   return (
     <>
       <NavBar navigation={navigation} screenName={"Seva77List"} />
-      {/* <View
-        style={{ width: "100%", height: "1%", backgroundColor: "#FF006A" }}
-      ></View> */}
-      {/* <Container> */}
+
       <ScrollView>
         <View style={homestyles.container}>
-          {/* <View
-              style={{
-                width: "100%",
-                height: "15%",
-                backgroundColor: "#F2F2F2",
-              }}
-            ></View> */}
-
           <View>
             <BlankSquare color='#CC1D64' gameName='הגרלת 777' />
           </View>
@@ -72,7 +61,8 @@ const Seva77List = (props) => {
                     style={{
                       fontSize: 33,
                       color: "white",
-                      fontWeight: "bold",
+                      marginHorizontal: 8,
+                      fontFamily: "fb-Spacer-bold",
                     }}
                   >
                     777
@@ -92,10 +82,10 @@ const Seva77List = (props) => {
                   >
                     <Text
                       style={{
-                        fontWeight: "bold",
-                        color: "#FF3C8E",
+                        color: "red",
                         fontSize: 10,
                         padding: 15,
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       שחק עכשיו
@@ -118,7 +108,8 @@ const Seva77List = (props) => {
                     style={{
                       fontSize: 33,
                       color: "white",
-                      fontWeight: "bold",
+                      marginHorizontal: 8,
+                      fontFamily: "fb-Spacer-bold",
                     }}
                   >
                     777 שיטתי 8
@@ -138,10 +129,10 @@ const Seva77List = (props) => {
                   >
                     <Text
                       style={{
-                        fontWeight: "bold",
-                        color: "#FF73A5",
+                        color: "red",
                         fontSize: 10,
                         padding: 15,
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       שחק עכשיו
@@ -164,7 +155,8 @@ const Seva77List = (props) => {
                     style={{
                       fontSize: 33,
                       color: "white",
-                      fontWeight: "bold",
+                      marginHorizontal: 8,
+                      fontFamily: "fb-Spacer-bold",
                     }}
                   >
                     777 שיטתי 9
@@ -184,10 +176,10 @@ const Seva77List = (props) => {
                   >
                     <Text
                       style={{
-                        fontWeight: "bold",
-                        color: "#FF73A5",
+                        color: "red",
                         fontSize: 10,
                         padding: 15,
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       שחק עכשיו
@@ -197,17 +189,27 @@ const Seva77List = (props) => {
               </Right>
             </ListItem>
           </List>
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", margin: 12 }}>
             <View style={{ height: "50%", backgroundColor: "white" }}></View>
-            <Text style={{ flex: 3, fontSize: 25 }}> 777 הסבר על הגרלות </Text>
+            <Text style={{ flex: 3, fontSize: 25, fontFamily: "fb-Spacer" }}>
+              {" "}
+              777 הסבר על הגרלות{" "}
+            </Text>
             <TouchableOpacity style={Sheva77Liststyles.roundButton1}>
               <Text style={{ fontSize: 20, color: "white" }}>+</Text>
             </TouchableOpacity>
 
-            <Text style={{ flex: 1 }}> עוד..</Text>
+            <Text style={{ flex: 1, fontFamily: "fb-Spacer" }}> עוד..</Text>
           </View>
-          <View style={{ padding: 1, backgroundColor: "#F2F2F2" }}>
-            <Text style={{ fontSize: 10 }}>
+          <View
+            style={{
+              padding: 1,
+              backgroundColor: "#F2F2F2",
+              marginHorizontal: 8,
+              fontFamily: "fb-Spacer",
+            }}
+          >
+            <Text style={{ fontSize: 10, fontFamily: "fb-Spacer" }}>
               לאחר התשלום אנו בלוטומטיק מקבלים את הטופס שמילאתם ושולחים אותו
               עבורכם בנקודת מכירה מורשית של מפעל הפיס, את הטופס שמילאנו עבורגם
               בנקודה אנו סורקים ושולחים לכם לתיבת הדואר האלקטרוני ומעלים את

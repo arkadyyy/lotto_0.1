@@ -324,7 +324,15 @@ const ExtraFormPage = ({ route, navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 28,
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  שלח טופס
+                </Text>
               </Button>
             </View>
           </View>

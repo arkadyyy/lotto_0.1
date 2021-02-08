@@ -542,7 +542,9 @@ const ChooseNumOfTables = ({
             padding: 10,
           }}
         >
-          <Text style={{ fontSize: 15, color: "white" }}>
+          <Text
+            style={{ fontSize: 15, color: "white", fontFamily: "fb-Spacer" }}
+          >
             בחר סוג טופס למילוי
           </Text>
 
@@ -563,7 +565,10 @@ const ChooseNumOfTables = ({
                 }}
               >
                 <Text
-                  style={{ color: tzerufimNumber === 6 ? "white" : "#E62321" }}
+                  style={{
+                    color: tzerufimNumber === 6 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
                 >
                   6=5
                 </Text>
@@ -585,7 +590,10 @@ const ChooseNumOfTables = ({
                 }}
               >
                 <Text
-                  style={{ color: tzerufimNumber === 8 ? "white" : "#E62321" }}
+                  style={{
+                    color: tzerufimNumber === 8 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
                 >
                   8
                 </Text>
@@ -609,7 +617,10 @@ const ChooseNumOfTables = ({
                 }}
               >
                 <Text
-                  style={{ color: tzerufimNumber === 9 ? "white" : "#E62321" }}
+                  style={{
+                    color: tzerufimNumber === 9 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
                 >
                   9
                 </Text>
@@ -629,7 +640,10 @@ const ChooseNumOfTables = ({
                 }}
               >
                 <Text
-                  style={{ color: tzerufimNumber === 10 ? "white" : "#E62321" }}
+                  style={{
+                    color: tzerufimNumber === 10 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
                 >
                   10
                 </Text>
@@ -649,7 +663,10 @@ const ChooseNumOfTables = ({
                 }}
               >
                 <Text
-                  style={{ color: tzerufimNumber === 11 ? "white" : "#E62321" }}
+                  style={{
+                    color: tzerufimNumber === 11 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
                 >
                   11
                 </Text>
@@ -669,7 +686,10 @@ const ChooseNumOfTables = ({
                 }}
               >
                 <Text
-                  style={{ color: tzerufimNumber === 12 ? "white" : "#E62321" }}
+                  style={{
+                    color: tzerufimNumber === 12 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
                 >
                   12
                 </Text>
@@ -690,7 +710,9 @@ const ChooseNumOfTables = ({
             padding: 10,
           }}
         >
-          <Text style={{ fontSize: 15, color: "white" }}>
+          <Text
+            style={{ fontSize: 15, color: "white", fontFamily: "fb-Spacer" }}
+          >
             בחר סוג טופס למילוי
           </Text>
 
@@ -711,7 +733,10 @@ const ChooseNumOfTables = ({
                 }}
               >
                 <Text
-                  style={{ color: hazakimNumber === 4 ? "white" : "#E62321" }}
+                  style={{
+                    color: hazakimNumber === 4 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
                 >
                   4
                 </Text>
@@ -733,7 +758,10 @@ const ChooseNumOfTables = ({
                 }}
               >
                 <Text
-                  style={{ color: hazakimNumber === 5 ? "white" : "#E62321" }}
+                  style={{
+                    color: hazakimNumber === 5 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
                 >
                   5
                 </Text>
@@ -757,7 +785,10 @@ const ChooseNumOfTables = ({
                 }}
               >
                 <Text
-                  style={{ color: hazakimNumber === 6 ? "white" : "#E62321" }}
+                  style={{
+                    color: hazakimNumber === 6 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
                 >
                   6
                 </Text>
@@ -777,7 +808,10 @@ const ChooseNumOfTables = ({
                 }}
               >
                 <Text
-                  style={{ color: hazakimNumber === 7 ? "white" : "#E62321" }}
+                  style={{
+                    color: hazakimNumber === 7 ? "white" : "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
                 >
                   7
                 </Text>

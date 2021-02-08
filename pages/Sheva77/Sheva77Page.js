@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
+import sheva77Liststyles from "./Sheva77ListStyles";
 import {
   Container,
   Header,
@@ -59,86 +60,57 @@ const Sheva77Page = ({ navigation }) => {
         <ChooseForm />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20 }}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                padding: 30,
-              }}
-            >
-              <View
+            <View style={sheva77Liststyles.header}>
+              <View style={sheva77Liststyles.topNumCircle}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: "#E62321",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  1
+                </Text>
+              </View>
+              <Text
                 style={{
-                  flexDirection: "row",
-                  backgroundColor: "white",
-                  width: 50,
-                  height: 50,
-                  borderRadius: 33,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginRight: 20,
+                  fontSize: 17,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
-                <Text style={{ fontSize: 20, color: "#E62321" }}>1</Text>
-              </View>
-              <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
+                מלא את הטופס
+              </Text>
             </View>
 
             <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
 
-            <Text
-              style={{
-                color: "white",
-                fontSize: 15,
-                marginLeft: 12,
-                marginBottom: 10,
-              }}
-            >
+            <Text style={sheva77Liststyles.subHeader}>
               בחר 7 מספרים בכל טבלה
             </Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                flexWrap: "wrap",
-                marginLeft: 20,
-              }}
-            >
-              <Button
-                style={{ borderColor: "white", margin: 5 }}
+            <View style={sheva77Liststyles.autoBtnContainer}>
+              <TouchableOpacity
+                style={sheva77Liststyles.autoBtn}
                 small
                 rounded
                 bordered
                 onPress={autoFillForm}
               >
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 10,
-                    width: 70,
-                    textAlign: "center",
-                  }}
-                >
+                <Text style={sheva77Liststyles.autoBtnText}>
                   מלא טופס אוטומטי
                 </Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", margin: 5 }}
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={sheva77Liststyles.autoBtn}
                 small
                 rounded
                 bordered
                 onPress={() => setFullTables([])}
               >
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 10,
-                    width: 70,
-                    textAlign: "center",
-                  }}
-                >
+                <Text style={sheva77Liststyles.autoBtnText}>
                   מחק טופס אוטומטי
                 </Text>
-              </Button>
+              </TouchableOpacity>
             </View>
             {showTable && (
               <FillForm

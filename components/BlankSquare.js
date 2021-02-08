@@ -60,7 +60,7 @@ const Timer = ({ color, usedDate }) => {
     <>
       <View style={{ flexDirection: "row" }}>
         <View>
-          <View style={{ margin: 5, flexDirection: "row" }}>
+          <View style={{ margin: 2, flexDirection: "row" }}>
             <View
               style={{
                 width: 25,
@@ -92,7 +92,7 @@ const Timer = ({ color, usedDate }) => {
 
         <View>
           <View>
-            <View style={{ margin: 5, flexDirection: "row" }}>
+            <View style={{ margin: 2, flexDirection: "row" }}>
               <View
                 style={{
                   width: 25,
@@ -128,7 +128,7 @@ const Timer = ({ color, usedDate }) => {
           </View>
         </View>
         <View>
-          <View style={{ margin: 5, flexDirection: "row" }}>
+          <View style={{ margin: 2, flexDirection: "row" }}>
             <View
               style={{
                 width: 25,
@@ -160,7 +160,7 @@ const Timer = ({ color, usedDate }) => {
         </View>
         <View>
           <View>
-            <View style={{ margin: 5, flexDirection: "row" }}>
+            <View style={{ margin: 2, flexDirection: "row" }}>
               <View
                 style={{
                   width: 25,
@@ -209,162 +209,189 @@ const Timer = ({ color, usedDate }) => {
   );
 };
 
-// var myfunc = setInterval(function () {
-//   var now = new Date().getTime();
-//   var timeleft = countDownDate - now;
-
-//   var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-//   var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//   var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-//   var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
-// }, 1000);
-
 const BlankSquare = ({ color, gameName }) => {
   const route = useRoute();
 
   const [usedDate, setusedDate] = useState(0);
+  const [subHeader, setsubHeader] = useState("");
 
   useEffect(() => {
     axios
       .get("http://52.90.122.190:5000/games/time")
       .then((res) => {
-        if (route.name === "LottoPage" || route.name === "LottoList") {
+        if (
+          route.name === "LottoPage" ||
+          route.name === "LottoList" ||
+          route.name === "DoubleLottoList" ||
+          route.name === "LottoShitatiPage" ||
+          route.name === "LottoShitatiHazakPage" ||
+          route.name === "ExtraFormPage"
+        ) {
           setusedDate(res.data["לוטו"].time);
-        } else if (route.name === "ChanceList" || route.name === "ChancePage") {
+          setsubHeader("עד 10,000,000 שח");
+        } else if (
+          route.name === "ChanceList" ||
+          route.name === "ChancePage" ||
+          route.name === "RavChancePage" ||
+          route.name === "ChanceShitatiPage" ||
+          route.name === "SumPageChance"
+        ) {
           setusedDate(res.data["צ'אנס"].time);
+          setsubHeader("כל שעתיים עד 120,000");
         } else if (
           route.name === "Sheva77List" ||
-          route.name === "Sheva77Page"
+          route.name === "Sheva77Page" ||
+          route.name === "Sheva78Page" ||
+          route.name === "Sheva79Page" ||
+          route.name === "SumPage777"
         ) {
           setusedDate(res.data["777"].time);
-        } else if (route.name === "One23Page" || route.name === "One23List") {
+          setsubHeader("עד 70,000 פעמיים ביום");
+        } else if (
+          route.name === "One23Page" ||
+          route.name === "One23List" ||
+          route.name === "SumPage123"
+        ) {
           setusedDate(res.data["123"].time);
+          setsubHeader("כל טופס עד 120,000 ");
         }
-
-        // let countDownDate = new Date(usedDate).getTime();
-        // console.log("countdowndate : ", countDownDate);
-
-        // setInterval(function () {
-        //   let countDownDate = new Date(usedDate).getTime();
-        //   let now = new Date().getTime();
-        //   let timeleft = countDownDate - now;
-
-        //   days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-        //   // settimer({ ...timer, days: days });
-        //   setdays(days);
-        //   hours = Math.floor(
-        //     (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        //   );
-        //   // settimer({ ...timer, hours: hours });
-        //   sethours(hours);
-        //   minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-        //   // settimer({ ...timer, minutes: minutes });
-        //   setminutes(minutes);
-        //   seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
-        //   // settimer({ ...timer, seconds: seconds });
-        //   setseconds(seconds);
-
-        //   // console.log("days : ", days);
-        //   // console.log("hours : ", hours);
-        //   // console.log("minutes : ", minutes);
-        //   // console.log("seconds : ", seconds);
-        //   // console.log("timer : ", timer);
-        // }, 1000);
-
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    if (
+      route.name === "LottoPage" ||
+      route.name === "LottoList" ||
+      route.name === "DoubleLottoList" ||
+      route.name === "LottoShitatiPage" ||
+      route.name === "LottoShitatiHazakPage" ||
+      route.name === "ExtraFormPage"
+    ) {
+      setsubHeader("עד 10,000,000 שח");
+    } else if (
+      route.name === "ChanceList" ||
+      route.name === "ChancePage" ||
+      route.name === "RavChancePage" ||
+      route.name === "ChanceShitatiPage" ||
+      route.name === "SumPageChance"
+    ) {
+      setsubHeader("כל שעתיים עד 120,000");
+    } else if (
+      route.name === "Sheva77List" ||
+      route.name === "Sheva77Page" ||
+      route.name === "Sheva78Page" ||
+      route.name === "Sheva79Page" ||
+      route.name === "SumPage777"
+    ) {
+      setsubHeader("עד 70,000 פעמיים ביום");
+    } else if (
+      route.name === "One23Page" ||
+      route.name === "One23List" ||
+      route.name === "SumPage123"
+    ) {
+      setsubHeader("כל טופס עד 120,000 ");
+    }
+  }, [route]);
+
   return (
     <>
-      {route.name === "UserArea" ||
-        route.name === "ResultList"
-      ? (
+      {route.name === "UserArea" || route.name === "ResultList" ? (
         <View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}
-            ></View>
-            {route.name === "ResultList" && 
+          ></View>
+          {route.name === "ResultList" && (
             <View
-            style={{ backgroundColor: "#f8f8ff", width: "100%", height: EStyleSheet.value("$rem") * 100 }}
+              style={{
+                backgroundColor: "#f8f8ff",
+                width: "100%",
+                height: EStyleSheet.value("$rem") * 100,
+              }}
             ></View>
-            }
+          )}
           <View
-            style={{ backgroundColor: "white", width: "100%", height: EStyleSheet.value("$rem") * 100 }}
-            >
-              {route.name === "ResultList" &&
-                <>
-                
+            style={{
+              backgroundColor: "white",
+              width: "100%",
+              height: EStyleSheet.value("$rem") * 100,
+            }}
+          >
+            {route.name === "ResultList" && (
+              <>
                 <Text
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 30,
                     fontFamily: "fb-Spacer-bold",
                     color: "#263742",
-                    paddingRight:EStyleSheet.value("$rem") * 20,
-                    paddingBottom:EStyleSheet.value("$rem") * 5,
-                    padding:EStyleSheet.value("$rem") * 15,
+                    paddingRight: EStyleSheet.value("$rem") * 20,
+                    paddingBottom: EStyleSheet.value("$rem") * 5,
+                    padding: EStyleSheet.value("$rem") * 15,
                   }}
-                >תוצאות כל ההגרלות</Text>
-                <View style={{flexDirection:"row",justifyContent:"space-evenly"}}>
+                >
+                  תוצאות כל ההגרלות
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                  }}
+                >
+                  <Image
+                    resizeMode='contain'
+                    style={{
+                      width: 80,
+                      height: 40,
+                      position: "relative",
+                      // left: "35%",
+                      // top: -30,
 
-                <Image
-              resizeMode='contain'
-              style={{
-                width: 80,
-                height: 40,
-                position: "relative",
-                // left: "35%",
-                // top: -30,
+                      // marginBottom: -30,
+                    }}
+                    source={require("C:/fullstack/lottoMatic/assets/home/Chance_sml.png")}
+                  />
+                  <Image
+                    resizeMode='contain'
+                    style={{
+                      width: 80,
+                      height: 40,
+                      position: "relative",
+                      // left: "35%",
+                      // top: -30,
 
-                // marginBottom: -30,
-              }}
-              source={require("C:/fullstack/lottoMatic/assets/home/Chance_sml.png")}
-            />
-                <Image
-              resizeMode='contain'
-              style={{
-                width: 80,
-                height: 40,
-                position: "relative",
-                // left: "35%",
-                // top: -30,
+                      // marginBottom: -30,
+                    }}
+                    source={require("C:/fullstack/lottoMatic/assets/home/Lotto_sml_1.png")}
+                  />
+                  <Image
+                    resizeMode='contain'
+                    style={{
+                      width: 80,
+                      height: 40,
+                      position: "relative",
+                      // left: "35%",
+                      // top: -30,
 
-                // marginBottom: -30,
-              }}
-              source={require("C:/fullstack/lottoMatic/assets/home/Lotto_sml_1.png")}
-            />
-                <Image
-              resizeMode='contain'
-              style={{
-                width: 80,
-                height: 40,
-                position: "relative",
-                // left: "35%",
-                // top: -30,
+                      // marginBottom: -30,
+                    }}
+                    source={require("C:/fullstack/lottoMatic/assets/home/_777_sml.png")}
+                  />
+                  <Image
+                    resizeMode='contain'
+                    style={{
+                      width: 80,
+                      height: 40,
+                      position: "relative",
+                      // left: "35%",
+                      // top: -30,
 
-                // marginBottom: -30,
-              }}
-              source={require("C:/fullstack/lottoMatic/assets/home/_777_sml.png")}
-            />
-                <Image
-              resizeMode='contain'
-              style={{
-                width: 80,
-                height: 40,
-                position: "relative",
-                // left: "35%",
-                // top: -30,
-
-                // marginBottom: -30,
-              }}
-              source={require("C:/fullstack/lottoMatic/assets/home/_123_sml.png")}
-            />
-
+                      // marginBottom: -30,
+                    }}
+                    source={require("C:/fullstack/lottoMatic/assets/home/_123_sml.png")}
+                  />
                 </View>
-               
-                </>
-              }
+              </>
+            )}
           </View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}
@@ -382,13 +409,14 @@ const BlankSquare = ({ color, gameName }) => {
               height: 100,
               flexDirection: "row",
               justifyContent: "space-evenly",
+              padding: 5,
             }}
           >
             <View>
-              <Text style={{ fontSize: 19, marginVertical: 6 }}>
+              <Text style={{ fontSize: 16, marginVertical: 6 }}>
                 {gameName}{" "}
               </Text>
-              <Text>עד 10,000,000 </Text>
+              <Text style={{ fontSize: 10 }}>{subHeader}</Text>
             </View>
             <Timer usedDate={usedDate} color={color} />
           </View>

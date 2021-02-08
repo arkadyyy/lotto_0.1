@@ -41,18 +41,18 @@ const homestyles = EStyleSheet.create({
     // flexGrow: 1,
     flexDirection: "column",
     justifyContent: "center",
-    width: 102,
+    width: 103,
     height: 103,
     margin: 10,
     borderRadius: 7,
   },
   openingPageBtnBorder: {
-    borderWidth: () => EStyleSheet.value("$rem") * 1.5,
+    borderWidth: () => EStyleSheet.value("$rem") * 1.7,
     borderColor: "white",
     borderRadius: 7,
 
-    paddingLeft: () => EStyleSheet.value("$rem") * 12,
-    paddingRight: () => EStyleSheet.value("$rem") * 12,
+    paddingLeft: () => EStyleSheet.value("$rem") * 18,
+    paddingRight: () => EStyleSheet.value("$rem") * 18,
     paddingBottom: () => EStyleSheet.value("$rem") * 1.5,
     justifyContent: "flex-end",
     alignItems: "center",
@@ -60,6 +60,7 @@ const homestyles = EStyleSheet.create({
   openingPageTopIcon: {
     width: 40,
     height: 30,
+    top: -7,
     position: "relative",
   },
   openingPageBtnLastBtns: {

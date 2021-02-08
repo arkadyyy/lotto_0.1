@@ -72,7 +72,8 @@ const LottoList = (props) => {
                       style={{
                         fontSize: 33,
                         color: "white",
-                        fontWeight: "bold",
+                        marginHorizontal: 8,
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       לוטו רגיל
@@ -92,10 +93,10 @@ const LottoList = (props) => {
                     >
                       <Text
                         style={{
-                          fontWeight: "bold",
                           color: "red",
                           fontSize: 10,
                           padding: 15,
+                          fontFamily: "fb-Spacer-bold",
                         }}
                       >
                         שחק עכשיו
@@ -118,7 +119,9 @@ const LottoList = (props) => {
                       style={{
                         fontSize: 33,
                         color: "white",
-                        fontWeight: "bold",
+
+                        marginHorizontal: 8,
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       דאבל לוטו
@@ -138,10 +141,10 @@ const LottoList = (props) => {
                     >
                       <Text
                         style={{
-                          fontWeight: "bold",
                           color: "red",
                           fontSize: 10,
                           padding: 15,
+                          fontFamily: "fb-Spacer-bold",
                         }}
                       >
                         שחק עכשיו
@@ -164,7 +167,8 @@ const LottoList = (props) => {
                       style={{
                         fontSize: 33,
                         color: "white",
-                        fontWeight: "bold",
+                        marginHorizontal: 8,
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       לוטו שיטתי
@@ -185,10 +189,10 @@ const LottoList = (props) => {
                     >
                       <Text
                         style={{
-                          fontWeight: "bold",
                           color: "red",
                           fontSize: 10,
                           padding: 15,
+                          fontFamily: "fb-Spacer-bold",
                         }}
                       >
                         שחק עכשיו
@@ -211,7 +215,8 @@ const LottoList = (props) => {
                       style={{
                         fontSize: 33,
                         color: "white",
-                        fontWeight: "bold",
+                        marginHorizontal: 8,
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       לוטו שיטתי חזק
@@ -234,29 +239,38 @@ const LottoList = (props) => {
                     >
                       <Text
                         style={{
-                          fontWeight: "bold",
                           color: "red",
                           fontSize: 10,
                           padding: 15,
+                          fontFamily: "fb-Spacer-bold",
                         }}
                       >
-                        שחק עכשיו!
+                        שחק עכשיו
                       </Text>
                     </Button>
                   </View>
                 </Right>
               </ListItem>
             </List>
-            <View style={{ flexDirection: "row" }}>
-              <Text style={{ flex: 3, fontSize: 25 }}>הסבר על הגרלת הלוטו</Text>
+            <View style={{ flexDirection: "row", margin: 12 }}>
+              <Text style={{ flex: 3, fontSize: 25, fontFamily: "fb-Spacer" }}>
+                הסבר על הגרלת הלוטו
+              </Text>
               <TouchableOpacity style={LottoListstyles.roundButton1}>
                 <Text style={{ fontSize: 20, color: "white" }}>+</Text>
               </TouchableOpacity>
 
-              <Text style={{ flex: 1 }}>עוד</Text>
+              <Text style={{ flex: 1, fontFamily: "fb-Spacer" }}>עוד</Text>
             </View>
-            <View style={{ padding: 1, backgroundColor: "#F2F2F2" }}>
-              <Text style={{ fontSize: 10 }}>
+            <View
+              style={{
+                padding: 1,
+                backgroundColor: "#F2F2F2",
+                marginHorizontal: 8,
+                fontFamily: "fb-Spacer",
+              }}
+            >
+              <Text style={{ fontSize: 10, fontFamily: "fb-Spacer" }}>
                 לאחר התשלום אנו בלוטומטיק מקבלים את הטופס שמילאתם ושולחים אותו
                 עבורכם בנקודת מכירה מורשית של מפעל הפיס, את הטופס שמילאנו עבורגם
                 בנקודה אנו סורקים ושולחים לכם לתיבת הדואר האלקטרוני ומעלים את

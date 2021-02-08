@@ -135,7 +135,14 @@ const ShitatiTable = ({
           width: width / 1.2,
         }}
       >
-        <Text style={{ color: "white", fontSize: 13, margin: 10 }}>
+        <Text
+          style={{
+            color: "white",
+            fontSize: 11,
+            marginHorizontal: 10,
+            fontFamily: "fb-Spacer",
+          }}
+        >
           טבלה {index1}{" "}
         </Text>
         <TouchableOpacity

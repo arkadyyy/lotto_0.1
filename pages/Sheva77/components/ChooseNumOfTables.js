@@ -40,7 +40,13 @@ const ChooseNumOfTables = ({
             padding: 10,
           }}
         >
-          <Text style={{ fontSize: 15, color: "white" }}>
+          <Text
+            style={{
+              fontSize: 15,
+              color: "white",
+              fontFamily: "fb-Spacer",
+            }}
+          >
             בחר מספר טבלאות למילוי
           </Text>
           <View style={{}}>
@@ -59,7 +65,13 @@ const ChooseNumOfTables = ({
                   settableNum(3);
                 }}
               >
-                <Text>3</Text>
+                <Text
+                  style={{
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  3
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -75,7 +87,13 @@ const ChooseNumOfTables = ({
                   settableNum(2);
                 }}
               >
-                <Text>2</Text>
+                <Text
+                  style={{
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  2
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -91,7 +109,13 @@ const ChooseNumOfTables = ({
                   settableNum(1);
                 }}
               >
-                <Text>1</Text>
+                <Text
+                  style={{
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  1
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

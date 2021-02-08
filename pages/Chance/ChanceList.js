@@ -35,20 +35,8 @@ const ChanceList = (props) => {
   return (
     <>
       <NavBar navigation={navigation} screenName={"ChanceList"} />
-      {/* <View
-        style={{ width: "100%", height: "1%", backgroundColor: "#009C4A" }}
-      ></View> */}
-      {/* <Container> */}
-      <ScrollView>
-        {/* <View style={homestyles.container}> */}
-        {/* <View
-              style={{
-                width: "100%",
-                height: "15%",
-                backgroundColor: "#F2F2F2",
-              }}
-            ></View> */}
 
+      <ScrollView>
         <View>
           <BlankSquare color='#009C4A' gameName="הגרלת צ'אנס" />
         </View>
@@ -72,7 +60,8 @@ const ChanceList = (props) => {
                   style={{
                     fontSize: 33,
                     color: "white",
-                    fontWeight: "bold",
+                    marginHorizontal: 8,
+                    fontFamily: "fb-Spacer-bold",
                   }}
                 >
                   צ'אנס רגיל
@@ -92,10 +81,10 @@ const ChanceList = (props) => {
                 >
                   <Text
                     style={{
-                      fontWeight: "bold",
-                      color: "#009C4B",
+                      color: "red",
                       fontSize: 10,
                       padding: 15,
+                      fontFamily: "fb-Spacer-bold",
                     }}
                   >
                     שחק עכשיו
@@ -118,7 +107,8 @@ const ChanceList = (props) => {
                   style={{
                     fontSize: 33,
                     color: "white",
-                    fontWeight: "bold",
+                    marginHorizontal: 8,
+                    fontFamily: "fb-Spacer-bold",
                   }}
                 >
                   רב צ'אנס
@@ -138,10 +128,10 @@ const ChanceList = (props) => {
                 >
                   <Text
                     style={{
-                      fontWeight: "bold",
-                      color: "#009C4B",
+                      color: "red",
                       fontSize: 10,
                       padding: 15,
+                      fontFamily: "fb-Spacer-bold",
                     }}
                   >
                     שחק עכשיו
@@ -164,7 +154,8 @@ const ChanceList = (props) => {
                   style={{
                     fontSize: 33,
                     color: "white",
-                    fontWeight: "bold",
+                    marginHorizontal: 8,
+                    fontFamily: "fb-Spacer-bold",
                   }}
                 >
                   צ'אנס שיטתי
@@ -184,10 +175,10 @@ const ChanceList = (props) => {
                 >
                   <Text
                     style={{
-                      fontWeight: "bold",
-                      color: "#009C4B",
+                      color: "red",
                       fontSize: 10,
                       padding: 15,
+                      fontFamily: "fb-Spacer-bold",
                     }}
                   >
                     שחק עכשיו
@@ -197,17 +188,26 @@ const ChanceList = (props) => {
             </Right>
           </ListItem>
         </List>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", margin: 12 }}>
           <View style={{ height: "50%", backgroundColor: "white" }}></View>
-          <Text style={{ flex: 3, fontSize: 25 }}>הסבר על הגרלת צ'אנס</Text>
+          <Text style={{ flex: 3, fontSize: 25, fontFamily: "fb-Spacer" }}>
+            הסבר על הגרלת צ'אנס
+          </Text>
           <TouchableOpacity style={ChanceListstyles.roundButton1}>
             <Text style={{ fontSize: 20, color: "white" }}>+</Text>
           </TouchableOpacity>
 
-          <Text style={{ flex: 1 }}> עוד..</Text>
+          <Text style={{ flex: 1, fontFamily: "fb-Spacer" }}> עוד..</Text>
         </View>
-        <View style={{ padding: 1, backgroundColor: "#F2F2F2" }}>
-          <Text style={{ fontSize: 10 }}>
+        <View
+          style={{
+            padding: 1,
+            backgroundColor: "#F2F2F2",
+            marginHorizontal: 8,
+            fontFamily: "fb-Spacer",
+          }}
+        >
+          <Text style={{ fontSize: 10, fontFamily: "fb-Spacer" }}>
             לאחר התשלום אנו בלוטומטיק מקבלים את הטופס שמילאתם ושולחים אותו
             עבורכם בנקודת מכירה מורשית של מפעל הפיס, את הטופס שמילאנו עבורגם
             בנקודה אנו סורקים ושולחים לכם לתיבת הדואר האלקטרוני ומעלים את הטופס

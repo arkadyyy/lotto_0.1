@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity,Dimensions } from "react-native";
+import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
 import {
@@ -139,7 +139,7 @@ const ShitatiHazakTable = ({
         }}
       > */}
 
-{/* <ListItem
+      {/* <ListItem
         style={{
           backgroundColor: !table1.includes(" ") ? "#C1272D " : "#D60617",
           flexWrap: "wrap",
@@ -150,17 +150,26 @@ const ShitatiHazakTable = ({
         }}
       > */}
 
-<ListItem
-        style={{ 
+      <ListItem
+        style={{
           backgroundColor: !table1.includes(" ") ? "#78C849" : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
           height: 80,
           alignItems: "center",
+          width: 400,
         }}
       >
-      
-        <Text style={{ color: "white", fontSize: 13 }}>טבלה {index1} </Text>
+        <Text
+          style={{
+            color: "white",
+            fontSize: 11,
+            marginHorizontal: 10,
+            fontFamily: "fb-Spacer",
+          }}
+        >
+          טבלה {index1}{" "}
+        </Text>
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);
