@@ -190,15 +190,16 @@ const Sheva77Page = ({ navigation }) => {
               }}
             >
               <Button
-               onPress={() => {
-                let summary = { 777: fullTables };
-                  navigation.navigate("SumPage777",
-                    {
-                      tableNum: tableNum,
-                      fullTables: fullTables
-                    });
-              }}
-                  style = {{
+                onPress={() => {
+                  let summary = { 777: fullTables };
+                  navigation.navigate("SumPage777", {
+                    tableNum: tableNum,
+                    fullTables: fullTables,
+                    gameType: "777",
+                    formType: 7,
+                  });
+                }}
+                style={{
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",
                   borderColor: "white",
@@ -206,7 +207,9 @@ const Sheva77Page = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>המשך לשליחת טופס</Text>
+                <Text style={{ color: "white", fontSize: 28 }}>
+                  המשך לשליחת טופס
+                </Text>
               </Button>
             </View>
           </View>

@@ -47,7 +47,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
       // strongNum: numbers.randomChoosenStrongNums,
       choosenStrongNums: numbers.randomChoosenStrongNums,
     };
-    setFullTables([...fullTables, table]);
+    setFullTables([table]);
   };
 
   return (
@@ -221,7 +221,9 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                   navigation.navigate("ExtraFormPage", {
                     tableNum: tableNum,
                     screenName: "לוטו שיטתי",
-                    fullTables:fullTables
+                    fullTables: fullTables,
+                    gameType: "shitati_hazak",
+                    hazakimNumber: hazakimNumber,
                   });
                 }}
                 style={{

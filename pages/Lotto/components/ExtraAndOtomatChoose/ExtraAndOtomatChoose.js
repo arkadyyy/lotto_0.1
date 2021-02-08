@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import ExtraAndOtomatChooseStyles from "./ExtraAndOtomatChooseStyles.js";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -180,17 +180,34 @@ const ExtraAndOtomatChoose = ({
               padding: 10,
             }}
           >
-            <Text
+            <View
               style={{
-                fontSize: 25,
-                color: "white",
-                marginTop: 10,
-                marginBottom: 5,
-                fontFamily: "fb-Spacer",
+                flexDirection: "row",
+                alignItems: "center",
               }}
             >
-              אקסטרה
-            </Text>
+              <Text
+                style={{
+                  fontSize: 25,
+                  color: "white",
+                  marginTop: 10,
+                  marginBottom: 5,
+                  fontFamily: "fb-Spacer",
+                }}
+              >
+                אקסטרה
+              </Text>
+              <Image
+                resizeMode='contain'
+                style={{
+                  width: 60,
+                  height: 40,
+                  position: "relative",
+                  left: "35%",
+                }}
+                source={require("C:/fullstack/lottoMatic/assets/home/extra.png")}
+              />
+            </View>
             <View style={{ flexDirection: "row" }}>
               <View
                 style={{

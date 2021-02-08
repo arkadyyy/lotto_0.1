@@ -28,47 +28,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Touchable } from "react-native";
 
-const Num = ({ num }) => {
-  return (
-    <>
-      <View
-        style={{
-          width: 20,
-          height: 20,
-          borderRadius: 30,
-          backgroundColor: "white",
-
-          margin: 5,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ color: "black" }}>{num}</Text>
-      </View>
-    </>
-  );
-};
-const StrongNum = ({ num }) => {
-  return (
-    <>
-      <View
-        style={{
-          width: 20,
-          height: 20,
-          borderRadius: 30,
-          backgroundColor: "yellow",
-
-          margin: 5,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ color: "black" }}>{num}</Text>
-      </View>
-    </>
-  );
-};
-
 const LottoShitatiPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
@@ -86,7 +45,7 @@ const LottoShitatiPage = ({ navigation }) => {
       choosenNums: numbers.randomNumbers,
       strongNum: numbers.strongNum,
     };
-    setFullTables([...fullTables, table]);
+    setFullTables([table]);
   };
 
   return (
@@ -179,7 +138,9 @@ const LottoShitatiPage = ({ navigation }) => {
                   navigation.navigate("ExtraFormPage", {
                     tableNum: tableNum,
                     screenName: "לוטו שיטתי",
-                    fullTables:fullTables
+                    fullTables: fullTables,
+                    gameType: "shitati",
+                    tzerufimNumber: tzerufimNumber,
                   });
                 }}
                 style={LottoListstyles.sendFormBtn}

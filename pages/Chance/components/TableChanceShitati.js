@@ -193,13 +193,13 @@ const TableChanceShitati = ({ tableNum, fullTables, setfullTables }) => {
     setfullTables({
       gameType: tableNum,
       choosenCards: [
-        { cards: [...pressedSpade.symbolsPressed], type: pressedSpade.type },
-        { cards: [...pressedHeart.symbolsPressed], type: pressedHeart.type },
+        { card: [...pressedSpade.symbolsPressed], cardType: pressedSpade.type },
+        { card: [...pressedHeart.symbolsPressed], cardType: pressedHeart.type },
         {
-          cards: [...pressedDiamond.symbolsPressed],
-          type: pressedDiamond.type,
+          card: [...pressedDiamond.symbolsPressed],
+          cardType: pressedDiamond.type,
         },
-        { cards: [...pressedClubs.symbolsPressed], type: pressedClubs.type },
+        { card: [...pressedClubs.symbolsPressed], cardType: pressedClubs.type },
       ],
     });
   }, [counter]);

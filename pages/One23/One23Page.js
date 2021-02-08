@@ -56,10 +56,6 @@ const One23Page = ({ navigation }) => {
     setFullTables(fullTabels);
   };
 
-  useEffect(() => {
-    dispatch(LogIn("dlevkovich05@gmail.com", "Dekel1145"));
-  }, []);
-
   return (
     <>
       <ScrollView>
@@ -316,14 +312,14 @@ const One23Page = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  let summary = { 123: { fullTables ,investNum} };
                   navigation.navigate("SumPage123", {
                     tableNum: tableNum,
                     screenName: "123",
-                    fullTables:fullTables
+                    fullTables: fullTables,
+                    investNum: investNum,
                   });
+                  console.log("investNum : ", investNum);
                 }}
-
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",
@@ -332,9 +328,9 @@ const One23Page = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-
-
-                <Text style={{ color: "white", fontSize: 28 }}>המשך לשליחת טופס</Text>
+                <Text style={{ color: "white", fontSize: 28 }}>
+                  המשך לשליחת טופס
+                </Text>
               </Button>
             </View>
           </View>

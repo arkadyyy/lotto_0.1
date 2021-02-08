@@ -24,7 +24,14 @@ Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
 const ExtraFormPage = ({ route, navigation }) => {
-  const { screenName, tableNum, fullTables } = route.params;
+  const {
+    screenName,
+    tableNum,
+    fullTables,
+    gameType,
+    tzerufimNumber,
+    hazakimNumber,
+  } = route.params;
   const [showTable, setshowTable] = useState(false);
   const [double, setdouble] = useState(false);
   // const [fullTables, setFullTables] = useState([]);
@@ -40,31 +47,14 @@ const ExtraFormPage = ({ route, navigation }) => {
   const [price, setPrice] = useState(11);
   const [otomatic, setOtomatic] = useState(true);
   const [extra, setExtra] = useState(true);
+  const [url, seturl] = useState("");
   // const [tableNum, settableNum] = useState(1);
 
   const [sendToServer, setsendToServer] = useState({
     extra: false,
     multi_lottery: -1,
-    tables: [
-      //         {
-      //           numbers: [15, 18, 24, 28, 30, 32],
-      //           strong_number: [6],
-      //           table_number: 1,
-      //         },
-    ],
+    tables: [],
   });
-
-  //     {
-  //       extra: false,
-  //       multi_lottery: -1,
-  //       tables: [
-  //         {
-  //           numbers: [15, 18, 24, 28, 30, 32],
-  //           strong_number: [6],
-  //           table_number: 1,
-  //         },
-  //       ],
-  //     },
 
   useEffect(() => {
     if (screenName === "LottoPage") {
@@ -73,41 +63,80 @@ const ExtraFormPage = ({ route, navigation }) => {
       setGameName("הגרלת צ'אנס");
     }
 
-    // axios
-    //   .post(
-    //     "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
-    //     {},
-    //     {
-    //       headers: {
-    //         Authorization: store.jwt,
-    //         Accept: "application/json",
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   )
-    //   .then((res) => console.log("res from calculate price : ", res.data));
+    //set post url according to game
+    if (gameType === "regular") {
+      seturl("http://52.90.122.190:5000/games/lotto/type/regular/0");
+    } else if (gameType === "double") {
+      seturl("http://52.90.122.190:5000/games/lotto/type/regular_double/0");
+    } else if (gameType === "shitati") {
+      seturl("http://52.90.122.190:5000/games/lotto/type/shitati/0");
+    } else if (gameType === "double_shitati") {
+      seturl("http://52.90.122.190:5000/games/lotto/type/double_shitati/0");
+    } else if (gameType === "shitati_hazak") {
+      seturl("http://52.90.122.190:5000/games/lotto/type/shitati_hazak/0");
+    } else if (gameType === "double_shitati_hazak") {
+      seturl(
+        "http://52.90.122.190:5000/games/lotto/type/double_shitati_hazak/0"
+      );
+    }
   }, []);
 
   useEffect(() => {
     //configure data sent to server
 
-    let x = fullTables.map((table, index) => {
-      return {
-        numbers: table.choosenNums,
-        strong_number: [table.strongNum],
-        table_number: table.tableNum,
-      };
-    });
+    if (gameType === "regular" || gameType === "double") {
+      let x = fullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
+          strong_number: [table.strongNum],
+          table_number: table.tableNum,
+        };
+      });
 
-    console.log("x : ", x);
+      console.log("x : ", x);
 
-    setsendToServer({
-      extra: extra,
-      multi_lottery: hagralot,
-      tables: x,
-    });
+      setsendToServer({
+        extra: extra,
+        multi_lottery: hagralot,
+        tables: x,
+      });
 
-    console.log("sendToServer : ", sendToServer);
+      console.log("sendToServer : ", sendToServer);
+    } else if (gameType === "shitati") {
+      let x = fullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
+          strong_number: [table.strongNum],
+          table_number: table.tableNum,
+        };
+      });
+
+      console.log("x : ", x);
+      console.log("fullTables : ", fullTables);
+      setsendToServer({
+        extra: extra,
+        form_type: `${tzerufimNumber}`,
+        multi_lottery: hagralot,
+        tables: x,
+      });
+    } else if (gameType === "shitati_hazak") {
+      let x = fullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
+          strong_number: table.choosenStrongNums,
+          table_number: table.tableNum,
+        };
+      });
+
+      console.log("x : ", x);
+      console.log("fullTables : ", fullTables);
+      setsendToServer({
+        extra: extra,
+        form_type: `${hazakimNumber}`,
+        multi_lottery: hagralot,
+        tables: x,
+      });
+    }
   }, [fullTables, extra, hagralot, otomatic]);
 
   return (
@@ -269,21 +298,15 @@ const ExtraFormPage = ({ route, navigation }) => {
               <Button
                 onPress={() => {
                   console.log("sendToServer", sendToServer);
-                  // console.log("store.user : ", store.user.signInUserSession);
-                  console.log("jwtState : ", jwtState);
 
                   axios
-                    .post(
-                      "http://52.90.122.190:5000/games/lotto/type/regular/0",
-                      sendToServer,
-                      {
-                        headers: {
-                          Authorization: store.jwt,
-                          Accept: "application/json",
-                          "Content-Type": "application/json",
-                        },
-                      }
-                    )
+                    .post(url, sendToServer, {
+                      headers: {
+                        Authorization: store.jwt,
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                      },
+                    })
                     .then((res) => {
                       console.log(
                         "this is res from post server request $$$$ : ",

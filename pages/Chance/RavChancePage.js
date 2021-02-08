@@ -219,13 +219,13 @@ const RavChancePage = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  let summary = { RavChance: fullTables,investNum:investNum };
-                  navigation.navigate("SumPageChance",
-                    {
-                      tableNum: 4,
-                      investNum: investNum,
-                      fullTables:fullTables
-                    });
+                  let summary = { RavChance: fullTables, investNum: investNum };
+                  navigation.navigate("SumPageChance", {
+                    tableNum: 4,
+                    investNum: investNum,
+                    fullTables: fullTables,
+                    gameType: "rav_chance",
+                  });
                 }}
                 style={{
                   borderRadius: 17,
@@ -235,7 +235,9 @@ const RavChancePage = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>המשך לשליחת טופס</Text>
+                <Text style={{ color: "white", fontSize: 28 }}>
+                  המשך לשליחת טופס
+                </Text>
               </Button>
             </View>
           </View>

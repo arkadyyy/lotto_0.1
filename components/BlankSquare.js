@@ -228,16 +228,16 @@ const BlankSquare = ({ color, gameName }) => {
       .get("http://52.90.122.190:5000/games/time")
       .then((res) => {
         if (route.name === "LottoPage" || route.name === "LottoList") {
-          setusedDate(res.data["לוטו"]);
+          setusedDate(res.data["לוטו"].time);
         } else if (route.name === "ChanceList" || route.name === "ChancePage") {
-          setusedDate(res.data["צ'אנס"]);
+          setusedDate(res.data["צ'אנס"].time);
         } else if (
           route.name === "Sheva77List" ||
           route.name === "Sheva77Page"
         ) {
-          setusedDate(res.data["777"]);
+          setusedDate(res.data["777"].time);
         } else if (route.name === "One23Page" || route.name === "One23List") {
-          setusedDate(res.data["123"]);
+          setusedDate(res.data["123"].time);
         }
 
         // let countDownDate = new Date(usedDate).getTime();
