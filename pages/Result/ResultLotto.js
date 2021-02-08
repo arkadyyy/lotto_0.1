@@ -27,6 +27,7 @@ import {
   CardItem,
   List,
   ListItem,
+  Spinner,
 } from "native-base";
 import Hr from "react-native-hr-component";
 import NavBar from "../../components/NavBar";
@@ -246,10 +247,16 @@ setSortedData(sortedData)
             }}
                   >
                    
-                   {/* {sortedData */}
+                   
+                  {data ? (
+                    <Spinner/>
+                  ) :
+                    null
+                    }
 
-                  
-            {sortedData.map((hagrala, index) => (
+                   
+            {/* {sortedData.map((hagrala, index) => ( */}
+            {data.map((hagrala, index) => (
               <ListItem key={index} style={{flexDirection:"column"}}>
                 
                 <View style={{
@@ -267,7 +274,7 @@ setSortedData(sortedData)
                     style={{ alignSelf:"center" }}
                   >
                     <Text style={{
-                      fontSize:EStyleSheet.value("$rem") * 25,
+                      fontSize:EStyleSheet.value("$rem") * 15,
                       color: "#263742",
                       fontFamily: "fb-Spacer-bold",
                       // textAlignVertical: "center",
@@ -282,7 +289,7 @@ setSortedData(sortedData)
                   >
 
                     <Text style={{
-                      fontSize: EStyleSheet.value("$rem") * 25,  
+                      fontSize: EStyleSheet.value("$rem") * 15,  
                       fontFamily: "fb-Spacer-bold",
 
                       color: "#263742"
@@ -292,7 +299,7 @@ setSortedData(sortedData)
                     </Text>                
                 </View>
                  
-                <View style={{
+                {/* <View style={{
                     alignSelf: "center",
                     // left: EStyleSheet.value("$rem") * 1,
                       width: EStyleSheet.value("$rem") * 28,
@@ -310,14 +317,15 @@ setSortedData(sortedData)
                     backgroundColor: "#263742"
                   }}>
                   <FontAwesomeIcon size={EStyleSheet.value("$rem") * 30} icon={faCaretLeft} color={"white"} style={{left:EStyleSheet.value("$rem") * 2}} />
-                </View>
+                  </View> */}
+                  
                 </View>
 
                
-                <View
+                {/* <View
                   style={{ flexDirection: "column", alignItems: "flex-end" }}
-                >
-                  <View style={{ flexDirection: "row" }}>
+                > */}
+                  {/* <View style={{ flexDirection: "row" }}>
                     {hagrala[Object.keys(hagrala)[2]].numbers
                       .map((num) => (
                       <Text
@@ -365,9 +373,9 @@ setSortedData(sortedData)
                     </Text>
                   )}
 
-                  </View>
+                  </View> */}
                  
-                </View>
+                {/* </View> */}
 
               
               </ListItem>
