@@ -16,6 +16,7 @@ import {
   ListItem,
 } from "native-base";
 import axios from "axios";
+import EStyleSheet from "react-native-extended-stylesheet";
 
 const Timer = ({ color, usedDate }) => {
   const [seconds, setseconds] = useState(0);
@@ -277,14 +278,94 @@ const BlankSquare = ({ color, gameName }) => {
 
   return (
     <>
-      {route.name === "UserArea" ? (
+      {route.name === "UserArea" ||
+        route.name === "ResultList"
+      ? (
         <View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}
-          ></View>
+            ></View>
+            {route.name === "ResultList" && 
+            <View
+            style={{ backgroundColor: "#f8f8ff", width: "100%", height: EStyleSheet.value("$rem") * 100 }}
+            ></View>
+            }
           <View
-            style={{ backgroundColor: "white", width: "100%", height: 100 }}
-          ></View>
+            style={{ backgroundColor: "white", width: "100%", height: EStyleSheet.value("$rem") * 100 }}
+            >
+              {route.name === "ResultList" &&
+                <>
+                
+                <Text
+                  style={{
+                    fontSize: EStyleSheet.value("$rem") * 30,
+                    fontFamily: "fb-Spacer-bold",
+                    color: "#263742",
+                    paddingRight:EStyleSheet.value("$rem") * 20,
+                    paddingBottom:EStyleSheet.value("$rem") * 5,
+                    padding:EStyleSheet.value("$rem") * 15,
+                  }}
+                >תוצאות כל ההגרלות</Text>
+                <View style={{flexDirection:"row",justifyContent:"space-evenly"}}>
+
+                <Image
+              resizeMode='contain'
+              style={{
+                width: 80,
+                height: 40,
+                position: "relative",
+                // left: "35%",
+                // top: -30,
+
+                // marginBottom: -30,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/home/Chance_sml.png")}
+            />
+                <Image
+              resizeMode='contain'
+              style={{
+                width: 80,
+                height: 40,
+                position: "relative",
+                // left: "35%",
+                // top: -30,
+
+                // marginBottom: -30,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/home/Lotto_sml_1.png")}
+            />
+                <Image
+              resizeMode='contain'
+              style={{
+                width: 80,
+                height: 40,
+                position: "relative",
+                // left: "35%",
+                // top: -30,
+
+                // marginBottom: -30,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/home/_777_sml.png")}
+            />
+                <Image
+              resizeMode='contain'
+              style={{
+                width: 80,
+                height: 40,
+                position: "relative",
+                // left: "35%",
+                // top: -30,
+
+                // marginBottom: -30,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/home/_123_sml.png")}
+            />
+
+                </View>
+               
+                </>
+              }
+          </View>
           <View
             style={{ width: "100%", height: 7, backgroundColor: color }}
           ></View>
