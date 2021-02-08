@@ -240,7 +240,8 @@ const ChancePage = ({ navigation }) => {
                   navigation.navigate("SumPageChance", {
                     tableNum: tableNum,
                     investNum: investNum,
-                    fullTables:fullTables
+                    fullTables: fullTables,
+                    gameType: "regular",
                   });
                 }}
                 style={{

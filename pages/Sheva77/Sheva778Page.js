@@ -52,7 +52,13 @@ const Sheva778Page = ({ navigation }) => {
         <BlankSquare gameName='הגרלת 777' color='#CC1D64' />
         <ChooseForm />
         <View style={{ margin: 15 }}>
-          <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20,height:660}}>
+          <View
+            style={{
+              backgroundColor: "#CC1D64",
+              paddingBottom: 20,
+              height: 660,
+            }}
+          >
             <View
               style={{
                 flexDirection: "row",
@@ -169,7 +175,6 @@ const Sheva778Page = ({ navigation }) => {
                       tableNum={index + 1}
                     />
                   ))}
-                  
                 </ScrollView>
               </List>
             </View>
@@ -183,15 +188,15 @@ const Sheva778Page = ({ navigation }) => {
               }}
             >
               <Button
-             onPress={() => {
-              let summary = { 777: fullTables };
-                  navigation.navigate("SumPage777",
-                    {
-                      tableNum: 1,
-                      fullTables:fullTables
-                    
-                    });
-            }}
+                onPress={() => {
+                  let summary = { 777: fullTables };
+                  navigation.navigate("SumPage777", {
+                    tableNum: 1,
+                    fullTables: fullTables,
+                    gameType: "778",
+                    formType: 8,
+                  });
+                }}
                 style={{
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",
@@ -200,7 +205,9 @@ const Sheva778Page = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>המשך לשליחת טופס</Text>
+                <Text style={{ color: "white", fontSize: 28 }}>
+                  המשך לשליחת טופס
+                </Text>
               </Button>
             </View>
           </View>

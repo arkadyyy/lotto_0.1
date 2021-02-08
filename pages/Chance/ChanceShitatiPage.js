@@ -140,78 +140,6 @@ const ChanceShitatiPage = ({ navigation }) => {
                 >
                   <Text>10</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => {
-                    setinvestNum(25);
-                  }}
-                  style={
-                    investNum === 25
-                      ? chanceListstyles.investBtnSelected
-                      : chanceListstyles.investBtn
-                  }
-                >
-                  <Text>25</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => {
-                    setinvestNum(50);
-                  }}
-                  style={
-                    investNum === 50
-                      ? chanceListstyles.investBtnSelected
-                      : chanceListstyles.investBtn
-                  }
-                >
-                  <Text>50</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => {
-                    setinvestNum(70);
-                  }}
-                  style={
-                    investNum === 70
-                      ? chanceListstyles.investBtnSelected
-                      : chanceListstyles.investBtn
-                  }
-                >
-                  <Text>70</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => {
-                    setinvestNum(100);
-                  }}
-                  style={
-                    investNum === 100
-                      ? chanceListstyles.investBtnSelected
-                      : chanceListstyles.investBtn
-                  }
-                >
-                  <Text>100</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => {
-                    setinvestNum(250);
-                  }}
-                  style={
-                    investNum === 250
-                      ? chanceListstyles.investBtnSelected
-                      : chanceListstyles.investBtn
-                  }
-                >
-                  <Text>250</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => {
-                    setinvestNum(500);
-                  }}
-                  style={
-                    investNum === 500
-                      ? chanceListstyles.investBtnSelected
-                      : chanceListstyles.investBtn
-                  }
-                >
-                  <Text>500</Text>
-                </TouchableOpacity>
               </View>
             </View>
             <View
@@ -225,11 +153,11 @@ const ChanceShitatiPage = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  let summary = { chanceShitati: fullTables, investNum };
                   navigation.navigate("SumPageChance", {
                     tableNum: tableNum,
                     investNum: investNum,
-                    fullTables:fullTables
+                    fullTables: fullTables,
+                    gameType: "shitati",
                   });
                 }}
                 style={{
@@ -240,7 +168,9 @@ const ChanceShitatiPage = ({ navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>המשך לשליחת טופס</Text>
+                <Text style={{ color: "white", fontSize: 28 }}>
+                  המשך לשליחת טופס
+                </Text>
               </Button>
             </View>
           </View>

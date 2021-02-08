@@ -31,8 +31,7 @@ const ChooseNumOfTables = ({
 
   return (
     <>
-      {
-        route.name === "ChancePage" &&
+      {route.name === "ChancePage" && (
         <View
           style={{
             borderColor: "white",
@@ -96,13 +95,11 @@ const ChooseNumOfTables = ({
               >
                 <Text>1</Text>
               </TouchableOpacity>
-              
             </View>
           </View>
         </View>
-}
-      {route.name === "ChanceShitatiPage" 
-        &&
+      )}
+      {route.name === "ChanceShitatiPage" && (
         <View
           style={{
             borderColor: "white",
@@ -117,26 +114,27 @@ const ChooseNumOfTables = ({
             בחר מספר טבלאות למילוי
           </Text>
           <View style={{}}>
-          <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={
-                    tableNum === 5
-                      ? chanceListstyles.investBtnSelected
-                      : chanceListstyles.investBtn
-                  }
-                  onPress={() => {
-                    settableNum(5);
+                  tableNum === 5
+                    ? chanceListstyles.investBtnSelected
+                    : chanceListstyles.investBtn
+                }
+                onPress={() => {
+                  settableNum(5);
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontSize: EStyleSheet.value("$rem") * 13,
                   }}
                 >
-                  <Text
-                  style={{
-                   textAlign:"center",
-                    fontSize: EStyleSheet.value("$rem") * 13,
-                  
-                }}  
-                >רב צ'אנס</Text>
-                </TouchableOpacity>
-              
+                  רב צ'אנס
+                </Text>
+              </TouchableOpacity>
+
               <TouchableOpacity
                 style={
                   tableNum === 4
@@ -185,12 +183,10 @@ const ChooseNumOfTables = ({
               >
                 <Text>1</Text>
               </TouchableOpacity>
-              
-              
             </View>
           </View>
         </View>
-}
+      )}
       {route.name === "SumPageChance" && (
         <View
           style={{
@@ -215,11 +211,11 @@ const ChooseNumOfTables = ({
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: hagralot === 1 ? "#8CC63F" : null,
+                  backgroundColor: hagralot === -1 ? "#8CC63F" : null,
                 }}
                 onPress={() => {
                   // settableNum(1);
-                  setHagralot(1);
+                  setHagralot(-1);
                 }}
               >
                 <Text style={{ color: "white" }}>1</Text>

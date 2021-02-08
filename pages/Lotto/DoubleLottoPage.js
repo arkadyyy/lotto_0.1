@@ -160,8 +160,9 @@ const DoubleLottoPage = ({ navigation }) => {
 
                   navigation.navigate("ExtraFormPage", {
                     tableNum: tableNum,
-                    screenName: "דאבל לוטו",
-                    fullTables:fullTables
+                    screenName: "לוטו",
+                    fullTables: fullTables,
+                    gameType: "double",
                   });
                 }}
                 style={LottoListstyles.sendFormBtn}

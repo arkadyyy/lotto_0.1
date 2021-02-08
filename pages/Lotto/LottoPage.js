@@ -229,6 +229,7 @@ const LottoPage = ({ navigation }) => {
                     tableNum: tableNum,
                     screenName: "לוטו",
                     fullTables: fullTables,
+                    gameType: "regular",
                   });
                 }}
                 style={LottoListstyles.sendFormBtn}

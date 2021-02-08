@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity,Dimensions } from "react-native";
+import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
 import { Button, List } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
-import ExtraAndOtomatChoose from "../../pages/Lotto/components/ExtraAndOtomatChoose/ExtraAndOtomatChoose"
+import ExtraAndOtomatChoose from "../../pages/Lotto/components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
@@ -24,7 +24,7 @@ Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
 const SumPage123 = ({ route, navigation }) => {
-  const { screenName,tableNum,fullTables } = route.params;
+  const { screenName, tableNum, fullTables, investNum } = route.params;
   const [showTable, setshowTable] = useState(false);
   // const [tableNum, settableNum] = useState(1);
   const [double, setdouble] = useState(false);
@@ -38,21 +38,46 @@ const SumPage123 = ({ route, navigation }) => {
 
   const [price, setPrice] = useState(11);
 
-  const [hagralot, setHagralot] = useState(1);
-  
-  // const [tableNum, settableNum] = useState(1);
+  const [hagralot, setHagralot] = useState(-1);
+  const [url, seturl] = useState(
+    "http://52.90.122.190:5000/games/123/type/regular/0"
+  );
 
-//   useEffect(() => {
-//     if ( screenName  === "LottoPage") { setGameName("הגרלת לוטו") }
-//     else if (screenName === "ChancePage") {setGameName("הגרלת צ'אנס") };
-      
-//   }, []);
+  const [sendToServer, setsendToServer] = useState({
+    multi_lottery: -1,
+    participant_amount: 0,
+    tables: [],
+  });
+
+  useEffect(() => {
+    let x = fullTables.map((table, index) => {
+      return {
+        numbers: {
+          1: table.choosenNums[0],
+          2: table.choosenNums[1],
+          3: table.choosenNums[2],
+        },
+
+        table_number: table.tableNum,
+      };
+    });
+
+    // console.log("x : ", x);
+
+    setsendToServer({
+      multi_lottery: hagralot,
+      participant_amount: investNum,
+      tables: x,
+    });
+
+    console.log("sendToServer : ", sendToServer);
+  }, [fullTables, hagralot, investNum]);
 
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} screenName={screenName} />
-        <BlankSquare gameName="הגרלת 123" color='#FF6B00' />
+        <BlankSquare gameName='הגרלת 123' color='#FF6B00' />
         <ChooseForm setdouble={setdouble} double={double} />
         <View style={{ margin: 15 }}>
           <View
@@ -83,28 +108,36 @@ const SumPage123 = ({ route, navigation }) => {
               >
                 <Text style={{ fontSize: 20, color: "#FF0000" }}>2</Text>
               </View>
-              <Text style={{ fontSize: 27, color: "white" }}>שדרג את הטופס</Text>
+              <Text style={{ fontSize: 27, color: "white" }}>
+                שדרג את הטופס
+              </Text>
             </View>
 
             <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
-<ExtraAndOtomatChoose screenName="123Pages"/>
+            <ExtraAndOtomatChoose screenName='123Pages' />
 
-            <View style={{ flexDirection: "column",marginLeft:10 }}>
-            <View style={{ flexDirection: "row" }}>
-            <FontAwesomeIcon icon={faCheck} color="white"/ >
-<Text style={{color:"white",marginLeft:5}}>סיכויי הזכיה גבוהים מאד</Text>
+            <View style={{ flexDirection: "column", marginLeft: 10 }}>
+              <View style={{ flexDirection: "row" }}>
+                <FontAwesomeIcon icon={faCheck} color='white' />
+                <Text style={{ color: "white", marginLeft: 5 }}>
+                  סיכויי הזכיה גבוהים מאד
+                </Text>
               </View>
-            <View style={{ flexDirection: "row" }}>
-                <FontAwesomeIcon icon={faCheck} color="white" />
-<Text style={{color:"white",marginLeft:5}}>קבל פרס על ניחוש חלקי</Text>
-          </View>
-            <View style={{ flexDirection: "row" }}>
-              <FontAwesomeIcon icon={faCheck} color="white" />
-<Text style={{color:"white",marginLeft:5}}>נחש קלף אחד</Text>
+              <View style={{ flexDirection: "row" }}>
+                <FontAwesomeIcon icon={faCheck} color='white' />
+                <Text style={{ color: "white", marginLeft: 5 }}>
+                  קבל פרס על ניחוש חלקי
+                </Text>
               </View>
+              <View style={{ flexDirection: "row" }}>
+                <FontAwesomeIcon icon={faCheck} color='white' />
+                <Text style={{ color: "white", marginLeft: 5 }}>
+                  נחש קלף אחד
+                </Text>
               </View>
-              
-<View
+            </View>
+
+            <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -123,55 +156,81 @@ const SumPage123 = ({ route, navigation }) => {
                   marginRight: 10,
                 }}
               >
-                <FontAwesomeIcon icon={faShekelSign} color="red"/ >
+                <FontAwesomeIcon icon={faShekelSign} color='red' />
               </View>
-              
+
               <Text
                 style={{
                   fontSize: EStyleSheet.value("$rem") * 22,
-                  color: "white"
+                  color: "white",
                 }}
               >
-                סיכום ושליחת טופס</Text>
+                סיכום ושליחת טופס
+              </Text>
             </View>
-           <View style={{flexDirection:"column"}}>
-            <View style={{ flexDirection: "row", alignItems: "center",marginHorizontal:15 }}>
-                <Text
-                  style={{
-                    fontSize: EStyleSheet.value("$rem") * 22,
-                    color: "yellow"
-                  }}
-                >
-                  סה"כ {tableNum}טבלאות</Text>
-<View style={{marginLeft:10, borderLeftColor:"yellow",height:20,width:10,borderLeftWidth:1 }}></View>
-                <Text
-                  style={{
-                    fontSize: EStyleSheet.value("$rem") * 22,
-
-                    color: "yellow"
-                  }}> {hagralot}הגרלות</Text>
-            </View>
-            
+            <View style={{ flexDirection: "column" }}>
               <View
-              style={{
-                flexDirection: "row",
-                
-              }}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginHorizontal: 15,
+                }}
               >
                 <Text
-                  color="white"
+                  style={{
+                    fontSize: EStyleSheet.value("$rem") * 22,
+                    color: "yellow",
+                  }}
+                >
+                  סה"כ {tableNum}טבלאות
+                </Text>
+                <View
+                  style={{
+                    marginLeft: 10,
+                    borderLeftColor: "yellow",
+                    height: 20,
+                    width: 10,
+                    borderLeftWidth: 1,
+                  }}
+                ></View>
+                <Text
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
 
-                    color: "white", marginLeft: 15
-                  }}>לתשלום: {price} </Text>
-                <View style={{height:10}}>
-                  <FontAwesomeIcon style={{ marginVertical: 7, marginLeft: -4, }} icon={faShekelSign} color="white" />
+                    color: "yellow",
+                  }}
+                >
+                  {" "}
+                  {hagralot}הגרלות
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <Text
+                  color='white'
+                  style={{
+                    fontSize: EStyleSheet.value("$rem") * 22,
+
+                    color: "white",
+                    marginLeft: 15,
+                  }}
+                >
+                  לתשלום: {price}{" "}
+                </Text>
+                <View style={{ height: 10 }}>
+                  <FontAwesomeIcon
+                    style={{ marginVertical: 7, marginLeft: -4 }}
+                    icon={faShekelSign}
+                    color='white'
+                  />
                 </View>
-                </View>
-                </View>
-            
-         
+              </View>
+            </View>
+
             <View
               style={{
                 alignSelf: "center",
@@ -179,61 +238,31 @@ const SumPage123 = ({ route, navigation }) => {
                 zIndex: 1,
               }}
             >
-           
-           <Button
+              <Button
                 onPress={() => {
-                  
                   let summary = { chance: fullTables, investNum };
-                  console.log(summary);
-                  console.log("store.user : ", store.user.signInUserSession);
+                  // console.log(summary);
+                  // console.log("store.user : ", store.user.signInUserSession);
                   // console.log("jwtState : ", jwtState);
+                  console.log("sendToServer : ", sendToServer);
 
-                //   axios
-                //     .post(
-                //       "http://52.90.122.190:5000/games/lotto/type/regular/0",
-                //       {
-                //         tables: {
-                //           tables: [
-                //             {
-                //               table_number: 1,
-                //               numbers: [11, 12, 13, 14, 15, 16],
-                //               strong_number: 6,
-                //             },
-                //             {
-                //               table_number: 2,
-                //               numbers: [1, 2, 3, 4, 5, 6],
-                //               strong_number: 6,
-                //             },
-                //           ],
-
-                //           extra: false,
-                //           multi_lottery: 6,
-                //           lottomatic: 10,
-                //         },
-                //         type: "regular_lotto",
-                //         userName: "dlevkovich05@gmail.com",
-                //         timestamp: new Date(),
-                //         status: "completed",
-                //       },
-                //       {
-                //         headers: {
-                //           authorization: jwtState,
-                //         },
-                //       }
-                //     )
-                //     .then((res) => {
-                //       console.log(
-                //         "this is res from post server request $$$$ : ",
-                //         res
-                //       );
-                //     });
-                  {
-                  }
-                }
-              
-                }
+                  axios
+                    .post(url, sendToServer, {
+                      headers: {
+                        Authorization: store.jwt,
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                      },
+                    })
+                    .then((res) => {
+                      console.log(
+                        "this is res from post server request $$$$ : ",
+                        res
+                      );
+                    });
+                }}
                 style={{
-                  width:200,
+                  width: 200,
                   borderRadius: 17,
                   backgroundColor: "#FBB03B",
                   borderColor: "white",
@@ -246,7 +275,6 @@ const SumPage123 = ({ route, navigation }) => {
               </Button>
             </View>
           </View>
-        
         </View>
       </ScrollView>
     </>
