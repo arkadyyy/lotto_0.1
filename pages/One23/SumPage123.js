@@ -19,6 +19,7 @@ import { LogIn } from "../../redux/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCheck, faShekelSign } from "@fortawesome/free-solid-svg-icons";
 import EStyleSheet from "react-native-extended-stylesheet";
+import one23listStyles from "./One23listStyles";
 
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
@@ -37,7 +38,7 @@ const SumPage123 = ({ route, navigation }) => {
   const dispatch = useDispatch();
 
   const [price, setPrice] = useState(11);
-
+  const [otomatic, setOtomatic] = useState(true);
   const [hagralot, setHagralot] = useState(-1);
   const [url, seturl] = useState(
     "http://52.90.122.190:5000/games/123/type/regular/0"
@@ -94,27 +95,34 @@ const SumPage123 = ({ route, navigation }) => {
                 padding: 10,
               }}
             >
-              <View
+              <View style={one23listStyles.topNumCircle}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: "#FF0000",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  2
+                </Text>
+              </View>
+              <Text
                 style={{
-                  flexDirection: "row",
-                  backgroundColor: "white",
-                  width: 50,
-                  height: 50,
-                  borderRadius: 33,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginRight: 10,
+                  fontSize: 17,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
-                <Text style={{ fontSize: 20, color: "#FF0000" }}>2</Text>
-              </View>
-              <Text style={{ fontSize: 27, color: "white" }}>
                 שדרג את הטופס
               </Text>
             </View>
 
             <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
-            <ExtraAndOtomatChoose screenName='123Pages' />
+            <ExtraAndOtomatChoose
+              setOtomatic={setOtomatic}
+              otomatic={otomatic}
+              screenName='123Pages'
+            />
 
             <View style={{ flexDirection: "column", marginLeft: 10 }}>
               <View style={{ flexDirection: "row" }}>
@@ -163,6 +171,7 @@ const SumPage123 = ({ route, navigation }) => {
                 style={{
                   fontSize: EStyleSheet.value("$rem") * 22,
                   color: "white",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
                 סיכום ושליחת טופס
@@ -180,6 +189,7 @@ const SumPage123 = ({ route, navigation }) => {
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
                     color: "yellow",
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   סה"כ {tableNum}טבלאות
@@ -196,8 +206,8 @@ const SumPage123 = ({ route, navigation }) => {
                 <Text
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
-
                     color: "yellow",
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   {" "}
@@ -214,9 +224,9 @@ const SumPage123 = ({ route, navigation }) => {
                   color='white'
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
-
                     color: "white",
                     marginLeft: 15,
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   לתשלום: {price}{" "}
@@ -262,16 +272,22 @@ const SumPage123 = ({ route, navigation }) => {
                     });
                 }}
                 style={{
-                  width: 200,
                   borderRadius: 17,
-                  backgroundColor: "#FBB03B",
+                  backgroundColor: "#8CC63F",
                   borderColor: "white",
                   borderWidth: 2,
-                  padding: 50,
-                  // :"center"
+                  padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 28,
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  שלח טופס
+                </Text>
               </Button>
             </View>
           </View>

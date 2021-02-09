@@ -28,6 +28,7 @@ import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../../aws-exports";
 import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
+
 Amplify.configure(awsconfig);
 
 const One23Page = ({ navigation }) => {
@@ -64,98 +65,57 @@ const One23Page = ({ navigation }) => {
         <ChooseForm />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#FF6B00", paddingBottom: 20 }}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                padding: 30,
-              }}
-            >
-              <View
+            <View style={one23listStyles.header}>
+              <View style={one23listStyles.topNumCircle}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: "#E62321",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  1
+                </Text>
+              </View>
+              <Text
                 style={{
-                  flexDirection: "row",
-                  backgroundColor: "white",
-                  width: 50,
-                  height: 50,
-                  borderRadius: 33,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginRight: 20,
+                  fontSize: 17,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
-                <Text style={{ fontSize: 20, color: "#FF6B00" }}>1</Text>
-              </View>
-              <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
+                מלא את הטופס
+              </Text>
             </View>
 
             <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
 
             <View style={{ marginHorizontal: 10 }}>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 15,
-                  marginLeft: 12,
-                  marginBottom: 10,
-                }}
-              >
-                בחר 3 מספרים
-              </Text>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 15,
-                  marginLeft: 12,
-                  marginBottom: 10,
-                }}
-              >
-                בכל טבלה
+              <Text style={one23listStyles.subHeader}>
+                {" "}
+                בחק 3 מספרים בכל טבלה
               </Text>
             </View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                flexWrap: "wrap",
-                marginLeft: 20,
-              }}
-            >
-              <Button
+            <View style={one23listStyles.autoBtnContainer}>
+              <TouchableOpacity
                 onPress={autoFillForm}
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
+                style={one23listStyles.autoBtn}
               >
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 10,
-                    width: 70,
-                    textAlign: "center",
-                  }}
-                >
+                <Text style={one23listStyles.autoBtnText}>
                   מלא טופס אוטומטי
                 </Text>
-              </Button>
-              <Button
+              </TouchableOpacity>
+              <TouchableOpacity
                 onPress={() => setFullTables([])}
-                style={{ borderColor: "white", margin: 5 }}
+                style={one23listStyles.autoBtn}
                 small
                 rounded
                 bordered
               >
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 10,
-                    width: 70,
-                    textAlign: "center",
-                  }}
-                >
+                <Text style={one23listStyles.autoBtnText}>
                   מחק טופס אוטומטי
                 </Text>
-              </Button>
+              </TouchableOpacity>
             </View>
             {showTable && (
               <FillForm
@@ -165,24 +125,8 @@ const One23Page = ({ navigation }) => {
                 opendTableNum={opendTableNum}
               />
             )}
-            <View
-              style={{
-                borderColor: "white",
-                borderRadius: 7,
-                borderWidth: 1,
-                width: "83.7%",
-                alignSelf: "center",
-                marginTop: 20,
-              }}
-            >
-              <List
-                style={{
-                  alignItems: "flex-end",
-                  height: 250,
-                  marginLeft: -17,
-                  flexWrap: "wrap",
-                }}
-              >
+            <View style={one23listStyles.listContainerBorder}>
+              <List style={one23listStyles.listContainer}>
                 <ScrollView>
                   {Array.from(Array(tableNum)).map((x, index) => (
                     <Table
@@ -225,7 +169,7 @@ const One23Page = ({ navigation }) => {
                       : one23listStyles.investBtn
                   }
                 >
-                  <Text>1</Text>
+                  <Text style={{ fontFamily: "fb-Spacer" }}>1</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -237,7 +181,7 @@ const One23Page = ({ navigation }) => {
                       : one23listStyles.investBtn
                   }
                 >
-                  <Text>2</Text>
+                  <Text style={{ fontFamily: "fb-Spacer" }}>2</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -249,7 +193,7 @@ const One23Page = ({ navigation }) => {
                       : one23listStyles.investBtn
                   }
                 >
-                  <Text>3</Text>
+                  <Text style={{ fontFamily: "fb-Spacer" }}>3</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -261,7 +205,7 @@ const One23Page = ({ navigation }) => {
                       : one23listStyles.investBtn
                   }
                 >
-                  <Text>4</Text>
+                  <Text style={{ fontFamily: "fb-Spacer" }}>4</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -273,7 +217,7 @@ const One23Page = ({ navigation }) => {
                       : one23listStyles.investBtn
                   }
                 >
-                  <Text>5</Text>
+                  <Text style={{ fontFamily: "fb-Spacer" }}>5</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -285,7 +229,7 @@ const One23Page = ({ navigation }) => {
                       : one23listStyles.investBtn
                   }
                 >
-                  <Text>10</Text>
+                  <Text style={{ fontFamily: "fb-Spacer" }}>10</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -297,7 +241,7 @@ const One23Page = ({ navigation }) => {
                       : one23listStyles.investBtn
                   }
                 >
-                  <Text>25</Text>
+                  <Text style={{ fontFamily: "fb-Spacer" }}>25</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -320,15 +264,9 @@ const One23Page = ({ navigation }) => {
                   });
                   console.log("investNum : ", investNum);
                 }}
-                style={{
-                  borderRadius: 17,
-                  backgroundColor: "#FBB03B",
-                  borderColor: "white",
-                  borderWidth: 2,
-                  padding: 10,
-                }}
+                style={one23listStyles.sendFormBtn}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>
+                <Text style={one23listStyles.sendFormBtnText}>
                   המשך לשליחת טופס
                 </Text>
               </Button>

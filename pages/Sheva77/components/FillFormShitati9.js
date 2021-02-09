@@ -51,7 +51,7 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
           margin: 3,
         }}
       >
-        <Text>{num}</Text>
+        <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
       </TouchableOpacity>
     </>
   );
@@ -124,8 +124,8 @@ const FillFormShitati9 = ({
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "20.8%",
-          height: 525,
+          top: "17%",
+          height: 555,
           position: "absolute",
           zIndex: 2000,
         }}
@@ -134,36 +134,16 @@ const FillFormShitati9 = ({
         <View
           style={{
             backgroundColor: "#263742",
-            width: "55%",
+
             height: 70,
-            position: "relative",
-            top: -40,
-            left: "28.25%",
-            zIndex: 2001,
+
             flexDirection: "row",
-            justifyContent: "space-around",
+            justifyContent: "flex-end",
             alignItems: "center",
+            marginBottom: 30,
           }}
         >
-          <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity>
-              <FontAwesomeIcon
-                color='white'
-                border={true}
-                inverse
-                icon={faArrowAltCircleRight}
-              />
-            </TouchableOpacity>
-            <Text style={{ color: "white", fontSize: 13 }}>טבלאות</Text>
-            <TouchableOpacity>
-              <FontAwesomeIcon
-                color='white'
-                border={true}
-                inverse
-                icon={faArrowAltCircleLeft}
-              />
-            </TouchableOpacity>
-          </View>
+          <View style={{ flexDirection: "row" }}></View>
           <TouchableOpacity
             style={{
               height: 25,
@@ -172,6 +152,7 @@ const FillFormShitati9 = ({
               borderRadius: 13,
               justifyContent: "center",
               alignItems: "center",
+              marginHorizontal: 20,
             }}
             onPress={() => {
               setshowTable(false);
@@ -189,7 +170,9 @@ const FillFormShitati9 = ({
               }
             }}
           >
-            <Text style={{ color: "red" }}>סגור חלון</Text>
+            <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
+              סגור חלון
+            </Text>
           </TouchableOpacity>
         </View>
         {/* {fill numbers} */}
@@ -215,29 +198,63 @@ const FillFormShitati9 = ({
               marginBottom: 7,
             }}
           >
-            <Text style={{ color: "white", marginBottom: 5, fontSize: 10 }}>
+            <Text
+              style={{
+                color: "white",
+                marginBottom: 5,
+                fontSize: 10,
+                marginHorizontal: 5,
+                fontFamily: "fb-Spacer",
+              }}
+            >
               מלא את טבלה 1
             </Text>
-            <Button
+            <TouchableOpacity
               disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
                 let numbers = autoFill(9);
                 setchoosenNums(numbers.randomNumbers);
               }}
-              small
-              rounded
+              style={{
+                borderColor: "white",
+                borderWidth: 1,
+                padding: 3,
+                borderRadius: 7,
+                marginHorizontal: 1,
+              }}
             >
-              <Text style={{ fontSize: 10 }}>מלא טבלה אוטומטית</Text>
-            </Button>
-            <Button
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מלא טבלה אוטומטית
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
               onPress={() => {
                 setchoosenNums([]);
               }}
-              small
-              rounded
+              style={{
+                borderColor: "white",
+                borderWidth: 1,
+                padding: 3,
+                borderRadius: 7,
+                marginHorizontal: 1,
+              }}
             >
-              <Text style={{ fontSize: 10 }}>מחק טבלה אוטומטית</Text>
-            </Button>
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מחק טבלה אוטומטית
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
@@ -249,29 +266,32 @@ const FillFormShitati9 = ({
                 key={index}
               />
             ))}
-            
-           
-            
           </View>
-          {(choosenNums.length > 0) && (<Text style={{ color: "white", top: "9%", }}>המספרים שנבחרו</Text>)}
-            <View style={{ flexDirection: "row", flexWrap: "wrap",top:"12.5%" }}>
-
-            {choosenNums.slice(0).reverse().map((num) => (
-              <View
-              style={{
-                width: 20,
-                height: 20,
-                borderRadius: 30,
-                backgroundColor: "pink",      
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ color: "black" }}>{num}</Text>
-              </View>
-            ))}
-            </View>
+          {choosenNums.length > 0 && (
+            <Text style={{ color: "white", top: "9%" }}>המספרים שנבחרו</Text>
+          )}
+          <View
+            style={{ flexDirection: "row", flexWrap: "wrap", top: "12.5%" }}
+          >
+            {choosenNums
+              .slice(0)
+              .reverse()
+              .map((num) => (
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 30,
+                    backgroundColor: "pink",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ color: "black" }}>{num}</Text>
+                </View>
+              ))}
+          </View>
         </View>
       </View>
     </>

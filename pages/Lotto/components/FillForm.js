@@ -382,6 +382,7 @@ const FillForm = ({
               marginTop: 15,
               marginHorizontal: 20,
               marginBottom: 5,
+              fontFamily: "fb-spacer",
             }}
           >
             בחר מספר חזק

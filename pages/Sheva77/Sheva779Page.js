@@ -23,6 +23,7 @@ import FillForm from "./components/FillForm";
 import { autoFill } from "./components/FillForm";
 import Table9 from "./components/Table9";
 import FillFormShitati9 from "./components/FillFormShitati9";
+import sheva77Liststyles from "./Sheva77ListStyles";
 
 const Sheva779Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -59,82 +60,41 @@ const Sheva779Page = ({ navigation }) => {
               height: 660,
             }}
           >
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                padding: 30,
-              }}
-            >
-              <View
+            <View style={sheva77Liststyles.header}>
+              <View style={sheva77Liststyles.topNumCircle}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: "#E62321",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  1
+                </Text>
+              </View>
+              <Text
                 style={{
-                  flexDirection: "row",
-                  backgroundColor: "white",
-                  width: 50,
-                  height: 50,
-                  borderRadius: 33,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginRight: 20,
+                  fontSize: 17,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
-                <Text style={{ fontSize: 20, color: "#E62321" }}>1</Text>
-              </View>
-              <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
+                מלא את הטופס
+              </Text>
             </View>
 
-            <Text
-              style={{
-                color: "white",
-                fontSize: 13,
-                marginLeft: 12,
-                marginBottom: 10,
-              }}
-            >
-              בחר 9 מספרים בטבלה
-            </Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                flexWrap: "wrap",
-                marginLeft: 20,
-              }}
-            >
-              <Button
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 10,
-                    width: 70,
-                    textAlign: "center",
-                  }}
-                >
+            <Text style={sheva77Liststyles.subHeader}>בחר 9 מספרים בטבלה</Text>
+            <View style={sheva77Liststyles.autoBtnContainer}>
+              <TouchableOpacity style={sheva77Liststyles.autoBtn}>
+                <Text style={sheva77Liststyles.autoBtnText}>
                   מלא טופס אוטומטי
                 </Text>
-              </Button>
-              <Button
-                style={{ borderColor: "white", margin: 5 }}
-                small
-                rounded
-                bordered
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 10,
-                    width: 70,
-                    textAlign: "center",
-                  }}
-                >
+              </TouchableOpacity>
+              <TouchableOpacity style={sheva77Liststyles.autoBtn}>
+                <Text style={sheva77Liststyles.autoBtnText}>
                   מחק טופס אוטומטי
                 </Text>
-              </Button>
+              </TouchableOpacity>
             </View>
             {showTable && (
               <FillFormShitati9
@@ -144,24 +104,8 @@ const Sheva779Page = ({ navigation }) => {
                 opendTableNum={opendTableNum}
               />
             )}
-            <View
-              style={{
-                borderColor: "white",
-                borderRadius: 7,
-                borderWidth: 1,
-                width: "83.7%",
-                alignSelf: "center",
-                marginTop: 20,
-              }}
-            >
-              <List
-                style={{
-                  alignItems: "flex-end",
-                  height: 150,
-                  marginLeft: -17,
-                  flexWrap: "wrap",
-                }}
-              >
+            <View style={sheva77Liststyles.listContainerBorder}>
+              <List style={sheva77Liststyles.listContainer}>
                 <ScrollView>
                   {Array.from(Array(tableNum)).map((x, index) => (
                     <Table9
@@ -195,15 +139,9 @@ const Sheva779Page = ({ navigation }) => {
                     formType: 9,
                   });
                 }}
-                style={{
-                  borderRadius: 17,
-                  backgroundColor: "#FBB03B",
-                  borderColor: "white",
-                  borderWidth: 2,
-                  padding: 10,
-                }}
+                style={sheva77Liststyles.sendFormBtn}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>
+                <Text style={sheva77Liststyles.sendFormBtnText}>
                   המשך לשליחת טופס
                 </Text>
               </Button>

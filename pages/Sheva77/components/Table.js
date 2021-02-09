@@ -32,7 +32,7 @@ const Num = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
       </View>
     </>
   );

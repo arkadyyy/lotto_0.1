@@ -32,7 +32,7 @@ const Num = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
       </View>
     </>
   );
@@ -67,21 +67,28 @@ const Table8 = ({
           settable(fullTable.choosenNums);
         }
       });
-    } else settable(["", "", "", "", "", "", "", ""]);
+    } else settable([" ", " ", " ", " ", " ", " ", " ", " "]);
   }, [fullTables]);
   return (
     <>
       <ListItem
         style={{
+          backgroundColor: "#FBB03B",
           backgroundColor: !table.includes(" ") ? "#FBB03B" : "#AA1B55",
           flexWrap: "wrap",
           marginTop: 4,
-          height: 95,
+          height: 55,
           alignItems: "center",
+          width: 400,
         }}
       >
         <Text
-          style={{ color: "white", marginLeft: 5, marginVertical: 7 }}
+          style={{
+            color: "white",
+            fontSize: 11,
+            marginHorizontal: 10,
+            fontFamily: "fb-Spacer",
+          }}
         >{`טבלה ${tableNum}`}</Text>
         <TouchableOpacity
           onPress={() => {

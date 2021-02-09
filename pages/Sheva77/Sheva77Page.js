@@ -120,24 +120,8 @@ const Sheva77Page = ({ navigation }) => {
                 opendTableNum={opendTableNum}
               />
             )}
-            <View
-              style={{
-                borderColor: "white",
-                borderRadius: 7,
-                borderWidth: 1,
-                width: "83.7%",
-                alignSelf: "center",
-                marginTop: 20,
-              }}
-            >
-              <List
-                style={{
-                  alignItems: "flex-end",
-                  height: 250,
-                  marginLeft: -17,
-                  flexWrap: "wrap",
-                }}
-              >
+            <View style={sheva77Liststyles.listContainerBorder}>
+              <List style={sheva77Liststyles.listContainer}>
                 <ScrollView>
                   {Array.from(Array(tableNum)).map((x, index) => (
                     <Table
@@ -171,15 +155,9 @@ const Sheva77Page = ({ navigation }) => {
                     formType: 7,
                   });
                 }}
-                style={{
-                  borderRadius: 17,
-                  backgroundColor: "#FBB03B",
-                  borderColor: "white",
-                  borderWidth: 2,
-                  padding: 10,
-                }}
+                style={sheva77Liststyles.sendFormBtn}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>
+                <Text style={sheva77Liststyles.sendFormBtnText}>
                   המשך לשליחת טופס
                 </Text>
               </Button>

@@ -22,6 +22,7 @@ import {
   faArrowAltCircleLeft,
 } from "@fortawesome/free-regular-svg-icons";
 import EStyleSheet from "react-native-extended-stylesheet";
+import { Touchable } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 const Num = ({ num, choosenNums, setchoosenNums, tzerufimNumber }) => {
@@ -53,7 +54,7 @@ const Num = ({ num, choosenNums, setchoosenNums, tzerufimNumber }) => {
           margin: 3,
         }}
       >
-        <Text>{num}</Text>
+        <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
       </TouchableOpacity>
     </>
   );
@@ -88,7 +89,7 @@ const StrongNum = ({
           margin: 2,
         }}
       >
-        <Text style={{ color: "white" }}>{num}</Text>
+        <Text style={{ color: "white", fontFamily: "fb-Spacer" }}>{num}</Text>
       </TouchableOpacity>
     </>
   );
@@ -169,7 +170,7 @@ const ShitatiFillForm = ({
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: EStyleSheet.value("$rem") * -37,
+          top: EStyleSheet.value("$rem") * -35,
           height: 500,
           position: "relative",
           zIndex: 2000,
@@ -180,37 +181,14 @@ const ShitatiFillForm = ({
           style={{
             backgroundColor: "#263742",
 
-            height: 60,
-            position: "relative",
-            top: -40,
-            left: EStyleSheet.value("$rem") * 210,
-            width: EStyleSheet.value("$rem") * 140,
+            height: 70,
 
-            zIndex: 2001,
             flexDirection: "row",
-            justifyContent: "space-around",
+            justifyContent: "flex-end",
             alignItems: "center",
+            marginBottom: 30,
           }}
         >
-          {/* <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity>
-              <FontAwesomeIcon
-                color='white'
-                border={true}
-                inverse
-                icon={faArrowAltCircleRight}
-              />
-            </TouchableOpacity>
-            <Text style={{ color: "white", fontSize: 13 }}>טבלאות</Text>
-            <TouchableOpacity>
-              <FontAwesomeIcon
-                color='white'
-                border={true}
-                inverse
-                icon={faArrowAltCircleLeft}
-              />
-            </TouchableOpacity>
-          </View> */}
           <TouchableOpacity
             style={{
               height: 25,
@@ -219,6 +197,7 @@ const ShitatiFillForm = ({
               borderRadius: 13,
               justifyContent: "center",
               alignItems: "center",
+              marginHorizontal: 20,
             }}
             onPress={() => {
               setshowTable(false);
@@ -230,7 +209,9 @@ const ShitatiFillForm = ({
               }
             }}
           >
-            <Text style={{ color: "red" }}>סגור חלון</Text>
+            <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
+              סגור חלון
+            </Text>
           </TouchableOpacity>
         </View>
         {/* {fill numbers} */}
@@ -256,10 +237,18 @@ const ShitatiFillForm = ({
               marginBottom: 7,
             }}
           >
-            <Text style={{ color: "white", marginBottom: 5, fontSize: 10 }}>
+            <Text
+              style={{
+                color: "white",
+                marginBottom: 5,
+                fontSize: 10,
+                marginHorizontal: 5,
+                fontFamily: "fb-Spacer",
+              }}
+            >
               מלא את טבלה {opendTableNum}
             </Text>
-            <Button
+            <TouchableOpacity
               disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
                 let numbers = autoFill(tzerufimNumber);
@@ -267,21 +256,47 @@ const ShitatiFillForm = ({
                 setStrongNum(numbers.strongNum);
                 // console.log('fullTable1:',fullTable1);
               }}
-              small
-              rounded
+              style={{
+                borderColor: "white",
+                borderWidth: 1,
+                padding: 3,
+                borderRadius: 7,
+                marginHorizontal: 1,
+              }}
             >
-              <Text style={{ fontSize: 10 }}>מלא טבלה אוטומטית</Text>
-            </Button>
-            <Button
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מלא טבלה אוטומטית
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
               onPress={() => {
                 setchoosenNums([]);
                 setStrongNum();
               }}
-              small
-              rounded
+              style={{
+                borderColor: "white",
+                borderWidth: 1,
+                padding: 3,
+                borderRadius: 7,
+                marginHorizontal: 1,
+              }}
             >
-              <Text style={{ fontSize: 10 }}>מחק טבלה אוטומטית</Text>
-            </Button>
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מחק טבלה אוטומטית
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
@@ -297,12 +312,22 @@ const ShitatiFillForm = ({
           </View>
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             {choosenNums.length > 0 && (
-              <Text style={{ color: "white", top:"3%",right:8 }}>
-              המספרים שנבחרו
+              <Text
+                style={{
+                  color: "white",
+                  top: "3%",
+                  right: 8,
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                המספרים שנבחרו
               </Text>
             )}
-            {choosenNums.sort(function(a, b){return b-a})
-            
+            {choosenNums
+              .sort(function (a, b) {
+                return b - a;
+              })
+
               .map((num) => (
                 <View
                   style={{
@@ -315,13 +340,23 @@ const ShitatiFillForm = ({
                     alignItems: "center",
                   }}
                 >
-                  <Text style={{ color: "black" }}>{num}</Text>
+                  <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>
+                    {num}
+                  </Text>
                 </View>
               ))}
           </View>
         </View>
         <View style={{ marginTop: "-10%" }}>
-          <Text style={{ color: "white", marginHorizontal: 15 }}>
+          <Text
+            style={{
+              color: "white",
+              marginTop: 15,
+              marginHorizontal: 20,
+              marginBottom: 5,
+              fontFamily: "fb-Spacer",
+            }}
+          >
             בחר מספר חזק
           </Text>
           <View

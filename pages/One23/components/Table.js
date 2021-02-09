@@ -32,7 +32,7 @@ const Num = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
       </View>
     </>
   );
@@ -69,11 +69,6 @@ const Table = ({
     }
   }, [fullTables]);
 
-  // useEffect(()=>{
-
-  //   if()
-
-  // },[table])
   return (
     <>
       <ListItem
@@ -87,7 +82,11 @@ const Table = ({
         }}
       >
         <Text
-          style={{ color: "white", marginHorizontal: 4 }}
+          style={{
+            color: "white",
+            marginHorizontal: 4,
+            fontFamily: "fb-Spacer",
+          }}
         >{`טבלה ${opendTableNum}`}</Text>
         <TouchableOpacity
           onPress={() => {

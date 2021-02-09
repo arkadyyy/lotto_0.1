@@ -38,7 +38,9 @@ const ChooseNumOfTables = ({
             padding: 10,
           }}
         >
-          <Text style={{ fontSize: 15, color: "white" }}>
+          <Text
+            style={{ fontSize: 15, color: "white", fontFamily: "fb-Spacer" }}
+          >
             בחר מספר טבלאות למילוי
           </Text>
           <View style={{}}>
@@ -53,7 +55,12 @@ const ChooseNumOfTables = ({
                   settableNum(5);
                 }}
               >
-                <Text style={{ color: tableNum === 5 ? "black" : "#A53200" }}>
+                <Text
+                  style={{
+                    color: tableNum === 5 ? "black" : "#A53200",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
                   5
                 </Text>
               </TouchableOpacity>
@@ -67,7 +74,12 @@ const ChooseNumOfTables = ({
                   settableNum(4);
                 }}
               >
-                <Text style={{ color: tableNum === 4 ? "black" : "#A53200" }}>
+                <Text
+                  style={{
+                    color: tableNum === 4 ? "black" : "#A53200",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
                   4
                 </Text>
               </TouchableOpacity>
@@ -81,7 +93,12 @@ const ChooseNumOfTables = ({
                   settableNum(3);
                 }}
               >
-                <Text style={{ color: tableNum === 3 ? "black" : "#A53200" }}>
+                <Text
+                  style={{
+                    color: tableNum === 3 ? "black" : "#A53200",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
                   3
                 </Text>
               </TouchableOpacity>
@@ -95,7 +112,12 @@ const ChooseNumOfTables = ({
                   settableNum(2);
                 }}
               >
-                <Text style={{ color: tableNum === 2 ? "black" : "#A53200" }}>
+                <Text
+                  style={{
+                    color: tableNum === 2 ? "black" : "#A53200",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
                   2
                 </Text>
               </TouchableOpacity>
@@ -109,7 +131,12 @@ const ChooseNumOfTables = ({
                   settableNum(1);
                 }}
               >
-                <Text style={{ color: tableNum === 1 ? "black" : "#A53200" }}>
+                <Text
+                  style={{
+                    color: tableNum === 1 ? "black" : "#A53200",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
                   1
                 </Text>
               </TouchableOpacity>
@@ -129,7 +156,11 @@ const ChooseNumOfTables = ({
             padding: 10,
           }}
         >
-          <Text style={{ fontSize: 15, color: "white" }}>בחר מספר הגרלות</Text>
+          <Text
+            style={{ fontSize: 15, color: "white", fontFamily: "fb-Spacer" }}
+          >
+            בחר מספר הגרלות
+          </Text>
           <View style={{}}>
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
@@ -149,7 +180,9 @@ const ChooseNumOfTables = ({
                   setHagralot(-1);
                 }}
               >
-                <Text style={{ color: "white" }}>1</Text>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer" }}>
+                  1
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -168,7 +201,9 @@ const ChooseNumOfTables = ({
                   setHagralot(4);
                 }}
               >
-                <Text style={{ color: "white" }}>4</Text>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer" }}>
+                  4
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -187,7 +222,9 @@ const ChooseNumOfTables = ({
                   setHagralot(6);
                 }}
               >
-                <Text style={{ color: "white" }}>6</Text>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer" }}>
+                  6
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -206,7 +243,9 @@ const ChooseNumOfTables = ({
                   setHagralot(8);
                 }}
               >
-                <Text style={{ color: "white" }}>8</Text>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer" }}>
+                  8
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

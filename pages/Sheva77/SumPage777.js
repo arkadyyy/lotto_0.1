@@ -19,6 +19,7 @@ import { LogIn } from "../../redux/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCheck, faShekelSign } from "@fortawesome/free-solid-svg-icons";
 import EStyleSheet from "react-native-extended-stylesheet";
+import sheva77Liststyles from "./Sheva77ListStyles";
 
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
@@ -37,6 +38,7 @@ const SumPage777 = ({ route, navigation }) => {
   const dispatch = useDispatch();
 
   const [price, setPrice] = useState(11);
+  const [otomatic, setOtomatic] = useState(true);
 
   const [hagralot, setHagralot] = useState(-1);
   const [url, seturl] = useState("");
@@ -79,44 +81,6 @@ const SumPage777 = ({ route, navigation }) => {
       tables: x,
     });
 
-    // {
-    //   "form_type": 8,
-    //   "multi_lottery": -1,
-    //   "tables": [
-    //     {
-    //       "numbers": [
-    //         5,
-    //         28,
-    //         30,
-    //         35,
-    //         37,
-    //         51,
-    //         52,
-    //         56
-    //       ],
-    //       "table_number": 1
-    //     }
-    //   ]
-    // }
-
-    // {
-    //   "form_type": 8,
-    //   "multi_lottery": -1,
-    //   "tables": Array [
-    //     Object {
-    //       "numbers": Array [
-    //         11,
-    //         29,
-    //         2,
-    //         12,
-    //         67,
-    //         16,
-    //         52,
-    //         65,
-    //       ],
-    //       "table_number": 1,
-    //     }
-
     console.log("sendToServer : ", sendToServer);
   }, [fullTables, hagralot]);
 
@@ -141,27 +105,34 @@ const SumPage777 = ({ route, navigation }) => {
                 padding: 10,
               }}
             >
-              <View
+              <View style={sheva77Liststyles.topNumCircle}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: "#FF0000",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  2
+                </Text>
+              </View>
+              <Text
                 style={{
-                  flexDirection: "row",
-                  backgroundColor: "white",
-                  width: 50,
-                  height: 50,
-                  borderRadius: 33,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginRight: 10,
+                  fontSize: 17,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
-                <Text style={{ fontSize: 20, color: "#FF0000" }}>2</Text>
-              </View>
-              <Text style={{ fontSize: 27, color: "white" }}>
                 שדרג את הטופס
               </Text>
             </View>
 
             <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
-            <ExtraAndOtomatChoose screenName='chancePages' />
+            <ExtraAndOtomatChoose
+              otomatic={otomatic}
+              setOtomatic={setOtomatic}
+              screenName='chancePages'
+            />
 
             <View style={{ flexDirection: "column", marginLeft: 10 }}>
               <View style={{ flexDirection: "row" }}>
@@ -210,6 +181,7 @@ const SumPage777 = ({ route, navigation }) => {
                 style={{
                   fontSize: EStyleSheet.value("$rem") * 22,
                   color: "white",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
                 סיכום ושליחת טופס
@@ -227,6 +199,7 @@ const SumPage777 = ({ route, navigation }) => {
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
                     color: "yellow",
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   סה"כ {tableNum}טבלאות
@@ -243,8 +216,8 @@ const SumPage777 = ({ route, navigation }) => {
                 <Text
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
-
                     color: "yellow",
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   {" "}
@@ -261,9 +234,9 @@ const SumPage777 = ({ route, navigation }) => {
                   color='white'
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
-
                     color: "white",
                     marginLeft: 15,
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   לתשלום: {price}{" "}
@@ -317,7 +290,15 @@ const SumPage777 = ({ route, navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 28,
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  שלח טופס
+                </Text>
               </Button>
             </View>
           </View>
