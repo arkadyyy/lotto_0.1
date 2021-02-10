@@ -120,7 +120,9 @@ const SeeOrDupilcate = ({ index, open, form }) => {
                   {console.log("cardsShitati????????????????@@@@@@@@", cardsShitati)}
                 <ViewForm 
                     cardsShitati={cardsShitati}
-            indexShapes={indexShapes}
+                    indexShapes={indexShapes}
+                    ShapesTitle={Object.keys(form.marks.cards)}
+
                 // tableNum={table.table_number}
                 form_type={form.form_type}
               />

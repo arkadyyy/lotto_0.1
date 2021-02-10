@@ -175,72 +175,8 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
         alignItems: "center",
         flexDirection:"column"
       }}
-    >
-            <Text style={{
-                width: 30,
-                height: 30,
-                borderRadius: 30,
-                backgroundColor: "white",
-              margin: 5,
-              textAlign: "center",
-                textAlignVertical:"center"
-            }}
-            >{cards}
-                </Text>
-                {console.log("ShapesTitle:",ShapesTitle)}
-            {
-              indexShapes === 0 ?
-              (
-              <Text>תלתן</Text>
-                ) :
-                indexShapes === 1 ?
-                (
-                <Text>יהלום</Text>
-                  ) :
-                  indexShapes === 2 ? 
-              (
-              <Text>לב</Text>
-                    ) :
-                    indexShapes === 3 ?
-              (
-              <Text>עלה</Text>
-                ) 
-:null
-              
-            }
-
-    </View>
-    
-        </View>
-      ):null}
-      {
-        form_type === "chance_shitati" 
-        &&
-        (
-          <View style={{ flexDirection: "column",padding:10 }}>
-          
-          {
-              indexShapes === 0 ?
-              (
-              <Text>תלתן</Text>
-                ) :
-                indexShapes === 1 ?
-                (
-                <Text>יהלום</Text>
-                  ) :
-                  indexShapes === 2 ? 
-              (
-              <Text>לב</Text>
-                    ) :
-                    indexShapes === 3 ?
-              (
-              <Text>עלה</Text>
-                ) 
-:null
-              
-            }
-           
-            {cardsShitati.map((num, index) => (
+              >
+                  {cards.map((num, index) => (
       
       <View key={index}
       style={{
@@ -252,32 +188,105 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
         justifyContent: "center",
         alignItems: "center",
       }}
+                    >
+                      
+                      <Text>{num}</Text>
+                      
+    </View>
+      )
+          )} 
+            {/* <Text style={{
+                width: 50,
+                height: 30,
+                borderRadius: 30,
+                backgroundColor: "white",
+              margin: 5,
+              textAlign: "center",
+                textAlignVertical:"center"
+            }}
+                >{cards}
+                  {ShapesTitle}
+                </Text> */}
+                {console.log("ShapesTitle:",ShapesTitle)}
+
+
+                {
+              ShapesTitle[indexShapes] === "clover" ?
+              (
+              <Text>תלתן</Text>
+                ) :
+                ShapesTitle[indexShapes] === "diamond" ?
+                (
+                <Text>יהלום</Text>
+                  ) :
+                  ShapesTitle[indexShapes] === "leaf" ?
+              (
+              <Text>עלה</Text>
+                    ) :
+                    ShapesTitle[indexShapes] === "heart"  ?
+              (
+              <Text>לב</Text>
+                ) 
+:null
+              
+            }
+                
+{/* <Text> {ShapesTitle[indexShapes]}</Text> */}
+                
+    </View>
+    
+        </View>
+      ):null}
+      {
+        form_type === "chance_shitati" 
+        &&
+        (
+          <View style={{ flexDirection: "column",padding:15 }}>
+          
+            
+            {cardsShitati.map((num, index) => (
+      // <View style={{flexDirection:"row"}}>
+              <View key={index}
+                style={{
+        
+        width: 30,
+        height: 30,
+        borderRadius: 30,
+        backgroundColor: "white",
+        margin: 5,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
-      <Text>{num}</Text>
+                <Text>{num}</Text>
+                
+{console.log("num:::::::::::::::",num)}
+                {console.log("ShapesTitle:",ShapesTitle)}
+                
     </View>
       )
           )}   
+  {
+              ShapesTitle[indexShapes] === "clover" ?
+              (
+              <Text>תלתן</Text>
+                ) :
+                ShapesTitle[indexShapes] === "diamond" ?
+                (
+                <Text>יהלום</Text>
+                  ) :
+                  ShapesTitle[indexShapes] === "leaf" ?
+              (
+              <Text>עלה</Text>
+                    ) :
+                    ShapesTitle[indexShapes] === "heart"  ?
+              (
+              <Text>לב</Text>
+                ) 
+:null
+              
+            }
 
-
-          {/* <Text>סוג צירוף {tableNum}</Text> */}
-          
-               {/* {numbers.map((num, index) => (
-          
-          <View key={index}
-          style={{
-            width: 30,
-            height: 30,
-            borderRadius: 30,
-            backgroundColor: "white",
-            margin: 5,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text>{num}</Text>
-        </View>
-          )
-              )}     */}
               </View>
         )
       }
