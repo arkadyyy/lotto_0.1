@@ -71,7 +71,7 @@ const SeeOrDupilcate = ({ index, open, form }) => {
             )
             }
             {
-              form.form_type === "777"   && ( 
+              form.form_type === "regular_777"   && ( 
                 <>               
                  {form.marks.tables.map((table, index) => (
               <ViewForm
