@@ -90,45 +90,27 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
      
                 <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                   <Text>טבלה {tableNum}</Text>
-      <View
-      style={{
-        width: 30,
-        height: 30,
-        borderRadius: 30,
-        backgroundColor: "white",
-        margin: 5,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-    <Text>{numbers[1]}</Text>
-    </View>
-      <View
-      style={{
-        width: 30,
-        height: 30,
-        borderRadius: 30,
-        backgroundColor: "white",
-        margin: 5,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-    <Text>{numbers[2]}</Text>
-    </View>
-      <View
-      style={{
-        width: 30,
-        height: 30,
-        borderRadius: 30,
-        backgroundColor: "white",
-        margin: 5,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-    <Text>{numbers[3]}</Text>
-    </View>
+                  <View style={{ flexDirection: "row",flexWrap:"wrap" }}>
+                  
+                  {Object.values(numbers).map((num, index) => (
+             
+             <View key={index}
+             style={{
+               width: 30,
+               height: 30,
+               borderRadius: 30,
+               backgroundColor: "white",
+               margin: 5,
+               justifyContent: "center",
+               alignItems: "center",
+             }}
+           >
+             <Text>{num}</Text>
+           </View>
+             )
+                           )}
+                 </View>
+     
           
           </View>
           </View>

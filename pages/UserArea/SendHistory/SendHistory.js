@@ -57,17 +57,22 @@ const SeeOrDupilcate = ({ index, open, form }) => {
             }
             {
               form.form_type === "123"   && ( 
-                <>
-                  {console.log("1111111111111111111111111123")}
-                 {/* {form.marks.tables.map((table, index) => (
+                <>               
+                 {form.marks.tables.map((table, index) => (
               <ViewForm
                 numbers={table.numbers}
-                strongNum={table.strong_number}
-                tableNum={table.table_number}
                 form_type={form.form_type}
+                tableNum={table.table_number}
+
               />
             ))}
-             */}
+            
+                </>
+            )
+            }
+            {
+              form.form_type === "777"   && ( 
+                <>               
                  {form.marks.tables.map((table, index) => (
               <ViewForm
                 numbers={table.numbers}
