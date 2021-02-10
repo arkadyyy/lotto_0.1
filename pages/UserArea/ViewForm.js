@@ -8,28 +8,10 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
 <>
   
   
-    {/* <View style={{ flexDirection: "row" }}> */}
-     {/* <Text>טבלה {tableNum}</Text> */}
-      {/* <View */}
-       {/* style={{ */}
-    {/* //       width: 30, */}
-    {/* //       height: 30, */}
-    {/* //       borderRadius: 30, */}
-    {/* //       backgroundColor: "orange", */}
-    {/* //       borderColor: "white", */}
-    {/* //       borderWidth: 1, */}
-    {/* //       margin: 5, */}
-    {/* //       justifyContent: "center", */}
-    {/* //       alignItems: "center", */}
-    {/* //     }} */}
-    {/* //   > */}
-    {/* //     <Text style={{ color: "white" }}>{strongNum}</Text> */}
-    {/* //   </View> */}
       {
         form_type === "regular_lotto" ||
         form_type === "lotto_shitati" ||
-        form_type === "lotto_shitati_hazak" ||
-        form_type === "regular_lotto" 
+        form_type === "lotto_shitati_hazak" 
           ?
         (
       <>
@@ -40,7 +22,7 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
                   :{flexDirection: "row",flexWrap:"wrap"}
         }>
                 
-                {form_type === "lotto" &&
+                {form_type === "regular_lotto" &&
                   <Text>טבלה {tableNum}</Text>
                 }
 
@@ -92,7 +74,68 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
           </View>
           </View>
         </>
-      ) :null}
+          ) : null}
+      
+      {
+        form_type === "123" &&
+        (
+      <>
+              
+      <View>
+
+      <View style={
+
+        { flexDirection: "row",flexWrap:"wrap" }
+        }>
+     
+                <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+                  <Text>טבלה {tableNum}</Text>
+      <View
+      style={{
+        width: 30,
+        height: 30,
+        borderRadius: 30,
+        backgroundColor: "white",
+        margin: 5,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+    <Text>{numbers[1]}</Text>
+    </View>
+      <View
+      style={{
+        width: 30,
+        height: 30,
+        borderRadius: 30,
+        backgroundColor: "white",
+        margin: 5,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+    <Text>{numbers[2]}</Text>
+    </View>
+      <View
+      style={{
+        width: 30,
+        height: 30,
+        borderRadius: 30,
+        backgroundColor: "white",
+        margin: 5,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+    <Text>{numbers[3]}</Text>
+    </View>
+          
+          </View>
+          </View>
+          </View>
+        </>
+        )}
+      
       {
         form_type === "regular_chance"
         ||

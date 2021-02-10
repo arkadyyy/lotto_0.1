@@ -40,8 +40,7 @@ const SeeOrDupilcate = ({ index, open, form }) => {
             {
               form.form_type === "regular_lotto" ||
               form.form_type === "lotto_shitati" ||
-              form.form_type === "lotto_shitati_hazak" ||
-              form.form_type === "regular_lotto" 
+              form.form_type === "lotto_shitati_hazak" 
             ? ( 
               <>
                  {form.marks.tables.map((table, index) => (
@@ -56,6 +55,32 @@ const SeeOrDupilcate = ({ index, open, form }) => {
                 </>
             ):null
             }
+            {
+              form.form_type === "123"   && ( 
+                <>
+                  {console.log("1111111111111111111111111123")}
+                 {/* {form.marks.tables.map((table, index) => (
+              <ViewForm
+                numbers={table.numbers}
+                strongNum={table.strong_number}
+                tableNum={table.table_number}
+                form_type={form.form_type}
+              />
+            ))}
+             */}
+                 {form.marks.tables.map((table, index) => (
+              <ViewForm
+                numbers={table.numbers}
+                form_type={form.form_type}
+                tableNum={table.table_number}
+
+              />
+            ))}
+            
+                </>
+            )
+            }
+            
             {
               form.form_type === "regular_chance"
               || form.form_type === "rav_chance"
