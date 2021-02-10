@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-
+import ViewFormStyles from "./ViewFormStyles.js"
 const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,cardsShitati }) => {
 {console.log("numbers:",numbers)}
 {console.log("strongnumbers:",strongNum)}
@@ -25,25 +25,52 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
     {/* //   > */}
     {/* //     <Text style={{ color: "white" }}>{strongNum}</Text> */}
     {/* //   </View> */}
-      {form_type === "regular_lotto" && (
+      {
+        form_type === "regular_lotto" ||
+        form_type === "lotto_shitati" ||
+        form_type === "lotto_shitati_hazak" ||
+        form_type === "regular_lotto" 
+          ?
+        (
       <>
-      <View style={{ flexDirection: "row" }}>
-      <Text>טבלה {tableNum}</Text>
-      <View
-        style={{
-          width: 30,
-          height: 30,
-          borderRadius: 30,
-          backgroundColor: "orange",
-          borderColor: "white",
-          borderWidth: 1,
-          margin: 5,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ color: "white" }}>{strongNum}</Text>
-      </View>
+              
+      <View style={
+                form_type === "lotto_shitati_hazak"
+                  ? { flexDirection: "column" }
+                  :{flexDirection: "row",flexWrap:"wrap"}
+        }>
+                
+                {form_type === "lotto" &&
+                  <Text>טבלה {tableNum}</Text>
+                }
+
+      <View style={
+
+        { flexDirection: "row",flexWrap:"wrap" }
+        }>
+      <View style={
+
+        { flexDirection: "row",flexWrap:"wrap" }}>
+           {strongNum.map((strongNumber, index) => (
+      
+      <View key={index}
+      style={{
+        width: 30,
+        height: 30,
+        borderRadius: 30,
+        backgroundColor: "orange",
+        margin: 5,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text>{strongNumber}</Text>
+    </View>
+      )
+                  )}    
+                  </View>
+      <View style={{ flexDirection: "row",flexWrap:"wrap" }}>
+                  
            {numbers.map((num, index) => (
       
       <View key={index}
@@ -60,14 +87,17 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
       <Text>{num}</Text>
     </View>
       )
-          )}   
+                    )}
+          </View>
+          </View>
           </View>
         </>
-      )}
+      ) :null}
       {
-        form_type === "regular_chance" ||
+        form_type === "regular_chance"
+        ||
         form_type === "rav_chance" 
-        && (
+        ? (
         <View style={{flexDirection:"row"}}>
           {console.log("card::::::::::::::::::::::::::::::::::::::::::",cards)}
            {/* {cards.map((card, index) => ( */}
@@ -115,7 +145,7 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
     </View>
     
         </View>
-      )}
+      ):null}
       {
         form_type === "chance_shitati" 
         &&
