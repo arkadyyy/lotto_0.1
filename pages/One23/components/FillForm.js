@@ -66,16 +66,24 @@ const DisplayChoosenNums = ({
     <>
       <TouchableOpacity
         onPress={() => {
-          let updatedChoosenNums = choosenNums;
-          choosenNums.splice(choosenNumIndex, 1);
-          let index = choosenNums.indexOf(num);
-          console.log(updatedChoosenNums);
-          setchoosenNums(updatedChoosenNums);
-          setdisplayedNums(
-            choosenNums.filter(
-              (choosenNum) => choosenNum !== displayedNums[choosenNumIndex]
-            )
+          console.log("choosenNums : ", choosenNums);
+          console.log("choosenNumiNDEX : ", choosenNumIndex);
+
+          console.log("displayedNums : ", displayedNums);
+          // setdisplayedNums(
+          //   choosenNums.filter(
+          //     (choosenNum, index) =>
+          //       choosenNum !== displayedNums[choosenNumIndex]
+          //   )
+          // );
+          setchoosenNums(
+            choosenNums.filter((num, index) => index !== choosenNumIndex)
           );
+          if (displayedNums.length === 0) {
+            setchoosenNums([]);
+          }
+
+          // setchoosenNums(displayedNums.splice(choosenNumIndex, 1));
         }}
         style={{
           width: 35,
@@ -105,8 +113,7 @@ export const autoFill = (amount) => {
     }
   }
 
-
-  return { randomNumbers};
+  return { randomNumbers };
 };
 
 const FillForm = ({
@@ -157,8 +164,8 @@ const FillForm = ({
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "36%",
-          height: 420,
+          top: "30%",
+          height: 512,
           position: "absolute",
           zIndex: 2000,
         }}
@@ -167,15 +174,13 @@ const FillForm = ({
         <View
           style={{
             backgroundColor: "#263742",
-            width: "55%",
+
             height: 70,
-            position: "relative",
-            top: -40,
-            left: "35.4%",
-            zIndex: 2001,
+
             flexDirection: "row",
-            justifyContent: "space-around",
+            justifyContent: "flex-end",
             alignItems: "center",
+            marginBottom: 30,
           }}
         >
           <View style={{ flexDirection: "row" }}>
@@ -205,6 +210,7 @@ const FillForm = ({
               borderRadius: 13,
               justifyContent: "center",
               alignItems: "center",
+              marginHorizontal: 20,
             }}
             onPress={() => {
               setshowTable(false);
@@ -222,7 +228,9 @@ const FillForm = ({
               }
             }}
           >
-            <Text style={{ color: "red" }}>סגור חלון</Text>
+            <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
+              סגור חלון
+            </Text>
           </TouchableOpacity>
         </View>
         {/* {fill numbers} */}
@@ -251,26 +259,52 @@ const FillForm = ({
             <Text style={{ color: "white", marginBottom: 5, fontSize: 10 }}>
               מלא את טבלה 1
             </Text>
-            <Button
+            <TouchableOpacity
               disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
                 let numbers = autoFill(3);
                 setchoosenNums(numbers.randomNumbers);
               }}
-              small
-              rounded
+              style={{
+                borderColor: "white",
+                borderWidth: 1,
+                padding: 3,
+                borderRadius: 7,
+                marginHorizontal: 1,
+              }}
             >
-              <Text style={{ fontSize: 10 }}>מלא טבלה אוטומטית</Text>
-            </Button>
-            <Button
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מלא טבלה אוטומטית
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
               onPress={() => {
                 setchoosenNums([]);
               }}
-              small
-              rounded
+              style={{
+                borderColor: "white",
+                borderWidth: 1,
+                padding: 3,
+                borderRadius: 7,
+                marginHorizontal: 1,
+              }}
             >
-              <Text style={{ fontSize: 10 }}>מחק טבלה אוטומטית</Text>
-            </Button>
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מחק טבלה אוטומטית
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
@@ -301,8 +335,7 @@ const FillForm = ({
             <Text style={{ color: "white", marginHorizontal: 15 }}>
               הרצף הנבחר לטבלה 1
             </Text>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View
             style={{

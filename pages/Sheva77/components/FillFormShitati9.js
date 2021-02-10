@@ -267,7 +267,7 @@ const FillFormShitati9 = ({
               />
             ))}
           </View>
-          {choosenNums.length > 0 && (
+          {/* {choosenNums.length > 0 && (
             <Text style={{ color: "white", top: "9%" }}>המספרים שנבחרו</Text>
           )}
           <View
@@ -291,7 +291,7 @@ const FillFormShitati9 = ({
                   <Text style={{ color: "black" }}>{num}</Text>
                 </View>
               ))}
-          </View>
+          </View> */}
         </View>
       </View>
     </>
