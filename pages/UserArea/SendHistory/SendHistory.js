@@ -37,7 +37,11 @@ const SeeOrDupilcate = ({ index, open, form }) => {
             {/* {console.log("form.99999999:",form.marks.tables)} */}
             {console.log("form.99999999type:", form.form_type)}
             
-            {form.form_type === "regular_lotto" && 
+            {
+              form.form_type === "regular_lotto" ||
+              form.form_type === "lotto_shitati" ||
+              form.form_type === "lotto_shitati_hazak" 
+            ? ( 
               <>
                  {form.marks.tables.map((table, index) => (
               <ViewForm
@@ -48,27 +52,64 @@ const SeeOrDupilcate = ({ index, open, form }) => {
               />
             ))}
             
-            </>
+                </>
+            ):null
             }
-            {form.form_type === "regular_chance" ||
-            form.form_type === "rav_chance"  
-            && 
-              <View style={{ flexDirection: "row" }}>
-              {Object.values(form.marks.cards).map((cards, indexShapes) => (
-              <>
-               
-                  {console.log("????????????????@@@@@@@@", cards)}
-                <ViewForm 
-                    cards={cards}
-            indexShapes={indexShapes}
-                // tableNum={table.table_number}
+            {
+              form.form_type === "123"   && ( 
+                <>               
+                 {form.marks.tables.map((table, index) => (
+              <ViewForm
+                numbers={table.numbers}
                 form_type={form.form_type}
+                tableNum={table.table_number}
+
               />
-            </>
             ))}
             
-            </View>
+                </>
+            )
             }
+            {
+              form.form_type === "regular_777"   && ( 
+                <>               
+                 {form.marks.tables.map((table, index) => (
+              <ViewForm
+                numbers={table.numbers}
+                form_type={form.form_type}
+                tableNum={table.table_number}
+
+              />
+            ))}
+            
+                </>
+            )
+            }
+            
+            {
+              form.form_type === "regular_chance"
+              || form.form_type === "rav_chance"
+                ?
+                (
+                  <View style={{ flexDirection: "row" }}>
+                  {Object.values(form.marks.cards).map((cards, indexShapes) => (
+                  <>
+                   
+                      {console.log("regular or rav chance????????????????????????????", cards)}
+                    <ViewForm 
+                        cards={cards}
+                indexShapes={indexShapes}
+                        ShapesTitle={Object.keys(form.marks.cards)}
+                        form_type={form.form_type}
+                  />
+                </>
+                ))}
+                
+                </View>
+            ) 
+             :null
+            }
+
             {form.form_type === "chance_shitati" 
             && 
               <View style={{ flexDirection: "row" }}>
@@ -79,7 +120,9 @@ const SeeOrDupilcate = ({ index, open, form }) => {
                   {console.log("cardsShitati????????????????@@@@@@@@", cardsShitati)}
                 <ViewForm 
                     cardsShitati={cardsShitati}
-            indexShapes={indexShapes}
+                    indexShapes={indexShapes}
+                    ShapesTitle={Object.keys(form.marks.cards)}
+
                 // tableNum={table.table_number}
                 form_type={form.form_type}
               />
