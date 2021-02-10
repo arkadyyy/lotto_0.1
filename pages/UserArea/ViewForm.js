@@ -241,7 +241,8 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
         form_type === "chance_shitati" 
         &&
         (
-          <View style={{ flexDirection: "column",padding:15 }}>
+          
+          <View style={{ flexDirection: "row",padding:15 }}>
           
             
             {cardsShitati.map((num, index) => (

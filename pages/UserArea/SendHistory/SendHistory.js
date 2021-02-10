@@ -112,7 +112,7 @@ const SeeOrDupilcate = ({ index, open, form }) => {
 
             {form.form_type === "chance_shitati" 
             && 
-              <View style={{ flexDirection: "row" }}>
+              <View style={{ flexDirection:"column" }}>
               {Object.values(form.marks.cards).map((cardsShitati, indexShapes) => (
               <>
                
