@@ -155,7 +155,13 @@ const One23Page = ({ navigation }) => {
                 padding: 10,
               }}
             >
-              <Text style={{ color: "white", marginVertical: 7 }}>
+              <Text
+                style={{
+                  color: "white",
+                  marginVertical: 7,
+                  fontFamily: "fb-Spacer",
+                }}
+              >
                 בחר את סכום ההשקעה{" "}
               </Text>
               <View style={{ flexDirection: "row" }}>

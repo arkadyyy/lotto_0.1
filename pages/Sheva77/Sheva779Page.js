@@ -85,12 +85,18 @@ const Sheva779Page = ({ navigation }) => {
 
             <Text style={sheva77Liststyles.subHeader}>בחר 9 מספרים בטבלה</Text>
             <View style={sheva77Liststyles.autoBtnContainer}>
-              <TouchableOpacity style={sheva77Liststyles.autoBtn}>
+              <TouchableOpacity
+                onPress={autoFillForm}
+                style={sheva77Liststyles.autoBtn}
+              >
                 <Text style={sheva77Liststyles.autoBtnText}>
                   מלא טופס אוטומטי
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={sheva77Liststyles.autoBtn}>
+              <TouchableOpacity
+                onPress={() => setFullTables([])}
+                style={sheva77Liststyles.autoBtn}
+              >
                 <Text style={sheva77Liststyles.autoBtnText}>
                   מחק טופס אוטומטי
                 </Text>

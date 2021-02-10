@@ -46,7 +46,7 @@ const Table8 = ({
   opendTableNum,
   tableNum,
 }) => {
-  const [table, settable] = useState(["", "", "", "", "", "", "", ""]);
+  const [table, settable] = useState([" ", " ", " ", " ", " ", " ", " ", " "]);
 
   useEffect(() => {
     if (fullTables.length > 0) {
