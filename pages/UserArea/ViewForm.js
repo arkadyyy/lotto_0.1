@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import ViewFormStyles from "./ViewFormStyles.js"
-const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,cardsShitati }) => {
+const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,cardsShitati,ShapesTitle }) => {
 {console.log("numbers:",numbers)}
 {console.log("strongnumbers:",strongNum)}
   return (
@@ -186,7 +186,8 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
                 textAlignVertical:"center"
             }}
             >{cards}
-            </Text>
+                </Text>
+                {console.log("ShapesTitle:",ShapesTitle)}
             {
               indexShapes === 0 ?
               (
