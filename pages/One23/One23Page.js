@@ -36,12 +36,40 @@ const One23Page = ({ navigation }) => {
   const [tableNum, settableNum] = useState(1);
   const [investNum, setinvestNum] = useState(1);
 
-  const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [fullTables, setFullTables] = useState(
+    [
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 1,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 2,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 3,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 4,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 5,
+      }
+    ]
+  );
 
   const autoFillForm = () => {
     let fullTabels = [];
@@ -93,7 +121,7 @@ const One23Page = ({ navigation }) => {
             <View style={{ marginHorizontal: 10 }}>
               <Text style={one23listStyles.subHeader}>
                 {" "}
-                בחק 3 מספרים בכל טבלה
+                בחר 3 מספרים בכל טבלה
               </Text>
             </View>
             <View style={one23listStyles.autoBtnContainer}>
@@ -119,10 +147,12 @@ const One23Page = ({ navigation }) => {
             </View>
             {showTable && (
               <FillForm
+              opendTableNum={opendTableNum}
+              setopendTableNum={setopendTableNum}
+              tableNum={tableNum}
                 setFullTables={setFullTables}
                 fullTables={fullTables}
                 setshowTable={setshowTable}
-                opendTableNum={opendTableNum}
               />
             )}
             <View style={one23listStyles.listContainerBorder}>

@@ -29,8 +29,12 @@ const ChooseNumOfTables = ({
   hagralot,
   setHagralot,
   double,
+  
 }) => {
   const route = useRoute();
+
+
+  
 
   return (
     <>

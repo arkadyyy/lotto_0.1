@@ -35,10 +35,83 @@ const DoubleLottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(2);
   const [double, setdouble] = useState(false);
-  const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
   const [jwtState, setjwtState] = useState({});
+  const [fullTables, setFullTables] = useState(
+    [
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 1,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 2,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 3,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 4,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 5,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 6,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 7,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 8,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 9,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 10,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 11,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 12,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 13,
+      },
+      {
+        choosenNums: [" "],
+        strongNum: " ",
+        tableNum: 14,
+      },
+    ]
+  );
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -106,7 +179,13 @@ const DoubleLottoPage = ({ navigation }) => {
               </Text>
             </View>
 
-            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
+            <ChooseNumOfTables
+              fullTables={fullTables}
+              setFullTables={setFullTables}
+                double={double}
+                settableNum={settableNum}
+                tableNum={tableNum}
+               />
 
             <Text style={LottoListstyles.subHeader}>בחר 6 מספרים וחזק</Text>
             <View style={LottoListstyles.autoBtnContainer}>
@@ -130,9 +209,12 @@ const DoubleLottoPage = ({ navigation }) => {
             {showTable && (
               <FillForm
                 opendTableNum={opendTableNum}
+                setopendTableNum={setopendTableNum}
                 setshowTable={setshowTable}
                 fullTables={fullTables}
                 setFullTables={setFullTables}
+                tableNum={tableNum}
+
               />
             )}
             <View style={LottoListstyles.listContainerBorder}>

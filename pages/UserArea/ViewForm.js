@@ -118,7 +118,10 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
         </>
         )}
       {
-        form_type === "regular_777" &&
+        form_type === "regular_777"
+        || form_type === "shitati_777"
+        
+        &&
         (
       <>
               
