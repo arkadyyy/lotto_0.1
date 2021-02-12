@@ -29,9 +29,25 @@ const Sheva77Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
 
-  const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState(0);
   const [opendTableNum, setopendTableNum] = useState(0);
+  const [fullTables, setFullTables] = useState(
+    [
+      {
+        tableNum: 1,
+        choosenNums:[" "],
+      },
+      {
+        tableNum: 2,
+        choosenNums:[" "],
+      },
+      {
+        tableNum: 3,
+        choosenNums:[" "],
+      },
+    ]
+  
+  );
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -83,7 +99,10 @@ const Sheva77Page = ({ navigation }) => {
               </Text>
             </View>
 
-            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
+            <ChooseNumOfTables
+              settableNum={settableNum}
+              tableNum={tableNum}
+            />
 
             <Text style={sheva77Liststyles.subHeader}>
               בחר 7 מספרים בכל טבלה
@@ -114,10 +133,12 @@ const Sheva77Page = ({ navigation }) => {
             </View>
             {showTable && (
               <FillForm
-                setFullTables={setFullTables}
-                fullTables={fullTables}
+              opendTableNum={opendTableNum}
+                setopendTableNum={setopendTableNum}
                 setshowTable={setshowTable}
-                opendTableNum={opendTableNum}
+                fullTables={fullTables}
+                setFullTables={setFullTables}
+                tableNum={tableNum}
               />
             )}
             <View style={sheva77Liststyles.listContainerBorder}>

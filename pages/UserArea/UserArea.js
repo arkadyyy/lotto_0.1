@@ -126,7 +126,51 @@ const UserArea = ({ navigation }) => {
       <NavBar navigation={navigation} />
       <ScrollView style={{ flex: 1 }}>
         <View>
-          <BlankSquare color={"#00AEEF"} />
+        <View
+              style={{
+                flexDirection: "row",
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: 20,
+                marginTop: 20,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 20,
+                  color: "black",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                שלום ,{name}
+              </Text>
+              <Button
+                onPress={async () => {
+                  await navigation.navigate("Home");
+                  dispatch(LogOut());
+                }}
+                style={{
+                  paddingLeft: 23,
+                  paddingRight: 23,
+                  backgroundColor: "#263742",
+                }}
+                rounded
+                small
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 12,
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  התנתק
+                </Text>
+              </Button>
+            </View>
+            {/* {end of hello user} */}
+          {/* <BlankSquare color={"#00AEEF"} /> */}
           <View style={{ alignItems: "center" }}>
             {/* {start of userArea navigation} */}
 
@@ -297,50 +341,7 @@ const UserArea = ({ navigation }) => {
 
             {/* {end of userArea navigation} */}
 
-            <View
-              style={{
-                flexDirection: "row",
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: 20,
-                marginTop: 20,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 20,
-                  color: "black",
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                שלום ,{name}
-              </Text>
-              <Button
-                onPress={async () => {
-                  await navigation.navigate("Home");
-                  dispatch(LogOut());
-                }}
-                style={{
-                  paddingLeft: 23,
-                  paddingRight: 23,
-                  backgroundColor: "#263742",
-                }}
-                rounded
-                small
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 12,
-                    fontFamily: "fb-Spacer-bold",
-                  }}
-                >
-                  התנתק
-                </Text>
-              </Button>
-            </View>
-            {/* {end of hello user} */}
+           
 
             {screen === "activeForms" && (
               <ActiveForms navigation={navigation} activeforms={activeForms} />

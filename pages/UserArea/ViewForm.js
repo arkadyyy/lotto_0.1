@@ -102,6 +102,7 @@ const ViewForm = ({
             </View>
           </View>
         </>
+<<<<<<< HEAD
       )}
       {form_type === "regular_777" && (
         <>
@@ -109,6 +110,24 @@ const ViewForm = ({
             <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                 <Text>טבלה {tableNum}</Text>
+=======
+        )}
+      {
+        form_type === "regular_777"
+        || form_type === "shitati_777"
+        
+        &&
+        (
+      <>
+              
+      <View>
+
+      <View style={
+
+        { flexDirection: "row",flexWrap:"wrap" }
+        }>
+     
+>>>>>>> e593a69db1fd7bfc183d5ac226e052d1d8b123e1
                 <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                   {Object.values(numbers).map((num, index) => (
                     <View

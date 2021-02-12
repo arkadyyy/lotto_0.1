@@ -68,20 +68,14 @@ const Table = ({
   index,
   setopendTableNum,
   fullTables,
-  tableRowColor,
-  setTableRowColor,
   tableNum,
   settableNum,
 }) => {
-  const index1 = index * 2 - 1;
-  const index2 = index * 2;
   const route = useRoute();
 
   const [table1, settable1] = useState([" ", " ", " ", " ", " ", " "]);
   const [strongNum1, setstrongNum1] = useState(" ");
-  const [table2, settable2] = useState([" ", " ", " ", " ", " ", " "]);
-  const [strongNum2, setstrongNum2] = useState("");
-  // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
+  
 
   useEffect(() => {
     if (double === true && tableNum > 10) {
@@ -92,7 +86,6 @@ const Table = ({
   useEffect(() => {
     if (fullTables.length !== 0) {
       let fullTable1 = 0;
-      let fullTable2 = 0;
       let x;
       fullTables.forEach((table) => {
         if (+table.tableNum === index) {
@@ -107,27 +100,14 @@ const Table = ({
           settable1(fullTable1.choosenNums);
           setstrongNum1(fullTable1.strongNum);
         }
-        // if (+table.tableNum === +index2) {
-        //   fullTable2 = table;
-
-        //   if (fullTable2.choosenNums.length < 6) {
-        //     x = 6 - fullTable2.choosenNums.length;
-        //     for (x; x > 0; x--) {
-        //       fullTable2.choosenNums.push(" ");
-        //     }
-        //   }
-        //   settable2(fullTable2.choosenNums);
-        //   setstrongNum2(fullTable2.strongNum);
-        // }
+       
       });
     } else {
       settable1([" ", " ", " ", " ", " ", " "]);
-      settable2([" ", " ", " ", " ", " ", " "]);
-      setstrongNum1("");
-      setstrongNum2("");
+      setstrongNum1(" ");
     }
 
-    console.log("table1 : ", table1);
+  
   }, [fullTables]);
 
   return (
@@ -155,7 +135,8 @@ const Table = ({
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);
-            setopendTableNum(index1);
+            setopendTableNum(index);
+            // setopendTableNum(index1);
             // setopendTableTzerufimNum(tzerufimNumber);
           }}
         >
@@ -177,88 +158,9 @@ const Table = ({
             <StrongNum num={strongNum1} />
           </View>
         </TouchableOpacity>
-        {/* {double && (
-          <View
-            style={{
-              width: 35,
-              height: 35,
-              backgroundColor: "#FF838C",
-              borderWidth: 2,
-              borderColor: "white",
-              borderRadius: 20,
-              position: "absolute",
-              left: 255,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ color: "white" }}>X2</Text>
-          </View>
-        )} */}
+       
       </ListItem>
-      {/* <ListItem
-        style={{
-          backgroundColor: !table2.includes(" ") ? "#78C849" : "#D60617",
-          flexWrap: "wrap",
-          marginTop: 4,
-          height: 55,
-          alignItems: "center",
-        }}
-      >
-        <Text
-          style={{
-            color: "white",
-            fontSize: 11,
-            marginHorizontal: 10,
-            fontFamily: "fb-Spacer",
-          }}
-        >
-          טבלה {index2}
-        </Text>
-        <TouchableOpacity
-          onPress={() => {
-            setopendTableNum(index2);
-            setshowTable(true);
-          }}
-        >
-          <View style={{ flexDirection: "row-reverse" }}>
-            {route.name === "LottoPage" && (
-              <>
-                {table2.map((num, index) => (
-                  <Num key={index} num={num} />
-                ))}
-              </>
-            )}
-            {route.name === "DoubleLottoPage" && (
-              <>
-                {table2.map((num, index) => (
-                  <Num key={index} num={num} />
-                ))}
-              </>
-            )}
-            <StrongNum num={strongNum2} />
-          </View>
-        </TouchableOpacity>
-        {/* {double && (
-          <View
-            style={{
-              width: 35,
-              height: 35,
-              backgroundColor: "#FF838C",
-              borderWidth: 2,
-              borderColor: "white",
-              borderRadius: 20,
-              position: "absolute",
-              left: 255,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ color: "white" }}>X2</Text>
-          </View>
-        )} */}
-
-      {/* </ListItem> */}
+    
     </>
   );
 };

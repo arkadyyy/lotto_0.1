@@ -64,9 +64,9 @@ const StrongNum = ({ num, strongNum, setstrongNum }) => {
       <TouchableOpacity
         disabled={strongNum === num ? false : strongNum > 1 ? true : false}
         onPress={() => {
-          strongNum === 0 && setstrongNum(num);
+          strongNum === " " && setstrongNum(num);
           if (strongNum === num) {
-            setstrongNum(0);
+            setstrongNum(" ");
           }
         }}
         style={{
@@ -106,15 +106,14 @@ export const autoFill = (amount) => {
 
 const FillForm = ({
   setshowTable,
-  double,
   opendTableNum,
-  opendTableTzerufimNum,
   setFullTables,
   fullTables,
-  // tableRowColor,
-  // setTableRowColor
+  setopendTableNum,
+  tableNum
+  
 }) => {
-  const [strongNum, setstrongNum] = useState(0);
+  const [strongNum, setstrongNum] = useState(" ");
   const [choosenNums, setchoosenNums] = useState([]);
   const [usedTable, setusedTable] = useState({
     tableNum: 0,
@@ -122,8 +121,6 @@ const FillForm = ({
     strongNum: strongNum,
   });
   const [indexOfTable, setindexOfTable] = useState(-1);
-
-  // {tableNum : 0,choosenNums : choosenNums,strongNum : strongNum}
 
   useEffect(() => {
     fullTables.forEach((table, index) => {
@@ -133,12 +130,11 @@ const FillForm = ({
         );
         setchoosenNums(filteredChoosenNums);
         setstrongNum(table.strongNum);
-
         setindexOfTable(index);
         setusedTable(table);
-      }
+      }         
     });
-  }, []);
+  }, [opendTableNum]);
 
   // useeffect that runs when choosennums or strongnum changes
   useEffect(() => {
@@ -147,21 +143,29 @@ const FillForm = ({
       choosenNums: choosenNums,
       strongNum: strongNum,
     });
+        
   }, [choosenNums, strongNum]);
 
-  // useEffect(() => {
-  //   setusedTable({
-  //     tableNum: ,
-  //     choosenNums: ,
-  //     strongNum: ,
-  //   })
-  // }, [fullTables])
+ 
 
   useEffect(() => {
     fullTables.forEach((table, index) => {
       setusedTable(table);
     });
-  }, [fullTables]);
+  }, [fullTables,opendTableNum]);
+
+
+  const arrowClickedRight = () => {
+    if (opendTableNum > 1) {
+      setopendTableNum(opendTableNum - 1);
+    }
+  };
+  
+  const arrowClickedLeft = () => {
+    if (opendTableNum < tableNum) {
+      setopendTableNum(opendTableNum + 1);
+    }
+  }
 
   return (
     <>
@@ -195,6 +199,22 @@ const FillForm = ({
                 border={true}
                 inverse
                 icon={faArrowAltCircleRight}
+                onPress={() => {
+                
+                  //if we have already a object for this table , remove the previos one and put a new one
+                  if (indexOfTable !== -1) {
+                    let fullTablesCopy = fullTables.filter(
+                      (table) => table.tableNum !== opendTableNum
+                    );
+                    setFullTables([...fullTablesCopy, usedTable]);
+                  
+                    // if we dont have already object for this table,just create one
+                  } else {
+                    setFullTables([...fullTables, usedTable]);
+                  }
+                  arrowClickedRight();
+                }
+                }
               />
             </TouchableOpacity>
             <Text
@@ -208,6 +228,23 @@ const FillForm = ({
                 border={true}
                 inverse
                 icon={faArrowAltCircleLeft}
+
+                onPress={() => {
+                
+                  //if we have already a object for this table , remove the previos one and put a new one
+                  if (indexOfTable !== -1) {
+                    let fullTablesCopy = fullTables.filter(
+                      (table) => table.tableNum !== opendTableNum
+                    );
+                    setFullTables([...fullTablesCopy, usedTable]);
+    
+                    // if we dont have already object for this table,just create one
+                  } else {
+                    setFullTables([...fullTables, usedTable]);
+                  }
+                  arrowClickedLeft();
+                }
+                }
               />
             </TouchableOpacity>
           </View>
@@ -228,8 +265,6 @@ const FillForm = ({
                 let fullTablesCopy = fullTables.filter(
                   (table) => table.tableNum !== opendTableNum
                 );
-
-                // let x = fullTables.splice(indexOfTable, 1);
                 setFullTables([...fullTablesCopy, usedTable]);
                 //if we dont have already object for this table,just create one
               } else {
@@ -356,8 +391,8 @@ const FillForm = ({
               })
               // .slice(0)
               // .reverse()
-              .map((num) => (
-                <View
+              .map((num, index) => (
+                <View key={index}
                   style={{
                     width: 20,
                     height: 20,
@@ -412,6 +447,9 @@ const FillForm = ({
           </View>
         </View>
       </View>
+
+     
+
     </>
   );
 };
