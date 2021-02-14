@@ -175,8 +175,14 @@ const LottoPage = ({ navigation }) => {
               </Text>
             </View>
 
-            <ChooseNumOfTables double={double} settableNum={settableNum} tableNum={tableNum}/>
-
+            <ChooseNumOfTables
+              fullTables={fullTables}
+              setFullTables={setFullTables}
+                double={double}
+                settableNum={settableNum}
+                tableNum={tableNum}
+               />
+            
             <Text style={LottoListstyles.subHeader}>בחר 6 מספרים וחזק</Text>
             <View style={LottoListstyles.autoBtnContainer}>
               <TouchableOpacity
