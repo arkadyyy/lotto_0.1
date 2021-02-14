@@ -77,7 +77,7 @@ const Table8 = ({
           backgroundColor: !table.includes(" ") ? "#FBB03B" : "#AA1B55",
           flexWrap: "wrap",
           marginTop: 4,
-          height: 55,
+          height: 85,
           alignItems: "center",
           width: 400,
         }}
@@ -96,7 +96,7 @@ const Table8 = ({
             setopendTableNum(tableNum);
           }}
         >
-          <View style={{ flexDirection: "row-reverse" }}>
+          <View style={{ flexDirection: "row-reverse",flexWrap:"wrap",flex:1,width:"60%" }}>
             {table.map((num, index) => (
               <Num table={table} key={index} num={num} />
             ))}

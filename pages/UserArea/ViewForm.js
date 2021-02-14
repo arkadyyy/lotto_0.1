@@ -22,16 +22,20 @@ const ViewForm = ({
       {form_type === "regular_lotto" ||
       form_type === "lotto_shitati" ||
       form_type === "lotto_shitati_hazak" ? (
-        <>
-          <View
-            style={
-              form_type === "lotto_shitati_hazak"
-                ? { flexDirection: "column" }
-                : { flexDirection: "row", flexWrap: "wrap" }
-            }
-          >
-            {form_type === "regular_lotto" && <Text>טבלה {tableNum}</Text>}
+        <View
+          style={
+            form_type === "lotto_shitati_hazak"
+              ? { flexDirection: "column" }
+              : { flexDirection: "row", flexWrap: "wrap" }
+          }
+        >
+          {form_type === "regular_lotto" && tableNum < 10 ? (
+            <Text style={{ marginRight: 7 }}>טבלה {tableNum}</Text>
+          ) : (
+            <Text style={{}}>טבלה {tableNum}</Text>
+          )}
 
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                 {strongNum.map((strongNumber, index) => (
@@ -71,7 +75,7 @@ const ViewForm = ({
               </View>
             </View>
           </View>
-        </>
+        </View>
       ) : null}
 
       {form_type === "123" && (

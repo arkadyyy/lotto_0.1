@@ -96,6 +96,7 @@ const Table = ({
           onPress={() => {
             setshowTable(true);
             setopendTableNum(tableNum);
+            
           }}
         >
           <View style={{ flexDirection: "row-reverse" }}>

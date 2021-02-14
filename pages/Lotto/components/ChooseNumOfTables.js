@@ -503,7 +503,32 @@ const ChooseNumOfTables = ({
                 </Text>
               </TouchableOpacity>
 
-              {route.name === "LottoPage" && (
+              {!double && (
+                <TouchableOpacity
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: 30,
+                    backgroundColor: tableNum === 12 ? "#8CC63F" : "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  onPress={() => {
+                    settableNum(12);
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: tableNum === 12 ? "white" : "#E62321",
+                      fontFamily: "fb-Spacer-bold",
+                    }}
+                  >
+                    12
+                  </Text>
+                </TouchableOpacity>
+              )}
+              {!double && (
                 <TouchableOpacity
                   style={{
                     width: 30,
@@ -518,18 +543,18 @@ const ChooseNumOfTables = ({
                     settableNum(14);
                   }}
                 >
-                  {route.name === "LottoPage" ? (
                     <Text
                       style={{
                         color: tableNum === 14 ? "white" : "#E62321",
-                        fontFamily: "fb-Spacer",
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       14
                     </Text>
-                  ) : null}
+                  
                 </TouchableOpacity>
               )}
+              
             </View>
           </View>
         </View>

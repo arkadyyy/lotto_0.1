@@ -11,6 +11,7 @@ import FillForm from "./components/FillForm";
 import { autoFill } from "./components/FillForm";
 import Table from "./components/Table";
 import { useDispatch, useSelector } from "react-redux";
+import { useRoute } from "@react-navigation/native";
 
 const Sheva77Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -101,7 +102,16 @@ const Sheva77Page = ({ navigation }) => {
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare gameName='הגרלת 777' color='#CC1D64' />
-        <ChooseForm />
+        <ChooseForm
+          sheva77={true}
+          setSheva77={setSheva77}
+          sheva78={false}
+          setSheva78={setSheva78}
+          sheva79={false}
+          setSheva79={setSheva79}
+          navigation={navigation}
+          numOfNum={numOfNum}
+        />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20 }}>
             <View style={sheva77Liststyles.header}>
@@ -130,7 +140,7 @@ const Sheva77Page = ({ navigation }) => {
             <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
 
             <Text style={sheva77Liststyles.subHeader}>
-              בחר 7 מספרים בכל טבלה
+              בחר {numOfNum} מספרים בכל טבלה
             </Text>
             <View style={sheva77Liststyles.autoBtnContainer}>
               <TouchableOpacity
@@ -163,7 +173,9 @@ const Sheva77Page = ({ navigation }) => {
                 setshowTable={setshowTable}
                 fullTables={fullTables}
                 setFullTables={setFullTables}
-                tableNum={tableNum}
+                fullTables={fullTables}
+                setshowTable={setshowTable}
+                opendTableNum={opendTableNum}
               />
             )}
             <View style={sheva77Liststyles.listContainerBorder}>

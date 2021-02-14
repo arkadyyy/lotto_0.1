@@ -255,6 +255,8 @@ const LottoPage = ({ navigation }) => {
             </View>
 
             <ChooseNumOfTables
+              fullTables={fullTables}
+              setFullTables={setFullTables}
               double={double}
               settableNum={settableNum}
               tableNum={tableNum}

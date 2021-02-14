@@ -3,21 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import sheva77Liststyles from "./Sheva77ListStyles";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-  Toast,
-} from "native-base";
+import { Button, List, ListItem, Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
@@ -39,6 +25,10 @@ const Sheva778Page = ({ navigation }) => {
   ]);
   const [indexOfTable, setIndexOfTable] = useState(1);
   const [opendTableNum, setopendTableNum] = useState(1);
+
+  const [sheva77, setSheva77] = useState();
+  const [sheva78, setSheva78] = useState();
+  const [sheva79, setSheva79] = useState();
 
   const autoFillForm = () => {
     let fullTabels1 = [];
@@ -90,7 +80,17 @@ const Sheva778Page = ({ navigation }) => {
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare gameName='הגרלת 777' color='#CC1D64' />
-        <ChooseForm />
+
+        <ChooseForm
+          sheva77={false}
+          setSheva77={setSheva77}
+          sheva78={true}
+          setSheva78={setSheva78}
+          sheva79={false}
+          setSheva79={setSheva79}
+          navigation={navigation}
+        />
+
         <View style={{ margin: 15 }}>
           <View
             style={{
