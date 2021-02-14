@@ -34,7 +34,7 @@ import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 const DoubleLottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(2);
-  const [double, setdouble] = useState(false);
+  const [double, setdouble] = useState(true);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
   const [jwtState, setjwtState] = useState({});
