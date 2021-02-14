@@ -7,7 +7,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  TextInput,
+    TextInput,
+  Image
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -21,26 +22,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import signInstyles from "../SignIn/SignInStyles";
 import {
-  Container,
-  Item,
-  Content,
-  Header,
-  Input,
-  Left,
-  Body,
-  Right,
   Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  Radio,
-  ListItem,
-  CheckBox,
   Label,
   Spinner,
 } from "native-base";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import { Auth } from "aws-amplify";
 
 import NavBar from "../../components/NavBar";
@@ -53,32 +38,19 @@ import { useRoute } from "@react-navigation/native";
 
 ///////////////////////////////////////////////////////////////////////
 
-const getAge = (birthDate) => {
-  let age = +Math.floor(
-    (new Date() - new Date(birthDate).getTime()) / 3.15576e10
-  );
-  return +age;
-};
 
-const validateEmail = (text) => {
-  console.log(text);
-  let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  if (reg.test(text) === false) {
-    return false;
-  } else {
-    return true;
-  }
-};
 
-const validateID = (text) => {
-  if (text.length === 9 && text !== "") {
+
+
+const validateCW = (text) => {
+  if (text.length === 3 && text !== "") {
     return true;
   } else {
     return false;
   }
 };
 
-const validatePhoneNum = (text) => {
+const validateCardNum = (text) => {
   let isnum = /^\d+$/.test(text);
   let length = text.length;
 
@@ -91,120 +63,85 @@ const validatePhoneNum = (text) => {
   }
 };
 
-const validatePassword = (text) => {
-  if (text.length >= 8) {
-    return true;
-  } else {
-    return false;
-  }
-};
+
 
 function CheckFields(
   setfieldCheck,
-  gender,
-  firstName,
-  lastName,
-  ID,
-  phoneNum,
-  Email,
+  name,
+  CW,
+  cardNum,
   age,
-  address,
-  date,
+  expirationDate,
   agreement,
-  password
+  
 ) {
-  if (gender === "") {
+  if(Name === "") {
     setfieldCheck(true);
-  } else if (firstName === "") {
+  } else if (CW === "") {
     setfieldCheck(true);
-  } else if (lastName === "") {
-    setfieldCheck(true);
-  } else if (ID === "") {
-    setfieldCheck(true);
-  } else if (phoneNum === "" || phoneNum.length !== 10) {
-    setfieldCheck(true);
-  } else if (Email === "") {
+  } else if (cardNum === "" || cardNum.length !== 16) {
     setfieldCheck(true);
   } else if (age === false) {
     setfieldCheck(true);
-  } else if (address === "") {
-    setfieldCheck(true);
-  } else if (date === "") {
+  } else if (expirationDate === "") {
     setfieldCheck(true);
   } else if (agreement === "") {
-    setfieldCheck(true);
-  } else if (password === "") {
     setfieldCheck(true);
   } else {
     setfieldCheck(false);
   }
 
-  if (/^\d+$/.test(phoneNum) && phoneNum.length === 10) {
+  if (/^\d+$/.test(cardNum) && cardNum.length === 16) {
   }
 }
 
 const ResetInputs = (
-  setGender,
-  setFirstName,
-  setLastName,
-  setID,
-  setPhoneNum,
-  setEmail,
+  setName,
+  setCW,
+  setCardNum,
   setAge,
-  setaddress,
-  setDate,
+  setExpirationDate,
   setAgreement,
-  setpassword
+  
 ) => {
-  setGender("");
-  setFirstName("");
-  setLastName("");
-  setID("");
-  setPhoneNum("");
-  setEmail("");
+  setName("");
+  setCW("");
+  setCardNum("");
   setAge(false);
-  setaddress("");
-  setDate("");
+  setExpirationDate("");
   setAgreement(false);
-  setpassword("");
 };
 
 const Payment = ({ navigation }) => {
-  const [gender, setGender] = useState("");
-  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [ID, setID] = useState("");
-  const [phoneNum, setPhoneNum] = useState("");
-  const [Email, setEmail] = useState("");
+  const [CW, setCW] = useState("");
+  const [cardNum, setCardNum] = useState("");
   const [age, setAge] = useState(false);
-  const [address, setaddress] = useState("");
   const [bidrthday, setbidrthday] = useState("");
   const [agreement, setAgreement] = useState(false);
   // const [date, setdate] = useState("");
-  const [password, setpassword] = useState("");
-  const [showPassword, setshowPassword] = useState(true);
   const [fieldCheck, setfieldCheck] = useState(true);
 
   const [confirmationCode, setconfirmationCode] = useState("");
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
+  const onChange = (event, selectedExpirationDate) => {
+    const currentExpirationDate = selectedExpirationDate || expirationDate;
     setShow(Platform.OS === "ios");
-    let x = currentDate.toISOString().split("T")[0].split("-");
+    let x = currentExpirationDate.toISOString().split("T")[0].split("-");
 
-    console.log(currentDate.toISOString().split("T")[0].split("-"));
+    console.log(currentExpirationDate.toISOString().split("T")[0].split("-"));
 
     let y = [];
 
     y.push(x[2], ".", x[1], ".", x[0]);
 
-    setDate(y.join(""));
-    console.log(date);
+    setExpirationDate(y.join(""));
+    console.log(expirationDate);
   };
 
   /////
 
-  const [date, setDate] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
 
   const [show, setShow] = useState(false);
 
@@ -221,32 +158,25 @@ const Payment = ({ navigation }) => {
   useEffect(() => {
     CheckFields(
       setfieldCheck,
-      gender,
-      firstName,
-      lastName,
-      ID,
-      phoneNum,
-      Email,
+      Name,
+      CW,
+      cardNum,
       age,
-      address,
-      date,
+      expirationDate,
       agreement,
-      password
+      
     );
     // console.log("checkfields : ", fieldCheck);
     // console.log("validatephonenum : ", validatePhoneNum(phoneNum));
   }, [
-    gender,
-    firstName,
-    lastName,
-    ID,
-    phoneNum,
-    Email,
+    
+    Name,
+    CW,
+    cardNum,
     age,
-    address,
-    date,
+    expirationDate,
     agreement,
-    password,
+    
   ]);
 
   return (
@@ -411,7 +341,7 @@ const Payment = ({ navigation }) => {
                 <View
                   style={[
                     signInstyles.detailsSquare,
-                    { height: "80%", padding: 20 },
+                    // { height: "80%", padding: 20 },
                   ]}
                 >
                   <View
@@ -420,7 +350,8 @@ const Payment = ({ navigation }) => {
                       flexDirection: "row",
                       justifyContent: "center",
                       alignItems: "center",
-                      marginBottom: 30,
+                      marginBottom: 2,
+                      marginTop:-20
                     }}
                   >
                     <Text
@@ -459,14 +390,14 @@ const Payment = ({ navigation }) => {
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <TextInput
-                        value={firstName}
-                        key={"FIRST_NAME"}
+                        value={cardNum}
+                        key={"CARD_NUM"}
                         style={signInstyles.signInPageInput}
-                        onChangeText={(text) => setFirstName(text)}
+                        onChangeText={(text) => setCardNum([...cardNum,text])}
                       />
                       <FontAwesomeIcon
                         style={{
-                          color: firstName === "" ? "transparent" : "black",
+                          color: cardNum === 16 ? "transparent" : "black",
                         }}
                         icon={faCheckCircle}
                       />
@@ -499,18 +430,18 @@ const Payment = ({ navigation }) => {
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <TextInput
-                        value={phoneNum}
+                        value={cardNum}
                         maxLength={10}
                         key={"PHONE_NUM"}
                         style={signInstyles.signInPageInput}
                         onChangeText={(text) => {
-                          validatePhoneNum(text);
-                          setPhoneNum(text);
+                          valiExpirationDateCardNum(text);
+                          setCardNum(text);
                         }}
                       />
                       <FontAwesomeIcon
                         style={{
-                          color: validatePhoneNum(phoneNum)
+                          color: valiExpirationDateCardNum(cardNum)
                             ? "black"
                             : "transparent",
                         }}
@@ -585,15 +516,15 @@ const Payment = ({ navigation }) => {
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <TextInput
-                        value={ID}
+                        value={CW}
                         maxLength={9}
-                        key={"ID"}
+                        key={"CW"}
                         style={signInstyles.signInPageInput}
-                        onChangeText={(text) => setID(text)}
+                        onChangeText={(text) => setCW(text)}
                       />
                       <FontAwesomeIcon
                         style={{
-                          color: !validateID(ID) ? "transparent" : "black",
+                          color: !validateCW(CW) ? "transparent" : "black",
                         }}
                         icon={faCheckCircle}
                       />
@@ -603,9 +534,22 @@ const Payment = ({ navigation }) => {
                                   {/* עד כאן שם בעל הכרטיס */}
 
                  
-                 
-                 
-                 
+                    <View style={{flexDirection:"row", justifyContent:"center",paddingBottom:20}}>
+                                      
+                                  <Image
+                      style={{
+                        width: 130,
+                        height: 25,
+                        position: "relative",
+                        right: "2%",
+                        top: 3,
+                        resizeMode: "contain",
+                      }}
+                      source={require("../../assets/home/toppng.com_visa_mastercard_american_express_logos_american_express_1530x261.png")}
+                    />
+                                 
+                 </View>
+                      
 
                   <Button
                     disabled={fieldCheck}
@@ -615,47 +559,37 @@ const Payment = ({ navigation }) => {
                       borderColor: "white",
                       borderWidth: 2,
                       borderRadius: 17,
-                      flex: 1,
+                        flex: 1,
+                        width: 170,
+                      alignSelf:"center"
 
-                      marginHorizontal: 70,
+                    //   marginHorizontal: 70,
                     }}
                     onPress={() => {
-                      setGender(""),
-                        setFirstName(""),
-                        setLastName(""),
-                        setID(""),
-                        setPhoneNum(""),
-                        setEmail(""),
+                        Name(""),
+                        setCW(""),
+                        setCardNum(""),
+                        
                         setAge(false),
-                        setaddress(""),
-                        setDate(""),
+                        setExpirationDate(""),
                         setAgreement(false),
-                        setpassword("");
+                        
 
                       dispatch(
                         SignUp(
-                          Email,
-                          password,
-                          phoneNum,
-                          lastName,
-                          address,
-                          gender,
-                          date,
-                          firstName,
-                          ID
+                          Name,
+                          cardNum,
+                          expirationDate,
+                          CW
                         )
                       );
                       console.log({
-                        gender: gender,
-                        firstName: firstName,
-                        lastName: lastName,
-                        phoneNum: phoneNum.replace("05", "+972"),
-                        password: password,
-                        ID: ID,
-                        Email: Email,
-                        date: date,
-                        address: address,
-                      });
+                        Name: Name,
+                        cardNum: cardNum.replace("05", "+972"),
+                        CW: CW,
+                        
+                        expirationDate: expirationDate,
+a                      });
                     }}
                   >
                     <Text
@@ -670,7 +604,9 @@ const Payment = ({ navigation }) => {
                       אישור
                     </Text>
                   </Button>
-                </View>
+                              </View>
+          
+                              
               </>
             )}
           </View>
@@ -683,12 +619,3 @@ const Payment = ({ navigation }) => {
 };
 
 export default Payment;
-
-// console.log(
-//   "month : ",
-//   new Date(date.replace(/\./g, "/")).getMonth()
-// );
-// console.log(
-//   new Date().getFullYear() -
-//     new Date(date.replace(/\./g, "/")).getFullYear()
-// );

@@ -25,7 +25,8 @@ const signInstyles = StyleSheet.create({
     backgroundColor: "#00ADEF",
 
     width: "90%",
-
+    height: 370,
+padding:20,
     flex: 1,
     margin: 20,
   },
