@@ -1,20 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-} from "native-base";
+
 import { ScrollView } from "react-native-gesture-handler";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -23,46 +10,85 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import chanceListstyles from "../ChanceListStyles";
 
-const Num = ({ num }) => {
-  return (
-    <>
-      <TouchableOpacity
-        onPress={() => {
-          autoFill(37);
-          console.log("iam working 4");
-        }}
-        style={{
-          width: 30,
-          height: 30,
-          backgroundColor: "white",
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: 23,
-          margin: 3,
-        }}
-      >
-        <Text>{num}</Text>
-      </TouchableOpacity>
-    </>
-  );
-};
+const Num = ({
+  symbol,
+  setpressed,
+  pressed,
+  setcounter,
+  counter,
+  tableNum,
+  fullTables,
+  setfullTables,
+}) => {
+  useEffect(() => {
+    //if we pressed on a card and we added it to pressed.symbolsPressed ...
+    if (counter >= 1) {
+      console.log("%");
+      //first of all , remove its old object in fullTables be4 we put its new object
+      let filtered = fullTables.choosenCards.filter(
+        (x) => x.cardType !== pressed.type
+      );
 
-const StrongNum = ({ num }) => {
+      //now we set updated fulltables
+      setfullTables({
+        gameType: tableNum,
+        choosenCards: [
+          ...filtered,
+          {
+            cardType: pressed.type,
+            card: pressed.symbolsPressed,
+          },
+        ],
+      });
+    }
+    console.log("i am here useffect inside num~~");
+  }, [counter]);
+
   return (
     <>
       <TouchableOpacity
         style={{
-          width: 35,
+          width: 21,
           height: 35,
-          borderWidth: 1,
-          borderColor: "white",
-          borderRadius: 25,
+          borderRadius: 6,
+          backgroundColor: pressed.symbolsPressed.includes(symbol)
+            ? "#8CC63F"
+            : "white",
+
+          margin: 5,
           justifyContent: "center",
           alignItems: "center",
-          margin: 2,
+        }}
+        disabled={
+          pressed.symbolsPressed.includes(symbol)
+            ? false
+            : pressed.symbolsPressed.length > 0
+            ? true
+            : counter > tableNum - 1
+            ? true
+            : false
+        }
+        onPress={() => {
+          if (pressed.symbolsPressed.includes(symbol)) {
+            setpressed({
+              numberOfPress: pressed.numberOfPress - 1,
+              symbolsPressed: pressed.symbolsPressed.filter(
+                (x) => x !== symbol
+              ),
+              type: pressed.type,
+            });
+            setcounter(counter - 1);
+          } else {
+            setpressed({
+              numberOfPress: ++pressed.numberOfPress,
+              symbolsPressed: [...pressed.symbolsPressed, symbol],
+              type: pressed.type,
+            });
+            setcounter(counter + 1);
+          }
         }}
       >
-        <Text style={{ color: "white" }}>{num}</Text>
+        <Text style={{ color: "black" }}>{symbol}</Text>
       </TouchableOpacity>
     </>
   );
@@ -83,47 +109,82 @@ const autoFill = (amount) => {
   return { randomNumbers, powerNum };
 };
 
-const FillFormBtnSize = () => {
-  return (
-    <>
-      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
-        <Text>7</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
-        <Text>8</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
-        <Text>9</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
-        <Text>10</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
-        <Text>J</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
-        <Text>K</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
-        <Text>Q</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={chanceListstyles.fillFormCardSize}>
-        <Text>A</Text>
-      </TouchableOpacity>
-    </>
-  );
-};
+const FillForm = ({
+  tableNum,
+  fullTables,
+  setfullTables,
+  setshowTable,
+  counter,
+  setcounter,
+  pressedSpade,
+  setpressedSpade,
+  pressedHeart,
+  setpressedHeart,
+  pressedDiamond,
+  setpressedDiamond,
+  pressedClubs,
+  setpressedClubs,
+}) => {
+  const [symbols, setsymbols] = useState([
+    "A",
+    "K",
+    "Q",
+    "J",
+    "10",
+    "9",
+    "8",
+    "7",
+  ]);
 
-const FillForm = ({ setshowTable, double, tableNum }) => {
-  var myMap = new Map();
-  myMap.size = 4;
+  useEffect(() => {
+    console.log("shit men +_+");
+    console.log("counter : ", counter);
+  }, []);
+
+  useEffect(() => {
+    fullTables.choosenCards.forEach((table) => {
+      if (table.cardType === "spade") {
+        console.log("table.card spade : ", table.card);
+        setpressedSpade({
+          numberOfPress: 0,
+          symbolsPressed: table.card,
+          type: "spade",
+        });
+      }
+      if (table.cardType === "heart") {
+        console.log("table.card heart : ", table.card);
+        setpressedHeart({
+          numberOfPress: 0,
+          symbolsPressed: table.card,
+          type: "heart",
+        });
+      }
+      if (table.cardType === "diamond") {
+        console.log("table.card diamond : ", table.card);
+        setpressedDiamond({
+          numberOfPress: 0,
+          symbolsPressed: table.card,
+          type: "diamond",
+        });
+      }
+      if (table.cardType === "clubs") {
+        console.log("table.card clubs : ", table.card);
+        setpressedClubs({
+          numberOfPress: 0,
+          symbolsPressed: table.card,
+          type: "clubs",
+        });
+      }
+    });
+  }, []);
+
   return (
     <>
       <View
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "50%",
+          top: "20%",
           height: 420,
           position: "absolute",
           zIndex: 2000,
@@ -133,15 +194,13 @@ const FillForm = ({ setshowTable, double, tableNum }) => {
         <View
           style={{
             backgroundColor: "#263742",
-            width: "55%",
+
             height: 70,
-            position: "relative",
-            top: -40,
-            left: "35.4%",
-            zIndex: 2001,
+
             flexDirection: "row",
-            justifyContent: "space-around",
+            justifyContent: "flex-end",
             alignItems: "center",
+            marginBottom: 30,
           }}
         >
           <View style={{ flexDirection: "row" }}>
@@ -153,7 +212,11 @@ const FillForm = ({ setshowTable, double, tableNum }) => {
                 icon={faArrowAltCircleRight}
               />
             </TouchableOpacity>
-            <Text style={{ color: "white", fontSize: 13 }}>טבלאות</Text>
+            <Text
+              style={{ color: "white", fontSize: 13, fontFamily: "fb-Spacer" }}
+            >
+              טבלאות
+            </Text>
             <TouchableOpacity>
               <FontAwesomeIcon
                 color='white'
@@ -171,12 +234,15 @@ const FillForm = ({ setshowTable, double, tableNum }) => {
               borderRadius: 13,
               justifyContent: "center",
               alignItems: "center",
+              marginHorizontal: 20,
             }}
             onPress={() => {
               setshowTable(false);
             }}
           >
-            <Text style={{ color: "red" }}>סגור חלון</Text>
+            <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
+              סגור חלון
+            </Text>
           </TouchableOpacity>
         </View>
         {/* {fill numbers} */}
@@ -202,151 +268,186 @@ const FillForm = ({ setshowTable, double, tableNum }) => {
               marginBottom: 7,
             }}
           >
-            <Text style={{ color: "white", marginBottom: 5, fontSize: 10 }}>
+            <Text
+              style={{
+                color: "white",
+                marginBottom: 5,
+                fontSize: 10,
+                marginHorizontal: 5,
+                fontFamily: "fb-Spacer",
+              }}
+            >
               מלא צירוף
             </Text>
-            <Button
+            <TouchableOpacity
               onPress={() => {
                 autoFill(6);
                 console.log("iam working 4");
               }}
-              small
-              rounded
+              style={{
+                borderColor: "white",
+                borderWidth: 1,
+                padding: 3,
+                borderRadius: 7,
+                marginHorizontal: 1,
+              }}
             >
-              <Text style={{ fontSize: 10 }}>מלא טבלה אוטומטית</Text>
-            </Button>
-            <Button small rounded>
-              <Text style={{ fontSize: 10 }}>מחק טבלה אוטומטית</Text>
-            </Button>
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מלא טבלה אוטומטית
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                borderColor: "white",
+                borderWidth: 1,
+                padding: 3,
+                borderRadius: 7,
+                marginHorizontal: 1,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                מחק טבלה אוטומטית
+              </Text>
+            </TouchableOpacity>
           </View>
 
-          {tableNum >= 1 && (
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "center",
-              }}
-            >
-              <Image
-                resizeMode='contain'
-                style={{
-                  width: 40,
-                  height: 50,
-                  borderRadius: 7,
-                  marginHorizontal: 4,
-                }}
-                source={require("C:/fullstack/lottoMatic/assets/chance/spades_table_fill.png")}
-              />
-              <FillFormBtnSize />
-            </View>
-          )}
-
-          {tableNum >= 2 && (
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "center",
-              }}
-            >
-              <Image
-                resizeMode='contain'
-                style={{
-                  width: 40,
-                  height: 50,
-                  borderRadius: 7,
-                  marginHorizontal: 4,
-                }}
-                source={require("C:/fullstack/lottoMatic/assets/chance/heart_table_fill.png")}
-              />
-              <FillFormBtnSize />
-            </View>
-          )}
-
-          {tableNum >= 3 && (
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "center",
-              }}
-            >
-              <Image
-                resizeMode='contain'
-                style={{
-                  width: 40,
-                  height: 50,
-                  borderRadius: 7,
-                  marginHorizontal: 4,
-                }}
-                source={require("C:/fullstack/lottoMatic/assets/chance/diamond_table_fill.png")}
-              />
-              <FillFormBtnSize />
-            </View>
-          )}
-          {tableNum >= 4 && (
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "center",
-              }}
-            >
-              <Image
-                resizeMode='contain'
-                style={{
-                  width: 40,
-                  height: 50,
-                  borderRadius: 7,
-                  marginHorizontal: 4,
-                }}
-                source={require("C:/fullstack/lottoMatic/assets/chance/clubs_table_fill.png")}
-              />
-              <FillFormBtnSize />
-            </View>
-          )}
-        </View>
-        <View style={{ marginTop: -16 }}>
-          <Text style={{ color: "white", marginHorizontal: 15 }}>
-            בחר מספר חזק
-          </Text>
           <View
             style={{
-              width: "90%",
-              height: 50,
-              borderColor: "white",
-              borderWidth: 1,
-              borderRadius: 7,
               flexDirection: "row",
-              justifyContent: "space-evenly",
+              justifyContent: "flex-start",
               alignItems: "center",
-              alignSelf: "center",
-              margin: 2,
             }}
           >
-            {Array.from(Array(7)).map((x, index) => (
-              <StrongNum num={index + 1} key={index} />
+            <Image
+              resizeMode='contain'
+              style={{
+                width: 40,
+                height: 50,
+                borderRadius: 7,
+                marginHorizontal: 4,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/chance/spades_table_fill.png")}
+            />
+            {symbols.map((symbol, index) => (
+              <Num
+                key={index}
+                pressed={pressedSpade}
+                setpressed={setpressedSpade}
+                symbol={symbol}
+                setcounter={setcounter}
+                counter={counter}
+                tableNum={tableNum}
+                fullTables={fullTables}
+                setfullTables={setfullTables}
+              />
             ))}
           </View>
-          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-          {(choosenNums.length>0) && (<Text style={{color:"white", marginTop:7}}>המספרים שנבחרו</Text>)}
-            {choosenNums
-              .slice(0).reverse()
-              .map((num) => (
-              <View
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              resizeMode='contain'
               style={{
-                width: 20,
-                  height: 10,
-                borderRadius: 30,
-                backgroundColor: "pink",      
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
+                width: 40,
+                height: 50,
+                borderRadius: 7,
+                marginHorizontal: 4,
               }}
-            >
-              <Text style={{ color: "black" }}>{num}</Text>
-            </View>
+              source={require("C:/fullstack/lottoMatic/assets/chance/heart_table_fill.png")}
+            />
+            {symbols.map((symbol, index) => (
+              <Num
+                key={index}
+                pressed={pressedHeart}
+                setpressed={setpressedHeart}
+                symbol={symbol}
+                setcounter={setcounter}
+                counter={counter}
+                tableNum={tableNum}
+                fullTables={fullTables}
+                setfullTables={setfullTables}
+              />
+            ))}
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              resizeMode='contain'
+              style={{
+                width: 40,
+                height: 50,
+                borderRadius: 7,
+                marginHorizontal: 4,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/chance/diamond_table_fill.png")}
+            />
+            {symbols.map((symbol, index) => (
+              <Num
+                key={index}
+                pressed={pressedDiamond}
+                setpressed={setpressedDiamond}
+                symbol={symbol}
+                setcounter={setcounter}
+                counter={counter}
+                tableNum={tableNum}
+                fullTables={fullTables}
+                setfullTables={setfullTables}
+              />
+            ))}
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              resizeMode='contain'
+              style={{
+                width: 40,
+                height: 50,
+                borderRadius: 7,
+                marginHorizontal: 4,
+              }}
+              source={require("C:/fullstack/lottoMatic/assets/chance/clubs_table_fill.png")}
+            />
+            {symbols.map((symbol, index) => (
+              <Num
+                key={index}
+                pressed={pressedClubs}
+                setpressed={setpressedClubs}
+                symbol={symbol}
+                setcounter={setcounter}
+                counter={counter}
+                tableNum={tableNum}
+                fullTables={fullTables}
+                setfullTables={setfullTables}
+              />
             ))}
           </View>
         </View>

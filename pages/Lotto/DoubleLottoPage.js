@@ -16,6 +16,7 @@ import {
   CardItem,
   List,
   ListItem,
+  Toast,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
@@ -37,88 +38,87 @@ const DoubleLottoPage = ({ navigation }) => {
   const [double, setdouble] = useState(false);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
-  const [jwtState, setjwtState] = useState({});
-  const [fullTables, setFullTables] = useState(
-    [
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 1,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 2,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 3,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 4,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 5,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 6,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 7,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 8,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 9,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 10,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 11,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 12,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 13,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 14,
-      },
-    ]
-  );
+
+  const [tablesCheck, settablesCheck] = useState(false);
+  const [fullTables, setFullTables] = useState([
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 1,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 2,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 3,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 4,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 5,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 6,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 7,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 8,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 9,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 10,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 11,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 12,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 13,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 14,
+    },
+  ]);
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const autoFillForm = () => {
     let fullTabels1 = [];
-    for (let i = 1; i < tableNum * 2 + 1; i++) {
+    for (let i = 1; i < tableNum + 1; i++) {
       let numbers = autoFill(6);
       let table = {
         tableNum: i,
@@ -128,34 +128,108 @@ const DoubleLottoPage = ({ navigation }) => {
       fullTabels1 = [...fullTabels1, table];
     }
     setFullTables(fullTabels1);
+    // setTableRowColor("#78C849");
+  };
+
+  const deletForm = () => {
+    setFullTables([
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 1,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 2,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 3,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 4,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 5,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 6,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 7,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 8,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 9,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 10,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 11,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 12,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 13,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 14,
+      },
+    ]);
+    setTableRowColor("#D60617");
+  };
+
+  const checkTables = (fullTables) => {
+    returnedState = false;
+
+    if (fullTables.length !== tableNum) {
+      returnedState = true;
+    }
+
+    fullTables.forEach((table) => {
+      if (table.choosenNums.includes(" ")) {
+        returnedState = true;
+      }
+      if (table.strongNum === " ") {
+        returnedState = true;
+      }
+    });
+    return returnedState;
   };
 
   useEffect(() => {
-    //redux dispatch , LogIn action get executed ../redux/actions/action
-    dispatch(LogIn("dlevkovich05@gmail.com", "Dekel1145"));
-
-    let accessToken;
-    let jwt;
-    Auth.currentSession().then((res) => {
-      accessToken = res.getAccessToken();
-      jwt = accessToken.getJwtToken();
-      setjwtState(jwt);
-    });
-
-    //the get request is in timout right now because we are doing for now the login and the request together and the request happens
-    //be4 the login response,this is just temporary until we make regular login
-    // setTimeout(() => {
-    //   axios
-    //     .get("http://52.90.122.190:5000/games/lotto/type/regular/0", {
-    //       headers: {
-    //         authorization: jwt,
-    //       },
-    //     })
-    //     .then((res) => {
-    //       console.log("this is res from server request !@!@ : ", res);
-    //     });
-    // }, 4000);
-  }, []);
+    settablesCheck(checkTables(fullTables));
+    console.log("tablesCheck : ", tablesCheck);
+    console.log("fullTables : ", fullTables);
+  }, [fullTables, tableNum]);
   return (
     <>
       <ScrollView>
@@ -182,10 +256,10 @@ const DoubleLottoPage = ({ navigation }) => {
             <ChooseNumOfTables
               fullTables={fullTables}
               setFullTables={setFullTables}
-                double={double}
-                settableNum={settableNum}
-                tableNum={tableNum}
-               />
+              double={double}
+              settableNum={settableNum}
+              tableNum={tableNum}
+            />
 
             <Text style={LottoListstyles.subHeader}>בחר 6 מספרים וחזק</Text>
             <View style={LottoListstyles.autoBtnContainer}>
@@ -198,7 +272,7 @@ const DoubleLottoPage = ({ navigation }) => {
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => setFullTables([])}
+                onPress={() => deletForm()}
                 style={LottoListstyles.autoBtn}
               >
                 <Text style={LottoListstyles.autoBtnText}>
@@ -214,7 +288,6 @@ const DoubleLottoPage = ({ navigation }) => {
                 fullTables={fullTables}
                 setFullTables={setFullTables}
                 tableNum={tableNum}
-
               />
             )}
             <View style={LottoListstyles.listContainerBorder}>
@@ -238,14 +311,29 @@ const DoubleLottoPage = ({ navigation }) => {
             <View style={LottoListstyles.sendFormBtnContainer}>
               <Button
                 onPress={() => {
-                  let summary = { doubleLotto: fullTables };
-
-                  navigation.navigate("ExtraFormPage", {
-                    tableNum: tableNum,
-                    screenName: "לוטו",
-                    fullTables: fullTables,
-                    gameType: "double",
-                  });
+                  if (tablesCheck === true) {
+                    Toast.show({
+                      text: "לא מילאת את כל הטבלאות",
+                      buttonText: "סגור",
+                      position: "top",
+                      // type: "warning",
+                      buttonStyle: {
+                        backgroundColor: "white",
+                        borderRadius: 8,
+                      },
+                      textStyle: { color: "white" },
+                      buttonTextStyle: { color: "black" },
+                      duration: 2500,
+                    });
+                  }
+                  if (tablesCheck === false) {
+                    navigation.navigate("ExtraFormPage", {
+                      tableNum: tableNum,
+                      screenName: "לוטו",
+                      fullTables: fullTables,
+                      gameType: "double",
+                    });
+                  }
                 }}
                 style={LottoListstyles.sendFormBtn}
               >

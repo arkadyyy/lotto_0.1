@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
@@ -16,6 +16,7 @@ import {
   CardItem,
   List,
   ListItem,
+  Toast,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
@@ -28,8 +29,14 @@ import FillFormShitati8 from "./components/FillFormShitati8";
 const Sheva778Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
+  const [tablesCheck, settablesCheck] = useState(false);
+  const [fullTables, setFullTables] = useState([
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " ", " ", " "],
 
-  const [fullTables, setFullTables] = useState([]);
+      tableNum: 1,
+    },
+  ]);
   const [indexOfTable, setIndexOfTable] = useState(1);
   const [opendTableNum, setopendTableNum] = useState(1);
 
@@ -45,6 +52,38 @@ const Sheva778Page = ({ navigation }) => {
     }
     setFullTables(fullTabels1);
   };
+
+  const deletForm = () => {
+    setFullTables([
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " ", " ", " "],
+
+        tableNum: 1,
+      },
+    ]);
+  };
+
+  const checkTables = (fullTables) => {
+    returnedState = false;
+
+    if (fullTables.length !== tableNum) {
+      returnedState = true;
+    }
+
+    fullTables.forEach((table) => {
+      if (table.choosenNums.includes(" ")) {
+        returnedState = true;
+      }
+      if (table.strongNum === " ") {
+        returnedState = true;
+      }
+    });
+    return returnedState;
+  };
+
+  useEffect(() => {
+    settablesCheck(checkTables(fullTables));
+  }, [fullTables, tableNum]);
 
   return (
     <>
@@ -95,7 +134,7 @@ const Sheva778Page = ({ navigation }) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={sheva77Liststyles.autoBtn}
-                onPress={() => setFullTables([])}
+                onPress={() => deletForm()}
               >
                 <Text style={sheva77Liststyles.autoBtnText}>
                   מחק טופס אוטומטי
@@ -137,13 +176,29 @@ const Sheva778Page = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  let summary = { 777: fullTables };
-                  navigation.navigate("SumPage777", {
-                    tableNum: 1,
-                    fullTables: fullTables,
-                    gameType: "778",
-                    formType: 8,
-                  });
+                  if (tablesCheck === true) {
+                    Toast.show({
+                      text: "לא מילאת את כל הטבלאות",
+                      buttonText: "סגור",
+                      position: "top",
+                      // type: "warning",
+                      buttonStyle: {
+                        backgroundColor: "white",
+                        borderRadius: 8,
+                      },
+                      textStyle: { color: "white" },
+                      buttonTextStyle: { color: "black" },
+                      duration: 2500,
+                    });
+                  }
+                  if (tablesCheck === false) {
+                    navigation.navigate("SumPage777", {
+                      tableNum: 1,
+                      fullTables: fullTables,
+                      gameType: "778",
+                      formType: 8,
+                    });
+                  }
                 }}
                 style={sheva77Liststyles.sendFormBtn}
               >

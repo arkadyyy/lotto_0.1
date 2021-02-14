@@ -4,7 +4,7 @@ import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
-import { Button, List } from "native-base";
+import { Button, List, Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
@@ -28,85 +28,83 @@ const LottoPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(2);
   const [double, setdouble] = useState(false);
-  const [fullTables, setFullTables] = useState(
-    [
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 1,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 2,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 3,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 4,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 5,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 6,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 7,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 8,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 9,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 10,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 11,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 12,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 13,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 14,
-      },
-    ]
-  );
+  const [fullTables, setFullTables] = useState([
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 1,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 2,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 3,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 4,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 5,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 6,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 7,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 8,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 9,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 10,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 11,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 12,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 13,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " "],
+      strongNum: " ",
+      tableNum: 14,
+    },
+  ]);
 
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
   const [tableRowColor, setTableRowColor] = useState("D60617");
-  const [jwtState, setjwtState] = useState({});
+  const [tablesCheck, settablesCheck] = useState(false);
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -128,21 +126,102 @@ const LottoPage = ({ navigation }) => {
   };
 
   const deletForm = () => {
-    setFullTables([]);
-    setTableRowColor("#D60617");
+    setFullTables([
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 1,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 2,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 3,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 4,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 5,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 6,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 7,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 8,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 9,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 10,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 11,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 12,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 13,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+        tableNum: 14,
+      },
+    ]);
+    // setTableRowColor("#D60617");
   };
 
-  // useEffect(() => {
-  //   let accessToken;
-  //   let jwt;
-  //   Auth.currentSession().then((res) => {
-  //     accessToken = res.getAccessToken();
-  //     jwt = accessToken.getJwtToken();
+  const checkTables = (fullTables) => {
+    returnedState = false;
 
-  //     setjwtState(jwt);
-  //   });
+    if (fullTables.length !== tableNum) {
+      returnedState = true;
+    }
 
-  // }, []);
+    fullTables.forEach((table) => {
+      if (table.choosenNums.includes(" ")) {
+        returnedState = true;
+      }
+      if (table.strongNum === " ") {
+        returnedState = true;
+      }
+    });
+    return returnedState;
+  };
+
+  useEffect(() => {
+    settablesCheck(checkTables(fullTables));
+  }, [fullTables, tableNum]);
 
   return (
     <>
@@ -175,7 +254,11 @@ const LottoPage = ({ navigation }) => {
               </Text>
             </View>
 
-            <ChooseNumOfTables double={double} settableNum={settableNum} tableNum={tableNum}/>
+            <ChooseNumOfTables
+              double={double}
+              settableNum={settableNum}
+              tableNum={tableNum}
+            />
 
             <Text style={LottoListstyles.subHeader}>בחר 6 מספרים וחזק</Text>
             <View style={LottoListstyles.autoBtnContainer}>
@@ -217,7 +300,6 @@ const LottoPage = ({ navigation }) => {
                       tableNum={tableNum}
                       key={index}
                       index={index + 1}
-                      
                       setshowTable={setshowTable}
                       setIndexOfTable={setIndexOfTable}
                       setopendTableNum={setopendTableNum}
@@ -232,13 +314,32 @@ const LottoPage = ({ navigation }) => {
               <Button
                 onPress={() => {
                   let summary = { regularLotto: fullTables };
-
-                  navigation.navigate("ExtraFormPage", {
-                    tableNum: tableNum,
-                    screenName: "לוטו",
-                    fullTables: fullTables,
-                    gameType: "regular",
-                  });
+                  if (tablesCheck === true) {
+                    Toast.show({
+                      text: "לא מילאת את כל הטבלאות",
+                      buttonText: "סגור",
+                      position: "top",
+                      // type: "warning",
+                      buttonStyle: {
+                        backgroundColor: "white",
+                        borderRadius: 8,
+                      },
+                      textStyle: { color: "white", fontFamily: "fb-Spacer" },
+                      buttonTextStyle: {
+                        color: "black",
+                        fontFamily: "fb-Spacer",
+                      },
+                      duration: 2500,
+                    });
+                  }
+                  if (tablesCheck === false) {
+                    navigation.navigate("ExtraFormPage", {
+                      tableNum: tableNum,
+                      screenName: "לוטו",
+                      fullTables: fullTables,
+                      gameType: "regular",
+                    });
+                  }
                 }}
                 style={LottoListstyles.sendFormBtn}
               >

@@ -253,48 +253,49 @@ const ForgotPasswordPage = ({
                   >
                     <FontAwesomeIcon icon={faTimes} color={"white"} />
                   </TouchableOpacity>
+                </View>
+                <View style={{ alignItems: "center" }}>
                   <Text
                     style={{
                       color: "white",
-                      fontSize: 28,
+                      fontSize: 15,
                       marginVertical: 10,
-                      fontFamily: "fb-Spacer-bold",
+                      fontFamily: "fb-Spacer",
                       marginLeft: 15,
-                      alignSelf: "center",
+                      textAlign: "center",
                     }}
                   >
                     {msg}
                   </Text>
-                </View>
-
-                <Button
-                  rounded
-                  style={{
-                    backgroundColor: "#FBB03B",
-                    borderColor: "white",
-                    borderWidth: 2,
-                    borderRadius: 17,
-                    flex: 1,
-                    marginVertical: 20,
-                    marginHorizontal: 70,
-                  }}
-                  onPress={() => {
-                    setshowForgotPass(1);
-                  }}
-                >
-                  <Text
+                  <Button
+                    rounded
                     style={{
-                      color: "white",
+                      backgroundColor: "#FBB03B",
+                      borderColor: "white",
+                      borderWidth: 2,
+                      borderRadius: 17,
                       flex: 1,
-                      fontSize: 30,
-                      textAlign: "center",
-
-                      fontFamily: "fb-Spacer-bold",
+                      marginVertical: 20,
+                      marginHorizontal: 70,
+                    }}
+                    onPress={() => {
+                      setshowForgotPass(1);
                     }}
                   >
-                    חזרה
-                  </Text>
-                </Button>
+                    <Text
+                      style={{
+                        color: "white",
+                        flex: 1,
+                        fontSize: 30,
+                        textAlign: "center",
+
+                        fontFamily: "fb-Spacer-bold",
+                      }}
+                    >
+                      חזרה
+                    </Text>
+                  </Button>
+                </View>
               </View>
             </View>
 

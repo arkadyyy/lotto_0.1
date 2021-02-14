@@ -102,55 +102,30 @@ const ViewForm = ({
             </View>
           </View>
         </>
-<<<<<<< HEAD
       )}
-      {form_type === "regular_777" && (
-        <>
-          <View>
+      {form_type === "regular_777" ||
+        (form_type === "shitati_777" && (
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                <Text>טבלה {tableNum}</Text>
-=======
-        )}
-      {
-        form_type === "regular_777"
-        || form_type === "shitati_777"
-        
-        &&
-        (
-      <>
-              
-      <View>
-
-      <View style={
-
-        { flexDirection: "row",flexWrap:"wrap" }
-        }>
-     
->>>>>>> e593a69db1fd7bfc183d5ac226e052d1d8b123e1
-                <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                  {Object.values(numbers).map((num, index) => (
-                    <View
-                      key={index}
-                      style={{
-                        width: 30,
-                        height: 30,
-                        borderRadius: 30,
-                        backgroundColor: "white",
-                        margin: 5,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text>{num}</Text>
-                    </View>
-                  ))}
+              {Object.values(numbers).map((num, index) => (
+                <View
+                  key={index}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text>{num}</Text>
                 </View>
-              </View>
+              ))}
             </View>
           </View>
-        </>
-      )}
+        ))}
 
       {form_type === "regular_chance" || form_type === "rav_chance" ? (
         <View style={{ flexDirection: "row" }}>

@@ -1,21 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-} from "native-base";
+import { Button, List, Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
@@ -23,7 +10,7 @@ import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 import one23listStyles from "./One23listStyles";
 import { autoFill } from "./components/FillForm";
-import { useEffect } from "react";
+
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../../aws-exports";
 import { useSelector, useDispatch } from "react-redux";
@@ -35,41 +22,39 @@ const One23Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [investNum, setinvestNum] = useState(1);
-
+  const [tablesCheck, settablesCheck] = useState(false);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [fullTables, setFullTables] = useState(
-    [
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 1,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 2,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 3,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 4,
-      },
-      {
-        choosenNums: [" "],
-        strongNum: " ",
-        tableNum: 5,
-      }
-    ]
-  );
+  const [fullTables, setFullTables] = useState([
+    {
+      choosenNums: [" ", " ", " "],
+
+      tableNum: 1,
+    },
+    {
+      choosenNums: [" ", " ", " "],
+
+      tableNum: 2,
+    },
+    {
+      choosenNums: [" ", " ", " "],
+
+      tableNum: 3,
+    },
+    {
+      choosenNums: [" ", " ", " "],
+
+      tableNum: 4,
+    },
+    {
+      choosenNums: [" ", " ", " "],
+
+      tableNum: 5,
+    },
+  ]);
 
   const autoFillForm = () => {
     let fullTabels = [];
@@ -84,6 +69,57 @@ const One23Page = ({ navigation }) => {
     }
     setFullTables(fullTabels);
   };
+  const deletForm = () => {
+    setFullTables([
+      {
+        choosenNums: [" ", " ", " "],
+
+        tableNum: 1,
+      },
+      {
+        choosenNums: [" ", " ", " "],
+
+        tableNum: 2,
+      },
+      {
+        choosenNums: [" ", " ", " "],
+
+        tableNum: 3,
+      },
+      {
+        choosenNums: [" ", " ", " "],
+
+        tableNum: 4,
+      },
+      {
+        choosenNums: [" ", " ", " "],
+
+        tableNum: 5,
+      },
+    ]);
+  };
+
+  const checkTables = (fullTables) => {
+    returnedState = false;
+
+    if (fullTables.length !== tableNum) {
+      returnedState = true;
+    }
+
+    fullTables.forEach((table) => {
+      if (table.choosenNums.includes(" ")) {
+        returnedState = true;
+      }
+      if (table.strongNum === " ") {
+        returnedState = true;
+      }
+    });
+    return returnedState;
+  };
+
+  useEffect(() => {
+    settablesCheck(checkTables(fullTables));
+  }, [fullTables, tableNum]);
 
   return (
     <>
@@ -134,7 +170,7 @@ const One23Page = ({ navigation }) => {
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => setFullTables([])}
+                onPress={() => deletForm()}
                 style={one23listStyles.autoBtn}
                 small
                 rounded
@@ -147,9 +183,9 @@ const One23Page = ({ navigation }) => {
             </View>
             {showTable && (
               <FillForm
-              opendTableNum={opendTableNum}
-              setopendTableNum={setopendTableNum}
-              tableNum={tableNum}
+                opendTableNum={opendTableNum}
+                setopendTableNum={setopendTableNum}
+                tableNum={tableNum}
                 setFullTables={setFullTables}
                 fullTables={fullTables}
                 setshowTable={setshowTable}
@@ -292,12 +328,30 @@ const One23Page = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  navigation.navigate("SumPage123", {
-                    tableNum: tableNum,
-                    screenName: "123",
-                    fullTables: fullTables,
-                    investNum: investNum,
-                  });
+                  if (tablesCheck === true) {
+                    Toast.show({
+                      text: "לא מילאת את כל הטבלאות",
+                      buttonText: "סגור",
+                      position: "top",
+                      // type: "warning",
+                      buttonStyle: {
+                        backgroundColor: "white",
+                        borderRadius: 8,
+                      },
+                      textStyle: { color: "white" },
+                      buttonTextStyle: { color: "black" },
+                      duration: 2500,
+                    });
+                  }
+                  if (tablesCheck === false) {
+                    navigation.navigate("SumPage123", {
+                      tableNum: tableNum,
+                      screenName: "123",
+                      fullTables: fullTables,
+                      investNum: investNum,
+                    });
+                  }
+
                   console.log("investNum : ", investNum);
                 }}
                 style={one23listStyles.sendFormBtn}
