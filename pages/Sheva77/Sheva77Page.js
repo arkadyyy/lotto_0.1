@@ -34,10 +34,10 @@ const Sheva77Page = ({ navigation }) => {
   const [opendTableNum, setopendTableNum] = useState(0);
   const route = useRoute();
 
-  const [sheva77, setSheva77] = useState();
-  const [sheva78, setSheva78] = useState();
-  const [sheva79, setSheva79] = useState();
-
+  const [sheva77, setSheva77] = useState(true);
+  const [sheva78, setSheva78] = useState(false);
+  const [sheva79, setSheva79] = useState(false);
+  const numOfNum = 7;
   const [fullTables, setFullTables] = useState(
     [
       {
@@ -83,9 +83,9 @@ const Sheva77Page = ({ navigation }) => {
 //         setSheva77(true);
 //         setSheva78(false);
 //       setSheva79(false);
-//       console.log("777");
+//       console.log("7777777777777777777");
 //     }
-//   })
+//   },[])
 
   return (
     <>
@@ -93,10 +93,10 @@ const Sheva77Page = ({ navigation }) => {
         <NavBar navigation={navigation} />
         <BlankSquare gameName='הגרלת 777' color='#CC1D64' />
         <ChooseForm
-         sheva77={sheva77} setSheva77={setSheva77}
-         sheva78={sheva78} setSheva78={setSheva78}
-          sheva79={sheva79} setSheva79={setSheva79}
-          navigation={navigation}
+         sheva77={true} setSheva77={setSheva77}
+         sheva78={false} setSheva78={setSheva78}
+          sheva79={false} setSheva79={setSheva79}
+          navigation={navigation} numOfNum={numOfNum}
         />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20 }}>
@@ -126,7 +126,7 @@ const Sheva77Page = ({ navigation }) => {
             <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
 
             <Text style={sheva77Liststyles.subHeader}>
-              בחר 7 מספרים בכל טבלה
+              בחר {numOfNum} מספרים בכל טבלה
             </Text>
             <View style={sheva77Liststyles.autoBtnContainer}>
               <TouchableOpacity

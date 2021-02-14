@@ -21,19 +21,19 @@ import { useRoute } from "@react-navigation/native";
 
 
 
-const ChooseForm = ({sheva77,setSheva77,sheva78,setSheva78,sheva79,setSheva79,navigation}) => {
+const ChooseForm = ({numOfNum,sheva77,setSheva77,sheva78,setSheva78,sheva79,setSheva79,navigation}) => {
   const route = useRoute();
 
   
-  // useEffect(() => {
-  //   {
-  //     route.name === "sheva77Page" &&
-  //       setSheva77(true);
-  //       setSheva78(false);
-  //     setSheva79(false);
-  //     console.log("777");
-  //   }
-  // })
+  useEffect(() => {
+   console.log("numOfNum:",numOfNum);
+      //   setSheva77(true);
+      //   setSheva78(false);
+      // setSheva79(false);
+      // console.log("777777");
+    
+    console.log("route:",route.name);
+  },[route.name])
   
   return (
     <>
@@ -105,7 +105,11 @@ const ChooseForm = ({sheva77,setSheva77,sheva78,setSheva78,sheva79,setSheva79,na
                 setSheva79(true);
                 setSheva78(false);
                 setSheva77(false);
-                navigation.navigate("Sheva779Page");
+                navigation.navigate("Sheva779Page"), {
+                  // sheva77: sheva77,
+                  // sheva78: sheva78,
+                  // sheva79: sheva79,
+                };
 
               }}
             >

@@ -58,9 +58,9 @@ const Sheva778Page = ({ navigation }) => {
         <BlankSquare gameName='הגרלת 777' color='#CC1D64' />
        
         <ChooseForm
-         sheva77={sheva77} setSheva77={setSheva77}
-         sheva78={sheva78} setSheva78={setSheva78}
-          sheva79={sheva79} setSheva79={setSheva79}
+         sheva77={false} setSheva77={setSheva77}
+         sheva78={true} setSheva78={setSheva78}
+          sheva79={false} setSheva79={setSheva79}
           navigation={navigation}
 
         />
