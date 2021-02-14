@@ -72,22 +72,18 @@ const ChooseForm = ({ double, setdouble }) => {
         </View>
         <View
           style={{
-            backgroundColor: "#E62321",
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
             paddingLeft: 20,
           }}
         >
-          <Button
-            style={{ backgroundColor: "white", padding: 10 }}
-            small
-            rounded
-          >
-            <Text style={{ color: "#E62321", fontFamily: "fb-Spacer-bold" }}>
+          <View style={{ padding: 10 }}>
+            {/* <Text style={{ color: "#E62321", fontFamily: "fb-Spacer-bold" }}>
               שלח טופס
-            </Text>
-          </Button>
+            </Text> */}
+          
+        </View>
         </View>
       </View>
     </>

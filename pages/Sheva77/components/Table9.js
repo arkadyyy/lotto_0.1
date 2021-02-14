@@ -78,7 +78,7 @@ const Table9 = ({
         }
       });
     } else {
-      settable([" ", " ", " ", " ", " ", " ", " ", " "]);
+      settable([" ", " ", " ", " ", " ", " ", " ", " "," "]);
     }
   }, [fullTables]);
   return (
@@ -87,11 +87,13 @@ const Table9 = ({
         style={{
           backgroundColor: "#FBB03B",
           backgroundColor: !table.includes(" ") ? "#FBB03B" : "#AA1B55",
-          flexWrap: "wrap",
+          // flexWrap: "wrap",
+          flexDirection:"row",
           marginTop: 4,
-          height: 55,
-          alignItems: "center",
-          width: 400,
+          height: 80,
+          // alignItems: "center",
+          width: "91%",
+          justifyContent:"space-around"
         }}
       >
         <Text
@@ -108,7 +110,7 @@ const Table9 = ({
             setopendTableNum(tableNum);
           }}
         >
-          <View style={{ flexDirection: "row-reverse" }}>
+          <View style={{ flex:1,flexDirection:"row",flexWrap:"wrap",width:"85%" }}>
             {table.map((num, index) => (
               <Num table={table} key={index} num={num} />
             ))}

@@ -24,6 +24,7 @@ import FillForm from "./components/FillForm";
 import { autoFill } from "./components/FillForm";
 import Table from "./components/Table";
 import { useDispatch, useSelector } from "react-redux";
+import { useRoute } from "@react-navigation/native";
 
 const Sheva77Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -31,22 +32,27 @@ const Sheva77Page = ({ navigation }) => {
 
   const [indexOfTable, setIndexOfTable] = useState(0);
   const [opendTableNum, setopendTableNum] = useState(0);
+  const route = useRoute();
+
+  const [sheva77, setSheva77] = useState();
+  const [sheva78, setSheva78] = useState();
+  const [sheva79, setSheva79] = useState();
+
   const [fullTables, setFullTables] = useState(
     [
       {
+        choosenNums: [" "],
         tableNum: 1,
-        choosenNums:[" "],
       },
       {
+        choosenNums: [" "],
         tableNum: 2,
-        choosenNums:[" "],
       },
       {
+        choosenNums: [" "],
         tableNum: 3,
-        choosenNums:[" "],
-      },
+      }
     ]
-  
   );
 
   const store = useSelector((state) => state);
@@ -54,6 +60,8 @@ const Sheva77Page = ({ navigation }) => {
   useEffect(() => {
     console.log(store);
   }, []);
+
+  
 
   const autoFillForm = () => {
     let fullTabels1 = [];
@@ -68,12 +76,28 @@ const Sheva77Page = ({ navigation }) => {
     setFullTables(fullTabels1);
   };
 
+
+//  useEffect(() => {
+//     {
+//       route.name === "sheva77Page" &&
+//         setSheva77(true);
+//         setSheva78(false);
+//       setSheva79(false);
+//       console.log("777");
+//     }
+//   })
+
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare gameName='הגרלת 777' color='#CC1D64' />
-        <ChooseForm />
+        <ChooseForm
+         sheva77={sheva77} setSheva77={setSheva77}
+         sheva78={sheva78} setSheva78={setSheva78}
+          sheva79={sheva79} setSheva79={setSheva79}
+          navigation={navigation}
+        />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20 }}>
             <View style={sheva77Liststyles.header}>
@@ -99,10 +123,7 @@ const Sheva77Page = ({ navigation }) => {
               </Text>
             </View>
 
-            <ChooseNumOfTables
-              settableNum={settableNum}
-              tableNum={tableNum}
-            />
+            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
 
             <Text style={sheva77Liststyles.subHeader}>
               בחר 7 מספרים בכל טבלה
@@ -133,12 +154,10 @@ const Sheva77Page = ({ navigation }) => {
             </View>
             {showTable && (
               <FillForm
-              opendTableNum={opendTableNum}
-                setopendTableNum={setopendTableNum}
-                setshowTable={setshowTable}
-                fullTables={fullTables}
                 setFullTables={setFullTables}
-                tableNum={tableNum}
+                fullTables={fullTables}
+                setshowTable={setshowTable}
+                opendTableNum={opendTableNum}
               />
             )}
             <View style={sheva77Liststyles.listContainerBorder}>
