@@ -169,7 +169,7 @@ const ResetInputs = (
   setpassword("");
 };
 
-const SignIn = ({ navigation }) => {
+const Payment = ({ navigation }) => {
   const [gender, setGender] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -211,12 +211,12 @@ const SignIn = ({ navigation }) => {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
   const route = useRoute();
-  useEffect(() => {
-    console.log(store.signUp);
-    if (store.signUp === 3) {
-      navigation.navigate("LogInPage");
-    }
-  }, [store]);
+//   useEffect(() => {
+//     console.log(store.signUp);
+//     if (store.signUp === 3) {
+//       navigation.navigate("LogInPage");
+//     }
+//   }, [store]);
 
   useEffect(() => {
     CheckFields(
@@ -251,7 +251,7 @@ const SignIn = ({ navigation }) => {
 
   return (
     <>
-      <NavBar navigation={navigation} screenName={"signIn"} />
+      <NavBar navigation={navigation} screenName={"Payment"} />
 
       <View
         style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
@@ -430,56 +430,13 @@ const SignIn = ({ navigation }) => {
                         fontFamily: "fb-Spacer",
                       }}
                     >
-                      פרטי לקוח
+                      פרטי תשלום
                     </Text>
 
-                    <View style={signInstyles.radioGenderButons}>
-                      <View>
-                        <TouchableOpacity
-                          small
-                          rounded
-                          style={
-                            gender === "male"
-                              ? signInstyles.radioGenderButonSelected
-                              : signInstyles.radioGenderButon
-                          }
-                          onPress={() => setGender("male")}
-                        >
-                          <Text
-                            style={{
-                              color: "white",
-                              fontFamily: "fb-Spacer-bold",
-                            }}
-                          >
-                            זכר
-                          </Text>
-                        </TouchableOpacity>
-                      </View>
-
-                      <View>
-                        <TouchableOpacity
-                          small
-                          rounded
-                          style={
-                            gender === "female"
-                              ? signInstyles.radioGenderButonSelected
-                              : signInstyles.radioGenderButon
-                          }
-                          onPress={() => setGender("female")}
-                        >
-                          <Text
-                            style={{
-                              color: "white",
-                              fontFamily: "fb-Spacer-bold",
-                            }}
-                          >
-                            נקבה
-                          </Text>
-                        </TouchableOpacity>
-                      </View>
-                    </View>
+                    
                   </View>
 
+{/* מספר כרטיס מכאן */}
                   <View
                     style={{
                       alignItems: "stretch",
@@ -495,7 +452,7 @@ const SignIn = ({ navigation }) => {
                           fontFamily: "fb-Spacer",
                         }}
                       >
-                        שם פרטי
+                                              מספר כרטיס
                       </Label>
                     </View>
                     <View
@@ -514,14 +471,18 @@ const SignIn = ({ navigation }) => {
                         icon={faCheckCircle}
                       />
                     </View>
-                  </View>
+                                  </View>
+{/* עד כאן מספר כרטיס */}
+                    
+<View style={{flexDirection:"row"}}>
+                                  {/* מכאן תוקף               */}
                   <View
                     style={{
                       alignItems: "stretch",
 
                       flex: 1,
                     }}
-                  >
+                     >                 
                     <View style={{ flexDirection: "row" }}>
                       <Label
                         style={{
@@ -530,9 +491,10 @@ const SignIn = ({ navigation }) => {
                           fontFamily: "fb-Spacer",
                         }}
                       >
-                        נייד
+                          תוקף
                       </Label>
                     </View>
+                                      
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
@@ -554,9 +516,13 @@ const SignIn = ({ navigation }) => {
                         }}
                         icon={faCheckCircle}
                       />
-                    </View>
+                                      </View>
+                                      
                   </View>
 
+                          {/* עד כאן תוקף         */}
+
+                         {/* CW מכאן */}
                   <View
                     style={{
                       alignItems: "stretch",
@@ -571,10 +537,11 @@ const SignIn = ({ navigation }) => {
                           marginHorizontal: 10,
                           fontFamily: "fb-Spacer",
                         }}
-                      >
-                        שם משפחה
-                      </Label>
+                        >
+                        CW                      
+                     </Label>
                     </View>
+              
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
@@ -593,6 +560,11 @@ const SignIn = ({ navigation }) => {
                     </View>
                   </View>
 
+
+{/* עד כאן CW */}
+</View>
+
+                   {/* מכאן שם בעל הכרטיס                */}
                   <View
                     style={{
                       alignItems: "stretch",
@@ -607,8 +579,7 @@ const SignIn = ({ navigation }) => {
                           fontFamily: "fb-Spacer",
                         }}
                       >
-                        ת"ז
-                      </Label>
+שם בעל הכרטיס                      </Label>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
@@ -629,264 +600,18 @@ const SignIn = ({ navigation }) => {
                     </View>
                   </View>
 
-                  <View
-                    style={{
-                      alignItems: "stretch",
-                    }}
-                  >
-                    <View style={{ flexDirection: "row" }}>
-                      <Label
-                        style={{
-                          fontSize: 12,
-                          marginHorizontal: 10,
-                          fontFamily: "fb-Spacer",
-                        }}
-                      >
-                        אימייל
-                      </Label>
-                    </View>
-                    <View
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                      <TextInput
-                        value={Email}
-                        key={"EMAIL"}
-                        style={signInstyles.signInPageInput}
-                        fontSize={12}
-                        onChangeText={(text) => {
-                          setEmail(text);
-                        }}
-                      />
-                      <FontAwesomeIcon
-                        style={{
-                          color: validateEmail(Email) ? "black" : "transparent",
-                        }}
-                        icon={faCheckCircle}
-                      />
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      alignItems: "stretch",
-                    }}
-                  >
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Label
-                        style={{
-                          fontSize: 12,
-                          marginHorizontal: 10,
-                          fontFamily: "fb-Spacer",
-                        }}
-                      >
-                        כתובת
-                      </Label>
-                    </View>
-                    <View
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                      <TextInput
-                        key={"ADDRESS"}
-                        style={signInstyles.signInPageInput}
-                        fontSize={12}
-                        onChangeText={(text) => setaddress(text)}
-                        value={address}
-                      />
-                      <FontAwesomeIcon
-                        style={{
-                          color: address === "" ? "transparent" : "black",
-                        }}
-                        icon={faCheckCircle}
-                      />
-                    </View>
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <TouchableOpacity
-                      style={{
-                        borderColor: "white",
-                        borderWidth: 1,
-                        borderRadius: 7,
-                        padding: 7,
-                        fontSize: 10,
-                        flex: 1,
-                      }}
-                      onPress={() => {
-                        setShow(true);
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: 10,
-                          color: "white",
-                          fontFamily: "fb-Spacer",
-                        }}
-                      >
-                        בחר תאריך לידה
-                      </Text>
-                    </TouchableOpacity>
-                    <TextInput
-                      editable={false}
-                      disabled={true}
-                      value={date === "" ? "תאריך לא נבחר" : String(date)}
-                      style={[
-                        signInstyles.signInPageInput,
-                        {
-                          flex: 2,
-                          fontSize: 12,
-                          color: "black",
-                          textAlign: "center",
+                                  {/* עד כאן שם בעל הכרטיס */}
 
-                          fontFamily: "fb-Spacer",
-                        },
-                      ]}
-                    />
-                    <FontAwesomeIcon
-                      style={{
-                        color: date === "" ? "transparent" : "black",
-                      }}
-                      icon={faCheckCircle}
-                    />
-
-                    {show && (
-                      <DateTimePicker
-                        testID='dateTimePicker'
-                        value={new Date()}
-                        mode='date'
-                        is24Hour={false}
-                        display='spinner'
-                        onChange={onChange}
-                      />
-                    )}
-                  </View>
-
-                  <View
-                    style={{
-                      alignItems: "stretch",
-                      marginVertical: 8,
-                    }}
-                  >
-                    <View style={{ flexDirection: "row" }}>
-                      <Label
-                        style={{
-                          fontSize: 12,
-                          marginLeft: 10,
-                          fontFamily: "fb-Spacer",
-                        }}
-                      >
-                        סיסמה
-                      </Label>
-                      <TouchableOpacity
-                        style={{ marginHorizontal: 10 }}
-                        onPress={() => {
-                          setshowPassword(!showPassword);
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faEye} />
-                      </TouchableOpacity>
-                    </View>
-                    <View
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                      <TextInput
-                        value={password}
-                        secureTextEntry={showPassword}
-                        key={"EMAIL"}
-                        style={signInstyles.signInPageInput}
-                        fontSize={12}
-                        onChangeText={(text) => setpassword(text)}
-                      />
-                      <FontAwesomeIcon
-                        style={{
-                          color: validatePassword(password)
-                            ? "black"
-                            : "transparent",
-                        }}
-                        icon={faCheckCircle}
-                      />
-                    </View>
-                  </View>
-
-                  <ListItem noBorder>
-                    <CheckBox
-                      disabled={
-                        getAge(date.replace(/\./g, "/")) < 18 ? true : false
-                      }
-                      style={{ borderRadius: 13 }}
-                      color='#263742'
-                      checked={age}
-                      onPress={() => {
-                        setAge(!age);
-                        console.log("age : ", getAge(date.replace(/\./g, "/")));
-                      }}
-                    />
-                    <Body style={{ marginLeft: 20 }}>
-                      <View
-                        style={{
-                          flexDirection: "row",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <Text
-                          style={{
-                            color: "white",
-                            fontSize: 10,
-                            fontFamily: "fb-Spacer",
-                          }}
-                        >
-                          אני מעל גיל 18
-                        </Text>
-                        {getAge(date.replace(/\./g, "/")) < 18 && (
-                          <Text
-                            style={{
-                              color: "darkred",
-                              fontSize: 10,
-                              fontFamily: "fb-Spacer",
-                            }}
-                          >
-                            תאריך הלידה שהוזן אינו חוקי
-                          </Text>
-                        )}
-                      </View>
-                    </Body>
-                  </ListItem>
-                  <ListItem style={{ alignItems: "center" }} noBorder>
-                    <CheckBox
-                      style={{ borderRadius: 13 }}
-                      checked={agreement}
-                      color='#263742'
-                      onPress={() => {
-                        setAgreement(!agreement);
-                      }}
-                    />
-                    <Body style={{ marginLeft: 20 }}>
-                      <Text
-                        style={{
-                          color: "white",
-                          fontSize: 10,
-                          fontFamily: "fb-Spacer",
-                        }}
-                      >
-                        אני מאשר את תנאי השימוש באתר, את התקנון,      וקבלת הודעות דיוור מהאתר.
-                      </Text>
-                    </Body>
-                  </ListItem>
-                  <TouchableOpacity
-                    style={{ marginLeft: 57, marginBottom: 40 }}
-                  >
-                    <Text style={{ fontSize: 10, fontFamily: "fb-Spacer" }}>
-                      קרא תקנון
-                    </Text>
-                  </TouchableOpacity>
+                 
+                 
+                 
+                 
 
                   <Button
                     disabled={fieldCheck}
                     rounded
                     style={{
-                      backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                      backgroundColor: fieldCheck ? "#FFAC32" : "#FBB03B",
                       borderColor: "white",
                       borderWidth: 2,
                       borderRadius: 17,
@@ -942,20 +667,9 @@ const SignIn = ({ navigation }) => {
                         fontFamily: "fb-Spacer-bold",
                       }}
                     >
-                      הבא
+                      אישור
                     </Text>
                   </Button>
-                  <Button
-                    onPress={()=>navigation.navigate("Payment")} 
-                    rounded
-                    style={{
-                      backgroundColor: fieldCheck ? "#999" : "#FBB03B",
-                      borderColor: "white",
-                      borderWidth: 2,
-                      borderRadius: 17,
-                      flex: 1,
-                      marginHorizontal: 70,
-                    }}><Text>הכנס פרטי תשלום</Text></Button>
                 </View>
               </>
             )}
@@ -968,7 +682,7 @@ const SignIn = ({ navigation }) => {
   );
 };
 
-export default SignIn;
+export default Payment;
 
 // console.log(
 //   "month : ",
