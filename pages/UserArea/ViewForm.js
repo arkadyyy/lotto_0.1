@@ -22,8 +22,11 @@ const ViewForm = ({ numbers, strongNum, tableNum,form_type,cards,indexShapes,car
                   :{flexDirection: "row",flexWrap:"wrap"}
         }>
                 
-                {form_type === "regular_lotto" &&
-                  <Text>טבלה {tableNum}</Text>
+                {form_type === "regular_lotto" && tableNum< 10 ? 
+                                  
+                  <Text style={{ marginRight:7 }}>טבלה {tableNum}</Text>
+                  :
+                  <Text style={{ }}>טבלה {tableNum}</Text>
                 }
 
       <View style={
