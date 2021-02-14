@@ -19,20 +19,23 @@ const Sheva77Page = ({ navigation }) => {
   const [tablesCheck, settablesCheck] = useState(false);
   const [indexOfTable, setIndexOfTable] = useState(0);
   const [opendTableNum, setopendTableNum] = useState(0);
+  const route = useRoute();
+
+  const [sheva77, setSheva77] = useState(true);
+  const [sheva78, setSheva78] = useState(false);
+  const [sheva79, setSheva79] = useState(false);
+  const numOfNum = 7;
   const [fullTables, setFullTables] = useState([
     {
       choosenNums: [" ", " ", " ", " ", " ", " ", " "],
-
       tableNum: 1,
     },
     {
       choosenNums: [" ", " ", " ", " ", " ", " ", " "],
-
       tableNum: 2,
     },
     {
       choosenNums: [" ", " ", " ", " ", " ", " ", " "],
-
       tableNum: 3,
     },
   ]);
@@ -168,10 +171,6 @@ const Sheva77Page = ({ navigation }) => {
             </View>
             {showTable && (
               <FillForm
-                opendTableNum={opendTableNum}
-                setopendTableNum={setopendTableNum}
-                setshowTable={setshowTable}
-                fullTables={fullTables}
                 setFullTables={setFullTables}
                 fullTables={fullTables}
                 setshowTable={setshowTable}
