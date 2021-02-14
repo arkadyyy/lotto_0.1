@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LottoListstyles from "./LottoListStyles";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
@@ -16,6 +16,7 @@ import {
   CardItem,
   List,
   ListItem,
+  Toast,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
@@ -37,7 +38,7 @@ const LottoShitatiPage = ({ navigation }) => {
   const [fullTables, setFullTables] = useState([]);
   const [indexOfTable, setIndexOfTable] = useState(1);
   const [opendTableNum, setopendTableNum] = useState(1);
-
+  const [tablesCheck, settablesCheck] = useState(false);
   const autoFillForm = () => {
     let numbers = autoFill(tzerufimNumber);
     let table = {
@@ -47,6 +48,30 @@ const LottoShitatiPage = ({ navigation }) => {
     };
     setFullTables([table]);
   };
+
+  const checkTables = (fullTables) => {
+    returnedState = false;
+
+    if (fullTables.length !== tableNum) {
+      returnedState = true;
+    }
+
+    fullTables.forEach((table) => {
+      if (table.choosenNums.includes(" ")) {
+        returnedState = true;
+      }
+      if (table.strongNum === " ") {
+        returnedState = true;
+      }
+    });
+    return returnedState;
+  };
+
+  useEffect(() => {
+    settablesCheck(checkTables(fullTables));
+    console.log("tablesCheck : ", tablesCheck);
+    console.log("fullTables : ", fullTables);
+  }, [fullTables, tableNum]);
 
   return (
     <>
@@ -135,13 +160,30 @@ const LottoShitatiPage = ({ navigation }) => {
                 onPress={() => {
                   let summary = { lotoShitati: fullTables };
 
-                  navigation.navigate("ExtraFormPage", {
-                    tableNum: tableNum,
-                    screenName: "לוטו שיטתי",
-                    fullTables: fullTables,
-                    gameType: "shitati",
-                    tzerufimNumber: tzerufimNumber,
-                  });
+                  if (tablesCheck === true) {
+                    Toast.show({
+                      text: "לא מילאת את כל הטבלאות",
+                      buttonText: "סגור",
+                      position: "top",
+                      // type: "warning",
+                      buttonStyle: {
+                        backgroundColor: "white",
+                        borderRadius: 8,
+                      },
+                      textStyle: { color: "white" },
+                      buttonTextStyle: { color: "black" },
+                      duration: 2500,
+                    });
+                  }
+                  if (tablesCheck === false) {
+                    navigation.navigate("ExtraFormPage", {
+                      tableNum: tableNum,
+                      screenName: "לוטו שיטתי",
+                      fullTables: fullTables,
+                      gameType: "shitati",
+                      tzerufimNumber: tzerufimNumber,
+                    });
+                  }
                 }}
                 style={LottoListstyles.sendFormBtn}
               >

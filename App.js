@@ -37,7 +37,7 @@ import SumPage123 from "./pages/One23/SumPage123";
 import AboutUs from "./pages/AboutUs";
 import HowItWorks from "./pages/HowItWorks";
 import { Provider } from "react-redux";
-
+import { Root } from "native-base";
 import store from "./redux/store";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { withAuthenticator } from "aws-amplify-react-native";
@@ -89,51 +89,56 @@ export default function App() {
   return (
     <>
       <Provider store={store}>
-        <NavigationContainer>
-          <Drawer.Navigator
-            drawerContent={(props) => <DrawerContent {...props} />}
-            initialRouteName='Home'
-          >
-            <Drawer.Screen name='Home' component={Home} />
-            <Drawer.Screen name='UserArea' component={UserArea} />
-            <Drawer.Screen name='SignIn' component={SignIn} />
-            <Drawer.Screen name='LogInPage' component={LogInPage} />
-            <Drawer.Screen name='LottoList' component={LottoList} />
-            <Drawer.Screen name='LottoPage' component={LottoPage} />
-            <Drawer.Screen name='DoubleLottoPage' component={DoubleLottoPage} />
-            <Drawer.Screen
-              name='LottoShitatiPage'
-              component={LottoShitatiPage}
-            />
-            <Drawer.Screen
-              name='LottoShitatiHazakPage'
-              component={LottoShitatiHazakPage}
-            />
-            <Drawer.Screen name='ChanceList' component={ChanceList} />
-            <Drawer.Screen name='ChancePage' component={ChancePage} />
-            <Drawer.Screen name='RavChancePage' component={RavChancePage} />
-            <Drawer.Screen
-              name='ChanceShitatiPage'
-              component={ChanceShitatiPage}
-            />
-            <Drawer.Screen name='Sheva77List' component={Sheva77List} />
-            <Drawer.Screen name='Sheva77Page' component={Sheva77Page} />
-            <Drawer.Screen name='Sheva778Page' component={Sheva778Page} />
-            <Drawer.Screen name='Sheva779Page' component={Sheva779Page} />
-            <Drawer.Screen name='One23List' component={One23List} />
-            <Drawer.Screen name='One23Page' component={One23Page} />
-            <Drawer.Screen name='SumPageChance' component={SumPageChance} />
-            <Drawer.Screen name='SumPage123' component={SumPage123} />
-            <Drawer.Screen name='SumPage777' component={SumPage777} />
-            <Drawer.Screen name='AboutUs' component={AboutUs} />
-            <Drawer.Screen name='HowItWorks' component={HowItWorks} />
-            <Drawer.Screen name='ResultLotto' component={ResultLotto} />
-            <Drawer.Screen name='ResultChance' component={ResultChance} />
+        <Root>
+          <NavigationContainer>
+            <Drawer.Navigator
+              drawerContent={(props) => <DrawerContent {...props} />}
+              initialRouteName='Home'
+            >
+              <Drawer.Screen name='Home' component={Home} />
+              <Drawer.Screen name='UserArea' component={UserArea} />
+              <Drawer.Screen name='SignIn' component={SignIn} />
+              <Drawer.Screen name='LogInPage' component={LogInPage} />
+              <Drawer.Screen name='LottoList' component={LottoList} />
+              <Drawer.Screen name='LottoPage' component={LottoPage} />
+              <Drawer.Screen
+                name='DoubleLottoPage'
+                component={DoubleLottoPage}
+              />
+              <Drawer.Screen
+                name='LottoShitatiPage'
+                component={LottoShitatiPage}
+              />
+              <Drawer.Screen
+                name='LottoShitatiHazakPage'
+                component={LottoShitatiHazakPage}
+              />
+              <Drawer.Screen name='ChanceList' component={ChanceList} />
+              <Drawer.Screen name='ChancePage' component={ChancePage} />
+              <Drawer.Screen name='RavChancePage' component={RavChancePage} />
+              <Drawer.Screen
+                name='ChanceShitatiPage'
+                component={ChanceShitatiPage}
+              />
+              <Drawer.Screen name='Sheva77List' component={Sheva77List} />
+              <Drawer.Screen name='Sheva77Page' component={Sheva77Page} />
+              <Drawer.Screen name='Sheva778Page' component={Sheva778Page} />
+              <Drawer.Screen name='Sheva779Page' component={Sheva779Page} />
+              <Drawer.Screen name='One23List' component={One23List} />
+              <Drawer.Screen name='One23Page' component={One23Page} />
+              <Drawer.Screen name='SumPageChance' component={SumPageChance} />
+              <Drawer.Screen name='SumPage123' component={SumPage123} />
+              <Drawer.Screen name='SumPage777' component={SumPage777} />
+              <Drawer.Screen name='AboutUs' component={AboutUs} />
+              <Drawer.Screen name='HowItWorks' component={HowItWorks} />
+              <Drawer.Screen name='ResultLotto' component={ResultLotto} />
+              <Drawer.Screen name='ResultChance' component={ResultChance} />
 
-            <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
-            <Drawer.Screen name='ResultList' component={ResultList} />
-          </Drawer.Navigator>
-        </NavigationContainer>
+              <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
+              <Drawer.Screen name='ResultList' component={ResultList} />
+            </Drawer.Navigator>
+          </NavigationContainer>
+        </Root>
       </Provider>
     </>
   );

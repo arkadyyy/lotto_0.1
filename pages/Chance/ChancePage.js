@@ -2,24 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-} from "native-base";
+import { Button, List } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
-// import FillForm from "./components/FillForm";
+import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 import chanceListstyles from "./ChanceListStyles";
 import { useSelector, useDispatch } from "react-redux";
@@ -30,16 +17,74 @@ const ChancePage = ({ navigation }) => {
   const [investNum, setinvestNum] = useState(5);
   const [double, setdouble] = useState(false);
   const [filledForm, setfilledForm] = useState([]);
+  const [counter, setcounter] = useState(0);
   const [fullTables, setfullTables] = useState({
     gameType: 1,
-    choosenCards: [
-      {
-        cardType: "heart",
-        card: ["K"],
-      },
-    ],
+    choosenCards: [],
+  });
+  // const [fullTables, setfullTables] = useState({
+  //   gameType: 1,
+  //   choosenCards: [
+  //     {
+  //       cardType: "heart",
+  //       card: ["K"],
+  //     },
+  //   ],
+  // });
+
+  const [pressedSpade, setpressedSpade] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "spade",
+  });
+  const [pressedHeart, setpressedHeart] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "heart",
+  });
+  const [pressedDiamond, setpressedDiamond] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "diamond",
+  });
+  const [pressedClubs, setpressedClubs] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "clubs",
   });
   const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("fulltables from chancePage : ", fullTables);
+  }, [fullTables]);
+
+  useEffect(() => {
+    setfullTables({
+      gameType: tableNum,
+      choosenCards: [],
+    });
+    setcounter(0);
+
+    setpressedSpade({
+      numberOfPress: 0,
+      symbolsPressed: [],
+      type: "spade",
+    });
+    setpressedHeart({
+      numberOfPress: 0,
+      symbolsPressed: [],
+      type: "heart",
+    });
+    setpressedDiamond({
+      numberOfPress: 0,
+      symbolsPressed: [],
+      type: "diamond",
+    });
+    setpressedClubs({
+      numberOfPress: 0,
+      symbolsPressed: [],
+      type: "clubs",
+    });
+  }, [tableNum]);
 
   return (
     <>
@@ -83,9 +128,25 @@ const ChancePage = ({ navigation }) => {
 
             <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
 
-            {/* {showTable && (
-              <FillForm tableNum={tableNum} setshowTable={setshowTable} />
-            )} */}
+            {showTable && (
+              <FillForm
+                choosenCards
+                tableNum={tableNum}
+                setshowTable={setshowTable}
+                fullTables={fullTables}
+                setfullTables={setfullTables}
+                counter={counter}
+                setcounter={setcounter}
+                pressedSpade={pressedSpade}
+                setpressedSpade={setpressedSpade}
+                pressedHeart={pressedHeart}
+                setpressedHeart={setpressedHeart}
+                pressedDiamond={pressedDiamond}
+                setpressedDiamond={setpressedDiamond}
+                pressedClubs={pressedClubs}
+                setpressedClubs={setpressedClubs}
+              />
+            )}
             <View
               style={{
                 borderColor: showTable ? "transparent" : "white",

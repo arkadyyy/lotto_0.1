@@ -3,20 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import sheva77Liststyles from "./Sheva77ListStyles";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-} from "native-base";
+import { Button, List, Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
@@ -29,39 +16,32 @@ import { useRoute } from "@react-navigation/native";
 const Sheva77Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
-
+  const [tablesCheck, settablesCheck] = useState(false);
   const [indexOfTable, setIndexOfTable] = useState(0);
   const [opendTableNum, setopendTableNum] = useState(0);
-  const route = useRoute();
+  const [fullTables, setFullTables] = useState([
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " ", " "],
 
-  const [sheva77, setSheva77] = useState(true);
-  const [sheva78, setSheva78] = useState(false);
-  const [sheva79, setSheva79] = useState(false);
-  const numOfNum = 7;
-  const [fullTables, setFullTables] = useState(
-    [
-      {
-        choosenNums: [" "],
-        tableNum: 1,
-      },
-      {
-        choosenNums: [" "],
-        tableNum: 2,
-      },
-      {
-        choosenNums: [" "],
-        tableNum: 3,
-      }
-    ]
-  );
+      tableNum: 1,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " ", " "],
+
+      tableNum: 2,
+    },
+    {
+      choosenNums: [" ", " ", " ", " ", " ", " ", " "],
+
+      tableNum: 3,
+    },
+  ]);
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     console.log(store);
   }, []);
-
-  
 
   const autoFillForm = () => {
     let fullTabels1 = [];
@@ -76,16 +56,46 @@ const Sheva77Page = ({ navigation }) => {
     setFullTables(fullTabels1);
   };
 
+  const deletForm = () => {
+    setFullTables([
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " ", " "],
 
-//  useEffect(() => {
-//     {
-//       route.name === "sheva77Page" &&
-//         setSheva77(true);
-//         setSheva78(false);
-//       setSheva79(false);
-//       console.log("7777777777777777777");
-//     }
-//   },[])
+        tableNum: 1,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " ", " "],
+
+        tableNum: 2,
+      },
+      {
+        choosenNums: [" ", " ", " ", " ", " ", " ", " "],
+
+        tableNum: 3,
+      },
+    ]);
+  };
+  const checkTables = (fullTables) => {
+    returnedState = false;
+
+    if (fullTables.length !== tableNum) {
+      returnedState = true;
+    }
+
+    fullTables.forEach((table) => {
+      if (table.choosenNums.includes(" ")) {
+        returnedState = true;
+      }
+      if (table.strongNum === " ") {
+        returnedState = true;
+      }
+    });
+    return returnedState;
+  };
+
+  useEffect(() => {
+    settablesCheck(checkTables(fullTables));
+  }, [fullTables, tableNum]);
 
   return (
     <>
@@ -93,10 +103,14 @@ const Sheva77Page = ({ navigation }) => {
         <NavBar navigation={navigation} />
         <BlankSquare gameName='הגרלת 777' color='#CC1D64' />
         <ChooseForm
-         sheva77={true} setSheva77={setSheva77}
-         sheva78={false} setSheva78={setSheva78}
-          sheva79={false} setSheva79={setSheva79}
-          navigation={navigation} numOfNum={numOfNum}
+          sheva77={true}
+          setSheva77={setSheva77}
+          sheva78={false}
+          setSheva78={setSheva78}
+          sheva79={false}
+          setSheva79={setSheva79}
+          navigation={navigation}
+          numOfNum={numOfNum}
         />
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#CC1D64", paddingBottom: 20 }}>
@@ -145,7 +159,7 @@ const Sheva77Page = ({ navigation }) => {
                 small
                 rounded
                 bordered
-                onPress={() => setFullTables([])}
+                onPress={() => deletForm()}
               >
                 <Text style={sheva77Liststyles.autoBtnText}>
                   מחק טופס אוטומטי
@@ -154,6 +168,10 @@ const Sheva77Page = ({ navigation }) => {
             </View>
             {showTable && (
               <FillForm
+                opendTableNum={opendTableNum}
+                setopendTableNum={setopendTableNum}
+                setshowTable={setshowTable}
+                fullTables={fullTables}
                 setFullTables={setFullTables}
                 fullTables={fullTables}
                 setshowTable={setshowTable}
@@ -187,13 +205,29 @@ const Sheva77Page = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  let summary = { 777: fullTables };
-                  navigation.navigate("SumPage777", {
-                    tableNum: tableNum,
-                    fullTables: fullTables,
-                    gameType: "777",
-                    formType: 7,
-                  });
+                  if (tablesCheck === true) {
+                    Toast.show({
+                      text: "לא מילאת את כל הטבלאות",
+                      buttonText: "סגור",
+                      position: "top",
+                      // type: "warning",
+                      buttonStyle: {
+                        backgroundColor: "white",
+                        borderRadius: 8,
+                      },
+                      textStyle: { color: "white" },
+                      buttonTextStyle: { color: "black" },
+                      duration: 2500,
+                    });
+                  }
+                  if (tablesCheck === false) {
+                    navigation.navigate("SumPage777", {
+                      tableNum: tableNum,
+                      fullTables: fullTables,
+                      gameType: "777",
+                      formType: 7,
+                    });
+                  }
                 }}
                 style={sheva77Liststyles.sendFormBtn}
               >
