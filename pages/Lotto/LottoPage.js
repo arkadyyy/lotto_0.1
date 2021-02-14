@@ -283,11 +283,11 @@ const LottoPage = ({ navigation }) => {
             </View>
             {showTable && (
               <FillForm
+              fullTables={fullTables}
+                setFullTables={setFullTables}
+                setshowTable={setshowTable}
                 opendTableNum={opendTableNum}
                 setopendTableNum={setopendTableNum}
-                setshowTable={setshowTable}
-                fullTables={fullTables}
-                setFullTables={setFullTables}
                 tableNum={tableNum}
               />
             )}
