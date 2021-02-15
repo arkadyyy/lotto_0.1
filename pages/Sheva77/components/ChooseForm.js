@@ -48,7 +48,7 @@ const ChooseForm = ({numOfNum,sheva77,setSheva77,sheva78,setSheva78,sheva79,setS
             justifyContent: "space-evenly",
             alignItems: "center",
             padding: 15,
-            flex: 2,
+            flex: 4,
           }}
         >
           <Text style={{ fontFamily: "fb-Spacer" }}>בחר סוג טופס</Text>
