@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Dimensions } from "react-native";
+import { Text, View, Dimensions,Image} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Container,
@@ -22,6 +22,7 @@ import {
   faArrowAltCircleLeft,
 } from "@fortawesome/free-regular-svg-icons";
 import EStyleSheet from "react-native-extended-stylesheet";
+import { faAngleDoubleRight, faAngleLeft, faAngleRight, faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 const { width, height } = Dimensions.get("window");
 
 const Num = ({ num, choosenNums, setchoosenNums }) => {
@@ -110,7 +111,8 @@ const FillForm = ({
   setFullTables,
   fullTables,
   setopendTableNum,
-  tableNum
+  tableNum,
+  
   
 }) => {
   const [strongNum, setstrongNum] = useState(" ");
@@ -119,8 +121,57 @@ const FillForm = ({
     tableNum: 0,
     choosenNums: choosenNums,
     strongNum: strongNum,
-  });
+    });
   const [indexOfTable, setindexOfTable] = useState(-1);
+
+  // const autoFillForm = () => {
+  //   let fullTabels1 = [];
+  //   for (let i = 1; i < tableNum + 1; i++) {
+  //     let numbers = autoFill(6);
+  //     let table = {
+  //       tableNum: i,
+  //       choosenNums: numbers.randomNumbers,
+  //       strongNum: numbers.strongNum,
+  //     };
+  //     fullTabels1 = [...fullTabels1, table];
+      
+  //     setchoosenNums(numbers.randomNumbers);
+  //     setstrongNum(numbers.strongNum);
+      
+  //   }
+    
+  //   setFullTables(fullTabels1);
+  // };
+
+  const autoFillForm = () => {
+    let fullTabels1 = [];
+    // for (let i = 1; i < tableNum + 1; i++) {
+    for (let i = 1; i < 14; i++) {
+      while (i < tableNum+1){
+        let numbers = autoFill(6);
+        let table = {
+          tableNum: i,
+          choosenNums: numbers.randomNumbers,
+          strongNum: numbers.strongNum,
+        };
+        setchoosenNums(numbers.randomNumbers);
+        setstrongNum(numbers.strongNum);
+        fullTabels1 = [...fullTabels1, table];
+        i++;
+      }
+      
+      let table = {
+        tableNum: i,
+        choosenNums: [" "],
+        strongNum: (" "),
+      };
+      fullTabels1 = [...fullTabels1, table];
+      i++;
+      
+    }
+    setFullTables(fullTabels1);
+  };
+
 
   useEffect(() => {
     fullTables.forEach((table, index) => {
@@ -132,7 +183,10 @@ const FillForm = ({
         setstrongNum(table.strongNum);
         setindexOfTable(index);
         setusedTable(table);
-      }         
+      }     
+      else {
+       
+      }
     });
   }, [opendTableNum]);
 
@@ -193,12 +247,103 @@ const FillForm = ({
           }}
         >
           <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              width: 30,
+                height: 30,
+                borderColor: "white",
+              borderWidth:2,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 23,
+              margin: 3,
+            }}
+              
+              disabled={choosenNums.length !== 0 ? true : false}
+              onPress={() => {
+                let numbers = autoFill(6);
+                setchoosenNums(numbers.randomNumbers);
+                setstrongNum(numbers.strongNum);
+                // setTableRowColor("#78C849")
+              }}
+            >
+                <Image
+                  style={{ width: 22.5, height: 12.5 }}
+                  source={require("../../../assets/fillTable.jpeg")}
+                />
+              </TouchableOpacity>
+            
+              <TouchableOpacity
+                style={{
+                  width: 30,
+                    height: 30,
+                    borderColor: "white",
+                  borderWidth:2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 23,
+                  margin: 3,
+                }}
+              onPress={() => {
+                setchoosenNums([]);
+                setstrongNum(" ");
+                // setTableRowColor('#D60617')
+              }}
+            >
+              <Image
+                  style={{ width: 22.5, height: 12.5 }}
+                  source={require("../../../assets/deleteTable.jpeg")}
+                />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                style={{
+                  width: 30,
+                    height: 30,
+                    borderColor: "white",
+                  borderWidth:2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 23,
+                  margin: 3,
+                }}
+                onPress={autoFillForm}
+            >
+              <Image
+                  style={{ width: 22.5, height: 12.5 }}
+                  source={require("../../../assets/fillAllTables.jpeg")}
+                />
+            </TouchableOpacity>
+<View style={{  height: '100%',
+    width: 5,
+    backgroundColor: 'white'}}></View>
+            <TouchableOpacity
+              style={{
+                borderWidth:1,
+                borderColor:"#DB1267",
+                borderRadius: 30,
+                justifyContent: "center",
+                flexDirection: "row",
+                alignItems: "center",
+                marginRight: 5,
+                borderRightColor: "white",
+                borderRightWidth:1,
+
+              
+              
+
+              }}
+            >
               <FontAwesomeIcon
-                color='white'
+                // color='#1F3841'
+                color='#DB1267'
+                
                 border={true}
+                borderColor="#DB1267"
+                borderWidth="3"
                 inverse
-                icon={faArrowAltCircleRight}
+                icon={faAngleRight}
                 onPress={() => {
                 
                   //if we have already a object for this table , remove the previos one and put a new one
@@ -217,19 +362,30 @@ const FillForm = ({
                 }
               />
             </TouchableOpacity>
-            <Text
-              style={{ color: "white", fontSize: 13, fontFamily: "fb-Spacer" }}
-            >
-              טבלאות
-            </Text>
-            <TouchableOpacity>
-              <FontAwesomeIcon
-                color='white'
-                border={true}
-                inverse
-                icon={faArrowAltCircleLeft}
+           
+            <TouchableOpacity
+              style={{
+                borderWidth:1,
+                borderColor:"#DB1267",
+                borderRadius: 30,
+                justifyContent: "center",
+                flexDirection: "row",
+                alignItems: "center",
+              marginLeft:5
 
+              }}
+            >
+              <FontAwesomeIcon
+                // color='#1F3841'
+                color='#DB1267'
+                
+                border={true}
+                borderColor="#DB1267"
+                borderWidth="3"
+                inverse
+                icon={faAngleLeft}
                 onPress={() => {
+                
                 
                   //if we have already a object for this table , remove the previos one and put a new one
                   if (indexOfTable !== -1) {
@@ -237,9 +393,11 @@ const FillForm = ({
                       (table) => table.tableNum !== opendTableNum
                     );
                     setFullTables([...fullTablesCopy, usedTable]);
-    
+                    console.log("00000000");
+
                     // if we dont have already object for this table,just create one
                   } else {
+                    console.log("11111111111111111111111111");
                     setFullTables([...fullTables, usedTable]);
                   }
                   arrowClickedLeft();
@@ -311,55 +469,10 @@ const FillForm = ({
             >
               מלא את טבלה {opendTableNum}
             </Text>
-            <TouchableOpacity
-              style={{
-                borderColor: "white",
-                borderWidth: 1,
-                padding: 3,
-                borderRadius: 7,
-                marginHorizontal: 1,
-              }}
-              disabled={choosenNums.length !== 0 ? true : false}
-              onPress={() => {
-                let numbers = autoFill(6);
-                setchoosenNums(numbers.randomNumbers);
-                setstrongNum(numbers.strongNum);
-                // setTableRowColor("#78C849")
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 10,
-                  color: "white",
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                מלא טבלה אוטומטית
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                borderColor: "white",
-                borderWidth: 1,
-                padding: 3,
-                borderRadius: 7,
-              }}
-              onPress={() => {
-                setchoosenNums([]);
-                setstrongNum(" ");
-                // setTableRowColor('#D60617')
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 10,
-                  color: "white",
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                מחק טבלה אוטומטית
-              </Text>
-            </TouchableOpacity>
+            
+         
+
+           
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>

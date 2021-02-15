@@ -8,6 +8,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./pages/Home/Home";
 import UserArea from "./pages/UserArea/UserArea";
 import SignIn from "./pages/SignIn/SignIn";
+import Payment from "./pages/SignIn/Payment";
 import LogInPage from "./pages/LogIn/LogInPage";
 import StackWrapper from "./StackWrapper";
 import DrawerContent from "./pages/DrawerContent/DrawerContent";
@@ -133,6 +134,7 @@ export default function App() {
               <Drawer.Screen name='HowItWorks' component={HowItWorks} />
               <Drawer.Screen name='ResultLotto' component={ResultLotto} />
               <Drawer.Screen name='ResultChance' component={ResultChance} />
+              <Drawer.Screen name='Payment' component={Payment} />
 
               <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
               <Drawer.Screen name='ResultList' component={ResultList} />

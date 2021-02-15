@@ -175,6 +175,9 @@ const Sheva77Page = ({ navigation }) => {
                 fullTables={fullTables}
                 setshowTable={setshowTable}
                 opendTableNum={opendTableNum}
+                setopendTableNum={setopendTableNum}
+                tableNum={tableNum}
+
               />
             )}
             <View style={sheva77Liststyles.listContainerBorder}>

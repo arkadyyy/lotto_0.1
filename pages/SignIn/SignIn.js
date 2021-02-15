@@ -945,6 +945,17 @@ const SignIn = ({ navigation }) => {
                       הבא
                     </Text>
                   </Button>
+                  <Button
+                    onPress={()=>navigation.navigate("Payment")} 
+                    rounded
+                    style={{
+                      backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                      borderColor: "white",
+                      borderWidth: 2,
+                      borderRadius: 17,
+                      flex: 1,
+                      marginHorizontal: 70,
+                    }}><Text>הכנס פרטי תשלום</Text></Button>
                 </View>
               </>
             )}

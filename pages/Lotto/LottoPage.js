@@ -112,17 +112,29 @@ const LottoPage = ({ navigation }) => {
 
   const autoFillForm = () => {
     let fullTabels1 = [];
-    for (let i = 1; i < tableNum + 1; i++) {
-      let numbers = autoFill(6);
+    // for (let i = 1; i < tableNum + 1; i++) {
+    for (let i = 1; i < 14; i++) {
+      while (i < tableNum+1){
+        let numbers = autoFill(6);
+        let table = {
+          tableNum: i,
+          choosenNums: numbers.randomNumbers,
+          strongNum: numbers.strongNum,
+        };
+        fullTabels1 = [...fullTabels1, table];
+        i++;
+      }
+      
       let table = {
         tableNum: i,
-        choosenNums: numbers.randomNumbers,
-        strongNum: numbers.strongNum,
+        choosenNums: [" "],
+        strongNum: (" "),
       };
       fullTabels1 = [...fullTabels1, table];
+      i++;
+      
     }
     setFullTables(fullTabels1);
-    // setTableRowColor("#78C849");
   };
 
   const deletForm = () => {
@@ -283,12 +295,13 @@ const LottoPage = ({ navigation }) => {
             </View>
             {showTable && (
               <FillForm
+              fullTables={fullTables}
+                setFullTables={setFullTables}
+                setshowTable={setshowTable}
                 opendTableNum={opendTableNum}
                 setopendTableNum={setopendTableNum}
-                setshowTable={setshowTable}
-                fullTables={fullTables}
-                setFullTables={setFullTables}
                 tableNum={tableNum}
+                autoFillForm={autoFillForm}
               />
             )}
             <View style={LottoListstyles.listContainerBorder}>
