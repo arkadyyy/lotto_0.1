@@ -69,9 +69,9 @@ const autoFill = (amount) => {
     }
   }
 
-  strongNum = Math.floor(Math.random() * 7) + 1;
+  // strongNum = Math.floor(Math.random() * 7) + 1;
 
-  return { randomNumbers, strongNum };
+  return { randomNumbers };
 };
 
 const FillFormShitati8 = ({
@@ -158,10 +158,8 @@ const FillFormShitati8 = ({
     
     disabled={choosenNums.length !== 0 ? true : false}
     onPress={() => {
-      let numbers = autoFill(7);
+      let numbers = autoFill(8);
       setchoosenNums(numbers.randomNumbers);
-      setstrongNum(numbers.strongNum);
-      // setTableRowColor("#78C849")
     }}
   >
       <Image
@@ -260,7 +258,7 @@ const FillFormShitati8 = ({
             style={{
               flexDirection: "row",
               flexWrap: "wrap",
-              justifyContent: "space-around",
+              // justifyContent: "space-around",
               alignItems: "center",
               marginBottom: 7,
             }}
@@ -276,7 +274,7 @@ const FillFormShitati8 = ({
             >
               מלא את טבלה 1
             </Text>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
                 let numbers = autoFill(8);
@@ -321,7 +319,7 @@ const FillFormShitati8 = ({
               >
                 מחק טבלה אוטומטית
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>

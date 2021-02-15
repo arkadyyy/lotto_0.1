@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View } from "react-native";
+import { Text, View,Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Container,
@@ -69,9 +69,9 @@ const autoFill = (amount) => {
     }
   }
 
-  strongNum = Math.floor(Math.random() * 7) + 1;
+  // strongNum = Math.floor(Math.random() * 7) + 1;
 
-  return { randomNumbers, strongNum };
+  return { randomNumbers };
 };
 
 const FillFormShitati9 = ({
@@ -143,7 +143,72 @@ const FillFormShitati9 = ({
             marginBottom: 30,
           }}
         >
-          <View style={{ flexDirection: "row" }}></View>
+
+<TouchableOpacity
+  style={{
+    width: 30,
+      height: 30,
+      borderColor: "white",
+    borderWidth:2,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 23,
+    margin: 3,
+  }}
+    
+    disabled={choosenNums.length !== 0 ? true : false}
+    onPress={() => {
+      let numbers = autoFill(9);
+      setchoosenNums(numbers.randomNumbers);
+    }}
+  >
+      <Image
+        style={{ width: 22.5, height: 12.5 }}
+        source={require("../../../assets/fillTable.jpeg")}
+      />
+    </TouchableOpacity>
+  
+    <TouchableOpacity
+      style={{
+        width: 30,
+          height: 30,
+          borderColor: "white",
+        borderWidth:2,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 23,
+        margin: 3,
+      }}
+    onPress={() => {
+      setchoosenNums([]);
+    }}
+  >
+    <Image
+        style={{ width: 22.5, height: 12.5 }}
+        source={require("../../../assets/deleteTable.jpeg")}
+      />
+  </TouchableOpacity>
+
+  <TouchableOpacity
+      style={{
+        width: 30,
+          height: 30,
+          borderColor: "white",
+        borderWidth:2,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 23,
+        margin: 3,
+      }}
+      onPress={() => {
+        let numbers = autoFill(9);
+        setchoosenNums(numbers.randomNumbers);
+      }}  >
+    <Image
+        style={{ width: 22.5, height: 12.5 }}
+        source={require("../../../assets/fillAllTables.jpeg")}
+      />
+    </TouchableOpacity> 
           <TouchableOpacity
             style={{
               height: 25,
@@ -193,7 +258,7 @@ const FillFormShitati9 = ({
             style={{
               flexDirection: "row",
               flexWrap: "wrap",
-              justifyContent: "space-around",
+              // justifyContent: "space-around",
               alignItems: "center",
               marginBottom: 7,
             }}
@@ -209,10 +274,10 @@ const FillFormShitati9 = ({
             >
               מלא את טבלה 1
             </Text>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
-                let numbers = autoFill(9);
+                let numbers = autoFill(8);
                 setchoosenNums(numbers.randomNumbers);
               }}
               style={{
@@ -254,7 +319,7 @@ const FillFormShitati9 = ({
               >
                 מחק טבלה אוטומטית
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
@@ -269,13 +334,14 @@ const FillFormShitati9 = ({
           </View>
           {/* {choosenNums.length > 0 && (
             <Text style={{ color: "white", top: "9%" }}>המספרים שנבחרו</Text>
-          )}
-          <View
+          )} */}
+          {/* <View
             style={{ flexDirection: "row", flexWrap: "wrap", top: "12.5%" }}
           >
             {choosenNums
-              .slice(0)
-              .reverse()
+              .sort(function (a, b) {
+                return b - a;
+              })
               .map((num) => (
                 <View
                   style={{
