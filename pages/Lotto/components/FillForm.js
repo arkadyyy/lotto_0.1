@@ -156,6 +156,8 @@ const FillForm = ({
         };
         setchoosenNums(numbers.randomNumbers);
         setstrongNum(numbers.strongNum);
+
+
         fullTabels1 = [...fullTabels1, table];
         i++;
       }
@@ -169,6 +171,7 @@ const FillForm = ({
       i++;
       
     }
+    
     setFullTables(fullTabels1);
   };
 
@@ -206,7 +209,7 @@ const FillForm = ({
     fullTables.forEach((table, index) => {
       setusedTable(table);
     });
-  }, [fullTables,opendTableNum]);
+  }, [fullTables,opendTableNum,arrowClickedRight,arrowClickedLeft]);
 
 
   const arrowClickedRight = () => {
