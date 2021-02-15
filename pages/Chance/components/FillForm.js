@@ -23,11 +23,13 @@ const Num = ({
   useEffect(() => {
     //if we pressed on a card and we added it to pressed.symbolsPressed ...
     if (counter >= 1) {
-      console.log("%");
+      console.log("counter is bigger/equal than 1");
       //first of all , remove its old object in fullTables be4 we put its new object
       let filtered = fullTables.choosenCards.filter(
         (x) => x.cardType !== pressed.type
       );
+
+      console.log("filtered : ", filtered);
 
       //now we set updated fulltables
       setfullTables({
@@ -41,7 +43,6 @@ const Num = ({
         ],
       });
     }
-    console.log("i am here useffect inside num~~");
   }, [counter]);
 
   return (
@@ -136,47 +137,38 @@ const FillForm = ({
     "7",
   ]);
 
-  useEffect(() => {
-    console.log("shit men +_+");
-    console.log("counter : ", counter);
-  }, []);
-
-  useEffect(() => {
-    fullTables.choosenCards.forEach((table) => {
-      if (table.cardType === "spade") {
-        console.log("table.card spade : ", table.card);
-        setpressedSpade({
-          numberOfPress: 0,
-          symbolsPressed: table.card,
-          type: "spade",
-        });
-      }
-      if (table.cardType === "heart") {
-        console.log("table.card heart : ", table.card);
-        setpressedHeart({
-          numberOfPress: 0,
-          symbolsPressed: table.card,
-          type: "heart",
-        });
-      }
-      if (table.cardType === "diamond") {
-        console.log("table.card diamond : ", table.card);
-        setpressedDiamond({
-          numberOfPress: 0,
-          symbolsPressed: table.card,
-          type: "diamond",
-        });
-      }
-      if (table.cardType === "clubs") {
-        console.log("table.card clubs : ", table.card);
-        setpressedClubs({
-          numberOfPress: 0,
-          symbolsPressed: table.card,
-          type: "clubs",
-        });
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   fullTables.choosenCards.forEach((table) => {
+  //     if (table.cardType === "spade") {
+  //       setpressedSpade({
+  //         numberOfPress: 0,
+  //         symbolsPressed: table.card,
+  //         type: "spade",
+  //       });
+  //     }
+  //     if (table.cardType === "heart") {
+  //       setpressedHeart({
+  //         numberOfPress: 0,
+  //         symbolsPressed: table.card,
+  //         type: "heart",
+  //       });
+  //     }
+  //     if (table.cardType === "diamond") {
+  //       setpressedDiamond({
+  //         numberOfPress: 0,
+  //         symbolsPressed: table.card,
+  //         type: "diamond",
+  //       });
+  //     }
+  //     if (table.cardType === "clubs") {
+  //       setpressedClubs({
+  //         numberOfPress: 0,
+  //         symbolsPressed: table.card,
+  //         type: "clubs",
+  //       });
+  //     }
+  //   });
+  // }, []);
 
   return (
     <>
