@@ -51,91 +51,177 @@ const ChancePage = ({ navigation }) => {
   });
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("fulltables from chancePage : ", fullTables);
+    // console.log("fulltables from chancePage : ", fullTables);
   }, [fullTables]);
 
   useEffect(() => {
-    console.log("i am here resetting fulltables");
-    // setfullTables({
-    //   gameType: tableNum,
-    //   choosenCards: [],
-    // });
+    const filterEmptyFullTables = fullTables.choosenCards.filter(
+      (x) => x.card.length !== 0
+    );
+    console.log("filterEmptyFullTables : ", filterEmptyFullTables);
+
+    setfullTables({ ...fullTables, choosenCards: filterEmptyFullTables });
+  }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
+
+  useEffect(() => {
+    // console.log("i am here resetting fulltables");
 
     setcounter(0);
 
     setpressedSpade({
-      numberOfPress: 0,
+      ...pressedSpade,
       symbolsPressed: [],
-      type: "spade",
     });
     setpressedHeart({
-      numberOfPress: 0,
+      ...pressedHeart,
       symbolsPressed: [],
-      type: "heart",
     });
 
     setpressedClubs({
-      numberOfPress: 0,
+      ...pressedClubs,
       symbolsPressed: [],
-      type: "clubs",
     });
     setpressedDiamond({
-      numberOfPress: 0,
+      ...pressedDiamond,
       symbolsPressed: [],
-      type: "diamond",
+    });
+
+    setfullTables({
+      gameType: tableNum,
+      choosenCards: [],
     });
   }, [tableNum]);
 
   useEffect(() => {
-    setfullTables({
-      gameType: tableNum,
-      choosenCards: [
-        ...fullTables.choosenCards,
-        {
-          cardType: pressedSpade.type,
-          card: pressedSpade.symbolsPressed,
-        },
-      ],
-    });
+    // setfullTables({
+    //   gameType: tableNum,
+    //   choosenCards: [
+    //     ...fullTables.choosenCards,
+    //     {
+    //       cardType: pressedSpade.type,
+    //       card: pressedSpade.symbolsPressed,
+    //     },
+    //   ],
+    // });
+
+    if (counter >= 1) {
+      // console.log("counter is bigger/equal than 1");
+      //first of all , remove its old object in fullTables be4 we put its new object
+      let filtered = fullTables.choosenCards.filter(
+        (x) => x.cardType !== pressedSpade.type
+      );
+
+      //now we set updated fulltables
+      setfullTables({
+        gameType: tableNum,
+        choosenCards: [
+          ...filtered,
+          {
+            cardType: pressedSpade.type,
+            card: pressedSpade.symbolsPressed,
+          },
+        ],
+      });
+    }
   }, [pressedSpade]);
 
   useEffect(() => {
-    setfullTables({
-      gameType: tableNum,
-      choosenCards: [
-        ...fullTables.choosenCards,
-        {
-          cardType: pressedHeart.type,
-          card: pressedHeart.symbolsPressed,
-        },
-      ],
-    });
+    // setfullTables({
+    //   gameType: tableNum,
+    //   choosenCards: [
+    //     ...fullTables.choosenCards,
+    //     {
+    //       cardType: pressedHeart.type,
+    //       card: pressedHeart.symbolsPressed,
+    //     },
+    //   ],
+    // });
+
+    if (counter >= 1) {
+      // console.log("counter is bigger/equal than 1");
+      //first of all , remove its old object in fullTables be4 we put its new object
+      let filtered = fullTables.choosenCards.filter(
+        (x) => x.cardType !== pressedHeart.type
+      );
+
+      //now we set updated fulltables
+      setfullTables({
+        gameType: tableNum,
+        choosenCards: [
+          ...filtered,
+          {
+            cardType: pressedHeart.type,
+            card: pressedHeart.symbolsPressed,
+          },
+        ],
+      });
+    }
   }, [pressedHeart]);
 
   useEffect(() => {
-    setfullTables({
-      gameType: tableNum,
-      choosenCards: [
-        ...fullTables.choosenCards,
-        {
-          cardType: pressedDiamond.type,
-          card: pressedDiamond.symbolsPressed,
-        },
-      ],
-    });
+    // setfullTables({
+    //   gameType: tableNum,
+    //   choosenCards: [
+    //     ...fullTables.choosenCards,
+    //     {
+    //       cardType: pressedDiamond.type,
+    //       card: pressedDiamond.symbolsPressed,
+    //     },
+    //   ],
+    // });
+
+    if (counter >= 1) {
+      // console.log("counter is bigger/equal than 1");
+      //first of all , remove its old object in fullTables be4 we put its new object
+      let filtered = fullTables.choosenCards.filter(
+        (x) => x.cardType !== pressedDiamond.type
+      );
+
+      //now we set updated fulltables
+      setfullTables({
+        gameType: tableNum,
+        choosenCards: [
+          ...filtered,
+          {
+            cardType: pressedDiamond.type,
+            card: pressedDiamond.symbolsPressed,
+          },
+        ],
+      });
+    }
   }, [pressedDiamond]);
 
   useEffect(() => {
-    setfullTables({
-      gameType: tableNum,
-      choosenCards: [
-        ...fullTables.choosenCards,
-        {
-          cardType: pressedClubs.type,
-          card: pressedClubs.symbolsPressed,
-        },
-      ],
-    });
+    // setfullTables({
+    //   gameType: tableNum,
+    //   choosenCards: [
+    //     ...fullTables.choosenCards,
+    //     {
+    //       cardType: pressedClubs.type,
+    //       card: pressedClubs.symbolsPressed,
+    //     },
+    //   ],
+    // });
+
+    if (counter >= 1) {
+      // console.log("counter is bigger/equal than 1");
+      //first of all , remove its old object in fullTables be4 we put its new object
+      let filtered = fullTables.choosenCards.filter(
+        (x) => x.cardType !== pressedClubs.type
+      );
+
+      //now we set updated fulltables
+      setfullTables({
+        gameType: tableNum,
+        choosenCards: [
+          ...filtered,
+          {
+            cardType: pressedClubs.type,
+            card: pressedClubs.symbolsPressed,
+          },
+        ],
+      });
+    }
   }, [pressedClubs]);
 
   return (

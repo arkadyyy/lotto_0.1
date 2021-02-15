@@ -100,18 +100,23 @@ const Table = ({
 }) => {
   return (
     <>
-      <View
+      <ListItem
+        noBorder={true}
         style={{
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
+          // backgroundColor: "yellow",
+          width: "90%",
+          // flexWrap: "wrap",
+        }}
+        onPress={() => {
+          setshowTable(true);
         }}
       >
         <ListItem
+          noBorder={true}
           style={{
-            flexWrap: "wrap",
-
-            height: 85,
             alignItems: "center",
           }}
           onPress={() => {
@@ -120,131 +125,195 @@ const Table = ({
         >
           <View
             style={{
-              justifyContent: "flex-start",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row",
+              marginTop: 7,
+              marginHorizontal: -10,
             }}
           >
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "row",
-              }}
-            >
+            {pressedSpade.symbolsPressed.length > 0 ? (
+              <>
+                <Image
+                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  source={require("C:/fullstack/lottoMatic/assets/chance/choosenSpade.png")}
+                />
+                {pressedSpade.symbolsPressed.map((num, index) => (
+                  <Text
+                    style={{
+                      includeFontPadding: false,
+                      position: "absolute",
+                      // left: "-50%",
+                      top: "50%",
+                      fontSize: 25,
+                    }}
+                    key={index}
+                  >
+                    {num}
+                  </Text>
+                ))}
+              </>
+            ) : (
               <Image
-                style={{ width: 40, height: 50, borderRadius: 7 }}
-                source={require("C:/fullstack/lottoMatic/assets/chance/spade.png")}
+                style={{ width: 60, height: 80, borderRadius: 7 }}
+                source={require("C:/fullstack/lottoMatic/assets/chance/spadeCard.png")}
               />
-              {pressedSpade.symbolsPressed.map((num, index) => (
-                <Text key={index}>{num}</Text>
-              ))}
-            </View>
-          </View>
-        </ListItem>
-        <ListItem
-          style={{
-            flexWrap: "wrap",
-            marginTop: 4,
-            height: 85,
-            alignItems: "center",
-          }}
-          onPress={() => {
-            setshowTable(true);
-          }}
-        >
-          <View
-            style={{
-              justifyContent: "flex-start",
-            }}
-          >
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "row",
-                marginTop: 7,
-              }}
-            >
-              <Image
-                style={{ width: 40, height: 50, borderRadius: 7 }}
-                source={require("C:/fullstack/lottoMatic/assets/chance/heart.png")}
-              />
-              {pressedHeart.symbolsPressed.map((num, index) => (
-                <Text key={index}>{num}</Text>
-              ))}
-            </View>
-          </View>
-        </ListItem>
-        <ListItem
-          style={{
-            flexWrap: "wrap",
-            marginTop: 4,
-            height: 85,
-            alignItems: "center",
-          }}
-          onPress={() => {
-            setshowTable(true);
-          }}
-        >
-          <View
-            style={{
-              justifyContent: "flex-start",
-            }}
-          >
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "row",
-                marginTop: 7,
-              }}
-            >
-              <Image
-                style={{ width: 40, height: 50, borderRadius: 7 }}
-                source={require("C:/fullstack/lottoMatic/assets/chance/diamond.png")}
-              />
-              {pressedDiamond.symbolsPressed.map((num, index) => (
-                <Text key={index}>{num}</Text>
-              ))}
-            </View>
+            )}
           </View>
         </ListItem>
         <ListItem
           noBorder={true}
-          style={{
-            flexWrap: "wrap",
-            marginTop: 4,
-            height: 85,
-            alignItems: "center",
-          }}
+          // style={{
+          //   flexWrap: "wrap",
+          //   marginTop: 4,
+          //   height: 85,
+          //   alignItems: "center",
+          // }}
           onPress={() => {
             setshowTable(true);
           }}
         >
           <View
             style={{
-              justifyContent: "flex-start",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row",
+              marginTop: 7,
+              marginHorizontal: -10,
             }}
           >
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                marginTop: 7,
-              }}
-            >
+            {pressedHeart.symbolsPressed.length > 0 ? (
+              <>
+                <Image
+                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  source={require("C:/fullstack/lottoMatic/assets/chance/choosenHeart.png")}
+                />
+                {pressedHeart.symbolsPressed.map((num, index) => (
+                  <Text
+                    style={{
+                      includeFontPadding: false,
+                      position: "absolute",
+                      // left: "-50%",
+                      top: "50%",
+                      fontSize: 25,
+                    }}
+                    key={index}
+                  >
+                    {num}
+                  </Text>
+                ))}
+              </>
+            ) : (
               <Image
-                style={{ width: 40, height: 50, borderRadius: 7 }}
-                source={require("C:/fullstack/lottoMatic/assets/chance/clubs.png")}
+                style={{ width: 60, height: 80, borderRadius: 7 }}
+                source={require("C:/fullstack/lottoMatic/assets/chance/heartCard.png")}
               />
-              {pressedClubs.symbolsPressed.map((num, index) => (
-                <Text key={index}>{num}</Text>
-              ))}
-            </View>
+            )}
           </View>
         </ListItem>
-      </View>
+        <ListItem
+          noBorder={true}
+          // style={{
+          //   flexWrap: "wrap",
+          //   marginTop: 4,
+          //   height: 85,
+          //   alignItems: "center",
+          // }}
+          onPress={() => {
+            setshowTable(true);
+          }}
+        >
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row",
+              marginTop: 7,
+              marginHorizontal: -10,
+            }}
+          >
+            {pressedDiamond.symbolsPressed.length > 0 ? (
+              <>
+                <Image
+                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  source={require("C:/fullstack/lottoMatic/assets/chance/choosenDiamond.png")}
+                />
+                {pressedDiamond.symbolsPressed.map((num, index) => (
+                  <Text
+                    style={{
+                      includeFontPadding: false,
+                      position: "absolute",
+                      // left: "-50%",
+                      top: "50%",
+                      fontSize: 25,
+                    }}
+                    key={index}
+                  >
+                    {num}
+                  </Text>
+                ))}
+              </>
+            ) : (
+              <Image
+                style={{ width: 60, height: 80, borderRadius: 7 }}
+                source={require("C:/fullstack/lottoMatic/assets/chance/diamondCard.png")}
+              />
+            )}
+          </View>
+        </ListItem>
+        <ListItem
+          noBorder={true}
+          // style={{
+          //   flexWrap: "wrap",
+          //   marginTop: 4,
+          //   height: 85,
+          //   alignItems: "center",
+          // }}
+          onPress={() => {
+            setshowTable(true);
+          }}
+        >
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row",
+
+              marginTop: 7,
+              marginHorizontal: -10,
+            }}
+          >
+            {pressedClubs.symbolsPressed.length > 0 ? (
+              <>
+                <Image
+                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  source={require("C:/fullstack/lottoMatic/assets/chance/choosenClubs.png")}
+                />
+                {pressedClubs.symbolsPressed.map((num, index) => (
+                  <Text
+                    style={{
+                      includeFontPadding: false,
+                      position: "absolute",
+                      // left: "-50%",
+                      top: "50%",
+                      fontSize: 25,
+                      zIndex: 200,
+                    }}
+                    key={index}
+                  >
+                    {num}
+                  </Text>
+                ))}
+              </>
+            ) : (
+              <Image
+                style={{ width: 60, height: 80, borderRadius: 7 }}
+                source={require("C:/fullstack/lottoMatic/assets/chance/clubsCard.png")}
+              />
+            )}
+          </View>
+        </ListItem>
+      </ListItem>
     </>
   );
 };

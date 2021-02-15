@@ -31,7 +31,7 @@ import ViewForm from "./ViewForm";
 import BlankSquare from "../../components/BlankSquare";
 import SendHistory from "./SendHistory/SendHistory";
 import ActiveForms from "./ActiveForms/ActiveForms";
-import Withdrawal from "./WithDrawal/WithDrawal";
+import Withdrawal from "./Withdrawal/WithDrawal";
 import MyWins from "./MyWins/MyWins";
 import PaymentHistory from "./PaymentHistory/PaymentHistory";
 import HistoryRefund from "./HistoryRefund/HistoryRefund";
@@ -126,50 +126,50 @@ const UserArea = ({ navigation }) => {
       <NavBar navigation={navigation} />
       <ScrollView style={{ flex: 1 }}>
         <View>
-        <View
+          <View
+            style={{
+              flexDirection: "row",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: 20,
+              marginTop: 20,
+            }}
+          >
+            <Text
               style={{
-                flexDirection: "row",
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: 20,
-                marginTop: 20,
+                fontSize: 20,
+                color: "black",
+                fontFamily: "fb-Spacer-bold",
               }}
+            >
+              שלום ,{name}
+            </Text>
+            <Button
+              onPress={async () => {
+                await navigation.navigate("Home");
+                dispatch(LogOut());
+              }}
+              style={{
+                paddingLeft: 23,
+                paddingRight: 23,
+                backgroundColor: "#263742",
+              }}
+              rounded
+              small
             >
               <Text
                 style={{
-                  fontSize: 20,
-                  color: "black",
+                  color: "white",
+                  fontSize: 12,
                   fontFamily: "fb-Spacer-bold",
                 }}
               >
-                שלום ,{name}
+                התנתק
               </Text>
-              <Button
-                onPress={async () => {
-                  await navigation.navigate("Home");
-                  dispatch(LogOut());
-                }}
-                style={{
-                  paddingLeft: 23,
-                  paddingRight: 23,
-                  backgroundColor: "#263742",
-                }}
-                rounded
-                small
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: 12,
-                    fontFamily: "fb-Spacer-bold",
-                  }}
-                >
-                  התנתק
-                </Text>
-              </Button>
-            </View>
-            {/* {end of hello user} */}
+            </Button>
+          </View>
+          {/* {end of hello user} */}
           {/* <BlankSquare color={"#00AEEF"} /> */}
           <View style={{ alignItems: "center" }}>
             {/* {start of userArea navigation} */}
@@ -340,8 +340,6 @@ const UserArea = ({ navigation }) => {
             </View>
 
             {/* {end of userArea navigation} */}
-
-           
 
             {screen === "activeForms" && (
               <ActiveForms navigation={navigation} activeforms={activeForms} />

@@ -23,13 +23,13 @@ const Num = ({
   useEffect(() => {
     //if we pressed on a card and we added it to pressed.symbolsPressed ...
     if (counter >= 1) {
-      console.log("counter is bigger/equal than 1");
+      // console.log("counter is bigger/equal than 1");
       //first of all , remove its old object in fullTables be4 we put its new object
       let filtered = fullTables.choosenCards.filter(
         (x) => x.cardType !== pressed.type
       );
 
-      console.log("filtered : ", filtered);
+      console.log("fullTables.choosenCards : ", fullTables.choosenCards);
 
       //now we set updated fulltables
       setfullTables({
