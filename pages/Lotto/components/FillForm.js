@@ -112,8 +112,6 @@ const FillForm = ({
   fullTables,
   setopendTableNum,
   tableNum,
-  
-  
 }) => {
   const [strongNum, setstrongNum] = useState(" ");
   const [choosenNums, setchoosenNums] = useState([]);
@@ -167,9 +165,7 @@ const FillForm = ({
         setindexOfTable(index);
         setusedTable(table);
       }     
-      else {
-       
-      }
+      
     });
   }, [opendTableNum]);
 
