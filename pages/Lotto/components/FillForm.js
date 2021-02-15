@@ -363,7 +363,6 @@ const FillForm = ({
 
           <View style={{flexDirection:"row", justifyContent:"flex-end",flex:1}}>
          
-          <View style={{ top:3,left:7, borderRightWidth:1,borderRightColor:"white",marginRight:13,height:33}}></View>
               <TouchableOpacity
               style={{
                 borderWidth:1,
@@ -372,7 +371,6 @@ const FillForm = ({
                 justifyContent: "center",
                 flexDirection: "row",
                 alignItems: "center",
-                borderLeftColor: "white",
                 height: 25,
                 width: 25,
                 marginVertical: 4,
@@ -406,6 +404,7 @@ const FillForm = ({
                 }
               />
             </TouchableOpacity>
+            <View style={{ top:3,left:7, borderLeftWidth:1,borderLeftColor:"white",marginRight:13,height:33}}></View>
 
 
           <TouchableOpacity
