@@ -19,10 +19,10 @@ import { ScrollView } from "react-native-gesture-handler";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faArrowAltCircleRight,
-  faArrowAltCircleLeft,
+  faArrowAltCircleLeft,faCircleThin
 } from "@fortawesome/free-regular-svg-icons";
 import EStyleSheet from "react-native-extended-stylesheet";
-import { faAngleDoubleRight, faAngleLeft, faAngleRight, faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDoubleRight, faAngleLeft, faAngleRight,faCircle } from "@fortawesome/free-solid-svg-icons";
 const { width, height } = Dimensions.get("window");
 
 const Num = ({ num, choosenNums, setchoosenNums }) => {
@@ -44,8 +44,8 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
           }
         }}
         style={{
-          width: 30,
-          height: 30,
+          width: 33,
+          height: 33,
           backgroundColor: choosenNums.includes(num) ? "red" : "white",
           justifyContent: "center",
           alignItems: "center",
@@ -112,8 +112,6 @@ const FillForm = ({
   fullTables,
   setopendTableNum,
   tableNum,
-  
-  
 }) => {
   const [strongNum, setstrongNum] = useState(" ");
   const [choosenNums, setchoosenNums] = useState([]);
@@ -124,28 +122,9 @@ const FillForm = ({
     });
   const [indexOfTable, setindexOfTable] = useState(-1);
 
-  // const autoFillForm = () => {
-  //   let fullTabels1 = [];
-  //   for (let i = 1; i < tableNum + 1; i++) {
-  //     let numbers = autoFill(6);
-  //     let table = {
-  //       tableNum: i,
-  //       choosenNums: numbers.randomNumbers,
-  //       strongNum: numbers.strongNum,
-  //     };
-  //     fullTabels1 = [...fullTabels1, table];
-      
-  //     setchoosenNums(numbers.randomNumbers);
-  //     setstrongNum(numbers.strongNum);
-      
-  //   }
-    
-  //   setFullTables(fullTabels1);
-  // };
 
   const autoFillForm = () => {
     let fullTabels1 = [];
-    // for (let i = 1; i < tableNum + 1; i++) {
     for (let i = 1; i < 14; i++) {
       while (i < tableNum+1){
         let numbers = autoFill(6);
@@ -156,6 +135,8 @@ const FillForm = ({
         };
         setchoosenNums(numbers.randomNumbers);
         setstrongNum(numbers.strongNum);
+
+
         fullTabels1 = [...fullTabels1, table];
         i++;
       }
@@ -167,8 +148,8 @@ const FillForm = ({
       };
       fullTabels1 = [...fullTabels1, table];
       i++;
-      
     }
+    
     setFullTables(fullTabels1);
   };
 
@@ -184,9 +165,7 @@ const FillForm = ({
         setindexOfTable(index);
         setusedTable(table);
       }     
-      else {
-       
-      }
+      
     });
   }, [opendTableNum]);
 
@@ -206,7 +185,7 @@ const FillForm = ({
     fullTables.forEach((table, index) => {
       setusedTable(table);
     });
-  }, [fullTables,opendTableNum]);
+  }, [fullTables,opendTableNum,arrowClickedRight,arrowClickedLeft]);
 
 
   const arrowClickedRight = () => {
@@ -227,7 +206,7 @@ const FillForm = ({
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "35%",
+          top: "34%",
           height: 550,
           position: "absolute",
           zIndex: 2000,
@@ -238,15 +217,19 @@ const FillForm = ({
           style={{
             backgroundColor: "#263742",
 
-            height: 70,
+            height: 75,
 
             flexDirection: "row",
-            justifyContent: "flex-end",
+            // flex:1,
+            justifyContent: "center",
             alignItems: "center",
             marginBottom: 30,
+            marginHorizontal:15
           }}
         >
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", flex: 1 }}>
+            
+          <View style={{ flexDirection: "row",flex:1 }}>
 
           <TouchableOpacity
             style={{
@@ -314,11 +297,9 @@ const FillForm = ({
                   style={{ width: 22.5, height: 12.5 }}
                   source={require("../../../assets/fillAllTables.jpeg")}
                 />
-            </TouchableOpacity>
-<View style={{  height: '100%',
-    width: 5,
-    backgroundColor: 'white'}}></View>
-            <TouchableOpacity
+              </TouchableOpacity>    
+              <View style={{ top:3,left:7, borderLeftWidth:1,borderLeftColor:"white",marginRight:13,height:33}}></View>
+              <TouchableOpacity
               style={{
                 borderWidth:1,
                 borderColor:"#DB1267",
@@ -326,23 +307,23 @@ const FillForm = ({
                 justifyContent: "center",
                 flexDirection: "row",
                 alignItems: "center",
-                marginRight: 5,
-                borderRightColor: "white",
-                borderRightWidth:1,
+                borderLeftColor: "white",
+                height: 25,
+                width: 25,
+                marginVertical: 4,
+                top:3
 
-              
-              
+
 
               }}
             >
+             
               <FontAwesomeIcon
-                // color='#1F3841'
                 color='#DB1267'
-                
-                border={true}
                 borderColor="#DB1267"
-                borderWidth="3"
+                borderWidth={30}
                 inverse
+                size={25}
                 icon={faAngleRight}
                 onPress={() => {
                 
@@ -362,8 +343,23 @@ const FillForm = ({
                 }
               />
             </TouchableOpacity>
+</View>
+         
            
-            <TouchableOpacity
+         
+
+            
+
+            
+
+           
+           
+          
+            
+
+          <View style={{flexDirection:"row", justifyContent:"flex-end",flex:1}}>
+         
+              <TouchableOpacity
               style={{
                 borderWidth:1,
                 borderColor:"#DB1267",
@@ -371,18 +367,19 @@ const FillForm = ({
                 justifyContent: "center",
                 flexDirection: "row",
                 alignItems: "center",
-              marginLeft:5
-
+                height: 25,
+                width: 25,
+                marginVertical: 4,
+                top:3
               }}
             >
+             
               <FontAwesomeIcon
-                // color='#1F3841'
                 color='#DB1267'
-                
-                border={true}
                 borderColor="#DB1267"
-                borderWidth="3"
+                borderWidth={30}
                 inverse
+                size={25}
                 icon={faAngleLeft}
                 onPress={() => {
                 
@@ -393,11 +390,9 @@ const FillForm = ({
                       (table) => table.tableNum !== opendTableNum
                     );
                     setFullTables([...fullTablesCopy, usedTable]);
-                    console.log("00000000");
 
                     // if we dont have already object for this table,just create one
                   } else {
-                    console.log("11111111111111111111111111");
                     setFullTables([...fullTables, usedTable]);
                   }
                   arrowClickedLeft();
@@ -405,7 +400,9 @@ const FillForm = ({
                 }
               />
             </TouchableOpacity>
-          </View>
+            <View style={{ top:3,left:7, borderLeftWidth:1,borderLeftColor:"white",marginRight:13,height:33}}></View>
+
+
           <TouchableOpacity
             style={{
               height: 25,
@@ -414,7 +411,9 @@ const FillForm = ({
               borderRadius: 13,
               justifyContent: "center",
               alignItems: "center",
-              marginHorizontal: 20,
+                  marginHorizontal: 6,
+                  marginVertical: 4,
+                  top:3
             }}
             onPress={() => {
               setshowTable(false);
@@ -433,7 +432,12 @@ const FillForm = ({
             <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
               סגור חלון
             </Text>
-          </TouchableOpacity>
+              </TouchableOpacity>
+              
+
+          </View>
+          </View>
+
         </View>
         {/* {fill numbers} */}
         <View
@@ -485,7 +489,7 @@ const FillForm = ({
               />
             ))}
           </View>
-          {choosenNums.length > 0 && (
+          {/* {choosenNums.length > 0 && (
             <Text
               style={{
                 color: "white",
@@ -496,8 +500,8 @@ const FillForm = ({
             >
               המספרים שנבחרו
             </Text>
-          )}
-          <View style={{ flexDirection: "row", flexWrap: "wrap", top: "3%" }}>
+          )} */}
+          {/* <View style={{ flexDirection: "row", flexWrap: "wrap", top: "3%" }}>
             {choosenNums
               .sort(function (a, b) {
                 return b - a;
@@ -521,7 +525,7 @@ const FillForm = ({
                   </Text>
                 </View>
               ))}
-          </View>
+          </View> */}
         </View>
         <View style={{ top: -40 }}>
           <Text
