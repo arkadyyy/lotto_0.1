@@ -100,7 +100,10 @@ const Table = ({
           }}
         >
           <View style={{ flexDirection: "row-reverse" }}>
-            {table.map((num, index) => (
+            {table.sort(function(b,a) {
+                 return a-b;
+                })
+              .map((num, index) => (
               <Num table={table} key={index} num={num} />
             ))}
           </View>

@@ -152,14 +152,20 @@ const ShitatiTable = ({
           }}
         >
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+          <View style={{ flexDirection: "row", height: 10 }}>
+              <StrongNum key={index} strongNumber={strongNumber} />
+            </View>
             <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-              {table1.map((num, index) => (
+              {table1.sort(function(a, b) {
+  return a - b;
+})
+
+              
+                .map((num, index) => (
                 <Num key={index} num={num} />
               ))}
             </View>
-            <View style={{ flexDirection: "row", height: 10 }}>
-              <StrongNum key={index} strongNumber={strongNumber} />
-            </View>
+            
           </View>
         </TouchableOpacity>
         {double && (

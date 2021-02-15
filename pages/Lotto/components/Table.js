@@ -143,14 +143,20 @@ const Table = ({
           <View style={{ flexDirection: "row-reverse" }}>
             {route.name === "LottoPage" && (
               <>
-                {table1.map((num, index) => (
+                 {table1.sort(function(b,a) {
+                 return a-b;
+                })
+                  .map((num, index) => (
                   <Num key={index} num={num} />
                 ))}
               </>
             )}
             {route.name === "DoubleLottoPage" && (
               <>
-                {table1.map((num, index) => (
+                {table1.sort(function(b,a) {
+                 return a-b;
+                  })
+                  .map((num, index) => (
                   <Num key={index} num={num} />
                 ))}
               </>

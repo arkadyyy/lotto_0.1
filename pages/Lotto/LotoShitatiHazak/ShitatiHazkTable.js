@@ -178,12 +178,19 @@ const ShitatiHazakTable = ({
         >
           <View style={{ flexDirection: "column" }}>
             <View style={{ flexDirection: "row" }}>
-              {table1.map((num, index) => (
+              {table1.sort(function(a,b) {
+                 return a-b;
+                })
+              
+                .map((num, index) => (
                 <Num key={index} num={num} />
               ))}
             </View>
             <View style={{ flexDirection: "row" }}>
-              {strongNumbers.map((strongNum, index) => (
+              {strongNumbers.sort(function(a,b) {
+                 return a-b;
+                })
+                .map((strongNum, index) => (
                 <StrongNum key={index} strongNum={strongNum} />
               ))}
             </View>

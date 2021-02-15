@@ -76,28 +76,35 @@ const Table8 = ({
           backgroundColor: "#FBB03B",
           backgroundColor: !table.includes(" ") ? "#FBB03B" : "#AA1B55",
           flexWrap: "wrap",
-          marginTop: 4,
+          flexDirection:"column",
+          marginTop: 3,
           height: 85,
-          alignItems: "center",
+          // alignItems: "center",
           width: 400,
         }}
       >
+        <View>
         <Text
           style={{
             color: "white",
             fontSize: 11,
-            marginHorizontal: 10,
+            marginHorizontal: 3,
             fontFamily: "fb-Spacer",
           }}
         >{`טבלה ${tableNum}`}</Text>
+        </View>
+        
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);
             setopendTableNum(tableNum);
           }}
         >
-          <View style={{ flexDirection: "row-reverse",flexWrap:"wrap",flex:1,width:"60%" }}>
-            {table.map((num, index) => (
+          <View style={{ flexDirection: "row-reverse",flexWrap:"wrap",flex:1,width:"100%" }}>
+            {table.sort(function(b,a) {
+                 return a-b;
+                })
+              .map((num, index) => (
               <Num table={table} key={index} num={num} />
             ))}
           </View>
