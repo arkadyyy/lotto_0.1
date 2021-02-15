@@ -48,13 +48,23 @@ const Sheva77Page = ({ navigation }) => {
 
   const autoFillForm = () => {
     let fullTabels1 = [];
-    for (let i = 1; i < tableNum + 1; i++) {
+    for (let i = 1; i < 14 + 1; i++) {
+      while (i < tableNum+1){
       let numbers = autoFill(7);
       let table = {
         tableNum: i,
         choosenNums: numbers.randomNumbers,
       };
+        fullTabels1 = [...fullTabels1, table];
+        i++;
+      }
+      
+      let table = {
+        tableNum: i,
+        choosenNums: [" "],
+      };
       fullTabels1 = [...fullTabels1, table];
+      i++;
     }
     setFullTables(fullTabels1);
   };

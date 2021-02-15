@@ -112,7 +112,6 @@ const LottoPage = ({ navigation }) => {
 
   const autoFillForm = () => {
     let fullTabels1 = [];
-    // for (let i = 1; i < tableNum + 1; i++) {
     for (let i = 1; i < 14; i++) {
       while (i < tableNum+1){
         let numbers = autoFill(6);
@@ -132,7 +131,6 @@ const LottoPage = ({ navigation }) => {
       };
       fullTabels1 = [...fullTabels1, table];
       i++;
-      
     }
     setFullTables(fullTabels1);
   };
