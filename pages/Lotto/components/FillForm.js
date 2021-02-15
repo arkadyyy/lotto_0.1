@@ -298,6 +298,7 @@ const FillForm = ({
                   source={require("../../../assets/fillAllTables.jpeg")}
                 />
               </TouchableOpacity>    
+
               <View style={{ top:3,left:7, borderLeftWidth:1,borderLeftColor:"white",marginRight:13,height:33}}></View>
               <TouchableOpacity
               style={{
@@ -473,10 +474,6 @@ const FillForm = ({
             >
               מלא את טבלה {opendTableNum}
             </Text>
-            
-         
-
-           
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>

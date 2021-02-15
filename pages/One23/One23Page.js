@@ -58,17 +58,27 @@ const One23Page = ({ navigation }) => {
 
   const autoFillForm = () => {
     let fullTabels = [];
-    for (let i = 1; i < tableNum + 1; i++) {
-      let numbers = autoFill(3);
+    for (let i = 1; i < 5; i++) {
+      while (i < tableNum + 1) {
+        let numbers = autoFill(3);
+        let table = {
+          tableNum: i,
+          choosenNums: numbers.randomNumbers,
+          // strongNum: null,
+        };
+        fullTabels = [...fullTabels, table];
+        i++;
+      }
       let table = {
         tableNum: i,
-        choosenNums: numbers.randomNumbers,
-        // strongNum: null,
+        choosenNums: [" "],
       };
       fullTabels = [...fullTabels, table];
+      i++;
     }
     setFullTables(fullTabels);
   };
+
   const deletForm = () => {
     setFullTables([
       {
