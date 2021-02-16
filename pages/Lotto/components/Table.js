@@ -46,11 +46,11 @@ const StrongNum = ({ num }) => {
     <>
       <View
         style={{
-          width: 20,
-          height: 20,
+          width: 30,
+          height: 30,
           borderRadius: 30,
           backgroundColor: "yellow",
-
+top:-5,
           margin: 5,
           justifyContent: "center",
           alignItems: "center",
@@ -140,7 +140,7 @@ const Table = ({
             // setopendTableTzerufimNum(tzerufimNumber);
           }}
         >
-          <View style={{ flexDirection: "row-reverse" }}>
+          <View style={{ flexDirection: "row" }}>
             {route.name === "LottoPage" && (
               <>
                  {table1.sort(function(b,a) {

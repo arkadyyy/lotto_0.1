@@ -18,8 +18,10 @@ import {
   // Col,
   Row,
 } from "native-base";
+import shitatiTableStyles from "./shitatiTableStyles";
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
+import EStyleSheet from "react-native-extended-stylesheet";
 
 const { width, height } = Dimensions.get("window");
 
@@ -49,8 +51,8 @@ const StrongNum = ({ strongNumber }) => {
     <>
       <View
         style={{
-          width: 20,
-          height: 20,
+          width: 30,
+          height: 30,
           borderRadius: 30,
           backgroundColor: "yellow",
 
@@ -127,19 +129,19 @@ const ShitatiTable = ({
 
       <ListItem
         style={{
-          backgroundColor: !table1.includes(" ") ? "#78C849 " : "#D60617",
+          backgroundColor: !table1.includes(" ") ? "#78C849" : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
-          height: height / 4.3,
+          height: EStyleSheet.value("$rem")*95,
           alignItems: "center",
-          width: width / 1.2,
+          width: width ,
         }}
       >
         <Text
           style={{
             color: "white",
             fontSize: 11,
-            marginHorizontal: 10,
+            marginHorizontal: 5,
             fontFamily: "fb-Spacer",
           }}
         >
@@ -151,19 +153,20 @@ const ShitatiTable = ({
             setopendTableNum(index1);
           }}
         >
-          <View style={{ flexDirection: "column" }}>
-          <View style={{ flexDirection: "row"}}>
-              <StrongNum key={index} strongNumber={strongNumber} />
-            </View>
-            <View style={{ flexDirection: "row" }}>
-              {table1.sort(function(a, b) {
-  return a - b;
-})
-
-              
+          <View style={{ flexDirection: "column",flex:1, }}>
+          <View style={{ flex:1,flexDirection:"row",flexWrap:"wrap",width:"87%" }}>
+            {table1.sort(function(a, b) {
+           return a - b;
+            })     
                 .map((num, index) => (
                 <Num key={index} num={num} />
-              ))}
+                ))}
+            </View>
+         
+           
+              <View style={shitatiTableStyles.tzerufimNumber12}>
+
+              <StrongNum key={index} strongNumber={strongNumber} />
             </View>
             
           </View>

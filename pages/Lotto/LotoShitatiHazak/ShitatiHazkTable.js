@@ -155,9 +155,9 @@ const ShitatiHazakTable = ({
           backgroundColor: !table1.includes(" ") ? "#78C849" : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
-          height: 80,
+          height: EStyleSheet.value("$rem")*85,
           alignItems: "center",
-          width: 400,
+          width: EStyleSheet.value("$rem")*400,
         }}
       >
         <Text
@@ -186,6 +186,7 @@ const ShitatiHazakTable = ({
                 <Num key={index} num={num} />
               ))}
             </View>
+            
             <View style={{ flexDirection: "row" }}>
               {strongNumbers.sort(function(a,b) {
                  return a-b;
