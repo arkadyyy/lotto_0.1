@@ -94,6 +94,12 @@ const NavBar = (props) => {
      else if (route.name === "QuestionsAndAnswers") {
       setNavBarTitle(`שאלות ותשובות`);
     }
+     else if (route.name === "TermsOfUse") {
+      setNavBarTitle(`תנאי שימוש באתר`);
+    }
+     else if (route.name === "StatuteTakanon") {
+      setNavBarTitle(`תקנון`);
+    }
   }, [route.name, screenName]);
 
   const dispatch = useDispatch();

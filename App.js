@@ -41,6 +41,8 @@ import Help from "./components/Help";
 import GetInTouch from "./components/GetInTouch";
 import About from "./components/About";
 import QuestionsAndAnswers from "./components/questionsANDanswers";
+import TermsOfUse from "./components/TermsOfUse";
+import StatuteTakanon from "./components/StatuteTakanon";
 import { Provider } from "react-redux";
 import { Root } from "native-base";
 import store from "./redux/store";
@@ -143,6 +145,8 @@ export default function App() {
               <Drawer.Screen name='GetInTouch' component={GetInTouch} />
               <Drawer.Screen name='About' component={About} />
               <Drawer.Screen name='QuestionsAndAnswers' component={QuestionsAndAnswers} />
+              <Drawer.Screen name='TermsOfUse' component={TermsOfUse} />
+              <Drawer.Screen name='StatuteTakanon' component={StatuteTakanon} />
 
               <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
               <Drawer.Screen name='ResultList' component={ResultList} />

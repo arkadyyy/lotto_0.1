@@ -34,6 +34,8 @@ import { useSelector, useDispatch } from "react-redux";
 //////////////////////////////////////////////////////////
 
 export default function DrawerContent(props) {
+  const { navigation } = props;
+
   const store = useSelector((state) => state);
   return (
     <View style={{ flex: 1, backgroundColor: "#263742" }}>
@@ -162,6 +164,8 @@ export default function DrawerContent(props) {
           </TouchableOpacity>
 
           <TouchableOpacity
+                              onPress={() => navigation.navigate("TermsOfUse")}
+
             style={{
               borderBottomColor: "white",
               borderBottomWidth: 0.2,
@@ -175,6 +179,8 @@ export default function DrawerContent(props) {
           </TouchableOpacity>
 
           <TouchableOpacity
+                                          onPress={() => navigation.navigate("StatuteTakanon")}
+
             style={{
               borderBottomColor: "white",
               borderBottomWidth: 0.2,
