@@ -88,6 +88,12 @@ const NavBar = (props) => {
      else if (route.name === "About") {
       setNavBarTitle(`אודות לוטומטיק`);
     }
+     else if (route.name === "HowItWork") {
+      setNavBarTitle(`איך זה עובד`);
+    }
+     else if (route.name === "QuestionsAndAnswers") {
+      setNavBarTitle(`שאלות ותשובות`);
+    }
   }, [route.name, screenName]);
 
   const dispatch = useDispatch();

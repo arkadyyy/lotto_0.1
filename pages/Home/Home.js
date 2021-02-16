@@ -302,7 +302,7 @@ export default function Home({ navigation }) {
                 <View style={[homestyles.btnWrapper, { marginBottom: 25 }]}>
                   <Button
                     onPress={() => {
-                      navigation.navigate("HowItWorks");
+                      navigation.navigate("HowItWork");
                     }}
                     style={[
                       homestyles.openingPageBtn,
@@ -334,7 +334,7 @@ export default function Home({ navigation }) {
                   <View>
                     <Button
                       onPress={() => {
-                        navigation.navigate("AboutUs");
+                        navigation.navigate("About");
                       }}
                       style={[
                         homestyles.openingPageBtn,
