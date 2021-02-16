@@ -9,7 +9,10 @@ import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
 import Table from "./components/Table";
 import chanceListstyles from "./ChanceListStyles";
+import EStyleSheet from "react-native-extended-stylesheet";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const ChancePage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -91,6 +94,57 @@ const ChancePage = ({ navigation }) => {
       choosenCards: [],
     });
   }, [tableNum]);
+
+  const autoFillForm = async (tableNum) => {
+    await deletForm();
+    const cardArr = ["7", "8", "9", "10", "J", "Q", "K", "A"];
+    var setPressedArr = [
+      [pressedHeart, setpressedHeart],
+      [pressedSpade, setpressedSpade],
+      [pressedClubs, setpressedClubs],
+      [pressedDiamond, setpressedDiamond],
+    ];
+
+    for (let index = 0; index < 4 - tableNum; index++) {
+      // let index = Math.floor(Math.random() * 4) + 1;
+
+      console.log("index inside for : ", index);
+      setPressedArr.splice(Math.floor(Math.random() * 4) + 1, 1);
+    }
+
+    setPressedArr.forEach((pressed) => {
+      let index = cardArr[Math.floor(Math.random() * cardArr.length)];
+
+      pressed[1]({ ...pressed[0], symbolsPressed: [index] });
+    });
+  };
+
+  const deletForm = () => {
+    setcounter(0);
+
+    setpressedSpade({
+      ...pressedSpade,
+      symbolsPressed: [],
+    });
+    setpressedHeart({
+      ...pressedHeart,
+      symbolsPressed: [],
+    });
+
+    setpressedClubs({
+      ...pressedClubs,
+      symbolsPressed: [],
+    });
+    setpressedDiamond({
+      ...pressedDiamond,
+      symbolsPressed: [],
+    });
+
+    setfullTables({
+      gameType: tableNum,
+      choosenCards: [],
+    });
+  };
 
   useEffect(() => {
     // setfullTables({
@@ -231,33 +285,16 @@ const ChancePage = ({ navigation }) => {
         <BlankSquare gameName="הגרלת צ'אנס" color='#009943' />
         <ChooseForm color='#009943' />
         <View style={{ margin: 15 }}>
-          <View style={{ backgroundColor: "#009943", paddingBottom: 20 }}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                padding: 30,
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                  backgroundColor: "white",
-                  width: 50,
-                  height: 50,
-                  borderRadius: 33,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginRight: 20,
-                }}
-              >
+          <View style={chanceListstyles.chancePageContainer}>
+            <View style={chanceListstyles.header}>
+              <View style={chanceListstyles.topNumCircle}>
                 <Text style={{ fontSize: 20, color: "#009943" }}>1</Text>
               </View>
               <Text
                 style={{
-                  fontSize: 17,
+                  fontSize: 20,
                   color: "white",
-                  fontFamily: "FbSpacerRegular",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
                 מלא את הטופס
@@ -265,6 +302,27 @@ const ChancePage = ({ navigation }) => {
             </View>
 
             <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
+
+            <View style={chanceListstyles.autoBtnContainer}>
+              <TouchableOpacity
+                onPress={() => {
+                  autoFillForm(tableNum);
+                }}
+                style={chanceListstyles.autoBtn}
+              >
+                <Text style={chanceListstyles.autoBtnText}>
+                  מלא טופס אוטומטי
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={deletForm}
+                style={chanceListstyles.autoBtn}
+              >
+                <Text style={chanceListstyles.autoBtnText}>
+                  מחק טופס אוטומטית
+                </Text>
+              </TouchableOpacity>
+            </View>
 
             {showTable && (
               <FillForm
@@ -299,7 +357,7 @@ const ChancePage = ({ navigation }) => {
               <List
                 style={{
                   alignItems: "flex-end",
-                  height: 400,
+                  height: 250,
                   marginLeft: -17,
                 }}
               >
@@ -309,6 +367,9 @@ const ChancePage = ({ navigation }) => {
                     alignSelf: "flex-start",
                     marginHorizontal: 25,
                     marginVertical: 10,
+                    fontFamily: "fb-Spacer-bold",
+
+                    fontSize: 15,
                   }}
                 >
                   בחר צירוף
@@ -323,13 +384,46 @@ const ChancePage = ({ navigation }) => {
                   pressedDiamond={pressedDiamond}
                   pressedSpade={pressedSpade}
                 />
+
+                <TouchableOpacity
+                  style={{
+                    alignSelf: "center",
+                    backgroundColor: "#8CC63F",
+                    padding: 7,
+                    borderRadius: 8,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text style={{ color: "white", marginHorizontal: 7 }}>
+                    {" "}
+                    טופס נוסף
+                  </Text>
+                  <Text>
+                    {" "}
+                    <FontAwesomeIcon
+                      color='white'
+                      border={true}
+                      inverse
+                      icon={faPlus}
+                    />{" "}
+                  </Text>
+                </TouchableOpacity>
               </List>
             </View>
             <View style={chanceListstyles.investNumBox}>
-              <Text style={{ color: "white", marginVertical: 7 }}>
+              <Text
+                style={{
+                  color: "white",
+                  marginVertical: 7,
+                  fontFamily: "fb-Spacer",
+                  fontSize: 15,
+                }}
+              >
                 בחר את סכום ההשקעה{" "}
               </Text>
-              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+              <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
                   onPress={() => {
                     setinvestNum(5);
@@ -340,7 +434,15 @@ const ChancePage = ({ navigation }) => {
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>5</Text>
+                  <Text
+                    style={
+                      investNum === 5
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    5
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -352,7 +454,15 @@ const ChancePage = ({ navigation }) => {
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>10</Text>
+                  <Text
+                    style={
+                      investNum === 10
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    10
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -364,7 +474,15 @@ const ChancePage = ({ navigation }) => {
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>25</Text>
+                  <Text
+                    style={
+                      investNum === 25
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    25
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -376,7 +494,15 @@ const ChancePage = ({ navigation }) => {
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>50</Text>
+                  <Text
+                    style={
+                      investNum === 50
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    50
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -388,7 +514,15 @@ const ChancePage = ({ navigation }) => {
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>70</Text>
+                  <Text
+                    style={
+                      investNum === 70
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    70
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -400,7 +534,15 @@ const ChancePage = ({ navigation }) => {
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>100</Text>
+                  <Text
+                    style={
+                      investNum === 100
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    100
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -412,7 +554,15 @@ const ChancePage = ({ navigation }) => {
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>250</Text>
+                  <Text
+                    style={
+                      investNum === 250
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    250
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -424,7 +574,15 @@ const ChancePage = ({ navigation }) => {
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>500</Text>
+                  <Text
+                    style={
+                      investNum === 500
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    500
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -447,31 +605,27 @@ const ChancePage = ({ navigation }) => {
                     gameType: "regular",
                   });
                 }}
-                style={{
-                  borderRadius: 17,
-                  backgroundColor: "#E62321",
-                  borderColor: "white",
-                  borderWidth: 2,
-                  padding: 10,
-                }}
+                style={chanceListstyles.sendFormBtn}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>
+                <Text style={chanceListstyles.sendFormBtnText}>
                   המשך לשליחת טופס
                 </Text>
               </Button>
             </View>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-              zIndex: -2,
-            }}
-          >
+          <View style={chanceListstyles.lottoExplanationContainer}>
             <Text style={{ fontSize: 18 }}>הסבר על הגרלות לוטו</Text>
             <TouchableOpacity>
-              <Text>עוד</Text>
+              <Text
+                style={{
+                  marginRight: 10,
+                  paddingRight: 5,
+                  paddingTop: 2,
+                  fontSize: EStyleSheet.value("$rem") * 15,
+                }}
+              >
+                עוד
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

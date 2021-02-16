@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View,Image } from "react-native";
+import { Text, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Container,
@@ -143,72 +143,71 @@ const FillFormShitati9 = ({
             marginBottom: 30,
           }}
         >
+          <TouchableOpacity
+            style={{
+              width: 30,
+              height: 30,
+              borderColor: "white",
+              borderWidth: 2,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 23,
+              margin: 3,
+            }}
+            disabled={choosenNums.length !== 0 ? true : false}
+            onPress={() => {
+              let numbers = autoFill(9);
+              setchoosenNums(numbers.randomNumbers);
+            }}
+          >
+            <Image
+              style={{ width: 22.5, height: 12.5 }}
+              source={require("C:/fullstack/lottoMatic/assets/fillTable.png")}
+            />
+          </TouchableOpacity>
 
-<TouchableOpacity
-  style={{
-    width: 30,
-      height: 30,
-      borderColor: "white",
-    borderWidth:2,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 23,
-    margin: 3,
-  }}
-    
-    disabled={choosenNums.length !== 0 ? true : false}
-    onPress={() => {
-      let numbers = autoFill(9);
-      setchoosenNums(numbers.randomNumbers);
-    }}
-  >
-      <Image
-        style={{ width: 22.5, height: 12.5 }}
-        source={require("../../../assets/fillTable.jpeg")}
-      />
-    </TouchableOpacity>
-  
-    <TouchableOpacity
-      style={{
-        width: 30,
-          height: 30,
-          borderColor: "white",
-        borderWidth:2,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 23,
-        margin: 3,
-      }}
-    onPress={() => {
-      setchoosenNums([]);
-    }}
-  >
-    <Image
-        style={{ width: 22.5, height: 12.5 }}
-        source={require("../../../assets/deleteTable.jpeg")}
-      />
-  </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              width: 30,
+              height: 30,
+              borderColor: "white",
+              borderWidth: 2,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 23,
+              margin: 3,
+            }}
+            onPress={() => {
+              setchoosenNums([]);
+            }}
+          >
+            <Image
+              style={{ width: 22.5, height: 12.5 }}
+              source={require("C:/fullstack/lottoMatic/assets/removeForm.png")}
+            />
+          </TouchableOpacity>
 
-  <TouchableOpacity
-      style={{
-        width: 30,
-          height: 30,
-          borderColor: "white",
-        borderWidth:2,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 23,
-        margin: 3,
-      }}
-      onPress={() => {
-        let numbers = autoFill(9);
-        setchoosenNums(numbers.randomNumbers);
-      }}  >
-    <Image
-        style={{ width: 22.5, height: 12.5 }}
-        source={require("../../../assets/fillAllTables.jpeg")}
-      />
-    </TouchableOpacity> 
+          <TouchableOpacity
+            style={{
+              width: 30,
+              height: 30,
+              borderColor: "white",
+              borderWidth: 2,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 23,
+              margin: 3,
+            }}
+            onPress={() => {
+              let numbers = autoFill(9);
+              setchoosenNums(numbers.randomNumbers);
+            }}
+          >
+            <Image
+              style={{ width: 22.5, height: 12.5 }}
+              source={require("C:/fullstack/lottoMatic/assets/fillForm.png")}
+            />
+          </TouchableOpacity>
           <TouchableOpacity
             style={{
               height: 25,

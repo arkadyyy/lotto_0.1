@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View,Image } from "react-native";
+import { Text, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Container,
@@ -59,7 +59,7 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
 
 export const autoFill = (amount) => {
   let randomNumbers = [];
-  
+
   for (let i = amount; i > 0; i--) {
     let num = Math.floor(Math.random() * 70) + 1;
     if (randomNumbers.indexOf(num) < 0) {
@@ -69,9 +69,7 @@ export const autoFill = (amount) => {
     }
   }
 
-
   return { randomNumbers };
-
 };
 
 const FillForm = ({
@@ -80,7 +78,7 @@ const FillForm = ({
   opendTableNum,
   setFullTables,
   tableNum,
-  setopendTableNum
+  setopendTableNum,
 }) => {
   const [choosenNums, setchoosenNums] = useState([]);
   const [usedTable, setusedTable] = useState({
@@ -89,11 +87,10 @@ const FillForm = ({
   });
   const [indexOfTable, setindexOfTable] = useState(-1);
 
-
   const autoFillForm = () => {
     let fullTabels1 = [];
     for (let i = 1; i < 14; i++) {
-      while (i < tableNum+1){
+      while (i < tableNum + 1) {
         let numbers = autoFill(7);
         let table = {
           tableNum: i,
@@ -101,11 +98,10 @@ const FillForm = ({
         };
         setchoosenNums(numbers.randomNumbers);
 
-
         fullTabels1 = [...fullTabels1, table];
         i++;
       }
-      
+
       let table = {
         tableNum: i,
         choosenNums: [" "],
@@ -113,7 +109,7 @@ const FillForm = ({
       fullTabels1 = [...fullTabels1, table];
       i++;
     }
-    
+
     setFullTables(fullTabels1);
   };
 
@@ -136,29 +132,25 @@ const FillForm = ({
       tableNum: opendTableNum,
       choosenNums: choosenNums,
     });
-
   }, [choosenNums]);
-
-
 
   useEffect(() => {
     fullTables.forEach((table, index) => {
       setusedTable(table);
     });
-  }, [fullTables,opendTableNum,arrowClickedRight,arrowClickedLeft]);
-
+  }, [fullTables, opendTableNum, arrowClickedRight, arrowClickedLeft]);
 
   const arrowClickedRight = () => {
     if (opendTableNum > 1) {
       setopendTableNum(opendTableNum - 1);
     }
   };
-  
+
   const arrowClickedLeft = () => {
     if (opendTableNum < tableNum) {
       setopendTableNum(opendTableNum + 1);
     }
-  }
+  };
 
   return (
     <>
@@ -173,7 +165,7 @@ const FillForm = ({
         }}
       >
         {/* {top 90 deg box} */}
-        
+
         {/* <View
           style={{
             backgroundColor: "#263742",
@@ -186,7 +178,7 @@ const FillForm = ({
             marginBottom: 30,
           }}
         > */}
-                <View
+        <View
           style={{
             backgroundColor: "#263742",
 
@@ -197,203 +189,214 @@ const FillForm = ({
             justifyContent: "center",
             alignItems: "center",
             marginBottom: 30,
-            marginHorizontal:15
+            marginHorizontal: 15,
           }}
         >
           <View style={{ flexDirection: "row", flex: 1 }}>
-
-<View style={{ flexDirection: "row",flex:1 }}>
-
-<TouchableOpacity
-  style={{
-    width: 30,
-      height: 30,
-      borderColor: "white",
-    borderWidth:2,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 23,
-    margin: 3,
-  }}
-    
-    disabled={choosenNums.length !== 0 ? true : false}
-    onPress={() => {
-      let numbers = autoFill(7);
-      setchoosenNums(numbers.randomNumbers);
-      setstrongNum(numbers.strongNum);
-      // setTableRowColor("#78C849")
-    }}
-  >
-      <Image
-        style={{ width: 22.5, height: 12.5 }}
-        source={require("../../../assets/fillTable.jpeg")}
-      />
-    </TouchableOpacity>
-  
-    <TouchableOpacity
-      style={{
-        width: 30,
-          height: 30,
-          borderColor: "white",
-        borderWidth:2,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 23,
-        margin: 3,
-      }}
-    onPress={() => {
-      setchoosenNums([]);
-    }}
-  >
-    <Image
-        style={{ width: 22.5, height: 12.5 }}
-        source={require("../../../assets/deleteTable.jpeg")}
-      />
-  </TouchableOpacity>
-
-  <TouchableOpacity
-      style={{
-        width: 30,
-          height: 30,
-          borderColor: "white",
-        borderWidth:2,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 23,
-        margin: 3,
-      }}
-      onPress={autoFillForm}
-  >
-    <Image
-        style={{ width: 22.5, height: 12.5 }}
-        source={require("../../../assets/fillAllTables.jpeg")}
-      />
-    </TouchableOpacity>    
-    <View style={{ top:3,left:7, borderLeftWidth:1,borderLeftColor:"white",marginRight:13,height:33}}></View>
-
-            <TouchableOpacity
-            style={{
-              borderWidth:1,
-              borderColor:"#DB1267",
-              borderRadius: 30,
-              justifyContent: "center",
-              flexDirection: "row",
-              alignItems: "center",
-              borderLeftColor: "white",
-              height: 25,
-              width: 25,
-              marginVertical: 4,
-              top:3
-
-
-
-            }}
-            
+            <View style={{ flexDirection: "row", flex: 1 }}>
+              <TouchableOpacity
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderColor: "white",
+                  borderWidth: 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 23,
+                  margin: 3,
+                }}
+                disabled={choosenNums.length !== 0 ? true : false}
+                onPress={() => {
+                  let numbers = autoFill(7);
+                  setchoosenNums(numbers.randomNumbers);
+                  setstrongNum(numbers.strongNum);
+                  // setTableRowColor("#78C849")
+                }}
               >
-              <FontAwesomeIcon
-               color='#DB1267'
-               borderColor="#DB1267"
-               borderWidth={30}
-               inverse
-               size={25}
-               icon={faAngleRight}
-               onPress={() => {
-                
-                  //if we have already a object for this table , remove the previos one and put a new one
-                  if (indexOfTable !== -1) {
-                    let fullTablesCopy = fullTables.filter(
-                      (table) => table.tableNum !== opendTableNum
-                    );
-                    setFullTables([...fullTablesCopy, usedTable]);
-                  
-                    // if we dont have already object for this table,just create one
-                  } else {
-                    setFullTables([...fullTables, usedTable]);
-                  }
-                  arrowClickedRight();
-                }
-                }
-              />
+                <Image
+                  style={{ width: 22.5, height: 12.5 }}
+                  source={require("C:/fullstack/lottoMatic/assets/fillTable.png")}
+                />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderColor: "white",
+                  borderWidth: 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 23,
+                  margin: 3,
+                }}
+                onPress={() => {
+                  setchoosenNums([]);
+                }}
+              >
+                <Image
+                  style={{ width: 22.5, height: 12.5 }}
+                  source={require("C:/fullstack/lottoMatic/assets/removeForm.png")}
+                />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderColor: "white",
+                  borderWidth: 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 23,
+                  margin: 3,
+                }}
+                onPress={autoFillForm}
+              >
+                <Image
+                  style={{ width: 22.5, height: 12.5 }}
+                  source={require("C:/fullstack/lottoMatic/assets/fillForm.png")}
+                />
+              </TouchableOpacity>
+              <View
+                style={{
+                  top: 3,
+                  left: 7,
+                  borderLeftWidth: 1,
+                  borderLeftColor: "white",
+                  marginRight: 13,
+                  height: 33,
+                }}
+              ></View>
+
+              <TouchableOpacity
+                style={{
+                  borderWidth: 1,
+                  borderColor: "#DB1267",
+                  borderRadius: 30,
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  borderLeftColor: "white",
+                  height: 25,
+                  width: 25,
+                  marginVertical: 4,
+                  top: 3,
+                }}
+              >
+                <FontAwesomeIcon
+                  color='#DB1267'
+                  borderColor='#DB1267'
+                  borderWidth={30}
+                  inverse
+                  size={25}
+                  icon={faAngleRight}
+                  onPress={() => {
+                    //if we have already a object for this table , remove the previos one and put a new one
+                    if (indexOfTable !== -1) {
+                      let fullTablesCopy = fullTables.filter(
+                        (table) => table.tableNum !== opendTableNum
+                      );
+                      setFullTables([...fullTablesCopy, usedTable]);
+
+                      // if we dont have already object for this table,just create one
+                    } else {
+                      setFullTables([...fullTables, usedTable]);
+                    }
+                    arrowClickedRight();
+                  }}
+                />
               </TouchableOpacity>
             </View>
-            
-            <View style={{flexDirection:"row", justifyContent:"flex-end",flex:1}}>
 
-            <TouchableOpacity
-            
-            style={{
-              borderWidth:1,
-              borderColor:"#DB1267",
-              borderRadius: 30,
-              justifyContent: "center",
-              flexDirection: "row",
-              alignItems: "center",
-              height: 25,
-              width: 25,
-              marginVertical: 4,
-              top:3
-            }}
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                flex: 1,
+              }}
+            >
+              <TouchableOpacity
+                style={{
+                  borderWidth: 1,
+                  borderColor: "#DB1267",
+                  borderRadius: 30,
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  height: 25,
+                  width: 25,
+                  marginVertical: 4,
+                  top: 3,
+                }}
               >
-              <FontAwesomeIcon
-                 color='#DB1267'
-                 borderColor="#DB1267"
-                 borderWidth={30}
-                 inverse
-                 size={25}
-                 icon={faAngleLeft}
+                <FontAwesomeIcon
+                  color='#DB1267'
+                  borderColor='#DB1267'
+                  borderWidth={30}
+                  inverse
+                  size={25}
+                  icon={faAngleLeft}
+                  onPress={() => {
+                    //if we have already a object for this table , remove the previos one and put a new one
+                    if (indexOfTable !== -1) {
+                      let fullTablesCopy = fullTables.filter(
+                        (table) => table.tableNum !== opendTableNum
+                      );
+                      setFullTables([...fullTablesCopy, usedTable]);
+
+                      // if we dont have already object for this table,just create one
+                    } else {
+                      setFullTables([...fullTables, usedTable]);
+                    }
+                    arrowClickedLeft();
+                  }}
+                />
+              </TouchableOpacity>
+              <View
+                style={{
+                  top: 3,
+                  left: 7,
+                  borderLeftWidth: 1,
+                  borderLeftColor: "white",
+                  marginRight: 13,
+                  height: 33,
+                }}
+              ></View>
+              <TouchableOpacity
+                style={{
+                  height: 25,
+                  padding: 7,
+                  backgroundColor: "white",
+                  borderRadius: 13,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginHorizontal: 6,
+                  marginVertical: 4,
+                  top: 3,
+                }}
                 onPress={() => {
-                
+                  setshowTable(false);
                   //if we have already a object for this table , remove the previos one and put a new one
                   if (indexOfTable !== -1) {
                     let fullTablesCopy = fullTables.filter(
                       (table) => table.tableNum !== opendTableNum
                     );
+
+                    // let x = fullTables.splice(indexOfTable, 1);
                     setFullTables([...fullTablesCopy, usedTable]);
-    
-                    // if we dont have already object for this table,just create one
+                    //if we dont have already object for this table,just create one
                   } else {
                     setFullTables([...fullTables, usedTable]);
                   }
-                  arrowClickedLeft();
-                }
-                }
-              />
-            </TouchableOpacity>
-            <View style={{ top:3,left:7, borderLeftWidth:1,borderLeftColor:"white",marginRight:13,height:33}}></View>
-          <TouchableOpacity
-            style={{
-              height: 25,
-              padding: 7,
-              backgroundColor: "white",
-              borderRadius: 13,
-              justifyContent: "center",
-              alignItems: "center",
-                  marginHorizontal: 6,
-                  marginVertical: 4,
-                  top:3
-            }}
-            onPress={() => {
-              setshowTable(false);
-              //if we have already a object for this table , remove the previos one and put a new one
-              if (indexOfTable !== -1) {
-                let fullTablesCopy = fullTables.filter(
-                  (table) => table.tableNum !== opendTableNum
-                );
-
-                // let x = fullTables.splice(indexOfTable, 1);
-                setFullTables([...fullTablesCopy, usedTable]);
-                //if we dont have already object for this table,just create one
-              } else {
-                setFullTables([...fullTables, usedTable]);
-              }
-            }}
-          >
-            <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
-              סגור חלון
-            </Text>
-          </TouchableOpacity>
-        </View>
-        </View>
+                }}
+              >
+                <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
+                  סגור חלון
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
         {/* {fill numbers} */}
         <View

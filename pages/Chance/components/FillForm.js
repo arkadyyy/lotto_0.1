@@ -176,8 +176,8 @@ const FillForm = ({
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "20%",
-          height: 420,
+          top: "27%",
+          height: 570,
           position: "absolute",
           zIndex: 2000,
         }}
