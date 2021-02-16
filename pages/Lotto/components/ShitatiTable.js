@@ -38,7 +38,7 @@ const Num = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
       </View>
     </>
   );
@@ -59,7 +59,7 @@ const StrongNum = ({ strongNumber }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "red" }}>{strongNumber}</Text>
+        <Text style={{ color: "red", fontFamily: "fb-Spacer" }}>{strongNumber}</Text>
       </View>
     </>
   );
@@ -91,6 +91,7 @@ const ShitatiTable = ({
   };
 
   const [table1, setTable1] = useState(tableFunction());
+  // const [table1, setTable1] = useState(tableFunction());
 
   useEffect(() => {
     setTable1(tableFunction());
@@ -127,7 +128,7 @@ const ShitatiTable = ({
 
       <ListItem
         style={{
-          backgroundColor: !table1.includes(" ") ? "#C1272D " : "#D60617",
+          backgroundColor: !table1.includes(" ") ? "#78C849 " : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
           height: height / 4.3,
@@ -168,7 +169,7 @@ const ShitatiTable = ({
             
           </View>
         </TouchableOpacity>
-        {double && (
+        {/* {double && (
           <View
             style={{
               width: 35,
@@ -185,7 +186,7 @@ const ShitatiTable = ({
           >
             <Text style={{ color: "white" }}>X2</Text>
           </View>
-        )}
+        )} */}
       </ListItem>
     </>
   );

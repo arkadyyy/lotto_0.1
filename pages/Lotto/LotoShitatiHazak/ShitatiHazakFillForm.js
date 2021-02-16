@@ -81,7 +81,7 @@ const StrongNum = ({
           height: 35,
           borderWidth: 1,
           backgroundColor: choosenStrongNums.includes(num)
-            ? "red"
+            ? "#FCEE21"
             : "transparent",
           borderColor: "white",
           borderRadius: 25,
@@ -90,7 +90,10 @@ const StrongNum = ({
           margin: 2,
         }}
       >
-        <Text style={{ color: "white", fontFamily: "fb-Spacer" }}>{num}</Text>
+        <Text style={{
+          color:choosenStrongNums.includes(num) ? "#E62321" : "white",
+          fontFamily: "fb-Spacer"
+        }}>{num}</Text>
       </TouchableOpacity>
     </>
   );

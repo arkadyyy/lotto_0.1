@@ -56,7 +56,7 @@ const StrongNum = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
+        <Text style={{ color: "red", fontFamily: "fb-Spacer" }}>{num}</Text>
       </View>
     </>
   );
