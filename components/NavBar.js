@@ -100,6 +100,9 @@ const NavBar = (props) => {
      else if (route.name === "StatuteTakanon") {
       setNavBarTitle(`תקנון`);
     }
+     else if (route.name === "AccessibilityDeclaration") {
+      setNavBarTitle(`הצהרת נגישות`);
+    }
   }, [route.name, screenName]);
 
   const dispatch = useDispatch();

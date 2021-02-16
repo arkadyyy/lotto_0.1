@@ -43,6 +43,7 @@ import About from "./components/About";
 import QuestionsAndAnswers from "./components/questionsANDanswers";
 import TermsOfUse from "./components/TermsOfUse";
 import StatuteTakanon from "./components/StatuteTakanon";
+import AccessibilityDeclaration from "./components/AccessibilityDeclaration";
 import { Provider } from "react-redux";
 import { Root } from "native-base";
 import store from "./redux/store";
@@ -147,6 +148,7 @@ export default function App() {
               <Drawer.Screen name='QuestionsAndAnswers' component={QuestionsAndAnswers} />
               <Drawer.Screen name='TermsOfUse' component={TermsOfUse} />
               <Drawer.Screen name='StatuteTakanon' component={StatuteTakanon} />
+              <Drawer.Screen name='AccessibilityDeclaration' component={AccessibilityDeclaration} />
 
               <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
               <Drawer.Screen name='ResultList' component={ResultList} />

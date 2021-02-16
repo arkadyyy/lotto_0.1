@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Dimensions } from "react-native";
+import { Text, View, Dimensions,Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Container,
@@ -179,23 +179,145 @@ const ShitatiHazakFillForm = ({
           style={{
             backgroundColor: "#263742",
 
-            height: 70,
+            height: 75,
 
             flexDirection: "row",
-            justifyContent: "flex-end",
+            // flex:1,
+            justifyContent: "center",
             alignItems: "center",
             marginBottom: 30,
+            marginHorizontal: 15,
           }}
         >
-          <TouchableOpacity
-            style={{
-              height: 25,
-              padding: 7,
-              backgroundColor: "white",
-              borderRadius: 13,
+<View style={{ flexDirection: "row", flex: 1 }}>
+            <View style={{ flexDirection: "row", flex: 1 }}>
+<TouchableOpacity
+             style={{
+              width: 30,
+              height: 30,
+              borderColor: "white",
+              borderWidth: 2,
               justifyContent: "center",
               alignItems: "center",
-              marginHorizontal: 20,
+              borderRadius: 23,
+              margin: 3,
+            }}
+            disabled={choosenNums.length !== 0 ? true : false}
+            onPress={() => {
+              let numbers = autoFill(7);
+              setchoosenNums(numbers.randomNumbers);
+              let strongNumbers = autoFill(hazakimNumber);
+              setChoosenStrongNums(strongNumbers.randomChoosenStrongNums);
+            }}
+            >
+             
+             <Image
+                  style={{ width: 22.5, height: 12.5 }}
+                  source={require("C:/fullstack/lottoMatic/assets/fillTable.png")}
+                />
+          </TouchableOpacity>
+
+
+          <TouchableOpacity
+             onPress={() => {
+              setchoosenNums([]);
+              setChoosenStrongNums([]);
+            }}
+              style={{
+                width: 30,
+                height: 30,
+                borderColor: "white",
+                borderWidth: 2,
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 23,
+                margin: 3,
+              }}
+            >
+              <Image
+                  style={{ width: 22.5, height: 12.5 }}
+                  source={require("C:/fullstack/lottoMatic/assets/removeForm.png")}
+                />
+            </TouchableOpacity>
+          
+
+            <TouchableOpacity
+             style={{
+              width: 30,
+              height: 30,
+              borderColor: "white",
+              borderWidth: 2,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 23,
+              margin: 3,
+            }}
+              disabled={choosenNums.length !== 0 ? true : false}
+              onPress={() => {
+                let numbers = autoFill(7);
+                setchoosenNums(numbers.randomNumbers);
+                let strongNumbers = autoFill(hazakimNumber);
+                setChoosenStrongNums(strongNumbers.randomChoosenStrongNums);
+              }}
+            >
+             
+             <Image
+                  style={{ width: 22.5, height: 12.5 }}
+                  source={require("C:/fullstack/lottoMatic/assets/fillForm.png")}
+                />
+          </TouchableOpacity>
+          <View
+                style={{
+                  top: 3,
+                  left: 7,
+                  borderLeftWidth: 1,
+                  borderLeftColor: "white",
+                  marginRight: 13,
+                  height: 33,
+                }}
+              ></View>
+               <View
+                style={{
+                  borderRadius: 30,
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  borderLeftColor: "white",
+                  height: 25,
+                  width: 25,
+                  marginVertical: 4,
+                  top: 3,
+                }}
+          ></View>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                flex: 1,
+              }}
+            >
+                            <View
+                style={{
+                  top: 3,
+                  left: 7,
+                  borderLeftWidth: 1,
+                  borderLeftColor: "white",
+                  marginRight: 13,
+                  height: 33,
+                }}
+              ></View>
+          <TouchableOpacity
+           style={{
+            height: 25,
+            padding: 7,
+            backgroundColor: "white",
+            borderRadius: 13,
+            justifyContent: "center",
+            alignItems: "center",
+            marginHorizontal: 6,
+            marginVertical: 4,
+            top: 3,
             }}
             onPress={() => {
               setshowTable(false);
@@ -211,6 +333,8 @@ const ShitatiHazakFillForm = ({
               סגור חלון
             </Text>
           </TouchableOpacity>
+          </View>
+        </View>
         </View>
         {/* {fill numbers} */}
         <View
@@ -246,7 +370,7 @@ const ShitatiHazakFillForm = ({
             >
               מלא את טבלה {opendTableNum}
             </Text>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               disabled={choosenNums.length !== 0 ? true : false}
               onPress={() => {
                 let numbers = autoFill(7);
@@ -271,8 +395,8 @@ const ShitatiHazakFillForm = ({
               >
                 מלא טבלה אוטומטית
               </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </TouchableOpacity> */}
+            {/* <TouchableOpacity
               onPress={() => {
                 setchoosenNums([]);
                 setChoosenStrongNums([]);
@@ -294,7 +418,7 @@ const ShitatiHazakFillForm = ({
               >
                 מחק טבלה אוטומטית
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>

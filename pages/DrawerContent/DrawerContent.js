@@ -151,6 +151,8 @@ export default function DrawerContent(props) {
 
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <TouchableOpacity
+                            onPress={() => navigation.navigate("AccessibilityDeclaration")}
+
             style={{
               borderBottomColor: "white",
               borderBottomWidth: 0.2,
@@ -179,7 +181,7 @@ export default function DrawerContent(props) {
           </TouchableOpacity>
 
           <TouchableOpacity
-                                          onPress={() => navigation.navigate("StatuteTakanon")}
+                onPress={() => navigation.navigate("StatuteTakanon")}
 
             style={{
               borderBottomColor: "white",
