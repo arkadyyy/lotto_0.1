@@ -183,7 +183,7 @@ const GetInTouch = ({ navigation }) => {
 
   return (
     <>
-      <NavBar navigation={navigation} screenName={"Help"} />
+      <NavBar navigation={navigation} screenName={"GetInTouch"} />
 
       <View
         style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}

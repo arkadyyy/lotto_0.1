@@ -134,7 +134,7 @@ export default function DrawerContent(props) {
             labelStyle={drawerstyles.labelStyle}
             label='אודות'
             onPress={() => {
-              props.navigation.navigate("Home");
+              props.navigation.navigate("About");
             }}
           />
           <DrawerItem

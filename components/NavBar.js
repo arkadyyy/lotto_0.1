@@ -85,6 +85,9 @@ const NavBar = (props) => {
     } else if (route.name === "GetInTouch") {
       setNavBarTitle(`צור קשר`);
     }
+     else if (route.name === "About") {
+      setNavBarTitle(`אודות לוטומטיק`);
+    }
   }, [route.name, screenName]);
 
   const dispatch = useDispatch();
