@@ -113,7 +113,7 @@ const ResetInputs = (
   setAgreement(false);
 };
 
-const Help = ({ navigation }) => {
+const GetInTouch = ({ navigation }) => {
   const [Name, setName] = useState("");
   const [lastName, setlastName] = useState("");
   const [CW, setCW] = useState("");
@@ -214,27 +214,51 @@ paddingTop:EStyleSheet.value("$rem") * 10,
                       right:EStyleSheet.value("$rem") * 140
                     }}
                   >
-                    עזרה
+                    צור קשר
                   </Text>
                 </View>
 
                 <View
-                  style={[
-                    signInstyles.detailsSquare,{height:EStyleSheet.value("$rem") * 500}
-                  ]}
+                                  style={{   
+                                      height: EStyleSheet.value("$rem") * 500,
+                                      backgroundColor: "#00ADEF",
+                                      width: "90%",
+                                  padding:20,
+                                      flex: 1,
+                                      margin: 20,
+                                    //   flexDirection: "column",
+                                    //   alignContent:"flex-end"
+                                  }}
                 >
                   <View
-                    style={{
+                        style={{
+                        // paddingTop:10,
                       flex: 1,
-                      flexDirection: "row",
+                      flexDirection: "column",
                       justifyContent: "center",
-                      alignItems: "center",
-                      marginBottom: 2,
-                      marginTop:-20,
-                      left: EStyleSheet.value("$rem") * -10,
-
+                      marginTop:-10,
+                      marginLeft:-10
                     }}
                   >
+                    <Text
+                      style={{
+                        flex: 1,
+                        color: "white",
+                        fontFamily: "fb-Spacer-bold",
+                        
+                      }}
+                    >
+                                          צוות לוטומטיק כאן תמיד בכל שאלה!
+                 </Text>
+                    <Text
+                      style={{
+                        flex: 1,
+                        color: "white",
+                        fontFamily: "fb-Spacer",
+                        // textAlign:"center"
+                      }}
+                    >
+ניתן ליצור איתנו קשר דרך הטופס </Text>
                     <Text
                       style={{
                         flex: 1,
@@ -243,8 +267,7 @@ paddingTop:EStyleSheet.value("$rem") * 10,
                         
                       }}
                     >
-                    בכל שאלה או תמיכה טכנית, עזרה בשליחת טפסים, או תקלה בעת שליחת טופס, ניתן ליצור קשר עם התמיכה שלנו דרך הטופס הבא:
-                    </Text>
+ ולקבל עזרה מנציג שירות בכל נושא שתבחרו.              </Text>
 
                     
                   </View>
@@ -253,9 +276,8 @@ paddingTop:EStyleSheet.value("$rem") * 10,
                   <View
                     style={{
                       alignItems: "stretch",
-                      left: EStyleSheet.value("$rem") * -20,
-
-                      flex: 1,
+                                          left: EStyleSheet.value("$rem") * -20,
+                                          flex: 1,
                     }}
                   >
                     <View style={{ flexDirection: "row",alignSelf:"center",left:EStyleSheet.value("$rem") * 14 }}>
@@ -554,4 +576,4 @@ a                      });
   );
 };
 
-export default Help;
+export default GetInTouch;

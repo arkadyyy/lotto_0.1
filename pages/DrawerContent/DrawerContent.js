@@ -141,7 +141,7 @@ export default function DrawerContent(props) {
             labelStyle={drawerstyles.labelStyle}
             label='צור קשר'
             onPress={() => {
-              props.navigation.navigate("Home");
+              props.navigation.navigate("GetInTouch");
             }}
           />
         </View>

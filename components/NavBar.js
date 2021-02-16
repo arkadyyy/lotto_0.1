@@ -82,6 +82,8 @@ const NavBar = (props) => {
       setNavBarTitle(`תוצאות הגרלת לוטו`);
     } else if (route.name === "Help") {
       setNavBarTitle(`עזרה`);
+    } else if (route.name === "GetInTouch") {
+      setNavBarTitle(`צור קשר`);
     }
   }, [route.name, screenName]);
 
