@@ -38,7 +38,7 @@ const Num = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
       </View>
     </>
   );
@@ -59,7 +59,7 @@ const StrongNum = ({ strongNum }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "red" }}>{strongNum}</Text>
+        <Text style={{ color: "red", fontFamily: "fb-Spacer" }}>{strongNum}</Text>
       </View>
     </>
   );
@@ -196,7 +196,7 @@ const ShitatiHazakTable = ({
             </View>
           </View>
         </TouchableOpacity>
-        {double && (
+        {/* {double && (
           <View
             style={{
               width: 35,
@@ -213,7 +213,7 @@ const ShitatiHazakTable = ({
           >
             <Text style={{ color: "white" }}>X2</Text>
           </View>
-        )}
+        )} */}
       </ListItem>
     </>
   );

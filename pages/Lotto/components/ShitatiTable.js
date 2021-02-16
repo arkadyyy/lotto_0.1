@@ -124,7 +124,6 @@ const ShitatiTable = ({
 
   return (
     <>
-      {console.log("tzerufimNumber:", tzerufimNumber)}
 
       <ListItem
         style={{
@@ -152,11 +151,11 @@ const ShitatiTable = ({
             setopendTableNum(index1);
           }}
         >
-          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-          <View style={{ flexDirection: "row", height: 10 }}>
+          <View style={{ flexDirection: "column" }}>
+          <View style={{ flexDirection: "row"}}>
               <StrongNum key={index} strongNumber={strongNumber} />
             </View>
-            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            <View style={{ flexDirection: "row" }}>
               {table1.sort(function(a, b) {
   return a - b;
 })
