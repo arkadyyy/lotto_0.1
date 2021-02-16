@@ -275,7 +275,7 @@ const FillForm = ({
               }}
             >
               <Image
-                  style={{ width: 22.5, height: 12.5 }}
+                  style={{ width: 22.5, height: 12.5, }}
                   source={require("../../../assets/deleteTable.jpeg")}
                 />
             </TouchableOpacity>

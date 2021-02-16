@@ -80,6 +80,8 @@ const NavBar = (props) => {
       setNavBarTitle(`תוצאות הגרלות`);
     } else if (route.name === "ResultLotto") {
       setNavBarTitle(`תוצאות הגרלת לוטו`);
+    } else if (route.name === "Help") {
+      setNavBarTitle(`עזרה`);
     }
   }, [route.name, screenName]);
 

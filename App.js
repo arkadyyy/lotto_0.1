@@ -37,6 +37,7 @@ import SumPage777 from "./pages/Sheva77/SumPage777";
 import SumPage123 from "./pages/One23/SumPage123";
 import AboutUs from "./pages/AboutUs";
 import HowItWorks from "./pages/HowItWorks";
+import Help from "./components/Help";
 import { Provider } from "react-redux";
 import { Root } from "native-base";
 import store from "./redux/store";
@@ -135,6 +136,7 @@ export default function App() {
               <Drawer.Screen name='ResultLotto' component={ResultLotto} />
               <Drawer.Screen name='ResultChance' component={ResultChance} />
               <Drawer.Screen name='Payment' component={Payment} />
+              <Drawer.Screen name='Help' component={Help} />
 
               <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
               <Drawer.Screen name='ResultList' component={ResultList} />
