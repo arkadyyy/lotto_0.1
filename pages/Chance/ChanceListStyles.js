@@ -60,7 +60,7 @@ const chanceListstyles = StyleSheet.create({
   chancePageContainer: {
     backgroundColor: "#009943",
     paddingBottom: 20,
-    height: 770,
+    height: 800,
   },
   roundButton1: {
     width: 20,
@@ -126,7 +126,7 @@ const chanceListstyles = StyleSheet.create({
     borderColor: "white",
     borderRadius: 7,
     borderWidth: 1,
-    width: "90%",
+    width: "95%",
     alignSelf: "center",
     marginTop: 20,
   },

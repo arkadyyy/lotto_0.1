@@ -147,17 +147,6 @@ const ChancePage = ({ navigation }) => {
   };
 
   useEffect(() => {
-    // setfullTables({
-    //   gameType: tableNum,
-    //   choosenCards: [
-    //     ...fullTables.choosenCards,
-    //     {
-    //       cardType: pressedSpade.type,
-    //       card: pressedSpade.symbolsPressed,
-    //     },
-    //   ],
-    // });
-
     if (counter >= 1) {
       // console.log("counter is bigger/equal than 1");
       //first of all , remove its old object in fullTables be4 we put its new object
@@ -180,19 +169,7 @@ const ChancePage = ({ navigation }) => {
   }, [pressedSpade]);
 
   useEffect(() => {
-    // setfullTables({
-    //   gameType: tableNum,
-    //   choosenCards: [
-    //     ...fullTables.choosenCards,
-    //     {
-    //       cardType: pressedHeart.type,
-    //       card: pressedHeart.symbolsPressed,
-    //     },
-    //   ],
-    // });
-
     if (counter >= 1) {
-      // console.log("counter is bigger/equal than 1");
       //first of all , remove its old object in fullTables be4 we put its new object
       let filtered = fullTables.choosenCards.filter(
         (x) => x.cardType !== pressedHeart.type
@@ -213,17 +190,6 @@ const ChancePage = ({ navigation }) => {
   }, [pressedHeart]);
 
   useEffect(() => {
-    // setfullTables({
-    //   gameType: tableNum,
-    //   choosenCards: [
-    //     ...fullTables.choosenCards,
-    //     {
-    //       cardType: pressedDiamond.type,
-    //       card: pressedDiamond.symbolsPressed,
-    //     },
-    //   ],
-    // });
-
     if (counter >= 1) {
       // console.log("counter is bigger/equal than 1");
       //first of all , remove its old object in fullTables be4 we put its new object
@@ -246,17 +212,6 @@ const ChancePage = ({ navigation }) => {
   }, [pressedDiamond]);
 
   useEffect(() => {
-    // setfullTables({
-    //   gameType: tableNum,
-    //   choosenCards: [
-    //     ...fullTables.choosenCards,
-    //     {
-    //       cardType: pressedClubs.type,
-    //       card: pressedClubs.symbolsPressed,
-    //     },
-    //   ],
-    // });
-
     if (counter >= 1) {
       // console.log("counter is bigger/equal than 1");
       //first of all , remove its old object in fullTables be4 we put its new object
@@ -288,7 +243,15 @@ const ChancePage = ({ navigation }) => {
           <View style={chanceListstyles.chancePageContainer}>
             <View style={chanceListstyles.header}>
               <View style={chanceListstyles.topNumCircle}>
-                <Text style={{ fontSize: 20, color: "#009943" }}>1</Text>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: "#009943",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  1
+                </Text>
               </View>
               <Text
                 style={{
@@ -302,6 +265,29 @@ const ChancePage = ({ navigation }) => {
             </View>
 
             <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
+
+            {/* <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                margin: 20,
+                flex: 1,
+              }}
+            > */}
+            <Text
+              style={{
+                color: "white",
+                alignSelf: "flex-start",
+                marginHorizontal: 25,
+                marginVertical: 10,
+                fontFamily: "fb-Spacer-bold",
+
+                fontSize: 15,
+              }}
+            >
+              בחר צירוף
+            </Text>
+            {/* </View> */}
 
             <View style={chanceListstyles.autoBtnContainer}>
               <TouchableOpacity
@@ -343,75 +329,89 @@ const ChancePage = ({ navigation }) => {
                 setpressedClubs={setpressedClubs}
               />
             )}
-            <View
-              style={{
-                borderColor: showTable ? "transparent" : "white",
-                borderRadius: 7,
-                borderWidth: 1,
-                width: "95%",
-                alignSelf: "center",
-                marginTop: 20,
-                padding: 2,
-              }}
-            >
-              <List
-                style={{
-                  alignItems: "flex-end",
-                  height: 250,
-                  marginLeft: -17,
-                }}
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    alignSelf: "flex-start",
-                    marginHorizontal: 25,
-                    marginVertical: 10,
-                    fontFamily: "fb-Spacer-bold",
-
-                    fontSize: 15,
-                  }}
-                >
-                  בחר צירוף
-                </Text>
-                <Table
-                  tableNum={tableNum}
-                  fullTables={fullTables}
-                  setfullTables={setfullTables}
-                  setshowTable={setshowTable}
-                  pressedClubs={pressedClubs}
-                  pressedHeart={pressedHeart}
-                  pressedDiamond={pressedDiamond}
-                  pressedSpade={pressedSpade}
-                />
-
-                <TouchableOpacity
-                  style={{
-                    alignSelf: "center",
-                    backgroundColor: "#8CC63F",
-                    padding: 7,
-                    borderRadius: 8,
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Text style={{ color: "white", marginHorizontal: 7 }}>
-                    {" "}
-                    טופס נוסף
-                  </Text>
-                  <Text>
-                    {" "}
-                    <FontAwesomeIcon
-                      color='white'
-                      border={true}
-                      inverse
-                      icon={faPlus}
-                    />{" "}
-                  </Text>
-                </TouchableOpacity>
+            <View style={chanceListstyles.listContainerBorder}>
+              <List style={chanceListstyles.listContainer}>
+                <ScrollView>
+                  <Table
+                    tableNum={tableNum}
+                    fullTables={fullTables}
+                    setfullTables={setfullTables}
+                    setshowTable={setshowTable}
+                    pressedClubs={pressedClubs}
+                    pressedHeart={pressedHeart}
+                    pressedDiamond={pressedDiamond}
+                    pressedSpade={pressedSpade}
+                  />
+                  <Table
+                    tableNum={tableNum}
+                    fullTables={fullTables}
+                    setfullTables={setfullTables}
+                    setshowTable={setshowTable}
+                    pressedClubs={pressedClubs}
+                    pressedHeart={pressedHeart}
+                    pressedDiamond={pressedDiamond}
+                    pressedSpade={pressedSpade}
+                  />
+                  <Table
+                    tableNum={tableNum}
+                    fullTables={fullTables}
+                    setfullTables={setfullTables}
+                    setshowTable={setshowTable}
+                    pressedClubs={pressedClubs}
+                    pressedHeart={pressedHeart}
+                    pressedDiamond={pressedDiamond}
+                    pressedSpade={pressedSpade}
+                  />
+                  <Table
+                    tableNum={tableNum}
+                    fullTables={fullTables}
+                    setfullTables={setfullTables}
+                    setshowTable={setshowTable}
+                    pressedClubs={pressedClubs}
+                    pressedHeart={pressedHeart}
+                    pressedDiamond={pressedDiamond}
+                    pressedSpade={pressedSpade}
+                  />
+                  <Table
+                    tableNum={tableNum}
+                    fullTables={fullTables}
+                    setfullTables={setfullTables}
+                    setshowTable={setshowTable}
+                    pressedClubs={pressedClubs}
+                    pressedHeart={pressedHeart}
+                    pressedDiamond={pressedDiamond}
+                    pressedSpade={pressedSpade}
+                  />
+                </ScrollView>
               </List>
             </View>
+            <TouchableOpacity
+              style={{
+                alignSelf: "center",
+                // backgroundColor: "#8CC63F",
+                borderColor: "white",
+                borderWidth: 1,
+                borderRadius: 19,
+                margin: 5,
+                paddingHorizontal: 20,
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: 7,
+                flexDirection: "row",
+              }}
+            >
+              <Text style={chanceListstyles.autoBtnText}> טופס נוסף</Text>
+              <Text>
+                {" "}
+                <FontAwesomeIcon
+                  size={12}
+                  color='white'
+                  border={true}
+                  inverse
+                  icon={faPlus}
+                />{" "}
+              </Text>
+            </TouchableOpacity>
             <View style={chanceListstyles.investNumBox}>
               <Text
                 style={{

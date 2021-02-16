@@ -137,47 +137,14 @@ const FillForm = ({
     "7",
   ]);
 
-  // useEffect(() => {
-  //   fullTables.choosenCards.forEach((table) => {
-  //     if (table.cardType === "spade") {
-  //       setpressedSpade({
-  //         numberOfPress: 0,
-  //         symbolsPressed: table.card,
-  //         type: "spade",
-  //       });
-  //     }
-  //     if (table.cardType === "heart") {
-  //       setpressedHeart({
-  //         numberOfPress: 0,
-  //         symbolsPressed: table.card,
-  //         type: "heart",
-  //       });
-  //     }
-  //     if (table.cardType === "diamond") {
-  //       setpressedDiamond({
-  //         numberOfPress: 0,
-  //         symbolsPressed: table.card,
-  //         type: "diamond",
-  //       });
-  //     }
-  //     if (table.cardType === "clubs") {
-  //       setpressedClubs({
-  //         numberOfPress: 0,
-  //         symbolsPressed: table.card,
-  //         type: "clubs",
-  //       });
-  //     }
-  //   });
-  // }, []);
-
   return (
     <>
       <View
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "27%",
-          height: 570,
+          top: "24%",
+          height: 612,
           position: "absolute",
           zIndex: 2000,
         }}
@@ -207,7 +174,7 @@ const FillForm = ({
             <Text
               style={{ color: "white", fontSize: 13, fontFamily: "fb-Spacer" }}
             >
-              טבלאות
+              טפסים
             </Text>
             <TouchableOpacity>
               <FontAwesomeIcon
@@ -241,7 +208,7 @@ const FillForm = ({
         <View
           style={{
             borderColor: "white",
-            width: "90%",
+            width: "96%",
             height: "65%",
             borderWidth: 1,
             borderRadius: 8,
