@@ -283,10 +283,16 @@ ravChance={"ravChnce"}
               </List>
             </View>
             <View style={chanceListstyles.investNumBox}>
-              <Text style={{ color: "white", marginVertical: 7 }}>
+              <Text style={{
+   color: "white",
+   marginVertical: 7,
+   fontFamily: "fb-Spacer",
+   fontSize: 15,              }}>
                 בחר את סכום ההשקעה{" "}
               </Text>
-              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+              <View style={{
+                flexDirection: "row"
+              }}>
                 <TouchableOpacity
                   onPress={() => {
                     setinvestNum(5);
