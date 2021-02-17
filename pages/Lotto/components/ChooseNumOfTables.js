@@ -584,18 +584,18 @@ const ChooseNumOfTables = ({
                   width: 30,
                   height: 30,
                   borderRadius: 30,
-                  backgroundColor: tzerufimNumber === 6 ? "#8CC63F" : "white",
+                  backgroundColor: tzerufimNumber === 5 ? "#8CC63F" : "white",
                   margin: 5,
                   justifyContent: "center",
                   alignItems: "center",
                 }}
                 onPress={() => {
-                  setTzerufimNumber(6);
+                  setTzerufimNumber(5);
                 }}
               >
                 <Text
                   style={{
-                    color: tzerufimNumber === 6 ? "white" : "#E62321",
+                    color: tzerufimNumber === 5 ? "white" : "#E62321",
                     fontFamily: "fb-Spacer",
                   }}
                 >
