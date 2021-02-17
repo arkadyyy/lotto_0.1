@@ -9,21 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-  Content,
-} from "native-base";
+import { Button, Card, CardItem } from "native-base";
 
 import NavBar from "../../components/NavBar";
 import ColorLine from "../../components/ColorLine";
@@ -31,7 +17,7 @@ import ViewForm from "./ViewForm";
 import BlankSquare from "../../components/BlankSquare";
 import SendHistory from "./SendHistory/SendHistory";
 import ActiveForms from "./ActiveForms/ActiveForms";
-import Withdrawal from "./WithDrawal/WithDrawal";
+import Withdrawal from "./Withdrawal/WithDrawal";
 import MyWins from "./MyWins/MyWins";
 import PaymentHistory from "./PaymentHistory/PaymentHistory";
 import HistoryRefund from "./HistoryRefund/HistoryRefund";

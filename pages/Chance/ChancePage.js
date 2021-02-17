@@ -105,17 +105,25 @@ const ChancePage = ({ navigation }) => {
       [pressedDiamond, setpressedDiamond],
     ];
 
-    for (let index = 0; index < 4 - tableNum; index++) {
-      // let index = Math.floor(Math.random() * 4) + 1;
+    var usedPressedArr = [];
 
-      console.log("index inside for : ", index);
-      setPressedArr.splice(Math.floor(Math.random() * 4) + 1, 1);
+    for (let index = 1; index <= tableNum; index++) {
+      // console.log("i am inside for ");
+      // let index = Math.floor(Math.random() * 4) + 1;
+      let card =
+        setPressedArr[Math.floor(Math.random() * setPressedArr.length)];
+      console.log("card inside for : ", card);
+      usedPressedArr.push(card);
+
+      setPressedArr.splice(setPressedArr.indexOf(card), 1);
+      // console.log("spliced number : ", Math.floor(Math.random() * 4) );
+      // setPressedArr.splice(Math.floor(Math.random() * 4), 1);
     }
 
-    setPressedArr.forEach((pressed) => {
-      let index = cardArr[Math.floor(Math.random() * cardArr.length)];
+    usedPressedArr.forEach((pressed) => {
+      let card = cardArr[Math.floor(Math.random() * cardArr.length)];
 
-      pressed[1]({ ...pressed[0], symbolsPressed: [index] });
+      pressed[1]({ ...pressed[0], symbolsPressed: [card] });
     });
   };
 
