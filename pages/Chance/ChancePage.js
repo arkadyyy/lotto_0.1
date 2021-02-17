@@ -52,6 +52,7 @@ const ChancePage = ({ navigation }) => {
     symbolsPressed: [],
     type: "clubs",
   });
+
   const dispatch = useDispatch();
   useEffect(() => {
     // console.log("fulltables from chancePage : ", fullTables);
@@ -247,7 +248,9 @@ const ChancePage = ({ navigation }) => {
         <NavBar navigation={navigation} />
         <BlankSquare gameName="הגרלת צ'אנס" color='#009943' />
         <ChooseForm color='#009943' />
+        
         <View style={{ margin: 15 }}>
+
           <View style={chanceListstyles.chancePageContainer}>
             <View style={chanceListstyles.header}>
               <View style={chanceListstyles.topNumCircle}>
