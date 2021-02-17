@@ -230,6 +230,7 @@ const FillForm = ({
         >
           <View style={{ flexDirection: "row", flex: 1 }}>
             <View style={{ flexDirection: "row", flex: 1 }}>
+              
               <TouchableOpacity
                 style={{
                   width: 30,
@@ -307,6 +308,7 @@ const FillForm = ({
                   height: 33,
                 }}
               ></View>
+
               <TouchableOpacity
                 style={{
                   borderWidth: 1,
