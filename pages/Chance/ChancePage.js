@@ -12,11 +12,12 @@ import chanceListstyles from "./ChanceListStyles";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const ChancePage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
+  const [formNum, setformNum] = useState(1);
   const [investNum, setinvestNum] = useState(5);
   const [counter, setcounter] = useState(0);
   const [fullTables, setfullTables] = useState({
@@ -53,47 +54,6 @@ const ChancePage = ({ navigation }) => {
     type: "clubs",
   });
   const dispatch = useDispatch();
-  useEffect(() => {
-    // console.log("fulltables from chancePage : ", fullTables);
-  }, [fullTables]);
-
-  useEffect(() => {
-    const filterEmptyFullTables = fullTables.choosenCards.filter(
-      (x) => x.card.length !== 0
-    );
-    console.log("filterEmptyFullTables : ", filterEmptyFullTables);
-
-    setfullTables({ ...fullTables, choosenCards: filterEmptyFullTables });
-  }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
-
-  useEffect(() => {
-    // console.log("i am here resetting fulltables");
-
-    setcounter(0);
-
-    setpressedSpade({
-      ...pressedSpade,
-      symbolsPressed: [],
-    });
-    setpressedHeart({
-      ...pressedHeart,
-      symbolsPressed: [],
-    });
-
-    setpressedClubs({
-      ...pressedClubs,
-      symbolsPressed: [],
-    });
-    setpressedDiamond({
-      ...pressedDiamond,
-      symbolsPressed: [],
-    });
-
-    setfullTables({
-      gameType: tableNum,
-      choosenCards: [],
-    });
-  }, [tableNum]);
 
   const autoFillForm = async (tableNum) => {
     await deletForm();
@@ -108,18 +68,12 @@ const ChancePage = ({ navigation }) => {
     var usedPressedArr = [];
 
     for (let index = 1; index <= tableNum; index++) {
-      // console.log("i am inside for ");
-      // let index = Math.floor(Math.random() * 4) + 1;
       let card =
         setPressedArr[Math.floor(Math.random() * setPressedArr.length)];
-      console.log("card inside for : ", card);
+
       usedPressedArr.push(card);
-
       setPressedArr.splice(setPressedArr.indexOf(card), 1);
-      // console.log("spliced number : ", Math.floor(Math.random() * 4) );
-      // setPressedArr.splice(Math.floor(Math.random() * 4), 1);
     }
-
     usedPressedArr.forEach((pressed) => {
       let card = cardArr[Math.floor(Math.random() * cardArr.length)];
 
@@ -154,92 +108,137 @@ const ChancePage = ({ navigation }) => {
     });
   };
 
-  useEffect(() => {
-    if (counter >= 1) {
-      // console.log("counter is bigger/equal than 1");
-      //first of all , remove its old object in fullTables be4 we put its new object
-      let filtered = fullTables.choosenCards.filter(
-        (x) => x.cardType !== pressedSpade.type
-      );
+  ///////////////////
 
-      //now we set updated fulltables
-      setfullTables({
-        gameType: tableNum,
-        choosenCards: [
-          ...filtered,
-          {
-            cardType: pressedSpade.type,
-            card: pressedSpade.symbolsPressed,
-          },
-        ],
-      });
-    }
-  }, [pressedSpade]);
+  // useEffect(() => {
+  //   console.log("fulltables from chancePage : ", fullTables);
+  // }, [fullTables]);
+
+  // useEffect(() => {
+  //   // const filterEmptyFullTables = fullTables.choosenCards.filter(
+  //   //   (x) => x.card.length === 0
+  //   // );
+  //   // console.log("filterEmptyFullTables : ", filterEmptyFullTables);
+
+  //   // setfullTables({ ...fullTables, choosenCards: filterEmptyFullTables });
+
+  // }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
 
   useEffect(() => {
-    if (counter >= 1) {
-      //first of all , remove its old object in fullTables be4 we put its new object
-      let filtered = fullTables.choosenCards.filter(
-        (x) => x.cardType !== pressedHeart.type
-      );
+    // console.log("i am here resetting fulltables");
 
-      //now we set updated fulltables
-      setfullTables({
-        gameType: tableNum,
-        choosenCards: [
-          ...filtered,
-          {
-            cardType: pressedHeart.type,
-            card: pressedHeart.symbolsPressed,
-          },
-        ],
-      });
-    }
-  }, [pressedHeart]);
+    setcounter(0);
 
-  useEffect(() => {
-    if (counter >= 1) {
-      // console.log("counter is bigger/equal than 1");
-      //first of all , remove its old object in fullTables be4 we put its new object
-      let filtered = fullTables.choosenCards.filter(
-        (x) => x.cardType !== pressedDiamond.type
-      );
+    setpressedSpade({
+      ...pressedSpade,
+      symbolsPressed: [],
+    });
+    setpressedHeart({
+      ...pressedHeart,
+      symbolsPressed: [],
+    });
 
-      //now we set updated fulltables
-      setfullTables({
-        gameType: tableNum,
-        choosenCards: [
-          ...filtered,
-          {
-            cardType: pressedDiamond.type,
-            card: pressedDiamond.symbolsPressed,
-          },
-        ],
-      });
-    }
-  }, [pressedDiamond]);
+    setpressedClubs({
+      ...pressedClubs,
+      symbolsPressed: [],
+    });
+    setpressedDiamond({
+      ...pressedDiamond,
+      symbolsPressed: [],
+    });
 
-  useEffect(() => {
-    if (counter >= 1) {
-      // console.log("counter is bigger/equal than 1");
-      //first of all , remove its old object in fullTables be4 we put its new object
-      let filtered = fullTables.choosenCards.filter(
-        (x) => x.cardType !== pressedClubs.type
-      );
+    setfullTables({
+      gameType: tableNum,
+      choosenCards: [],
+    });
+  }, [tableNum]);
 
-      //now we set updated fulltables
-      setfullTables({
-        gameType: tableNum,
-        choosenCards: [
-          ...filtered,
-          {
-            cardType: pressedClubs.type,
-            card: pressedClubs.symbolsPressed,
-          },
-        ],
-      });
-    }
-  }, [pressedClubs]);
+  // useEffect(() => {
+  //   if (counter >= 1) {
+  //     // console.log("counter is bigger/equal than 1");
+  //     //first of all , remove its old object in fullTables be4 we put its new object
+  //     let filtered = fullTables.choosenCards.filter(
+  //       (x) => x.cardType !== pressedSpade.type
+  //     );
+
+  //     //now we set updated fulltables
+  //     setfullTables({
+  //       gameType: tableNum,
+  //       choosenCards: [
+  //         ...filtered,
+  //         {
+  //           cardType: pressedSpade.type,
+  //           card: pressedSpade.symbolsPressed,
+  //         },
+  //       ],
+  //     });
+  //   }
+  // }, [pressedSpade]);
+
+  // useEffect(() => {
+  //   if (counter >= 1) {
+  //     //first of all , remove its old object in fullTables be4 we put its new object
+  //     let filtered = fullTables.choosenCards.filter(
+  //       (x) => x.cardType !== pressedHeart.type
+  //     );
+
+  //     //now we set updated fulltables
+  //     setfullTables({
+  //       gameType: tableNum,
+  //       choosenCards: [
+  //         ...filtered,
+  //         {
+  //           cardType: pressedHeart.type,
+  //           card: pressedHeart.symbolsPressed,
+  //         },
+  //       ],
+  //     });
+  //   }
+  // }, [pressedHeart]);
+
+  // useEffect(() => {
+  //   if (counter >= 1) {
+  //     // console.log("counter is bigger/equal than 1");
+  //     //first of all , remove its old object in fullTables be4 we put its new object
+  //     let filtered = fullTables.choosenCards.filter(
+  //       (x) => x.cardType !== pressedDiamond.type
+  //     );
+
+  //     //now we set updated fulltables
+  //     setfullTables({
+  //       gameType: tableNum,
+  //       choosenCards: [
+  //         ...filtered,
+  //         {
+  //           cardType: pressedDiamond.type,
+  //           card: pressedDiamond.symbolsPressed,
+  //         },
+  //       ],
+  //     });
+  //   }
+  // }, [pressedDiamond]);
+
+  // useEffect(() => {
+  //   if (counter >= 1) {
+  //     // console.log("counter is bigger/equal than 1");
+  //     //first of all , remove its old object in fullTables be4 we put its new object
+  //     let filtered = fullTables.choosenCards.filter(
+  //       (x) => x.cardType !== pressedClubs.type
+  //     );
+
+  //     //now we set updated fulltables
+  //     setfullTables({
+  //       gameType: tableNum,
+  //       choosenCards: [
+  //         ...filtered,
+  //         {
+  //           cardType: pressedClubs.type,
+  //           card: pressedClubs.symbolsPressed,
+  //         },
+  //       ],
+  //     });
+  //   }
+  // }, [pressedClubs]);
 
   return (
     <>
@@ -301,6 +300,10 @@ const ChancePage = ({ navigation }) => {
               <TouchableOpacity
                 onPress={() => {
                   autoFillForm(tableNum);
+                  console.log("pressedSpade : ", pressedSpade);
+                  console.log("pressedHeart : ", pressedHeart);
+                  console.log("pressedDiamond : ", pressedDiamond);
+                  console.log(" pressedClubs : ", pressedClubs);
                 }}
                 style={chanceListstyles.autoBtn}
               >
@@ -340,86 +343,87 @@ const ChancePage = ({ navigation }) => {
             <View style={chanceListstyles.listContainerBorder}>
               <List style={chanceListstyles.listContainer}>
                 <ScrollView>
-                  <Table
-                    tableNum={tableNum}
-                    fullTables={fullTables}
-                    setfullTables={setfullTables}
-                    setshowTable={setshowTable}
-                    pressedClubs={pressedClubs}
-                    pressedHeart={pressedHeart}
-                    pressedDiamond={pressedDiamond}
-                    pressedSpade={pressedSpade}
-                  />
-                  <Table
-                    tableNum={tableNum}
-                    fullTables={fullTables}
-                    setfullTables={setfullTables}
-                    setshowTable={setshowTable}
-                    pressedClubs={pressedClubs}
-                    pressedHeart={pressedHeart}
-                    pressedDiamond={pressedDiamond}
-                    pressedSpade={pressedSpade}
-                  />
-                  <Table
-                    tableNum={tableNum}
-                    fullTables={fullTables}
-                    setfullTables={setfullTables}
-                    setshowTable={setshowTable}
-                    pressedClubs={pressedClubs}
-                    pressedHeart={pressedHeart}
-                    pressedDiamond={pressedDiamond}
-                    pressedSpade={pressedSpade}
-                  />
-                  <Table
-                    tableNum={tableNum}
-                    fullTables={fullTables}
-                    setfullTables={setfullTables}
-                    setshowTable={setshowTable}
-                    pressedClubs={pressedClubs}
-                    pressedHeart={pressedHeart}
-                    pressedDiamond={pressedDiamond}
-                    pressedSpade={pressedSpade}
-                  />
-                  <Table
-                    tableNum={tableNum}
-                    fullTables={fullTables}
-                    setfullTables={setfullTables}
-                    setshowTable={setshowTable}
-                    pressedClubs={pressedClubs}
-                    pressedHeart={pressedHeart}
-                    pressedDiamond={pressedDiamond}
-                    pressedSpade={pressedSpade}
-                  />
+                  {Array.from(Array(formNum)).map((x, index) => (
+                    <Table
+                      tableIndex={index}
+                      formNum={formNum}
+                      tableNum={tableNum}
+                      fullTables={fullTables}
+                      setfullTables={setfullTables}
+                      setshowTable={setshowTable}
+                      pressedClubs={pressedClubs}
+                      pressedHeart={pressedHeart}
+                      pressedDiamond={pressedDiamond}
+                      pressedSpade={pressedSpade}
+                    />
+                  ))}
                 </ScrollView>
               </List>
             </View>
-            <TouchableOpacity
-              style={{
-                alignSelf: "center",
-                // backgroundColor: "#8CC63F",
-                borderColor: "white",
-                borderWidth: 1,
-                borderRadius: 19,
-                margin: 5,
-                paddingHorizontal: 20,
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: 7,
-                flexDirection: "row",
-              }}
-            >
-              <Text style={chanceListstyles.autoBtnText}> טופס נוסף</Text>
-              <Text>
-                {" "}
-                <FontAwesomeIcon
-                  size={12}
-                  color='white'
-                  border={true}
-                  inverse
-                  icon={faPlus}
-                />{" "}
-              </Text>
-            </TouchableOpacity>
+            <View style={{ flexDirection: "row", alignSelf: "center" }}>
+              <TouchableOpacity
+                style={{
+                  alignSelf: "center",
+                  // backgroundColor: "#8CC63F",
+                  borderColor: "white",
+                  borderWidth: 1,
+                  borderRadius: 19,
+                  margin: 5,
+                  paddingHorizontal: 20,
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: 7,
+                  flexDirection: "row",
+                }}
+                onPress={() => {
+                  setformNum(formNum + 1);
+                }}
+              >
+                <Text style={chanceListstyles.autoBtnText}> טופס נוסף</Text>
+                <Text>
+                  {" "}
+                  <FontAwesomeIcon
+                    size={12}
+                    color='white'
+                    border={true}
+                    inverse
+                    icon={faPlus}
+                  />{" "}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{
+                  alignSelf: "center",
+                  // backgroundColor: "#8CC63F",
+                  borderColor: "white",
+                  borderWidth: 1,
+                  borderRadius: 19,
+                  margin: 5,
+                  paddingHorizontal: 20,
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: 7,
+                  flexDirection: "row",
+                }}
+                onPress={() => {
+                  setformNum(formNum - 1);
+                }}
+              >
+                <Text style={chanceListstyles.autoBtnText}> הסר טופס</Text>
+                <Text>
+                  {" "}
+                  <FontAwesomeIcon
+                    size={12}
+                    color='white'
+                    border={true}
+                    inverse
+                    icon={faMinus}
+                  />{" "}
+                </Text>
+              </TouchableOpacity>
+            </View>
+
             <View style={chanceListstyles.investNumBox}>
               <Text
                 style={{
