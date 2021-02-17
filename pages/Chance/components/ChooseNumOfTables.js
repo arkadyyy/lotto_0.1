@@ -157,8 +157,8 @@ const ChooseNumOfTables = ({
               <TouchableOpacity
                 style={
                   tableNum === 5
-                    ? chanceListstyles.investBtnSelected
-                    : chanceListstyles.investBtn
+                    // ? chanceListstyles.investBtnSelected
+                    // : chanceListstyles.investBtn
                 }
                 onPress={() => {
                   settableNum(5);
@@ -167,7 +167,9 @@ const ChooseNumOfTables = ({
                 <Text
                   style={{
                     textAlign: "center",
+                    top:EStyleSheet.value("$rem") * 10,
                     fontSize: EStyleSheet.value("$rem") * 13,
+                    color: tableNum === 5 ? "#8CC63F": "white"
                   }}
                 >
                   רב צ'אנס

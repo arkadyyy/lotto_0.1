@@ -104,7 +104,10 @@ const Num = ({
 };
 
 const TableRavChance = ({
-  tableNum, fullTables, setfullTables,setshowTable,
+  tableNum,
+  fullTables,
+  setfullTables,
+  setshowTable,
   pressedSpade,
   pressedHeart,
   pressedDiamond,

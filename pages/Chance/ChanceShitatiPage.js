@@ -27,11 +27,33 @@ const ChanceShitatiPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [investNum, setinvestNum] = useState(5);
+  const [counter, setcounter] = useState(0);
+
   const [double, setdouble] = useState(false);
   const [filledForm, setfilledForm] = useState([]);
   const [fullTables, setfullTables] = useState({
     gameType: 1,
     choosenCards: [],
+  });
+  const [pressedSpade, setpressedSpade] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "spade",
+  });
+  const [pressedHeart, setpressedHeart] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "heart",
+  });
+  const [pressedDiamond, setpressedDiamond] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "diamond",
+  });
+  const [pressedClubs, setpressedClubs] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "clubs",
   });
 
   return (
@@ -73,7 +95,24 @@ const ChanceShitatiPage = ({ navigation }) => {
             />
 
             {showTable && (
-              <FillForm tableNum={tableNum} setshowTable={setshowTable} />
+              <FillForm
+                tableNum={tableNum} setshowTable={setshowTable}
+                choosenCards
+                tableNum={tableNum}
+                setshowTable={setshowTable}
+                fullTables={fullTables}
+                setfullTables={setfullTables}
+                counter={counter}
+                setcounter={setcounter}
+                pressedSpade={pressedSpade}
+                setpressedSpade={setpressedSpade}
+                pressedHeart={pressedHeart}
+                setpressedHeart={setpressedHeart}
+                pressedDiamond={pressedDiamond}
+                setpressedDiamond={setpressedDiamond}
+                pressedClubs={pressedClubs}
+                setpressedClubs={setpressedClubs}
+              />
             )}
             <View
               style={{
@@ -104,10 +143,16 @@ const ChanceShitatiPage = ({ navigation }) => {
                   בחר צירוף
                 </Text>
                 <TableChanceShitati
-                  tableNum={tableNum}
                   fullTables={fullTables}
                   setfullTables={setfullTables}
+                  tableNum={tableNum}
                   setshowTable={setshowTable}
+                  pressedClubs={pressedClubs}
+                  pressedHeart={pressedHeart}
+                  pressedDiamond={pressedDiamond}
+                  pressedSpade={pressedSpade}
+                  counter={counter}
+                  setcounter={setcounter}
                 />
               </List>
             </View>
