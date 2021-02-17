@@ -16,8 +16,11 @@ import {
   ListItem,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import { useRoute } from "@react-navigation/native";
 
 const ChooseForm = ({ color }) => {
+  const route = useRoute();
+
   return (
     <>
       <View
@@ -34,9 +37,14 @@ const ChooseForm = ({ color }) => {
             flex: 2,
           }}
         >
-          <Text>צ'אנס</Text>
+          {route.name === "ChancePage" ?
+            <Text>צ'אנס</Text>
+            : route.name === "RavChancePage" ?
+              <Text>רב צ'אנס</Text>
+              : <Text>צ'אנס שיטתי</Text>}
+
         </View>
-        <View
+        {/* <View
           style={{
             backgroundColor: color,
             flex: 1,
@@ -52,7 +60,7 @@ const ChooseForm = ({ color }) => {
           >
             <Text style={{ color: "#E62321" }}>שלח טופס</Text>
           </Button>
-        </View>
+        </View> */}
       </View>
     </>
   );

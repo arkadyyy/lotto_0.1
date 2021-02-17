@@ -31,6 +31,7 @@ const ChooseNumOfTables = ({
 
   return (
     <>
+     
       {route.name === "ChancePage" && (
         <View
           style={{

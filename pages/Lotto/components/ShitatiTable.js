@@ -153,8 +153,17 @@ const ShitatiTable = ({
             setopendTableNum(index1);
           }}
         >
-          <View style={{ flexDirection: "column",flex:1, }}>
-          <View style={{ flex:1,flexDirection:"row",flexWrap:"wrap",width:"87%" }}>
+          <View style={{ flexDirection: "column", flex: 1, }}>
+            
+            <View style={{
+              flex: 1, flexDirection: "row", flexWrap: "wrap",
+              width: tzerufimNumber === 12 ? "78%"
+                : tzerufimNumber === 11 ? "75%"
+                : tzerufimNumber === 10 ? "73%"
+                : tzerufimNumber === 9 ? "73%"
+                : tzerufimNumber === 8 ? "70%"
+                  :"60%"
+            }}>
             {table1.sort(function(a, b) {
            return a - b;
             })     
@@ -164,7 +173,17 @@ const ShitatiTable = ({
             </View>
          
            
-              <View style={shitatiTableStyles.tzerufimNumber12}>
+              {/* <View style={shitatiTableStyles.tzerufimNumber12}> */}
+            <View style={{
+              flexDirection: "row",
+              left:tzerufimNumber===12? 180 
+              : tzerufimNumber===11 ? 180 
+              : tzerufimNumber===10 ? 150 
+              : tzerufimNumber===9 ? 150 
+              : tzerufimNumber===8 ? 120 
+                :90,
+              top: -5
+            }}>
 
               <StrongNum key={index} strongNumber={strongNumber} />
             </View>

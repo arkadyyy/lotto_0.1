@@ -126,6 +126,7 @@ const FillForm = ({
   setpressedDiamond,
   pressedClubs,
   setpressedClubs,
+  ravChance
 }) => {
   const [symbols, setsymbols] = useState([
     "A",
@@ -156,8 +157,8 @@ const FillForm = ({
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: "24%",
-          height: 612,
+          top: "10%",
+          height: ravChance ? 650 :630,
           position: "absolute",
           zIndex: 2000,
         }}
