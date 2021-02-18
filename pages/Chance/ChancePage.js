@@ -25,6 +25,7 @@ const ChancePage = ({ navigation }) => {
     choosenCards: [],
   });
   // const [fullTables, setfullTables] = useState({
+  //  tableNum  : 0,
   //   gameType: 1,
   //   choosenCards: [
   //     {
@@ -80,6 +81,8 @@ const ChancePage = ({ navigation }) => {
 
       pressed[1]({ ...pressed[0], symbolsPressed: [card] });
     });
+
+    setcounter(tableNum);
   };
 
   const deletForm = () => {
@@ -115,15 +118,22 @@ const ChancePage = ({ navigation }) => {
   //   console.log("fulltables from chancePage : ", fullTables);
   // }, [fullTables]);
 
-  // useEffect(() => {
-  //   // const filterEmptyFullTables = fullTables.choosenCards.filter(
-  //   //   (x) => x.card.length === 0
-  //   // );
-  //   // console.log("filterEmptyFullTables : ", filterEmptyFullTables);
-
-  //   // setfullTables({ ...fullTables, choosenCards: filterEmptyFullTables });
-
-  // }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
+  useEffect(() => {
+    setfullTables({
+      ...fullTables,
+      gameType: tableNum,
+      choosenCards: [
+        ...fullTables.choosenCards,
+        {
+          pressedSpade,
+          pressedHeart,
+          pressedDiamond,
+          pressedClubs,
+        },
+      ],
+    });
+    console.log("fullTables :", fullTables);
+  }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
 
   useEffect(() => {
     // console.log("i am here resetting fulltables");
@@ -154,92 +164,92 @@ const ChancePage = ({ navigation }) => {
     });
   }, [tableNum]);
 
-  // useEffect(() => {
-  //   if (counter >= 1) {
-  //     // console.log("counter is bigger/equal than 1");
-  //     //first of all , remove its old object in fullTables be4 we put its new object
-  //     let filtered = fullTables.choosenCards.filter(
-  //       (x) => x.cardType !== pressedSpade.type
-  //     );
+  useEffect(() => {
+    if (counter >= 1) {
+      // console.log("counter is bigger/equal than 1");
+      //first of all , remove its old object in fullTables be4 we put its new object
+      let filtered = fullTables.choosenCards.filter(
+        (x) => x.cardType !== pressedSpade.type
+      );
 
-  //     //now we set updated fulltables
-  //     setfullTables({
-  //       gameType: tableNum,
-  //       choosenCards: [
-  //         ...filtered,
-  //         {
-  //           cardType: pressedSpade.type,
-  //           card: pressedSpade.symbolsPressed,
-  //         },
-  //       ],
-  //     });
-  //   }
-  // }, [pressedSpade]);
+      //now we set updated fulltables
+      setfullTables({
+        gameType: tableNum,
+        choosenCards: [
+          ...filtered,
+          {
+            cardType: pressedSpade.type,
+            card: pressedSpade.symbolsPressed,
+          },
+        ],
+      });
+    }
+  }, [pressedSpade]);
 
-  // useEffect(() => {
-  //   if (counter >= 1) {
-  //     //first of all , remove its old object in fullTables be4 we put its new object
-  //     let filtered = fullTables.choosenCards.filter(
-  //       (x) => x.cardType !== pressedHeart.type
-  //     );
+  useEffect(() => {
+    if (counter >= 1) {
+      //first of all , remove its old object in fullTables be4 we put its new object
+      let filtered = fullTables.choosenCards.filter(
+        (x) => x.cardType !== pressedHeart.type
+      );
 
-  //     //now we set updated fulltables
-  //     setfullTables({
-  //       gameType: tableNum,
-  //       choosenCards: [
-  //         ...filtered,
-  //         {
-  //           cardType: pressedHeart.type,
-  //           card: pressedHeart.symbolsPressed,
-  //         },
-  //       ],
-  //     });
-  //   }
-  // }, [pressedHeart]);
+      //now we set updated fulltables
+      setfullTables({
+        gameType: tableNum,
+        choosenCards: [
+          ...filtered,
+          {
+            cardType: pressedHeart.type,
+            card: pressedHeart.symbolsPressed,
+          },
+        ],
+      });
+    }
+  }, [pressedHeart]);
 
-  // useEffect(() => {
-  //   if (counter >= 1) {
-  //     // console.log("counter is bigger/equal than 1");
-  //     //first of all , remove its old object in fullTables be4 we put its new object
-  //     let filtered = fullTables.choosenCards.filter(
-  //       (x) => x.cardType !== pressedDiamond.type
-  //     );
+  useEffect(() => {
+    if (counter >= 1) {
+      // console.log("counter is bigger/equal than 1");
+      //first of all , remove its old object in fullTables be4 we put its new object
+      let filtered = fullTables.choosenCards.filter(
+        (x) => x.cardType !== pressedDiamond.type
+      );
 
-  //     //now we set updated fulltables
-  //     setfullTables({
-  //       gameType: tableNum,
-  //       choosenCards: [
-  //         ...filtered,
-  //         {
-  //           cardType: pressedDiamond.type,
-  //           card: pressedDiamond.symbolsPressed,
-  //         },
-  //       ],
-  //     });
-  //   }
-  // }, [pressedDiamond]);
+      //now we set updated fulltables
+      setfullTables({
+        gameType: tableNum,
+        choosenCards: [
+          ...filtered,
+          {
+            cardType: pressedDiamond.type,
+            card: pressedDiamond.symbolsPressed,
+          },
+        ],
+      });
+    }
+  }, [pressedDiamond]);
 
-  // useEffect(() => {
-  //   if (counter >= 1) {
-  //     // console.log("counter is bigger/equal than 1");
-  //     //first of all , remove its old object in fullTables be4 we put its new object
-  //     let filtered = fullTables.choosenCards.filter(
-  //       (x) => x.cardType !== pressedClubs.type
-  //     );
+  useEffect(() => {
+    if (counter >= 1) {
+      // console.log("counter is bigger/equal than 1");
+      //first of all , remove its old object in fullTables be4 we put its new object
+      let filtered = fullTables.choosenCards.filter(
+        (x) => x.cardType !== pressedClubs.type
+      );
 
-  //     //now we set updated fulltables
-  //     setfullTables({
-  //       gameType: tableNum,
-  //       choosenCards: [
-  //         ...filtered,
-  //         {
-  //           cardType: pressedClubs.type,
-  //           card: pressedClubs.symbolsPressed,
-  //         },
-  //       ],
-  //     });
-  //   }
-  // }, [pressedClubs]);
+      //now we set updated fulltables
+      setfullTables({
+        gameType: tableNum,
+        choosenCards: [
+          ...filtered,
+          {
+            cardType: pressedClubs.type,
+            card: pressedClubs.symbolsPressed,
+          },
+        ],
+      });
+    }
+  }, [pressedClubs]);
 
   return (
     <>
@@ -247,9 +257,8 @@ const ChancePage = ({ navigation }) => {
         <NavBar navigation={navigation} />
         <BlankSquare gameName="הגרלת צ'אנס" color='#009943' />
         <ChooseForm color='#009943' />
-        
-        <View style={{ margin: 15 }}>
 
+        <View style={{ margin: 15 }}>
           <View style={chanceListstyles.chancePageContainer}>
             <View style={chanceListstyles.header}>
               <View style={chanceListstyles.topNumCircle}>
@@ -307,6 +316,7 @@ const ChancePage = ({ navigation }) => {
                   console.log("pressedHeart : ", pressedHeart);
                   console.log("pressedDiamond : ", pressedDiamond);
                   console.log(" pressedClubs : ", pressedClubs);
+                  console.log(" fullTables : ", fullTables);
                 }}
                 style={chanceListstyles.autoBtn}
               >
@@ -350,6 +360,7 @@ const ChancePage = ({ navigation }) => {
                     <Table
                       tableIndex={index}
                       formNum={formNum}
+                      tableIndex={index + 1}
                       tableNum={tableNum}
                       fullTables={fullTables}
                       setfullTables={setfullTables}

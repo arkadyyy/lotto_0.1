@@ -11,6 +11,8 @@ const Table = ({
   pressedHeart,
   pressedDiamond,
   pressedClubs,
+  formNum,
+  tableIndex,
 }) => {
   return (
     <>
@@ -23,7 +25,7 @@ const Table = ({
             color: "white",
           }}
         >
-          צירוף 1
+          {`צירוף ${tableIndex}`}
         </Label>
         <ListItem
           noBorder={true}
