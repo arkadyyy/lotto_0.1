@@ -192,7 +192,7 @@ const SignIn = ({ navigation }) => {
     setShow(Platform.OS === "ios");
     let x = currentDate.toISOString().split("T")[0].split("-");
 
-    console.log(currentDate.toISOString().split("T")[0].split("-"));
+    // console.log(currentDate.toISOString().split("T")[0].split("-"));
 
     let y = [];
 
@@ -946,6 +946,7 @@ const SignIn = ({ navigation }) => {
                       הבא
                     </Text>
                   </Button>
+                  
                   <Button
                     onPress={()=>navigation.navigate("Payment")} 
                     rounded

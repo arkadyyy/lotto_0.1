@@ -45,7 +45,11 @@ import { useRoute } from "@react-navigation/native";
 
 
 const validateCW = (text) => {
-  if (text.length === 3 && text !== "") {
+  let isnum = /^\d+$/.test(text);
+  let length = text.length;
+
+
+  if (length === 3 && isnum) {
     return true;
   } else {
     return false;
@@ -56,7 +60,6 @@ const validateCardNum = (text) => {
   let isnum = /^\d+$/.test(text);
   let length = text.length;
 
-  // console.log("isnum : ", isnum);
 
   if (length === 16 && isnum) {
     return true;
@@ -72,9 +75,7 @@ function CheckFields(
   name,
   CW,
   cardNum,
-  age,
   expirationDate,
-  agreement,
   
 ) {
   if(name === "") {
@@ -83,47 +84,36 @@ function CheckFields(
     setfieldCheck(true);
   } else if (cardNum === "" || cardNum.length !== 16) {
     setfieldCheck(true);
-  } else if (age === false) {
-    setfieldCheck(true);
-  } else if (expirationDate === "") {
-    setfieldCheck(true);
-  } else if (agreement === "") {
+  } else if (expirationDate === ""  || cardNum.length !== 3) {
     setfieldCheck(true);
   } else {
     setfieldCheck(false);
   }
-
-  if (/^\d+$/.test(cardNum) && cardNum.length === 16) {
-  }
+console.log("name:",name, "CW:",CW,"cardNum:",cardNum,"expirationDate:",expirationDate,"setfieldCheck:",setfieldCheck);
+  // if (/^\d+$/.test(cardNum) && cardNum.length === 16) {
+  // }
 }
 
 const ResetInputs = (
   setName,
   setCW,
   setCardNum,
-  setAge,
   setExpirationDate,
-  setAgreement,
   
 ) => {
   setName("");
   setCW("");
   setCardNum("");
-  setAge(false);
   setExpirationDate("");
-  setAgreement(false);
 };
 
 const Payment = ({ navigation }) => {
   const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [CW, setCW] = useState("");
   const [cardNum, setCardNum] = useState("");
-  const [age, setAge] = useState(false);
-  const [bidrthday, setbidrthday] = useState("");
-  const [agreement, setAgreement] = useState(false);
-  // const [date, setdate] = useState("");
-  const [fieldCheck, setfieldCheck] = useState(true);
+  const [expirationDate, setExpirationDate] = useState("");
+
+    const [fieldCheck, setfieldCheck] = useState(true);
 
   const [confirmationCode, setconfirmationCode] = useState("");
 
@@ -132,7 +122,7 @@ const Payment = ({ navigation }) => {
     setShow(Platform.OS === "ios");
     let x = currentExpirationDate.toISOString().split("T")[0].split("-");
 
-    console.log(currentExpirationDate.toISOString().split("T")[0].split("-"));
+    // console.log(currentExpirationDate.toISOString().split("T")[0].split("-"));
 
     let y = [];
 
@@ -144,42 +134,35 @@ const Payment = ({ navigation }) => {
 
   /////
 
-  const [expirationDate, setExpirationDate] = useState("");
 
   const [show, setShow] = useState(false);
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
   const route = useRoute();
-//   useEffect(() => {
-//     console.log(store.signUp);
-//     if (store.signUp === 3) {
-//       navigation.navigate("LogInPage");
-//     }
-//   }, [store]);
+
+  useEffect(() => {
+    console.log(store.signUp);
+    if (store.signUp === 3) {
+      navigation.navigate("LogInPage");
+    }
+  }, [store]);
 
   useEffect(() => {
     CheckFields(
       setfieldCheck,
       name,
-      CW,
       cardNum,
-      age,
-      expirationDate,
-      agreement,
-      
-      
+      CW,
+      expirationDate 
     );
     // console.log("checkfields : ", fieldCheck);
     // console.log("validatephonenum : ", validatePhoneNum(phoneNum));
   }, [
-    
     name,
-    CW,
-    cardNum,
-    age,
-    expirationDate,
-    agreement,
+      cardNum,
+      CW,
+      expirationDate,
     
   ]);
 
@@ -517,7 +500,8 @@ const Payment = ({ navigation }) => {
                       </Text>
                       <FontAwesomeIcon
                         style={{
-                          color: lastName === "" ? "transparent" : "black",
+                            color: expirationDate === "" ? "transparent" : "black",
+                          left:72
                         }}
                         icon={faCheckCircle}
                         />
@@ -555,23 +539,24 @@ const Payment = ({ navigation }) => {
                         CW                      
                      </Label>
                     </View>
-              
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <TextInput
-                        value={lastName}
+                        value={CW}
+                        maxLength={3}
+                        key={"CW"}
                         style={signInstyles.signInPageInput}
-                        key={"LAST_NAME"}
-                        onChangeText={(text) => setLastName(text)}
+                        onChangeText={(text) => setCW(text)}
                       />
                       <FontAwesomeIcon
                         style={{
-                          color: lastName === "" ? "transparent" : "black",
+                          color: !validateCW(CW) ? "transparent" : "black",
                         }}
                         icon={faCheckCircle}
                       />
                     </View>
+                  
                   </View>
 
 
@@ -593,21 +578,22 @@ const Payment = ({ navigation }) => {
                           fontFamily: "fb-Spacer",
                         }}
                       >
-שם בעל הכרטיס                      </Label>
+                        שם בעל הכרטיס
+                  </Label>
                     </View>
+                   
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <TextInput
-                        value={CW}
-                        maxLength={9}
-                        key={"CW"}
+                        value={name}
                         style={signInstyles.signInPageInput}
-                        onChangeText={(text) => setCW(text)}
+                        key={"NAME"}
+                        onChangeText={(text) => setName(text)}
                       />
                       <FontAwesomeIcon
                         style={{
-                          color: !validateCW(CW) ? "transparent" : "black",
+                          color: name === "" ? "transparent" : "black",
                         }}
                         icon={faCheckCircle}
                       />
@@ -638,7 +624,7 @@ const Payment = ({ navigation }) => {
                     disabled={fieldCheck}
                     rounded
                     style={{
-                      backgroundColor: fieldCheck ? "#FFAC32" : "#FBB03B",
+                      backgroundColor: fieldCheck ? "#999" : "#FBB03B",
                       borderColor: "white",
                       borderWidth: 2,
                       borderRadius: 17,
@@ -649,13 +635,11 @@ const Payment = ({ navigation }) => {
                     //   marginHorizontal: 70,
                     }}
                     onPress={() => {
-                        name(""),
+                        setName(""),
                         setCW(""),
                         setCardNum(""),
                         
-                        setAge(false),
                         setExpirationDate(""),
-                        setAgreement(false),
                         
 
                       dispatch(
@@ -667,11 +651,11 @@ const Payment = ({ navigation }) => {
                         )
                       );
                       console.log({
-                        name: name,
-                        cardNum: cardNum.replace("05", "+972"),
-                        CW: CW,
+                        // name: name,
+                        // cardNum: cardNum.replace("05", "+972"),
+                        // CW: CW,
                         
-                        expirationDate: expirationDate,
+                        // expirationDate: expirationDate,
 a                      });
                     }}
                   >
