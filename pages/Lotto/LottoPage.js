@@ -213,8 +213,10 @@ const LottoPage = ({ navigation }) => {
 
   const checkTables = (fullTables) => {
     returnedState = false;
-
-    if (fullTables.length !== tableNum) {
+    console.log("7777");
+console.log(fullTables.length);
+console.log(tableNum);
+    if (fullTables.length-1 !== tableNum) {
       returnedState = true;
     }
 
@@ -231,6 +233,8 @@ const LottoPage = ({ navigation }) => {
 
   useEffect(() => {
     settablesCheck(checkTables(fullTables));
+    console.log("tablesCheck : ", tablesCheck);
+    console.log("fullTables : ", fullTables);
   }, [fullTables, tableNum]);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
@@ -27,12 +27,79 @@ const ChanceShitatiPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [investNum, setinvestNum] = useState(5);
+  const [counter, setcounter] = useState(0);
+
   const [double, setdouble] = useState(false);
   const [filledForm, setfilledForm] = useState([]);
   const [fullTables, setfullTables] = useState({
     gameType: 1,
     choosenCards: [],
   });
+  const [pressedSpade, setpressedSpade] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "spade",
+  });
+  const [pressedHeart, setpressedHeart] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "heart",
+  });
+  const [pressedDiamond, setpressedDiamond] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "diamond",
+  });
+  const [pressedClubs, setpressedClubs] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "clubs",
+  });
+  const [tablesUsed, settablesUsed] = useState(0);
+  const [typeArr, settypeArr] = useState([]);
+
+
+  // מה זה עושה האם נצרך ומדוייק בשיטתי בכלל??
+  // useEffect(() => {
+  //   const filterEmptyFullTables = fullTables.choosenCards.filter(
+  //     (x) => x.card.length !== 0
+  //   );
+  //   console.log("filterEmptyFullTables : ", filterEmptyFullTables);
+
+  //   setfullTables({ ...fullTables, choosenCards: filterEmptyFullTables });
+  // }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
+
+
+
+
+  useEffect(() => {
+    // console.log("i am here resetting fulltables");
+
+    setcounter(0);
+
+    setpressedSpade({
+      ...pressedSpade,
+      symbolsPressed: [],
+    });
+    setpressedHeart({
+      ...pressedHeart,
+      symbolsPressed: [],
+    });
+
+    setpressedClubs({
+      ...pressedClubs,
+      symbolsPressed: [],
+    });
+    setpressedDiamond({
+      ...pressedDiamond,
+      symbolsPressed: [],
+    });
+
+    setfullTables({
+      gameType: tableNum,
+      choosenCards: [],
+    });
+  }, [tableNum]);
 
   return (
     <>
@@ -73,7 +140,29 @@ const ChanceShitatiPage = ({ navigation }) => {
             />
 
             {showTable && (
-              <FillForm tableNum={tableNum} setshowTable={setshowTable} />
+              <FillForm
+                tableNum={tableNum} setshowTable={setshowTable}
+                choosenCards
+                tableNum={tableNum}
+                setshowTable={setshowTable}
+                fullTables={fullTables}
+                setfullTables={setfullTables}
+                counter={counter}
+                setcounter={setcounter}
+                pressedSpade={pressedSpade}
+                setpressedSpade={setpressedSpade}
+                pressedHeart={pressedHeart}
+                setpressedHeart={setpressedHeart}
+                pressedDiamond={pressedDiamond}
+                setpressedDiamond={setpressedDiamond}
+                pressedClubs={pressedClubs}
+                setpressedClubs={setpressedClubs}
+                tablesUsed={tablesUsed}
+  settablesUsed={settablesUsed}
+  typeArr={typeArr}
+                settypeArr={settypeArr}
+                shitatiPage={"shitatiPage"}
+              />
             )}
             <View
               style={{
@@ -104,10 +193,25 @@ const ChanceShitatiPage = ({ navigation }) => {
                   בחר צירוף
                 </Text>
                 <TableChanceShitati
-                  tableNum={tableNum}
                   fullTables={fullTables}
                   setfullTables={setfullTables}
+                  tableNum={tableNum}
                   setshowTable={setshowTable}
+                  pressedClubs={pressedClubs}
+                  pressedHeart={pressedHeart}
+                  pressedDiamond={pressedDiamond}
+                  pressedSpade={pressedSpade}
+                                    
+                  setpressedClubs={setpressedClubs}
+                  setpressedHeart={setpressedHeart}
+                  setpressedDiamond={setpressedDiamond}
+                  setpressedSpade={setpressedSpade}
+                  counter={counter}
+                  setcounter={setcounter}
+                  tablesUsed={tablesUsed}
+                  settablesUsed={settablesUsed}
+                  typeArr={typeArr}
+                  settypeArr={settypeArr}
                 />
               </List>
             </View>
