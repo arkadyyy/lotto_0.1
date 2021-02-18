@@ -192,7 +192,7 @@ const SignIn = ({ navigation }) => {
     setShow(Platform.OS === "ios");
     let x = currentDate.toISOString().split("T")[0].split("-");
 
-    // console.log(currentDate.toISOString().split("T")[0].split("-"));
+    console.log(currentDate.toISOString().split("T")[0].split("-"));
 
     let y = [];
 
@@ -704,22 +704,43 @@ const SignIn = ({ navigation }) => {
                       />
                     </View>
                   </View>
-                  
+                  <Label
+                        style={{
+                          fontSize: 12,
+                          marginHorizontal: 10,
+                          fontFamily: "fb-Spacer",
+                        }}
+                        >
+                        תאריך לידה                      
+                     </Label>
                   <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    
+                  {/* <View style={{ flexDirection: "row" }}> */}
+                      {/* <Label
+                        style={{
+                          fontSize: 12,
+                          marginHorizontal: 10,
+                          fontFamily: "fb-Spacer",
+                        }}
+                        >
+                        תאריך לידה                      
+                     </Label> */}
+                    {/* </View> */}
                     <TouchableOpacity
                       style={{
                         borderColor: "white",
-                        borderWidth: 1,
-                        borderRadius: 7,
-                        padding: 7,
+                        // borderWidth: 1,
+                        // borderRadius: 7,
+                        // padding: 7,
                         fontSize: 10,
                         flex: 1,
+                        flexDirection: "row", alignItems: "center" 
                       }}
                       onPress={() => {
                         setShow(true);
                       }}
                     >
-                      <Text
+                      {/* <Text
                         style={{
                           fontSize: 10,
                           color: "white",
@@ -727,9 +748,33 @@ const SignIn = ({ navigation }) => {
                         }}
                       >
                         בחר תאריך לידה
-                      </Text>
+                      </Text> */}
+
+<TextInput
+                      editable={false}
+                      disabled={true}
+                      value={date === "" ? " " : String(date)}
+                      style={[
+                        signInstyles.signInPageInput,
+                        {
+                          // flex: 1,
+                          fontSize: 20,
+                          color: "black",
+                          textAlign: "center",
+width:250,
+                          fontFamily: "fb-Spacer",
+                        },
+                      ]}
+                    />
+                    <FontAwesomeIcon
+                      style={{
+                        color: date === "" ? "transparent" : "black",
+                      }}
+                      icon={faCheckCircle}
+                    />
+
                     </TouchableOpacity>
-                    <TextInput
+                    {/* <TextInput
                       editable={false}
                       disabled={true}
                       value={date === "" ? "תאריך לא נבחר" : String(date)}
@@ -750,7 +795,7 @@ const SignIn = ({ navigation }) => {
                         color: date === "" ? "transparent" : "black",
                       }}
                       icon={faCheckCircle}
-                    />
+                    /> */}
 
                     {show && (
                       <DateTimePicker
@@ -946,7 +991,6 @@ const SignIn = ({ navigation }) => {
                       הבא
                     </Text>
                   </Button>
-                  
                   <Button
                     onPress={()=>navigation.navigate("Payment")} 
                     rounded
