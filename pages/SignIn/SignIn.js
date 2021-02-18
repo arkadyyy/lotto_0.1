@@ -704,6 +704,7 @@ const SignIn = ({ navigation }) => {
                       />
                     </View>
                   </View>
+                  
                   <View style={{ flexDirection: "row", alignItems: "center" }}>
                     <TouchableOpacity
                       style={{
