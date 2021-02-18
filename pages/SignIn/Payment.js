@@ -26,6 +26,8 @@ import {
   Label,
   Spinner,
 } from "native-base";
+import DateTimePicker from "@react-native-community/datetimepicker";
+
 import { Auth } from "aws-amplify";
 
 import NavBar from "../../components/NavBar";
@@ -56,7 +58,7 @@ const validateCardNum = (text) => {
 
   // console.log("isnum : ", isnum);
 
-  if (length === 10 && isnum) {
+  if (length === 16 && isnum) {
     return true;
   } else {
     return false;
@@ -75,7 +77,7 @@ function CheckFields(
   agreement,
   
 ) {
-  if(Name === "") {
+  if(name === "") {
     setfieldCheck(true);
   } else if (CW === "") {
     setfieldCheck(true);
@@ -113,6 +115,7 @@ const ResetInputs = (
 };
 
 const Payment = ({ navigation }) => {
+  const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [CW, setCW] = useState("");
   const [cardNum, setCardNum] = useState("");
@@ -158,19 +161,20 @@ const Payment = ({ navigation }) => {
   useEffect(() => {
     CheckFields(
       setfieldCheck,
-      Name,
+      name,
       CW,
       cardNum,
       age,
       expirationDate,
       agreement,
       
+      
     );
     // console.log("checkfields : ", fieldCheck);
     // console.log("validatephonenum : ", validatePhoneNum(phoneNum));
   }, [
     
-    Name,
+    name,
     CW,
     cardNum,
     age,
@@ -391,14 +395,19 @@ const Payment = ({ navigation }) => {
                     >
                       <TextInput
                         value={cardNum}
+                        maxLength={16}
                         key={"CARD_NUM"}
                         style={signInstyles.signInPageInput}
-                        onChangeText={(text) => setCardNum([...cardNum,text])}
-                      />
+                        onChangeText={(text) => {
+                          validateCardNum(text);
+                          setCardNum(text);
+                        }}                      />
                       <FontAwesomeIcon
-                        style={{
-                          color: cardNum === 16 ? "transparent" : "black",
-                        }}
+                       style={{
+                        color: validateCardNum(cardNum)
+                          ? "black"
+                          : "transparent",
+                      }}
                         icon={faCheckCircle}
                       />
                     </View>
@@ -407,13 +416,72 @@ const Payment = ({ navigation }) => {
                     
 <View style={{flexDirection:"row"}}>
                                   {/* מכאן תוקף               */}
-                  <View
+               {/* <View style={{ flexDirection: "row", alignItems: "center" }}>
+                   
+                    <TouchableOpacity
+                      style={{
+                        borderColor: "white",
+                        borderWidth: 1,
+                        borderRadius: 7,
+                        padding: 7,
+                        fontSize: 10,
+                        flex: 1,
+                      }}
+                      onPress={() => {
+                        setShow(true);
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: 10,
+                          color: "white",
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
+                       תוקף
+                      </Text>
+                    </TouchableOpacity>
+                    <TextInput
+                      editable={false}
+                      disabled={true}
+                      value={expirationDate === "" ? "תוקף לא נבחר" : String(expirationDate)}
+                      style={[
+                        signInstyles.signInPageInput,
+                        {
+                          flex: 2,
+                          fontSize: 12,
+                          color: "black",
+                          textAlign: "center",
+
+                          fontFamily: "fb-Spacer",
+                        },
+                      ]}
+                    />
+                    <FontAwesomeIcon
+                      style={{
+                        color: expirationDate === "" ? "transparent" : "black",
+                      }}
+                      icon={faCheckCircle}
+                    />
+
+                    {show && (
+                      <DateTimePicker
+                        testID='dateTimePicker'
+                        value={new Date()}
+                        mode='date'
+                        is24Hour={false}
+                        display='spinner'
+                        onChange={onChange}
+                      />
+                    )}
+                  </View> */}
+   <View
                     style={{
                       alignItems: "stretch",
 
                       flex: 1,
                     }}
-                     >                 
+                  >
                     <View style={{ flexDirection: "row" }}>
                       <Label
                         style={{
@@ -421,36 +489,51 @@ const Payment = ({ navigation }) => {
                           marginHorizontal: 10,
                           fontFamily: "fb-Spacer",
                         }}
-                      >
-                          תוקף
-                      </Label>
+                        >
+                        תוקף                      
+                     </Label>
                     </View>
-                                      
-                    <View
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                      <TextInput
-                        value={cardNum}
-                        maxLength={10}
-                        key={"PHONE_NUM"}
+              
+                    <TouchableOpacity
+                      style={{ flexDirection: "row", alignItems: "center",backgroundColor:"white",borderRadius:8,height:30,width:100,left:10,top:8 }}
+                      onPress={() => {
+                        setShow(true);
+                      }}
+                      >
+                      {/* <TextInput
+                        value={lastName}
                         style={signInstyles.signInPageInput}
-                        onChangeText={(text) => {
-                          valiExpirationDateCardNum(text);
-                          setCardNum(text);
+                        key={"LAST_NAME"}
+                        onChangeText={(text) => setLastName(text)}
+                      /> */}
+                         <Text
+                        style={{
+                          fontSize: 10,
+                          color: "black",
+                          fontFamily: "fb-Spacer",
                         }}
-                      />
+                      >
+                       {expirationDate === "" ? "תוקף לא נבחר" : String(expirationDate)}
+                      </Text>
                       <FontAwesomeIcon
                         style={{
-                          color: valiExpirationDateCardNum(cardNum)
-                            ? "black"
-                            : "transparent",
+                          color: lastName === "" ? "transparent" : "black",
                         }}
                         icon={faCheckCircle}
+                        />
+                       
+                      </TouchableOpacity>
+                      {show && (
+                      <DateTimePicker
+                        testID='dateTimePicker'
+                        value={new Date()}
+                        mode='date'
+                        is24Hour={false}
+                        display='spinner'
+                        onChange={onChange}
                       />
-                                      </View>
-                                      
+                    )}
                   </View>
-
                           {/* עד כאן תוקף         */}
 
                          {/* CW מכאן */}
@@ -566,7 +649,7 @@ const Payment = ({ navigation }) => {
                     //   marginHorizontal: 70,
                     }}
                     onPress={() => {
-                        Name(""),
+                        name(""),
                         setCW(""),
                         setCardNum(""),
                         
@@ -577,14 +660,14 @@ const Payment = ({ navigation }) => {
 
                       dispatch(
                         SignUp(
-                          Name,
+                          name,
                           cardNum,
                           expirationDate,
                           CW
                         )
                       );
                       console.log({
-                        Name: Name,
+                        name: name,
                         cardNum: cardNum.replace("05", "+972"),
                         CW: CW,
                         

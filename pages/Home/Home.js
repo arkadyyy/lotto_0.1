@@ -115,7 +115,7 @@ export default function Home({ navigation }) {
                   </Button>
                   <Image
                     style={{ width: 70, height: 30 }}
-                    source={require("../../assets/home/Lotto_sml_1.png")}
+                    source={require("../../assets/home/logoLotto.png")}
                   />
                 </View>
                 <View style={[homestyles.btnWrapper]}>
@@ -175,7 +175,7 @@ export default function Home({ navigation }) {
                   <Image
                     style={{ width: 80, height: 30 }}
                     // source={require("C:/fullstack/lottoMatic/assets/home/Chance_sml.png")}
-                    source={require("../../assets/home/Chance_sml.png")}
+                    source={require("../../assets/home/logoChance.png")}
                   />
                 </View>
                 <View style={homestyles.btnWrapper}>
@@ -234,7 +234,7 @@ export default function Home({ navigation }) {
                   </Button>
                   <Image
                     style={{ width: 70, height: 30 }}
-                    source={require("../../assets/home/_777_sml.png")}
+                    source={require("../../assets/home/logo777.png")}
                   />
                 </View>
               </View>
@@ -296,7 +296,7 @@ export default function Home({ navigation }) {
                   </Button>
                   <Image
                     style={{ width: 70, height: 30 }}
-                    source={require("../../assets/home/_123_sml.png")}
+                    source={require("../../assets/home/logo123.png")}
                   />
                 </View>
                 <View style={[homestyles.btnWrapper, { marginBottom: 25 }]}>
