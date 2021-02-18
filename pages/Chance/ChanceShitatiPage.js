@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
@@ -55,6 +55,51 @@ const ChanceShitatiPage = ({ navigation }) => {
     symbolsPressed: [],
     type: "clubs",
   });
+  const [tablesUsed, settablesUsed] = useState(0);
+  const [typeArr, settypeArr] = useState([]);
+
+
+  // מה זה עושה האם נצרך ומדוייק בשיטתי בכלל??
+  // useEffect(() => {
+  //   const filterEmptyFullTables = fullTables.choosenCards.filter(
+  //     (x) => x.card.length !== 0
+  //   );
+  //   console.log("filterEmptyFullTables : ", filterEmptyFullTables);
+
+  //   setfullTables({ ...fullTables, choosenCards: filterEmptyFullTables });
+  // }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
+
+
+
+
+  useEffect(() => {
+    // console.log("i am here resetting fulltables");
+
+    setcounter(0);
+
+    setpressedSpade({
+      ...pressedSpade,
+      symbolsPressed: [],
+    });
+    setpressedHeart({
+      ...pressedHeart,
+      symbolsPressed: [],
+    });
+
+    setpressedClubs({
+      ...pressedClubs,
+      symbolsPressed: [],
+    });
+    setpressedDiamond({
+      ...pressedDiamond,
+      symbolsPressed: [],
+    });
+
+    setfullTables({
+      gameType: tableNum,
+      choosenCards: [],
+    });
+  }, [tableNum]);
 
   return (
     <>
@@ -112,6 +157,11 @@ const ChanceShitatiPage = ({ navigation }) => {
                 setpressedDiamond={setpressedDiamond}
                 pressedClubs={pressedClubs}
                 setpressedClubs={setpressedClubs}
+                tablesUsed={tablesUsed}
+  settablesUsed={settablesUsed}
+  typeArr={typeArr}
+                settypeArr={settypeArr}
+                shitatiPage={"shitatiPage"}
               />
             )}
             <View
@@ -151,8 +201,17 @@ const ChanceShitatiPage = ({ navigation }) => {
                   pressedHeart={pressedHeart}
                   pressedDiamond={pressedDiamond}
                   pressedSpade={pressedSpade}
+                                    
+                  setpressedClubs={setpressedClubs}
+                  setpressedHeart={setpressedHeart}
+                  setpressedDiamond={setpressedDiamond}
+                  setpressedSpade={setpressedSpade}
                   counter={counter}
                   setcounter={setcounter}
+                  tablesUsed={tablesUsed}
+                  settablesUsed={settablesUsed}
+                  typeArr={typeArr}
+                  settypeArr={settypeArr}
                 />
               </List>
             </View>

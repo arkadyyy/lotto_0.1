@@ -160,15 +160,17 @@ const TableChanceShitati = ({
   setfullTables,
   setshowTable,
   counter,
-  setcounter
-  // pressedSpade,
-  // pressedHeart,
-  // pressedDiamond,
-  // pressedClubs,
-  // setpressedSpade,
-  // setpressedHeart,
-  // setpressedDiamond,
-  // setpressedClubs,
+  setcounter,
+  settypeArr,
+  typeArr,
+  pressedSpade,
+  pressedHeart,
+  pressedDiamond,
+  pressedClubs,
+  setpressedSpade,
+  setpressedHeart,
+  setpressedDiamond,
+  setpressedClubs,
  }) => {
   const [symbols, setsymbols] = useState([
     "A",
@@ -180,30 +182,30 @@ const TableChanceShitati = ({
     "8",
     "7",
   ]);
-  const [pressedSpade, setpressedSpade] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "spade",
-  });
-  const [pressedHeart, setpressedHeart] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "heart",
-  });
-  const [pressedDiamond, setpressedDiamond] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "diamond",
-  });
-  const [pressedClubs, setpressedClubs] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "clubs",
-  });
+  // const [pressedSpade, setpressedSpade] = useState({
+  //   numberOfPress: 0,
+  //   symbolsPressed: [],
+  //   type: "spade",
+  // });
+  // const [pressedHeart, setpressedHeart] = useState({
+  //   numberOfPress: 0,
+  //   symbolsPressed: [],
+  //   type: "heart",
+  // });
+  // const [pressedDiamond, setpressedDiamond] = useState({
+  //   numberOfPress: 0,
+  //   symbolsPressed: [],
+  //   type: "diamond",
+  // });
+  // const [pressedClubs, setpressedClubs] = useState({
+  //   numberOfPress: 0,
+  //   symbolsPressed: [],
+  //   type: "clubs",
+  // });
 
   // const [counter, setcounter] = useState(0);
-  const [tablesUsed, settablesUsed] = useState(0);
-  const [typeArr, settypeArr] = useState([]);
+  // const [tablesUsed, settablesUsed] = useState(0);
+  // const [typeArr, settypeArr] = useState([]);
 
   useEffect(() => {
     setfullTables({
