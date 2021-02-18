@@ -113,7 +113,7 @@ const LottoPage = ({ navigation }) => {
   const autoFillForm = () => {
     let fullTabels1 = [];
     for (let i = 1; i < 14; i++) {
-      while (i < tableNum+1){
+      while (i < tableNum + 1) {
         let numbers = autoFill(6);
         let table = {
           tableNum: i,
@@ -123,11 +123,11 @@ const LottoPage = ({ navigation }) => {
         fullTabels1 = [...fullTabels1, table];
         i++;
       }
-      
+
       let table = {
         tableNum: i,
         choosenNums: [" "],
-        strongNum: (" "),
+        strongNum: " ",
       };
       fullTabels1 = [...fullTabels1, table];
       i++;
@@ -293,7 +293,7 @@ const LottoPage = ({ navigation }) => {
             </View>
             {showTable && (
               <FillForm
-              fullTables={fullTables}
+                fullTables={fullTables}
                 setFullTables={setFullTables}
                 setshowTable={setshowTable}
                 opendTableNum={opendTableNum}
@@ -327,32 +327,32 @@ const LottoPage = ({ navigation }) => {
               <Button
                 onPress={() => {
                   let summary = { regularLotto: fullTables };
-                  if (tablesCheck === true) {
-                    Toast.show({
-                      text: "לא מילאת את כל הטבלאות",
-                      buttonText: "סגור",
-                      position: "top",
-                      // type: "warning",
-                      buttonStyle: {
-                        backgroundColor: "white",
-                        borderRadius: 8,
-                      },
-                      textStyle: { color: "white", fontFamily: "fb-Spacer" },
-                      buttonTextStyle: {
-                        color: "black",
-                        fontFamily: "fb-Spacer",
-                      },
-                      duration: 2500,
-                    });
-                  }
-                  if (tablesCheck === false) {
-                    navigation.navigate("ExtraFormPage", {
-                      tableNum: tableNum,
-                      screenName: "לוטו",
-                      fullTables: fullTables,
-                      gameType: "regular",
-                    });
-                  }
+                  // if (tablesCheck === true) {
+                  //   Toast.show({
+                  //     text: "לא מילאת את כל הטבלאות",
+                  //     buttonText: "סגור",
+                  //     position: "top",
+                  //     // type: "warning",
+                  //     buttonStyle: {
+                  //       backgroundColor: "white",
+                  //       borderRadius: 8,
+                  //     },
+                  //     textStyle: { color: "white", fontFamily: "fb-Spacer" },
+                  //     buttonTextStyle: {
+                  //       color: "black",
+                  //       fontFamily: "fb-Spacer",
+                  //     },
+                  //     duration: 2500,
+                  //   });
+                  // }
+                  // if (tablesCheck === false) {
+                  navigation.navigate("ExtraFormPage", {
+                    tableNum: tableNum,
+                    screenName: "לוטו",
+                    fullTables: fullTables,
+                    gameType: "regular",
+                  });
+                  // }
                 }}
                 style={LottoListstyles.sendFormBtn}
               >
