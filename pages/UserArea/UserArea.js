@@ -17,7 +17,7 @@ import ViewForm from "./ViewForm";
 import BlankSquare from "../../components/BlankSquare";
 import SendHistory from "./SendHistory/SendHistory";
 import ActiveForms from "./ActiveForms/ActiveForms";
-import Withdrawal from "./Withdrawal/WithDrawal";
+import Withdrawal from "./WithDrawal/WithDrawal";
 import MyWins from "./MyWins/MyWins";
 import PaymentHistory from "./PaymentHistory/PaymentHistory";
 import HistoryRefund from "./HistoryRefund/HistoryRefund";

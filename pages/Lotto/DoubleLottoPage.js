@@ -3,21 +3,7 @@ import LottoListstyles from "./LottoListStyles";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-  Toast,
-} from "native-base";
+import { Button, List, ListItem, Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
@@ -120,7 +106,7 @@ const DoubleLottoPage = ({ navigation }) => {
     let fullTabels1 = [];
     // for (let i = 1; i < tableNum + 1; i++) {
     for (let i = 1; i < 14; i++) {
-      while (i < tableNum+1){
+      while (i < tableNum + 1) {
         let numbers = autoFill(6);
         let table = {
           tableNum: i,
@@ -130,15 +116,14 @@ const DoubleLottoPage = ({ navigation }) => {
         fullTabels1 = [...fullTabels1, table];
         i++;
       }
-      
+
       let table = {
         tableNum: i,
         choosenNums: [" "],
-        strongNum: (" "),
+        strongNum: " ",
       };
       fullTabels1 = [...fullTabels1, table];
       i++;
-      
     }
     setFullTables(fullTabels1);
   };
@@ -246,7 +231,7 @@ const DoubleLottoPage = ({ navigation }) => {
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
-        <ChooseForm  setdouble={setdouble} double={double} />
+        <ChooseForm setdouble={setdouble} double={double} />
         <View style={{ margin: 15 }}>
           <View style={LottoListstyles.lottoPageContainer}>
             <View style={LottoListstyles.header}>
