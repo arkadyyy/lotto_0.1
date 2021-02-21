@@ -1,27 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, Dimensions, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-} from "native-base";
-import { ScrollView } from "react-native-gesture-handler";
+
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  faArrowAltCircleRight,
-  faArrowAltCircleLeft,
-  faCircleThin,
-} from "@fortawesome/free-regular-svg-icons";
+
 import EStyleSheet from "react-native-extended-stylesheet";
 import {
   faAngleDoubleRight,
@@ -88,10 +70,14 @@ const StrongNum = ({ num, strongNum, setstrongNum }) => {
           margin: 2,
         }}
       >
-        <Text style={{
-          color: strongNum === num ? "#E62321" : "white",
-          fontFamily: "fb-Spacer"
-        }}>{num}</Text>
+        <Text
+          style={{
+            color: strongNum === num ? "#E62321" : "white",
+            fontFamily: "fb-Spacer",
+          }}
+        >
+          {num}
+        </Text>
       </TouchableOpacity>
     </>
   );
@@ -230,7 +216,6 @@ const FillForm = ({
         >
           <View style={{ flexDirection: "row", flex: 1 }}>
             <View style={{ flexDirection: "row", flex: 1 }}>
-              
               <TouchableOpacity
                 style={{
                   width: 30,
