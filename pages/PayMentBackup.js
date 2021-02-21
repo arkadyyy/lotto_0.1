@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
     TextInput,
-  Image,Switch
+  Image
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -44,32 +44,7 @@ import axios from "axios";
 import { useRoute } from "@react-navigation/native";
 
 ///////////////////////////////////////////////////////////////////////
-const s = StyleSheet.create({
-  // switch: {
-  //   alignSelf: "center",
-  //   marginTop: 20,
-  //   marginBottom: 20,
-  //   backgroundColor:"red"
-  // },
-  container: {
-    backgroundColor: "#F5F5F5",
-    marginTop: 20,
-    // flexWrap: "nowrap",
-    // flexDirection: "column",
-    height: 500,
-    // flex:9
-    
-  },
-  label: {
-    // backgroundColor:"red",
-    color: "black",
-    fontSize: 12,
-  },
-  input: {
-    fontSize: 16,
-    color: "black",
-  },
-});
+
 
 
 
@@ -198,10 +173,6 @@ const Payment = ({ navigation }) => {
     
   ]);
 
-  // _onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
-  _onChange = (form ) => console.log(form);
-  _onFocus = (field) => console.log("focusing", field);
- 
   return (
     <>
       <NavBar navigation={navigation} screenName={"Payment"} />
@@ -323,7 +294,7 @@ const Payment = ({ navigation }) => {
               </>
             )}
 
-            {/* {store.signUp === -1 && ( */}
+            {store.signUp === -1 && (
               <>
                 <View style={[signInstyles.whiteSquare]}>
                   <Text
@@ -364,7 +335,7 @@ const Payment = ({ navigation }) => {
                 <View
                   style={[
                     signInstyles.detailsSquare,
-                    { height: "80%", padding: 20 },
+                    // { height: "80%", padding: 20 },
                   ]}
                 >
                   <View
@@ -384,52 +355,15 @@ const Payment = ({ navigation }) => {
                         fontFamily: "fb-Spacer",
                       }}
                     >
-                    פרטי תשלום
+                      פרטי תשלום
                     </Text>
-                    <View style={s.container}>
-                    {/* <Switch
-          style={s.switch}
-                   /> */}
-                    <CreditCardInput
-                      addtionalInputsProps={
-                        {
-                        
-                          number: {
-                            // defaultValue: 'my name',
-                            maxLength: 5,
-                          },
-                          
-                        }
-                        }
-                      autoFocus
-                      requiresName
-                      requiresCVC
-                      // requiresPostalCode
-                      
-                      labelStyle={s.label}
-                      inputStyle={s.input}
-                      validColor={"black"}
-                      invalidColor={"red"}
-                      placeholderColor={"white"}
-                      onFocus={_onFocus}
-                      onChange={_onChange}
-                      labels={{ number: "מספר כרטיס", expiry: "תוקף", cvc: "3 ספרות", type: "סוג", name: "שם בעל הכרטיס" }}
-                     
-                      placeholders={
-                        { number: " ", expiry: " ", cvc: " ", name: " " }
-                      }
-                      allowScroll={true}
-                      cardScale={1}
-                    
-                  />
 
                     
-                  </View>
                   </View>
 
                   
 {/* מספר כרטיס מכאן */}
-                  {/* <View
+                  <View
                     style={{
                       alignItems: "stretch",
 
@@ -468,7 +402,7 @@ const Payment = ({ navigation }) => {
                         icon={faCheckCircle}
                       />
                     </View>
-                                  </View> */}
+                                  </View>
 {/* עד כאן מספר כרטיס */}
                     
 <View style={{flexDirection:"row"}}>
@@ -539,7 +473,7 @@ const Payment = ({ navigation }) => {
                       flex: 1,
                     }}
                   >
-                    {/* <View style={{ flexDirection: "row" }}>
+                    <View style={{ flexDirection: "row" }}>
                       <Label
                         style={{
                           fontSize:EStyleSheet.value("$rem") * 12,
@@ -549,15 +483,20 @@ const Payment = ({ navigation }) => {
                         >
                         תוקף                      
                      </Label>
-                    </View> */}
+                    </View>
               
-                    {/* <TouchableOpacity
+                    <TouchableOpacity
                       style={{ flexDirection: "row", alignItems: "center",backgroundColor:"white",borderRadius:8,height:30,width:100,left:10,top:8 }}
                       onPress={() => {
                         setShow(true);
                       }}
                       >
-                    
+                      {/* <TextInput
+                        value={lastName}
+                        style={signInstyles.signInPageInput}
+                        key={"LAST_NAME"}
+                        onChangeText={(text) => setLastName(text)}
+                      /> */}
                          <Text
                         style={{
                           fontSize: EStyleSheet.value("$rem") * 20,
@@ -576,9 +515,18 @@ const Payment = ({ navigation }) => {
                         icon={faCheckCircle}
                         />
                        
-                      </TouchableOpacity> */}
-                    
+                      </TouchableOpacity>
                       {/* {show && (
+                      <DateTimePicker
+                        testID='dateTimePicker'
+                        value={new Date()}
+                        mode='date'
+                        is24Hour={false}
+                        display='spinner'
+                        onChange={onChange}
+                      />
+                    )} */}
+                      {show && (
                         <View style={{flexDirection:"row",alignSelf:"flex-end",left:40}}>
                           <Picker
                             // text styles={{fontFamily: "fb-Spacer-bold"}}
@@ -622,14 +570,14 @@ const Payment = ({ navigation }) => {
                     </Picker>
                    
                         </View>
-                    )} */}
+                    )}
                         
                     </View>
                     
                           {/* עד כאן תוקף         */}
 
                          {/* CW מכאן */}
-                  {/* <View
+                  <View
                     style={{
                       alignItems: "stretch",
 
@@ -666,14 +614,14 @@ const Payment = ({ navigation }) => {
                       />
                     </View>
                   
-                  </View> */}
+                  </View>
 
 
 {/* עד כאן CW */}
 </View>
 
                    {/* מכאן שם בעל הכרטיס                */}
-                  {/* <View
+                  <View
                     style={{
                       alignItems: "stretch",
                       flex: 1,
@@ -707,7 +655,7 @@ const Payment = ({ navigation }) => {
                         icon={faCheckCircle}
                       />
                     </View>
-                  </View> */}
+                  </View>
 
                                   {/* עד כאן שם בעל הכרטיס */}
 
@@ -785,7 +733,7 @@ a                      });
           
                               
               </>
-            {/* )} */}
+            )}
           </View>
 
           <ColorLine />
