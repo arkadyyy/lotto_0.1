@@ -17,7 +17,6 @@ const Num = ({
   pressed,
   setcounter,
   counter,
-<<<<<<< HEAD
   usedTableNum,
 }) => {
   const [isDisabled, setisDisabled] = useState(false);
@@ -76,100 +75,6 @@ const Num = ({
   //   };
   //   // מה שלמעלה לקוח מהtable
   // }
-=======
-  tableNum,
-  fullTables,
-  setfullTables,
-  tablesUsed,
-  settablesUsed,
-  typeArr,
-  settypeArr,
-  shitatiPage,
-}) => {
-  const [isDisabled, setisDisabled] = useState(false);
-
-  if (shitatiPage === "shitatiPage") {
-    console.log("55555");
-
-    // const [isDisabled, setisDisabled] = useState(false);
-    useEffect(() => {
-      //if we pressed on a card and we added it to pressed.symbolsPressed ...
-      if (pressed.symbolsPressed.length >= 1) {
-        //first of all , remove its old object in fullTables be4 we put its new object
-        let filtered = fullTables.choosenCards.filter(
-          (x) => x.cardType !== pressed.type
-        );
-
-        //now we set updated fulltables
-        setfullTables({
-          gameType: tableNum,
-          choosenCards: [
-            ...filtered,
-            {
-              cardType: pressed.type,
-              card: pressed.symbolsPressed,
-            },
-          ],
-        });
-      }
-    }, [pressed]);
-
-    useEffect(() => {
-      let x = disabled(pressed, tablesUsed, tableNum, typeArr);
-
-      setisDisabled(x);
-
-      console.log("counter:", counter);
-    }, [counter]);
-
-    const disabled = (pressed, tablesUsed, tableNum, typeArr) => {
-      if (pressed.symbolsPressed.includes(symbol)) {
-        console.log("i am in first if");
-        return false;
-        //instead of counter / 4 === tableNum i need to replace it with pressed.numberOfPress >= 4
-      } else if (typeArr.length === tableNum && counter / 4 === tableNum) {
-        console.log("i am in secend if");
-        return true;
-      } else if (pressed.symbolsPressed.length >= 4) {
-        console.log("i am in third if");
-        return true;
-      } else if (
-        typeArr.length === tableNum &&
-        !typeArr.includes(pressed.type)
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    };
-    // מה שלמעלה לקוח מהtable
-  }
-
-  useEffect(() => {
-    //if we pressed on a card and we added it to pressed.symbolsPressed ...
-    if (counter >= 1) {
-      // console.log("counter is bigger/equal than 1");
-      //first of all , remove its old object in fullTables be4 we put its new object
-      let filtered = fullTables.choosenCards.filter(
-        (x) => x.cardType !== pressed.type
-      );
-
-      console.log("fullTables.choosenCards : ", fullTables.choosenCards);
-
-      //now we set updated fulltables
-      setfullTables({
-        gameType: tableNum,
-        choosenCards: [
-          ...filtered,
-          {
-            cardType: pressed.type,
-            card: pressed.symbolsPressed,
-          },
-        ],
-      });
-    }
-  }, [counter]);
->>>>>>> fd05c5d4f91f08d1b28f9ca185b42eadd6a9d7ad
 
   return (
     <>
@@ -191,11 +96,7 @@ const Num = ({
             ? false
             : pressed.symbolsPressed.length > 0
             ? true
-<<<<<<< HEAD
             : counter > usedTableNum - 1
-=======
-            : counter > tableNum - 1
->>>>>>> fd05c5d4f91f08d1b28f9ca185b42eadd6a9d7ad
             ? true
             : false
         }
@@ -210,15 +111,12 @@ const Num = ({
         //     ? true
         //     : false
         // }
-<<<<<<< HEAD
 
         // {
         //   numberOfPress: 0,
         //   symbolsPressed: [],
         //   type: "heart",
         // }
-=======
->>>>>>> fd05c5d4f91f08d1b28f9ca185b42eadd6a9d7ad
         onPress={() => {
           if (pressed.symbolsPressed.includes(symbol)) {
             setpressed({
@@ -228,10 +126,6 @@ const Num = ({
               ),
               type: pressed.type,
             });
-<<<<<<< HEAD
-
-=======
->>>>>>> fd05c5d4f91f08d1b28f9ca185b42eadd6a9d7ad
             setcounter(counter - 1);
           } else {
             setpressed({
@@ -339,10 +233,7 @@ const FillForm = ({
   shitatiPage,
   settablesUsed,
   tablesUsed,
-<<<<<<< HEAD
   opendTableNum,
-=======
->>>>>>> fd05c5d4f91f08d1b28f9ca185b42eadd6a9d7ad
 }) => {
   const [symbols, setsymbols] = useState([
     "A",

@@ -11,14 +11,9 @@ const Table = ({
   pressedHeart,
   pressedDiamond,
   pressedClubs,
-<<<<<<< HEAD
   tableIndex,
   fullTables,
   setopendTableNum,
-=======
-  formNum,
-  tableIndex,
->>>>>>> fd05c5d4f91f08d1b28f9ca185b42eadd6a9d7ad
 }) => {
   const [usedSpade, setusedSpade] = useState([]);
   const [usedHeart, setusedHeart] = useState([]);

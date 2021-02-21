@@ -19,7 +19,6 @@ const ChancePage = ({ navigation }) => {
   const [tableNum, settableNum] = useState(1);
   const [formNum, setformNum] = useState(3);
   const [investNum, setinvestNum] = useState(5);
-<<<<<<< HEAD
   const [opendTableNum, setopendTableNum] = useState(0);
   const [fullTables, setfullTables] = useState([
     {
@@ -113,43 +112,6 @@ const ChancePage = ({ navigation }) => {
       ],
     },
   ]);
-=======
-  const [counter, setcounter] = useState(0);
-  const [fullTables, setfullTables] = useState({
-    gameType: 1,
-    choosenCards: [],
-  });
-  // const [fullTables, setfullTables] = useState({
-  //  tableNum  : 0,
-  //   gameType: 1,
-  //   choosenCards: [
-  //     {
-  //       cardType: "heart",
-  //       card: ["K"],
-  //     },
-  //   ],
-  // });
-  const [pressedSpade, setpressedSpade] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "spade",
-  });
-  const [pressedHeart, setpressedHeart] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "heart",
-  });
-  const [pressedDiamond, setpressedDiamond] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "diamond",
-  });
-  const [pressedClubs, setpressedClubs] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "clubs",
-  });
->>>>>>> fd05c5d4f91f08d1b28f9ca185b42eadd6a9d7ad
 
   const dispatch = useDispatch();
 
@@ -208,14 +170,7 @@ const ChancePage = ({ navigation }) => {
       setfullTables([...filtered, usedTable]);
     }
 
-<<<<<<< HEAD
     // setcounter(tableNum);
-=======
-      pressed[1]({ ...pressed[0], symbolsPressed: [card] });
-    });
-
-    setcounter(tableNum);
->>>>>>> fd05c5d4f91f08d1b28f9ca185b42eadd6a9d7ad
   };
 
   const deletForm = () => {
@@ -313,32 +268,6 @@ const ChancePage = ({ navigation }) => {
     ]);
   };
 
-<<<<<<< HEAD
-=======
-  ///////////////////
-
-  // useEffect(() => {
-  //   console.log("fulltables from chancePage : ", fullTables);
-  // }, [fullTables]);
-
-  useEffect(() => {
-    setfullTables({
-      ...fullTables,
-      gameType: tableNum,
-      choosenCards: [
-        ...fullTables.choosenCards,
-        {
-          pressedSpade,
-          pressedHeart,
-          pressedDiamond,
-          pressedClubs,
-        },
-      ],
-    });
-    console.log("fullTables :", fullTables);
-  }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
-
->>>>>>> fd05c5d4f91f08d1b28f9ca185b42eadd6a9d7ad
   useEffect(() => {
     setfullTables([
       {
@@ -434,98 +363,9 @@ const ChancePage = ({ navigation }) => {
     ]);
   }, [tableNum]);
 
-<<<<<<< HEAD
   // useEffect(() => {
   //   console.log("fullTables :", fullTables);
   // }, [fullTables]);
-=======
-  useEffect(() => {
-    if (counter >= 1) {
-      // console.log("counter is bigger/equal than 1");
-      //first of all , remove its old object in fullTables be4 we put its new object
-      let filtered = fullTables.choosenCards.filter(
-        (x) => x.cardType !== pressedSpade.type
-      );
-
-      //now we set updated fulltables
-      setfullTables({
-        gameType: tableNum,
-        choosenCards: [
-          ...filtered,
-          {
-            cardType: pressedSpade.type,
-            card: pressedSpade.symbolsPressed,
-          },
-        ],
-      });
-    }
-  }, [pressedSpade]);
-
-  useEffect(() => {
-    if (counter >= 1) {
-      //first of all , remove its old object in fullTables be4 we put its new object
-      let filtered = fullTables.choosenCards.filter(
-        (x) => x.cardType !== pressedHeart.type
-      );
-
-      //now we set updated fulltables
-      setfullTables({
-        gameType: tableNum,
-        choosenCards: [
-          ...filtered,
-          {
-            cardType: pressedHeart.type,
-            card: pressedHeart.symbolsPressed,
-          },
-        ],
-      });
-    }
-  }, [pressedHeart]);
-
-  useEffect(() => {
-    if (counter >= 1) {
-      // console.log("counter is bigger/equal than 1");
-      //first of all , remove its old object in fullTables be4 we put its new object
-      let filtered = fullTables.choosenCards.filter(
-        (x) => x.cardType !== pressedDiamond.type
-      );
-
-      //now we set updated fulltables
-      setfullTables({
-        gameType: tableNum,
-        choosenCards: [
-          ...filtered,
-          {
-            cardType: pressedDiamond.type,
-            card: pressedDiamond.symbolsPressed,
-          },
-        ],
-      });
-    }
-  }, [pressedDiamond]);
-
-  useEffect(() => {
-    if (counter >= 1) {
-      // console.log("counter is bigger/equal than 1");
-      //first of all , remove its old object in fullTables be4 we put its new object
-      let filtered = fullTables.choosenCards.filter(
-        (x) => x.cardType !== pressedClubs.type
-      );
-
-      //now we set updated fulltables
-      setfullTables({
-        gameType: tableNum,
-        choosenCards: [
-          ...filtered,
-          {
-            cardType: pressedClubs.type,
-            card: pressedClubs.symbolsPressed,
-          },
-        ],
-      });
-    }
-  }, [pressedClubs]);
->>>>>>> fd05c5d4f91f08d1b28f9ca185b42eadd6a9d7ad
 
   return (
     <>
@@ -587,16 +427,7 @@ const ChancePage = ({ navigation }) => {
             <View style={chanceListstyles.autoBtnContainer}>
               <TouchableOpacity
                 onPress={() => {
-<<<<<<< HEAD
                   autoFillForm(tableNum, formNum);
-=======
-                  autoFillForm(tableNum);
-                  console.log("pressedSpade : ", pressedSpade);
-                  console.log("pressedHeart : ", pressedHeart);
-                  console.log("pressedDiamond : ", pressedDiamond);
-                  console.log(" pressedClubs : ", pressedClubs);
-                  console.log(" fullTables : ", fullTables);
->>>>>>> fd05c5d4f91f08d1b28f9ca185b42eadd6a9d7ad
                 }}
                 style={chanceListstyles.autoBtn}
               >
@@ -631,7 +462,6 @@ const ChancePage = ({ navigation }) => {
                     <Table
                       tableIndex={index + 1}
                       formNum={formNum}
-                      tableIndex={index + 1}
                       tableNum={tableNum}
                       fullTables={fullTables}
                       setfullTables={setfullTables}
