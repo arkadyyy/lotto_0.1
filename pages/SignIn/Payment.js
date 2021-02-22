@@ -29,7 +29,7 @@ import {
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {Picker} from '@react-native-picker/picker';
 import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
-
+// import CreditCardInput from "./creditCarsComponents/CreditCardInput.js";
 
 import EStyleSheet from "react-native-extended-stylesheet";
 
@@ -56,85 +56,102 @@ const s = StyleSheet.create({
     marginTop: 20,
     // flexWrap: "nowrap",
     // flexDirection: "column",
-    height: 500,
+    height: 450,
     // flex:9
     
   },
   label: {
-    // backgroundColor:"red",
+    backgroundColor:"white",
     color: "black",
-    fontSize: 12,
+    fontSize: 25,
+    // marginTop: 30,
+    top: 15,
+    fontFamily: "fb-Spacer-bold",
+    // borderColor: "red",
+      borderWidth: 1,
+      borderRadius: 15,
+      padding: 7,
+      fontSize: 15,
+    flex: 1,
+    height: 40,
+    // textAlignVertical:"center"
+    // textDecorationLine: "underline",
   },
   input: {
     fontSize: 16,
     color: "black",
+    fontFamily: "fb-Spacer-bold",
+    textAlignVertical: "center",
+    marginStart: 10,
+    direction: "rtl",
+    
   },
 });
 
 
 
-const validateCW = (text) => {
-  let isnum = /^\d+$/.test(text);
-  let length = text.length;
+// const validateCW = (text) => {
+//   let isnum = /^\d+$/.test(text);
+//   let length = text.length;
 
 
-  if (length === 3 && isnum) {
-    return true;
-  } else {
-    return false;
-  }
-};
+//   if (length === 3 && isnum) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// };
 
-const validateCardNum = (text) => {
-  let isnum = /^\d+$/.test(text);
-  let length = text.length;
-
-
-  if (length === 16 && isnum) {
-    return true;
-  } else {
-    return false;
-  }
-};
+// const validateCardNum = (text) => {
+//   let isnum = /^\d+$/.test(text);
+//   let length = text.length;
 
 
+//   if (length === 16 && isnum) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// };
 
-function CheckFields(
-  setfieldCheck,
-  name,
-  CW,
-  cardNum,
-  expirationDate,
+
+
+// function CheckFields(
+//   setfieldCheck,
+//   name,
+//   CW,
+//   cardNum,
+//   expirationDate,
   
-) {
-  if(name === "") {
-    setfieldCheck(true);
-  } else if (CW === "") {
-    setfieldCheck(true);
-  } else if (cardNum === "" || cardNum.length !== 16) {
-    setfieldCheck(true);
-  } else if (expirationDate === ""  || cardNum.length !== 3) {
-    setfieldCheck(true);
-  } else {
-    setfieldCheck(false);
-  }
-console.log("name:",name, "CW:",CW,"cardNum:",cardNum,"expirationDate:",expirationDate,"setfieldCheck:",setfieldCheck);
-  // if (/^\d+$/.test(cardNum) && cardNum.length === 16) {
-  // }
-}
+// ) {
+//   if(name === "") {
+//     setfieldCheck(true);
+//   } else if (CW === "") {
+//     setfieldCheck(true);
+//   } else if (cardNum === "" || cardNum.length !== 16) {
+//     setfieldCheck(true);
+//   } else if (expirationDate === ""  || cardNum.length !== 3) {
+//     setfieldCheck(true);
+//   } else {
+//     setfieldCheck(false);
+//   }
+// console.log("name:",name, "CW:",CW,"cardNum:",cardNum,"expirationDate:",expirationDate,"setfieldCheck:",setfieldCheck);
+//   // if (/^\d+$/.test(cardNum) && cardNum.length === 16) {
+//   // }
+// }
 
-const ResetInputs = (
-  setName,
-  setCW,
-  setCardNum,
-  setExpirationDate,
+// const ResetInputs = (
+//   setName,
+//   setCW,
+//   setCardNum,
+//   setExpirationDate,
   
-) => {
-  setName("");
-  setCW("");
-  setCardNum("");
-  setExpirationDate("");
-};
+// ) => {
+//   setName("");
+//   setCW("");
+//   setCardNum("");
+//   setExpirationDate("");
+// };
 
 const Payment = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -180,27 +197,27 @@ const Payment = ({ navigation }) => {
     }
   }, [store]);
 
-  useEffect(() => {
-    CheckFields(
-      setfieldCheck,
-      name,
-      cardNum,
-      CW,
-      expirationDate 
-    );
+  // useEffect(() => {
+  //   CheckFields(
+  //     setfieldCheck,
+  //     name,
+  //     cardNum,
+  //     CW,
+  //     expirationDate 
+  //   );
     // console.log("checkfields : ", fieldCheck);
     // console.log("validatephonenum : ", validatePhoneNum(phoneNum));
-  }, [
-    name,
-      cardNum,
-      CW,
-      expirationDate,
+  // }, [
+  //   name,
+  //     cardNum,
+  //     CW,
+  //     expirationDate,
     
-  ]);
+  // ]);
 
   // _onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
-  _onChange = (form ) => console.log(form);
-  _onFocus = (field) => console.log("focusing", field);
+  const _onChange = (form ) => console.log(form);
+  const _onFocus = (field) => console.log("focusing", field);
  
   return (
     <>
@@ -381,7 +398,8 @@ const Payment = ({ navigation }) => {
                       style={{
                         flex: 1,
                         color: "white",
-                        fontFamily: "fb-Spacer",
+                      fontFamily: "fb-Spacer",
+                        
                       }}
                     >
                     פרטי תשלום
@@ -391,36 +409,56 @@ const Payment = ({ navigation }) => {
           style={s.switch}
                    /> */}
                     <CreditCardInput
-                      addtionalInputsProps={
-                        {
+                      // addtionalInputsProps={
+                      //   {
                         
-                          number: {
-                            // defaultValue: 'my name',
-                            maxLength: 5,
-                          },
+                      //     number: {
+                      //       // defaultValue: 'my name',
+                      //       // maxLength: 5,
+                      //       backgroundColor: "red",
+                      //       // color:"blue"
+                      //     },
                           
-                        }
-                        }
+                      //   }
+                      //   }
                       autoFocus
                       requiresName
                       requiresCVC
                       // requiresPostalCode
-                      
+                      textDecorationColor={"transparent"}
+                      textDecorationLine={"none"}
+                      underlineColorAndroid ={"transparent"}
                       labelStyle={s.label}
                       inputStyle={s.input}
                       validColor={"black"}
-                      invalidColor={"red"}
+                      invalidColor={"black"}
                       placeholderColor={"white"}
                       onFocus={_onFocus}
                       onChange={_onChange}
-                      labels={{ number: "מספר כרטיס", expiry: "תוקף", cvc: "3 ספרות", type: "סוג", name: "שם בעל הכרטיס" }}
+                      labels={{ number: " ", expiry: " ", cvc: " ", type: "סוג", name: " " }}
                      
                       placeholders={
-                        { number: " ", expiry: " ", cvc: " ", name: " " }
+                        { number: "מספר כרטיס", expiry: "תוקף", cvc: "                      CW", name: "שם בעל הכרטיס" }
                       }
+                      placeholderColor={"black"}
                       allowScroll={true}
                       cardScale={1}
-                    
+                      additionalInputsProps={
+                        {
+                          number:
+                          {
+                            textDecorationLine: "none",
+                            underlineColorAndroid: "transparent",
+
+                          },
+                          name:{
+                            textDecorationLine: "none",
+                            underlineColorAndroid: "transparent",
+
+                          }
+                        }
+                      }
+
                   />
 
                     
@@ -713,12 +751,12 @@ const Payment = ({ navigation }) => {
 
 
                   
-                    <View style={{flexDirection:"row", justifyContent:"center",paddingBottom:20}}>
+                    <View style={{flexDirection:"row", justifyContent:"center",padding:20}}>
                                       
                                   <Image
                       style={{
-                        width: 130,
-                        height: 25,
+                        width: 170,
+                        height: 50,
                         position: "relative",
                         right: "2%",
                         top: 3,
