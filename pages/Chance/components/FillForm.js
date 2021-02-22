@@ -17,98 +17,64 @@ const Num = ({
   pressed,
   setcounter,
   counter,
-  tableNum,
-  fullTables,
-  setfullTables,
-  tablesUsed,
-  settablesUsed,
-  typeArr,
-  settypeArr,
-  shitatiPage,
+  usedTableNum,
 }) => {
   const [isDisabled, setisDisabled] = useState(false);
 
-  if (shitatiPage === "shitatiPage") {
-    console.log("55555");
+  // if (shitatiPage === "shitatiPage") {
+  //   const [isDisabled, setisDisabled] = useState(false);
+  //   useEffect(() => {
+  //     //if we pressed on a card and we added it to pressed.symbolsPressed ...
+  //     if (pressed.symbolsPressed.length >= 1) {
+  //       //first of all , remove its old object in fullTables be4 we put its new object
+  //       let filtered = fullTables.choosenCards.filter(
+  //         (x) => x.cardType !== pressed.type
+  //       );
 
-    // const [isDisabled, setisDisabled] = useState(false);
-    useEffect(() => {
-      //if we pressed on a card and we added it to pressed.symbolsPressed ...
-      if (pressed.symbolsPressed.length >= 1) {
-        //first of all , remove its old object in fullTables be4 we put its new object
-        let filtered = fullTables.choosenCards.filter(
-          (x) => x.cardType !== pressed.type
-        );
+  //       //now we set updated fulltables
+  //       setfullTables({
+  //         gameType: usedTableNum,
+  //         choosenCards: [
+  //           ...filtered,
+  //           {
+  //             cardType: pressed.type,
+  //             card: pressed.symbolsPressed,
+  //           },
+  //         ],
+  //       });
+  //     }
+  //   }, [pressed]);
 
-        //now we set updated fulltables
-        setfullTables({
-          gameType: tableNum,
-          choosenCards: [
-            ...filtered,
-            {
-              cardType: pressed.type,
-              card: pressed.symbolsPressed,
-            },
-          ],
-        });
-      }
-    }, [pressed]);
+  //   useEffect(() => {
+  //     let x = disabled(pressed, tablesUsed, usedTableNum, typeArr);
 
-    useEffect(() => {
-      let x = disabled(pressed, tablesUsed, tableNum, typeArr);
+  //     setisDisabled(x);
 
-      setisDisabled(x);
+  //     console.log("counter:", counter);
+  //   }, [counter]);
 
-      console.log("counter:", counter);
-    }, [counter]);
-
-    const disabled = (pressed, tablesUsed, tableNum, typeArr) => {
-      if (pressed.symbolsPressed.includes(symbol)) {
-        console.log("i am in first if");
-        return false;
-        //instead of counter / 4 === tableNum i need to replace it with pressed.numberOfPress >= 4
-      } else if (typeArr.length === tableNum && counter / 4 === tableNum) {
-        console.log("i am in secend if");
-        return true;
-      } else if (pressed.symbolsPressed.length >= 4) {
-        console.log("i am in third if");
-        return true;
-      } else if (
-        typeArr.length === tableNum &&
-        !typeArr.includes(pressed.type)
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    };
-    // מה שלמעלה לקוח מהtable
-  }
-
-  useEffect(() => {
-    //if we pressed on a card and we added it to pressed.symbolsPressed ...
-    if (counter >= 1) {
-      // console.log("counter is bigger/equal than 1");
-      //first of all , remove its old object in fullTables be4 we put its new object
-      let filtered = fullTables.choosenCards.filter(
-        (x) => x.cardType !== pressed.type
-      );
-
-      console.log("fullTables.choosenCards : ", fullTables.choosenCards);
-
-      //now we set updated fulltables
-      setfullTables({
-        gameType: tableNum,
-        choosenCards: [
-          ...filtered,
-          {
-            cardType: pressed.type,
-            card: pressed.symbolsPressed,
-          },
-        ],
-      });
-    }
-  }, [counter]);
+  //   const disabled = (pressed, tablesUsed, usedTableNum, typeArr) => {
+  //     if (pressed.symbolsPressed.includes(symbol)) {
+  //       console.log("i am in first if");
+  //       return false;
+  //       //instead of counter / 4 === usedTableNum i need to replace it with pressed.numberOfPress >= 4
+  //     } else if (typeArr.length === usedTableNum && counter / 4 === usedTableNum) {
+  //       console.log("i am in secend if");
+  //       return true;
+  //     } else if (pressed.symbolsPressed.length >= 4) {
+  //       console.log("i am in third if");
+  //       return true;
+  //     } else if (
+  //       typeArr.length === usedTableNum &&
+  //       !typeArr.includes(pressed.type)
+  //     ) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   };
+  //   // מה שלמעלה לקוח מהtable
+  // }
 
   return (
     <>
@@ -130,7 +96,7 @@ const Num = ({
             ? false
             : pressed.symbolsPressed.length > 0
             ? true
-            : counter > tableNum - 1
+            : counter > usedTableNum - 1
             ? true
             : false
         }
@@ -144,6 +110,12 @@ const Num = ({
         //     : counter > tableNum - 1
         //     ? true
         //     : false
+        // }
+
+        // {
+        //   numberOfPress: 0,
+        //   symbolsPressed: [],
+        //   type: "heart",
         // }
         onPress={() => {
           if (pressed.symbolsPressed.includes(symbol)) {
@@ -254,22 +226,14 @@ const FillForm = ({
   fullTables,
   setfullTables,
   setshowTable,
-  counter,
-  setcounter,
-  pressedSpade,
-  setpressedSpade,
-  pressedHeart,
-  setpressedHeart,
-  pressedDiamond,
-  setpressedDiamond,
-  pressedClubs,
-  setpressedClubs,
+
   ravChance,
   typeArr,
   settypeArr,
   shitatiPage,
   settablesUsed,
   tablesUsed,
+  opendTableNum,
 }) => {
   const [symbols, setsymbols] = useState([
     "A",
@@ -281,6 +245,30 @@ const FillForm = ({
     "8",
     "7",
   ]);
+  const [usedTable, setusedTable] = useState([]);
+  const [usedTableNum, setusedTableNum] = useState(tableNum);
+  const [counter, setcounter] = useState(0);
+
+  const [pressedSpade, setpressedSpade] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "spade",
+  });
+  const [pressedHeart, setpressedHeart] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "heart",
+  });
+  const [pressedDiamond, setpressedDiamond] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "diamond",
+  });
+  const [pressedClubs, setpressedClubs] = useState({
+    numberOfPress: 0,
+    symbolsPressed: [],
+    type: "clubs",
+  });
 
   const arrowClickedRight = () => {
     // if (opendTableNum > 1) {
@@ -293,6 +281,66 @@ const FillForm = ({
     // setopendTableNum(opendTableNum + 1);
     // }
   };
+
+  useEffect(() => {
+    setusedTableNum(tableNum);
+  }, [tableNum]);
+
+  useEffect(() => {
+    if (opendTableNum !== 0) {
+      setusedTable(
+        fullTables.find((table) => table.tableNum === opendTableNum)
+      );
+
+      let usedTable = fullTables.find(
+        (table) => table.tableNum === opendTableNum
+      ).choosenCards;
+
+      setpressedSpade({
+        ...pressedSpade,
+        symbolsPressed: usedTable.find((x) => x.type === "spade").cards,
+      });
+      setpressedHeart({
+        ...pressedHeart,
+        symbolsPressed: usedTable.find((x) => x.type === "heart").cards,
+      });
+      setpressedDiamond({
+        ...pressedDiamond,
+        symbolsPressed: usedTable.find((x) => x.type === "diamond").cards,
+      });
+      setpressedClubs({
+        ...pressedClubs,
+        symbolsPressed: usedTable.find((x) => x.type === "clubs").cards,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    setusedTable({
+      tableNum: opendTableNum,
+      choosenCards: [
+        { type: "spade", cards: pressedSpade.symbolsPressed },
+        { type: "heart", cards: pressedHeart.symbolsPressed },
+        { type: "diamond", cards: pressedDiamond.symbolsPressed },
+        { type: "clubs", cards: pressedClubs.symbolsPressed },
+      ],
+    });
+    let filtered = fullTables.filter(
+      (table) => table.tableNum !== opendTableNum
+    );
+    setfullTables([
+      ...filtered,
+      {
+        tableNum: opendTableNum,
+        choosenCards: [
+          { type: "spade", cards: pressedSpade.symbolsPressed },
+          { type: "heart", cards: pressedHeart.symbolsPressed },
+          { type: "diamond", cards: pressedDiamond.symbolsPressed },
+          { type: "clubs", cards: pressedClubs.symbolsPressed },
+        ],
+      },
+    ]);
+  }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
 
   return (
     <>
@@ -606,19 +654,13 @@ const FillForm = ({
             {symbols.map((symbol, index) => (
               <Num
                 key={index}
-                pressed={pressedSpade}
-                setpressed={setpressedSpade}
+                shitatiPage={shitatiPage}
+                usedTableNum={usedTableNum}
                 symbol={symbol}
+                setpressed={setpressedSpade}
+                pressed={pressedSpade}
                 setcounter={setcounter}
                 counter={counter}
-                tableNum={tableNum}
-                fullTables={fullTables}
-                setfullTables={setfullTables}
-                settypeArr={settypeArr}
-                typeArr={typeArr}
-                shitatiPage={shitatiPage}
-                settablesUsed={settablesUsed}
-                tablesUsed={tablesUsed}
               />
             ))}
           </View>
@@ -643,19 +685,13 @@ const FillForm = ({
             {symbols.map((symbol, index) => (
               <Num
                 key={index}
-                pressed={pressedHeart}
-                setpressed={setpressedHeart}
+                shitatiPage={shitatiPage}
+                usedTableNum={usedTableNum}
                 symbol={symbol}
+                setpressed={setpressedHeart}
+                pressed={pressedHeart}
                 setcounter={setcounter}
                 counter={counter}
-                tableNum={tableNum}
-                fullTables={fullTables}
-                setfullTables={setfullTables}
-                typeArr={typeArr}
-                settypeArr={settypeArr}
-                shitatiPage={shitatiPage}
-                settablesUsed={settablesUsed}
-                tablesUsed={tablesUsed}
               />
             ))}
           </View>
@@ -680,19 +716,13 @@ const FillForm = ({
             {symbols.map((symbol, index) => (
               <Num
                 key={index}
-                pressed={pressedDiamond}
-                setpressed={setpressedDiamond}
+                shitatiPage={shitatiPage}
+                usedTableNum={usedTableNum}
                 symbol={symbol}
+                setpressed={setpressedDiamond}
+                pressed={pressedDiamond}
                 setcounter={setcounter}
                 counter={counter}
-                tableNum={tableNum}
-                fullTables={fullTables}
-                setfullTables={setfullTables}
-                typeArr={typeArr}
-                settypeArr={settypeArr}
-                shitatiPage={shitatiPage}
-                settablesUsed={settablesUsed}
-                tablesUsed={tablesUsed}
               />
             ))}
           </View>
@@ -717,19 +747,13 @@ const FillForm = ({
             {symbols.map((symbol, index) => (
               <Num
                 key={index}
-                pressed={pressedClubs}
-                setpressed={setpressedClubs}
+                shitatiPage={shitatiPage}
+                usedTableNum={usedTableNum}
                 symbol={symbol}
+                setpressed={setpressedClubs}
+                pressed={pressedClubs}
                 setcounter={setcounter}
                 counter={counter}
-                tableNum={tableNum}
-                fullTables={fullTables}
-                setfullTables={setfullTables}
-                typeArr={typeArr}
-                settypeArr={settypeArr}
-                shitatiPage={shitatiPage}
-                settablesUsed={settablesUsed}
-                tablesUsed={tablesUsed}
               />
             ))}
           </View>

@@ -11,9 +11,39 @@ const Table = ({
   pressedHeart,
   pressedDiamond,
   pressedClubs,
-  formNum,
   tableIndex,
+  fullTables,
+  setopendTableNum,
 }) => {
+  const [usedSpade, setusedSpade] = useState([]);
+  const [usedHeart, setusedHeart] = useState([]);
+  const [usedDiamond, setusedDiamond] = useState([]);
+  const [usedClubs, setusedClubs] = useState([]);
+
+  const [table1, settable1] = useState([]);
+
+  useEffect(() => {
+    let fullTable1 = 0;
+    let x;
+
+    fullTables.forEach((table) => {
+      if (+table.tableNum === tableIndex) {
+        setusedSpade(
+          table.choosenCards.find((table) => table.type === "spade").cards
+        );
+        setusedHeart(
+          table.choosenCards.find((table) => table.type === "heart").cards
+        );
+
+        setusedDiamond(
+          table.choosenCards.find((table) => table.type === "diamond").cards
+        );
+        setusedClubs(
+          table.choosenCards.find((table) => table.type === "clubs").cards
+        );
+      }
+    });
+  }, [fullTables]);
   return (
     <>
       <View style={{ alignItems: "flex-start" }}>
@@ -39,6 +69,7 @@ const Table = ({
           }}
           onPress={() => {
             setshowTable(true);
+            setopendTableNum(tableIndex);
           }}
         >
           <ListItem
@@ -51,6 +82,7 @@ const Table = ({
             }
             onPress={() => {
               setshowTable(true);
+              setopendTableNum(tableIndex);
             }}
           >
             <View
@@ -62,13 +94,13 @@ const Table = ({
                 marginHorizontal: -10,
               }}
             >
-              {pressedSpade.symbolsPressed.length > 0 ? (
+              {usedSpade.length > 0 ? (
                 <>
                   <Image
                     style={{ width: 60, height: 80, borderRadius: 7 }}
                     source={require("C:/fullstack/lottoMatic/assets/chance/choosenSpade.png")}
                   />
-                  {pressedSpade.symbolsPressed.map((num, index) => (
+                  {usedSpade.map((num, index) => (
                     <Text
                       style={{
                         includeFontPadding: false,
@@ -101,6 +133,8 @@ const Table = ({
             // }}
             onPress={() => {
               setshowTable(true);
+              setopendTableNum(tableIndex);
+              setopendTableNum(tableIndex);
             }}
           >
             <View
@@ -112,13 +146,13 @@ const Table = ({
                 marginHorizontal: -10,
               }}
             >
-              {pressedHeart.symbolsPressed.length > 0 ? (
+              {usedHeart.length > 0 ? (
                 <>
                   <Image
                     style={{ width: 60, height: 80, borderRadius: 7 }}
                     source={require("C:/fullstack/lottoMatic/assets/chance/choosenHeart.png")}
                   />
-                  {pressedHeart.symbolsPressed.map((num, index) => (
+                  {usedHeart.map((num, index) => (
                     <Text
                       style={{
                         includeFontPadding: false,
@@ -151,6 +185,7 @@ const Table = ({
             // }}
             onPress={() => {
               setshowTable(true);
+              setopendTableNum(tableIndex);
             }}
           >
             <View
@@ -162,13 +197,13 @@ const Table = ({
                 marginHorizontal: -10,
               }}
             >
-              {pressedDiamond.symbolsPressed.length > 0 ? (
+              {usedDiamond.length > 0 ? (
                 <>
                   <Image
                     style={{ width: 60, height: 80, borderRadius: 7 }}
                     source={require("C:/fullstack/lottoMatic/assets/chance/choosenDiamond.png")}
                   />
-                  {pressedDiamond.symbolsPressed.map((num, index) => (
+                  {usedDiamond.map((num, index) => (
                     <Text
                       style={{
                         includeFontPadding: false,
@@ -201,6 +236,7 @@ const Table = ({
             // }}
             onPress={() => {
               setshowTable(true);
+              setopendTableNum(tableIndex);
             }}
           >
             <View
@@ -213,13 +249,13 @@ const Table = ({
                 marginHorizontal: -10,
               }}
             >
-              {pressedClubs.symbolsPressed.length > 0 ? (
+              {usedClubs.length > 0 ? (
                 <>
                   <Image
                     style={{ width: 60, height: 80, borderRadius: 7 }}
                     source={require("C:/fullstack/lottoMatic/assets/chance/choosenClubs.png")}
                   />
-                  {pressedClubs.symbolsPressed.map((num, index) => (
+                  {usedClubs.map((num, index) => (
                     <Text
                       style={{
                         includeFontPadding: false,
