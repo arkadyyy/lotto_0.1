@@ -520,6 +520,9 @@ const ChancePage = ({ navigation }) => {
                 }}
                 onPress={() => {
                   setformNum(formNum - 1);
+                  fullTables
+                    .find((table) => table.tableNum === formNum)
+                    .choosenCards.forEach((card) => (card.cards = []));
                 }}
               >
                 <Text style={chanceListstyles.autoBtnText}> הסר טופס</Text>
