@@ -4,6 +4,7 @@ const signInstyles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     flex: 1,
+    
   },
 
   blanksquare: {
@@ -25,7 +26,7 @@ const signInstyles = StyleSheet.create({
     backgroundColor: "#00ADEF",
 
     width: "90%",
-    height: 370,
+    // height: 470,
 padding:20,
     flex: 1,
     margin: 20,
