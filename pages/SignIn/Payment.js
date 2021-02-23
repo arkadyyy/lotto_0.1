@@ -11,6 +11,7 @@ import {
   Image,Switch
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+
 import {
   faCheck,
   faCheckCircle,
@@ -54,36 +55,61 @@ const s = StyleSheet.create({
   container: {
     backgroundColor: "#F5F5F5",
     marginTop: 20,
-    // flexWrap: "nowrap",
+    // marginBottom:20,
+    // flexWrap: "wrap",
     // flexDirection: "column",
     height: 450,
-    // flex:9
+    // borderWidth: 1,
+    // borderColor:"red"
+    // flex:3
     
   },
   label: {
-    backgroundColor:"white",
-    color: "black",
-    fontSize: 25,
+    fontSize: 12,
+    marginLeft: 10,
+    fontFamily: "fb-Spacer",
+    backgroundColor:"transparent",
+    color:"black",
     // marginTop: 30,
-    top: 15,
-    fontFamily: "fb-Spacer-bold",
-    // borderColor: "red",
-      borderWidth: 1,
+    
+    // top: 3,
+    borderColor: "#00ADEF",
+    borderWidth: 1,
+    // alignSelf:"auto",
       borderRadius: 15,
-      padding: 7,
-      fontSize: 15,
+    // padding: 2,
+    // paddingBottom: 30,
+      
+      // fontSize: 15,
     flex: 1,
-    height: 40,
-    // textAlignVertical:"center"
+    textAlignVertical:"center",
+    // height: 420,
+    // textAlignVertical:""
     // textDecorationLine: "underline",
+    // width:100
+    // writingDirection:"rtl"
+    alignContent:"stretch"
   },
   input: {
-    fontSize: 16,
+    fontSize: 18,
     color: "black",
-    fontFamily: "fb-Spacer-bold",
-    textAlignVertical: "center",
-    marginStart: 10,
-    direction: "rtl",
+    fontFamily: "fb-Spacer",
+    // marginStart: 28,
+    // direction: "rtl",
+    // marginBottom: -10,
+    // paddingBottom:10,
+    backgroundColor: "white",
+    // marginVertical:10,
+    borderRadius: 15,
+    // textAlignVertical: "center",
+    textAlign: "right",
+    // alignSelf: "center",
+    marginLeft:10,
+    // right: 80,
+    top: -5,
+
+    // width:100
+    // underlineColorAndroid:"transparent"
     
   },
 });
@@ -387,11 +413,13 @@ const Payment = ({ navigation }) => {
                   <View
                     style={{
                       flex: 1,
-                      flexDirection: "row",
-                      justifyContent: "center",
+                      flexDirection: "column",
+                      // justifyContent: "flex-end,
                       alignItems: "center",
                       marginBottom: 2,
-                      marginTop:-20
+                    marginTop: -20,
+                    // paddingBottom:0
+                      // paddingHorizontal:20
                     }}
                   >
                     <Text
@@ -399,7 +427,12 @@ const Payment = ({ navigation }) => {
                         flex: 1,
                         color: "white",
                       fontFamily: "fb-Spacer",
-                        
+                      alignSelf: "baseline",
+                      top: 15,
+                      fontSize: 18,
+                      // textDecorationLine: "underline",
+                      // textDecorationStyle: "solid",
+                      
                       }}
                     >
                     פרטי תשלום
@@ -409,18 +442,6 @@ const Payment = ({ navigation }) => {
           style={s.switch}
                    /> */}
                     <CreditCardInput
-                      // addtionalInputsProps={
-                      //   {
-                        
-                      //     number: {
-                      //       // defaultValue: 'my name',
-                      //       // maxLength: 5,
-                      //       backgroundColor: "red",
-                      //       // color:"blue"
-                      //     },
-                          
-                      //   }
-                      //   }
                       autoFocus
                       requiresName
                       requiresCVC
@@ -431,31 +452,42 @@ const Payment = ({ navigation }) => {
                       labelStyle={s.label}
                       inputStyle={s.input}
                       validColor={"black"}
-                      invalidColor={"black"}
+                      invalidColor={"red"}
                       placeholderColor={"white"}
                       onFocus={_onFocus}
                       onChange={_onChange}
-                      labels={{ number: " ", expiry: " ", cvc: " ", type: "סוג", name: " " }}
+                      labels={{ number: "מספר כרטיס", expiry: "תוקף", cvc:"CW",name:"שם בעל הכרטיס" }}
                      
-                      placeholders={
-                        { number: "מספר כרטיס", expiry: "תוקף", cvc: "                      CW", name: "שם בעל הכרטיס" }
-                      }
-                      placeholderColor={"black"}
+                      // placeholders={
+                      //   { number: "מספר כרטיס", expiry: "תוקף", cvc: "                      CW", name: "שם בעל הכרטיס" }
+                      // }
+                      
                       allowScroll={true}
                       cardScale={1}
                       additionalInputsProps={
                         {
                           number:
                           {
-                            textDecorationLine: "none",
-                            underlineColorAndroid: "transparent",
-
+                          // right:20,
+                            // backgroundColor:"white",
+                            
+// right:20
                           },
                           name:{
                             textDecorationLine: "none",
                             underlineColorAndroid: "transparent",
-
+                            // top:-20,
+                          
+                          },
+                          cvc: {
+                            // backgroundColor: "white",
+                            // top:20,
+                            
+                          },
+                          expiry: {
+                            top:20
                           }
+
                         }
                       }
 
@@ -509,7 +541,7 @@ const Payment = ({ navigation }) => {
                                   </View> */}
 {/* עד כאן מספר כרטיס */}
                     
-<View style={{flexDirection:"row"}}>
+{/* <View style={{flexDirection:"row"}}> */}
                                   {/* מכאן תוקף               */}
                {/* <View style={{ flexDirection: "row", alignItems: "center" }}>
                    
@@ -570,13 +602,13 @@ const Payment = ({ navigation }) => {
                       />
                     )}
                   </View> */}
-   <View
+   {/* <View
                     style={{
                       alignItems: "stretch",
 
                       flex: 1,
                     }}
-                  >
+                  > */}
                     {/* <View style={{ flexDirection: "row" }}>
                       <Label
                         style={{
@@ -662,7 +694,7 @@ const Payment = ({ navigation }) => {
                         </View>
                     )} */}
                         
-                    </View>
+                    {/* </View> */}
                     
                           {/* עד כאן תוקף         */}
 
@@ -708,7 +740,7 @@ const Payment = ({ navigation }) => {
 
 
 {/* עד כאן CW */}
-</View>
+{/* </View> */}
 
                    {/* מכאן שם בעל הכרטיס                */}
                   {/* <View
@@ -751,15 +783,15 @@ const Payment = ({ navigation }) => {
 
 
                   
-                    <View style={{flexDirection:"row", justifyContent:"center",padding:20}}>
+                    <View style={{flexDirection:"row", justifyContent:"center",paddingBottom:18}}>
                                       
                                   <Image
                       style={{
                         width: 170,
                         height: 50,
                         position: "relative",
-                        right: "2%",
-                        top: 3,
+                        // right: "2%",
+                        // top: 3,
                         resizeMode: "contain",
                       }}
                       source={require("../../assets/home/toppng.com_visa_mastercard_american_express_logos_american_express_1530x261.png")}
