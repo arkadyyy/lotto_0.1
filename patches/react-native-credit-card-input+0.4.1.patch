@@ -1,3 +1,17 @@
+diff --git a/node_modules/react-native-credit-card-input/src/CCFieldFormatter.js b/node_modules/react-native-credit-card-input/src/CCFieldFormatter.js
+index 0c93c04..acd4673 100644
+--- a/node_modules/react-native-credit-card-input/src/CCFieldFormatter.js
++++ b/node_modules/react-native-credit-card-input/src/CCFieldFormatter.js
+@@ -34,7 +34,8 @@ export default class CCFieldFormatter {
+ 
+   _formatNumber = (number, card) => {
+     const numberSanitized = removeNonNumber(number);
+-    const maxLength = card.lengths[card.lengths.length - 1];
++    const maxLength = card.lengths[card.lengths.length];
++    // const maxLength = card.lengths[card.lengths.length - 1];
+     const lengthSanitized = limitLength(numberSanitized, maxLength);
+     const formatted = addGaps(lengthSanitized, card.gaps);
+     return formatted;
 diff --git a/node_modules/react-native-credit-card-input/src/CCInput.js b/node_modules/react-native-credit-card-input/src/CCInput.js
 index dde3aec..f1df39e 100644
 --- a/node_modules/react-native-credit-card-input/src/CCInput.js
