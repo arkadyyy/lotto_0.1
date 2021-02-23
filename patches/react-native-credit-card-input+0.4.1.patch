@@ -24,19 +24,18 @@ index dde3aec..f1df39e 100644
              placeholder={placeholder}
              value={value}
 diff --git a/node_modules/react-native-credit-card-input/src/CardView.js b/node_modules/react-native-credit-card-input/src/CardView.js
-index 96510cd..70eca54 100644
+index 96510cd..3031cdb 100644
 --- a/node_modules/react-native-credit-card-input/src/CardView.js
 +++ b/node_modules/react-native-credit-card-input/src/CardView.js
-@@ -31,6 +31,8 @@ const s = StyleSheet.create({
+@@ -31,6 +31,7 @@ const s = StyleSheet.create({
    },
    placeholder: {
      color: "rgba(255, 255, 255, 0.5)",
-+    // backgroundColor:"red"
 +
    },
    focused: {
      fontWeight: "bold",
-@@ -41,6 +43,7 @@ const s = StyleSheet.create({
+@@ -41,6 +42,7 @@ const s = StyleSheet.create({
      position: "absolute",
      top: 95,
      left: 28,
@@ -44,7 +43,7 @@ index 96510cd..70eca54 100644
    },
    name: {
      fontSize: 16,
-@@ -54,24 +57,30 @@ const s = StyleSheet.create({
+@@ -54,24 +56,29 @@ const s = StyleSheet.create({
      position: "absolute",
      bottom: 40,
      left: 218,
@@ -62,7 +61,6 @@ index 96510cd..70eca54 100644
      position: "absolute",
      top: 73,
      right: 30,
-+    // backgroundColor:"red"
 +  
    },
    cvc: {
@@ -75,7 +73,7 @@ index 96510cd..70eca54 100644
    },
  });
  
-@@ -115,8 +124,8 @@ export default class CardView extends Component {
+@@ -115,8 +122,8 @@ export default class CardView extends Component {
        placeholder, imageFront, imageBack, scale, fontFamily } = this.props;
  
      const Icons = { ...defaultIcons, ...customIcons };
@@ -86,7 +84,7 @@ index 96510cd..70eca54 100644
  
      const containerSize = { ...BASE_SIZE, height: BASE_SIZE.height * scale };
      const transform = { transform: [
-@@ -150,10 +159,10 @@ export default class CardView extends Component {
+@@ -150,10 +157,10 @@ export default class CardView extends Component {
                <Text style={[s.baseText, { fontFamily }, s.expiry, !expiry && s.placeholder, focused === "expiry" && s.focused]}>
                  { !expiry ? placeholder.expiry : expiry }
                </Text>
@@ -100,26 +98,44 @@ index 96510cd..70eca54 100644
            <ImageBackground style={[BASE_SIZE, s.cardFace, transform]}
              source={imageBack}>
 diff --git a/node_modules/react-native-credit-card-input/src/CreditCardInput.js b/node_modules/react-native-credit-card-input/src/CreditCardInput.js
-index 44f43c8..bca3d9b 100644
+index 44f43c8..4ef6928 100644
 --- a/node_modules/react-native-credit-card-input/src/CreditCardInput.js
 +++ b/node_modules/react-native-credit-card-input/src/CreditCardInput.js
-@@ -18,25 +18,47 @@ import { InjectedProps } from "./connectToState";
+@@ -10,6 +10,7 @@ import ReactNative, {
+   TextInput,
+   ViewPropTypes,
+ } from "react-native";
++import EStyleSheet from "react-native-extended-stylesheet";
+ 
+ import CreditCard from "./CardView";
+ import CCInput from "./CCInput";
+@@ -18,25 +19,64 @@ import { InjectedProps } from "./connectToState";
  const s = StyleSheet.create({
    container: {
      alignItems: "center",
 +    backgroundColor:"#00ADEF"
    },
    form: {
-     marginTop: 20,
-+        backgroundColor:"#00ADEF"
+-    marginTop: 20,
++    // marginBottom: 20,
++    backgroundColor: "#00ADEF",
++    // borderColor: "red",
++    // borderWidth: 1,
++    
 +
    },
    inputContainer: {
++    fontFamily: "fb-Spacer",
++
++    // borderColor: "green",
++    // borderWidth: 1,
      marginLeft: 20,
 +    backgroundColor:"transparent",
 +    // backgroundColor: "red",
-+    height: 85,    
-+     textDecorationLine: "none",
++    height: 80,    
++    textDecorationLine: "none",
++    //  paddingVertical:10,
++    marginVertical:-1,
 +    textDecorationColor: "transparent",
 +    // borderWidth: 2,
 +    // borderColor:"red",
@@ -127,13 +143,22 @@ index 44f43c8..bca3d9b 100644
 +    // underlineColorAndroid :"transparent"
    },
    inputLabel: {
-     fontWeight: "bold",
+-    fontWeight: "bold",
++    fontFamily: "fb-Spacer",
++      // fontSize: EStyleSheet.value("$rem") * 10,
++    
++    // fontWeight: "bold",
 +    // backgroundColor: "red",
 +    // borderWidth: 2,
 +    // borderColor:"red",
    },
    input: {
      height: 40,
++    direction: "rtl",
++    // textAlign:"",
++    // alignSelf: "center",
++    // alignItems:"",
++    // flex:2,
 +    //  borderWidth: 2,
 +    // borderColor:"red",
 +    // backgroundColor:"red"
@@ -144,7 +169,7 @@ index 44f43c8..bca3d9b 100644
  });
  
 -const CVC_INPUT_WIDTH = 70;
-+const CVC_INPUT_WIDTH = 130;
++const CVC_INPUT_WIDTH = 120;
  const EXPIRY_INPUT_WIDTH = CVC_INPUT_WIDTH;
  const CARD_NUMBER_INPUT_WIDTH_OFFSET = 40;
 -const CARD_NUMBER_INPUT_WIDTH = Dimensions.get("window").width - EXPIRY_INPUT_WIDTH - CARD_NUMBER_INPUT_WIDTH_OFFSET;
@@ -153,7 +178,7 @@ index 44f43c8..bca3d9b 100644
  const NAME_INPUT_WIDTH = CARD_NUMBER_INPUT_WIDTH;
  const PREVIOUS_FIELD_OFFSET = 40;
  const POSTAL_CODE_INPUT_WIDTH = 120;
-@@ -80,14 +102,17 @@ export default class CreditCardInput extends Component {
+@@ -80,14 +120,16 @@ export default class CreditCardInput extends Component {
        name: "Full Name",
        number: "1234 5678 1234 5678",
        expiry: "MM/YY",
@@ -162,18 +187,31 @@ index 44f43c8..bca3d9b 100644
        postalCode: "34567",
      },
      inputContainerStyle: {
-       borderBottomWidth: 1,
-       borderBottomColor: "black",
-+    //    textDecorationLine: "none",
-+    // textDecorationColor: "transparent",
-+    // underlineColorAndroid :"transparent"
+-      borderBottomWidth: 1,
+-      borderBottomColor: "black",
++      // borderBottomWidth: 1,
++      // borderBottomColor: "black",
++      // backgroundColor:"red"
++    
      },
 -    validColor: "",
 +    validColor: "black",
      invalidColor: "red",
      placeholderColor: "gray",
      allowScroll: false,
-@@ -159,16 +184,19 @@ export default class CreditCardInput extends Component {
+@@ -152,37 +194,47 @@ export default class CreditCardInput extends Component {
+         <CreditCard focused={focused}
+           brand={type}
+           scale={cardScale}
+-          fontFamily={cardFontFamily}
++          // fontFamily={cardFontFamily}
++          fontFamily={"fb-Spacer"}
++          // fontFamily: "fb-Spacer",
++          // top: EStyleSheet.value("$rem") * 10,
++
+           imageFront={cardImageFront}
+           imageBack={cardImageBack}
+           customIcons={cardBrandIcons}
            name={requiresName ? name : " "}
            number={number}
            expiry={expiry}
@@ -192,14 +230,15 @@ index 44f43c8..bca3d9b 100644
 -            containerStyle={[s.inputContainer, inputContainerStyle, { width: CARD_NUMBER_INPUT_WIDTH }]} />
 +            containerStyle={[s.inputContainer, inputContainerStyle, { width: CARD_NUMBER_INPUT_WIDTH }]}
 +          />
-+          <View style={{flexDirection:"row",justifyContent:"space-evenly"}}>
++          <View style={{flexDirection:"row"}}>
            <CCInput {...this._inputProps("expiry")}
              keyboardType="numeric"
              containerStyle={[s.inputContainer, inputContainerStyle, { width: EXPIRY_INPUT_WIDTH }]} />
-@@ -176,13 +204,16 @@ export default class CreditCardInput extends Component {
+           { requiresCVC &&
              <CCInput {...this._inputProps("cvc")}
                keyboardType="numeric"
-               containerStyle={[s.inputContainer, inputContainerStyle, { width: CVC_INPUT_WIDTH }]} /> }
+-              containerStyle={[s.inputContainer, inputContainerStyle, { width: CVC_INPUT_WIDTH }]} /> }
++              containerStyle={[s.inputContainer, inputContainerStyle, { width: CVC_INPUT_WIDTH,right:10 }]} /> }
 +
 +          </View>
 +          
