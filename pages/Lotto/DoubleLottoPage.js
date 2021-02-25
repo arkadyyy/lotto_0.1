@@ -24,7 +24,7 @@ const DoubleLottoPage = ({ navigation }) => {
   const [double, setdouble] = useState(true);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
-
+  const [errorMsg, seterrorMsg] = useState("");
   const [tablesCheck, settablesCheck] = useState(false);
   const [fullTables, setFullTables] = useState([
     {
@@ -104,9 +104,8 @@ const DoubleLottoPage = ({ navigation }) => {
 
   const autoFillForm = () => {
     let fullTabels1 = [];
-    // for (let i = 1; i < tableNum + 1; i++) {
-    for (let i = 1; i < 14; i++) {
-      while (i < tableNum + 1) {
+    for (let i = 1; i <= 14; i++) {
+      while (i <= tableNum) {
         let numbers = autoFill(6);
         let table = {
           tableNum: i,
@@ -117,13 +116,12 @@ const DoubleLottoPage = ({ navigation }) => {
         i++;
       }
 
-      let table = {
-        tableNum: i,
-        choosenNums: [" "],
-        strongNum: " ",
-      };
-      fullTabels1 = [...fullTabels1, table];
-      i++;
+      // let table = {
+      //   tableNum: i,
+      //   choosenNums: [" ", " ", " ", " ", " ", " "],
+      //   strongNum: " ",
+      // };
+      // fullTabels1 = [...fullTabels1, table];
     }
     setFullTables(fullTabels1);
   };
@@ -203,14 +201,28 @@ const DoubleLottoPage = ({ navigation }) => {
     setTableRowColor("#D60617");
   };
 
-  const checkTables = (fullTables) => {
-    returnedState = false;
+  const checkTables = (fullTables, tableNum) => {
+    let returnedState = false;
 
-    if (fullTables.length !== tableNum) {
+    console.log(tableNum);
+
+    let checkedFullTables = fullTables.sort((table1, table2) => {
+      return table1.tableNum - table2.tableNum;
+    });
+    checkedFullTables.slice(0, tableNum - 1);
+    console.log("checkedFullTables : ", checkedFullTables);
+
+    if (checkedFullTables.length !== tableNum) {
       returnedState = true;
+      seterrorMsg("אנא מלא את כל הטבלאות");
     }
 
-    fullTables.forEach((table) => {
+    if (store.user === -1) {
+      returnedState = true;
+      seterrorMsg("עלייך להתחבר על מנת להמשיך");
+    }
+
+    checkedFullTables.forEach((table) => {
       if (table.choosenNums.includes(" ")) {
         returnedState = true;
       }
@@ -222,7 +234,7 @@ const DoubleLottoPage = ({ navigation }) => {
   };
 
   useEffect(() => {
-    settablesCheck(checkTables(fullTables));
+    settablesCheck(checkTables(fullTables, tableNum));
     console.log("tablesCheck : ", tablesCheck);
     console.log("fullTables : ", fullTables);
   }, [fullTables, tableNum]);
@@ -309,7 +321,8 @@ const DoubleLottoPage = ({ navigation }) => {
                 onPress={() => {
                   if (tablesCheck === true) {
                     Toast.show({
-                      text: "לא מילאת את כל הטבלאות",
+                      text: errorMsg,
+                      textStyle: { fontFamily: "fb-Spacer" },
                       buttonText: "סגור",
                       position: "top",
                       // type: "warning",

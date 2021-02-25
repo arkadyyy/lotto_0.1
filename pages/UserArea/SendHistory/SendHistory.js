@@ -18,7 +18,7 @@ import {
 import ViewForm from "../ViewForm";
 
 const SeeOrDupilcate = ({ index, open, form }) => {
-  const [chanceCards, setChanceCards] = [''];
+  const [chanceCards, setChanceCards] = [""];
   if (index === open.index) {
     return (
       <View>
@@ -26,8 +26,9 @@ const SeeOrDupilcate = ({ index, open, form }) => {
           <Text
             style={{
               color: "#263742",
-              fontWeight: "bold",
-              padding: 10,
+
+              paddingVertical: 10,
+              fontFamily: "fb-Spacer-bold",
             }}
           >
             הצירוף שלי
@@ -36,105 +37,90 @@ const SeeOrDupilcate = ({ index, open, form }) => {
             {/* {console.log("form6666666666666666666666",form)} */}
             {/* {console.log("form.99999999:",form.marks.tables)} */}
             {console.log("form.99999999type:", form.form_type)}
-            
-            {
-              form.form_type === "regular_lotto" ||
-              form.form_type === "lotto_shitati" ||
-              form.form_type === "lotto_shitati_hazak" 
-            ? ( 
+
+            {form.form_type === "regular_lotto" ||
+            form.form_type === "lotto_shitati" ||
+            form.form_type === "lotto_shitati_hazak" ? (
               <>
-                 {form.marks.tables.map((table, index) => (
-              <ViewForm
-                numbers={table.numbers}
-                strongNum={table.strong_number}
-                tableNum={table.table_number}
-                form_type={form.form_type}
-              />
-            ))}
-            
-                </>
-            ):null
-            }
-            {
-              form.form_type === "123"   && ( 
-                <>               
-                 {form.marks.tables.map((table, index) => (
-              <ViewForm
-                numbers={table.numbers}
-                form_type={form.form_type}
-                tableNum={table.table_number}
-
-              />
-            ))}
-            
-                </>
-            )
-            }
-            {
-              form.form_type === "regular_777"
-              || form.form_type === "shitati_777"
-              
-              && ( 
-                <>               
-                 {form.marks.tables.map((table, index) => (
-              <ViewForm
-                numbers={table.numbers}
-                form_type={form.form_type}
-                tableNum={table.table_number}
-
-              />
-            ))}
-            
-                </>
-            )
-            }
-            
-            {
-              form.form_type === "regular_chance"
-              || form.form_type === "rav_chance"
-                ?
-                (
-                  <View style={{ flexDirection: "row" }}>
-                  {Object.values(form.marks.cards).map((cards, indexShapes) => (
-                  <>
-                   
-                      {console.log("regular or rav chance????????????????????????????", cards)}
-                    <ViewForm 
-                        cards={cards}
-                indexShapes={indexShapes}
-                        ShapesTitle={Object.keys(form.marks.cards)}
-                        form_type={form.form_type}
+                {form.marks.tables.map((table, index) => (
+                  <ViewForm
+                    numbers={table.numbers}
+                    strongNum={table.strong_number}
+                    tableNum={table.table_number}
+                    form_type={form.form_type}
                   />
-                </>
                 ))}
-                
-                </View>
-            ) 
-             :null
-            }
-
-            {form.form_type === "chance_shitati" 
-            && 
-              <View style={{ flexDirection:"column" }}>
-              {Object.values(form.marks.cards).map((cardsShitati, indexShapes) => (
+              </>
+            ) : null}
+            {form.form_type === "123" && (
               <>
-               
-                  {console.log("cardsShitati????????????????@@@@@@@@", form.marks.cards)}
-                  {console.log("cardsShitati????????????????@@@@@@@@", cardsShitati)}
-                <ViewForm 
-                    cardsShitati={cardsShitati}
-                    indexShapes={indexShapes}
-                    ShapesTitle={Object.keys(form.marks.cards)}
+                {form.marks.tables.map((table, index) => (
+                  <ViewForm
+                    numbers={table.numbers}
+                    form_type={form.form_type}
+                    tableNum={table.table_number}
+                  />
+                ))}
+              </>
+            )}
+            {form.form_type === "regular_777" ||
+              (form.form_type === "shitati_777" && (
+                <>
+                  {form.marks.tables.map((table, index) => (
+                    <ViewForm
+                      numbers={table.numbers}
+                      form_type={form.form_type}
+                      tableNum={table.table_number}
+                    />
+                  ))}
+                </>
+              ))}
 
-                // tableNum={table.table_number}
-                form_type={form.form_type}
-              />
-            </>
-            ))}
-            
-            </View>
-            }
-         
+            {form.form_type === "regular_chance" ||
+            form.form_type === "rav_chance" ? (
+              <View style={{ flexDirection: "row" }}>
+                {Object.values(form.marks.cards).map((cards, indexShapes) => (
+                  <>
+                    {console.log(
+                      "regular or rav chance????????????????????????????",
+                      cards
+                    )}
+                    <ViewForm
+                      cards={cards}
+                      indexShapes={indexShapes}
+                      ShapesTitle={Object.keys(form.marks.cards)}
+                      form_type={form.form_type}
+                    />
+                  </>
+                ))}
+              </View>
+            ) : null}
+
+            {form.form_type === "chance_shitati" && (
+              <View style={{ flexDirection: "column" }}>
+                {Object.values(form.marks.cards).map(
+                  (cardsShitati, indexShapes) => (
+                    <>
+                      {console.log(
+                        "cardsShitati????????????????@@@@@@@@",
+                        form.marks.cards
+                      )}
+                      {console.log(
+                        "cardsShitati????????????????@@@@@@@@",
+                        cardsShitati
+                      )}
+                      <ViewForm
+                        cardsShitati={cardsShitati}
+                        indexShapes={indexShapes}
+                        ShapesTitle={Object.keys(form.marks.cards)}
+                        // tableNum={table.table_number}
+                        form_type={form.form_type}
+                      />
+                    </>
+                  )
+                )}
+              </View>
+            )}
           </View>
         </View>
         <View

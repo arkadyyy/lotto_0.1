@@ -28,6 +28,7 @@ import EStyleSheet from "react-native-extended-stylesheet";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { Touchable } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 
 const LottoShitatiPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -39,6 +40,9 @@ const LottoShitatiPage = ({ navigation }) => {
   const [indexOfTable, setIndexOfTable] = useState(1);
   const [opendTableNum, setopendTableNum] = useState(1);
   const [tablesCheck, settablesCheck] = useState(false);
+  const [errorMsg, seterrorMsg] = useState("");
+
+  const store = useSelector((state) => state);
   const autoFillForm = () => {
     let numbers = autoFill(tzerufimNumber);
     let table = {
@@ -49,14 +53,29 @@ const LottoShitatiPage = ({ navigation }) => {
     setFullTables([table]);
   };
 
-  const checkTables = (fullTables) => {
-    returnedState = false;
+  const checkTables = (fullTables, tableNum) => {
+    let returnedState = false;
 
-    if (fullTables.length !== tableNum) {
+    console.log(tableNum);
+
+    let checkedFullTables = fullTables.sort((table1, table2) => {
+      return table1.tableNum - table2.tableNum;
+    });
+    checkedFullTables.slice(0, tableNum - 1);
+    console.log("checkedFullTables : ", checkedFullTables);
+
+    if (checkedFullTables.length !== tableNum) {
       returnedState = true;
+      seterrorMsg("אנא מלא את הטבלה");
     }
 
-    fullTables.forEach((table) => {
+    if (store.user === -1) {
+      returnedState = true;
+
+      seterrorMsg("עלייך להתחבר על מנת להמשיך");
+    }
+
+    checkedFullTables.forEach((table) => {
       if (table.choosenNums.includes(" ")) {
         returnedState = true;
       }
@@ -68,7 +87,7 @@ const LottoShitatiPage = ({ navigation }) => {
   };
 
   useEffect(() => {
-    settablesCheck(checkTables(fullTables));
+    settablesCheck(checkTables(fullTables, tableNum));
     console.log("tablesCheck : ", tablesCheck);
     console.log("fullTables : ", fullTables);
   }, [fullTables, tableNum]);
@@ -162,7 +181,8 @@ const LottoShitatiPage = ({ navigation }) => {
 
                   if (tablesCheck === true) {
                     Toast.show({
-                      text: "לא מילאת את כל הטבלאות",
+                      text: errorMsg,
+                      textStyle: { fontFamily: "fb-Spacer" },
                       buttonText: "סגור",
                       position: "top",
                       // type: "warning",

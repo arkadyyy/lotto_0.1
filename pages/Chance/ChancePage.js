@@ -17,9 +17,21 @@ import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 const ChancePage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
-  const [formNum, setformNum] = useState(3);
+  const [formNum, setformNum] = useState(1);
   const [investNum, setinvestNum] = useState(5);
   const [opendTableNum, setopendTableNum] = useState(0);
+  const [allCounters, setallCounters] = useState([
+    { formNum: 1, counter: 0 },
+    { formNum: 2, counter: 0 },
+    { formNum: 3, counter: 0 },
+    { formNum: 4, counter: 0 },
+    { formNum: 5, counter: 0 },
+    { formNum: 6, counter: 0 },
+    { formNum: 7, counter: 0 },
+    { formNum: 8, counter: 0 },
+    { formNum: 9, counter: 0 },
+    { formNum: 10, counter: 0 },
+  ]);
   const [fullTables, setfullTables] = useState([
     {
       tableNum: 1,
@@ -170,7 +182,15 @@ const ChancePage = ({ navigation }) => {
       setfullTables([...filtered, usedTable]);
     }
 
-    // setcounter(tableNum);
+    let updatedAllCounters = allCounters.map((counter, index) => {
+      if (counter.formNum <= formNum) {
+        counter.counter = tableNum;
+        return counter;
+      } else {
+        return counter;
+      }
+    });
+    setallCounters(updatedAllCounters);
   };
 
   const deletForm = () => {
@@ -266,6 +286,12 @@ const ChancePage = ({ navigation }) => {
         ],
       },
     ]);
+
+    let updatedAllCounters = allCounters.map((counter, index) => {
+      counter.counter = 0;
+      return counter;
+    });
+    setallCounters(updatedAllCounters);
   };
 
   useEffect(() => {
@@ -361,11 +387,13 @@ const ChancePage = ({ navigation }) => {
         ],
       },
     ]);
-  }, [tableNum]);
 
-  // useEffect(() => {
-  //   console.log("fullTables :", fullTables);
-  // }, [fullTables]);
+    let updatedAllCounters = allCounters.map((counter, index) => {
+      counter.counter = 0;
+      return counter;
+    });
+    setallCounters(updatedAllCounters);
+  }, [tableNum]);
 
   return (
     <>
@@ -453,6 +481,11 @@ const ChancePage = ({ navigation }) => {
                 fullTables={fullTables}
                 setfullTables={setfullTables}
                 opendTableNum={opendTableNum}
+                setopendTableNum={setopendTableNum}
+                allCounters={allCounters}
+                setallCounters={setallCounters}
+                formNum={formNum}
+                autoFillForm={autoFillForm}
               />
             )}
             <View style={chanceListstyles.listContainerBorder}>
@@ -474,6 +507,7 @@ const ChancePage = ({ navigation }) => {
             </View>
             <View style={{ flexDirection: "row", alignSelf: "center" }}>
               <TouchableOpacity
+                disabled={formNum >= 10}
                 style={{
                   alignSelf: "center",
                   // backgroundColor: "#8CC63F",
@@ -505,6 +539,7 @@ const ChancePage = ({ navigation }) => {
               </TouchableOpacity>
 
               <TouchableOpacity
+                disabled={formNum === 1}
                 style={{
                   alignSelf: "center",
                   // backgroundColor: "#8CC63F",
@@ -523,6 +558,16 @@ const ChancePage = ({ navigation }) => {
                   fullTables
                     .find((table) => table.tableNum === formNum)
                     .choosenCards.forEach((card) => (card.cards = []));
+
+                  let updatedAllCounters = allCounters.map((counter, index) => {
+                    if (counter.formNum === formNum) {
+                      counter.counter = 0;
+                      return counter;
+                    } else {
+                      return counter;
+                    }
+                  });
+                  setallCounters(updatedAllCounters);
                 }}
               >
                 <Text style={chanceListstyles.autoBtnText}> הסר טופס</Text>

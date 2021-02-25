@@ -105,15 +105,15 @@ const LottoPage = ({ navigation }) => {
   const [opendTableNum, setopendTableNum] = useState(0);
   const [tableRowColor, setTableRowColor] = useState("D60617");
   const [tablesCheck, settablesCheck] = useState(false);
-
+  const [errorMsg, seterrorMsg] = useState("");
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
   const route = useRoute();
 
   const autoFillForm = () => {
     let fullTabels1 = [];
-    for (let i = 1; i < 14; i++) {
-      while (i < tableNum + 1) {
+    for (let i = 1; i <= 14; i++) {
+      while (i <= tableNum) {
         let numbers = autoFill(6);
         let table = {
           tableNum: i,
@@ -124,13 +124,12 @@ const LottoPage = ({ navigation }) => {
         i++;
       }
 
-      let table = {
-        tableNum: i,
-        choosenNums: [" "],
-        strongNum: " ",
-      };
-      fullTabels1 = [...fullTabels1, table];
-      i++;
+      // let table = {
+      //   tableNum: i,
+      //   choosenNums: [" ", " ", " ", " ", " ", " "],
+      //   strongNum: " ",
+      // };
+      // fullTabels1 = [...fullTabels1, table];
     }
     setFullTables(fullTabels1);
   };
@@ -211,16 +210,29 @@ const LottoPage = ({ navigation }) => {
     // setTableRowColor("#D60617");
   };
 
-  const checkTables = (fullTables) => {
-    returnedState = false;
-    console.log("7777");
-console.log(fullTables.length);
-console.log(tableNum);
-    if (fullTables.length-1 !== tableNum) {
+  const checkTables = (fullTables, tableNum) => {
+    let returnedState = false;
+
+    console.log(tableNum);
+
+    let checkedFullTables = fullTables.sort((table1, table2) => {
+      return table1.tableNum - table2.tableNum;
+    });
+    checkedFullTables.slice(0, tableNum - 1);
+    console.log("checkedFullTables : ", checkedFullTables);
+
+    if (checkedFullTables.length !== tableNum) {
       returnedState = true;
+      seterrorMsg("אנא מלא את כל הטבלאות");
     }
 
-    fullTables.forEach((table) => {
+    if (store.user === -1) {
+      returnedState = true;
+
+      seterrorMsg("עלייך להתחבר על מנת להמשיך");
+    }
+
+    checkedFullTables.forEach((table) => {
       if (table.choosenNums.includes(" ")) {
         returnedState = true;
       }
@@ -232,7 +244,7 @@ console.log(tableNum);
   };
 
   useEffect(() => {
-    settablesCheck(checkTables(fullTables));
+    settablesCheck(checkTables(fullTables, tableNum));
     console.log("tablesCheck : ", tablesCheck);
     console.log("fullTables : ", fullTables);
   }, [fullTables, tableNum]);
@@ -329,34 +341,36 @@ console.log(tableNum);
             </View>
             <View style={LottoListstyles.sendFormBtnContainer}>
               <Button
-                onPress={() => {
-                  let summary = { regularLotto: fullTables };
-                  // if (tablesCheck === true) {
-                  //   Toast.show({
-                  //     text: "לא מילאת את כל הטבלאות",
-                  //     buttonText: "סגור",
-                  //     position: "top",
-                  //     // type: "warning",
-                  //     buttonStyle: {
-                  //       backgroundColor: "white",
-                  //       borderRadius: 8,
-                  //     },
-                  //     textStyle: { color: "white", fontFamily: "fb-Spacer" },
-                  //     buttonTextStyle: {
-                  //       color: "black",
-                  //       fontFamily: "fb-Spacer",
-                  //     },
-                  //     duration: 2500,
-                  //   });
-                  // }
-                  // if (tablesCheck === false) {
-                  navigation.navigate("ExtraFormPage", {
-                    tableNum: tableNum,
-                    screenName: "לוטו",
-                    fullTables: fullTables,
-                    gameType: "regular",
-                  });
-                  // }
+                onPress={async () => {
+                  // await checkTables(fullTables);
+
+                  if (tablesCheck === true) {
+                    Toast.show({
+                      textStyle: { fontFamily: "fb-Spacer" },
+                      text: errorMsg,
+                      buttonText: "סגור",
+                      position: "top",
+                      // type: "warning",
+                      buttonStyle: {
+                        backgroundColor: "white",
+                        borderRadius: 8,
+                      },
+                      textStyle: { color: "white", fontFamily: "fb-Spacer" },
+                      buttonTextStyle: {
+                        color: "black",
+                        fontFamily: "fb-Spacer",
+                      },
+                      duration: 2500,
+                    });
+                  }
+                  if (tablesCheck === false) {
+                    navigation.navigate("ExtraFormPage", {
+                      tableNum: tableNum,
+                      screenName: "לוטו",
+                      fullTables: fullTables,
+                      gameType: "regular",
+                    });
+                  }
                 }}
                 style={LottoListstyles.sendFormBtn}
               >

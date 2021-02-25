@@ -1,104 +1,398 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-} from "native-base";
+import { Button, List } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
-import TableChanceShitati from "./components/TableChanceShitati";
+import Table from "./components/Table";
 import chanceListstyles from "./ChanceListStyles";
+import EStyleSheet from "react-native-extended-stylesheet";
+import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const ChanceShitatiPage = ({ navigation }) => {
+const ChancePage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
+  const [formNum, setformNum] = useState(1);
   const [investNum, setinvestNum] = useState(5);
-  const [counter, setcounter] = useState(0);
+  const [opendTableNum, setopendTableNum] = useState(0);
+  const [allCounters, setallCounters] = useState([
+    { formNum: 1, counter: 0 },
+    { formNum: 2, counter: 0 },
+    { formNum: 3, counter: 0 },
+    { formNum: 4, counter: 0 },
+    { formNum: 5, counter: 0 },
+    { formNum: 6, counter: 0 },
+    { formNum: 7, counter: 0 },
+    { formNum: 8, counter: 0 },
+    { formNum: 9, counter: 0 },
+    { formNum: 10, counter: 0 },
+  ]);
+  const [fullTables, setfullTables] = useState([
+    {
+      tableNum: 1,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 2,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 3,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 4,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 5,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 6,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 7,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 8,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 9,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 10,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+  ]);
 
-  const [double, setdouble] = useState(false);
-  const [filledForm, setfilledForm] = useState([]);
-  const [fullTables, setfullTables] = useState({
-    gameType: 1,
-    choosenCards: [],
-  });
-  const [pressedSpade, setpressedSpade] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "spade",
-  });
-  const [pressedHeart, setpressedHeart] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "heart",
-  });
-  const [pressedDiamond, setpressedDiamond] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "diamond",
-  });
-  const [pressedClubs, setpressedClubs] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "clubs",
-  });
-  const [tablesUsed, settablesUsed] = useState(0);
-  const [typeArr, settypeArr] = useState([]);
+  const dispatch = useDispatch();
 
+  const autoFillForm = async (tableNum, formNum) => {
+    await deletForm();
+    const cardArr = ["7", "8", "9", "10", "J", "Q", "K", "A"];
 
-  // מה זה עושה האם נצרך ומדוייק בשיטתי בכלל??
-  // useEffect(() => {
-  //   const filterEmptyFullTables = fullTables.choosenCards.filter(
-  //     (x) => x.card.length !== 0
-  //   );
-  //   console.log("filterEmptyFullTables : ", filterEmptyFullTables);
+    for (let index = 1; index <= formNum; index++) {
+      console.log(" i am here ~~~~~~~~");
+      //filtered are all fulltables that are not gonna change
+      let filtered = fullTables.filter((table) => table.tableNum !== index);
+      // console.log("filtered : ", filtered);
+      //usedtable is the table we are currently changing, auto filling
+      let usedTable = fullTables.find((table) => table.tableNum === index);
+      // console.log("usedTable : ", usedTable);
 
-  //   setfullTables({ ...fullTables, choosenCards: filterEmptyFullTables });
-  // }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
+      let randomNumArr = [0, 1, 2, 3];
 
+      var shuffled = cardArr.sort(function () {
+        return 0.5 - Math.random();
+      });
+      var selected = shuffled.slice(0, tableNum);
 
+      console.log(shuffled);
+      console.log(selected);
 
+      usedTable.choosenCards = [
+        {
+          cards: [],
+          type: "spade",
+        },
+        {
+          cards: [],
+          type: "heart",
+        },
+        {
+          cards: [],
+          type: "diamond",
+        },
+        {
+          cards: [],
+          type: "clubs",
+        },
+      ];
+
+      selected.forEach((card, index) => {
+        let random = Math.floor(Math.random() * randomNumArr.length);
+
+        usedTable.choosenCards[randomNumArr[random]].cards = [card];
+
+        console.log("usedtable choosencards : ", usedTable.choosenCards);
+
+        randomNumArr.splice(random, 1);
+        console.log("randomNumArr : ", randomNumArr);
+      });
+      setfullTables([...filtered, usedTable]);
+    }
+
+    let updatedAllCounters = allCounters.map((counter, index) => {
+      if (counter.formNum <= formNum) {
+        counter.counter = tableNum;
+        return counter;
+      } else {
+        return counter;
+      }
+    });
+    setallCounters(updatedAllCounters);
+  };
+
+  const deletForm = () => {
+    setfullTables([
+      {
+        tableNum: 1,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 2,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 3,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 4,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 5,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 6,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 7,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 8,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 9,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 10,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+    ]);
+
+    let updatedAllCounters = allCounters.map((counter, index) => {
+      counter.counter = 0;
+      return counter;
+    });
+    setallCounters(updatedAllCounters);
+  };
 
   useEffect(() => {
-    // console.log("i am here resetting fulltables");
+    setfullTables([
+      {
+        tableNum: 1,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 2,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 3,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 4,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 5,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 6,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 7,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 8,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 9,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 10,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+    ]);
 
-    setcounter(0);
-
-    setpressedSpade({
-      ...pressedSpade,
-      symbolsPressed: [],
+    let updatedAllCounters = allCounters.map((counter, index) => {
+      counter.counter = 0;
+      return counter;
     });
-    setpressedHeart({
-      ...pressedHeart,
-      symbolsPressed: [],
-    });
-
-    setpressedClubs({
-      ...pressedClubs,
-      symbolsPressed: [],
-    });
-    setpressedDiamond({
-      ...pressedDiamond,
-      symbolsPressed: [],
-    });
-
-    setfullTables({
-      gameType: tableNum,
-      choosenCards: [],
-    });
+    setallCounters(updatedAllCounters);
   }, [tableNum]);
 
   return (
@@ -106,120 +400,201 @@ const ChanceShitatiPage = ({ navigation }) => {
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare gameName="הגרלת צ'אנס" color='#009943' />
-        <ChooseForm color='#009943' setdouble={setdouble} />
+        <ChooseForm color='#009943' />
+
         <View style={{ margin: 15 }}>
-          <View style={{ backgroundColor: "#009943", paddingBottom: 20 }}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                padding: 30,
-              }}
-            >
-              <View
+          <View style={chanceListstyles.chancePageContainer}>
+            <View style={chanceListstyles.header}>
+              <View style={chanceListstyles.topNumCircle}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: "#009943",
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  1
+                </Text>
+              </View>
+              <Text
                 style={{
-                  flexDirection: "row",
-                  backgroundColor: "white",
-                  width: 50,
-                  height: 50,
-                  borderRadius: 33,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginRight: 20,
+                  fontSize: 20,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
                 }}
               >
-                <Text style={{ fontSize: 20, color: "#009943" }}>1</Text>
-              </View>
-              <Text style={{ fontSize: 17, color: "white" }}>מלא את הטופס</Text>
+                מלא את הטופס
+              </Text>
             </View>
 
-            <ChooseNumOfTables
-              shitati={true}
-              settableNum={settableNum}
-              tableNum={tableNum}
-            />
+            <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} />
+
+            {/* <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                margin: 20,
+                flex: 1,
+              }}
+            > */}
+            <Text
+              style={{
+                color: "white",
+                alignSelf: "flex-start",
+                marginHorizontal: 25,
+                marginVertical: 10,
+                fontFamily: "fb-Spacer-bold",
+
+                fontSize: 15,
+              }}
+            >
+              בחר צירוף
+            </Text>
+            {/* </View> */}
+
+            <View style={chanceListstyles.autoBtnContainer}>
+              <TouchableOpacity
+                onPress={() => {
+                  autoFillForm(tableNum, formNum);
+                }}
+                style={chanceListstyles.autoBtn}
+              >
+                <Text style={chanceListstyles.autoBtnText}>
+                  מלא טופס אוטומטי
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={deletForm}
+                style={chanceListstyles.autoBtn}
+              >
+                <Text style={chanceListstyles.autoBtnText}>
+                  מחק טופס אוטומטית
+                </Text>
+              </TouchableOpacity>
+            </View>
 
             {showTable && (
               <FillForm
-                tableNum={tableNum} setshowTable={setshowTable}
                 choosenCards
                 tableNum={tableNum}
                 setshowTable={setshowTable}
                 fullTables={fullTables}
                 setfullTables={setfullTables}
-                counter={counter}
-                setcounter={setcounter}
-                pressedSpade={pressedSpade}
-                setpressedSpade={setpressedSpade}
-                pressedHeart={pressedHeart}
-                setpressedHeart={setpressedHeart}
-                pressedDiamond={pressedDiamond}
-                setpressedDiamond={setpressedDiamond}
-                pressedClubs={pressedClubs}
-                setpressedClubs={setpressedClubs}
-                tablesUsed={tablesUsed}
-  settablesUsed={settablesUsed}
-  typeArr={typeArr}
-                settypeArr={settypeArr}
-                shitatiPage={"shitatiPage"}
+                opendTableNum={opendTableNum}
+                setopendTableNum={setopendTableNum}
+                allCounters={allCounters}
+                setallCounters={setallCounters}
+                formNum={formNum}
+                autoFillForm={autoFillForm}
               />
             )}
-            <View
-              style={{
-                borderColor: showTable ? "transparent" : "white",
-                borderRadius: 7,
-                borderWidth: 1,
-                width: "95%",
-                alignSelf: "center",
-                marginTop: 20,
-                padding: 2,
-              }}
-            >
-              <List
-                style={{
-                  alignItems: "flex-end",
-                  height: 400,
-                  marginLeft: -17,
-                }}
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    alignSelf: "flex-start",
-                    marginHorizontal: 25,
-                    marginVertical: 10,
-                  }}
-                >
-                  בחר צירוף
-                </Text>
-                <TableChanceShitati
-                  fullTables={fullTables}
-                  setfullTables={setfullTables}
-                  tableNum={tableNum}
-                  setshowTable={setshowTable}
-                  pressedClubs={pressedClubs}
-                  pressedHeart={pressedHeart}
-                  pressedDiamond={pressedDiamond}
-                  pressedSpade={pressedSpade}
-                                    
-                  setpressedClubs={setpressedClubs}
-                  setpressedHeart={setpressedHeart}
-                  setpressedDiamond={setpressedDiamond}
-                  setpressedSpade={setpressedSpade}
-                  counter={counter}
-                  setcounter={setcounter}
-                  tablesUsed={tablesUsed}
-                  settablesUsed={settablesUsed}
-                  typeArr={typeArr}
-                  settypeArr={settypeArr}
-                />
+            <View style={chanceListstyles.listContainerBorder}>
+              <List style={chanceListstyles.listContainer}>
+                <ScrollView>
+                  {Array.from(Array(formNum)).map((x, index) => (
+                    <Table
+                      tableIndex={index + 1}
+                      formNum={formNum}
+                      tableNum={tableNum}
+                      fullTables={fullTables}
+                      setfullTables={setfullTables}
+                      setshowTable={setshowTable}
+                      setopendTableNum={setopendTableNum}
+                    />
+                  ))}
+                </ScrollView>
               </List>
             </View>
+            {/* <View style={{ flexDirection: "row", alignSelf: "center" }}>
+              <TouchableOpacity
+                style={{
+                  alignSelf: "center",
+                  // backgroundColor: "#8CC63F",
+                  borderColor: "white",
+                  borderWidth: 1,
+                  borderRadius: 19,
+                  margin: 5,
+                  paddingHorizontal: 20,
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: 7,
+                  flexDirection: "row",
+                }}
+                onPress={() => {
+                  setformNum(formNum + 1);
+                }}
+              >
+                <Text style={chanceListstyles.autoBtnText}> טופס נוסף</Text>
+                <Text>
+                  {" "}
+                  <FontAwesomeIcon
+                    size={12}
+                    color='white'
+                    border={true}
+                    inverse
+                    icon={faPlus}
+                  />{" "}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                disabled={formNum === 1}
+                style={{
+                  alignSelf: "center",
+                  // backgroundColor: "#8CC63F",
+                  borderColor: "white",
+                  borderWidth: 1,
+                  borderRadius: 19,
+                  margin: 5,
+                  paddingHorizontal: 20,
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: 7,
+                  flexDirection: "row",
+                }}
+                onPress={() => {
+                  setformNum(formNum - 1);
+                  fullTables
+                    .find((table) => table.tableNum === formNum)
+                    .choosenCards.forEach((card) => (card.cards = []));
+
+                  let updatedAllCounters = allCounters.map((counter, index) => {
+                    if (counter.formNum === formNum) {
+                      counter.counter = 0;
+                      return counter;
+                    } else {
+                      return counter;
+                    }
+                  });
+                  setallCounters(updatedAllCounters);
+                }}
+              >
+                <Text style={chanceListstyles.autoBtnText}> הסר טופס</Text>
+                <Text>
+                  {" "}
+                  <FontAwesomeIcon
+                    size={12}
+                    color='white'
+                    border={true}
+                    inverse
+                    icon={faMinus}
+                  />{" "}
+                </Text>
+              </TouchableOpacity> */}
+            {/* </View> */}
+
             <View style={chanceListstyles.investNumBox}>
-              <Text style={{ color: "white", marginVertical: 7 }}>
+              <Text
+                style={{
+                  color: "white",
+                  marginVertical: 7,
+                  fontFamily: "fb-Spacer",
+                  fontSize: 15,
+                }}
+              >
                 בחר את סכום ההשקעה{" "}
               </Text>
-              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+              <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
                   onPress={() => {
                     setinvestNum(5);
@@ -230,7 +605,15 @@ const ChanceShitatiPage = ({ navigation }) => {
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>5</Text>
+                  <Text
+                    style={
+                      investNum === 5
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    5
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -242,7 +625,15 @@ const ChanceShitatiPage = ({ navigation }) => {
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>10</Text>
+                  <Text
+                    style={
+                      investNum === 10
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    10
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -257,38 +648,35 @@ const ChanceShitatiPage = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
+                  let summary = { chance: fullTables, investNum };
                   navigation.navigate("SumPageChance", {
                     tableNum: tableNum,
                     investNum: investNum,
                     fullTables: fullTables,
-                    gameType: "shitati",
+                    gameType: "regular",
                   });
                 }}
-                style={{
-                  borderRadius: 17,
-                  backgroundColor: "#E62321",
-                  borderColor: "white",
-                  borderWidth: 2,
-                  padding: 10,
-                }}
+                style={chanceListstyles.sendFormBtn}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>
+                <Text style={chanceListstyles.sendFormBtnText}>
                   המשך לשליחת טופס
                 </Text>
               </Button>
             </View>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-              zIndex: -2,
-            }}
-          >
+          <View style={chanceListstyles.lottoExplanationContainer}>
             <Text style={{ fontSize: 18 }}>הסבר על הגרלות לוטו</Text>
             <TouchableOpacity>
-              <Text>עוד</Text>
+              <Text
+                style={{
+                  marginRight: 10,
+                  paddingRight: 5,
+                  paddingTop: 2,
+                  fontSize: EStyleSheet.value("$rem") * 15,
+                }}
+              >
+                עוד
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -296,4 +684,4 @@ const ChanceShitatiPage = ({ navigation }) => {
     </>
   );
 };
-export default ChanceShitatiPage;
+export default ChancePage;

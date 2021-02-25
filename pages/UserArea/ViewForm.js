@@ -26,17 +26,30 @@ const ViewForm = ({
           style={
             form_type === "lotto_shitati_hazak"
               ? { flexDirection: "column" }
-              : { flexDirection: "row", flexWrap: "wrap" }
+              : {
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+
+                  justifyContent: "center",
+                  alignItems: "center",
+                }
           }
         >
           {form_type === "regular_lotto" && tableNum < 10 ? (
-            <Text style={{ marginRight: 7 }}>טבלה {tableNum}</Text>
+            <Text style={{ marginRight: 7, fontFamily: "fb-Spacer" }}>
+              טבלה {tableNum}
+            </Text>
           ) : (
-            <Text style={{}}>טבלה {tableNum}</Text>
+            <Text style={{ fontFamily: "fb-Spacer" }}>טבלה {tableNum}</Text>
           )}
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap",
+              }}
+            >
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                 {strongNum.map((strongNumber, index) => (
                   <View
@@ -69,7 +82,7 @@ const ViewForm = ({
                       alignItems: "center",
                     }}
                   >
-                    <Text>{num}</Text>
+                    <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
                   </View>
                 ))}
               </View>
@@ -83,7 +96,7 @@ const ViewForm = ({
           <View>
             <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                <Text>טבלה {tableNum}</Text>
+                <Text style={{ fontFamily: "fb-Spacer" }}>טבלה {tableNum}</Text>
                 <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                   {Object.values(numbers).map((num, index) => (
                     <View
@@ -98,7 +111,7 @@ const ViewForm = ({
                         alignItems: "center",
                       }}
                     >
-                      <Text>{num}</Text>
+                      <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
                     </View>
                   ))}
                 </View>
@@ -124,7 +137,7 @@ const ViewForm = ({
                     alignItems: "center",
                   }}
                 >
-                  <Text>{num}</Text>
+                  <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
                 </View>
               ))}
             </View>
@@ -144,19 +157,30 @@ const ViewForm = ({
             }}
           >
             {cards.map((num, index) => (
-              <View
-                key={index}
-                style={{
-                  width: 30,
-                  height: 30,
-                  borderRadius: 30,
-                  backgroundColor: "white",
-                  margin: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text>{num}</Text>
+              <View style={{ justifyContent: "center", alignItems: "center" }}>
+                <View
+                  key={index}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: 30,
+                    backgroundColor: "white",
+                    margin: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
+                </View>
+                {ShapesTitle[indexShapes] === "clover" ? (
+                  <Text style={{ fontFamily: "fb-Spacer" }}>תלתן</Text>
+                ) : ShapesTitle[indexShapes] === "diamond" ? (
+                  <Text style={{ fontFamily: "fb-Spacer" }}>יהלום</Text>
+                ) : ShapesTitle[indexShapes] === "leaf" ? (
+                  <Text style={{ fontFamily: "fb-Spacer" }}>עלה</Text>
+                ) : ShapesTitle[indexShapes] === "heart" ? (
+                  <Text style={{ fontFamily: "fb-Spacer" }}>לב</Text>
+                ) : null}
               </View>
             ))}
             {/* <Text style={{
@@ -173,53 +197,58 @@ const ViewForm = ({
                 </Text> */}
             {console.log("ShapesTitle:", ShapesTitle)}
 
-            {ShapesTitle[indexShapes] === "clover" ? (
-              <Text>תלתן</Text>
-            ) : ShapesTitle[indexShapes] === "diamond" ? (
-              <Text>יהלום</Text>
-            ) : ShapesTitle[indexShapes] === "leaf" ? (
-              <Text>עלה</Text>
-            ) : ShapesTitle[indexShapes] === "heart" ? (
-              <Text>לב</Text>
-            ) : null}
-
             {/* <Text> {ShapesTitle[indexShapes]}</Text> */}
           </View>
         </View>
       ) : null}
-      {form_type === "chance_shitati" && (
-        <View style={{ flexDirection: "column", padding: 15 }}>
-          {cardsShitati.map((num, index) => (
-            // <View style={{flexDirection:"row"}}>
-            <View
-              key={index}
-              style={{
-                width: 30,
-                height: 30,
-                borderRadius: 30,
-                backgroundColor: "white",
-                margin: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text>{num}</Text>
 
-              {console.log("num:::::::::::::::", num)}
-              {console.log("ShapesTitle:", ShapesTitle)}
-            </View>
-          ))}
-          {ShapesTitle[indexShapes] === "clover" ? (
-            <Text>תלתן</Text>
-          ) : ShapesTitle[indexShapes] === "diamond" ? (
-            <Text>יהלום</Text>
-          ) : ShapesTitle[indexShapes] === "leaf" ? (
-            <Text>עלה</Text>
-          ) : ShapesTitle[indexShapes] === "heart" ? (
-            <Text>לב</Text>
-          ) : null}
+      <View
+        style={{
+          alignItems: "center",
+
+          flexDirection: "row",
+        }}
+      >
+        <View>
+          {form_type === "chance_shitati" && (
+            <>
+              <View>
+                {ShapesTitle[indexShapes] === "clover" ? (
+                  <Text style={{ fontFamily: "fb-Spacer" }}>תלתן</Text>
+                ) : ShapesTitle[indexShapes] === "diamond" ? (
+                  <Text style={{ fontFamily: "fb-Spacer" }}>יהלום</Text>
+                ) : ShapesTitle[indexShapes] === "leaf" ? (
+                  <Text style={{ fontFamily: "fb-Spacer" }}>עלה</Text>
+                ) : ShapesTitle[indexShapes] === "heart" ? (
+                  <Text style={{ fontFamily: "fb-Spacer" }}>לב</Text>
+                ) : null}
+              </View>
+              <View style={{ flexDirection: "row", padding: 15 }}>
+                {cardsShitati.map((num, index) => (
+                  // <View style={{flexDirection:"row"}}>
+                  <View
+                    key={index}
+                    style={{
+                      width: 30,
+                      height: 30,
+                      borderRadius: 30,
+                      backgroundColor: "white",
+                      margin: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
+
+                    {console.log("num:::::::::::::::", num)}
+                    {console.log("ShapesTitle:", ShapesTitle)}
+                  </View>
+                ))}
+              </View>
+            </>
+          )}
         </View>
-      )}
+      </View>
     </>
   );
 };

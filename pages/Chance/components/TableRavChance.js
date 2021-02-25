@@ -1,340 +1,52 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity, Image, } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  CardItem,
-  List,
-  ListItem,
-  Label
-} from "native-base";
+import { Label, ListItem } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
 
-const Num = ({
-  symbol,
-  setpressed,
-  pressed,
-  setcounter,
-  counter,
-  tableNum,
-  fullTables,
-  setfullTables,
-}) => {
-  useEffect(() => {
-    //if we pressed on a card and we added it to pressed.symbolsPressed ...
-    if (pressed.symbolsPressed.length >= 1) {
-      //first of all , remove its old object in fullTables be4 we put its new object
-      let filtered = fullTables.choosenCards.filter(
-        (x) => x.cardType !== pressed.type
-      );
-
-      //now we set updated fulltables
-      setfullTables({
-        gameType: tableNum,
-        choosenCards: [
-          ...filtered,
-          {
-            cardType: pressed.type,
-            card: pressed.symbolsPressed,
-          },
-        ],
-      });
-    }
-    console.log(" pressed : ", pressed);
-  }, [counter]);
-
-  return (
-    <>
-      <TouchableOpacity
-        style={{
-          width: 21,
-          height: 35,
-          borderRadius: 6,
-          backgroundColor: pressed.symbolsPressed.includes(symbol)
-            ? "#8CC63F"
-            : "white",
-
-          margin: 5,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        disabled={
-          pressed.symbolsPressed.includes(symbol)
-            ? false
-            : pressed.symbolsPressed.length > 0
-            ? true
-            : counter > 4
-            ? true
-            : false
-        }
-        onPress={() => {
-          if (pressed.symbolsPressed.includes(symbol)) {
-            setpressed({
-              numberOfPress: pressed.numberOfPress - 1,
-              symbolsPressed: pressed.symbolsPressed.filter(
-                (x) => x !== symbol
-              ),
-              type: pressed.type,
-            });
-            setcounter(counter - 1);
-          } else {
-            setpressed({
-              numberOfPress: ++pressed.numberOfPress,
-              symbolsPressed: [...pressed.symbolsPressed, symbol],
-              type: pressed.type,
-            });
-            setcounter(counter + 1);
-          }
-
-          console.log(pressed);
-        }}
-      >
-        <Text style={{ color: "black" }}>{symbol}</Text>
-      </TouchableOpacity>
-    </>
-  );
-};
-
-const TableRavChance = ({
-  tableNum,
-  fullTables,
-  setfullTables,
+const Table = ({
   setshowTable,
   pressedSpade,
   pressedHeart,
   pressedDiamond,
   pressedClubs,
-  setpressedSpade,
-  setpressedHeart,
-  setpressedDiamond,
-  setpressedClubs,
+  tableIndex,
+  fullTables,
+  setopendTableNum,
 }) => {
-  const [symbols, setsymbols] = useState([
-    "A",
-    "K",
-    "Q",
-    "J",
-    "10",
-    "9",
-    "8",
-    "7",
-  ]);
-  // const [pressedSpade, setpressedSpade] = useState({
-  //   numberOfPress: 0,
-  //   symbolsPressed: [],
-  //   type: "spade",
-  // });
-  // const [pressedHeart, setpressedHeart] = useState({
-  //   numberOfPress: 0,
-  //   symbolsPressed: [],
-  //   type: "heart",
-  // });
-  // const [pressedDiamond, setpressedDiamond] = useState({
-  //   numberOfPress: 0,
-  //   symbolsPressed: [],
-  //   type: "diamond",
-  // });
-  // const [pressedClubs, setpressedClubs] = useState({
-  //   numberOfPress: 0,
-  //   symbolsPressed: [],
-  //   type: "clubs",
-  // });
+  const [usedSpade, setusedSpade] = useState([]);
+  const [usedHeart, setusedHeart] = useState([]);
+  const [usedDiamond, setusedDiamond] = useState([]);
+  const [usedClubs, setusedClubs] = useState([]);
 
-  const [counter, setcounter] = useState(0);
+  const [table1, settable1] = useState([]);
 
   useEffect(() => {
-    setfullTables({
-      gameType: tableNum,
-      choosenCards: [
-        { card: [...pressedSpade.symbolsPressed], cardType: pressedSpade.type },
-        { card: [...pressedHeart.symbolsPressed], cardType: pressedHeart.type },
-        {
-          card: [...pressedDiamond.symbolsPressed],
-          cardType: pressedDiamond.type,
-        },
-        { card: [...pressedClubs.symbolsPressed], cardType: pressedClubs.type },
-      ],
-    });
-  }, [counter]);
+    let fullTable1 = 0;
+    let x;
 
+    fullTables.forEach((table) => {
+      if (+table.tableNum === tableIndex) {
+        setusedSpade(
+          table.choosenCards.find((table) => table.type === "spade").cards
+        );
+        setusedHeart(
+          table.choosenCards.find((table) => table.type === "heart").cards
+        );
+
+        setusedDiamond(
+          table.choosenCards.find((table) => table.type === "diamond").cards
+        );
+        setusedClubs(
+          table.choosenCards.find((table) => table.type === "clubs").cards
+        );
+      }
+    });
+  }, [fullTables]);
   return (
     <>
-      {/* <ListItem
-        style={{
-          flexWrap: "wrap",
-
-          height: 85,
-          alignItems: "center",
-        }}
-      >
-        <View
-          style={{
-            justifyContent: "flex-start",
-          }}
-        >
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-            }}
-          >
-            <Image
-              style={{ width: 40, height: 50, borderRadius: 7 }}
-              source={require("C:/fullstack/lottoMatic/assets/chance/spade.png")}
-            />
-            {symbols.map((symbol, index) => (
-              <Num
-                key={index}
-                pressed={pressedSpade}
-                setpressed={setpressedSpade}
-                symbol={symbol}
-                setcounter={setcounter}
-                counter={counter}
-                tableNum={tableNum}
-                fullTables={fullTables}
-                setfullTables={setfullTables}
-              />
-            ))}
-          </View>
-        </View>
-      </ListItem>
-      <ListItem
-        style={{
-          flexWrap: "wrap",
-          marginTop: 4,
-          height: 85,
-          alignItems: "center",
-        }}
-      >
-        <View
-          style={{
-            justifyContent: "flex-start",
-          }}
-        >
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-              marginTop: 7,
-            }}
-          >
-            <Image
-              style={{ width: 40, height: 50, borderRadius: 7 }}
-              source={require("C:/fullstack/lottoMatic/assets/chance/heart.png")}
-            />
-            {symbols.map((symbol, index) => (
-              <Num
-                key={index}
-                pressed={pressedHeart}
-                setpressed={setpressedHeart}
-                symbol={symbol}
-                setcounter={setcounter}
-                counter={counter}
-                tableNum={tableNum}
-                fullTables={fullTables}
-                setfullTables={setfullTables}
-              />
-            ))}
-          </View>
-        </View>
-      </ListItem>
-      <ListItem
-        style={{
-          flexWrap: "wrap",
-          marginTop: 4,
-          height: 85,
-          alignItems: "center",
-        }}
-      >
-        <View
-          style={{
-            justifyContent: "flex-start",
-          }}
-        >
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-              marginTop: 7,
-            }}
-          >
-            <Image
-              style={{ width: 40, height: 50, borderRadius: 7 }}
-              source={require("C:/fullstack/lottoMatic/assets/chance/diamond.png")}
-            />
-            {symbols.map((symbol, index) => (
-              <Num
-                key={index}
-                pressed={pressedDiamond}
-                setpressed={setpressedDiamond}
-                symbol={symbol}
-                setcounter={setcounter}
-                counter={counter}
-                tableNum={tableNum}
-                fullTables={fullTables}
-                setfullTables={setfullTables}
-              />
-            ))}
-          </View>
-        </View>
-      </ListItem>
-      <ListItem
-        noBorder={true}
-        style={{
-          flexWrap: "wrap",
-          marginTop: 4,
-          height: 85,
-          alignItems: "center",
-        }}
-      >
-        <View
-          style={{
-            justifyContent: "flex-start",
-          }}
-        >
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              marginTop: 7,
-            }}
-          >
-            <Image
-              style={{ width: 40, height: 50, borderRadius: 7 }}
-              source={require("C:/fullstack/lottoMatic/assets/chance/clubs.png")}
-            />
-            {symbols.map((symbol, index) => (
-              <Num
-                key={index}
-                pressed={pressedClubs}
-                setpressed={setpressedClubs}
-                symbol={symbol}
-                setcounter={setcounter}
-                counter={counter}
-                tableNum={tableNum}
-                setfullTables={setfullTables}
-                fullTables={fullTables}
-              />
-            ))}
-          </View>
-        </View>
-      </ListItem> */}
-
-
-<View style={{ alignItems: "flex-start" }}>
+      <View style={{ alignItems: "flex-start" }}>
         <Label
           style={{
             marginHorizontal: 25,
@@ -343,7 +55,7 @@ const TableRavChance = ({
             color: "white",
           }}
         >
-          צירוף 1
+          {`צירוף ${tableIndex}`}
         </Label>
         <ListItem
           noBorder={true}
@@ -357,6 +69,7 @@ const TableRavChance = ({
           }}
           onPress={() => {
             setshowTable(true);
+            setopendTableNum(tableIndex);
           }}
         >
           <ListItem
@@ -369,6 +82,7 @@ const TableRavChance = ({
             }
             onPress={() => {
               setshowTable(true);
+              setopendTableNum(tableIndex);
             }}
           >
             <View
@@ -380,13 +94,13 @@ const TableRavChance = ({
                 marginHorizontal: -10,
               }}
             >
-              {pressedSpade.symbolsPressed.length > 0 ? (
+              {usedSpade.length > 0 ? (
                 <>
                   <Image
                     style={{ width: 60, height: 80, borderRadius: 7 }}
                     source={require("C:/fullstack/lottoMatic/assets/chance/choosenSpade.png")}
                   />
-                  {pressedSpade.symbolsPressed.map((num, index) => (
+                  {usedSpade.map((num, index) => (
                     <Text
                       style={{
                         includeFontPadding: false,
@@ -419,6 +133,8 @@ const TableRavChance = ({
             // }}
             onPress={() => {
               setshowTable(true);
+              setopendTableNum(tableIndex);
+              setopendTableNum(tableIndex);
             }}
           >
             <View
@@ -430,13 +146,13 @@ const TableRavChance = ({
                 marginHorizontal: -10,
               }}
             >
-              {pressedHeart.symbolsPressed.length > 0 ? (
+              {usedHeart.length > 0 ? (
                 <>
                   <Image
                     style={{ width: 60, height: 80, borderRadius: 7 }}
                     source={require("C:/fullstack/lottoMatic/assets/chance/choosenHeart.png")}
                   />
-                  {pressedHeart.symbolsPressed.map((num, index) => (
+                  {usedHeart.map((num, index) => (
                     <Text
                       style={{
                         includeFontPadding: false,
@@ -469,6 +185,7 @@ const TableRavChance = ({
             // }}
             onPress={() => {
               setshowTable(true);
+              setopendTableNum(tableIndex);
             }}
           >
             <View
@@ -480,13 +197,13 @@ const TableRavChance = ({
                 marginHorizontal: -10,
               }}
             >
-              {pressedDiamond.symbolsPressed.length > 0 ? (
+              {usedDiamond.length > 0 ? (
                 <>
                   <Image
                     style={{ width: 60, height: 80, borderRadius: 7 }}
                     source={require("C:/fullstack/lottoMatic/assets/chance/choosenDiamond.png")}
                   />
-                  {pressedDiamond.symbolsPressed.map((num, index) => (
+                  {usedDiamond.map((num, index) => (
                     <Text
                       style={{
                         includeFontPadding: false,
@@ -519,6 +236,7 @@ const TableRavChance = ({
             // }}
             onPress={() => {
               setshowTable(true);
+              setopendTableNum(tableIndex);
             }}
           >
             <View
@@ -531,13 +249,13 @@ const TableRavChance = ({
                 marginHorizontal: -10,
               }}
             >
-              {pressedClubs.symbolsPressed.length > 0 ? (
+              {usedClubs.length > 0 ? (
                 <>
                   <Image
                     style={{ width: 60, height: 80, borderRadius: 7 }}
                     source={require("C:/fullstack/lottoMatic/assets/chance/choosenClubs.png")}
                   />
-                  {pressedClubs.symbolsPressed.map((num, index) => (
+                  {usedClubs.map((num, index) => (
                     <Text
                       style={{
                         includeFontPadding: false,
@@ -563,9 +281,8 @@ const TableRavChance = ({
           </ListItem>
         </ListItem>
       </View>
-
     </>
   );
 };
 
-export default TableRavChance;
+export default Table;

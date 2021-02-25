@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import chanceListstyles from "../ChanceListStyles";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import useForceUpdate from "use-force-update";
 
 const Num = ({
   symbol,
@@ -18,8 +19,22 @@ const Num = ({
   setcounter,
   counter,
   usedTableNum,
+  allCounters,
+  setallCounters,
+  usedTable,
+  fullTables,
+  opendTableNum,
+  setusedTable,
 }) => {
   const [isDisabled, setisDisabled] = useState(false);
+  const forceUpdate = useForceUpdate();
+
+  const handleUpdate = () => {
+    forceUpdate();
+  };
+  useEffect(() => {
+    handleUpdate();
+  }, [fullTables]);
 
   // if (shitatiPage === "shitatiPage") {
   //   const [isDisabled, setisDisabled] = useState(false);
@@ -234,6 +249,11 @@ const FillForm = ({
   settablesUsed,
   tablesUsed,
   opendTableNum,
+  setopendTableNum,
+  allCounters,
+  setallCounters,
+  formNum,
+  autoFillForm,
 }) => {
   const [symbols, setsymbols] = useState([
     "A",
@@ -247,7 +267,10 @@ const FillForm = ({
   ]);
   const [usedTable, setusedTable] = useState([]);
   const [usedTableNum, setusedTableNum] = useState(tableNum);
-  const [counter, setcounter] = useState(0);
+  const [counter, setcounter] = useState(
+    allCounters.find((counter) => counter.formNum === opendTableNum).counter
+  );
+  const [autoFillFormFired, setautoFillFormFired] = useState(false);
 
   const [pressedSpade, setpressedSpade] = useState({
     numberOfPress: 0,
@@ -271,15 +294,54 @@ const FillForm = ({
   });
 
   const arrowClickedRight = () => {
-    // if (opendTableNum > 1) {
-    // setopendTableNum(opendTableNum - 1);
-    // }
+    if (opendTableNum > 1) {
+      setopendTableNum(opendTableNum - 1);
+    }
   };
 
   const arrowClickedLeft = () => {
-    // if (opendTableNum < tableNum) {
-    // setopendTableNum(opendTableNum + 1);
-    // }
+    if (opendTableNum < formNum) {
+      setopendTableNum(opendTableNum + 1);
+    }
+  };
+
+  const deleteFilled = () => {
+    setpressedClubs({ ...pressedClubs, symbolsPressed: [] });
+    setpressedHeart({ ...pressedHeart, symbolsPressed: [] });
+    setpressedDiamond({ ...pressedDiamond, symbolsPressed: [] });
+    setpressedSpade({ ...pressedSpade, symbolsPressed: [] });
+  };
+
+  const autoFill = async (opendTableNum, usedTableNum) => {
+    const cardArr = ["7", "8", "9", "10", "J", "Q", "K", "A"];
+    let randomNumArr = [0, 1, 2, 3];
+
+    const pressed = [
+      [pressedSpade, setpressedSpade],
+      [pressedHeart, setpressedHeart],
+      [pressedDiamond, setpressedDiamond],
+      [pressedClubs, setpressedClubs],
+    ];
+
+    await pressed.forEach((pressed) => {
+      pressed[0].symbolsPressed = [];
+    });
+
+    var shuffled = cardArr.sort(function () {
+      return 0.5 - Math.random();
+    });
+    var selected = shuffled.slice(0, tableNum);
+    console.log("selected : ", selected);
+
+    selected.forEach((card, index) => {
+      let random = Math.floor(Math.random() * randomNumArr.length);
+
+      pressed[random][1]({ ...pressed[random][0], symbolsPressed: [card] });
+
+      randomNumArr.splice(random, 1);
+      pressed.splice(random, 1);
+      console.log("randomnumarr : ", randomNumArr);
+    });
   };
 
   useEffect(() => {
@@ -313,7 +375,12 @@ const FillForm = ({
         symbolsPressed: usedTable.find((x) => x.type === "clubs").cards,
       });
     }
-  }, []);
+    let counterMatches = allCounters.find(
+      (counter) => counter.formNum === opendTableNum
+    ).counter;
+
+    setcounter(counterMatches);
+  }, [opendTableNum]);
 
   useEffect(() => {
     setusedTable({
@@ -325,22 +392,69 @@ const FillForm = ({
         { type: "clubs", cards: pressedClubs.symbolsPressed },
       ],
     });
+
     let filtered = fullTables.filter(
       (table) => table.tableNum !== opendTableNum
     );
-    setfullTables([
-      ...filtered,
-      {
-        tableNum: opendTableNum,
-        choosenCards: [
-          { type: "spade", cards: pressedSpade.symbolsPressed },
-          { type: "heart", cards: pressedHeart.symbolsPressed },
-          { type: "diamond", cards: pressedDiamond.symbolsPressed },
-          { type: "clubs", cards: pressedClubs.symbolsPressed },
-        ],
-      },
-    ]);
+    if (autoFillFormFired === false) {
+      setfullTables([
+        ...filtered,
+        {
+          tableNum: opendTableNum,
+          choosenCards: [
+            { type: "spade", cards: pressedSpade.symbolsPressed },
+            { type: "heart", cards: pressedHeart.symbolsPressed },
+            { type: "diamond", cards: pressedDiamond.symbolsPressed },
+            { type: "clubs", cards: pressedClubs.symbolsPressed },
+          ],
+        },
+      ]);
+    }
   }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
+
+  useEffect(() => {
+    if (autoFillFormFired === true) {
+      let usedtable = fullTables.find(
+        (table) => table.tableNum === usedTableNum
+      )[0];
+      console.log("usedtable  ##### : ", usedtable);
+
+      // setpressedSpade({
+      //   ...pressedSpade,
+      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "spade")
+      //     .cards,
+      // });
+      // setpressedHeart({
+      //   ...pressedHeart,
+      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "heart")
+      //     .cards,
+      // });
+      // setpressedDiamond({
+      //   ...pressedDiamond,
+      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "diamond")
+      //     .cards,
+      // });
+      // setpressedClubs({
+      //   ...pressedClubs,
+      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "clubs")
+      //     .cards,
+      // });
+      deleteFilled();
+      autoFill(opendTableNum, usedTableNum);
+    }
+
+    setautoFillFormFired(false);
+  }, [autoFillFormFired]);
+
+  useEffect(() => {
+    let filteredAllCounters = allCounters.filter(
+      (counter) => counter.formNum !== opendTableNum
+    );
+    setallCounters([
+      ...filteredAllCounters,
+      { formNum: opendTableNum, counter: counter },
+    ]);
+  }, [counter]);
 
   return (
     <>
@@ -373,8 +487,8 @@ const FillForm = ({
             <View style={{ flexDirection: "row", flex: 1 }}>
               <TouchableOpacity
                 onPress={() => {
-                  autoFill(6);
-                  console.log("iam working 4");
+                  autoFill(opendTableNum, usedTableNum);
+                  console.log(usedTableNum);
                 }}
                 style={{
                   width: 30,
@@ -413,6 +527,9 @@ const FillForm = ({
                   borderRadius: 23,
                   margin: 3,
                 }}
+                onPress={() => {
+                  deleteFilled();
+                }}
               >
                 {/* onPress={() => {
                   setchoosenNums([]);
@@ -445,7 +562,10 @@ const FillForm = ({
                   borderRadius: 23,
                   margin: 3,
                 }}
-                // onPress={autoFillForm}
+                onPress={() => {
+                  setautoFillFormFired(true);
+                  autoFillForm(tableNum, formNum);
+                }}
               >
                 <Image
                   style={{ width: 22.5, height: 12.5 }}
@@ -498,7 +618,10 @@ const FillForm = ({
                     // } else {
                     // setFullTables([...fullTables, usedTable]);
                     // }
-                    arrowClickedRight();
+                    // arrowClickedRight();
+                    if (opendTableNum < formNum) {
+                      setopendTableNum(opendTableNum + 1);
+                    }
                   }}
                 />
               </TouchableOpacity>
@@ -549,7 +672,10 @@ const FillForm = ({
                     // } else {
                     // setFullTables([...fullTables, usedTable]);
                     // }
-                    arrowClickedLeft();
+                    // arrowClickedLeft();
+                    if (opendTableNum > 1) {
+                      setopendTableNum(opendTableNum - 1);
+                    }
                   }}
                 />
               </TouchableOpacity>
@@ -630,7 +756,7 @@ const FillForm = ({
                 fontFamily: "fb-Spacer",
               }}
             >
-              מלא צירוף
+              {`מלא צירוף ${opendTableNum}`}
             </Text>
           </View>
 
@@ -661,6 +787,10 @@ const FillForm = ({
                 pressed={pressedSpade}
                 setcounter={setcounter}
                 counter={counter}
+                usedTable={usedTable}
+                opendTableNum={opendTableNum}
+                fullTables={fullTables}
+                setusedTable={setusedTable}
               />
             ))}
           </View>
@@ -692,6 +822,10 @@ const FillForm = ({
                 pressed={pressedHeart}
                 setcounter={setcounter}
                 counter={counter}
+                usedTable={usedTable}
+                fullTables={fullTables}
+                opendTableNum={opendTableNum}
+                setusedTable={setusedTable}
               />
             ))}
           </View>
@@ -723,6 +857,10 @@ const FillForm = ({
                 pressed={pressedDiamond}
                 setcounter={setcounter}
                 counter={counter}
+                usedTable={usedTable}
+                fullTables={fullTables}
+                opendTableNum={opendTableNum}
+                setusedTable={setusedTable}
               />
             ))}
           </View>
@@ -754,6 +892,10 @@ const FillForm = ({
                 pressed={pressedClubs}
                 setcounter={setcounter}
                 counter={counter}
+                usedTable={usedTable}
+                fullTables={fullTables}
+                opendTableNum={opendTableNum}
+                setusedTable={setusedTable}
               />
             ))}
           </View>

@@ -239,7 +239,7 @@ const ExtraFormPage = ({ route, navigation }) => {
                     fontFamily: "fb-Spacer",
                   }}
                 >
-                  סה"כ {tableNum}טבלאות
+                  סה"כ {tableNum} טבלאות
                 </Text>
                 <View
                   style={{
@@ -258,13 +258,14 @@ const ExtraFormPage = ({ route, navigation }) => {
                   }}
                 >
                   {" "}
-                  {hagralot}הגרלות
+                  הגרלות : {hagralot === -1 ? 1 : hagralot}
                 </Text>
               </View>
 
               <View
                 style={{
                   flexDirection: "row",
+                  marginTop: 7,
                 }}
               >
                 <Text
@@ -278,13 +279,13 @@ const ExtraFormPage = ({ route, navigation }) => {
                 >
                   לתשלום: {price}{" "}
                 </Text>
-                <View style={{ height: 10 }}>
-                  <FontAwesomeIcon
-                    style={{ marginVertical: 7, marginLeft: -4 }}
-                    icon={faShekelSign}
-                    color='white'
-                  />
-                </View>
+
+                <FontAwesomeIcon
+                  size={10}
+                  style={{ marginVertical: 7, marginLeft: -4 }}
+                  icon={faShekelSign}
+                  color='white'
+                />
               </View>
             </View>
 

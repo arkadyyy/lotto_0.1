@@ -1,171 +1,411 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-} from "native-base";
+import { Button, List } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
 import FillForm from "./components/FillForm";
-import TableRavChance from "./components/TableRavChance";
+import Table from "./components/Table";
 import chanceListstyles from "./ChanceListStyles";
+import EStyleSheet from "react-native-extended-stylesheet";
+import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const RavChancePage = ({ navigation }) => {
+const ChancePage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(4);
+  const [formNum, setformNum] = useState(1);
   const [investNum, setinvestNum] = useState(5);
-  const [counter, setcounter] = useState(0);
-  const [filledForm, setfilledForm] = useState([]);
-  const [fullTables, setfullTables] = useState({
-    gameType: 1,
-    choosenCards: [],
-  });
+  const [opendTableNum, setopendTableNum] = useState(0);
+  const [allCounters, setallCounters] = useState([
+    { formNum: 1, counter: 0 },
+    { formNum: 2, counter: 0 },
+    { formNum: 3, counter: 0 },
+    { formNum: 4, counter: 0 },
+    { formNum: 5, counter: 0 },
+    { formNum: 6, counter: 0 },
+    { formNum: 7, counter: 0 },
+    { formNum: 8, counter: 0 },
+    { formNum: 9, counter: 0 },
+    { formNum: 10, counter: 0 },
+  ]);
+  const [fullTables, setfullTables] = useState([
+    {
+      tableNum: 1,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 2,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 3,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 4,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 5,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 6,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 7,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 8,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 9,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+    {
+      tableNum: 10,
+      choosenCards: [
+        { type: "spade", cards: [] },
+        { type: "heart", cards: [] },
+        { type: "diamond", cards: [] },
+        { type: "clubs", cards: [] },
+      ],
+    },
+  ]);
 
-  const [pressedSpade, setpressedSpade] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "spade",
-  });
-  const [pressedHeart, setpressedHeart] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "heart",
-  });
-  const [pressedDiamond, setpressedDiamond] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "diamond",
-  });
-  const [pressedClubs, setpressedClubs] = useState({
-    numberOfPress: 0,
-    symbolsPressed: [],
-    type: "clubs",
-  });
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const filterEmptyFullTables = fullTables.choosenCards.filter(
-      (x) => x.card.length !== 0
-    );
-    console.log("filterEmptyFullTables : ", filterEmptyFullTables);
-
-    setfullTables({ ...fullTables, choosenCards: filterEmptyFullTables });
-  }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
-
-
-  useEffect(() => {
-    // console.log("i am here resetting fulltables");
-
-    setcounter(0);
-
-    setpressedSpade({
-      ...pressedSpade,
-      symbolsPressed: [],
-    });
-    setpressedHeart({
-      ...pressedHeart,
-      symbolsPressed: [],
-    });
-
-    setpressedClubs({
-      ...pressedClubs,
-      symbolsPressed: [],
-    });
-    setpressedDiamond({
-      ...pressedDiamond,
-      symbolsPressed: [],
-    });
-
-    setfullTables({
-      gameType: tableNum,
-      choosenCards: [],
-    });
-  }, [tableNum]);
-
-  const autoFillForm = async (tableNum) => {
+  const autoFillForm = async (tableNum, formNum) => {
     await deletForm();
     const cardArr = ["7", "8", "9", "10", "J", "Q", "K", "A"];
-    var setPressedArr = [
-      [pressedHeart, setpressedHeart],
-      [pressedSpade, setpressedSpade],
-      [pressedClubs, setpressedClubs],
-      [pressedDiamond, setpressedDiamond],
-    ];
 
-    var usedPressedArr = [];
+    for (let index = 1; index <= formNum; index++) {
+      console.log(" i am here ~~~~~~~~");
+      //filtered are all fulltables that are not gonna change
+      let filtered = fullTables.filter((table) => table.tableNum !== index);
+      // console.log("filtered : ", filtered);
+      //usedtable is the table we are currently changing, auto filling
+      let usedTable = fullTables.find((table) => table.tableNum === index);
+      // console.log("usedTable : ", usedTable);
 
-    for (let index = 1; index <= tableNum; index++) {
-      // console.log("i am inside for ");
-      // let index = Math.floor(Math.random() * 4) + 1;
-      let card =
-        setPressedArr[Math.floor(Math.random() * setPressedArr.length)];
-      console.log("card inside for : ", card);
-      usedPressedArr.push(card);
+      let randomNumArr = [0, 1, 2, 3];
 
-      setPressedArr.splice(setPressedArr.indexOf(card), 1);
-      // console.log("spliced number : ", Math.floor(Math.random() * 4) );
-      // setPressedArr.splice(Math.floor(Math.random() * 4), 1);
+      var shuffled = cardArr.sort(function () {
+        return 0.5 - Math.random();
+      });
+      var selected = shuffled.slice(0, tableNum);
+
+      console.log(shuffled);
+      console.log(selected);
+
+      usedTable.choosenCards = [
+        {
+          cards: [],
+          type: "spade",
+        },
+        {
+          cards: [],
+          type: "heart",
+        },
+        {
+          cards: [],
+          type: "diamond",
+        },
+        {
+          cards: [],
+          type: "clubs",
+        },
+      ];
+
+      selected.forEach((card, index) => {
+        let random = Math.floor(Math.random() * randomNumArr.length);
+
+        usedTable.choosenCards[randomNumArr[random]].cards = [card];
+
+        console.log("usedtable choosencards : ", usedTable.choosenCards);
+
+        randomNumArr.splice(random, 1);
+        console.log("randomNumArr : ", randomNumArr);
+      });
+      setfullTables([...filtered, usedTable]);
     }
 
-    usedPressedArr.forEach((pressed) => {
-      let card = cardArr[Math.floor(Math.random() * cardArr.length)];
-
-      pressed[1]({ ...pressed[0], symbolsPressed: [card] });
+    let updatedAllCounters = allCounters.map((counter, index) => {
+      if (counter.formNum <= formNum) {
+        counter.counter = tableNum;
+        return counter;
+      } else {
+        return counter;
+      }
     });
+    setallCounters(updatedAllCounters);
   };
 
   const deletForm = () => {
-    setcounter(0);
+    setfullTables([
+      {
+        tableNum: 1,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 2,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 3,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 4,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 5,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 6,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 7,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 8,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 9,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 10,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+    ]);
 
-    setpressedSpade({
-      ...pressedSpade,
-      symbolsPressed: [],
+    let updatedAllCounters = allCounters.map((counter, index) => {
+      counter.counter = 0;
+      return counter;
     });
-    setpressedHeart({
-      ...pressedHeart,
-      symbolsPressed: [],
-    });
-
-    setpressedClubs({
-      ...pressedClubs,
-      symbolsPressed: [],
-    });
-    setpressedDiamond({
-      ...pressedDiamond,
-      symbolsPressed: [],
-    });
-
-    setfullTables({
-      gameType: tableNum,
-      choosenCards: [],
-    });
+    setallCounters(updatedAllCounters);
   };
+
+  useEffect(() => {
+    setfullTables([
+      {
+        tableNum: 1,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 2,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 3,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 4,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 5,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 6,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 7,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 8,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 9,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+      {
+        tableNum: 10,
+        choosenCards: [
+          { type: "spade", cards: [] },
+          { type: "heart", cards: [] },
+          { type: "diamond", cards: [] },
+          { type: "clubs", cards: [] },
+        ],
+      },
+    ]);
+
+    let updatedAllCounters = allCounters.map((counter, index) => {
+      counter.counter = 0;
+      return counter;
+    });
+    setallCounters(updatedAllCounters);
+  }, [tableNum]);
 
   return (
     <>
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare gameName="הגרלת צ'אנס" color='#009943' />
-        <ChooseForm color='#009943'  />
-        
+        <ChooseForm color='#009943' />
+
         <View style={{ margin: 15 }}>
-
-        <View style={chanceListstyles.chancePageContainer}>
-        <View style={chanceListstyles.header}>
-
-        <View style={chanceListstyles.topNumCircle}>
+          <View style={chanceListstyles.chancePageContainer}>
+            <View style={chanceListstyles.header}>
+              <View style={chanceListstyles.topNumCircle}>
                 <Text
                   style={{
                     fontSize: 20,
@@ -187,8 +427,16 @@ const RavChancePage = ({ navigation }) => {
               </Text>
             </View>
 
-            <ChooseNumOfTables settableNum={4} tableNum={4} />
+            {/* <ChooseNumOfTables settableNum={settableNum} tableNum={tableNum} /> */}
 
+            {/* <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                margin: 20,
+                flex: 1,
+              }}
+            > */}
             <Text
               style={{
                 color: "white",
@@ -202,12 +450,12 @@ const RavChancePage = ({ navigation }) => {
             >
               בחר צירוף
             </Text>
+            {/* </View> */}
 
             <View style={chanceListstyles.autoBtnContainer}>
               <TouchableOpacity
                 onPress={() => {
-                  autoFillForm(tableNum);
-                  console.log(tableNum);
+                  autoFillForm(tableNum, formNum);
                 }}
                 style={chanceListstyles.autoBtn}
               >
@@ -227,72 +475,126 @@ const RavChancePage = ({ navigation }) => {
 
             {showTable && (
               <FillForm
-              choosenCards
-              tableNum={tableNum}
-              setshowTable={setshowTable}
-              fullTables={fullTables}
-              setfullTables={setfullTables}
-              counter={counter}
-              setcounter={setcounter}
-              pressedSpade={pressedSpade}
-              setpressedSpade={setpressedSpade}
-              pressedHeart={pressedHeart}
-              setpressedHeart={setpressedHeart}
-              pressedDiamond={pressedDiamond}
-              setpressedDiamond={setpressedDiamond}
-              pressedClubs={pressedClubs}
-              setpressedClubs={setpressedClubs}
-ravChance={"ravChnce"}
+                choosenCards
+                tableNum={tableNum}
+                setshowTable={setshowTable}
+                fullTables={fullTables}
+                setfullTables={setfullTables}
+                opendTableNum={opendTableNum}
+                setopendTableNum={setopendTableNum}
+                allCounters={allCounters}
+                setallCounters={setallCounters}
+                formNum={formNum}
+                autoFillForm={autoFillForm}
               />
             )}
-              <View style={chanceListstyles.listContainerBorder}>
-
-              <List
-                style={{
-                  alignItems: "flex-start",
-                  height: 400,
-                  marginLeft: -17,
-    flexWrap: "wrap",
-
-                }}
-              >
-                {/* <Text
-                  style={{
-                    color: "white",
-                    alignSelf: "flex-start",
-                    marginHorizontal: 25,
-                    marginVertical: 10,
-                  }}
-                >
-                  בחר צירוף
-                </Text> */}
+            <View style={chanceListstyles.listContainerBorder}>
+              <List style={chanceListstyles.listContainer}>
                 <ScrollView>
-
-                <TableRavChance
-                  fullTables={fullTables}
-                  setfullTables={setfullTables}
-                  tableNum={tableNum}
-                  setshowTable={setshowTable}
-                  pressedClubs={pressedClubs}
-                  pressedHeart={pressedHeart}
-                  pressedDiamond={pressedDiamond}
-                  pressedSpade={pressedSpade}
-                />
-                                </ScrollView>
-
+                  {Array.from(Array(formNum)).map((x, index) => (
+                    <Table
+                      tableIndex={index + 1}
+                      formNum={formNum}
+                      tableNum={tableNum}
+                      fullTables={fullTables}
+                      setfullTables={setfullTables}
+                      setshowTable={setshowTable}
+                      setopendTableNum={setopendTableNum}
+                    />
+                  ))}
+                </ScrollView>
               </List>
             </View>
+            <View style={{ flexDirection: "row", alignSelf: "center" }}>
+              <TouchableOpacity
+                style={{
+                  alignSelf: "center",
+                  // backgroundColor: "#8CC63F",
+                  borderColor: "white",
+                  borderWidth: 1,
+                  borderRadius: 19,
+                  margin: 5,
+                  paddingHorizontal: 20,
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: 7,
+                  flexDirection: "row",
+                }}
+                onPress={() => {
+                  setformNum(formNum + 1);
+                }}
+              >
+                <Text style={chanceListstyles.autoBtnText}> טופס נוסף</Text>
+                <Text>
+                  {" "}
+                  <FontAwesomeIcon
+                    size={12}
+                    color='white'
+                    border={true}
+                    inverse
+                    icon={faPlus}
+                  />{" "}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                disabled={formNum === 1}
+                style={{
+                  alignSelf: "center",
+                  // backgroundColor: "#8CC63F",
+                  borderColor: "white",
+                  borderWidth: 1,
+                  borderRadius: 19,
+                  margin: 5,
+                  paddingHorizontal: 20,
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: 7,
+                  flexDirection: "row",
+                }}
+                onPress={() => {
+                  setformNum(formNum - 1);
+                  fullTables
+                    .find((table) => table.tableNum === formNum)
+                    .choosenCards.forEach((card) => (card.cards = []));
+
+                  let updatedAllCounters = allCounters.map((counter, index) => {
+                    if (counter.formNum === formNum) {
+                      counter.counter = 0;
+                      return counter;
+                    } else {
+                      return counter;
+                    }
+                  });
+                  setallCounters(updatedAllCounters);
+                }}
+              >
+                <Text style={chanceListstyles.autoBtnText}> הסר טופס</Text>
+                <Text>
+                  {" "}
+                  <FontAwesomeIcon
+                    size={12}
+                    color='white'
+                    border={true}
+                    inverse
+                    icon={faMinus}
+                  />{" "}
+                </Text>
+              </TouchableOpacity>
+            </View>
+
             <View style={chanceListstyles.investNumBox}>
-              <Text style={{
-   color: "white",
-   marginVertical: 7,
-   fontFamily: "fb-Spacer",
-   fontSize: 15,              }}>
+              <Text
+                style={{
+                  color: "white",
+                  marginVertical: 7,
+                  fontFamily: "fb-Spacer",
+                  fontSize: 15,
+                }}
+              >
                 בחר את סכום ההשקעה{" "}
               </Text>
-              <View style={{
-                flexDirection: "row"
-              }}>
+              <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
                   onPress={() => {
                     setinvestNum(5);
@@ -303,7 +605,15 @@ ravChance={"ravChnce"}
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>5</Text>
+                  <Text
+                    style={
+                      investNum === 5
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    5
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -315,7 +625,15 @@ ravChance={"ravChnce"}
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>10</Text>
+                  <Text
+                    style={
+                      investNum === 10
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    10
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -327,7 +645,15 @@ ravChance={"ravChnce"}
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>25</Text>
+                  <Text
+                    style={
+                      investNum === 25
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    25
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -339,7 +665,15 @@ ravChance={"ravChnce"}
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>50</Text>
+                  <Text
+                    style={
+                      investNum === 50
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    50
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -351,7 +685,15 @@ ravChance={"ravChnce"}
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>70</Text>
+                  <Text
+                    style={
+                      investNum === 70
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    70
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -363,7 +705,15 @@ ravChance={"ravChnce"}
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>100</Text>
+                  <Text
+                    style={
+                      investNum === 100
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    100
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -375,7 +725,15 @@ ravChance={"ravChnce"}
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>250</Text>
+                  <Text
+                    style={
+                      investNum === 250
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    250
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -387,7 +745,15 @@ ravChance={"ravChnce"}
                       : chanceListstyles.investBtn
                   }
                 >
-                  <Text>500</Text>
+                  <Text
+                    style={
+                      investNum === 500
+                        ? { color: "white", fontFamily: "fb-Spacer" }
+                        : { color: "black", fontFamily: "fb-Spacer" }
+                    }
+                  >
+                    500
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -402,39 +768,35 @@ ravChance={"ravChnce"}
             >
               <Button
                 onPress={() => {
-                  let summary = { RavChance: fullTables, investNum: investNum };
+                  let summary = { chance: fullTables, investNum };
                   navigation.navigate("SumPageChance", {
-                    tableNum: 4,
+                    tableNum: tableNum,
                     investNum: investNum,
                     fullTables: fullTables,
-                    gameType: "rav_chance",
+                    gameType: "regular",
                   });
                 }}
-                style={{
-                  borderRadius: 17,
-                  backgroundColor: "#E62321",
-                  borderColor: "white",
-                  borderWidth: 2,
-                  padding: 10,
-                }}
+                style={chanceListstyles.sendFormBtn}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>
+                <Text style={chanceListstyles.sendFormBtnText}>
                   המשך לשליחת טופס
                 </Text>
               </Button>
             </View>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-              zIndex: -2,
-            }}
-          >
+          <View style={chanceListstyles.lottoExplanationContainer}>
             <Text style={{ fontSize: 18 }}>הסבר על הגרלות לוטו</Text>
             <TouchableOpacity>
-              <Text>עוד</Text>
+              <Text
+                style={{
+                  marginRight: 10,
+                  paddingRight: 5,
+                  paddingTop: 2,
+                  fontSize: EStyleSheet.value("$rem") * 15,
+                }}
+              >
+                עוד
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -442,4 +804,4 @@ ravChance={"ravChnce"}
     </>
   );
 };
-export default RavChancePage;
+export default ChancePage;
