@@ -81,7 +81,26 @@ paddingTop:EStyleSheet.value("$rem") * 10,
 התשלום בוצע בהצלחה!    </Text>
                 </View>
 
-                
+              <TouchableOpacity
+                 style={{
+                  backgroundColor: "#FBB03B",
+                  // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                  // backgroundColor: "#FBB03B",
+                  borderColor: "white",
+                  borderWidth: 2,
+                  borderRadius: 17,
+                  height:50,
+                  width: 170,
+                  alignSelf: "center"
+
+                  //   marginHorizontal: 70,
+                }}
+              onPress={()=>navigation.navigate("Home")}
+              >
+                <Text>
+                  חזור למסך הבית
+                </Text>
+                </TouchableOpacity>
               
           
                               
