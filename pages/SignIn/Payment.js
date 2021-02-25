@@ -29,7 +29,7 @@ import {
 } from "native-base";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {Picker} from '@react-native-picker/picker';
-import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
+import { CreditCardInput} from "react-native-credit-card-input";
 // import CreditCardInput from "./creditCarsComponents/CreditCardInput.js";
 
 import EStyleSheet from "react-native-extended-stylesheet";
@@ -115,7 +115,6 @@ const s = StyleSheet.create({
 });
 
 
-
 // const validateCW = (text) => {
 //   let isnum = /^\d+$/.test(text);
 //   let length = text.length;
@@ -142,14 +141,14 @@ const s = StyleSheet.create({
 
 
 
-// function CheckFields(
-//   setfieldCheck,
-//   name,
-//   CW,
-//   cardNum,
-//   expirationDate,
+function CheckFields(
+  setfieldCheck,
+  name,
+  CW,
+  cardNum,
+  expirationDate,
   
-// ) {
+) {
 //   if(name === "") {
 //     setfieldCheck(true);
 //   } else if (CW === "") {
@@ -162,9 +161,9 @@ const s = StyleSheet.create({
 //     setfieldCheck(false);
 //   }
 // console.log("name:",name, "CW:",CW,"cardNum:",cardNum,"expirationDate:",expirationDate,"setfieldCheck:",setfieldCheck);
-//   // if (/^\d+$/.test(cardNum) && cardNum.length === 16) {
-//   // }
-// }
+  // if (/^\d+$/.test(cardNum) && cardNum.length === 16) {
+  // }
+}
 
 // const ResetInputs = (
 //   setName,
@@ -184,6 +183,22 @@ const Payment = ({ navigation }) => {
   const [CW, setCW] = useState("");
   const [cardNum, setCardNum] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
+  const [validation, setValidation] = useState({
+
+    "status": {
+      "cvc": " ",
+      "expiry": " ",
+      "name": " ",
+      "number": " ",
+    },
+    "valid": "false",
+    "values": {
+      "cvc": " ",
+      "expiry": " ",
+      "name": " ",
+      "number": " ",
+    }
+  });
 
     const [fieldCheck, setfieldCheck] = useState(true);
 
@@ -192,20 +207,20 @@ const Payment = ({ navigation }) => {
   const [monthPicker, setMonthPicker] = useState(" ");
   const [dayPicker, setDayPicker] = useState(" ");
 
-  const onChange = (event, selectedExpirationDate) => {
-    const currentExpirationDate = selectedExpirationDate || expirationDate;
-    setShow(Platform.OS === "ios");
-    let x = currentExpirationDate.toISOString().split("T")[0].split("-");
+  // const onChange = (event, selectedExpirationDate) => {
+  //   const currentExpirationDate = selectedExpirationDate || expirationDate;
+  //   setShow(Platform.OS === "ios");
+  //   let x = currentExpirationDate.toISOString().split("T")[0].split("-");
 
-    // console.log(currentExpirationDate.toISOString().split("T")[0].split("-"));
+  //   // console.log(currentExpirationDate.toISOString().split("T")[0].split("-"));
 
-    let y = [];
+  //   let y = [];
 
-    y.push(x[2], ".", x[1], ".", x[0]);
+  //   y.push(x[2], ".", x[1], ".", x[0]);
 
-    setExpirationDate(y.join(""));
-    console.log(expirationDate);
-  };
+  //   setExpirationDate(y.join(""));
+  //   console.log(expirationDate);
+  // };
 
   /////
 
@@ -223,26 +238,40 @@ const Payment = ({ navigation }) => {
     }
   }, [store]);
 
-  // useEffect(() => {
-  //   CheckFields(
-  //     setfieldCheck,
-  //     name,
-  //     cardNum,
-  //     CW,
-  //     expirationDate 
-  //   );
+  useEffect(() => {
+    CheckFields(
+      setfieldCheck,
+      // name,
+      // cardNum,
+      // CW,
+      // expirationDate 
+    );
     // console.log("checkfields : ", fieldCheck);
     // console.log("validatephonenum : ", validatePhoneNum(phoneNum));
-  // }, [
-  //   name,
-  //     cardNum,
-  //     CW,
-  //     expirationDate,
+  }, [
+    validation,
+      // cardNum,
+      // CW,
+      // expirationDate,
     
-  // ]);
+  ]);
 
   // _onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
-  const _onChange = (form ) => console.log(form);
+  const _onChange = (form) => {
+    // console.log(form);
+    setValidation(form);
+    console.log("validation:",validation);
+    // console.log("object validation details:");
+    // console.log("number:", form.values.number);
+    // console.log("cvc:", form.values.cvc);
+    // console.log("expiry:", form.values.expiry);
+    // console.log("name:", form.values.name);
+    // console.log("status-name:", form.status.name);
+    // console.log("status-expiry:", form.status.expiry);
+    // console.log("status-number:", form.status.number);
+    // console.log("status-cvc:", form.status.cvc);
+  };
+  // const _onChange = (form) =>  setValidation(form) ;
   const _onFocus = (field) => console.log("focusing", field);
  
   return (
@@ -329,7 +358,7 @@ const Payment = ({ navigation }) => {
                     }}
                     rounded
                     style={{
-                      backgroundColor: "#FBB03B",
+                      backgroundColor: fieldCheck ? "#999" : "#FBB03B",
                       borderColor: "white",
                       borderWidth: 2,
                       borderRadius: 17,
@@ -445,6 +474,8 @@ const Payment = ({ navigation }) => {
                       autoFocus
                       requiresName
                       requiresCVC
+                      // type={"master-card"}
+                      // type
                       // requiresPostalCode
                       textDecorationColor={"transparent"}
                       textDecorationLine={"none"}
@@ -801,10 +832,13 @@ const Payment = ({ navigation }) => {
                       
 
                   <Button
-                    disabled={fieldCheck}
+                    // disabled={fieldCheck}
+                    disabled={!validation.valid}
                     rounded
                     style={{
-                      backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                      backgroundColor: !validation.valid ? "#999" : "#FBB03B",
+                      // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                      // backgroundColor: "#FBB03B",
                       borderColor: "white",
                       borderWidth: 2,
                       borderRadius: 17,
@@ -815,12 +849,7 @@ const Payment = ({ navigation }) => {
                     //   marginHorizontal: 70,
                     }}
                     onPress={() => {
-                        setName(""),
-                        setCW(""),
-                        setCardNum(""),
-                        
-                        setExpirationDate(""),
-                        
+                      console.log("form or validation",validation);
 
                       dispatch(
                         SignUp(
@@ -830,13 +859,7 @@ const Payment = ({ navigation }) => {
                           CW
                         )
                       );
-                      console.log({
-                        // name: name,
-                        // cardNum: cardNum.replace("05", "+972"),
-                        // CW: CW,
-                        
-                        // expirationDate: expirationDate,
-a                      });
+                      
                     }}
                   >
                     <Text
