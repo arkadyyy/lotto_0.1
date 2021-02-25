@@ -141,14 +141,14 @@ const s = StyleSheet.create({
 
 
 
-function CheckFields(
-  setfieldCheck,
-  name,
-  CW,
-  cardNum,
-  expirationDate,
+// function CheckFields(
+//   setfieldCheck,
+//   name,
+//   CW,
+//   cardNum,
+//   expirationDate,
   
-) {
+// ) {
 //   if(name === "") {
 //     setfieldCheck(true);
 //   } else if (CW === "") {
@@ -163,7 +163,7 @@ function CheckFields(
 // console.log("name:",name, "CW:",CW,"cardNum:",cardNum,"expirationDate:",expirationDate,"setfieldCheck:",setfieldCheck);
   // if (/^\d+$/.test(cardNum) && cardNum.length === 16) {
   // }
-}
+// }
 
 // const ResetInputs = (
 //   setName,
@@ -179,10 +179,10 @@ function CheckFields(
 // };
 
 const Payment = ({ navigation }) => {
-  const [name, setName] = useState("");
-  const [CW, setCW] = useState("");
-  const [cardNum, setCardNum] = useState("");
-  const [expirationDate, setExpirationDate] = useState("");
+  // const [name, setName] = useState("");
+  // const [CW, setCW] = useState("");
+  // const [cardNum, setCardNum] = useState("");
+  // const [expirationDate, setExpirationDate] = useState("");
   const [validation, setValidation] = useState({
 
     "status": {
@@ -200,36 +200,35 @@ const Payment = ({ navigation }) => {
     }
   });
 
-    const [fieldCheck, setfieldCheck] = useState(true);
+    // const [fieldCheck, setfieldCheck] = useState(true);
 
   const [confirmationCode, setconfirmationCode] = useState("");
 
-  const [monthPicker, setMonthPicker] = useState(" ");
-  const [dayPicker, setDayPicker] = useState(" ");
 
-  // const onChange = (event, selectedExpirationDate) => {
-  //   const currentExpirationDate = selectedExpirationDate || expirationDate;
-  //   setShow(Platform.OS === "ios");
-  //   let x = currentExpirationDate.toISOString().split("T")[0].split("-");
-
-  //   // console.log(currentExpirationDate.toISOString().split("T")[0].split("-"));
-
-  //   let y = [];
-
-  //   y.push(x[2], ".", x[1], ".", x[0]);
-
-  //   setExpirationDate(y.join(""));
-  //   console.log(expirationDate);
-  // };
-
-  /////
-
-
-  const [show, setShow] = useState(false);
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
   const route = useRoute();
+
+  useEffect(() => {
+    setValidation({
+
+      "status": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      },
+      "valid": "false",
+      "values": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      }
+    });
+    console.log("validation.valid:",validation.valid);
+  },[])
 
   useEffect(() => {
     console.log(store.signUp);
@@ -238,23 +237,24 @@ const Payment = ({ navigation }) => {
     }
   }, [store]);
 
-  useEffect(() => {
-    CheckFields(
-      setfieldCheck,
+  // useEffect(() => {
+  //   CheckFields(
+  //     setfieldCheck,
       // name,
       // cardNum,
       // CW,
       // expirationDate 
-    );
+    // );
+
     // console.log("checkfields : ", fieldCheck);
     // console.log("validatephonenum : ", validatePhoneNum(phoneNum));
-  }, [
-    validation,
+  // }, [
+    // validation,
       // cardNum,
       // CW,
       // expirationDate,
     
-  ]);
+  // ]);
 
   // _onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
   const _onChange = (form) => {
@@ -831,32 +831,32 @@ const Payment = ({ navigation }) => {
                  </View>
                       
 
-                  <Button
-                    // disabled={fieldCheck}
-                    disabled={!validation.valid}
-                    rounded
-                    style={{
-                      backgroundColor: !validation.valid ? "#999" : "#FBB03B",
-                      // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
-                      // backgroundColor: "#FBB03B",
-                      borderColor: "white",
-                      borderWidth: 2,
-                      borderRadius: 17,
-                        flex: 1,
-                        width: 170,
-                      alignSelf:"center"
+                <Button
+                  // disabled={fieldCheck}
+                  disabled={validation.valid=== false ? true : false}
+                  // disabled={true}
+                  rounded
+                  style={{
+                    backgroundColor:  validation.valid=== false ?  "#999" : "#FBB03B",
+                    // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                    // backgroundColor: "#FBB03B",
+                    borderColor: "white",
+                    borderWidth: 2,
+                    borderRadius: 17,
+                    flex: 1,
+                    width: 170,
+                    alignSelf: "center"
 
                     //   marginHorizontal: 70,
-                    }}
-                    onPress={() => {
-                      console.log("form or validation",validation);
+                  }}
+                  onPress={() => {
+                    console.log("form or validation", validation);
+                    navigation.navigate("PaymentAnnouncment");
+                   
 
                       dispatch(
                         SignUp(
-                          name,
-                          cardNum,
-                          expirationDate,
-                          CW
+                          validation
                         )
                       );
                       
