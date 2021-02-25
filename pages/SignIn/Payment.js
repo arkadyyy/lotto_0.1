@@ -115,92 +115,57 @@ const s = StyleSheet.create({
 });
 
 
-// const validateCW = (text) => {
-//   let isnum = /^\d+$/.test(text);
-//   let length = text.length;
+const Payment = ({route, navigation }) => {
 
-
-//   if (length === 3 && isnum) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// };
-
-// const validateCardNum = (text) => {
-//   let isnum = /^\d+$/.test(text);
-//   let length = text.length;
-
-
-//   if (length === 16 && isnum) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// };
-
-
-
-// function CheckFields(
-//   setfieldCheck,
-//   name,
-//   CW,
-//   cardNum,
-//   expirationDate,
+  const {
+    valid
+  } = route.params;
   
-// ) {
-//   if(name === "") {
-//     setfieldCheck(true);
-//   } else if (CW === "") {
-//     setfieldCheck(true);
-//   } else if (cardNum === "" || cardNum.length !== 16) {
-//     setfieldCheck(true);
-//   } else if (expirationDate === ""  || cardNum.length !== 3) {
-//     setfieldCheck(true);
-//   } else {
-//     setfieldCheck(false);
-//   }
-// console.log("name:",name, "CW:",CW,"cardNum:",cardNum,"expirationDate:",expirationDate,"setfieldCheck:",setfieldCheck);
-  // if (/^\d+$/.test(cardNum) && cardNum.length === 16) {
-  // }
-// }
 
-// const ResetInputs = (
-//   setName,
-//   setCW,
-//   setCardNum,
-//   setExpirationDate,
-  
-// ) => {
-//   setName("");
-//   setCW("");
-//   setCardNum("");
-//   setExpirationDate("");
-// };
-
-const Payment = ({ navigation }) => {
-  // const [name, setName] = useState("");
-  // const [CW, setCW] = useState("");
-  // const [cardNum, setCardNum] = useState("");
-  // const [expirationDate, setExpirationDate] = useState("");
-  const [validation, setValidation] = useState({
-
-    "status": {
-      "cvc": " ",
-      "expiry": " ",
-      "name": " ",
-      "number": " ",
-    },
-    "valid": "false",
-    "values": {
-      "cvc": " ",
-      "expiry": " ",
-      "name": " ",
-      "number": " ",
+  const [validation, setValidation] = useState(
+    {
+      "status": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      },
+      "valid": valid,
+      "values": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      }
     }
-  });
+  );
 
-    // const [fieldCheck, setfieldCheck] = useState(true);
+  const [fieldCheck, setfieldCheck] = useState(true);
+
+
+  
+  useEffect(() => {
+    console.log(validation);
+    setValidation({
+
+      "status": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      },
+      "valid": valid,
+      "values": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      }
+    });
+  
+
+},[])
+  
 
   const [confirmationCode, setconfirmationCode] = useState("");
 
@@ -208,7 +173,7 @@ const Payment = ({ navigation }) => {
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
-  const route = useRoute();
+  // const route = useRoute();
 
   useEffect(() => {
     setValidation({
@@ -237,24 +202,7 @@ const Payment = ({ navigation }) => {
     }
   }, [store]);
 
-  // useEffect(() => {
-  //   CheckFields(
-  //     setfieldCheck,
-      // name,
-      // cardNum,
-      // CW,
-      // expirationDate 
-    // );
-
-    // console.log("checkfields : ", fieldCheck);
-    // console.log("validatephonenum : ", validatePhoneNum(phoneNum));
-  // }, [
-    // validation,
-      // cardNum,
-      // CW,
-      // expirationDate,
-    
-  // ]);
+ 
 
   // _onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
   const _onChange = (form) => {
@@ -830,14 +778,57 @@ const Payment = ({ navigation }) => {
                                  
                  </View>
                       
-
+                {validation.valid === true ?  (
                 <Button
+                rounded
+                style={{
+                  backgroundColor: "#FBB03B",
+                  // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                  // backgroundColor: "#FBB03B",
+                  borderColor: "white",
+                  borderWidth: 2,
+                  borderRadius: 17,
+                  flex: 1,
+                  width: 170,
+                  alignSelf: "center"
+
+                  //   marginHorizontal: 70,
+                }}
+                onPress={ () => {
+                   
+                    console.log("form or validation", validation);
+                    navigation.navigate("PaymentAnnouncment");
+                 
+
+                    dispatch(
+                      SignUp(
+                        validation
+                      )
+                    );
+                  
+                }
+                }
+                >
+                  <Text
+                    style={{
+                      color: "white",
+                      flex: 1,
+                      fontSize: 30,
+                      textAlign: "center",
+                      fontFamily: "fb-Spacer-bold",
+                    }}
+                  >
+                    אישור
+                  </Text>
+                </Button>                 
+                ) : (
+                  <Button
                   // disabled={fieldCheck}
-                  disabled={validation.valid=== false ? true : false}
+                  disabled
                   // disabled={true}
                   rounded
                   style={{
-                    backgroundColor:  validation.valid=== false ?  "#999" : "#FBB03B",
+                    backgroundColor: "#999",
                     // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
                     // backgroundColor: "#FBB03B",
                     borderColor: "white",
@@ -849,9 +840,10 @@ const Payment = ({ navigation }) => {
 
                     //   marginHorizontal: 70,
                   }}
-                  onPress={() => {
-                    console.log("form or validation", validation);
-                    navigation.navigate("PaymentAnnouncment");
+                  onPress={ () => {
+                     
+                      console.log("form or validation", validation);
+                      navigation.navigate("PaymentAnnouncment");
                    
 
                       dispatch(
@@ -859,8 +851,9 @@ const Payment = ({ navigation }) => {
                           validation
                         )
                       );
-                      
-                    }}
+                    
+                  }
+                  }
                   >
                     <Text
                       style={{
@@ -873,7 +866,10 @@ const Payment = ({ navigation }) => {
                     >
                       אישור
                     </Text>
-                  </Button>
+                  </Button>      
+)
+}
+ 
                               </View>
           
                               

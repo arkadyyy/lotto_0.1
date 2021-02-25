@@ -39,6 +39,7 @@ import {
   CheckBox,
   Label,
   Spinner,
+  Toast
 } from "native-base";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Auth } from "aws-amplify";
@@ -184,6 +185,7 @@ const SignIn = ({ navigation }) => {
   const [password, setpassword] = useState("");
   const [showPassword, setshowPassword] = useState(true);
   const [fieldCheck, setfieldCheck] = useState(true);
+  const [errorMsg, seterrorMsg] = useState("אנא מלא את כל הטבלאות");
 
   const [confirmationCode, setconfirmationCode] = useState("");
 
@@ -929,10 +931,14 @@ width:250,
                   </TouchableOpacity>
 
                   <Button
-                    disabled={fieldCheck}
+                    // disabled={fieldCheck}
+                    
+
+                    
                     rounded
                     style={{
-                      backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                      // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                      backgroundColor: "#FBB03B",
                       borderColor: "white",
                       borderWidth: 2,
                       borderRadius: 17,
@@ -940,44 +946,117 @@ width:250,
 
                       marginHorizontal: 70,
                     }}
-                    onPress={() => {
-                      setGender(""),
-                        setFirstName(""),
-                        setLastName(""),
-                        setID(""),
-                        setPhoneNum(""),
-                        setEmail(""),
-                        setAge(false),
-                        setaddress(""),
-                        setDate(""),
-                        setAgreement(false),
-                        setpassword("");
+                    onPress={async () => {
+                      // await CheckFields(fieldCheck);
 
-                      dispatch(
-                        SignUp(
-                          Email,
-                          password,
-                          phoneNum,
-                          lastName,
-                          address,
-                          gender,
-                          date,
-                          firstName,
-                          ID
-                        )
-                      );
-                      console.log({
-                        gender: gender,
-                        firstName: firstName,
-                        lastName: lastName,
-                        phoneNum: phoneNum.replace("05", "+972"),
-                        password: password,
-                        ID: ID,
-                        Email: Email,
-                        date: date,
-                        address: address,
-                      });
-                    }}
+                      if (fieldCheck === true) {
+                        Toast.show({
+                          textStyle: { fontFamily: "fb-Spacer" },
+                          text: errorMsg,
+                          buttonText: "סגור",
+                          position: "top",
+                          // type: "warning",
+                          buttonStyle: {
+                            backgroundColor: "white",
+                            borderRadius: 8,
+                          },
+                          textStyle: { color: "white", fontFamily: "fb-Spacer" },
+                          buttonTextStyle: {
+                            color: "black",
+                            fontFamily: "fb-Spacer",
+                          },
+                          duration: 2500,
+                        });
+                      }
+
+                      else if (fieldCheck === false) {
+                        navigation.navigate("Payment", {
+                        //  keyTopass:valueTopass
+                        });
+                        
+                      
+
+                        setGender(""),
+                          setFirstName(""),
+                          setLastName(""),
+                          setID(""),
+                          setPhoneNum(""),
+                          setEmail(""),
+                          setAge(false),
+                          setaddress(""),
+                          setDate(""),
+                          setAgreement(false),
+                          setpassword("");
+
+                        dispatch(
+                          SignUp(
+                            Email,
+                            password,
+                            phoneNum,
+                            lastName,
+                            address,
+                            gender,
+                            date,
+                            firstName,
+                            ID
+                          )
+                        );
+                        console.log({
+                          gender: gender,
+                          firstName: firstName,
+                          lastName: lastName,
+                          phoneNum: phoneNum.replace("05", "+972"),
+                          password: password,
+                          ID: ID,
+                          Email: Email,
+                          date: date,
+                          address: address,
+                        });
+
+                      
+                      }
+                    }
+                    }
+                    // onPress={() => {
+                    //   setGender(""),
+                    //     setFirstName(""),
+                    //     setLastName(""),
+                    //     setID(""),
+                    //     setPhoneNum(""),
+                    //     setEmail(""),
+                    //     setAge(false),
+                    //     setaddress(""),
+                    //     setDate(""),
+                    //     setAgreement(false),
+                    //     setpassword("");
+
+                    //   dispatch(
+                    //     SignUp(
+                    //       Email,
+                    //       password,
+                    //       phoneNum,
+                    //       lastName,
+                    //       address,
+                    //       gender,
+                    //       date,
+                    //       firstName,
+                    //       ID
+                    //     )
+                    //   );
+                    //   console.log({
+                    //     gender: gender,
+                    //     firstName: firstName,
+                    //     lastName: lastName,
+                    //     phoneNum: phoneNum.replace("05", "+972"),
+                    //     password: password,
+                    //     ID: ID,
+                    //     Email: Email,
+                    //     date: date,
+                    //     address: address,
+                    //   });
+
+                      
+                    // }}
                   >
                     <Text
                       style={{
@@ -992,16 +1071,19 @@ width:250,
                     </Text>
                   </Button>
                   <Button
-                    onPress={()=>navigation.navigate("Payment")} 
+                    onPress={() => navigation.navigate("Payment",
+                      {valid:false}
+                    )} 
                     rounded
                     style={{
-                      backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                      backgroundColor:  "#FBB03B",
+                      // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
                       borderColor: "white",
                       borderWidth: 2,
                       borderRadius: 17,
                       flex: 1,
                       marginHorizontal: 70,
-                    }}><Text>הכנס פרטי תשלום</Text></Button>
+                    }}><Text>הכנס פרטי תשלום -כפתור זמני-</Text></Button>
                 </View>
               </>
             )}
