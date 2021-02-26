@@ -111,7 +111,9 @@ const ViewForm = ({
                         alignItems: "center",
                       }}
                     >
-                      <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
+                      <Text style={{ fontFamily: "fb-Spacer" }}>
+                        {num === -1 ? " " : num}
+                      </Text>
                     </View>
                   ))}
                 </View>
@@ -212,38 +214,58 @@ const ViewForm = ({
         <View>
           {form_type === "chance_shitati" && (
             <>
-              <View>
-                {ShapesTitle[indexShapes] === "clover" ? (
-                  <Text style={{ fontFamily: "fb-Spacer" }}>תלתן</Text>
-                ) : ShapesTitle[indexShapes] === "diamond" ? (
-                  <Text style={{ fontFamily: "fb-Spacer" }}>יהלום</Text>
-                ) : ShapesTitle[indexShapes] === "leaf" ? (
-                  <Text style={{ fontFamily: "fb-Spacer" }}>עלה</Text>
-                ) : ShapesTitle[indexShapes] === "heart" ? (
-                  <Text style={{ fontFamily: "fb-Spacer" }}>לב</Text>
-                ) : null}
-              </View>
-              <View style={{ flexDirection: "row", padding: 15 }}>
-                {cardsShitati.map((num, index) => (
-                  // <View style={{flexDirection:"row"}}>
-                  <View
-                    key={index}
-                    style={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: 30,
-                      backgroundColor: "white",
-                      margin: 5,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <View
+                  style={{
+                    width: "25%",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  {ShapesTitle[indexShapes] === "clover" ? (
+                    <Text style={{ fontFamily: "fb-Spacer" }}>תלתן</Text>
+                  ) : ShapesTitle[indexShapes] === "diamond" ? (
+                    <Text style={{ fontFamily: "fb-Spacer" }}>יהלום</Text>
+                  ) : ShapesTitle[indexShapes] === "leaf" ? (
+                    <Text style={{ fontFamily: "fb-Spacer" }}>עלה</Text>
+                  ) : ShapesTitle[indexShapes] === "heart" ? (
+                    <Text style={{ fontFamily: "fb-Spacer" }}>לב</Text>
+                  ) : null}
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    padding: 8,
+                    marginHorizontal: 10,
+                  }}
+                >
+                  {cardsShitati.map((num, index) => (
+                    // <View style={{flexDirection:"row"}}>
+                    <View
+                      key={index}
+                      style={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: 30,
+                        backgroundColor: "white",
+                        margin: 3,
 
-                    {console.log("num:::::::::::::::", num)}
-                    {console.log("ShapesTitle:", ShapesTitle)}
-                  </View>
-                ))}
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
+
+                      {console.log("num:::::::::::::::", num)}
+                      {console.log("ShapesTitle:", ShapesTitle)}
+                    </View>
+                  ))}
+                </View>
               </View>
             </>
           )}
