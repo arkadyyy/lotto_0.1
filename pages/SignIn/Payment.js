@@ -115,121 +115,108 @@ const s = StyleSheet.create({
 });
 
 
-// const validateCW = (text) => {
-//   let isnum = /^\d+$/.test(text);
-//   let length = text.length;
+const Payment = ({route, navigation }) => {
 
-
-//   if (length === 3 && isnum) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// };
-
-// const validateCardNum = (text) => {
-//   let isnum = /^\d+$/.test(text);
-//   let length = text.length;
-
-
-//   if (length === 16 && isnum) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// };
-
-
-
-function CheckFields(
-  setfieldCheck,
-  name,
-  CW,
-  cardNum,
-  expirationDate,
+  const {
+    valid
+  } = route.params;
   
-) {
-//   if(name === "") {
-//     setfieldCheck(true);
-//   } else if (CW === "") {
-//     setfieldCheck(true);
-//   } else if (cardNum === "" || cardNum.length !== 16) {
-//     setfieldCheck(true);
-//   } else if (expirationDate === ""  || cardNum.length !== 3) {
-//     setfieldCheck(true);
-//   } else {
-//     setfieldCheck(false);
-//   }
-// console.log("name:",name, "CW:",CW,"cardNum:",cardNum,"expirationDate:",expirationDate,"setfieldCheck:",setfieldCheck);
-  // if (/^\d+$/.test(cardNum) && cardNum.length === 16) {
-  // }
-}
 
-// const ResetInputs = (
-//   setName,
-//   setCW,
-//   setCardNum,
-//   setExpirationDate,
-  
-// ) => {
-//   setName("");
-//   setCW("");
-//   setCardNum("");
-//   setExpirationDate("");
-// };
-
-const Payment = ({ navigation }) => {
-  const [name, setName] = useState("");
-  const [CW, setCW] = useState("");
-  const [cardNum, setCardNum] = useState("");
-  const [expirationDate, setExpirationDate] = useState("");
-  const [validation, setValidation] = useState({
-
-    "status": {
-      "cvc": " ",
-      "expiry": " ",
-      "name": " ",
-      "number": " ",
-    },
-    "valid": "false",
-    "values": {
-      "cvc": " ",
-      "expiry": " ",
-      "name": " ",
-      "number": " ",
+  const [validation, setValidation] = useState(
+    {
+      "status": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      },
+      "valid": valid,
+      "values": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      }
     }
-  });
+  );
 
-    const [fieldCheck, setfieldCheck] = useState(true);
+  const [fieldCheck, setfieldCheck] = useState(true);
+  const [reset, setReset] = useState(false);
+
+
+  
+  useEffect(() => {
+    console.log(validation);
+    setValidation({
+
+      "status": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      },
+      "valid": valid,
+      "values": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      }
+    });
+  
+
+},[])
+  
+  useEffect(() => {
+    console.log(validation);
+    setValidation({
+
+      "status": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      },
+      "valid": valid,
+      "values": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      }
+    });
+  
+    setReset(false);
+},[reset])
+ 
 
   const [confirmationCode, setconfirmationCode] = useState("");
 
-  const [monthPicker, setMonthPicker] = useState(" ");
-  const [dayPicker, setDayPicker] = useState(" ");
 
-  // const onChange = (event, selectedExpirationDate) => {
-  //   const currentExpirationDate = selectedExpirationDate || expirationDate;
-  //   setShow(Platform.OS === "ios");
-  //   let x = currentExpirationDate.toISOString().split("T")[0].split("-");
-
-  //   // console.log(currentExpirationDate.toISOString().split("T")[0].split("-"));
-
-  //   let y = [];
-
-  //   y.push(x[2], ".", x[1], ".", x[0]);
-
-  //   setExpirationDate(y.join(""));
-  //   console.log(expirationDate);
-  // };
-
-  /////
-
-
-  const [show, setShow] = useState(false);
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
-  const route = useRoute();
+  // const route = useRoute();
+
+  useEffect(() => {
+    setValidation({
+
+      "status": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      },
+      "valid": "false",
+      "values": {
+        "cvc": " ",
+        "expiry": " ",
+        "name": " ",
+        "number": " ",
+      }
+    });
+    console.log("validation.valid:",validation.valid);
+  },[])
 
   useEffect(() => {
     console.log(store.signUp);
@@ -238,23 +225,7 @@ const Payment = ({ navigation }) => {
     }
   }, [store]);
 
-  useEffect(() => {
-    CheckFields(
-      setfieldCheck,
-      // name,
-      // cardNum,
-      // CW,
-      // expirationDate 
-    );
-    // console.log("checkfields : ", fieldCheck);
-    // console.log("validatephonenum : ", validatePhoneNum(phoneNum));
-  }, [
-    validation,
-      // cardNum,
-      // CW,
-      // expirationDate,
-    
-  ]);
+ 
 
   // _onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
   const _onChange = (form) => {
@@ -471,6 +442,7 @@ const Payment = ({ navigation }) => {
           style={s.switch}
                    /> */}
                     <CreditCardInput
+                       ref={(c) => CCInput = c} 
                       autoFocus
                       requiresName
                       requiresCVC
@@ -529,291 +501,6 @@ const Payment = ({ navigation }) => {
                   </View>
 
                   
-{/* מספר כרטיס מכאן */}
-                  {/* <View
-                    style={{
-                      alignItems: "stretch",
-
-                      flex: 1,
-                    }}
-                  >
-                    <View style={{ flexDirection: "row" }}>
-                      <Label
-                        style={{
-                          fontSize: 12,
-                          marginHorizontal: 10,
-                          fontFamily: "fb-Spacer",
-                        }}
-                      >
-                                              מספר כרטיס
-                      </Label>
-                    </View>
-                    <View
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                      <TextInput
-                        value={cardNum}
-                        maxLength={16}
-                        key={"CARD_NUM"}
-                        style={signInstyles.signInPageInput}
-                        onChangeText={(text) => {
-                          validateCardNum(text);
-                          setCardNum(text);
-                        }}                      />
-                      <FontAwesomeIcon
-                       style={{
-                        color: validateCardNum(cardNum)
-                          ? "black"
-                          : "transparent",
-                      }}
-                        icon={faCheckCircle}
-                      />
-                    </View>
-                                  </View> */}
-{/* עד כאן מספר כרטיס */}
-                    
-{/* <View style={{flexDirection:"row"}}> */}
-                                  {/* מכאן תוקף               */}
-               {/* <View style={{ flexDirection: "row", alignItems: "center" }}>
-                   
-                    <TouchableOpacity
-                      style={{
-                        borderColor: "white",
-                        borderWidth: 1,
-                        borderRadius: 7,
-                        padding: 7,
-                        fontSize: 10,
-                        flex: 1,
-                      }}
-                      onPress={() => {
-                        setShow(true);
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: 10,
-                          color: "white",
-                          fontFamily: "fb-Spacer",
-                        }}
-                      >
-                       תוקף
-                      </Text>
-                    </TouchableOpacity>
-                    <TextInput
-                      editable={false}
-                      disabled={true}
-                      value={expirationDate === "" ? "תוקף לא נבחר" : String(expirationDate)}
-                      style={[
-                        signInstyles.signInPageInput,
-                        {
-                          flex: 2,
-                          fontSize: 12,
-                          color: "black",
-                          textAlign: "center",
-
-                          fontFamily: "fb-Spacer",
-                        },
-                      ]}
-                    />
-                    <FontAwesomeIcon
-                      style={{
-                        color: expirationDate === "" ? "transparent" : "black",
-                      }}
-                      icon={faCheckCircle}
-                    />
-
-                    {show && (
-                      <DateTimePicker
-                        testID='dateTimePicker'
-                        value={new Date()}
-                        mode='date'
-                        is24Hour={false}
-                        display='spinner'
-                        onChange={onChange}
-                      />
-                    )}
-                  </View> */}
-   {/* <View
-                    style={{
-                      alignItems: "stretch",
-
-                      flex: 1,
-                    }}
-                  > */}
-                    {/* <View style={{ flexDirection: "row" }}>
-                      <Label
-                        style={{
-                          fontSize:EStyleSheet.value("$rem") * 12,
-                          marginHorizontal: 10,
-                          fontFamily: "fb-Spacer",
-                        }}
-                        >
-                        תוקף                      
-                     </Label>
-                    </View> */}
-              
-                    {/* <TouchableOpacity
-                      style={{ flexDirection: "row", alignItems: "center",backgroundColor:"white",borderRadius:8,height:30,width:100,left:10,top:8 }}
-                      onPress={() => {
-                        setShow(true);
-                      }}
-                      >
-                    
-                         <Text
-                        style={{
-                          fontSize: EStyleSheet.value("$rem") * 20,
-                          color: "black",
-                            fontFamily: "fb-Spacer",
-                        left:EStyleSheet.value("$rem") * 31
-                        }}
-                      >
-                       {monthPicker === " " ? " " : String(dayPicker)+"."+ String(monthPicker)}
-                      </Text>
-                      <FontAwesomeIcon
-                        style={{
-                            color: expirationDate === "" ? "transparent" : "black",
-                          left:72
-                        }}
-                        icon={faCheckCircle}
-                        />
-                       
-                      </TouchableOpacity> */}
-                    
-                      {/* {show && (
-                        <View style={{flexDirection:"row",alignSelf:"flex-end",left:40}}>
-                          <Picker
-                            // text styles={{fontFamily: "fb-Spacer-bold"}}
-                      selectedValue={monthPicker}
-                      style={{height: 50, width: 90}}
-                      onValueChange={(itemValue, itemIndex) =>
-                      setMonthPicker(itemValue)
-                      }>
-                      <Picker.Item label="ינו'" value="01" />
-                      <Picker.Item label="פבר'" value="02" />
-                      <Picker.Item label="מרץ" value="03" />
-                      <Picker.Item label="אפריל" value="04" />
-                      <Picker.Item label="מאי" value="05" />
-                      <Picker.Item label="יוני" value="06" />
-                      <Picker.Item label="יולי" value="07" />
-                      <Picker.Item label="אוג'" value="08" />
-                      <Picker.Item label="ספט'" value="09" />
-                      <Picker.Item label="אוק'" value="10" />
-                      <Picker.Item label="נוב'" value="11" />
-                      <Picker.Item label="דצמ'" value="12" />
-                    </Picker>
-                     
-                      <Picker
-                      selectedValue={dayPicker}
-                      style={{height: 50, width: 90}}
-                      onValueChange={(itemValue, itemIndex) =>
-                      setDayPicker(itemValue)
-                      }>
-                      <Picker.Item label="01" value="01" />
-                      <Picker.Item label="02" value="02" />
-                      <Picker.Item label="03" value="03" />
-                      <Picker.Item label="04" value="04" />
-                      <Picker.Item label="05" value="05" />
-                      <Picker.Item label="06" value="06" />
-                      <Picker.Item label="07" value="07" />
-                      <Picker.Item label="08" value="08" />
-                      <Picker.Item label="09" value="09" />
-                      <Picker.Item label="10" value="10" />
-                      <Picker.Item label="11" value="11" />
-                      <Picker.Item label="12" value="12" />
-                    </Picker>
-                   
-                        </View>
-                    )} */}
-                        
-                    {/* </View> */}
-                    
-                          {/* עד כאן תוקף         */}
-
-                         {/* CW מכאן */}
-                  {/* <View
-                    style={{
-                      alignItems: "stretch",
-
-                      flex: 1,
-                    }}
-                  >
-                    <View style={{ flexDirection: "row" }}>
-                      <Label
-                        style={{
-                          fontSize: 12,
-                          marginHorizontal: 10,
-                          fontFamily: "fb-Spacer",
-                        }}
-                        >
-                        CW                      
-                     </Label>
-                    </View>
-                    <View
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                        <TextInput
-                          style={{left:EStyleSheet.value("$rem") * 31}}
-                        value={CW}
-                        maxLength={3}
-                        key={"CW"}
-                        style={signInstyles.signInPageInput}
-                        onChangeText={(text) => setCW(text)}
-                      />
-                      <FontAwesomeIcon
-                        style={{
-                          color: !validateCW(CW) ? "transparent" : "black",
-                        }}
-                        icon={faCheckCircle}
-                      />
-                    </View>
-                  
-                  </View> */}
-
-
-{/* עד כאן CW */}
-{/* </View> */}
-
-                   {/* מכאן שם בעל הכרטיס                */}
-                  {/* <View
-                    style={{
-                      alignItems: "stretch",
-                      flex: 1,
-                    }}
-                  >
-                    <View style={{ flexDirection: "row" }}>
-                      <Label
-                        style={{
-                          fontSize: 12,
-                          marginHorizontal: 10,
-                          fontFamily: "fb-Spacer",
-                        }}
-                      >
-                        שם בעל הכרטיס
-                  </Label>
-                    </View>
-                   
-                    <View
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                      <TextInput
-                        value={name}
-                        style={signInstyles.signInPageInput}
-                        key={"NAME"}
-                        onChangeText={(text) => setName(text)}
-                      />
-                      <FontAwesomeIcon
-                        style={{
-                          color: name === "" ? "transparent" : "black",
-                        }}
-                        icon={faCheckCircle}
-                      />
-                    </View>
-                  </View> */}
-
-                                  {/* עד כאן שם בעל הכרטיס */}
-
-
-                  
                     <View style={{flexDirection:"row", justifyContent:"center",paddingBottom:18}}>
                                       
                                   <Image
@@ -830,37 +517,94 @@ const Payment = ({ navigation }) => {
                                  
                  </View>
                       
+                {validation.valid === true ?  (
+                <Button
+                rounded
+                style={{
+                  backgroundColor: "#FBB03B",
+                  // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                  // backgroundColor: "#FBB03B",
+                  borderColor: "white",
+                  borderWidth: 2,
+                  borderRadius: 17,
+                  flex: 1,
+                  width: 170,
+                  alignSelf: "center"
 
-                  <Button
-                    // disabled={fieldCheck}
-                    disabled={!validation.valid}
-                    rounded
+                  //   marginHorizontal: 70,
+                }}
+                    onPress={() => {
+                      console.log("CCInput:",CCInput);
+                      setReset(true);
+                    console.log("form or validation", validation);
+                    navigation.navigate("PaymentAnnouncment");
+                 
+                    
+                    () =>{
+                      CCInput.setValues.values({
+                        number: " ",
+                        name: " ",
+                        expiry: " ",
+                        cvc:" "
+                      });
+                      }
+                        
+                      
+
+                    dispatch(
+                      SignUp(
+                        validation
+                      )
+                    );
+                  
+                }
+                }
+                >
+                  <Text
                     style={{
-                      backgroundColor: !validation.valid ? "#999" : "#FBB03B",
-                      // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
-                      // backgroundColor: "#FBB03B",
-                      borderColor: "white",
-                      borderWidth: 2,
-                      borderRadius: 17,
-                        flex: 1,
-                        width: 170,
-                      alignSelf:"center"
+                      color: "white",
+                      flex: 1,
+                      fontSize: 30,
+                      textAlign: "center",
+                      fontFamily: "fb-Spacer-bold",
+                    }}
+                  >
+                    אישור
+                  </Text>
+                </Button>                 
+                ) : (
+                  <Button
+                  // disabled={fieldCheck}
+                  disabled
+                  // disabled={true}
+                  rounded
+                  style={{
+                    backgroundColor: "#999",
+                    // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
+                    // backgroundColor: "#FBB03B",
+                    borderColor: "white",
+                    borderWidth: 2,
+                    borderRadius: 17,
+                    flex: 1,
+                    width: 170,
+                    alignSelf: "center"
 
                     //   marginHorizontal: 70,
-                    }}
-                    onPress={() => {
-                      console.log("form or validation",validation);
+                  }}
+                  onPress={ () => {
+                     
+                      console.log("form or validation", validation);
+                      navigation.navigate("PaymentAnnouncment");
+                   
 
                       dispatch(
                         SignUp(
-                          name,
-                          cardNum,
-                          expirationDate,
-                          CW
+                          validation
                         )
                       );
-                      
-                    }}
+                    
+                  }
+                  }
                   >
                     <Text
                       style={{
@@ -873,7 +617,10 @@ const Payment = ({ navigation }) => {
                     >
                       אישור
                     </Text>
-                  </Button>
+                  </Button>      
+)
+}
+ 
                               </View>
           
                               

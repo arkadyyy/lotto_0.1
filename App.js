@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home";
 import UserArea from "./pages/UserArea/UserArea";
 import SignIn from "./pages/SignIn/SignIn";
 import Payment from "./pages/SignIn/Payment";
+import PaymentAnnouncment from "./pages/SignIn/PaymentAnnouncment";
 import LogInPage from "./pages/LogIn/LogInPage";
 import StackWrapper from "./StackWrapper";
 import DrawerContent from "./pages/DrawerContent/DrawerContent";
@@ -142,6 +143,7 @@ export default function App() {
               <Drawer.Screen name='ResultLotto' component={ResultLotto} />
               <Drawer.Screen name='ResultChance' component={ResultChance} />
               <Drawer.Screen name='Payment' component={Payment} />
+              <Drawer.Screen name='PaymentAnnouncment' component={PaymentAnnouncment} />
               <Drawer.Screen name='Help' component={Help} />
               <Drawer.Screen name='GetInTouch' component={GetInTouch} />
               <Drawer.Screen name='About' component={About} />

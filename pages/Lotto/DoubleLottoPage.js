@@ -219,7 +219,7 @@ const DoubleLottoPage = ({ navigation }) => {
 
     if (store.user === -1) {
       returnedState = true;
-      seterrorMsg("עלייך להתחבר על מנת להמשיך");
+      seterrorMsg("יש להתחבר על מנת להמשיך");
     }
 
     checkedFullTables.forEach((table) => {

@@ -25,7 +25,7 @@ const { width, height } = Dimensions.get("window");
 
 const SumPageChance = ({ route, navigation }) => {
   const {
-    screenName,
+    screenName,componentWillReceiveProps,
     tableNum,
     fullTables,
     investNum,
