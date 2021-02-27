@@ -11,35 +11,20 @@ import {
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
-  faCheck,
   faCheckCircle,
-  faTimes,
-  faQuestion,
-  faQuestionCircle,
   faEye,
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 import signInstyles from "../SignIn/SignInStyles";
 import {
-  Container,
-  Item,
-  Content,
-  Header,
-  Input,
-  Left,
   Body,
   Right,
   Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  Radio,
   ListItem,
   CheckBox,
   Label,
   Spinner,
-  Toast
+  Toast,
 } from "native-base";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Auth } from "aws-amplify";
@@ -707,18 +692,17 @@ const SignIn = ({ navigation }) => {
                     </View>
                   </View>
                   <Label
-                        style={{
-                          fontSize: 12,
-                          marginHorizontal: 10,
-                          fontFamily: "fb-Spacer",
-                        }}
-                        >
-                        תאריך לידה                      
-                     </Label>
+                    style={{
+                      fontSize: 12,
+                      marginHorizontal: 10,
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
+                    תאריך לידה
+                  </Label>
                   <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    
-                  {/* <View style={{ flexDirection: "row" }}> */}
-                      {/* <Label
+                    {/* <View style={{ flexDirection: "row" }}> */}
+                    {/* <Label
                         style={{
                           fontSize: 12,
                           marginHorizontal: 10,
@@ -736,7 +720,8 @@ const SignIn = ({ navigation }) => {
                         // padding: 7,
                         fontSize: 10,
                         flex: 1,
-                        flexDirection: "row", alignItems: "center" 
+                        flexDirection: "row",
+                        alignItems: "center",
                       }}
                       onPress={() => {
                         setShow(true);
@@ -752,29 +737,28 @@ const SignIn = ({ navigation }) => {
                         בחר תאריך לידה
                       </Text> */}
 
-<TextInput
-                      editable={false}
-                      disabled={true}
-                      value={date === "" ? " " : String(date)}
-                      style={[
-                        signInstyles.signInPageInput,
-                        {
-                          // flex: 1,
-                          fontSize: 20,
-                          color: "black",
-                          textAlign: "center",
-width:250,
-                          fontFamily: "fb-Spacer",
-                        },
-                      ]}
-                    />
-                    <FontAwesomeIcon
-                      style={{
-                        color: date === "" ? "transparent" : "black",
-                      }}
-                      icon={faCheckCircle}
-                    />
-
+                      <TextInput
+                        editable={false}
+                        disabled={true}
+                        value={date === "" ? " " : String(date)}
+                        style={[
+                          signInstyles.signInPageInput,
+                          {
+                            // flex: 1,
+                            fontSize: 20,
+                            color: "black",
+                            textAlign: "center",
+                            width: 250,
+                            fontFamily: "fb-Spacer",
+                          },
+                        ]}
+                      />
+                      <FontAwesomeIcon
+                        style={{
+                          color: date === "" ? "transparent" : "black",
+                        }}
+                        icon={faCheckCircle}
+                      />
                     </TouchableOpacity>
                     {/* <TextInput
                       editable={false}
@@ -918,7 +902,8 @@ width:250,
                           fontFamily: "fb-Spacer",
                         }}
                       >
-                        אני מאשר את תנאי השימוש באתר, את התקנון,      וקבלת הודעות דיוור מהאתר.
+                        אני מאשר את תנאי השימוש באתר, את התקנון, וקבלת הודעות
+                        דיוור מהאתר.
                       </Text>
                     </Body>
                   </ListItem>
@@ -932,9 +917,7 @@ width:250,
 
                   <Button
                     // disabled={fieldCheck}
-                    
 
-                    
                     rounded
                     style={{
                       // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
@@ -960,21 +943,20 @@ width:250,
                             backgroundColor: "white",
                             borderRadius: 8,
                           },
-                          textStyle: { color: "white", fontFamily: "fb-Spacer" },
+                          textStyle: {
+                            color: "white",
+                            fontFamily: "fb-Spacer",
+                          },
                           buttonTextStyle: {
                             color: "black",
                             fontFamily: "fb-Spacer",
                           },
                           duration: 2500,
                         });
-                      }
-
-                      else if (fieldCheck === false) {
+                      } else if (fieldCheck === false) {
                         navigation.navigate("Payment", {
-                        //  keyTopass:valueTopass
+                          //  keyTopass:valueTopass
                         });
-                        
-                      
 
                         setGender(""),
                           setFirstName(""),
@@ -1012,11 +994,8 @@ width:250,
                           date: date,
                           address: address,
                         });
-
-                      
                       }
-                    }
-                    }
+                    }}
                     // onPress={() => {
                     //   setGender(""),
                     //     setFirstName(""),
@@ -1055,7 +1034,6 @@ width:250,
                     //     address: address,
                     //   });
 
-                      
                     // }}
                   >
                     <Text
@@ -1071,19 +1049,22 @@ width:250,
                     </Text>
                   </Button>
                   <Button
-                    onPress={() => navigation.navigate("Payment",
-                      {valid:false}
-                    )} 
+                    onPress={() =>
+                      navigation.navigate("Payment", { valid: false })
+                    }
                     rounded
                     style={{
-                      backgroundColor:  "#FBB03B",
+                      backgroundColor: "#FBB03B",
                       // backgroundColor: fieldCheck ? "#999" : "#FBB03B",
                       borderColor: "white",
                       borderWidth: 2,
                       borderRadius: 17,
                       flex: 1,
                       marginHorizontal: 70,
-                    }}><Text>הכנס פרטי תשלום -כפתור זמני-</Text></Button>
+                    }}
+                  >
+                    <Text>הכנס פרטי תשלום -כפתור זמני-</Text>
+                  </Button>
                 </View>
               </>
             )}

@@ -59,7 +59,7 @@ const One23Page = ({ navigation }) => {
   const autoFillForm = () => {
     let fullTabels = [];
     for (let i = 1; i < 5; i++) {
-      while (i < tableNum + 1) {
+      while (i <= tableNum) {
         let numbers = autoFill(3);
         let table = {
           tableNum: i,
@@ -69,12 +69,11 @@ const One23Page = ({ navigation }) => {
         fullTabels = [...fullTabels, table];
         i++;
       }
-      let table = {
-        tableNum: i,
-        choosenNums: [" "],
-      };
-      fullTabels = [...fullTabels, table];
-      i++;
+      // let table = {
+      //   tableNum: i,
+      //   choosenNums: [" "],
+      // };
+      // fullTabels = [...fullTabels, table];
     }
     setFullTables(fullTabels);
   };

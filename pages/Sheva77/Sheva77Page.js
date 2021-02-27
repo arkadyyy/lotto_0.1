@@ -48,23 +48,22 @@ const Sheva77Page = ({ navigation }) => {
 
   const autoFillForm = () => {
     let fullTabels1 = [];
-    for (let i = 1; i < 14 + 1; i++) {
-      while (i < tableNum+1){
-      let numbers = autoFill(7);
-      let table = {
-        tableNum: i,
-        choosenNums: numbers.randomNumbers,
-      };
+    for (let i = 1; i < 3; i++) {
+      while (i <= tableNum) {
+        let numbers = autoFill(7);
+        let table = {
+          tableNum: i,
+          choosenNums: numbers.randomNumbers,
+        };
         fullTabels1 = [...fullTabels1, table];
         i++;
       }
-      
-      let table = {
-        tableNum: i,
-        choosenNums: [" "],
-      };
-      fullTabels1 = [...fullTabels1, table];
-      i++;
+
+      // let table = {
+      //   tableNum: i,
+      //   choosenNums: [" ", " ", " ", " ", " ", " ", " "],
+      // };
+      // fullTabels1 = [...fullTabels1, table];
     }
     setFullTables(fullTabels1);
   };
@@ -89,17 +88,20 @@ const Sheva77Page = ({ navigation }) => {
     ]);
   };
   const checkTables = (fullTables) => {
-    returnedState = false;
+    let returnedState = false;
 
-    if (fullTables.length !== tableNum) {
+    let checkedFullTables = fullTables.sort((table1, table2) => {
+      return table1.tableNum - table2.tableNum;
+    });
+    checkedFullTables.slice(0, tableNum - 1);
+    console.log("checkedFullTables : ", checkedFullTables);
+
+    if (checkedFullTables.length !== tableNum) {
       returnedState = true;
     }
 
-    fullTables.forEach((table) => {
+    checkedFullTables.forEach((table) => {
       if (table.choosenNums.includes(" ")) {
-        returnedState = true;
-      }
-      if (table.strongNum === " ") {
         returnedState = true;
       }
     });
@@ -187,7 +189,6 @@ const Sheva77Page = ({ navigation }) => {
                 opendTableNum={opendTableNum}
                 setopendTableNum={setopendTableNum}
                 tableNum={tableNum}
-
               />
             )}
             <View style={sheva77Liststyles.listContainerBorder}>

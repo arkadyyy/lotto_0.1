@@ -40,11 +40,12 @@ const ExtraFormPage = ({ route, navigation }) => {
   const [tableRowColor, setTableRowColor] = useState("D60617");
   const [jwtState, setjwtState] = useState({});
   const [gameName, setGameName] = useState("");
+
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const [hagralot, setHagralot] = useState(-1);
-  const [price, setPrice] = useState(11);
+  const [price, setPrice] = useState("");
   const [otomatic, setOtomatic] = useState(true);
   const [extra, setExtra] = useState(true);
   const [url, seturl] = useState("");
@@ -56,7 +57,62 @@ const ExtraFormPage = ({ route, navigation }) => {
     tables: [],
   });
 
+  const getPrice = (url, fullTables) => {
+    navigation.addListener("focus", async () => {
+      console.log("i am focused ");
+
+      let x = await fullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
+          strong_number: [table.strongNum],
+          table_number: table.tableNum,
+        };
+      });
+      console.log("fulltables updated for extrapage : ", x);
+      axios
+        .post(
+          url,
+          {
+            extra: extra,
+            multi_lottery: hagralot,
+            tables: x,
+          },
+          {
+            headers: {
+              Authorization: store.jwt,
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => setPrice(res.data.price))
+        .catch((err) => console.log(err));
+
+      setsendToServer({
+        extra: extra,
+        multi_lottery: hagralot,
+        tables: x,
+      });
+    });
+  };
+
+  const onblur = () => {
+    navigation.addListener("blur", () => {
+      console.log("navigation blur happend &&&&&&&");
+      setPrice(null);
+      setOtomatic(true);
+      setExtra(true);
+      setsendToServer({
+        extra: false,
+        multi_lottery: -1,
+        tables: [],
+      });
+    });
+  };
+
   useEffect(() => {
+    onblur();
+
     if (screenName === "LottoPage") {
       setGameName("הגרלת לוטו");
     } else if (screenName === "ChancePage") {
@@ -66,22 +122,44 @@ const ExtraFormPage = ({ route, navigation }) => {
     //set post url according to game
     if (gameType === "regular") {
       seturl("http://52.90.122.190:5000/games/lotto/type/regular/0");
+      getPrice(
+        "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
+        fullTables
+      );
     } else if (gameType === "double") {
       seturl("http://52.90.122.190:5000/games/lotto/type/regular_double/0");
+      getPrice(
+        "http://52.90.122.190:5000/games/lotto/type/regular_double/calculate_price",
+        fullTables
+      );
     } else if (gameType === "shitati") {
       seturl("http://52.90.122.190:5000/games/lotto/type/shitati/0");
+      getPrice(
+        "http://52.90.122.190:5000/games/lotto/type/shitati/calculate_price",
+        fullTables
+      );
     } else if (gameType === "double_shitati") {
       seturl("http://52.90.122.190:5000/games/lotto/type/double_shitati/0");
+      getPrice(
+        "http://52.90.122.190:5000/games/lotto/type/double_shitati/calculate_price",
+        fullTables
+      );
     } else if (gameType === "shitati_hazak") {
       seturl("http://52.90.122.190:5000/games/lotto/type/shitati_hazak/0");
+      getPrice(
+        "http://52.90.122.190:5000/games/lotto/type/shitati_hazak/calculate_price",
+        fullTables
+      );
     } else if (gameType === "double_shitati_hazak") {
       seturl(
         "http://52.90.122.190:5000/games/lotto/type/double_shitati_hazak/0"
       );
+      getPrice(
+        "http://52.90.122.190:5000/games/lotto/type/double_shitati_hazak/calculate_price",
+        fullTables
+      );
     }
-  }, []);
 
-  useEffect(() => {
     //configure data sent to server
 
     if (gameType === "regular" || gameType === "double") {
@@ -93,15 +171,11 @@ const ExtraFormPage = ({ route, navigation }) => {
         };
       });
 
-      console.log("x : ", x);
-
       setsendToServer({
         extra: extra,
         multi_lottery: hagralot,
         tables: x,
       });
-
-      console.log("sendToServer : ", sendToServer);
     } else if (gameType === "shitati") {
       let x = fullTables.map((table, index) => {
         return {
@@ -111,8 +185,6 @@ const ExtraFormPage = ({ route, navigation }) => {
         };
       });
 
-      console.log("x : ", x);
-      console.log("fullTables : ", fullTables);
       setsendToServer({
         extra: extra,
         form_type: `${tzerufimNumber}`,
@@ -128,8 +200,6 @@ const ExtraFormPage = ({ route, navigation }) => {
         };
       });
 
-      console.log("x : ", x);
-      console.log("fullTables : ", fullTables);
       setsendToServer({
         extra: extra,
         form_type: `${hazakimNumber}`,
@@ -137,7 +207,40 @@ const ExtraFormPage = ({ route, navigation }) => {
         tables: x,
       });
     }
-  }, [fullTables, extra, hagralot, otomatic]);
+
+    let x = fullTables.map((table, index) => {
+      return {
+        numbers: table.choosenNums,
+        strong_number: [table.strongNum],
+        table_number: table.tableNum,
+      };
+    });
+    console.log("fulltables updated for extrapage : ", x);
+    axios
+      .post(
+        "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
+        {
+          extra: extra,
+          multi_lottery: hagralot,
+          tables: x,
+        },
+        {
+          headers: {
+            Authorization: store.jwt,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => setPrice(res.data.price))
+      .catch((err) => console.log(err));
+
+    setsendToServer({
+      extra: extra,
+      multi_lottery: hagralot,
+      tables: x,
+    });
+  }, [fullTables, extra, hagralot, otomatic, navigation]);
 
   return (
     <>

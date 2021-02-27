@@ -40,10 +40,14 @@ const SignUp = (
       payload: { user },
     });
   } catch (error) {
-    console.log(error);
+    console.log("error from action : ", error);
+    let msg;
+    if (error.message === "An account with the given email already exists.") {
+      msg = "משתמש עם אימייל זה כבר קיים";
+    }
     await dispatch({
       type: "SIGNUP_FAIL",
-      payload: { error },
+      payload: { msg },
     });
   }
 };
@@ -87,9 +91,16 @@ const LogIn = (username, password) => async (dispatch) => {
     });
   } catch (error) {
     console.log(error);
+    let msg;
+    if (error.message === "User does not exist.") {
+      msg = "משתמש אינו קיים";
+    } else if (error.message === "Incorrect username or password.") {
+      msg = "שם משתמש או סיסמה שגויים";
+    }
+
     dispatch({
       type: "LOGIN_FAIL",
-      payload: { error },
+      payload: { msg },
     });
   }
 };

@@ -246,7 +246,7 @@ const LottoPage = ({ navigation }) => {
   useEffect(() => {
     settablesCheck(checkTables(fullTables, tableNum));
     console.log("tablesCheck : ", tablesCheck);
-    console.log("fullTables : ", fullTables);
+    console.log("fullTables from lottoPage : ", fullTables);
   }, [fullTables, tableNum]);
 
   return (

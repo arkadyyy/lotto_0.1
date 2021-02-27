@@ -37,7 +37,7 @@ const SumPage777 = ({ route, navigation }) => {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [price, setPrice] = useState(11);
+  const [price, setPrice] = useState(null);
   const [otomatic, setOtomatic] = useState(true);
 
   const [hagralot, setHagralot] = useState(-1);
@@ -48,19 +48,84 @@ const SumPage777 = ({ route, navigation }) => {
     tables: [],
   });
 
-  // const [tableNum, settableNum] = useState(1);
+  const getPrice = (url, fullTables, formType) => {
+    navigation.addListener("focus", async () => {
+      console.log("i am focused ");
+
+      let x = await fullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
+          strong_number: [table.strongNum],
+          table_number: table.tableNum,
+        };
+      });
+      console.log("fulltables updated for extrapage : ", x);
+      axios
+        .post(
+          url,
+          {
+            multi_lottery: hagralot,
+            tables: x,
+            form_type: formType,
+          },
+          {
+            headers: {
+              Authorization: store.jwt,
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => setPrice(res.data.price))
+        .catch((err) => console.log(err));
+
+      setsendToServer({
+        multi_lottery: hagralot,
+        tables: x,
+      });
+    });
+  };
+
+  const onblur = () => {
+    navigation.addListener("blur", () => {
+      console.log("navigation blur happend &&&&&&&");
+      setPrice(null);
+      setOtomatic(true);
+
+      setsendToServer({
+        multi_lottery: -1,
+        tables: [],
+      });
+    });
+  };
 
   useEffect(() => {
+    onblur();
     //set url accordingly to game
     if (gameType === "777") {
       seturl("http://52.90.122.190:5000/games/777/type/regular/0");
+      getPrice(
+        "http://52.90.122.190:5000/games/777/type/regular/calculate_price",
+        fullTables,
+        formType
+      );
     } else if (gameType === "778") {
       seturl("http://52.90.122.190:5000/games/777/type/shitati/0");
+      getPrice(
+        "http://52.90.122.190:5000/games/777/type/shitati/calculate_price",
+        fullTables,
+        formType
+      );
     } else if (gameType === "779") {
       seturl("http://52.90.122.190:5000/games/777/type/shitati/0");
+      getPrice(
+        "http://52.90.122.190:5000/games/777/type/shitati/calculate_price",
+        fullTables,
+        formType
+      );
     }
     console.log("formType : ", formType);
-  }, []);
+  }, [[fullTables, hagralot, otomatic, navigation]]);
 
   useEffect(() => {
     //configure data sent to server
@@ -221,7 +286,7 @@ const SumPage777 = ({ route, navigation }) => {
                   }}
                 >
                   {" "}
-                  {hagralot}הגרלות
+                  הגרלות : {hagralot === -1 ? 1 : hagralot}
                 </Text>
               </View>
 
@@ -243,6 +308,7 @@ const SumPage777 = ({ route, navigation }) => {
                 </Text>
                 <View style={{ height: 10 }}>
                   <FontAwesomeIcon
+                    size={10}
                     style={{ marginVertical: 7, marginLeft: -4 }}
                     icon={faShekelSign}
                     color='white'

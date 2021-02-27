@@ -25,7 +25,8 @@ const { width, height } = Dimensions.get("window");
 
 const SumPageChance = ({ route, navigation }) => {
   const {
-    screenName,componentWillReceiveProps,
+    screenName,
+    componentWillReceiveProps,
     tableNum,
     fullTables,
     investNum,
@@ -79,6 +80,36 @@ const SumPageChance = ({ route, navigation }) => {
 
     //leaf = spade , clover = clubs
 
+    // "marks": {
+    //   "cards": {
+    //     "clover": [
+    //       "9"
+    //     ],
+    //     "diamond": [
+    //       "A"
+    //     ],
+    //     "heart": [
+
+    //     ],
+    //     "leaf": [
+    //       "10"
+    //     ]
+    //   },
+    //   "form_type": 3,
+    //   "multi_lottery": 4,
+    //   "participant_amount": 50
+    // },
+
+    // {
+    //   tableNum: 6,
+    //   choosenCards: [
+    //     { type: "spade", cards: [] },
+    //     { type: "heart", cards: [] },
+    //     { type: "diamond", cards: [] },
+    //     { type: "clubs", cards: [] },
+    //   ],
+    // },
+
     let x = fullTables.choosenCards.forEach((table, index) => {
       if (table.cardType === "clubs") {
         if (table.card.length >= 1) {
@@ -114,7 +145,7 @@ const SumPageChance = ({ route, navigation }) => {
     });
 
     console.log("sendToServer : ", sendToServer);
-  }, [fullTables, hagralot, investNum]);
+  }, [fullTables, hagralot, investNum, navigation]);
 
   return (
     <>

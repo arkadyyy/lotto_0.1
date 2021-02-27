@@ -37,7 +37,7 @@ const SumPage123 = ({ route, navigation }) => {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [price, setPrice] = useState(11);
+  const [price, setPrice] = useState(null);
   const [otomatic, setOtomatic] = useState(true);
   const [hagralot, setHagralot] = useState(-1);
   const [url, seturl] = useState(
@@ -50,7 +50,64 @@ const SumPage123 = ({ route, navigation }) => {
     tables: [],
   });
 
+  const getPrice = (url, fullTables) => {
+    navigation.addListener("focus", async () => {
+      console.log("i am focused ");
+
+      let x = fullTables.map((table, index) => {
+        return {
+          numbers: {
+            1: table.choosenNums[0],
+            2: table.choosenNums[1],
+            3: table.choosenNums[2],
+          },
+
+          table_number: table.tableNum,
+        };
+      });
+      console.log("fulltables updated for extrapage : ", x);
+      axios
+        .post(
+          url,
+          {
+            multi_lottery: hagralot,
+            participant_amount: investNum,
+            tables: x,
+          },
+          {
+            headers: {
+              Authorization: store.jwt,
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => setPrice(res.data.price))
+        .catch((err) => console.log(err));
+
+      setsendToServer({
+        multi_lottery: hagralot,
+        tables: x,
+      });
+    });
+  };
+
+  const onblur = () => {
+    navigation.addListener("blur", () => {
+      console.log("navigation blur happend &&&&&&&");
+      setPrice(null);
+      setOtomatic(true);
+
+      setsendToServer({
+        multi_lottery: -1,
+        participant_amount: 0,
+        tables: [],
+      });
+    });
+  };
+
   useEffect(() => {
+    onblur();
     let x = fullTables.map((table, index) => {
       return {
         numbers: {
@@ -63,6 +120,11 @@ const SumPage123 = ({ route, navigation }) => {
       };
     });
 
+    getPrice(
+      "http://52.90.122.190:5000/games/123/type/regular/calculate_price",
+      fullTables
+    );
+
     // console.log("x : ", x);
 
     setsendToServer({
@@ -72,7 +134,7 @@ const SumPage123 = ({ route, navigation }) => {
     });
 
     console.log("sendToServer : ", sendToServer);
-  }, [fullTables, hagralot, investNum]);
+  }, [fullTables, hagralot, investNum, navigation]);
 
   return (
     <>
@@ -211,7 +273,7 @@ const SumPage123 = ({ route, navigation }) => {
                   }}
                 >
                   {" "}
-                  {hagralot}הגרלות
+                  הגרלות : {hagralot === -1 ? 1 : hagralot}
                 </Text>
               </View>
 
@@ -233,6 +295,7 @@ const SumPage123 = ({ route, navigation }) => {
                 </Text>
                 <View style={{ height: 10 }}>
                   <FontAwesomeIcon
+                    size={10}
                     style={{ marginVertical: 7, marginLeft: -4 }}
                     icon={faShekelSign}
                     color='white'

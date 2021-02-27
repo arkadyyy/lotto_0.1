@@ -390,7 +390,14 @@ const ForgotPasswordPage = ({
                           .then((res) => setshowForgotPass(3))
                           .catch(async (err) => {
                             console.log(err.message);
-                            await setMsg(err.message);
+                            if (
+                              err.message ===
+                              "Username/client id combination not found."
+                            ) {
+                              await setMsg("שם משתמש אינו קיים במערכת");
+                            } else {
+                              await setMsg(err.message);
+                            }
                             setshowForgotPass(-2);
                           });
                       }}
