@@ -48,47 +48,47 @@ import {
 const ResultLotto = (props) => {
   const { navigation } = props;
   const [data, setData] = useState([]);
-  const [sortedData, setSortedData] = useState([]);
+  // const [sortedData, setSortedData] = useState([]);
 
  
-  const [dateStart, setDateStart] = useState(" ");
-  const [dateEnd, setDateEnd] = useState(" ");
+  // const [dateStart, setDateStart] = useState(" ");
+  // const [dateEnd, setDateEnd] = useState(" ");
 
-  const [showDateStart, setShowDateStart] = useState(false);
-  const [showDateEnd, setShowDateEnd] = useState(false);
+  // const [showDateStart, setShowDateStart] = useState(false);
+  // const [showDateEnd, setShowDateEnd] = useState(false);
 
-  const onChangeDateStart = (event, selectedDateStart) => {
-    const currentDateStart = selectedDateStart || dateStart;
-   setShowDateStart(Platform.OS === 'ios');
-   setDateStart(currentDateStart);
+  // const onChangeDateStart = (event, selectedDateStart) => {
+  //   const currentDateStart = selectedDateStart || dateStart;
+  //  setShowDateStart(Platform.OS === 'ios');
+  //  setDateStart(currentDateStart);
    
-  };
+  // };
 
-  const onChangeDateEnd = (event, selectedDateEnd) => {
-    const currentDateEnd = selectedDateEnd || dateEnd;
-   setShowDateEnd(Platform.OS === 'ios');
-   setDateEnd(currentDateEnd);
+  // const onChangeDateEnd = (event, selectedDateEnd) => {
+  //   const currentDateEnd = selectedDateEnd || dateEnd;
+  //  setShowDateEnd(Platform.OS === 'ios');
+  //  setDateEnd(currentDateEnd);
    
-  };
+  // };
   
-  useEffect(() => {
-    console.log("dateStart:", dateStart);
-    var start = new Date(dateStart);
-    console.log("start:",start);
-    var millisecondsStart = start.getTime();
-    console.log("millisecondsStart:",millisecondsStart);
+  // useEffect(() => {
+  //   console.log("dateStart:", dateStart);
+  //   var start = new Date(dateStart);
+  //   console.log("start:",start);
+  //   var millisecondsStart = start.getTime();
+  //   console.log("millisecondsStart:",millisecondsStart);
 
-  }, [dateStart])
+  // }, [dateStart])
   
 
-  useEffect(() => {
-    console.log("dateEnd:", dateEnd);
-    var end = new Date(dateEnd);
-    console.log("end:",end);
-    var millisecondsEnd = end.getTime();
-    console.log("millisecondsEnd:",millisecondsEnd);
+  // useEffect(() => {
+  //   console.log("dateEnd:", dateEnd);
+  //   var end = new Date(dateEnd);
+  //   console.log("end:",end);
+  //   var millisecondsEnd = end.getTime();
+  //   console.log("millisecondsEnd:",millisecondsEnd);
 
-  },[dateEnd])
+  // },[dateEnd])
 
   useEffect(() => {
     let accessToken;
@@ -104,16 +104,17 @@ const ResultLotto = (props) => {
             Authorization: jwt,
           },
         })
-        .then((res) => setData(res.data.data.rows))
+        // .then((res) => setData(res.data.data.rows))
+        .then((res) => setData(res.data.data.rows.slice(0,99)))
 
         .catch((err) => console.log(err));
     }, 5000);
-  }, [dateStart]);
+  }, []);
 
-  useEffect(() => {
-    const sortedData=data.sort((a, b) => parseFloat(a["מספר הגרלה"]) - parseFloat(b["מספר הגרלה"]));
-setSortedData(sortedData)
-}, [data])
+//   useEffect(() => {
+//     const sortedData=data.sort((a, b) => parseFloat(a["מספר הגרלה"]) - parseFloat(b["מספר הגרלה"]));
+// setSortedData(sortedData)
+// }, [data])
 
   return (
     <>
@@ -129,7 +130,7 @@ setSortedData(sortedData)
             <Text
               style={{
                 fontFamily: "fb-Spacer-bold",
-                fontSize: EStyleSheet.value("$rem") * 38,
+                fontSize: EStyleSheet.value("$rem") * 28,
                 paddingVertical: EStyleSheet.value("$rem") * 19,
                 paddingRight: EStyleSheet.value("$rem") * 20
               }}
@@ -146,8 +147,9 @@ setSortedData(sortedData)
             
                   height: EStyleSheet.value("$rem") * 320,
                 }}
-              >
-              <View style={{
+            >
+              
+              {/* <View style={{
                 marginTop: EStyleSheet.value("$rem") * 15,
                 marginBottom: EStyleSheet.value("$rem") * 25,
               flexDirection:"row"
@@ -235,7 +237,7 @@ setSortedData(sortedData)
                     )}
                 </TouchableOpacity>
 
-              </View>
+              </View> */}
               
               <ScrollView>
 
@@ -243,12 +245,12 @@ setSortedData(sortedData)
             style={{
               marginRight: 20,
               width: "90%",
-              marginTop: 10,
+              // marginTop: 10,
             }}
                   >
                    
                    
-                  {data ? (
+                  {data.length<99 ? (
                     <Spinner/>
                   ) :
                     null
@@ -274,7 +276,7 @@ setSortedData(sortedData)
                     style={{ alignSelf:"center" }}
                   >
                     <Text style={{
-                      fontSize:EStyleSheet.value("$rem") * 15,
+                      fontSize:EStyleSheet.value("$rem") * 20,
                       color: "#263742",
                       fontFamily: "fb-Spacer-bold",
                       // textAlignVertical: "center",
@@ -289,7 +291,7 @@ setSortedData(sortedData)
                   >
 
                     <Text style={{
-                      fontSize: EStyleSheet.value("$rem") * 15,  
+                      fontSize: EStyleSheet.value("$rem") * 20,  
                       fontFamily: "fb-Spacer-bold",
 
                       color: "#263742"
@@ -322,14 +324,15 @@ setSortedData(sortedData)
                 </View>
 
                
-                {/* <View
+                <View
                   style={{ flexDirection: "column", alignItems: "flex-end" }}
-                > */}
-                  {/* <View style={{ flexDirection: "row" }}>
+                >
+                  <View style={{flexDirection: "row",justifyContent:"flex-start" }}>
                     {hagrala[Object.keys(hagrala)[2]].numbers
                       .map((num) => (
                       <Text
-                        style={{
+                          style={{
+                          // top:EStyleSheet.value("$rem") * 15,
                           borderWidth: 2,
                           width: EStyleSheet.value("$rem") * 35,
                           height: EStyleSheet.value("$rem") * 35,
@@ -338,10 +341,10 @@ setSortedData(sortedData)
                           textAlign: "center",
                           textAlignVertical: "center",
                           color: "white",
-                          fontSize: EStyleSheet.value("$rem") * 33,
+                          fontSize: EStyleSheet.value("$rem") * 25,
                           fontFamily: "fb-Spacer-bold",
-                          marginLeft: EStyleSheet.value("$rem") * 5,
-                          marginTop:EStyleSheet.value("$rem") * 10
+                          marginLeft: EStyleSheet.value("$rem") * 10,
+                          marginTop:EStyleSheet.value("$rem") * 10,
 
                         }}
                       >
@@ -352,7 +355,7 @@ setSortedData(sortedData)
 {hagrala[Object.keys(hagrala)[2]].strong_number && (
                     <Text
                         style={{
-                        marginLeft:EStyleSheet.value("$rem") * 14,
+                        // marginLeft:EStyleSheet.value("$rem") * 20,
                         borderWidth: 2,
                         width: EStyleSheet.value("$rem") *35 ,
                         height: EStyleSheet.value("$rem") * 35,
@@ -361,21 +364,19 @@ setSortedData(sortedData)
                         textAlign: "center",
                         textAlignVertical: "center",
                         color: "black",
-                          fontSize: EStyleSheet.value("$rem") * 33,
+                          fontSize: EStyleSheet.value("$rem") * 25,
                           fontFamily: "fb-Spacer-bold",
-                          marginTop:EStyleSheet.value("$rem") * 10
-
-
-                        
+                          marginTop:EStyleSheet.value("$rem") * 10,
+left:15
                       }}
                     >
                       {hagrala[Object.keys(hagrala)[2]].strong_number}
                     </Text>
                   )}
 
-                  </View> */}
+                  </View> 
                  
-                {/* </View> */}
+                </View>
 
               
               </ListItem>
