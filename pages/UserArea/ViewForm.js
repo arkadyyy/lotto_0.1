@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text,Image } from "react-native";
 import ViewFormStyles from "./ViewFormStyles.js";
 const ViewForm = ({
   numbers,
@@ -147,10 +147,8 @@ const ViewForm = ({
         ))}
 
       {form_type === "regular_chance" || form_type === "rav_chance" ? (
-        <View style={{ flexDirection: "row" }}>
-          {console.log("card::::::::::::::::::::::::::::::::::::::::::", cards)}
-          {/* {cards.map((card, index) => ( */}
-
+        // <View style={{ flexDirection: "row" }}>
+         
           <View
             style={{
               justifyContent: "center",
@@ -160,7 +158,7 @@ const ViewForm = ({
           >
             {cards.map((num, index) => (
               <View style={{ justifyContent: "center", alignItems: "center" }}>
-                <View
+                {/* <View
                   key={index}
                   style={{
                     width: 30,
@@ -170,37 +168,56 @@ const ViewForm = ({
                     margin: 5,
                     justifyContent: "center",
                     alignItems: "center",
+                    //  position: "absolute",
+                        // top: "50%",
                   }}
-                >
-                  <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
-                </View>
+                > */}
+                
+                {/* </View> */}
                 {ShapesTitle[indexShapes] === "clover" ? (
-                  <Text style={{ fontFamily: "fb-Spacer" }}>תלתן</Text>
+                  // <Text style={{ fontFamily: "fb-Spacer" }}>תלתן</Text>
+                  <Image
+                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  source={require("C:/fullstack/lottoMatic/assets/chance/choosenClubs.png")}
+               
+                  />
                 ) : ShapesTitle[indexShapes] === "diamond" ? (
-                  <Text style={{ fontFamily: "fb-Spacer" }}>יהלום</Text>
+                  // <Text style={{ fontFamily: "fb-Spacer" }}>יהלום</Text>
+                  <Image
+                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  source={require("C:/fullstack/lottoMatic/assets/chance/choosenDiamond.png")}
+                />
                 ) : ShapesTitle[indexShapes] === "leaf" ? (
-                  <Text style={{ fontFamily: "fb-Spacer" }}>עלה</Text>
+                  // <Text style={{ fontFamily: "fb-Spacer" }}>עלה</Text>
+                  <Image
+                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  source={require("C:/fullstack/lottoMatic/assets/chance/choosenSpade.png")}
+                />
                 ) : ShapesTitle[indexShapes] === "heart" ? (
-                  <Text style={{ fontFamily: "fb-Spacer" }}>לב</Text>
-                ) : null}
+                  // <Text style={{ fontFamily: "fb-Spacer" }}>לב</Text>
+                  <Image
+                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  source={require("C:/fullstack/lottoMatic/assets/chance/choosenHeart.png")}
+                />
+                      ) : null}
+                  <Text
+                  key={index}
+                    
+                    style={{
+                      includeFontPadding: false,
+                                      position: "absolute",
+                                      left: "38%",
+                                      top: "50%",
+                                                fontSize: 25,
+                                      color:"black"
+                  }}>{num}</Text>
               </View>
             ))}
-            {/* <Text style={{
-                width: 50,
-                height: 30,
-                borderRadius: 30,
-                backgroundColor: "white",
-              margin: 5,
-              textAlign: "center",
-                textAlignVertical:"center"
-            }}
-                >{cards}
-                  {ShapesTitle}
-                </Text> */}
+          
             {console.log("ShapesTitle:", ShapesTitle)}
 
             {/* <Text> {ShapesTitle[indexShapes]}</Text> */}
-          </View>
+          {/* </View> */}
         </View>
       ) : null}
 
@@ -236,6 +253,7 @@ const ViewForm = ({
                   ) : ShapesTitle[indexShapes] === "heart" ? (
                     <Text style={{ fontFamily: "fb-Spacer" }}>לב</Text>
                   ) : null}
+                
                 </View>
                 <View
                   style={{

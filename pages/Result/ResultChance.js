@@ -302,7 +302,7 @@ const ResultChance = (props) => {
                 <View
                   style={{ flexDirection: "column", alignItems: "flex-end" }}
                 >           
-                              <View style={{ flexDirection: "row" }}>
+                              <View style={{ flexDirection: "row",height:100,marginTop:10  }}>
                                                       {
                            hagrala[Object.keys(hagrala)[2]].numbers
                                                           
@@ -317,24 +317,41 @@ const ResultChance = (props) => {
                                     {/* {console.log("??????", nums[num])} */}
                                                 {/* {console.log("??????", num[key])} */}
                                     
-                                    <Text>
-                                    {index===0 && "תלתן"}    
-                                    {index===1 && "יהלום"}    
-                                    {index===2 && "עלה"}    
-                                    {index===3 && "לב"}    
-                                    </Text>
+                                              {index === 0 &&
+ <Image
+ style={{ width: 60, height: 80, borderRadius: 7 }}
+ source={require("C:/fullstack/lottoMatic/assets/chance/choosenSpade.png")}
+/>                                              }    
+                                              {index === 1 &&
+                                                // "יהלום"
+                                                <Image
+                                                style={{ width: 60, height: 80, borderRadius: 7 }}
+                                                source={require("C:/fullstack/lottoMatic/assets/chance/choosenDiamond.png")}
+                                              />
+                                              }    
+                                              {index === 2 &&
+                                                // "עלה"
+                                                <Image
+                                                style={{ width: 60, height: 80, borderRadius: 7 }}
+                                                source={require("C:/fullstack/lottoMatic/assets/chance/choosenClubs.png")}
+                                              />
+                                              }    
+                                              {index === 3 &&
+                                                // "לב"
+                                                <Image
+                    style={{ width: 60, height: 80, borderRadius: 7 }}
+                    source={require("C:/fullstack/lottoMatic/assets/chance/choosenHeart.png")}
+                  />
+                                              }    
                                     <Text
                                     style={{
-                                      width: 20,
-                                                    height: 20,
-                                                    borderRadius: 18,
-                                                    borderColor: "green",
-                                      borderWidth:2,
-                                      backgroundColor: "white",
-                                      textAlign: "center",
-                                      textAlignVertical: "center",
-                                      color: "green",
-                                      fontSize: EStyleSheet.value("$rem") * 14,
+                                      includeFontPadding: false,
+                                      position: "absolute",
+                                      // left: "37%",
+                                      alignSelf:"center",
+                                      top: "50%",
+                                                fontSize: 25,
+                                      color:"black"
                                     }}
                                   >
                                                 {nums[num]}
