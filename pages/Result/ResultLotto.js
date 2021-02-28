@@ -329,8 +329,8 @@ const ResultLotto = (props) => {
                 >
                   <View style={{flexDirection: "row",justifyContent:"flex-start" }}>
                     {hagrala[Object.keys(hagrala)[2]].numbers
-                      .map((num) => (
-                      <Text
+                      .map((num,index) => (
+                      <Text 
                           style={{
                           // top:EStyleSheet.value("$rem") * 15,
                           borderWidth: 2,

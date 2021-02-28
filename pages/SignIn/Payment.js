@@ -459,7 +459,7 @@ const Payment = ({route, navigation }) => {
                       placeholderColor={"white"}
                       onFocus={_onFocus}
                       onChange={_onChange}
-                      labels={{ number: "מספר כרטיס", expiry: "תוקף", cvc:"CW",name:"שם בעל הכרטיס" }}
+                      labels={{ number: "מספר כרטיס", expiry: "תוקף", cvc:"CW",name:"שם בעל הכרטיס (באנגלית)" }}
                      
                       // placeholders={
                       //   { number: "מספר כרטיס", expiry: "תוקף", cvc: "                      CW", name: "שם בעל הכרטיס" }

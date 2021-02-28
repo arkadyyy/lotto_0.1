@@ -331,8 +331,9 @@ const Result777 = (props) => {
                         marginRight:EStyleSheet.value("$rem") * -50
                     }}>
                     {hagrala[Object.keys(hagrala)[2]].numbers
-                      .map((num) => (
-                      <Text
+                      .map((num,index) => (
+                          <Text 
+                               key={index}
                           style={{
                           // top:EStyleSheet.value("$rem") * 15,
                           borderWidth: 2,
