@@ -306,12 +306,14 @@ const ResultChance = (props) => {
                                                       {
                            hagrala[Object.keys(hagrala)[2]].numbers
                                                           
-                                .map((nums,key) => (
+                                .map((nums,index) => (
 
                                     Object.keys(nums)
 
                                         .map((num, index) => (
-                                    <View>
+                                          <View
+                                            key={index}
+                                          >
                                     {/* {console.log("??????", nums[num])} */}
                                                 {/* {console.log("??????", num[key])} */}
                                     
