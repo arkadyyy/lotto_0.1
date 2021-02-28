@@ -67,6 +67,7 @@ const ActiveForms = ({ activeforms }) => {
         >
           עלות הטופס
         </Text>
+      
         <Text
           style={{
             color: "white",

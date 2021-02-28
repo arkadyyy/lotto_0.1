@@ -93,6 +93,7 @@ const UserArea = ({ navigation }) => {
       })
       .then((res) => {
         setformsHistory(res.data.rows);
+        // console.log("!!!!!!!!!!!!!!!",res);
       });
     axios
       .get("http://52.90.122.190:5000/my_space/wins", {

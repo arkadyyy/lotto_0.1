@@ -16,12 +16,28 @@ import {
   Content,
 } from "native-base";
 import ViewForm from "../ViewForm";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const SeeOrDupilcate = ({ index, open, form }) => {
   const [chanceCards, setChanceCards] = [""];
   if (index === open.index) {
     return (
-      <View>
+      <View style={{flexDirection:"column"}}>
+        <View style={{flexDirection:"row",justifyContent:"space-evenly"}}>
+          <TouchableOpacity
+            // onPress=
+          >
+            <Text style={{color:"white"}}>
+              הורד טופס
+              </Text>     
+          </TouchableOpacity>
+          <TouchableOpacity>
+          <Text style={{color:"white"}}>
+              תוצאות הגרלה
+              </Text>       
+        </TouchableOpacity>
+          
+        </View>
         <View style={{ margin: 10 }}>
           <Text
             style={{
