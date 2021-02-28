@@ -22,6 +22,8 @@ import LottoShitatiHazakPage from "./pages/Lotto/LotoShitatiHazak/LottoShitatiHa
 import ResultList from "./pages/Result/ResultList.js";
 import ResultLotto from "./pages/Result/ResultLotto.js";
 import ResultChance from "./pages/Result/ResultChance.js";
+import Result123 from "./pages/Result/Result123.js";
+import Result777 from "./pages/Result/Result777.js";
 
 import ChanceList from "./pages/Chance/ChanceList";
 import ChancePage from "./pages/Chance/ChancePage";
@@ -142,6 +144,8 @@ export default function App() {
               <Drawer.Screen name='HowItWork' component={HowItWork} />
               <Drawer.Screen name='ResultLotto' component={ResultLotto} />
               <Drawer.Screen name='ResultChance' component={ResultChance} />
+              <Drawer.Screen name='Result123' component={Result123} />
+              <Drawer.Screen name='Result777' component={Result777} />
               <Drawer.Screen name='Payment' component={Payment} />
               <Drawer.Screen name='PaymentAnnouncment' component={PaymentAnnouncment} />
               <Drawer.Screen name='Help' component={Help} />

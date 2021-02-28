@@ -27,7 +27,7 @@ import {
   CardItem,
   List,
   ListItem,
-  Spinner
+  Spinner,
 } from "native-base";
 import Hr from "react-native-hr-component";
 import NavBar from "../../components/NavBar";
@@ -45,27 +45,50 @@ import {
 
 
 
-const ResultChance = (props) => {
+const Result123 = (props) => {
   const { navigation } = props;
   const [data, setData] = useState([]);
   // const [sortedData, setSortedData] = useState([]);
 
-  // const [show, setShow] = useState(false);
-  // const [date, setDate] = useState("");
-  // const onChange = (event, selectedDate) => {
-  //   const currentDate = selectedDate || date;
-  //   setShow(Platform.OS === "ios");
-  //   let x = currentDate.toISOString().split("T")[0].split("-");
-  
-  //   console.log("date1/////////",currentDate.toISOString().split("T")[0].split("-"));
-  
-  //   let y = [];
-  
-  //   y.push(x[2], ".", x[1], ".", x[0]);
-  
-  //   setDate(y.join(""));
-  //   console.log("date:///////////////////////////",date);
+ 
+  // const [dateStart, setDateStart] = useState(" ");
+  // const [dateEnd, setDateEnd] = useState(" ");
+
+  // const [showDateStart, setShowDateStart] = useState(false);
+  // const [showDateEnd, setShowDateEnd] = useState(false);
+
+  // const onChangeDateStart = (event, selectedDateStart) => {
+  //   const currentDateStart = selectedDateStart || dateStart;
+  //  setShowDateStart(Platform.OS === 'ios');
+  //  setDateStart(currentDateStart);
+   
   // };
+
+  // const onChangeDateEnd = (event, selectedDateEnd) => {
+  //   const currentDateEnd = selectedDateEnd || dateEnd;
+  //  setShowDateEnd(Platform.OS === 'ios');
+  //  setDateEnd(currentDateEnd);
+   
+  // };
+  
+  // useEffect(() => {
+  //   console.log("dateStart:", dateStart);
+  //   var start = new Date(dateStart);
+  //   console.log("start:",start);
+  //   var millisecondsStart = start.getTime();
+  //   console.log("millisecondsStart:",millisecondsStart);
+
+  // }, [dateStart])
+  
+
+  // useEffect(() => {
+  //   console.log("dateEnd:", dateEnd);
+  //   var end = new Date(dateEnd);
+  //   console.log("end:",end);
+  //   var millisecondsEnd = end.getTime();
+  //   console.log("millisecondsEnd:",millisecondsEnd);
+
+  // },[dateEnd])
 
   useEffect(() => {
     let accessToken;
@@ -76,21 +99,23 @@ const ResultChance = (props) => {
     });
     setTimeout(() => {
       axios
-        .get(`http://52.90.122.190:5000/results/chance`, {
+        .get(`http://52.90.122.190:5000/results/123`, {
           headers: {
             Authorization: jwt,
           },
         })
+        // .then((res) => setData(res.data.data.rows))
         .then((res) => setData(res.data.data.rows.slice(0,99)))
+
         .catch((err) => console.log(err));
     }, 5000);
   }, []);
 
-//     useEffect(() => {
-//         const sortedData=data.sort((a, b) => parseFloat(a["מספר הגרלה"]) - parseFloat(b["מספר הגרלה"]));
+//   useEffect(() => {
+//     const sortedData=data.sort((a, b) => parseFloat(a["מספר הגרלה"]) - parseFloat(b["מספר הגרלה"]));
 // setSortedData(sortedData)
-//     }, [data])
-    
+// }, [data])
+
   return (
     <>
       <NavBar navigation={navigation}  />
@@ -105,12 +130,12 @@ const ResultChance = (props) => {
             <Text
               style={{
                 fontFamily: "fb-Spacer-bold",
-                fontSize: EStyleSheet.value("$rem") * 38,
+                fontSize: EStyleSheet.value("$rem") * 28,
                 paddingVertical: EStyleSheet.value("$rem") * 19,
                 paddingRight: EStyleSheet.value("$rem") * 20
               }}
             >
-              תוצאות הגרלת צ'אנס
+              תוצאות הגרלת 123
           </Text>            
             
               <View
@@ -122,22 +147,23 @@ const ResultChance = (props) => {
             
                   height: EStyleSheet.value("$rem") * 320,
                 }}
-              >
+            >
+              
               {/* <View style={{
                 marginTop: EStyleSheet.value("$rem") * 15,
                 marginBottom: EStyleSheet.value("$rem") * 25,
               flexDirection:"row"
-            }}><Text
-            style={{
-              fontFamily: "fb-Spacer-bold",
-              flex: 1.5,
-              color: "white",
-              fontSize: EStyleSheet.value("$rem") * 20,
-              marginTop: EStyleSheet.value("$rem") * 10,
-              marginLeft: EStyleSheet.value("$rem") * 15,
-              textDecorationLine: 'underline',
+              }}><Text
+                  style={{
+                    fontFamily: "fb-Spacer-bold",
+                    flex: 1.5,
+                    color: "white",
+                    fontSize: EStyleSheet.value("$rem") * 20,
+                    marginTop: EStyleSheet.value("$rem") * 10,
+                    marginLeft: EStyleSheet.value("$rem") * 15,
+                    textDecorationLine: 'underline',
 
-            }}
+                  }}
                 >בחר לפי תאריכים</Text>
   <TouchableOpacity
                       style={{
@@ -151,7 +177,7 @@ const ResultChance = (props) => {
                         right: EStyleSheet.value("$rem") * 15
                       }}
                       onPress={() => {
-                        setShow(true);
+                        setShowDateStart(true);
                       }}
                 >
                   <Text
@@ -163,14 +189,14 @@ const ResultChance = (props) => {
                   }}
                   >מתאריך</Text>
   
-                  {show && (
+                  {showDateStart && (
                       <DateTimePicker
-                        testID='dateTimePicker'
+                        testID='dateTimePickerStart'
                         value={new Date()}
                         mode='date'
                         is24Hour={false}
                         display='spinner'
-                        onChange={onChange}
+                        onChange={onChangeDateStart}
                       />
                     )}
                 </TouchableOpacity>
@@ -187,7 +213,7 @@ const ResultChance = (props) => {
                         right: EStyleSheet.value("$rem") * 10
                       }}
                       onPress={() => {
-                        setShow(true);
+                        setShowDateEnd(true);
                       }}
                 >
                   <Text
@@ -199,14 +225,14 @@ const ResultChance = (props) => {
                   }}
                   >עד תאריך</Text>
   
-                  {show && (
+                  {showDateEnd && (
                       <DateTimePicker
-                        testID='dateTimePicker'
+                        testID='dateTimePickerEnd'
                         value={new Date()}
                         mode='date'
                         is24Hour={false}
                         display='spinner'
-                        onChange={onChange}
+                        onChange={onChangeDateEnd}
                       />
                     )}
                 </TouchableOpacity>
@@ -222,18 +248,20 @@ const ResultChance = (props) => {
               // marginTop: 10,
             }}
                   >
- {data.length<99 ? (
+                   
+                   
+                  {data.length<99 ? (
                     <Spinner/>
                   ) :
                     null
                     }
-                                  {/* {sortedData.map((hagrala, index) => ( */}
-                                     {data.map((hagrala, index) => (
 
-                         <ListItem key={index} style={{flexDirection:"column"}}>
-                         {/* {console.log("hagralaChans:",hagrala[Object.keys(hagrala)[2]].numbers)} */}
-                                              
-                         <View style={{
+                   
+            {/* {sortedData.map((hagrala, index) => ( */}
+            {data.map((hagrala, index) => (
+              <ListItem key={index} style={{flexDirection:"column"}}>
+                
+                <View style={{
                   // alignSelf:"center",
                   flexDirection: "row",
                   left:EStyleSheet.value("$rem") * 14,
@@ -244,11 +272,9 @@ const ResultChance = (props) => {
                   justifyContent:"center"
                 }}>
 
-                    <View
+                  <View
                     style={{ alignSelf:"center" }}
-                     >
-                                              
-
+                  >
                     <Text style={{
                       fontSize:EStyleSheet.value("$rem") * 20,
                       color: "#263742",
@@ -256,29 +282,26 @@ const ResultChance = (props) => {
                       // textAlignVertical: "center",
                       // textAlign:"center"
                     }}>
+                    {"  מספר הגרלה "} 
+                              {hagrala[Object.keys(hagrala)[0]]} 
+                  </Text>
+                </View>
+                  <View
+                  style={{ alignSelf:"center",flexDirection:"row" }}
+                  >
 
-                      {" מספר הגרלה"}
-                                 {hagrala[Object.keys(hagrala)[0]]}
-                               </Text>
-                             </View>
+                    <Text style={{
+                      fontSize: EStyleSheet.value("$rem") * 20,  
+                      fontFamily: "fb-Spacer-bold",
 
-                             <View
-                                style={{ alignSelf:"center",flexDirection:"row" }}
-                                >
-                               
-
-                               <Text style={{
-                                fontSize: EStyleSheet.value("$rem") * 20,  
-                                fontFamily: "fb-Spacer-bold",
-
-                                color: "#263742"
-                                }}>
-                                {" מתאריך "}  
-                                 {hagrala[Object.keys(hagrala)[1]]}
-                               </Text>
-                                  </View>
-                                              
-                                  {/* <View style={{
+                      color: "#263742"
+                    }}>
+                    {" מתאריך "} 
+                    {hagrala[Object.keys(hagrala)[1]]}
+                    </Text>                
+                </View>
+                 
+                {/* <View style={{
                     alignSelf: "center",
                     // left: EStyleSheet.value("$rem") * 1,
                       width: EStyleSheet.value("$rem") * 28,
@@ -295,65 +318,69 @@ const ResultChance = (props) => {
                       // marginTop:EStyleSheet.value("$rem") * 10,
                     backgroundColor: "#263742"
                   }}>
-                                                  
-                <FontAwesomeIcon size={EStyleSheet.value("$rem") * 30} icon={faCaretLeft} color={"white"} style={{left:EStyleSheet.value("$rem") * 2}} />
-                </View> */}
+                  <FontAwesomeIcon size={EStyleSheet.value("$rem") * 30} icon={faCaretLeft} color={"white"} style={{left:EStyleSheet.value("$rem") * 2}} />
+                  </View> */}
+                  
                 </View>
+
+               
                 <View
                   style={{ flexDirection: "column", alignItems: "flex-end" }}
-                >           
-                              <View style={{ flexDirection: "row" }}>
-                                                      {
-                           hagrala[Object.keys(hagrala)[2]].numbers
-                                                          
-                                .map((nums,key) => (
+                >
+                  <View style={{flexDirection: "row",justifyContent:"flex-start" }}>
+                    {hagrala[Object.keys(hagrala)[2]].numbers
+                      .map((num) => (
+                      <Text
+                          style={{
+                          // top:EStyleSheet.value("$rem") * 15,
+                          borderWidth: 2,
+                          width: EStyleSheet.value("$rem") * 35,
+                          height: EStyleSheet.value("$rem") * 35,
+                          borderColor: "white",
+                          borderRadius: 18,
+                          textAlign: "center",
+                          textAlignVertical: "center",
+                          color: "white",
+                          fontSize: EStyleSheet.value("$rem") * 25,
+                          fontFamily: "fb-Spacer-bold",
+                          marginLeft: EStyleSheet.value("$rem") * 10,
+                          marginTop:EStyleSheet.value("$rem") * 10,
 
-                                    Object.keys(nums)
+                        }}
+                      >
+                        {num}
+                      </Text>
+                    ))}
 
-                                        .map((num, index) => (
-                                    <View>
-                                    {/* {console.log("??????", nums[num])} */}
-                                                {/* {console.log("??????", num[key])} */}
-                                    
-                                    <Text>
-                                    {index===0 && "תלתן"}    
-                                    {index===1 && "יהלום"}    
-                                    {index===2 && "עלה"}    
-                                    {index===3 && "לב"}    
-                                    </Text>
-                                    <Text
-                                    style={{
-                                      width: 20,
-                                                    height: 20,
-                                                    borderRadius: 18,
-                                                    borderColor: "green",
-                                      borderWidth:2,
-                                      backgroundColor: "white",
-                                      textAlign: "center",
-                                      textAlignVertical: "center",
-                                      color: "green",
-                                      fontSize: EStyleSheet.value("$rem") * 14,
-                                    }}
-                                  >
-                                                {nums[num]}
-                                   </Text>
-                                                
-                                    </View>
-                                           
-                                // ))
-                                    )
-                                      )
-                                ))
-                                      
-                               
-                                }
-                              </View>
-                              
-                            </View> 
-            
-                           
-                        </ListItem>
-                                     ))}
+{hagrala[Object.keys(hagrala)[2]].strong_number && (
+                    <Text
+                        style={{
+                        // marginLeft:EStyleSheet.value("$rem") * 20,
+                        borderWidth: 2,
+                        width: EStyleSheet.value("$rem") *35 ,
+                        height: EStyleSheet.value("$rem") * 35,
+                        borderColor: "black",
+                        borderRadius: 18,
+                        textAlign: "center",
+                        textAlignVertical: "center",
+                        color: "black",
+                          fontSize: EStyleSheet.value("$rem") * 25,
+                          fontFamily: "fb-Spacer-bold",
+                          marginTop:EStyleSheet.value("$rem") * 10,
+left:15
+                      }}
+                    >
+                      {hagrala[Object.keys(hagrala)[2]].strong_number}
+                    </Text>
+                  )}
+
+                  </View> 
+                 
+                </View>
+
+              
+              </ListItem>
+            ))}
                          
           </List>
           
@@ -395,4 +422,4 @@ const ResultChance = (props) => {
   );
 };
 
-export default ResultChance;
+export default Result123;

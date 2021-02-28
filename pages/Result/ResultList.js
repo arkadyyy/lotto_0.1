@@ -215,7 +215,7 @@ const ResultList = (props) => {
                         justifyContent:"center"
                           
                       }}
-                      onPress={() => navigation.navigate("LottoPage")}
+                      onPress={() => navigation.navigate("Result777")}
                                       >
                       <Text
                             style={{
@@ -274,7 +274,7 @@ const ResultList = (props) => {
                         justifyContent:"center"
                           
                       }}
-                      onPress={() => navigation.navigate("LottoPage")}
+                      onPress={() => navigation.navigate("Result123")}
                                       >
                       <Text
                             style={{
