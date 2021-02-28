@@ -348,7 +348,8 @@ const BlankSquare = ({ color, gameName }) => {
 
                       // marginBottom: -30,
                     }}
-                    source={require("C:/fullstack/lottoMatic/assets/home/Chance_sml.png")}
+                    // source={require("C:/fullstack/lottoMatic/assets/home/Chance_sml.png")}
+                    source={require("C:/fullstack/lottoMatic/assets/home/logoChance.png")}
                   />
                   <Image
                     resizeMode='contain'
@@ -361,7 +362,7 @@ const BlankSquare = ({ color, gameName }) => {
 
                       // marginBottom: -30,
                     }}
-                    source={require("C:/fullstack/lottoMatic/assets/home/Lotto_sml_1.png")}
+                    source={require("C:/fullstack/lottoMatic/assets/home/logo777.png")}
                   />
                   <Image
                     resizeMode='contain'
@@ -374,7 +375,7 @@ const BlankSquare = ({ color, gameName }) => {
 
                       // marginBottom: -30,
                     }}
-                    source={require("C:/fullstack/lottoMatic/assets/home/_777_sml.png")}
+                    source={require("C:/fullstack/lottoMatic/assets/home/logo777.png")}
                   />
                   <Image
                     resizeMode='contain'
@@ -387,7 +388,7 @@ const BlankSquare = ({ color, gameName }) => {
 
                       // marginBottom: -30,
                     }}
-                    source={require("C:/fullstack/lottoMatic/assets/home/_123_sml.png")}
+                    source={require("C:/fullstack/lottoMatic/assets/home/logo123.png")}
                   />
                 </View>
               </>
