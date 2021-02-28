@@ -110,7 +110,8 @@ const LottoPage = ({ navigation }) => {
   const dispatch = useDispatch();
   const route = useRoute();
 
-  const autoFillForm = () => {
+  const autoFillForm = async () => {
+    await deletForm();
     let fullTabels1 = [];
     for (let i = 1; i <= 14; i++) {
       while (i <= tableNum) {
@@ -124,12 +125,12 @@ const LottoPage = ({ navigation }) => {
         i++;
       }
 
-      // let table = {
-      //   tableNum: i,
-      //   choosenNums: [" ", " ", " ", " ", " ", " "],
-      //   strongNum: " ",
-      // };
-      // fullTabels1 = [...fullTabels1, table];
+      let table = {
+        tableNum: i,
+        choosenNums: [" ", " ", " ", " ", " ", " "],
+        strongNum: " ",
+      };
+      fullTabels1 = [...fullTabels1, table];
     }
     setFullTables(fullTabels1);
   };
@@ -210,18 +211,28 @@ const LottoPage = ({ navigation }) => {
     // setTableRowColor("#D60617");
   };
 
-  const checkTables = (fullTables, tableNum) => {
+  const checkTables = (fullTables, tableNum, settablesCheck) => {
     let returnedState = false;
-
+    let fulltablesCopy = fullTables.slice(0);
     console.log(tableNum);
+    console.log("fullTables from tablecheck ~~~~~~~~ : ", fullTables);
 
-    let checkedFullTables = fullTables.sort((table1, table2) => {
+    let checkedFullTables = JSON.parse(JSON.stringify(fullTables));
+    let checkedFullTables2 = fulltablesCopy.slice(0);
+
+    checkedFullTables2.sort((table1, table2) => {
       return table1.tableNum - table2.tableNum;
     });
-    checkedFullTables.slice(0, tableNum - 1);
-    console.log("checkedFullTables : ", checkedFullTables);
+    // checkedFullTables = fullTables.sort((table1, table2) => {
+    //   return table1.tableNum - table2.tableNum;
+    // });
+    checkedFullTables2.splice(tableNum, checkedFullTables2.length);
+    // checkedFullTables.splice(tableNum, checkedFullTables2.length);
 
-    if (checkedFullTables.length !== tableNum) {
+    // console.log("checkedFullTables : ", checkedFullTables);
+    console.log("checkedFullTables2 : ", checkedFullTables2);
+
+    if (checkedFullTables2.length !== tableNum) {
       returnedState = true;
       seterrorMsg("אנא מלא את כל הטבלאות");
     }
@@ -232,7 +243,7 @@ const LottoPage = ({ navigation }) => {
       seterrorMsg("יש להתחבר על מנת להמשיך");
     }
 
-    checkedFullTables.forEach((table) => {
+    checkedFullTables2.forEach((table) => {
       if (table.choosenNums.includes(" ")) {
         returnedState = true;
       }
@@ -240,14 +251,35 @@ const LottoPage = ({ navigation }) => {
         returnedState = true;
       }
     });
-    return returnedState;
+    settablesCheck(returnedState);
+  };
+
+  const tableNumChangeCheck = (fullTables, tableNum) => {
+    let updatedFullTables = [...fullTables];
+
+    updatedFullTables.sort((table1, table2) => {
+      return table1.tableNum - table2.tableNum;
+    });
+    updatedFullTables.forEach((table) => {
+      if (table.tableNum > tableNum) {
+        table.choosenNums = [" ", " ", " ", " ", " ", " "];
+        table.strongNum = " ";
+      }
+    });
+
+    console.log("updatedFullTables : ", updatedFullTables);
+    setFullTables([...updatedFullTables]);
   };
 
   useEffect(() => {
-    settablesCheck(checkTables(fullTables, tableNum));
-    console.log("tablesCheck : ", tablesCheck);
-    console.log("fullTables from lottoPage : ", fullTables);
+    checkTables(fullTables, tableNum, settablesCheck, setFullTables);
+    console.log("fullTables : ", fullTables);
   }, [fullTables, tableNum]);
+
+  useEffect(() => {
+    tableNumChangeCheck(fullTables, tableNum);
+    console.log("fulltables ~~~ : ", fullTables);
+  }, [tableNum]);
 
   return (
     <>
@@ -342,7 +374,7 @@ const LottoPage = ({ navigation }) => {
             <View style={LottoListstyles.sendFormBtnContainer}>
               <Button
                 onPress={async () => {
-                  // await checkTables(fullTables);
+                  // await settablesCheck(checkTables(fullTables, tableNum));
 
                   if (tablesCheck === true) {
                     Toast.show({

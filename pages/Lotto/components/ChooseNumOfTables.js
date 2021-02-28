@@ -29,12 +29,9 @@ const ChooseNumOfTables = ({
   hagralot,
   setHagralot,
   double,
-  
+  setHagralotMultiplicaton,
 }) => {
   const route = useRoute();
-
-
-  
 
   return (
     <>
@@ -266,6 +263,7 @@ const ChooseNumOfTables = ({
                 onPress={() => {
                   // settableNum(1);
                   setHagralot(-1);
+                  setHagralotMultiplicaton(1);
                 }}
               >
                 <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
@@ -287,6 +285,7 @@ const ChooseNumOfTables = ({
                 onPress={() => {
                   // settableNum(4);
                   setHagralot(4);
+                  setHagralotMultiplicaton(4);
                 }}
               >
                 <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
@@ -308,6 +307,7 @@ const ChooseNumOfTables = ({
                 onPress={() => {
                   // settableNum(6);
                   setHagralot(6);
+                  setHagralotMultiplicaton(6);
                 }}
               >
                 <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
@@ -329,6 +329,7 @@ const ChooseNumOfTables = ({
                 onPress={() => {
                   // settableNum(8);
                   setHagralot(8);
+                  setHagralotMultiplicaton(8);
                 }}
               >
                 <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
@@ -543,18 +544,16 @@ const ChooseNumOfTables = ({
                     settableNum(14);
                   }}
                 >
-                    <Text
-                      style={{
-                        color: tableNum === 14 ? "white" : "#E62321",
-                        fontFamily: "fb-Spacer-bold",
-                      }}
-                    >
-                      14
-                    </Text>
-                  
+                  <Text
+                    style={{
+                      color: tableNum === 14 ? "white" : "#E62321",
+                      fontFamily: "fb-Spacer-bold",
+                    }}
+                  >
+                    14
+                  </Text>
                 </TouchableOpacity>
               )}
-              
             </View>
           </View>
         </View>

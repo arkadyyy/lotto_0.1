@@ -43,12 +43,13 @@ const ExtraFormPage = ({ route, navigation }) => {
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
-
+  const [displayPrice, setdisplayPrice] = useState(false);
   const [hagralot, setHagralot] = useState(-1);
   const [price, setPrice] = useState("");
   const [otomatic, setOtomatic] = useState(true);
   const [extra, setExtra] = useState(true);
   const [url, seturl] = useState("");
+  const [HagralotMultiplicaton, setHagralotMultiplicaton] = useState(1);
   // const [tableNum, settableNum] = useState(1);
 
   const [sendToServer, setsendToServer] = useState({
@@ -59,8 +60,6 @@ const ExtraFormPage = ({ route, navigation }) => {
 
   const getPrice = (url, fullTables) => {
     navigation.addListener("focus", async () => {
-      console.log("i am focused ");
-
       let x = await fullTables.map((table, index) => {
         return {
           numbers: table.choosenNums,
@@ -68,7 +67,7 @@ const ExtraFormPage = ({ route, navigation }) => {
           table_number: table.tableNum,
         };
       });
-      console.log("fulltables updated for extrapage : ", x);
+
       axios
         .post(
           url,
@@ -86,6 +85,11 @@ const ExtraFormPage = ({ route, navigation }) => {
           }
         )
         .then((res) => setPrice(res.data.price))
+        .then((data) => {
+          setTimeout(() => {
+            setdisplayPrice(true);
+          }, 1500);
+        })
         .catch((err) => console.log(err));
 
       setsendToServer({
@@ -98,10 +102,10 @@ const ExtraFormPage = ({ route, navigation }) => {
 
   const onblur = () => {
     navigation.addListener("blur", () => {
-      console.log("navigation blur happend &&&&&&&");
       setPrice(null);
       setOtomatic(true);
       setExtra(true);
+      setdisplayPrice(false);
       setsendToServer({
         extra: false,
         multi_lottery: -1,
@@ -215,7 +219,7 @@ const ExtraFormPage = ({ route, navigation }) => {
         table_number: table.tableNum,
       };
     });
-    console.log("fulltables updated for extrapage : ", x);
+
     axios
       .post(
         "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
@@ -240,7 +244,19 @@ const ExtraFormPage = ({ route, navigation }) => {
       multi_lottery: hagralot,
       tables: x,
     });
-  }, [fullTables, extra, hagralot, otomatic, navigation]);
+  }, [fullTables, extra, otomatic, navigation]);
+
+  // useEffect(() => {
+  //   let num;
+
+  //   if (hagralot === -1) {
+  //     num = 1;
+  //   } else {
+  //     num = hagralot;
+  //   }
+
+  //   setHagralotMultiplicaton(num);
+  // }, [hagralot]);
 
   return (
     <>
@@ -286,7 +302,11 @@ const ExtraFormPage = ({ route, navigation }) => {
               </Text>
             </View>
 
-            <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
+            <ChooseNumOfTables
+              setHagralotMultiplicaton={setHagralotMultiplicaton}
+              hagralot={hagralot}
+              setHagralot={setHagralot}
+            />
             <ExtraAndOtomatChoose
               extra={extra}
               setExtra={setExtra}
@@ -371,21 +391,23 @@ const ExtraFormPage = ({ route, navigation }) => {
                   marginTop: 7,
                 }}
               >
-                <Text
-                  color='white'
-                  style={{
-                    fontSize: EStyleSheet.value("$rem") * 22,
-                    color: "white",
-                    marginLeft: 15,
-                    fontFamily: "fb-Spacer",
-                  }}
-                >
-                  לתשלום: {price}{" "}
-                </Text>
+                {displayPrice && (
+                  <Text
+                    color='white'
+                    style={{
+                      fontSize: EStyleSheet.value("$rem") * 22,
+                      color: "white",
+                      marginLeft: 15,
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
+                    לתשלום: {price * HagralotMultiplicaton}
+                  </Text>
+                )}
 
                 <FontAwesomeIcon
                   size={10}
-                  style={{ marginVertical: 7, marginLeft: -4 }}
+                  style={{ marginVertical: 7, marginLeft: 4 }}
                   icon={faShekelSign}
                   color='white'
                 />
