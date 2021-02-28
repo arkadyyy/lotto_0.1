@@ -18,9 +18,23 @@ import {
 import ViewForm from "../ViewForm";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const SeeOrDupilcate = ({ index, open, form }) => {
-  const [chanceCards, setChanceCards] = [""];
+const SeeOrDupilcate = ({navigation,index, open, form,hagralaName,setHagralaName }) => {
+  // const [hagralaName, setHagralaName] = useState("");
+
   if (index === open.index) {
+      // console.log("!!!!!!!!!!!!!!!!!",form);
+  // console.log("!!!!!!!!!!!!!!!!!",form.form_type);
+    if (form.form_type.includes("lotto")){
+      setHagralaName("Lotto")
+    } else if (form.form_type.includes("chance")) {
+      setHagralaName("Chance")
+    }
+  else if (form.form_type.includes("123")) {
+    setHagralaName("123")
+  }
+else if (form.form_type.includes("777")) {
+  setHagralaName("777")
+}
     return (
       <View style={{flexDirection:"column"}}>
         <View style={{flexDirection:"row",justifyContent:"space-evenly"}}>
@@ -31,7 +45,11 @@ const SeeOrDupilcate = ({ index, open, form }) => {
               הורד טופס
               </Text>     
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate(`Result${hagralaName}`);
+                    }}
+          >
           <Text style={{color:"white"}}>
               תוצאות הגרלה
               </Text>       
@@ -60,6 +78,7 @@ const SeeOrDupilcate = ({ index, open, form }) => {
               <>
                 {form.marks.tables.map((table, index) => (
                   <ViewForm
+                    key={index}
                     numbers={table.numbers}
                     strongNum={table.strong_number}
                     tableNum={table.table_number}
@@ -72,6 +91,8 @@ const SeeOrDupilcate = ({ index, open, form }) => {
               <>
                 {form.marks.tables.map((table, index) => (
                   <ViewForm
+                  key={index}
+
                     numbers={table.numbers}
                     form_type={form.form_type}
                     tableNum={table.table_number}
@@ -84,6 +105,8 @@ const SeeOrDupilcate = ({ index, open, form }) => {
                 <>
                   {form.marks.tables.map((table, index) => (
                     <ViewForm
+                    key={index}
+
                       numbers={table.numbers}
                       form_type={form.form_type}
                       tableNum={table.table_number}
@@ -102,6 +125,7 @@ const SeeOrDupilcate = ({ index, open, form }) => {
                       cards
                     )}
                     <ViewForm
+                      key={indexShapes}
                       cards={cards}
                       indexShapes={indexShapes}
                       ShapesTitle={Object.keys(form.marks.cards)}
@@ -126,6 +150,7 @@ const SeeOrDupilcate = ({ index, open, form }) => {
                         cardsShitati
                       )}
                       <ViewForm
+                        key={indexShapes}
                         cardsShitati={cardsShitati}
                         indexShapes={indexShapes}
                         ShapesTitle={Object.keys(form.marks.cards)}
@@ -152,8 +177,9 @@ const SeeOrDupilcate = ({ index, open, form }) => {
   }
 };
 
-const SendHistory = ({ formsHistory }) => {
+const SendHistory = ({ navigation,formsHistory }) => {
   const [open, setOpen] = useState({ isOpen: false, index: -1 });
+  const [hagralaName, setHagralaName] = useState("");
 
   useEffect(() => {
     console.log("formsHistory : ", formsHistory);
@@ -295,7 +321,8 @@ const SendHistory = ({ formsHistory }) => {
                 </Button>
               </ListItem>
               {open.isOpen && (
-                <SeeOrDupilcate form={form} open={open} index={index} />
+                <SeeOrDupilcate navigation={navigation} form={form} open={open} index={index} hagralaName={hagralaName} setHagralaName={setHagralaName}
+                />
               )}
             </>
           );
