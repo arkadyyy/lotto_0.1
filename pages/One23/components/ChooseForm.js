@@ -35,7 +35,7 @@ const ChooseForm = ({}) => {
           }}
         >
           <Text style={{ color: "#FF6B00", fontFamily: "fb-Spacer" }}>
-            הגרלת 123
+            הגרלות 123
           </Text>
         </View>
         <View

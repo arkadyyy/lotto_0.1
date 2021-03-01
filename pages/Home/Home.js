@@ -334,7 +334,9 @@ export default function Home({ navigation }) {
                   <View>
                     <Button
                       onPress={() => {
-                        navigation.navigate("About");
+                        navigation.navigate("About", {
+                          pageComeFrom:"Home"
+                        });
                       }}
                       style={[
                         homestyles.openingPageBtn,

@@ -114,6 +114,7 @@ const ResetInputs = (
 };
 
 const About = ({ navigation }) => {
+ 
   const [Name, setName] = useState("");
   const [lastName, setlastName] = useState("");
   const [CW, setCW] = useState("");
@@ -156,7 +157,11 @@ const About = ({ navigation }) => {
 //       navigation.navigate("LogInPage");
 //     }
 //   }, [store]);
-
+const {
+  pageComeFrom
+} = route.params;
+  const fontColor = pageComeFrom === "sideBar" ? "white" : "black";
+  
   useEffect(() => {
     CheckFields(
       setfieldCheck,
@@ -186,7 +191,11 @@ const About = ({ navigation }) => {
       <NavBar navigation={navigation} screenName={"About"} />
 
       <View
-        style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
+
+        style={{
+          width: "100%", height: 7,
+          backgroundColor:pageComeFrom==="sideBar"? "#00ADEF" : "#F2F2F2"
+        }}
       ></View>
       <ScrollView style={{ flex: 1 }}>
               <View
@@ -197,7 +206,11 @@ const About = ({ navigation }) => {
 
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <View
-              style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
+              // style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
+              style={{
+                width: "100%", height: 7,
+                backgroundColor:pageComeFrom==="sideBar"? "#00ADEF" : "#F2F2F2"
+              }}
             ></View>
             {/* 00ADEF Deep Sky Blue*/}
             {/* {store.signUp === 3 && <LogInPage />} */}
@@ -221,7 +234,8 @@ paddingTop:EStyleSheet.value("$rem") * 10,
                 <View
                     style={{
                                       height: EStyleSheet.value("$rem") * 600,
-                                      backgroundColor: "#00ADEF",
+                                      backgroundColor:pageComeFrom==="sideBar"? "#00ADEF" : "#F2F2F2",
+
                                       width: "90%",
                                   padding:10,
                                       flex: 1,
@@ -245,30 +259,30 @@ paddingTop:EStyleSheet.value("$rem") * 10,
                     }}
                   >
            
-            <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20,color:"white",}}>
+            <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 20,color:fontColor}}>
 
            לשלוח טפסי לוטו אונליין! 
 </Text>
-<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
+<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:fontColor }}>
 
             לוטומטיק - פשוט לשלוח בקליק, מכל מקום, בכל מצב, ובכל רגע נתון. 
 </Text>
-<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
+<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:fontColor }}>
 
                       העיקרון המנחה שלנו הינו הנוחות שלכם.
 </Text>
-<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
+<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:fontColor }}>
  
                       כלומר, אנו בלוטומטיק נעשה כל שביכולתנו כדי לספק לכם את החוויה למלא טפסי לוטו, צ׳אנס, 777, ו- 123, מבלי להטריח את עצמכם, ונעניק לכם את האפשרות לעשות זאת מכל מקום בכל שעה, וכל זה בלחיצת כפתור, בלי ללכת לנקודה של מפעל הפיס, בלי לעמוד בתור, בלי לצאת מהבית, ובלי להיות מוגבלים בזמן, הכל נעשה באפליקציה או דרך אתר האינטרנט שלנו. 
 </Text>
-<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
+<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:fontColor }}>
 
                       כל שלכם נותר לעשות הוא פשוט להיכנס לאתר או לאפליקציה שלנו, להזין את הפרטים שלכם, לבחור את סוג הטופס שבו אתם חפצים, לבחור את המספרים שלכם ו/או לבחור באפשרות של מילוי טופס באופן אוטומטי, ללחוץ על שליחת טופס, לשלם בכרטיס האשראי, והינה הטופס שמילאתם כבר נסרק, ובדרך לתיבת המייל שלכם ולאיזור האישי שלכם באפליקציה.
 </Text>
-<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
+<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:fontColor }}>
  
                   </Text>
-                  <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
+                  <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:fontColor }}>
 
 אנו מאחלים לכם חווית שימוש והנאה מרבית מהשירות שלנו ומלאי תקווה שנביא לכם את המזל. 
 בהצלחה! 
