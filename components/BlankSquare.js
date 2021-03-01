@@ -225,7 +225,7 @@ const BlankSquare = ({ color, gameName }) => {
           route.name === "DoubleLottoList" ||
           route.name === "LottoShitatiPage" ||
           route.name === "LottoShitatiHazakPage" ||
-          route.name === "ExtraFormPage"
+          route.name === "SumPageLotto"
         ) {
           setusedDate(res.data["לוטו"].time);
           setsubHeader("עד 10,000,000 שח");
@@ -266,7 +266,7 @@ const BlankSquare = ({ color, gameName }) => {
       route.name === "DoubleLottoList" ||
       route.name === "LottoShitatiPage" ||
       route.name === "LottoShitatiHazakPage" ||
-      route.name === "ExtraFormPage"
+      route.name === "SumPageLotto"
     ) {
       setsubHeader("עד 10,000,000 שח");
     } else if (

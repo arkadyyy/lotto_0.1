@@ -18,31 +18,120 @@ import {
 import ViewForm from "../ViewForm";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const SeeOrDupilcate = ({navigation,index, open, form,hagralaName,setHagralaName }) => {
-  // const [hagralaName, setHagralaName] = useState("");
+const SeeOrDupilcate = ({
+  navigation, index, open, setOpen,
+  form, hagralaName, setHagralaName,
+hagralaNameHebrew, setHagralaNameHebrew,
+gameType,setGameType,screenName,setScreenName
+}) => {
 
   if (index === open.index) {
       // console.log("!!!!!!!!!!!!!!!!!",form);
   // console.log("!!!!!!!!!!!!!!!!!",form.form_type);
     if (form.form_type.includes("lotto")){
-      setHagralaName("Lotto")
+      setHagralaName("Lotto");
+      setHagralaNameHebrew("לוטו");
     } else if (form.form_type.includes("chance")) {
-      setHagralaName("Chance")
+      setHagralaName("Chance");
+      setHagralaNameHebrew("צ'אנס")
+
     }
   else if (form.form_type.includes("123")) {
-    setHagralaName("123")
+      setHagralaName("123");
+      setHagralaNameHebrew("123")
+
   }
 else if (form.form_type.includes("777")) {
-  setHagralaName("777")
-}
+      setHagralaName("777");
+      setHagralaNameHebrew("777");
+
+    }
+    
+    if (form.form_type === "regular_lotto") {
+      setGameType("regular");      
+    }
+    else if (form.form_type === "regular_double_lotto") {
+      setGameType("double");      
+    }
+    else if (form.form_type === "lotto_shitati") {
+      setGameType("shitati");      
+      setScreenName("לוטו שיטתי");      
+    }
+    else if (form.form_type === "double_lotto_shitati") {
+      setGameType("double_shitati");      
+    }
+    else if (form.form_type === "lotto_shitati_hazak") {
+      setGameType("shitati_hazak"); 
+      setScreenName("לוטו שיטתי חזק")
+    }
+    else if (form.form_type === "double_lotto_shitati_hazak") {
+      setGameType("double_shitati_hazak");      
+    }
     return (
       <View style={{flexDirection:"column"}}>
-        <View style={{flexDirection:"row",justifyContent:"space-evenly"}}>
+        <View style={{flexDirection:"row",justifyContent:"space-evenly",paddingTop:7}}>
+        
+        <TouchableOpacity
+             onPress={() => {
+              navigation.navigate(`SumPage${ hagralaName }`,{
+              
+                screenName: hagralaNameHebrew,
+                tableNum: form.marks.tables.length,
+                investNum: form.marks.participant_amount,
+                fullTables:
+                  hagralaName === "Lotto" ? (
+                    [
+                form.marks.tables.map((table,index)=>(
+                  {
+                    choosenNums:table.numbers,
+                    strongNum:table.strong_number,
+                    tableNum:table.table_number
+                  }
+                ))
+                    ]
+                  )
+                    : hagralaName === "123" ? (
+                      [
+                        form.marks.tables.map((table,index)=>(
+                          {
+                            choosenNums:table.numbers,
+                            strongNum:table.strong_number,
+                            tableNum:table.table_number
+                          }
+                        ))
+                            ]
+                  ) :null ,
+                gameType: gameType,  
+              // {gameType==="shitati" &&
+          tzerufimNumber: (gameType==="shitati" ? form.marks.tables[0].numbers.length : null),
+              // }
+                hazakimNumber:(gameType==="shitati_hazak" ? form.marks.tables[0].strong_number.length : null),
+                }
+              );
+            }}
+                    >
+            <Text style={{
+              color: "white",
+            borderColor: "white",
+              borderWidth: 1,
+              borderRadius: 7,
+            paddingVertical:5
+            }}>
+              שכפל טופס
+            </Text>     
+          </TouchableOpacity>
+        
           <TouchableOpacity
             // onPress=
           >
-            <Text style={{color:"white"}}>
-              הורד טופס
+            <Text style={{
+              color: "white",
+            borderColor: "white",
+              borderWidth: 1,
+              borderRadius: 7,
+            padding:5
+            }}>
+              צפה בטופס
               </Text>     
           </TouchableOpacity>
           <TouchableOpacity
@@ -50,13 +139,35 @@ else if (form.form_type.includes("777")) {
                       navigation.navigate(`Result${hagralaName}`);
                     }}
           >
-          <Text style={{color:"white"}}>
+            <Text style={{
+              color: "white",
+              borderColor: "white",
+                borderWidth: 1,
+                borderRadius: 7,
+              padding:5
+            }}>
               תוצאות הגרלה
+              </Text>       
+        </TouchableOpacity>
+          <TouchableOpacity
+                        onPress={() => {
+                          setOpen({ isOpen: !open.isOpen, index: index });
+                        }}
+          >
+            <Text style={{
+              color: "white",
+              // borderColor: "white",
+                // borderWidth: 1,
+                borderRadius: 7,
+              padding: 5,
+              backgroundColor:"black"
+            }}>
+              סגור
               </Text>       
         </TouchableOpacity>
           
         </View>
-        <View style={{ margin: 10 }}>
+        <View style={{ marginBottom: 10,marginHorizontal:10 }}>
           <Text
             style={{
               color: "#263742",
@@ -180,6 +291,10 @@ else if (form.form_type.includes("777")) {
 const SendHistory = ({ navigation,formsHistory }) => {
   const [open, setOpen] = useState({ isOpen: false, index: -1 });
   const [hagralaName, setHagralaName] = useState("");
+  const [hagralaNameHebrew, setHagralaNameHebrew] = useState(" ");
+  const [gameType, setGameType] = useState(" ");
+  const [screenName, setScreenName] = useState(" ");
+  const [investNum, setInvestNum] = useState(" ");
 
   useEffect(() => {
     console.log("formsHistory : ", formsHistory);
@@ -305,6 +420,8 @@ const SendHistory = ({ navigation,formsHistory }) => {
                   bordered
                   onPress={() => {
                     setOpen({ isOpen: !open.isOpen, index: index });
+                    console.log("????????????form:",form);
+                    // console.log("tableNum:", form.marks.tables.length);
                   }}
                 >
                   <Text
@@ -314,14 +431,22 @@ const SendHistory = ({ navigation,formsHistory }) => {
                       fontFamily: "fb-Spacer",
                     }}
                   >
-                    {open.isOpen && index === open.index
-                      ? "סגור"
-                      : "שכפל או צפה"}
+                    {/* {open.isOpen && index === open.index */}
+                      {/* ? "סגור" : */}
+                      שכפל או צפה
+                    {/* } */}
                   </Text>
                 </Button>
               </ListItem>
               {open.isOpen && (
-                <SeeOrDupilcate navigation={navigation} form={form} open={open} index={index} hagralaName={hagralaName} setHagralaName={setHagralaName}
+                <SeeOrDupilcate
+                  navigation={navigation}
+                  form={form}
+                  open={open} setOpen={setOpen}
+                  index={index}
+                  hagralaName={hagralaName} setHagralaName={setHagralaName} hagralaNameHebrew={hagralaNameHebrew} setHagralaNameHebrew={setHagralaNameHebrew}
+                  gameType={gameType} setGameType={setGameType}
+                  screenName={screenName} setScreenName={setScreenName}
                 />
               )}
             </>

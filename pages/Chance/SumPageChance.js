@@ -31,6 +31,7 @@ const SumPageChance = ({ route, navigation }) => {
     fullTables,
     investNum,
     gameType,
+    hagralaName
   } = route.params;
   const [showTable, setshowTable] = useState(false);
   // const [tableNum, settableNum] = useState(1);
@@ -60,23 +61,23 @@ const SumPageChance = ({ route, navigation }) => {
     participant_amount: 0,
   });
 
-  useEffect(() => {
-    //set url according to game
+  // useEffect(() => {
+  //   //set url according to game
 
-    if (gameType === "regular") {
-      seturl("http://52.90.122.190:5000/games/chance/type/regular/0");
-    } else if (gameType === "rav_chance") {
-      seturl("http://52.90.122.190:5000/games/chance/type/rav/0");
-    } else if (gameType === "shitati") {
-      seturl("http://52.90.122.190:5000/games/chance/type/shitati/0");
-    }
-  }, []);
+  //   if (gameType === "regular") {
+  //     seturl("http://52.90.122.190:5000/games/chance/type/regular/0");
+  //   } else if (gameType === "rav_chance") {
+  //     seturl("http://52.90.122.190:5000/games/chance/type/rav/0");
+  //   } else if (gameType === "shitati") {
+  //     seturl("http://52.90.122.190:5000/games/chance/type/shitati/0");
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    let clover = [];
-    let diamond = [];
-    let heart = [];
-    let leaf = [];
+  // useEffect(() => {
+  //   let clover = [];
+  //   let diamond = [];
+  //   let heart = [];
+  //   let leaf = [];
 
     //leaf = spade , clover = clubs
 
@@ -110,42 +111,42 @@ const SumPageChance = ({ route, navigation }) => {
     //   ],
     // },
 
-    let x = fullTables.choosenCards.forEach((table, index) => {
-      if (table.cardType === "clubs") {
-        if (table.card.length >= 1) {
-          clover = table.card;
-        }
-      } else if (table.cardType === "diamond") {
-        if (table.card.length >= 1) {
-          diamond = table.card;
-        }
-      } else if (table.cardType === "heart") {
-        if (table.card.length >= 1) {
-          heart = table.card;
-        }
-      } else if (table.cardType === "spade") {
-        if (table.card.length >= 1) {
-          leaf = table.card;
-        }
-      }
-    });
+  //   let x = fullTables.choosenCards.forEach((table, index) => {
+  //     if (table.cardType === "clubs") {
+  //       if (table.card.length >= 1) {
+  //         clover = table.card;
+  //       }
+  //     } else if (table.cardType === "diamond") {
+  //       if (table.card.length >= 1) {
+  //         diamond = table.card;
+  //       }
+  //     } else if (table.cardType === "heart") {
+  //       if (table.card.length >= 1) {
+  //         heart = table.card;
+  //       }
+  //     } else if (table.cardType === "spade") {
+  //       if (table.card.length >= 1) {
+  //         leaf = table.card;
+  //       }
+  //     }
+  //   });
 
-    console.log("fullTables : ", fullTables);
+  //   console.log("fullTables : ", fullTables);
 
-    setsendToServer({
-      cards: {
-        clover: clover,
-        diamond: diamond,
-        heart: heart,
-        leaf: leaf,
-      },
-      form_type: tableNum,
-      multi_lottery: hagralot,
-      participant_amount: investNum,
-    });
+  //   setsendToServer({
+  //     cards: {
+  //       clover: clover,
+  //       diamond: diamond,
+  //       heart: heart,
+  //       leaf: leaf,
+  //     },
+  //     form_type: tableNum,
+  //     multi_lottery: hagralot,
+  //     participant_amount: investNum,
+  //   });
 
-    console.log("sendToServer : ", sendToServer);
-  }, [fullTables, hagralot, investNum, navigation]);
+  //   console.log("sendToServer : ", sendToServer);
+  // }, [fullTables, hagralot, investNum, navigation]);
 
   return (
     <>

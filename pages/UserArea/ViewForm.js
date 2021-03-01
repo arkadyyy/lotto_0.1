@@ -157,7 +157,7 @@ const ViewForm = ({
             }}
           >
             {cards.map((num, index) => (
-              <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <View style={{ justifyContent: "center", alignItems: "center",paddingHorizontal:5 }}>
                 {/* <View
                   key={index}
                   style={{
@@ -177,26 +177,26 @@ const ViewForm = ({
                 {ShapesTitle[indexShapes] === "clover" ? (
                   // <Text style={{ fontFamily: "fb-Spacer" }}>תלתן</Text>
                   <Image
-                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  style={{ width: 50, height: 70, borderRadius: 7 }}
                   source={require("C:/fullstack/lottoMatic/assets/chance/choosenClubs.png")}
                
                   />
                 ) : ShapesTitle[indexShapes] === "diamond" ? (
                   // <Text style={{ fontFamily: "fb-Spacer" }}>יהלום</Text>
                   <Image
-                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  style={{  width: 50, height: 70, borderRadius: 7 }}
                   source={require("C:/fullstack/lottoMatic/assets/chance/choosenDiamond.png")}
                 />
                 ) : ShapesTitle[indexShapes] === "leaf" ? (
                   // <Text style={{ fontFamily: "fb-Spacer" }}>עלה</Text>
                   <Image
-                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  style={{  width: 50, height: 70, borderRadius: 7 }}
                   source={require("C:/fullstack/lottoMatic/assets/chance/choosenSpade.png")}
                 />
                 ) : ShapesTitle[indexShapes] === "heart" ? (
                   // <Text style={{ fontFamily: "fb-Spacer" }}>לב</Text>
                   <Image
-                  style={{ width: 60, height: 80, borderRadius: 7 }}
+                  style={{ width: 50, height: 70, borderRadius: 7 }}
                   source={require("C:/fullstack/lottoMatic/assets/chance/choosenHeart.png")}
                 />
                       ) : null}
@@ -206,9 +206,9 @@ const ViewForm = ({
                     style={{
                       includeFontPadding: false,
                                       position: "absolute",
-                                      left: "38%",
+                                      alignSelf:"center",
                                       top: "50%",
-                                                fontSize: 25,
+                                                fontSize: 20,
                                       color:"black"
                   }}>{num}</Text>
               </View>

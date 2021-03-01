@@ -196,7 +196,7 @@ const LottoShitatiPage = ({ navigation }) => {
                     });
                   }
                   if (tablesCheck === false) {
-                    navigation.navigate("ExtraFormPage", {
+                    navigation.navigate("SumPageLotto", {
                       tableNum: tableNum,
                       screenName: "לוטו שיטתי",
                       fullTables: fullTables,

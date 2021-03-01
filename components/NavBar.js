@@ -74,7 +74,7 @@ const NavBar = (props) => {
       setNavBarTitle(`הגרלת 779`);
     } else if (route.name === "One23Page") {
       setNavBarTitle(`123`);
-    } else if (route.name === "ExtraFormPage") {
+    } else if (route.name === "SumPageLotto") {
       setNavBarTitle(`הגרלות לוטו- שליחת טופס`);
     } else if (route.name === "ResultList") {
       setNavBarTitle(`תוצאות הגרלות`);
