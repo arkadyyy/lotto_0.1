@@ -26,12 +26,12 @@ const ChooseNumOfTables = ({
   shitati,
   hagralot,
   setHagralot,
+  setHagralotMultiplicaton,
 }) => {
   const route = useRoute();
 
   return (
     <>
-     
       {route.name === "ChancePage" && (
         <View
           style={{
@@ -157,8 +157,8 @@ const ChooseNumOfTables = ({
               <TouchableOpacity
                 style={
                   tableNum === 5
-                    // ? chanceListstyles.investBtnSelected
-                    // : chanceListstyles.investBtn
+                  // ? chanceListstyles.investBtnSelected
+                  // : chanceListstyles.investBtn
                 }
                 onPress={() => {
                   settableNum(5);
@@ -167,9 +167,9 @@ const ChooseNumOfTables = ({
                 <Text
                   style={{
                     textAlign: "center",
-                    top:EStyleSheet.value("$rem") * 10,
+                    top: EStyleSheet.value("$rem") * 10,
                     fontSize: EStyleSheet.value("$rem") * 13,
-                    color: tableNum === 5 ? "#8CC63F": "white"
+                    color: tableNum === 5 ? "#8CC63F" : "white",
                   }}
                 >
                   רב צ'אנס
@@ -256,6 +256,7 @@ const ChooseNumOfTables = ({
                 }}
                 onPress={() => {
                   // settableNum(1);
+                  setHagralotMultiplicaton(1);
                   setHagralot(-1);
                 }}
               >
@@ -276,6 +277,8 @@ const ChooseNumOfTables = ({
                 onPress={() => {
                   // settableNum(4);
                   setHagralot(4);
+                  4;
+                  setHagralotMultiplicaton(4);
                 }}
               >
                 <Text style={{ color: "white" }}>4</Text>
@@ -295,6 +298,7 @@ const ChooseNumOfTables = ({
                 onPress={() => {
                   // settableNum(6);
                   setHagralot(6);
+                  setHagralotMultiplicaton(6);
                 }}
               >
                 <Text style={{ color: "white" }}>6</Text>
@@ -314,6 +318,7 @@ const ChooseNumOfTables = ({
                 onPress={() => {
                   // settableNum(8);
                   setHagralot(8);
+                  setHagralotMultiplicaton(8);
                 }}
               >
                 <Text style={{ color: "white" }}>8</Text>

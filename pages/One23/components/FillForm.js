@@ -258,7 +258,7 @@ const FillForm = ({
                   margin: 3,
                 }}
                 onPress={() => {
-                  setchoosenNums([]);
+                  setchoosenNums([" ", " ", " "]);
                 }}
               >
                 <Image

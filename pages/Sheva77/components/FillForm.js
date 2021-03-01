@@ -89,7 +89,7 @@ const FillForm = ({
 
   const autoFillForm = () => {
     let fullTabels1 = [];
-    for (let i = 1; i < 14; i++) {
+    for (let i = 1; i < 3; i++) {
       while (i < tableNum + 1) {
         let numbers = autoFill(7);
         let table = {
@@ -104,7 +104,7 @@ const FillForm = ({
 
       let table = {
         tableNum: i,
-        choosenNums: [" "],
+        choosenNums: [" ", " ", " ", " ", " ", " ", " "],
       };
       fullTabels1 = [...fullTabels1, table];
       i++;
@@ -209,7 +209,7 @@ const FillForm = ({
                 onPress={() => {
                   let numbers = autoFill(7);
                   setchoosenNums(numbers.randomNumbers);
-                  setstrongNum(numbers.strongNum);
+
                   // setTableRowColor("#78C849")
                 }}
               >
@@ -231,7 +231,7 @@ const FillForm = ({
                   margin: 3,
                 }}
                 onPress={() => {
-                  setchoosenNums([]);
+                  setchoosenNums([" ", " ", " ", " ", " ", " ", " "]);
                 }}
               >
                 <Image

@@ -31,34 +31,56 @@ const SumPageChance = ({ route, navigation }) => {
     fullTables,
     investNum,
     gameType,
+    formNum,
   } = route.params;
   const [showTable, setshowTable] = useState(false);
-  // const [tableNum, settableNum] = useState(1);
+
   const [double, setdouble] = useState(false);
-  // const [fullTables, setFullTables] = useState([]);
+  const [HagralotMultiplicaton, setHagralotMultiplicaton] = useState(1);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
   const [tableRowColor, setTableRowColor] = useState("D60617");
   const [jwtState, setjwtState] = useState({});
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
-
-  const [price, setPrice] = useState(11);
+  const [usedFullTables, setUsedFullTables] = useState([]);
+  const [price, setPrice] = useState(null);
+  const [mappedUsedTables, setmappedUsedTables] = useState([]);
 
   const [hagralot, setHagralot] = useState(-1);
   const [url, seturl] = useState("");
 
-  const [sendToServer, setsendToServer] = useState({
-    cards: {
-      clover: [],
-      diamond: [],
-      heart: [],
-      leaf: [],
-    },
-    form_type: tableNum,
-    multi_lottery: -1,
-    participant_amount: 0,
-  });
+  const [sendToServer, setsendToServer] = useState({});
+
+  const onblur = () => {
+    navigation.addListener("blur", () => {
+      setPrice(null);
+      seturl("");
+      setHagralot(-1);
+      setsendToServer({});
+      setUsedFullTables([]);
+    });
+  };
+
+  const getPrice = (url, fullTables) => {
+    navigation.addListener("focus", async () => {
+      axios
+        .post(url, fullTables, {
+          headers: {
+            Authorization: store.jwt,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => setPrice(res.data.price))
+        // .then((data) => {
+        //   setTimeout(() => {
+        //     setdisplayPrice(true);
+        //   }, 1500);
+        // })
+        .catch((err) => console.log(err));
+    });
+  };
 
   useEffect(() => {
     //set url according to game
@@ -70,15 +92,48 @@ const SumPageChance = ({ route, navigation }) => {
     } else if (gameType === "shitati") {
       seturl("http://52.90.122.190:5000/games/chance/type/shitati/0");
     }
+    //making deep copy of fulltables to prevent original fulltables 2 change / useless renders
+    let fulltablesCopy = fullTables.slice(0);
+    let fulltablesCopy2 = fulltablesCopy.slice(0);
+
+    fulltablesCopy2.sort((table1, table2) => {
+      return +table1.tableNum - +table2.tableNum;
+    });
+    fulltablesCopy2.splice(formNum, fulltablesCopy2.length);
+
+    setUsedFullTables(fulltablesCopy2);
   }, []);
 
   useEffect(() => {
+    navigation.addListener("focus", async () => {
+      let fulltablesCopy = fullTables.slice(0);
+      let fulltablesCopy2 = fulltablesCopy.slice(0);
+
+      fulltablesCopy2.sort((table1, table2) => {
+        return +table1.tableNum - +table2.tableNum;
+      });
+      fulltablesCopy2.splice(formNum, fulltablesCopy2.length);
+
+      setUsedFullTables(fulltablesCopy2);
+    });
+    onblur();
+  }, [navigation]);
+
+  useEffect(() => {
+    //this useeffect sets data for server
+    //sendToServer will hold all redone objects of usedFUllTables
+    //when i send forms, i need to send each object seperatly
     let clover = [];
     let diamond = [];
     let heart = [];
     let leaf = [];
 
     //leaf = spade , clover = clubs
+
+    // setsendToServer({
+    //   ...sendToServer,
+    //   x,
+    // });
 
     // "marks": {
     //   "cards": {
@@ -100,6 +155,8 @@ const SumPageChance = ({ route, navigation }) => {
     //   "participant_amount": 50
     // },
 
+    //////////////////////////////////
+
     // {
     //   tableNum: 6,
     //   choosenCards: [
@@ -110,41 +167,38 @@ const SumPageChance = ({ route, navigation }) => {
     //   ],
     // },
 
-    let x = fullTables.choosenCards.forEach((table, index) => {
-      if (table.cardType === "clubs") {
-        if (table.card.length >= 1) {
-          clover = table.card;
-        }
-      } else if (table.cardType === "diamond") {
-        if (table.card.length >= 1) {
-          diamond = table.card;
-        }
-      } else if (table.cardType === "heart") {
-        if (table.card.length >= 1) {
-          heart = table.card;
-        }
-      } else if (table.cardType === "spade") {
-        if (table.card.length >= 1) {
-          leaf = table.card;
-        }
-      }
+    console.log(" usedFullTables : ", usedFullTables);
+    let mappedUsedTables = usedFullTables.map((table) => {
+      let clover = [];
+      let diamond = [];
+      let heart = [];
+      let leaf = [];
+
+      clover = table.choosenCards.find((x) => x.type === "clubs").cards;
+      diamond = table.choosenCards.find((x) => x.type === "diamond").cards;
+      heart = table.choosenCards.find((x) => x.type === "heart").cards;
+      leaf = table.choosenCards.find((x) => x.type === "spade").cards;
+
+      return {
+        cards: {
+          clover: clover,
+          diamomd: diamond,
+          heart: heart,
+          leaf: leaf,
+        },
+        form_type: tableNum,
+        multi_lottery: hagralot,
+        participant_amount: investNum,
+      };
     });
 
-    console.log("fullTables : ", fullTables);
-
-    setsendToServer({
-      cards: {
-        clover: clover,
-        diamond: diamond,
-        heart: heart,
-        leaf: leaf,
-      },
-      form_type: tableNum,
-      multi_lottery: hagralot,
-      participant_amount: investNum,
-    });
-
-    console.log("sendToServer : ", sendToServer);
+    console.log("@ : ", usedFullTables[0]);
+    console.log("mappedUsedTables : ", mappedUsedTables);
+    setmappedUsedTables([...mappedUsedTables]);
+    getPrice(
+      "http://52.90.122.190:5000/games/chance/type/regular/calculate_price",
+      mappedUsedTables[0]
+    );
   }, [fullTables, hagralot, investNum, navigation]);
 
   return (
@@ -180,14 +234,32 @@ const SumPageChance = ({ route, navigation }) => {
                   marginRight: 10,
                 }}
               >
-                <Text style={{ fontSize: 20, color: "#FF0000" }}>2</Text>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: "#FF0000",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
+                  2
+                </Text>
               </View>
-              <Text style={{ fontSize: 27, color: "white" }}>
+              <Text
+                style={{
+                  fontSize: 27,
+                  color: "white",
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
                 שדרג את הטופס
               </Text>
             </View>
 
-            <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
+            <ChooseNumOfTables
+              setHagralotMultiplicaton={setHagralotMultiplicaton}
+              hagralot={hagralot}
+              setHagralot={setHagralot}
+            />
             <ExtraAndOtomatChoose screenName='chancePages' />
 
             <View style={{ flexDirection: "column", marginLeft: 10 }}>
@@ -237,6 +309,7 @@ const SumPageChance = ({ route, navigation }) => {
                 style={{
                   fontSize: EStyleSheet.value("$rem") * 22,
                   color: "white",
+                  fontFamily: "fb-Spacer",
                 }}
               >
                 סיכום ושליחת טופס
@@ -254,10 +327,12 @@ const SumPageChance = ({ route, navigation }) => {
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
                     color: "yellow",
+                    fontFamily: "fb-Spacer",
                   }}
                 >
-                  סה"כ {tableNum}טבלאות
+                  סה"כ {tableNum}טבלאות סה"כ
                 </Text>
+
                 <View
                   style={{
                     marginLeft: 10,
@@ -270,14 +345,26 @@ const SumPageChance = ({ route, navigation }) => {
                 <Text
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
+                    fontFamily: "fb-Spacer",
 
                     color: "yellow",
                   }}
                 >
                   {" "}
-                  {hagralot}הגרלות
+                  הגרלות : {hagralot === -1 ? 1 : hagralot}
                 </Text>
               </View>
+              <Text
+                style={{
+                  fontSize: EStyleSheet.value("$rem") * 22,
+                  color: "yellow",
+                  fontFamily: "fb-Spacer",
+                  marginLeft: 15,
+                  marginVertical: 10,
+                }}
+              >
+                {formNum}טפסים סה"כ
+              </Text>
 
               <View
                 style={{
@@ -288,16 +375,17 @@ const SumPageChance = ({ route, navigation }) => {
                   color='white'
                   style={{
                     fontSize: EStyleSheet.value("$rem") * 22,
-
+                    fontFamily: "fb-Spacer",
                     color: "white",
                     marginLeft: 15,
                   }}
                 >
-                  לתשלום: {price}{" "}
+                  לתשלום: {price * HagralotMultiplicaton * formNum}
                 </Text>
                 <View style={{ height: 10 }}>
                   <FontAwesomeIcon
-                    style={{ marginVertical: 7, marginLeft: -4 }}
+                    size={10}
+                    style={{ marginVertical: 7, marginLeft: 4 }}
                     icon={faShekelSign}
                     color='white'
                   />
@@ -315,21 +403,22 @@ const SumPageChance = ({ route, navigation }) => {
               <Button
                 onPress={() => {
                   console.log("sendToServer : ", sendToServer);
-
-                  axios
-                    .post(url, sendToServer, {
-                      headers: {
-                        Authorization: store.jwt,
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                      },
-                    })
-                    .then((res) => {
-                      console.log(
-                        "this is res from post server request $$$$ : ",
-                        res
-                      );
-                    });
+                  mappedUsedTables.forEach(async (table) => {
+                    await axios
+                      .post(url, table, {
+                        headers: {
+                          Authorization: store.jwt,
+                          Accept: "application/json",
+                          "Content-Type": "application/json",
+                        },
+                      })
+                      .then((res) => {
+                        console.log(
+                          "this is res from post server request $$$$ : ",
+                          res
+                        );
+                      });
+                  });
                 }}
                 style={{
                   borderRadius: 17,
@@ -339,7 +428,15 @@ const SumPageChance = ({ route, navigation }) => {
                   padding: 10,
                 }}
               >
-                <Text style={{ color: "white", fontSize: 28 }}>שלח טופס</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 28,
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  שלח טופס
+                </Text>
               </Button>
             </View>
           </View>
@@ -349,41 +446,3 @@ const SumPageChance = ({ route, navigation }) => {
   );
 };
 export default SumPageChance;
-
-// {
-//   "cards": Object {
-//     "clover": Array [
-//       "9",
-//     ],
-//     "diamond": Array [
-//       "A",
-//     ],
-//     "heart": undefined,
-//     "leaf": Array [
-//       "10",
-//     ],
-//   },
-//   "form_type": 3,
-//   "multi_lottery": 4,
-//   "participant_amount": 50,
-// }
-
-// {
-//   "cards": {
-//     "clover": [
-//       "K"
-//     ],
-//     "diamond": [
-//       "A"
-//     ],
-//     "heart": [
-//       "8"
-//     ],
-//     "leaf": [
-//       "8"
-//     ]
-//   },
-//   "form_type": 4,
-//   "multi_lottery": -1,
-//   "participant_amount": 5
-// }
