@@ -35,6 +35,9 @@ import {
 //////////////////////////////////////////////////////////////
 
 export default function Home({ navigation }) {
+  const {
+    pageComeFrom
+  } = route.params;
   return (
     <>
       <NavBar navigation={navigation} screenName={"aboutUs"} />

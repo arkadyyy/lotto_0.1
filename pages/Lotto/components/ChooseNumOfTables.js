@@ -230,7 +230,7 @@ const ChooseNumOfTables = ({
           </View>
         </View>
       )}
-      {route.name === "ExtraFormPage" && (
+      {route.name === "SumPageLotto" && (
         <View
           style={{
             borderColor: "white",

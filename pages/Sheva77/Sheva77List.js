@@ -190,17 +190,26 @@ const Seva77List = (props) => {
             </ListItem>
           </List>
           <View style={{ flexDirection: "row", margin: 12 }}>
-            <View style={{ height: "50%", backgroundColor: "white" }}></View>
-            <Text style={{ flex: 3, fontSize: 25, fontFamily: "fb-Spacer" }}>
-              {" "}
-              777 הסבר על הגרלות{" "}
-            </Text>
-            <TouchableOpacity style={Sheva77Liststyles.roundButton1}>
-              <Text style={{ fontSize: 20, color: "white" }}>+</Text>
-            </TouchableOpacity>
+          <View style={{ height: "50%", backgroundColor: "white" }}></View>
+          <Text style={{ flex: 4, fontSize:20, fontFamily: "fb-Spacer",alignSelf:"flex-start" }}>
+              הסבר על הגרלות 777
+          </Text>
+            <View style={{flexDirection:"row",flex:1,left:20}}>
+            <TouchableOpacity style={{
+              width: 20,
+              height: 20,
+              justifyContent: "center",
+              alignItems: "center",
+              alignSelf:"baseline",
+              borderRadius: 100,
+              backgroundColor: "#1F3842",
+            }}>
+            <Text style={{ fontSize: 20, color: "white" }}>+</Text>
+          </TouchableOpacity>
 
-            <Text style={{ flex: 1, fontFamily: "fb-Spacer" }}> עוד..</Text>
-          </View>
+          <Text style={{ flex: 1, fontFamily: "fb-Spacer",alignSelf:"center" }}> עוד...</Text>
+            </View>
+            </View>
           <View
             style={{
               padding: 1,

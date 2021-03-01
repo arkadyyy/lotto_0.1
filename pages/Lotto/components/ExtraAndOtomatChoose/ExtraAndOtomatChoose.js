@@ -25,7 +25,7 @@ import {
   ListItem,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
-import ExtraFormPage from "../../ExtraFormPage.js";
+import SumPageLotto from "../../SumPageLotto.js";
 import EStyleSheet from "react-native-extended-stylesheet";
 
 const ExtraAndOtomatChoose = ({

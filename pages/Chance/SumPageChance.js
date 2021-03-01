@@ -83,7 +83,7 @@ const SumPageChance = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    //set url according to game
+    //   //set url according to game
 
     if (gameType === "regular") {
       seturl("http://52.90.122.190:5000/games/chance/type/regular/0");

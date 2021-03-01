@@ -191,13 +191,13 @@ const ChanceList = (props) => {
         <View style={{ flexDirection: "row", margin: 12 }}>
           <View style={{ height: "50%", backgroundColor: "white" }}></View>
           <Text style={{ flex: 3, fontSize: 25, fontFamily: "fb-Spacer" }}>
-            הסבר על הגרלת צ'אנס
+            הסבר על הגרלות צ'אנס
           </Text>
           <TouchableOpacity style={ChanceListstyles.roundButton1}>
             <Text style={{ fontSize: 20, color: "white" }}>+</Text>
           </TouchableOpacity>
 
-          <Text style={{ flex: 1, fontFamily: "fb-Spacer" }}> עוד..</Text>
+          <Text style={{ flex: 1, fontFamily: "fb-Spacer",alignSelf:"center" }}> עוד...</Text>
         </View>
         <View
           style={{

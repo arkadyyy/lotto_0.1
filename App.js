@@ -14,7 +14,7 @@ import LogInPage from "./pages/LogIn/LogInPage";
 import StackWrapper from "./StackWrapper";
 import DrawerContent from "./pages/DrawerContent/DrawerContent";
 import LottoPage from "./pages/Lotto/LottoPage";
-import ExtraFormPage from "./pages/Lotto/ExtraFormPage";
+import SumPageLotto from "./pages/Lotto/SumPageLotto";
 import DoubleLottoPage from "./pages/Lotto/DoubleLottoPage";
 import LottoList from "./pages/Lotto/LottoList";
 import LottoShitatiPage from "./pages/Lotto/LottoShitatiPage";
@@ -156,7 +156,7 @@ export default function App() {
               <Drawer.Screen name='StatuteTakanon' component={StatuteTakanon} />
               <Drawer.Screen name='AccessibilityDeclaration' component={AccessibilityDeclaration} />
 
-              <Drawer.Screen name='ExtraFormPage' component={ExtraFormPage} />
+              <Drawer.Screen name='SumPageLotto' component={SumPageLotto} />
               <Drawer.Screen name='ResultList' component={ResultList} />
             </Drawer.Navigator>
           </NavigationContainer>

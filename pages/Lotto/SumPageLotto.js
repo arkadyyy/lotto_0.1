@@ -23,7 +23,7 @@ import EStyleSheet from "react-native-extended-stylesheet";
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
-const ExtraFormPage = ({ route, navigation }) => {
+const SumPageLotto = ({ route, navigation }) => {
   const {
     screenName,
     tableNum,
@@ -467,4 +467,4 @@ const ExtraFormPage = ({ route, navigation }) => {
     </>
   );
 };
-export default ExtraFormPage;
+export default SumPageLotto;
