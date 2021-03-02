@@ -91,15 +91,14 @@ else if (form.form_type.includes("777")) {
                     ]
                   )
                     : hagralaName === "123" ? (
-                      [
+                      
                         form.marks.tables.map((table,index)=>(
                           {
-                            choosenNums:table.numbers,
-                            strongNum:table.strong_number,
+                            choosenNums: Object.values(table.numbers),
                             tableNum:table.table_number
                           }
                         ))
-                            ]
+                            
                   ) :null ,
                 gameType: gameType,  
               // {gameType==="shitati" &&
