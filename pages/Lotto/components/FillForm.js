@@ -253,7 +253,7 @@ const FillForm = ({
                   margin: 3,
                 }}
                 onPress={() => {
-                  setchoosenNums([]);
+                  setchoosenNums([" ", " ", " ", " ", " ", " "]);
                   setstrongNum(" ");
                   // setTableRowColor('#D60617')
                 }}

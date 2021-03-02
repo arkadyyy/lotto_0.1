@@ -775,6 +775,7 @@ const ChancePage = ({ navigation }) => {
                     investNum: investNum,
                     fullTables: fullTables,
                     gameType: "regular",
+                    formNum: formNum,
                   });
                 }}
                 style={chanceListstyles.sendFormBtn}

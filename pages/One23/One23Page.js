@@ -25,7 +25,7 @@ const One23Page = ({ navigation }) => {
   const [tablesCheck, settablesCheck] = useState(false);
   const [indexOfTable, setIndexOfTable] = useState("");
   const [opendTableNum, setopendTableNum] = useState(0);
-
+  const [errorMsg, seterrorMsg] = useState("");
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
   const [fullTables, setFullTables] = useState([
@@ -58,22 +58,21 @@ const One23Page = ({ navigation }) => {
 
   const autoFillForm = () => {
     let fullTabels = [];
-    for (let i = 1; i < 5; i++) {
+    for (let i = 1; i <= 5; i++) {
       while (i <= tableNum) {
         let numbers = autoFill(3);
         let table = {
           tableNum: i,
           choosenNums: numbers.randomNumbers,
-          // strongNum: null,
         };
         fullTabels = [...fullTabels, table];
         i++;
       }
-      // let table = {
-      //   tableNum: i,
-      //   choosenNums: [" "],
-      // };
-      // fullTabels = [...fullTabels, table];
+      let table = {
+        tableNum: i,
+        choosenNums: [" ", " ", " "],
+      };
+      fullTabels = [...fullTabels, table];
     }
     setFullTables(fullTabels);
   };
@@ -108,27 +107,70 @@ const One23Page = ({ navigation }) => {
     ]);
   };
 
-  const checkTables = (fullTables) => {
-    returnedState = false;
+  const checkTables = (fullTables, tableNum, settablesCheck) => {
+    let returnedState = false;
+    let fulltablesCopy = fullTables.slice(0);
+    console.log(tableNum);
+    console.log("fullTables from tablecheck ~~~~~~~~ : ", fullTables);
 
-    if (fullTables.length !== tableNum) {
+    let checkedFullTables = JSON.parse(JSON.stringify(fullTables));
+    let checkedFullTables2 = fulltablesCopy.slice(0);
+
+    checkedFullTables2.sort((table1, table2) => {
+      return table1.tableNum - table2.tableNum;
+    });
+    // checkedFullTables = fullTables.sort((table1, table2) => {
+    //   return table1.tableNum - table2.tableNum;
+    // });
+    checkedFullTables2.splice(tableNum, checkedFullTables2.length);
+    // checkedFullTables.splice(tableNum, checkedFullTables2.length);
+
+    // console.log("checkedFullTables : ", checkedFullTables);
+    console.log("checkedFullTables2 : ", checkedFullTables2);
+
+    if (checkedFullTables2.length !== tableNum) {
       returnedState = true;
+      seterrorMsg("אנא מלא את כל הטבלאות");
     }
 
-    fullTables.forEach((table) => {
+    if (store.user === -1) {
+      returnedState = true;
+
+      seterrorMsg("יש להתחבר על מנת להמשיך");
+    }
+
+    checkedFullTables2.forEach((table) => {
       if (table.choosenNums.includes(" ")) {
         returnedState = true;
       }
-      if (table.strongNum === " ") {
-        returnedState = true;
-      }
     });
-    return returnedState;
+    settablesCheck(returnedState);
   };
 
+  const tableNumChangeCheck = (fullTables, tableNum) => {
+    let updatedFullTables = [...fullTables];
+
+    updatedFullTables.sort((table1, table2) => {
+      return table1.tableNum - table2.tableNum;
+    });
+    updatedFullTables.forEach((table) => {
+      if (table.tableNum > tableNum) {
+        table.choosenNums = [" ", " ", " "];
+      }
+    });
+
+    console.log("updatedFullTables : ", updatedFullTables);
+    setFullTables([...updatedFullTables]);
+  };
   useEffect(() => {
-    settablesCheck(checkTables(fullTables));
+    checkTables(fullTables, tableNum, settablesCheck, setFullTables);
+    console.log("fullTables : ", fullTables);
   }, [fullTables, tableNum]);
+
+  useEffect(() => {
+    tableNumChangeCheck(fullTables, tableNum);
+    console.log("fulltables ~~~ : ", fullTables);
+  }, [tableNum]);
 
   return (
     <>
@@ -339,7 +381,7 @@ const One23Page = ({ navigation }) => {
                 onPress={() => {
                   if (tablesCheck === true) {
                     Toast.show({
-                      text: "לא מילאת את כל הטבלאות",
+                      text: errorMsg,
                       buttonText: "סגור",
                       position: "top",
                       // type: "warning",
