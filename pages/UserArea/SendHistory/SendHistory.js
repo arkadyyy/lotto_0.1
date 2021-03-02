@@ -22,18 +22,21 @@ const SeeOrDupilcate = ({
   navigation, index, open, setOpen,
   form, hagralaName, setHagralaName,
 hagralaNameHebrew, setHagralaNameHebrew,
-gameType,setGameType,screenName,setScreenName
+  gameType, setGameType, screenName, setScreenName,
+  formNum,choosenCards,setChoosenCards
 }) => {
 
   if (index === open.index) {
       // console.log("!!!!!!!!!!!!!!!!!",form);
   // console.log("!!!!!!!!!!!!!!!!!",form.form_type);
-    if (form.form_type.includes("lotto")){
+    if (form.form_type.includes("lotto")) {
       setHagralaName("Lotto");
       setHagralaNameHebrew("לוטו");
     } else if (form.form_type.includes("chance")) {
       setHagralaName("Chance");
-      setHagralaNameHebrew("צ'אנס")
+      setHagralaNameHebrew("צ'אנס");
+
+     
 
     }
   else if (form.form_type.includes("123")) {
@@ -50,6 +53,7 @@ else if (form.form_type.includes("777")) {
     if (form.form_type === "regular_lotto") {
       setGameType("regular");      
     }
+   
     else if (form.form_type === "regular_double_lotto") {
       setGameType("double");      
     }
@@ -67,6 +71,52 @@ else if (form.form_type.includes("777")) {
     else if (form.form_type === "double_lotto_shitati_hazak") {
       setGameType("double_shitati_hazak");      
     }
+    else if (form.form_type ==="regular_chance") {
+      setGameType("regular");      
+      for (const [key, value] of Object.entries(form.marks.cards)) {
+        console.log("+++++++");
+        console.log(`{${ key }: ${ value }}`);
+        const obj = {};
+        obj[key] =value;
+        if (choosenCards.length<4) {
+          choosenCards.push(obj);
+        }}
+      console.log("55555555",choosenCards);
+    }
+    else if (form.form_type ==="rav_chance") {
+      setGameType("rav_chance");      
+      for (const [key, value] of Object.entries(form.marks.cards)) {
+        console.log("+++++++");
+        console.log(`{${ key }: ${ value }}`);
+        const obj = {};
+        obj[key] =value;
+        if (choosenCards.length<4) {
+          choosenCards.push(obj);
+        }}
+      console.log("55555555",choosenCards);
+    }
+    else if (form.form_type ==="rav_chance") {
+      setGameType("rav_chance");      
+      for (const [key, value] of Object.entries(form.marks.cards)) {
+        console.log("+++++++");
+        console.log(`{${ key }: ${ value }}`);
+        const obj = {};
+        obj[key] =value;
+        if (choosenCards.length<4) {
+          choosenCards.push(obj);
+        }}
+      console.log("55555555",choosenCards);
+    }
+    else if (form.marks.form_type === "8") {
+      setGameType("778");
+    }
+    else if (form.marks.form_type === "7") {
+      setGameType("777");
+    }
+    else if (form.marks.form_type === "9") {
+      setGameType("779");
+    }
+    
     return (
       <View style={{flexDirection:"column"}}>
         <View style={{flexDirection:"row",justifyContent:"space-evenly",paddingTop:7}}>
@@ -76,7 +126,10 @@ else if (form.form_type.includes("777")) {
               navigation.navigate(`SumPage${ hagralaName }`,{
               
                 screenName: hagralaNameHebrew,
-                tableNum: form.marks.tables.length,
+                tableNum: hagralaName !== "Chance" ? form.marks.tables.length
+                  : hagralaName === "Chance" ? form.form_type
+                    : null,
+                formNum:formNum,
                 investNum: form.marks.participant_amount,
                 fullTables:
                   hagralaName === "Lotto" ? (
@@ -90,7 +143,9 @@ else if (form.form_type.includes("777")) {
                 ))
                     ]
                   )
-                    : hagralaName === "123" ? (
+                    : hagralaName === "123" ||
+                    hagralaName === "777"
+                    ? (
                       
                         form.marks.tables.map((table,index)=>(
                           {
@@ -99,8 +154,19 @@ else if (form.form_type.includes("777")) {
                           }
                         ))
                             
-                  ) :null ,
-                gameType: gameType,  
+                      )
+                      : hagralaName === "Chance" 
+                      ? (
+                        
+                        {
+                          tableNum:" ",
+                          choosenCards: choosenCards,
+                        }
+                              
+                        )
+                      : null,
+                gameType: gameType,
+                formType:form.marks.form_type,
               // {gameType==="shitati" &&
           tzerufimNumber: (gameType==="shitati" ? form.marks.tables[0].numbers.length : null),
               // }
@@ -121,7 +187,10 @@ else if (form.form_type.includes("777")) {
           </TouchableOpacity>
         
           <TouchableOpacity
-            // onPress=
+            onPress={() => {
+
+              console.log("######", choosenCards);
+            }}
           >
             <Text style={{
               color: "white",
@@ -294,10 +363,14 @@ const SendHistory = ({ navigation,formsHistory }) => {
   const [gameType, setGameType] = useState(" ");
   const [screenName, setScreenName] = useState(" ");
   const [investNum, setInvestNum] = useState(" ");
+  const formNum = "1";
+  const [choosenCards,setChoosenCards] = useState([]);
 
   useEffect(() => {
     console.log("formsHistory : ", formsHistory);
   }, []);
+
+
   return (
     <>
       <View
@@ -446,6 +519,11 @@ const SendHistory = ({ navigation,formsHistory }) => {
                   hagralaName={hagralaName} setHagralaName={setHagralaName} hagralaNameHebrew={hagralaNameHebrew} setHagralaNameHebrew={setHagralaNameHebrew}
                   gameType={gameType} setGameType={setGameType}
                   screenName={screenName} setScreenName={setScreenName}
+                  formNum={formNum}
+                  investNum={investNum}
+                  setInvestNum={setInvestNum}
+                  choosenCards={choosenCards}
+                  setChoosenCards={setChoosenCards}
                 />
               )}
             </>

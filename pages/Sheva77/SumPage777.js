@@ -154,7 +154,7 @@ const SumPage777 = ({ route, navigation }) => {
       <ScrollView>
         <NavBar navigation={navigation} screenName={screenName} />
         <BlankSquare gameName='הגרלת 777' color='#CC1D64' />
-        <ChooseForm setdouble={setdouble} double={double} />
+        {/* <ChooseForm setdouble={setdouble} double={double} /> */}
         <View style={{ margin: 15 }}>
           <View
             style={{
