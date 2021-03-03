@@ -24,6 +24,7 @@ const Sheva77Page = ({ navigation }) => {
   const [sheva77, setSheva77] = useState(true);
   const [sheva78, setSheva78] = useState(false);
   const [sheva79, setSheva79] = useState(false);
+  const [trimedFullTables, settrimedFullTables] = useState([]);
   const numOfNum = 7;
   const [fullTables, setFullTables] = useState([
     {
@@ -125,6 +126,7 @@ const Sheva77Page = ({ navigation }) => {
         returnedState = true;
       }
     });
+    settrimedFullTables(checkedFullTables2);
     settablesCheck(returnedState);
   };
 
@@ -280,6 +282,7 @@ const Sheva77Page = ({ navigation }) => {
                       fullTables: fullTables,
                       gameType: "777",
                       formType: 7,
+                      trimedFullTables: trimedFullTables,
                     });
                   }
                 }}
@@ -292,26 +295,44 @@ const Sheva77Page = ({ navigation }) => {
             </View>
           </View>
           <View style={{ flexDirection: "row", margin: 12 }}>
-          <View style={{ height: "50%", backgroundColor: "white" }}></View>
-          <Text style={{ flex: 4, fontSize:20, fontFamily: "fb-Spacer",alignSelf:"flex-start" }}>
+            <View style={{ height: "50%", backgroundColor: "white" }}></View>
+            <Text
+              style={{
+                flex: 4,
+                fontSize: 20,
+                fontFamily: "fb-Spacer",
+                alignSelf: "flex-start",
+              }}
+            >
               הסבר על הגרלות 777
-          </Text>
-            <View style={{flexDirection:"row",flex:1,left:20}}>
-            <TouchableOpacity style={{
-              width: 20,
-              height: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              alignSelf:"baseline",
-              borderRadius: 100,
-              backgroundColor: "#1F3842",
-            }}>
-            <Text style={{ fontSize: 20, color: "white" }}>+</Text>
-          </TouchableOpacity>
+            </Text>
+            <View style={{ flexDirection: "row", flex: 1, left: 20 }}>
+              <TouchableOpacity
+                style={{
+                  width: 20,
+                  height: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignSelf: "baseline",
+                  borderRadius: 100,
+                  backgroundColor: "#1F3842",
+                }}
+              >
+                <Text style={{ fontSize: 20, color: "white" }}>+</Text>
+              </TouchableOpacity>
 
-          <Text style={{ flex: 1, fontFamily: "fb-Spacer",alignSelf:"center" }}> עוד...</Text>
+              <Text
+                style={{
+                  flex: 1,
+                  fontFamily: "fb-Spacer",
+                  alignSelf: "center",
+                }}
+              >
+                {" "}
+                עוד...
+              </Text>
             </View>
-            </View>
+          </View>
         </View>
       </ScrollView>
     </>

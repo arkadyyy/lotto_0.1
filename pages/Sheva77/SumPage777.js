@@ -25,7 +25,14 @@ Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
 const SumPage777 = ({ route, navigation }) => {
-  const { screenName, tableNum, fullTables, gameType, formType } = route.params;
+  const {
+    screenName,
+    tableNum,
+    fullTables,
+    gameType,
+    formType,
+    trimedFullTables,
+  } = route.params;
   const [showTable, setshowTable] = useState(false);
   // const [tableNum, settableNum] = useState(1);
   const [double, setdouble] = useState(false);
@@ -48,41 +55,41 @@ const SumPage777 = ({ route, navigation }) => {
     tables: [],
   });
 
-  const getPrice = (url, fullTables, formType) => {
-    navigation.addListener("focus", async () => {
-      console.log("i am focused ");
+  const getPrice = async (url, fullTables, formType) => {
+    setPrice(null);
 
-      let x = await fullTables.map((table, index) => {
-        return {
-          numbers: table.choosenNums,
-          strong_number: [table.strongNum],
-          table_number: table.tableNum,
-        };
-      });
-      console.log("fulltables updated for extrapage : ", x);
-      axios
-        .post(
-          url,
-          {
-            multi_lottery: hagralot,
-            tables: x,
-            form_type: formType,
+    console.log("i am focused ");
+
+    let x = await fullTables.map((table, index) => {
+      return {
+        numbers: table.choosenNums,
+        strong_number: [table.strongNum],
+        table_number: table.tableNum,
+      };
+    });
+    console.log("fulltables updated for extrapage : ", x);
+    axios
+      .post(
+        url,
+        {
+          multi_lottery: hagralot,
+          tables: x,
+          form_type: formType,
+        },
+        {
+          headers: {
+            Authorization: store.jwt,
+            Accept: "application/json",
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              Authorization: store.jwt,
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((res) => setPrice(res.data.price))
-        .catch((err) => console.log(err));
+        }
+      )
+      .then((res) => setPrice(res.data.price))
+      .catch((err) => console.log(err));
 
-      setsendToServer({
-        multi_lottery: hagralot,
-        tables: x,
-      });
+    setsendToServer({
+      multi_lottery: hagralot,
+      tables: x,
     });
   };
 
@@ -100,32 +107,104 @@ const SumPage777 = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    onblur();
-    //set url accordingly to game
+    if (screenName === "LottoPage") {
+      setGameName("הגרלת לוטו");
+    } else if (screenName === "ChancePage") {
+      setGameName("הגרלת צ'אנס");
+    }
+
+    //configure data sent to server
+
     if (gameType === "777") {
-      seturl("http://52.90.122.190:5000/games/777/type/regular/0");
+      let x = trimedFullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
+          strong_number: [table.strongNum],
+          table_number: table.tableNum,
+        };
+      });
+
       getPrice(
         "http://52.90.122.190:5000/games/777/type/regular/calculate_price",
         fullTables,
         formType
       );
+
+      setsendToServer({
+        form_type: formType,
+        multi_lottery: hagralot,
+        tables: x,
+      });
     } else if (gameType === "778") {
-      seturl("http://52.90.122.190:5000/games/777/type/shitati/0");
+      let x = fullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
+          strong_number: [table.strongNum],
+          table_number: table.tableNum,
+        };
+      });
+
       getPrice(
         "http://52.90.122.190:5000/games/777/type/shitati/calculate_price",
         fullTables,
         formType
       );
+
+      setsendToServer({
+        form_type: formType,
+        multi_lottery: hagralot,
+        tables: x,
+      });
     } else if (gameType === "779") {
-      seturl("http://52.90.122.190:5000/games/777/type/shitati/0");
+      let x = fullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
+          strong_number: table.choosenStrongNums,
+          table_number: table.tableNum,
+        };
+      });
+      console.log(x);
       getPrice(
         "http://52.90.122.190:5000/games/777/type/shitati/calculate_price",
         fullTables,
         formType
       );
+
+      setsendToServer({
+        form_type: formType,
+        multi_lottery: hagralot,
+        tables: x,
+      });
     }
-    console.log("formType : ", formType);
-  }, [[fullTables, hagralot, otomatic, navigation]]);
+  }, [fullTables, otomatic, navigation]);
+
+  // useEffect(() => {
+  //   onblur();
+  //   //set url accordingly to game
+  //   if (gameType === "777") {
+  //     seturl("http://52.90.122.190:5000/games/777/type/regular/0");
+  //     getPrice(
+  //       "http://52.90.122.190:5000/games/777/type/regular/calculate_price",
+  //       fullTables,
+  //       formType
+  //     );
+  //   } else if (gameType === "778") {
+  //     seturl("http://52.90.122.190:5000/games/777/type/shitati/0");
+  //     getPrice(
+  //       "http://52.90.122.190:5000/games/777/type/shitati/calculate_price",
+  //       fullTables,
+  //       formType
+  //     );
+  //   } else if (gameType === "779") {
+  //     seturl("http://52.90.122.190:5000/games/777/type/shitati/0");
+  //     getPrice(
+  //       "http://52.90.122.190:5000/games/777/type/shitati/calculate_price",
+  //       fullTables,
+  //       formType
+  //     );
+  //   }
+  //   console.log("formType : ", formType);
+  // }, [[fullTables, hagralot, otomatic, navigation]]);
 
   useEffect(() => {
     //configure data sent to server

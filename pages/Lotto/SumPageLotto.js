@@ -31,6 +31,7 @@ const SumPageLotto = ({ route, navigation }) => {
     gameType,
     tzerufimNumber,
     hazakimNumber,
+    trimedFullTables,
   } = route.params;
   const [showTable, setshowTable] = useState(false);
   const [double, setdouble] = useState(false);
@@ -47,7 +48,7 @@ const SumPageLotto = ({ route, navigation }) => {
   const [hagralot, setHagralot] = useState(-1);
   const [price, setPrice] = useState("");
   const [otomatic, setOtomatic] = useState(true);
-  const [extra, setExtra] = useState(true);
+  const [extra, setExtra] = useState(false);
   const [url, seturl] = useState("");
   const [HagralotMultiplicaton, setHagralotMultiplicaton] = useState(1);
   // const [tableNum, settableNum] = useState(1);
@@ -58,16 +59,38 @@ const SumPageLotto = ({ route, navigation }) => {
     tables: [],
   });
 
-  const getPrice = (url, fullTables) => {
-    navigation.addListener("focus", async () => {
-      let x = await fullTables.map((table, index) => {
-        return {
-          numbers: table.choosenNums,
-          strong_number: [table.strongNum],
-          table_number: table.tableNum,
-        };
-      });
+  // const trimEmptyTables = async (fullTables) => {
+  //   let x = await fullTables.map((table, index) => {
+  //     return {
+  //       numbers: table.choosenNums,
+  //       strong_number: [table.strongNum],
+  //       table_number: table.tableNum,
+  //     };
+  //   });
+  //   await x.sort((table1, table2) => {
+  //     return table1.tableNum - table2.tableNum;
+  //   });
+  //   await x.slice(0, tableNum);
+  //   console.log("tableNum : ", tableNum);
 
+  //   console.log("fulltables send to get price : ", x);
+
+  //   return x;
+  // };
+
+  const getPrice = async (url, trimedFullTables) => {
+    setPrice(null);
+    console.log("i am here");
+
+    let x = await trimedFullTables.map((table, index) => {
+      return {
+        numbers: table.choosenNums,
+        strong_number: [table.strongNum],
+        table_number: table.tableNum,
+      };
+    });
+
+    if (gameType === "regular" || gameType === "double") {
       axios
         .post(
           url,
@@ -84,96 +107,80 @@ const SumPageLotto = ({ route, navigation }) => {
             },
           }
         )
-        .then((res) => setPrice(res.data.price))
+        .then((res) => {
+          setPrice(res.data.price);
+        })
         .then((data) => {
           setTimeout(() => {
             setdisplayPrice(true);
           }, 1500);
         })
         .catch((err) => console.log(err));
+    } else if (gameType === "shitati" || gameType === "shitati_hazak") {
+      console.log("x from shitati : ", x[0]);
+      axios
+        .post(
+          url,
+          {
+            extra: extra,
+            multi_lottery: hagralot,
+            tables: x[0],
+          },
+          {
+            headers: {
+              Authorization: store.jwt,
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          setPrice(res.data.price);
+        })
+        .then((data) => {
+          setTimeout(() => {
+            setdisplayPrice(true);
+          }, 1500);
+        })
+        .catch((err) => console.log(err));
+    }
 
-      setsendToServer({
-        extra: extra,
-        multi_lottery: hagralot,
-        tables: x,
-      });
-    });
-  };
-
-  const onblur = () => {
-    navigation.addListener("blur", () => {
-      setPrice(null);
-      setOtomatic(true);
-      setExtra(true);
-      setdisplayPrice(false);
-      setsendToServer({
-        extra: false,
-        multi_lottery: -1,
-        tables: [],
-      });
+    setsendToServer({
+      extra: extra,
+      multi_lottery: hagralot,
+      tables: x,
     });
   };
 
   useEffect(() => {
-    onblur();
-
     if (screenName === "LottoPage") {
       setGameName("הגרלת לוטו");
     } else if (screenName === "ChancePage") {
       setGameName("הגרלת צ'אנס");
     }
 
-    //set post url according to game
-    if (gameType === "regular") {
-      seturl("http://52.90.122.190:5000/games/lotto/type/regular/0");
-      getPrice(
-        "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
-        fullTables
-      );
-    } else if (gameType === "double") {
-      seturl("http://52.90.122.190:5000/games/lotto/type/regular_double/0");
-      getPrice(
-        "http://52.90.122.190:5000/games/lotto/type/regular_double/calculate_price",
-        fullTables
-      );
-    } else if (gameType === "shitati") {
-      seturl("http://52.90.122.190:5000/games/lotto/type/shitati/0");
-      getPrice(
-        "http://52.90.122.190:5000/games/lotto/type/shitati/calculate_price",
-        fullTables
-      );
-    } else if (gameType === "double_shitati") {
-      seturl("http://52.90.122.190:5000/games/lotto/type/double_shitati/0");
-      getPrice(
-        "http://52.90.122.190:5000/games/lotto/type/double_shitati/calculate_price",
-        fullTables
-      );
-    } else if (gameType === "shitati_hazak") {
-      seturl("http://52.90.122.190:5000/games/lotto/type/shitati_hazak/0");
-      getPrice(
-        "http://52.90.122.190:5000/games/lotto/type/shitati_hazak/calculate_price",
-        fullTables
-      );
-    } else if (gameType === "double_shitati_hazak") {
-      seturl(
-        "http://52.90.122.190:5000/games/lotto/type/double_shitati_hazak/0"
-      );
-      getPrice(
-        "http://52.90.122.190:5000/games/lotto/type/double_shitati_hazak/calculate_price",
-        fullTables
-      );
-    }
-
     //configure data sent to server
 
     if (gameType === "regular" || gameType === "double") {
-      let x = fullTables.map((table, index) => {
+      let x = trimedFullTables.map((table, index) => {
         return {
           numbers: table.choosenNums,
           strong_number: [table.strongNum],
           table_number: table.tableNum,
         };
       });
+      if (gameType === "regular") {
+        getPrice(
+          "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
+          trimedFullTables
+        );
+      }
+      if (gameType === "double") {
+        getPrice(
+          "http://52.90.122.190:5000/games/lotto/type/regular_double/calculate_price",
+          trimedFullTables
+        );
+      }
 
       setsendToServer({
         extra: extra,
@@ -181,13 +188,18 @@ const SumPageLotto = ({ route, navigation }) => {
         tables: x,
       });
     } else if (gameType === "shitati") {
-      let x = fullTables.map((table, index) => {
+      let x = trimedFullTables.map((table, index) => {
         return {
           numbers: table.choosenNums,
           strong_number: [table.strongNum],
           table_number: table.tableNum,
         };
       });
+
+      getPrice(
+        "http://52.90.122.190:5000/games/lotto/type/shitati/calculate_price",
+        trimedFullTables
+      );
 
       setsendToServer({
         extra: extra,
@@ -196,13 +208,18 @@ const SumPageLotto = ({ route, navigation }) => {
         tables: x,
       });
     } else if (gameType === "shitati_hazak") {
-      let x = fullTables.map((table, index) => {
+      let x = trimedFullTables.map((table, index) => {
         return {
           numbers: table.choosenNums,
           strong_number: table.choosenStrongNums,
           table_number: table.tableNum,
         };
       });
+      console.log(x);
+      getPrice(
+        "http://52.90.122.190:5000/games/lotto/type/shitati_hazak/calculate_price",
+        trimedFullTables
+      );
 
       setsendToServer({
         extra: extra,
@@ -211,52 +228,66 @@ const SumPageLotto = ({ route, navigation }) => {
         tables: x,
       });
     }
-
-    let x = fullTables.map((table, index) => {
-      return {
-        numbers: table.choosenNums,
-        strong_number: [table.strongNum],
-        table_number: table.tableNum,
-      };
-    });
-
-    axios
-      .post(
-        "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
-        {
-          extra: extra,
-          multi_lottery: hagralot,
-          tables: x,
-        },
-        {
-          headers: {
-            Authorization: store.jwt,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((res) => setPrice(res.data.price))
-      .catch((err) => console.log(err));
-
-    setsendToServer({
-      extra: extra,
-      multi_lottery: hagralot,
-      tables: x,
-    });
   }, [fullTables, extra, otomatic, navigation]);
 
   // useEffect(() => {
-  //   let num;
-
-  //   if (hagralot === -1) {
-  //     num = 1;
-  //   } else {
-  //     num = hagralot;
-  //   }
-
-  //   setHagralotMultiplicaton(num);
-  // }, [hagralot]);
+  //   navigation.addListener("blur", () => {
+  //     console.log("blur happend");
+  //     setPrice(null);
+  //     seturl("");
+  //     setOtomatic(true);
+  //     setExtra(true);
+  //     setdisplayPrice(false);
+  //     setsendToServer({
+  //       extra: false,
+  //       multi_lottery: -1,
+  //       tables: [],
+  //     });
+  //   });
+  //   //set post url according to game
+  //   navigation.addListener("focus", () => {
+  //     console.log("focus happend");
+  //     if (gameType === "regular") {
+  //       seturl("http://52.90.122.190:5000/games/lotto/type/regular/0");
+  //       getPrice(
+  //         "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
+  //         trimedFullTables
+  //       );
+  //     } else if (gameType === "double") {
+  //       seturl("http://52.90.122.190:5000/games/lotto/type/regular_double/0");
+  //       getPrice(
+  //         "http://52.90.122.190:5000/games/lotto/type/regular_double/calculate_price",
+  //         trimedFullTables
+  //       );
+  //     } else if (gameType === "shitati") {
+  //       seturl("http://52.90.122.190:5000/games/lotto/type/shitati/0");
+  //       getPrice(
+  //         "http://52.90.122.190:5000/games/lotto/type/shitati/calculate_price",
+  //         trimedFullTables
+  //       );
+  //     } else if (gameType === "double_shitati") {
+  //       seturl("http://52.90.122.190:5000/games/lotto/type/double_shitati/0");
+  //       getPrice(
+  //         "http://52.90.122.190:5000/games/lotto/type/double_shitati/calculate_price",
+  //         trimedFullTables
+  //       );
+  //     } else if (gameType === "shitati_hazak") {
+  //       seturl("http://52.90.122.190:5000/games/lotto/type/shitati_hazak/0");
+  //       getPrice(
+  //         "http://52.90.122.190:5000/games/lotto/type/shitati_hazak/calculate_price",
+  //         trimedFullTables
+  //       );
+  //     } else if (gameType === "double_shitati_hazak") {
+  //       seturl(
+  //         "http://52.90.122.190:5000/games/lotto/type/double_shitati_hazak/0"
+  //       );
+  //       getPrice(
+  //         "http://52.90.122.190:5000/games/lotto/type/double_shitati_hazak/calculate_price",
+  //         trimedFullTables
+  //       );
+  //     }
+  //   });
+  // }, [navigation]);
 
   return (
     <>

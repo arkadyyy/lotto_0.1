@@ -30,6 +30,7 @@ const Sheva779Page = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [tablesCheck, settablesCheck] = useState(false);
+  const [trimedFullTables, settrimedFullTables] = useState([]);
   const [fullTables, setFullTables] = useState([
     {
       choosenNums: [" ", " ", " ", " ", " ", " ", " ", " "],
@@ -222,25 +223,44 @@ const Sheva779Page = ({ navigation }) => {
             </View>
           </View>
           <View style={{ flexDirection: "row", margin: 12 }}>
-          <View style={{ height: "50%", backgroundColor: "white" }}></View>
-          <Text style={{ flex: 4, fontSize:20, fontFamily: "fb-Spacer",alignSelf:"flex-start" }}>
-              הסבר על הגרלות 777          </Text>
-            <View style={{flexDirection:"row",flex:1,left:20}}>
-            <TouchableOpacity style={{
-              width: 20,
-              height: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              alignSelf:"baseline",
-              borderRadius: 100,
-              backgroundColor: "#1F3842",
-            }}>
-            <Text style={{ fontSize: 20, color: "white" }}>+</Text>
-          </TouchableOpacity>
+            <View style={{ height: "50%", backgroundColor: "white" }}></View>
+            <Text
+              style={{
+                flex: 4,
+                fontSize: 20,
+                fontFamily: "fb-Spacer",
+                alignSelf: "flex-start",
+              }}
+            >
+              הסבר על הגרלות 777{" "}
+            </Text>
+            <View style={{ flexDirection: "row", flex: 1, left: 20 }}>
+              <TouchableOpacity
+                style={{
+                  width: 20,
+                  height: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignSelf: "baseline",
+                  borderRadius: 100,
+                  backgroundColor: "#1F3842",
+                }}
+              >
+                <Text style={{ fontSize: 20, color: "white" }}>+</Text>
+              </TouchableOpacity>
 
-          <Text style={{ flex: 1, fontFamily: "fb-Spacer",alignSelf:"center" }}> עוד...</Text>
+              <Text
+                style={{
+                  flex: 1,
+                  fontFamily: "fb-Spacer",
+                  alignSelf: "center",
+                }}
+              >
+                {" "}
+                עוד...
+              </Text>
             </View>
-            </View>
+          </View>
         </View>
       </ScrollView>
     </>

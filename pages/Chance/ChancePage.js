@@ -20,18 +20,7 @@ const ChancePage = ({ navigation }) => {
   const [formNum, setformNum] = useState(1);
   const [investNum, setinvestNum] = useState(5);
   const [opendTableNum, setopendTableNum] = useState(0);
-  const [allCounters, setallCounters] = useState([
-    { formNum: 1, counter: 0 },
-    { formNum: 2, counter: 0 },
-    { formNum: 3, counter: 0 },
-    { formNum: 4, counter: 0 },
-    { formNum: 5, counter: 0 },
-    { formNum: 6, counter: 0 },
-    { formNum: 7, counter: 0 },
-    { formNum: 8, counter: 0 },
-    { formNum: 9, counter: 0 },
-    { formNum: 10, counter: 0 },
-  ]);
+  const [allCounters, setallCounters] = useState([{ formNum: 1, counter: 0 }]);
   const [fullTables, setfullTables] = useState([
     {
       tableNum: 1,
@@ -787,26 +776,44 @@ const ChancePage = ({ navigation }) => {
             </View>
           </View>
           <View style={{ flexDirection: "row", margin: 12 }}>
-          <View style={{ height: "50%", backgroundColor: "white" }}></View>
-          <Text style={{ flex: 4, fontSize:20, fontFamily: "fb-Spacer",alignSelf:"flex-start" }}>
+            <View style={{ height: "50%", backgroundColor: "white" }}></View>
+            <Text
+              style={{
+                flex: 4,
+                fontSize: 20,
+                fontFamily: "fb-Spacer",
+                alignSelf: "flex-start",
+              }}
+            >
               הסבר על הגרלות צ'אנס
-          </Text>
-            <View style={{flexDirection:"row",flex:1,left:20}}>
-            <TouchableOpacity style={{
-              width: 20,
-              height: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              alignSelf:"baseline",
-              borderRadius: 100,
-              backgroundColor: "#1F3842",
-            }}>
-            <Text style={{ fontSize: 20, color: "white" }}>+</Text>
-          </TouchableOpacity>
+            </Text>
+            <View style={{ flexDirection: "row", flex: 1, left: 20 }}>
+              <TouchableOpacity
+                style={{
+                  width: 20,
+                  height: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignSelf: "baseline",
+                  borderRadius: 100,
+                  backgroundColor: "#1F3842",
+                }}
+              >
+                <Text style={{ fontSize: 20, color: "white" }}>+</Text>
+              </TouchableOpacity>
 
-          <Text style={{ flex: 1, fontFamily: "fb-Spacer",alignSelf:"center" }}> עוד...</Text>
+              <Text
+                style={{
+                  flex: 1,
+                  fontFamily: "fb-Spacer",
+                  alignSelf: "center",
+                }}
+              >
+                {" "}
+                עוד...
+              </Text>
             </View>
-            </View>
+          </View>
         </View>
       </ScrollView>
     </>

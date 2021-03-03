@@ -156,28 +156,6 @@ const ChooseNumOfTables = ({
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={
-                  tableNum === 5
-                  // ? chanceListstyles.investBtnSelected
-                  // : chanceListstyles.investBtn
-                }
-                onPress={() => {
-                  settableNum(5);
-                }}
-              >
-                <Text
-                  style={{
-                    textAlign: "center",
-                    top: EStyleSheet.value("$rem") * 10,
-                    fontSize: EStyleSheet.value("$rem") * 13,
-                    color: tableNum === 5 ? "#8CC63F" : "white",
-                  }}
-                >
-                  רב צ'אנס
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={
                   tableNum === 4
                     ? chanceListstyles.investBtnSelected
                     : chanceListstyles.investBtn
@@ -223,6 +201,27 @@ const ChooseNumOfTables = ({
                 }}
               >
                 <Text>1</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={
+                  tableNum === 5
+                  // ? chanceListstyles.investBtnSelected
+                  // : chanceListstyles.investBtn
+                }
+                onPress={() => {
+                  settableNum(5);
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    top: EStyleSheet.value("$rem") * 10,
+                    fontSize: EStyleSheet.value("$rem") * 13,
+                    color: tableNum === 5 ? "#8CC63F" : "white",
+                  }}
+                >
+                  רב צ'אנס
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

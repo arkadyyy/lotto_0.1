@@ -106,7 +106,9 @@ const LottoPage = ({ navigation }) => {
   const [tableRowColor, setTableRowColor] = useState("D60617");
   const [tablesCheck, settablesCheck] = useState(false);
   const [errorMsg, seterrorMsg] = useState("");
+  const [trimedFullTables, settrimedFullTables] = useState([]);
   const store = useSelector((state) => state);
+
   const dispatch = useDispatch();
   const route = useRoute();
 
@@ -252,6 +254,7 @@ const LottoPage = ({ navigation }) => {
       }
     });
     settablesCheck(returnedState);
+    settrimedFullTables(checkedFullTables2);
   };
 
   const tableNumChangeCheck = (fullTables, tableNum) => {
@@ -401,6 +404,7 @@ const LottoPage = ({ navigation }) => {
                       screenName: "לוטו",
                       fullTables: fullTables,
                       gameType: "regular",
+                      trimedFullTables: trimedFullTables,
                     });
                   }
                 }}
@@ -413,26 +417,44 @@ const LottoPage = ({ navigation }) => {
             </View>
           </View>
           <View style={{ flexDirection: "row", margin: 12 }}>
-          <View style={{ height: "50%", backgroundColor: "white" }}></View>
-          <Text style={{ flex: 4, fontSize:20, fontFamily: "fb-Spacer",alignSelf:"flex-start" }}>
+            <View style={{ height: "50%", backgroundColor: "white" }}></View>
+            <Text
+              style={{
+                flex: 4,
+                fontSize: 20,
+                fontFamily: "fb-Spacer",
+                alignSelf: "flex-start",
+              }}
+            >
               הסבר על הגרלות לוטו
-          </Text>
-            <View style={{flexDirection:"row",flex:1,left:20}}>
-            <TouchableOpacity style={{
-              width: 20,
-              height: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              alignSelf:"baseline",
-              borderRadius: 100,
-              backgroundColor: "#1F3842",
-            }}>
-            <Text style={{ fontSize: 20, color: "white" }}>+</Text>
-          </TouchableOpacity>
+            </Text>
+            <View style={{ flexDirection: "row", flex: 1, left: 20 }}>
+              <TouchableOpacity
+                style={{
+                  width: 20,
+                  height: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignSelf: "baseline",
+                  borderRadius: 100,
+                  backgroundColor: "#1F3842",
+                }}
+              >
+                <Text style={{ fontSize: 20, color: "white" }}>+</Text>
+              </TouchableOpacity>
 
-          <Text style={{ flex: 1, fontFamily: "fb-Spacer",alignSelf:"center" }}> עוד...</Text>
+              <Text
+                style={{
+                  flex: 1,
+                  fontFamily: "fb-Spacer",
+                  alignSelf: "center",
+                }}
+              >
+                {" "}
+                עוד...
+              </Text>
             </View>
-            </View>
+          </View>
           {/* <View style={LottoListstyles.lottoExplanationContainer}>
             <Text style={{ fontSize: EStyleSheet.value("$rem") * 20 }}>
               הסבר על הגרלות לוטו

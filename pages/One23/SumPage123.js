@@ -25,7 +25,13 @@ Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
 const SumPage123 = ({ route, navigation }) => {
-  const { screenName, tableNum, fullTables, investNum } = route.params;
+  const {
+    screenName,
+    tableNum,
+    fullTables,
+    investNum,
+    trimedFullTables,
+  } = route.params;
   const [showTable, setshowTable] = useState(false);
   // const [tableNum, settableNum] = useState(1);
   const [double, setdouble] = useState(false);
@@ -51,44 +57,42 @@ const SumPage123 = ({ route, navigation }) => {
   });
 
   const getPrice = (url, fullTables) => {
-    navigation.addListener("focus", async () => {
-      console.log("i am focused ");
+    setPrice(null);
 
-      let x = fullTables.map((table, index) => {
-        return {
-          numbers: {
-            1: table.choosenNums[0],
-            2: table.choosenNums[1],
-            3: table.choosenNums[2],
+    let x = fullTables.map((table, index) => {
+      return {
+        numbers: {
+          1: table.choosenNums[0],
+          2: table.choosenNums[1],
+          3: table.choosenNums[2],
+        },
+
+        table_number: table.tableNum,
+      };
+    });
+    console.log("fulltables updated for extrapage : ", x);
+    axios
+      .post(
+        url,
+        {
+          multi_lottery: hagralot,
+          participant_amount: investNum,
+          tables: x,
+        },
+        {
+          headers: {
+            Authorization: store.jwt,
+            Accept: "application/json",
+            "Content-Type": "application/json",
           },
+        }
+      )
+      .then((res) => setPrice(res.data.price))
+      .catch((err) => console.log(err));
 
-          table_number: table.tableNum,
-        };
-      });
-      console.log("fulltables updated for extrapage : ", x);
-      axios
-        .post(
-          url,
-          {
-            multi_lottery: hagralot,
-            participant_amount: investNum,
-            tables: x,
-          },
-          {
-            headers: {
-              Authorization: store.jwt,
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((res) => setPrice(res.data.price))
-        .catch((err) => console.log(err));
-
-      setsendToServer({
-        multi_lottery: hagralot,
-        tables: x,
-      });
+    setsendToServer({
+      multi_lottery: hagralot,
+      tables: x,
     });
   };
 
@@ -107,8 +111,7 @@ const SumPage123 = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    onblur();
-    let x = fullTables.map((table, index) => {
+    let x = trimedFullTables.map((table, index) => {
       return {
         numbers: {
           1: table.choosenNums[0],
@@ -120,9 +123,21 @@ const SumPage123 = ({ route, navigation }) => {
       };
     });
 
+    // let y = trimedFullTables.map((table, index) => {
+    //   return {
+    //     numbers: {
+    //       1: table.choosenNums[0],
+    //       2: table.choosenNums[1],
+    //       3: table.choosenNums[2],
+    //     },
+
+    //     table_number: table.tableNum,
+    //   };
+    // });
+
     getPrice(
       "http://52.90.122.190:5000/games/123/type/regular/calculate_price",
-      fullTables
+      trimedFullTables
     );
 
     // console.log("x : ", x);
