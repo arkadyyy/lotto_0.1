@@ -34,7 +34,6 @@ import { color } from "react-native-reanimated";
 // import ColorLine from "./components/ColorLine";
 import { useSelector, useDispatch } from "react-redux";
 // import { SignUp, SignUpConfirmation } from "../../redux/actions/actions";
-import axios from "axios";
 import { useRoute } from "@react-navigation/native";
 
 ///////////////////////////////////////////////////////////////////////
@@ -160,7 +159,8 @@ const About = ({ navigation }) => {
 const {
   pageComeFrom
 } = route.params;
-  const fontColor = pageComeFrom === "sideBar" ? "white" : "black";
+  // const fontColor = pageComeFrom === "sideBar" ? "white" : "black";
+  const fontColor ="white";
   
   useEffect(() => {
     CheckFields(
@@ -194,7 +194,8 @@ const {
 
         style={{
           width: "100%", height: 7,
-          backgroundColor:pageComeFrom==="sideBar"? "#00ADEF" : "#F2F2F2"
+          // backgroundColor:pageComeFrom==="sideBar"? "#00ADEF" : "#F2F2F2"
+          backgroundColor:"#00ADEF"
         }}
       ></View>
       <ScrollView style={{ flex: 1 }}>
@@ -209,7 +210,8 @@ const {
               // style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
               style={{
                 width: "100%", height: 7,
-                backgroundColor:pageComeFrom==="sideBar"? "#00ADEF" : "#F2F2F2"
+                // backgroundColor:pageComeFrom==="sideBar"? "#00ADEF" : "#F2F2F2"
+                backgroundColor: "#00ADEF"
               }}
             ></View>
             {/* 00ADEF Deep Sky Blue*/}
@@ -234,7 +236,8 @@ paddingTop:EStyleSheet.value("$rem") * 10,
                 <View
                     style={{
                                       height: EStyleSheet.value("$rem") * 600,
-                                      backgroundColor:pageComeFrom==="sideBar"? "#00ADEF" : "#F2F2F2",
+                                      // backgroundColor:pageComeFrom==="sideBar"? "#00ADEF" : "#F2F2F2",
+                                      backgroundColor:"#00ADEF",
 
                                       width: "90%",
                                   padding:10,

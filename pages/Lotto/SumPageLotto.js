@@ -425,23 +425,24 @@ const SumPageLotto = ({ route, navigation }) => {
               <Button
                 onPress={() => {
                   console.log("sendToServer", sendToServer);
+                  navigation.navigate(`congratulation`);
 
-                  axios
-                    .post(url, sendToServer, {
-                      headers: {
-                        Authorization: store.jwt,
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                      },
-                    })
-                    .then((res) => {
-                      console.log(
-                        "this is res from post server request $$$$ : ",
-                        res
-                      );
-                    });
-                  {
-                  }
+                  // axios
+                  //   .post(url, sendToServer, {
+                  //     headers: {
+                  //       Authorization: store.jwt,
+                  //       Accept: "application/json",
+                  //       "Content-Type": "application/json",
+                  //     },
+                  //   })
+                  //   .then((res) => {
+                  //     console.log(
+                  //       "this is res from post server request $$$$ : ",
+                  //       res
+                  //     );
+                  //   });
+                  
+                  
                 }}
                 style={{
                   borderRadius: 17,

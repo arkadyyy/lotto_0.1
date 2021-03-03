@@ -17,6 +17,10 @@ import {
 } from "native-base";
 import ViewForm from "../ViewForm";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import axios from "axios";
+import { Auth } from "aws-amplify";
+import * as FileSystem from 'expo-file-system';
+
 
 const SeeOrDupilcate = ({
   navigation, index, open, setOpen,
@@ -95,8 +99,8 @@ else if (form.form_type.includes("777")) {
         }}
       console.log("55555555",choosenCards);
     }
-    else if (form.form_type ==="rav_chance") {
-      setGameType("rav_chance");      
+    else if (form.form_type ==="chance_shitati") {
+      setGameType("chance_shitati");      
       for (const [key, value] of Object.entries(form.marks.cards)) {
         console.log("+++++++");
         console.log(`{${ key }: ${ value }}`);
@@ -188,8 +192,43 @@ else if (form.form_type.includes("777")) {
         
           <TouchableOpacity
             onPress={() => {
+              let accessToken;
+              let jwt;
+              Auth.currentSession().then((res) => {
+                accessToken = res.getAccessToken();
+                jwt = accessToken.getJwtToken();
+              });
+    setTimeout(() => {
+              axios
+                .get(`http://52.90.122.190:5000/admin/download/${form.id}`, {
+                  headers: {
+                    Authorization: jwt,
+                  },
+                })
+                .then((res) => {
+                  console.log("axios res:", res);
+                  FileSystem.downloadAsync(
+                    // 'http://techslides.com/demos/sample-videos/small.mp4',
+                    // FileSystem.documentDirectory + 'small.mp4'
+                    `http://52.90.122.190:5000/admin/download/${form.id}`,
+                    FileSystem.documentDirectory + `downloadfile.pdf`,
+                    {
+                      headers: {
+                        Authorization: jwt,
+                      },
+                    }
 
-              console.log("######", choosenCards);
+                  )
+                    .then(({ uri }) => {
+                      console.log('Finished downloading to ', uri);
+                    })
+                    .catch(error => {
+                      console.error(error);
+                    });
+                })
+                .catch((err) => console.log(err));
+              }, 5000);
+
             }}
           >
             <Text style={{
