@@ -36,7 +36,6 @@ const Num = ({
   };
 
   const disabled = (pressed, cardTypeUsed, usedTableNum) => {
-    console.log("cardTypeUsed : ", cardTypeUsed);
     // disabled={
     //   pressed.symbolsPressed.includes(symbol)
     //     ? false
@@ -50,14 +49,13 @@ const Num = ({
     if (pressed.symbolsPressed.includes(symbol)) {
       x = false;
     } else if (
-      pressed.symbolsPressed.length >= 4 &&
-      cardTypeUsed.includes(pressed.type)
+      !cardTypeUsed.includes(pressed.type) &&
+      cardTypeUsed.length !== 0 &&
+      cardTypeUsed.length >= usedTableNum
     ) {
       x = true;
-    } else if (cardTypeUsed.length >= usedTableNum) {
+    } else if (pressed.symbolsPressed.length >= 4) {
       x = true;
-    } else {
-      x = false;
     }
 
     return x;
@@ -106,11 +104,12 @@ const Num = ({
             cardTypeUsed.indexOf(pressed.type) === -1 &&
             cardTypeUsed.length <= usedTableNum
           ) {
-            cardTypeUsed.push(pressed.type);
-          }
+            setcardTypeUsed([...cardTypeUsed, pressed.type]);
+          } else if (pressed.symbolsPressed.length === 1) {
+            console.log("i am here !");
 
-          if (pressed.symbolsPressed.length === 0) {
             let filtered = cardTypeUsed.filter((type) => type !== pressed.type);
+            console.log("filtered : ", filtered);
             setcardTypeUsed(filtered);
           }
         }}

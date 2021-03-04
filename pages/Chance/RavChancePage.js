@@ -773,7 +773,8 @@ const ChancePage = ({ navigation }) => {
                     tableNum: tableNum,
                     investNum: investNum,
                     fullTables: fullTables,
-                    gameType: "regular",
+                    // gameType: "regular",
+                    gameType: "rav_chance",
                   });
                 }}
                 style={chanceListstyles.sendFormBtn}

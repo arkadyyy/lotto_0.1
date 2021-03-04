@@ -123,9 +123,9 @@ const ResultLotto = (props) => {
       <Container>
         <ScrollView>
           <View>
-            <View>
+            {/* <View>
               <BlankSquare color={"#00AEEF"} />
-            </View>
+            </View> */}
 
             <Text
               style={{
@@ -142,10 +142,10 @@ const ResultLotto = (props) => {
               style={{
                   alignSelf:"center",
                   backgroundColor: "#00AEEF",
-                width: "90%",
+                width: "98%",
                 flexDirection: "column",
             
-                  height: EStyleSheet.value("$rem") * 320,
+                  height: EStyleSheet.value("$rem") * 480,
                 }}
             >
               

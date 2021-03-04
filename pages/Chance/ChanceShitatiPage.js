@@ -144,6 +144,10 @@ const ChancePage = ({ navigation }) => {
     setallCounters(updatedAllCounters);
   }, [tableNum]);
 
+  useEffect(() => {
+    console.log("fulltables : ", fullTables);
+  }, [fullTables]);
+
   return (
     <>
       <ScrollView>
@@ -325,7 +329,8 @@ const ChancePage = ({ navigation }) => {
                     tableNum: tableNum,
                     investNum: investNum,
                     fullTables: fullTables,
-                    gameType: "regular",
+                    // gameType: "regular",
+                    gameType: "chance_shitati",
                   });
                 }}
                 style={chanceListstyles.sendFormBtn}

@@ -103,6 +103,9 @@ const NavBar = (props) => {
      else if (route.name === "AccessibilityDeclaration") {
       setNavBarTitle(`הצהרת נגישות`);
     }
+     else if (route.name === "congratulation") {
+      setNavBarTitle(`הטופס נשלח בהצלחה`);
+    }
   }, [route.name, screenName]);
 
   const dispatch = useDispatch();

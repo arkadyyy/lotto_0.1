@@ -34,7 +34,6 @@ import { color } from "react-native-reanimated";
 // import ColorLine from "./components/ColorLine";
 import { useSelector, useDispatch } from "react-redux";
 // import { SignUp, SignUpConfirmation } from "../../redux/actions/actions";
-import axios from "axios";
 import { useRoute } from "@react-navigation/native";
 
 ///////////////////////////////////////////////////////////////////////

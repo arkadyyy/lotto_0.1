@@ -45,6 +45,7 @@ import GetInTouch from "./components/GetInTouch";
 import About from "./components/About";
 import QuestionsAndAnswers from "./components/questionsANDanswers";
 import TermsOfUse from "./components/TermsOfUse";
+import congratulation  from "./pages/congratulation";
 import StatuteTakanon from "./components/StatuteTakanon";
 import AccessibilityDeclaration from "./components/AccessibilityDeclaration";
 import { Provider } from "react-redux";
@@ -158,6 +159,7 @@ export default function App() {
 
               <Drawer.Screen name='SumPageLotto' component={SumPageLotto} />
               <Drawer.Screen name='ResultList' component={ResultList} />
+              <Drawer.Screen name='congratulation' component={congratulation}/>
             </Drawer.Navigator>
           </NavigationContainer>
         </Root>

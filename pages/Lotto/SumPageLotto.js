@@ -296,6 +296,7 @@ const SumPageLotto = ({ route, navigation }) => {
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         {/* <ChooseForm setdouble={setdouble} double={double} /> */}
         <View style={{ margin: 15 }}>
+          
           <View
             style={{
               backgroundColor: "#E62321",
@@ -455,23 +456,24 @@ const SumPageLotto = ({ route, navigation }) => {
               <Button
                 onPress={() => {
                   console.log("sendToServer", sendToServer);
+                  navigation.navigate(`congratulation`);
 
-                  axios
-                    .post(url, sendToServer, {
-                      headers: {
-                        Authorization: store.jwt,
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                      },
-                    })
-                    .then((res) => {
-                      console.log(
-                        "this is res from post server request $$$$ : ",
-                        res
-                      );
-                    });
-                  {
-                  }
+                  // axios
+                  //   .post(url, sendToServer, {
+                  //     headers: {
+                  //       Authorization: store.jwt,
+                  //       Accept: "application/json",
+                  //       "Content-Type": "application/json",
+                  //     },
+                  //   })
+                  //   .then((res) => {
+                  //     console.log(
+                  //       "this is res from post server request $$$$ : ",
+                  //       res
+                  //     );
+                  //   });
+                  
+                  
                 }}
                 style={{
                   borderRadius: 17,
