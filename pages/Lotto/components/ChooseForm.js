@@ -79,9 +79,7 @@ const ChooseForm = ({ double, setdouble }) => {
           }}
         >
           <View style={{ padding: 10 }}>
-            {/* <Text style={{ color: "#E62321", fontFamily: "fb-Spacer-bold" }}>
-              שלח טופס
-            </Text> */}
+         
           
         </View>
         </View>

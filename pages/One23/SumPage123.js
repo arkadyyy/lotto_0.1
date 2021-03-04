@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
-import { Button, List } from "native-base";
+import { Button,Spinner,Toast} from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ExtraAndOtomatChoose from "../../pages/Lotto/components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
@@ -43,7 +43,8 @@ const SumPage123 = ({ route, navigation }) => {
   const [url, seturl] = useState(
     "http://52.90.122.190:5000/games/123/type/regular/0"
   );
-
+  const [spinner, setSpinner] = useState(false);
+  const [errorMsg, seterrorMsg] = useState("");
   const [sendToServer, setsendToServer] = useState({
     multi_lottery: -1,
     participant_amount: 0,
@@ -332,7 +333,28 @@ const SumPage123 = ({ route, navigation }) => {
                         "this is res from post server request $$$$ : ",
                         res
                       );
+                      navigation.navigate(`congratulation`);
+                      setSpinner(false);
+
+                    })
+                    .catch((err) => console.log("errrrrrrrr:",err));
+                    setSpinner(false);
+                    seterrorMsg("ארעה שגיאה בשליחת הטופס");
+                  Toast.show({
+                      text: errorMsg,
+                      textStyle: { fontFamily: "fb-Spacer" },
+                      buttonText: "סגור",
+                      position: "top",
+                      // type: "warning",
+                      buttonStyle: {
+                        backgroundColor: "white",
+                        borderRadius: 8,
+                      },
+                      textStyle: { color: "white" },
+                      buttonTextStyle: { color: "black" },
+                      duration: 2500,
                     });
+
                 }}
                 style={{
                   borderRadius: 17,
@@ -352,6 +374,9 @@ const SumPage123 = ({ route, navigation }) => {
                   שלח טופס
                 </Text>
               </Button>
+              {spinner &&
+                <Spinner/>
+      }
             </View>
           </View>
         </View>

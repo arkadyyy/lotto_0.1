@@ -4,7 +4,7 @@ import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
-import { Button, List } from "native-base";
+import { Button,Spinner,Toast} from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ExtraAndOtomatChoose from "./components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
@@ -51,6 +51,8 @@ const SumPageLotto = ({ route, navigation }) => {
   const [url, seturl] = useState("");
   const [HagralotMultiplicaton, setHagralotMultiplicaton] = useState(1);
   // const [tableNum, settableNum] = useState(1);
+  const [spinner, setSpinner] = useState(false);
+  const [errorMsg, seterrorMsg] = useState("");
 
   const [sendToServer, setsendToServer] = useState({
     extra: false,
@@ -261,6 +263,7 @@ const SumPageLotto = ({ route, navigation }) => {
   return (
     <>
       <ScrollView>
+       
         <NavBar navigation={navigation} screenName={screenName} />
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         {/* <ChooseForm setdouble={setdouble} double={double} /> */}
@@ -424,25 +427,45 @@ const SumPageLotto = ({ route, navigation }) => {
             >
               <Button
                 onPress={() => {
+                  setSpinner(true);
                   console.log("sendToServer", sendToServer);
-                  navigation.navigate(`congratulation`);
 
-                  // axios
-                  //   .post(url, sendToServer, {
-                  //     headers: {
-                  //       Authorization: store.jwt,
-                  //       Accept: "application/json",
-                  //       "Content-Type": "application/json",
-                  //     },
-                  //   })
-                  //   .then((res) => {
-                  //     console.log(
-                  //       "this is res from post server request $$$$ : ",
-                  //       res
-                  //     );
-                  //   });
-                  
-                  
+                  axios
+                    .post(url, sendToServer, {
+                      headers: {
+                        Authorization: store.jwt,
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                      },
+                    })
+                    .then((res) => {
+                      console.log(
+                        "this is res from post server request $$$$ : ",
+                        res
+                      );
+                      navigation.navigate(`congratulation`);
+                      
+                      setSpinner(false);
+
+                    })
+                    .catch((err) => console.log("errrrrrrrr:",err));
+                    setSpinner(false);
+                    seterrorMsg("ארעה שגיאה בשליחת הטופס");
+                  Toast.show({
+                      text: errorMsg,
+                      textStyle: { fontFamily: "fb-Spacer" },
+                      buttonText: "סגור",
+                      position: "top",
+                      // type: "warning",
+                      buttonStyle: {
+                        backgroundColor: "white",
+                        borderRadius: 8,
+                      },
+                      textStyle: { color: "white" },
+                      buttonTextStyle: { color: "black" },
+                      duration: 2500,
+                    });
+
                 }}
                 style={{
                   borderRadius: 17,
@@ -462,10 +485,15 @@ const SumPageLotto = ({ route, navigation }) => {
                   שלח טופס
                 </Text>
               </Button>
+              {spinner &&
+                <Spinner/>
+      }
             </View>
           </View>
         </View>
+        
       </ScrollView>
+      
     </>
   );
 };

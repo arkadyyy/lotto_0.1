@@ -27,11 +27,13 @@ import NavBar from "../components/NavBar";
 import styles from "../styles";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
-  faAngleDoubleLeft, faChevronDown, faChevronLeft
+  faAngleDoubleLeft, faChevronDown, faChevronLeft, faTimes
 } from "@fortawesome/free-solid-svg-icons";
+
 import BlankSquare from "../components/BlankSquare";
 import signInstyles from "./SignIn/SignInStyles";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 
 //////////////////////////////////////////////////////////////
 
@@ -47,6 +49,7 @@ style={{
   backgroundColor: "#00ADEF"
 }}
       ></View>
+      
           <View style={signInstyles.blanksquare}></View>
        <View
 
@@ -55,7 +58,8 @@ style={{
   // backgroundColor:pageComeFrom==="sideBar"? "#00ADEF" : "#F2F2F2"
   backgroundColor: "#00ADEF"
 }}
-></View>
+      ></View>
+       
       <View style={{
         height: 350,
         width: "90%",
@@ -64,10 +68,22 @@ style={{
         marginTop: 40,
         marginBottom: 40,
         justifyContent: "center",
-        
+        padding: 10,
+        // position:"relative"
+        justifyContent:"space-evenly"
         
       }} >
-        <View style={{}}>
+        <TouchableOpacity style={{ top: -11, left: 5, backgroundColor: "#00ADEF", width: 25, height: 25, borderRadius: 30, justifyContent: "center", alignItems: "center" }}
+         onPress={() => {
+          navigation.navigate("Home");
+        }}
+        >
+
+<FontAwesomeIcon icon={faTimes} color={"white"}/>
+
+
+</TouchableOpacity>
+        <View>
         <Image
                   style={{ width: 90, height: 90,alignSelf:"center" }}
           source={require("../../lottoMatic/assets/congradulation.png")}
@@ -75,10 +91,10 @@ style={{
               />
           
         </View>
-        <Text style={{color:"white",fontFamily: "fb-Spacer-bold"}}>
+        <Text style={{color:"white",fontFamily: "fb-Spacer-bold",fontSize:70,alignSelf:"center",top:-15}}>
         ברכות!
         </Text>  
-        <Text style={{color:"white",fontFamily: "fb-Spacer-bold"}}>
+        <Text style={{color:"white",fontFamily: "fb-Spacer-bold",fontSize:25,alignSelf:"center",top:-32}}>
           הטופס שלך נשלח בהצלחה.
         </Text>  
         <TouchableOpacity
@@ -86,11 +102,11 @@ style={{
             navigation.navigate("UserArea");
           }}
         >
-          <View style={{flexDirection:"row"}}>
-        <Text style={{color:"white",fontFamily: "fb-Spacer-bold"}}>
+          <View style={{flexDirection:"row",alignSelf:"center"}}>
+        <Text style={{color:"white",fontFamily: "fb-Spacer-bold",fontSize:19,padding:4}}>
             עבור לאזור אישי
           </Text>
-          <FontAwesomeIcon color={"white"} size={"10"} icon={faAngleDoubleLeft}/>
+            <FontAwesomeIcon color={"white"} size={"10"} icon={faAngleDoubleLeft} style={{alignSelf:"center"}}/>
           </View>
         </TouchableOpacity>
       </View>

@@ -20,6 +20,10 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import axios from "axios";
 import { Auth } from "aws-amplify";
 import * as FileSystem from 'expo-file-system';
+import * as WebBrowser from 'expo-web-browser';
+import { useSelector, useDispatch } from "react-redux";
+import CameraRoll from "@react-native-community/cameraroll";
+import * as Permissions from 'expo-permissions';
 
 
 const SeeOrDupilcate = ({
@@ -27,7 +31,7 @@ const SeeOrDupilcate = ({
   form, hagralaName, setHagralaName,
 hagralaNameHebrew, setHagralaNameHebrew,
   gameType, setGameType, screenName, setScreenName,
-  formNum,choosenCards,setChoosenCards
+  formNum,choosenCards,setChoosenCards,store
 }) => {
 
   if (index === open.index) {
@@ -192,42 +196,47 @@ else if (form.form_type.includes("777")) {
         
           <TouchableOpacity
             onPress={() => {
-              let accessToken;
-              let jwt;
-              Auth.currentSession().then((res) => {
-                accessToken = res.getAccessToken();
-                jwt = accessToken.getJwtToken();
-              });
-    setTimeout(() => {
               axios
                 .get(`http://52.90.122.190:5000/admin/download/${form.id}`, {
                   headers: {
-                    Authorization: jwt,
+                    Authorization: store.jwt,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
                   },
                 })
-                .then((res) => {
+                .then( (res) => {
                   console.log("axios res:", res);
+                  const fileUri = FileSystem.documentDirectory + 'toffes.pdf';
                   FileSystem.downloadAsync(
                     // 'http://techslides.com/demos/sample-videos/small.mp4',
-                    // FileSystem.documentDirectory + 'small.mp4'
-                    `http://52.90.122.190:5000/admin/download/${form.id}`,
-                    FileSystem.documentDirectory + `downloadfile.pdf`,
+                  `http://52.90.122.190:5000/admin/download/${form.id}`,
+                    // FileSystem.documentDirectory + `downloadfile.pdf`,
+                    fileUri,                    
                     {
                       headers: {
-                        Authorization: jwt,
+                        Authorization: store.jwt,
                       },
                     }
 
                   )
-                    .then(({ uri }) => {
-                      console.log('Finished downloading to ', uri);
-                    })
-                    .catch(error => {
-                      console.error(error);
-                    });
+                  .then(({ uri }) => {
+                    console.log('Finished downloading to ', uri);
+                    FileSystem.getInfoAsync(uri)
+                      
+                      .then((res) => {
+                        console.log('resCamera', res)
+                        // CameraRoll.saveToCameraRoll(uri, 'pdf')
+                        CameraRoll.save(res.uri);
+                        console.log("uriiiiii:",res.uri);
+                        // ca
+                      })
+                    
+                  })
+                  .catch(error => {
+                    console.error(error);
+                  });
                 })
                 .catch((err) => console.log(err));
-              }, 5000);
 
             }}
           >
@@ -404,6 +413,9 @@ const SendHistory = ({ navigation,formsHistory }) => {
   const [investNum, setInvestNum] = useState(" ");
   const formNum = "1";
   const [choosenCards,setChoosenCards] = useState([]);
+  // const [permission, askForPermission] = usePermissions(Permissions.CAMERA, { ask: true });
+
+  const store = useSelector((state) => state);
 
   useEffect(() => {
     console.log("formsHistory : ", formsHistory);
@@ -563,6 +575,7 @@ const SendHistory = ({ navigation,formsHistory }) => {
                   setInvestNum={setInvestNum}
                   choosenCards={choosenCards}
                   setChoosenCards={setChoosenCards}
+                  store={store}
                 />
               )}
             </>
