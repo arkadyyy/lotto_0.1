@@ -21,11 +21,7 @@ import {
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 import signInstyles from "../pages/SignIn/SignInStyles";
-import {
-  Button,
-  Label,
-  Spinner,
-} from "native-base";
+
 import { Auth } from "aws-amplify";
 import EStyleSheet from "react-native-extended-stylesheet";
 

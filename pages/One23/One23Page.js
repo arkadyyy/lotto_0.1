@@ -179,7 +179,7 @@ const One23Page = ({ navigation }) => {
       <ScrollView>
         <NavBar navigation={navigation} />
         <BlankSquare gameName='הגרלת 123' color='#FF6B00' />
-        <ChooseForm />
+        {/* <ChooseForm /> */}
         <View style={{ margin: 15 }}>
           <View style={{ backgroundColor: "#FF6B00", paddingBottom: 20 }}>
             <View style={one23listStyles.header}>

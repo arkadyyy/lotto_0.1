@@ -25,6 +25,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { LogOut } from "../../redux/actions/actions";
 import axios from "axios";
 import { set } from "react-native-reanimated";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faShekelSign } from "@fortawesome/free-solid-svg-icons";
 const UserArea = ({ navigation }) => {
   const [screen, setScreen] = useState("activeForms");
   const store = useSelector((state) => state);
@@ -37,6 +39,7 @@ const UserArea = ({ navigation }) => {
   const [activeForms, setactiveForms] = useState([]);
   const [formsHistory, setformsHistory] = useState([]);
   const [wins, setwins] = useState([]);
+  const [money, setMoney] = useState("סכום");
 
   useEffect(() => {
     axios
@@ -111,8 +114,8 @@ const UserArea = ({ navigation }) => {
   return (
     <>
       <NavBar navigation={navigation} />
-      <ScrollView style={{ flex: 1 }}>
-        <View>
+      <ScrollView style={{ flex: 1,marginTop:-15 }}>
+        <View style={{marginTop:-10}}>
           <View
             style={{
               flexDirection: "row",
@@ -121,6 +124,7 @@ const UserArea = ({ navigation }) => {
               justifyContent: "space-between",
               padding: 20,
               marginTop: 20,
+              
             }}
           >
             <Text
@@ -130,8 +134,11 @@ const UserArea = ({ navigation }) => {
                 fontFamily: "fb-Spacer-bold",
               }}
             >
-              שלום ,{name}
+              שלום,{name}
             </Text>
+            <Text>ברשותך {money} 
+            </Text>
+            <FontAwesomeIcon icon={faShekelSign} size={10} style={{alignSelf:"center"}}/>
             <Button
               onPress={async () => {
                 await navigation.navigate("Home");
@@ -156,6 +163,55 @@ const UserArea = ({ navigation }) => {
               </Text>
             </Button>
           </View>
+          <View style={{ flexDirection: "row", left: 18, top: -15 }}>
+          <Button
+              onPress={async () => {
+               console.log("משוך קרדיט");
+              }}
+              style={{
+                paddingLeft: 23,
+                paddingRight: 23,
+                backgroundColor: "#263742",
+              }}
+              rounded
+              small
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 12,
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                משוך קרדיט
+              </Text>
+            </Button>
+            <Button
+              onPress={async () => {
+               console.log("טען קרדיט");
+              }}
+              style={{
+                paddingLeft: 23,
+                paddingRight: 23,
+                backgroundColor: "#263742",
+              }}
+              rounded
+              small
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 12,
+                  fontFamily: "fb-Spacer-bold",
+                }}
+              >
+                טען קרדיט
+              </Text>
+            </Button>
+       
+
+          </View>
+          
           {/* {end of hello user} */}
           {/* <BlankSquare color={"#00AEEF"} /> */}
           <View style={{ alignItems: "center" }}>

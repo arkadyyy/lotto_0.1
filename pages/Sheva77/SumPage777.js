@@ -423,6 +423,8 @@ const SumPage777 = ({ route, navigation }) => {
                         "this is res from post server request $$$$ : ",
                         res
                       );
+                      navigation.navigate(`congratulation`);
+
                     });
                   {
                   }
