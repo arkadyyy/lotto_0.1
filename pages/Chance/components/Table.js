@@ -20,12 +20,7 @@ const Table = ({
   const [usedDiamond, setusedDiamond] = useState([]);
   const [usedClubs, setusedClubs] = useState([]);
 
-  const [table1, settable1] = useState([]);
-
   useEffect(() => {
-    let fullTable1 = 0;
-    let x;
-
     fullTables.forEach((table) => {
       if (+table.tableNum === tableIndex) {
         setusedSpade(

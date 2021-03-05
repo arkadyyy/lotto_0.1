@@ -39,7 +39,6 @@ const TableChanceShitati = ({
     const fullTablesCopy2 = JSON.parse(JSON.stringify(fullTables));
 
     let iterable = fullTablesCopy2[0].choosenCards;
-    console.log("iterable : ", iterable);
 
     spadeCards = iterable[0].cards;
     heartCards = iterable[1].cards;
@@ -53,31 +52,35 @@ const TableChanceShitati = ({
       spadeCards.concat(x);
 
       setusedSpade(spadeCards.concat(x));
-    } else if (heartCards.length <= 4) {
+    }
+    if (heartCards.length <= 4) {
       let length = 4 - heartCards.length;
       let x = Array.from({ length: length }, (v, i) => " ");
+
       heartCards.concat(x);
+
       setusedHeart(heartCards.concat(x));
-    } else if (diamondCards.length <= 4) {
+    }
+    if (diamondCards.length <= 4) {
       let length = 4 - diamondCards.length;
       let x = Array.from({ length: length }, (v, i) => " ");
+
       diamondCards.concat(x);
+
       setusedDiamond(diamondCards.concat(x));
-    } else if (clubsCards.length <= 4) {
+    }
+    if (clubsCards.length <= 4) {
       let length = 4 - clubsCards.length;
       let x = Array.from({ length: length }, (v, i) => " ");
+
       clubsCards.concat(x);
       setusedClubs(clubsCards.concat(x));
     } else {
-      setusedSpade([...iterable[1].cards]);
-      setusedHeart([...iterable[0].cards]);
+      setusedSpade([...iterable[0].cards]);
+      setusedHeart([...iterable[1].cards]);
+      setusedDiamond([...iterable[2].cards]);
       setusedClubs([...iterable[3].cards]);
     }
-
-    // console.log("usedSpade : ", usedSpade);
-    // console.log("usedHeart : ", usedHeart);
-    // console.log("usedDiamond : ", usedDiamond);
-    // console.log("usedClubs : ", usedClubs);
   }, [fullTables]);
 
   return (
@@ -137,13 +140,23 @@ const TableChanceShitati = ({
                   num === " " ? (
                     <Image
                       key={index}
-                      style={{ width: 60, height: 80, borderRadius: 7 }}
+                      style={{
+                        width: 60,
+                        height: 80,
+                        borderRadius: 7,
+                        margin: 4,
+                      }}
                       source={require("C:/fullstack/lottoMatic/assets/chance/spadeCard.png")}
                     />
                   ) : (
                     <View key={index}>
                       <Image
-                        style={{ width: 60, height: 80, borderRadius: 7 }}
+                        style={{
+                          width: 60,
+                          height: 80,
+                          borderRadius: 7,
+                          margin: 4,
+                        }}
                         source={require("C:/fullstack/lottoMatic/assets/chance/choosenSpade.png")}
                       />
                       <Text
@@ -175,6 +188,10 @@ const TableChanceShitati = ({
             onPress={() => {
               setshowTable(true);
               setopendTableNum(tableIndex);
+              console.log("usedSpade : ", usedSpade);
+              console.log("usedHeart : ", usedHeart);
+              console.log("usedDiamond : ", usedDiamond);
+              console.log("usedClubs : ", usedClubs);
             }}
           >
             <View
@@ -190,20 +207,31 @@ const TableChanceShitati = ({
                 {usedHeart.map((num, index) =>
                   num === " " ? (
                     <Image
-                      style={{ width: 60, height: 80, borderRadius: 7 }}
+                      key={index}
+                      style={{
+                        width: 60,
+                        height: 80,
+                        borderRadius: 7,
+                        margin: 4,
+                      }}
                       source={require("C:/fullstack/lottoMatic/assets/chance/heartCard.png")}
                     />
                   ) : (
-                    <>
+                    <View key={index}>
                       <Image
-                        style={{ width: 60, height: 80, borderRadius: 7 }}
+                        style={{
+                          width: 60,
+                          height: 80,
+                          borderRadius: 7,
+                          margin: 4,
+                        }}
                         source={require("C:/fullstack/lottoMatic/assets/chance/choosenHeart.png")}
                       />
                       <Text
                         style={{
                           includeFontPadding: false,
                           position: "absolute",
-                          // left: "-50%",
+                          left: "35%",
                           top: "50%",
                           fontSize: 25,
                         }}
@@ -211,7 +239,7 @@ const TableChanceShitati = ({
                       >
                         {num}
                       </Text>
-                    </>
+                    </View>
                   )
                 )}
               </>
@@ -228,6 +256,10 @@ const TableChanceShitati = ({
             onPress={() => {
               setshowTable(true);
               setopendTableNum(tableIndex);
+              console.log("usedSpade : ", usedSpade);
+              console.log("usedHeart : ", usedHeart);
+              console.log("usedDiamond : ", usedDiamond);
+              console.log("usedClubs : ", usedClubs);
             }}
           >
             <View
@@ -243,20 +275,31 @@ const TableChanceShitati = ({
                 {usedDiamond.map((num, index) =>
                   num === " " ? (
                     <Image
-                      style={{ width: 60, height: 80, borderRadius: 7 }}
+                      key={index}
+                      style={{
+                        width: 60,
+                        height: 80,
+                        borderRadius: 7,
+                        margin: 4,
+                      }}
                       source={require("C:/fullstack/lottoMatic/assets/chance/diamondCard.png")}
                     />
                   ) : (
-                    <>
+                    <View key={index}>
                       <Image
-                        style={{ width: 60, height: 80, borderRadius: 7 }}
+                        style={{
+                          width: 60,
+                          height: 80,
+                          borderRadius: 7,
+                          margin: 4,
+                        }}
                         source={require("C:/fullstack/lottoMatic/assets/chance/choosenDiamond.png")}
                       />
                       <Text
                         style={{
                           includeFontPadding: false,
                           position: "absolute",
-                          // left: "-50%",
+                          left: "35%",
                           top: "50%",
                           fontSize: 25,
                         }}
@@ -264,7 +307,7 @@ const TableChanceShitati = ({
                       >
                         {num}
                       </Text>
-                    </>
+                    </View>
                   )
                 )}
               </>
@@ -281,6 +324,10 @@ const TableChanceShitati = ({
             onPress={() => {
               setshowTable(true);
               setopendTableNum(tableIndex);
+              console.log("usedSpade : ", usedSpade);
+              console.log("usedHeart : ", usedHeart);
+              console.log("usedDiamond : ", usedDiamond);
+              console.log("usedClubs : ", usedClubs);
             }}
           >
             <View
@@ -296,20 +343,31 @@ const TableChanceShitati = ({
                 {usedClubs.map((num, index) =>
                   num === " " ? (
                     <Image
-                      style={{ width: 60, height: 80, borderRadius: 7 }}
+                      key={index}
+                      style={{
+                        width: 60,
+                        height: 80,
+                        borderRadius: 7,
+                        margin: 4,
+                      }}
                       source={require("C:/fullstack/lottoMatic/assets/chance/clubsCard.png")}
                     />
                   ) : (
-                    <>
+                    <View key={index}>
                       <Image
-                        style={{ width: 60, height: 80, borderRadius: 7 }}
+                        style={{
+                          width: 60,
+                          height: 80,
+                          borderRadius: 7,
+                          margin: 4,
+                        }}
                         source={require("C:/fullstack/lottoMatic/assets/chance/choosenClubs.png")}
                       />
                       <Text
                         style={{
                           includeFontPadding: false,
                           position: "absolute",
-                          // left: "-50%",
+                          left: "35%",
                           top: "50%",
                           fontSize: 25,
                         }}
@@ -317,7 +375,7 @@ const TableChanceShitati = ({
                       >
                         {num}
                       </Text>
-                    </>
+                    </View>
                   )
                 )}
               </>
