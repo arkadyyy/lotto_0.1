@@ -17,6 +17,9 @@ const ViewForm = ({
   {
     console.log("strongnumbers:", strongNum);
   }
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   return (
     <>
       {form_type === "regular_lotto" ||
@@ -238,7 +241,7 @@ const ViewForm = ({
                   alignItems: "center",
                 }}
               >
-                <View
+                {/* <View
                   style={{
                     width: "25%",
                     alignItems: "flex-start",
@@ -254,16 +257,21 @@ const ViewForm = ({
                     <Text style={{ fontFamily: "fb-Spacer" }}>לב</Text>
                   ) : null}
                 
-                </View>
+                </View> */}
                 <View
                   style={{
                     flexDirection: "row",
-                    padding: 8,
-                    marginHorizontal: 10,
+                    padding: 20,
+
+                    // marginHorizontal: 10,
                   }}
                 >
                   {cardsShitati.map((num, index) => (
-                    // <View style={{flexDirection:"row"}}>
+                  //   {
+                  //     setNameTourl(
+                  //       capitalizeFirstLetter(ShapesTitle[indexShapes]);
+                  // )}
+            // <View style={{flexDirection:"row"}}>
                     <View
                       key={index}
                       style={{
@@ -271,13 +279,43 @@ const ViewForm = ({
                         height: 30,
                         borderRadius: 30,
                         backgroundColor: "white",
-                        margin: 3,
-
+                        marginVertical: 15,
+                        marginHorizontal: 13,
                         justifyContent: "center",
                         alignItems: "center",
                       }}
                     >
-                      <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
+                      {ShapesTitle[indexShapes] === "clover" &&
+                        <Image
+                        style={{ width: 50, height: 70, borderRadius: 7,marginRight:30 }}
+                        source={require(`C:/fullstack/lottoMatic/assets/chance/choosenClubs.png`)}
+                          />
+                      }
+                      {ShapesTitle[indexShapes] === "diamond" &&
+                        <Image
+                        style={{ width: 50, height: 70, borderRadius: 7 }}
+                        source={require(`C:/fullstack/lottoMatic/assets/chance/choosenDiamond.png`)}
+                          />
+                      }
+                      {ShapesTitle[indexShapes] === "leaf" &&
+                        <Image
+                        style={{ width: 50, height: 70, borderRadius: 7 }}
+                        source={require(`C:/fullstack/lottoMatic/assets/chance/choosenSpade.png`)}
+                          />
+                      }
+                      {ShapesTitle[indexShapes] === "heart" &&
+                        <Image
+                        style={{ width: 50, height: 70, borderRadius: 7 }}
+                        source={require(`C:/fullstack/lottoMatic/assets/chance/choosenHeart.png`)}
+                          />
+                      }
+                     
+                      <Text style={{
+                        fontFamily: "fb-Spacer",
+                        top: -20,
+                        fontSize: num === "Q" || num === "K" || num === "A" || num === "J" ? 20 : 25,
+                        
+                      }}>{num}</Text>
 
                       {console.log("num:::::::::::::::", num)}
                       {console.log("ShapesTitle:", ShapesTitle)}
