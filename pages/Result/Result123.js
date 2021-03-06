@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 import {
@@ -39,18 +39,16 @@ import EStyleSheet from "react-native-extended-stylesheet";
 import LottoListstyles from "../Lotto/LottoListStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
-  faCaretCircleLeft,faCaretLeft
+  faCaretCircleLeft,
+  faCaretLeft,
 } from "@fortawesome/free-solid-svg-icons";
 //////////////////////////////////////////////////////////////
-
-
 
 const Result123 = (props) => {
   const { navigation } = props;
   const [data, setData] = useState([]);
   // const [sortedData, setSortedData] = useState([]);
 
- 
   // const [dateStart, setDateStart] = useState(" ");
   // const [dateEnd, setDateEnd] = useState(" ");
 
@@ -61,16 +59,16 @@ const Result123 = (props) => {
   //   const currentDateStart = selectedDateStart || dateStart;
   //  setShowDateStart(Platform.OS === 'ios');
   //  setDateStart(currentDateStart);
-   
+
   // };
 
   // const onChangeDateEnd = (event, selectedDateEnd) => {
   //   const currentDateEnd = selectedDateEnd || dateEnd;
   //  setShowDateEnd(Platform.OS === 'ios');
   //  setDateEnd(currentDateEnd);
-   
+
   // };
-  
+
   // useEffect(() => {
   //   console.log("dateStart:", dateStart);
   //   var start = new Date(dateStart);
@@ -79,7 +77,6 @@ const Result123 = (props) => {
   //   console.log("millisecondsStart:",millisecondsStart);
 
   // }, [dateStart])
-  
 
   // useEffect(() => {
   //   console.log("dateEnd:", dateEnd);
@@ -105,20 +102,20 @@ const Result123 = (props) => {
           },
         })
         // .then((res) => setData(res.data.data.rows))
-        .then((res) => setData(res.data.data.rows.slice(0,99)))
+        .then((res) => setData(res.data.data.rows.slice(0, 99)))
 
         .catch((err) => console.log(err));
     }, 5000);
   }, []);
 
-//   useEffect(() => {
-//     const sortedData=data.sort((a, b) => parseFloat(a["מספר הגרלה"]) - parseFloat(b["מספר הגרלה"]));
-// setSortedData(sortedData)
-// }, [data])
+  //   useEffect(() => {
+  //     const sortedData=data.sort((a, b) => parseFloat(a["מספר הגרלה"]) - parseFloat(b["מספר הגרלה"]));
+  // setSortedData(sortedData)
+  // }, [data])
 
   return (
     <>
-      <NavBar navigation={navigation}  />
+      <NavBar navigation={navigation} />
 
       <Container>
         <ScrollView>
@@ -132,23 +129,22 @@ const Result123 = (props) => {
                 fontFamily: "fb-Spacer-bold",
                 fontSize: EStyleSheet.value("$rem") * 28,
                 paddingVertical: EStyleSheet.value("$rem") * 19,
-                paddingRight: EStyleSheet.value("$rem") * 20
+                paddingRight: EStyleSheet.value("$rem") * 20,
               }}
             >
               תוצאות הגרלת 123
-          </Text>            
-            
-              <View
+            </Text>
+
+            <View
               style={{
-                  alignSelf:"center",
-                  backgroundColor: "#00AEEF",
+                alignSelf: "center",
+                backgroundColor: "#00AEEF",
                 width: "90%",
                 flexDirection: "column",
-            
-                  height: EStyleSheet.value("$rem") * 320,
-                }}
+
+                height: EStyleSheet.value("$rem") * 320,
+              }}
             >
-              
               {/* <View style={{
                 marginTop: EStyleSheet.value("$rem") * 15,
                 marginBottom: EStyleSheet.value("$rem") * 25,
@@ -238,70 +234,63 @@ const Result123 = (props) => {
                 </TouchableOpacity>
 
               </View> */}
-              
+
               <ScrollView>
+                <List
+                  style={{
+                    marginRight: 20,
+                    width: "90%",
+                    // marginTop: 10,
+                  }}
+                >
+                  {data.length < 99 ? <Spinner color={"white"} /> : null}
 
-              <List
-            style={{
-              marginRight: 20,
-              width: "90%",
-              // marginTop: 10,
-            }}
-                  >
-                   
-                   
-                  {data.length<99 ? (
-                    <Spinner/>
-                  ) :
-                    null
-                    }
+                  {/* {sortedData.map((hagrala, index) => ( */}
+                  {data.map((hagrala, index) => (
+                    <ListItem key={index} style={{ flexDirection: "column" }}>
+                      <View
+                        style={{
+                          // alignSelf:"center",
+                          flexDirection: "row",
+                          left: EStyleSheet.value("$rem") * 14,
+                          backgroundColor: "white",
+                          borderRadius: 13,
+                          height: EStyleSheet.value("$rem") * 44,
+                          width: EStyleSheet.value("$rem") * 310,
+                          justifyContent: "center",
+                        }}
+                      >
+                        <View style={{ alignSelf: "center" }}>
+                          <Text
+                            style={{
+                              fontSize: EStyleSheet.value("$rem") * 20,
+                              color: "#263742",
+                              fontFamily: "fb-Spacer-bold",
+                              // textAlignVertical: "center",
+                              // textAlign:"center"
+                            }}
+                          >
+                            {"  מספר הגרלה "}
+                            {hagrala[Object.keys(hagrala)[0]]}
+                          </Text>
+                        </View>
+                        <View
+                          style={{ alignSelf: "center", flexDirection: "row" }}
+                        >
+                          <Text
+                            style={{
+                              fontSize: EStyleSheet.value("$rem") * 20,
+                              fontFamily: "fb-Spacer-bold",
 
-                   
-            {/* {sortedData.map((hagrala, index) => ( */}
-            {data.map((hagrala, index) => (
-              <ListItem key={index} style={{flexDirection:"column"}}>
-                
-                <View style={{
-                  // alignSelf:"center",
-                  flexDirection: "row",
-                  left:EStyleSheet.value("$rem") * 14,
-                  backgroundColor: "white",
-                  borderRadius: 13,
-                  height: EStyleSheet.value("$rem") * 44,
-                  width: EStyleSheet.value("$rem") * 310,
-                  justifyContent:"center"
-                }}>
+                              color: "#263742",
+                            }}
+                          >
+                            {" מתאריך "}
+                            {hagrala[Object.keys(hagrala)[1]]}
+                          </Text>
+                        </View>
 
-                  <View
-                    style={{ alignSelf:"center" }}
-                  >
-                    <Text style={{
-                      fontSize:EStyleSheet.value("$rem") * 20,
-                      color: "#263742",
-                      fontFamily: "fb-Spacer-bold",
-                      // textAlignVertical: "center",
-                      // textAlign:"center"
-                    }}>
-                    {"  מספר הגרלה "} 
-                              {hagrala[Object.keys(hagrala)[0]]} 
-                  </Text>
-                </View>
-                  <View
-                  style={{ alignSelf:"center",flexDirection:"row" }}
-                  >
-
-                    <Text style={{
-                      fontSize: EStyleSheet.value("$rem") * 20,  
-                      fontFamily: "fb-Spacer-bold",
-
-                      color: "#263742"
-                    }}>
-                    {" מתאריך "} 
-                    {hagrala[Object.keys(hagrala)[1]]}
-                    </Text>                
-                </View>
-                 
-                {/* <View style={{
+                        {/* <View style={{
                     alignSelf: "center",
                     // left: EStyleSheet.value("$rem") * 1,
                       width: EStyleSheet.value("$rem") * 28,
@@ -320,79 +309,73 @@ const Result123 = (props) => {
                   }}>
                   <FontAwesomeIcon size={EStyleSheet.value("$rem") * 30} icon={faCaretLeft} color={"white"} style={{left:EStyleSheet.value("$rem") * 2}} />
                   </View> */}
-                  
-                </View>
+                      </View>
 
-               
-                <View
-                  style={{ flexDirection: "column", alignItems: "flex-end" }}
-                >
-                  <View style={{flexDirection: "row",justifyContent:"flex-start" }}>
-                    {hagrala[Object.keys(hagrala)[2]].numbers
-                      .map((num,index) => (
-                      <Text
-                          style={{
-                          // top:EStyleSheet.value("$rem") * 15,
-                          borderWidth: 2,
-                          width: EStyleSheet.value("$rem") * 35,
-                          height: EStyleSheet.value("$rem") * 35,
-                          borderColor: "white",
-                          borderRadius: 18,
-                          textAlign: "center",
-                          textAlignVertical: "center",
-                          color: "white",
-                          fontSize: EStyleSheet.value("$rem") * 25,
-                          fontFamily: "fb-Spacer-bold",
-                          marginLeft: EStyleSheet.value("$rem") * 10,
-                          marginTop:EStyleSheet.value("$rem") * 10,
-
+                      <View
+                        style={{
+                          flexDirection: "column",
+                          alignItems: "flex-end",
                         }}
                       >
-                        {num}
-                      </Text>
-                    ))}
+                        <View
+                          style={{
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                          }}
+                        >
+                          {hagrala[Object.keys(hagrala)[2]].numbers.map(
+                            (num, index) => (
+                              <Text
+                                style={{
+                                  // top:EStyleSheet.value("$rem") * 15,
+                                  borderWidth: 2,
+                                  width: EStyleSheet.value("$rem") * 35,
+                                  height: EStyleSheet.value("$rem") * 35,
+                                  borderColor: "white",
+                                  borderRadius: 18,
+                                  textAlign: "center",
+                                  textAlignVertical: "center",
+                                  color: "white",
+                                  fontSize: EStyleSheet.value("$rem") * 25,
+                                  fontFamily: "fb-Spacer-bold",
+                                  marginLeft: EStyleSheet.value("$rem") * 10,
+                                  marginTop: EStyleSheet.value("$rem") * 10,
+                                }}
+                              >
+                                {num}
+                              </Text>
+                            )
+                          )}
 
-{hagrala[Object.keys(hagrala)[2]].strong_number && (
-                    <Text
-                        style={{
-                        // marginLeft:EStyleSheet.value("$rem") * 20,
-                        borderWidth: 2,
-                        width: EStyleSheet.value("$rem") *35 ,
-                        height: EStyleSheet.value("$rem") * 35,
-                        borderColor: "black",
-                        borderRadius: 18,
-                        textAlign: "center",
-                        textAlignVertical: "center",
-                        color: "black",
-                          fontSize: EStyleSheet.value("$rem") * 25,
-                          fontFamily: "fb-Spacer-bold",
-                          marginTop:EStyleSheet.value("$rem") * 10,
-left:15
-                      }}
-                    >
-                      {hagrala[Object.keys(hagrala)[2]].strong_number}
-                    </Text>
-                  )}
-
-                  </View> 
-                 
-                </View>
-
-              
-              </ListItem>
-            ))}
-                         
-          </List>
-          
+                          {hagrala[Object.keys(hagrala)[2]].strong_number && (
+                            <Text
+                              style={{
+                                // marginLeft:EStyleSheet.value("$rem") * 20,
+                                borderWidth: 2,
+                                width: EStyleSheet.value("$rem") * 35,
+                                height: EStyleSheet.value("$rem") * 35,
+                                borderColor: "black",
+                                borderRadius: 18,
+                                textAlign: "center",
+                                textAlignVertical: "center",
+                                color: "black",
+                                fontSize: EStyleSheet.value("$rem") * 25,
+                                fontFamily: "fb-Spacer-bold",
+                                marginTop: EStyleSheet.value("$rem") * 10,
+                                left: 15,
+                              }}
+                            >
+                              {hagrala[Object.keys(hagrala)[2]].strong_number}
+                            </Text>
+                          )}
+                        </View>
+                      </View>
+                    </ListItem>
+                  ))}
+                </List>
               </ScrollView>
-                
-              
-                
-              </View>
-             
-           
-           
-          
+            </View>
+
             <View
               style={{
                 flexDirection: "row",

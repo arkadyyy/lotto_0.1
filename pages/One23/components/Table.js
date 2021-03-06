@@ -32,7 +32,9 @@ const Num = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer-bold" }}>
+          {num}
+        </Text>
       </View>
     </>
   );
@@ -78,14 +80,15 @@ const Table = ({
           marginTop: 4,
           height: 55,
           alignItems: "center",
+
           width: 400,
         }}
       >
         <Text
           style={{
             color: "white",
-            marginHorizontal: 4,
-            fontFamily: "fb-Spacer",
+            marginHorizontal: 14,
+            fontFamily: "fb-Spacer-bold",
           }}
         >{`טבלה ${opendTableNum}`}</Text>
         <TouchableOpacity

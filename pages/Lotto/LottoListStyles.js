@@ -37,7 +37,7 @@ const LottoListstyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     flexWrap: "wrap",
-    marginLeft: 20,
+    marginLeft: 10,
   },
   header: {
     flexDirection: "row",
@@ -70,7 +70,7 @@ const LottoListstyles = StyleSheet.create({
     borderColor: "white",
     borderRadius: 7,
     borderWidth: 1,
-    width: "90%",
+    width: "94%",
     alignSelf: "center",
     marginTop: 20,
   },

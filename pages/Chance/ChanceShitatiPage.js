@@ -2,27 +2,29 @@ import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
-import { Button, List } from "native-base";
+import { Button, List, Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
-import FillForm from "./components/FillForm";
-import Table from "./components/Table";
 import chanceListstyles from "./ChanceListStyles";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { useSelector, useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import TableChanceShitati from "./components/TableChanceShitati";
 import FillFormShitati from "./components/ShitatiFillForm";
 
-const ChancePage = ({ navigation }) => {
+const ChancePageShitati = ({ navigation }) => {
+  const store = useSelector((state) => state);
+
   const [showTable, setshowTable] = useState(false);
   const [tableNum, settableNum] = useState(1);
   const [formNum, setformNum] = useState(1);
   const [investNum, setinvestNum] = useState(5);
   const [opendTableNum, setopendTableNum] = useState(0);
   const [allCounters, setallCounters] = useState([{ formNum: 1, counter: 0 }]);
+
+  const [tablesCheck, settablesCheck] = useState(false);
+  const [errorMsg, seterrorMsg] = useState("");
+  const [trimedFullTables, settrimedFullTables] = useState([]);
 
   const [fullTables, setfullTables] = useState([
     {
@@ -51,16 +53,26 @@ const ChancePage = ({ navigation }) => {
       let usedTable = fullTables.find((table) => table.tableNum === index);
       // console.log("usedTable : ", usedTable);
 
-      let randomNumArr = [0, 1, 2, 3];
-
       var shuffled = cardArr.sort(function () {
         return 0.5 - Math.random();
       });
       var selected = shuffled.slice(0, tableNum);
 
-      console.log(shuffled);
-      console.log(selected);
+      let x = Array.from({ length: tableNum }, (v, i) => {
+        let shitatiArr = [];
 
+        var shuffled2 = cardArr.sort(function () {
+          return 0.5 - Math.random();
+        });
+        shitatiArr.push(shuffled2.slice(0, 4));
+
+        return shitatiArr;
+      });
+      console.log("x from autofill : ", x);
+
+      console.log("selected : ", selected);
+
+      //resetting usedtable cards be4 putting enw ones
       usedTable.choosenCards = [
         {
           cards: [],
@@ -79,23 +91,31 @@ const ChancePage = ({ navigation }) => {
           type: "clubs",
         },
       ];
+      let randomNumArr = [0, 1, 2, 3];
 
-      selected.forEach((card, index) => {
+      for (let i = 0; i < tableNum; i++) {
         let random = Math.floor(Math.random() * randomNumArr.length);
-
-        usedTable.choosenCards[randomNumArr[random]].cards = [card];
-
-        console.log("usedtable choosencards : ", usedTable.choosenCards);
-
+        usedTable.choosenCards[randomNumArr[random]].cards = x[0][0];
         randomNumArr.splice(random, 1);
-        console.log("randomNumArr : ", randomNumArr);
-      });
+      }
+      // selected.forEach((card, index) => {
+      //   let random = Math.floor(Math.random() * randomNumArr.length);
+
+      //   usedTable.choosenCards[randomNumArr[random]].cards = [card];
+
+      //   console.log("usedtable choosencards : ", usedTable.choosenCards);
+
+      //   randomNumArr.splice(random, 1);
+      //   console.log("randomNumArr : ", randomNumArr);
+      // });
       setfullTables([...filtered, usedTable]);
     }
 
+    /////////// done with setting fulltables,now resetting fillform counter
+
     let updatedAllCounters = allCounters.map((counter, index) => {
       if (counter.formNum <= formNum) {
-        counter.counter = tableNum;
+        counter.counter = 100;
         return counter;
       } else {
         return counter;
@@ -124,6 +144,54 @@ const ChancePage = ({ navigation }) => {
     setallCounters(updatedAllCounters);
   };
 
+  const checkTables = (
+    fullTables,
+    tableNum,
+    settablesCheck,
+    setfullTables,
+    formNum
+  ) => {
+    let returnedState = false;
+    let fulltablesCopy = fullTables.slice(0);
+    console.log(tableNum);
+
+    let checkedFullTables2 = fulltablesCopy.slice(0);
+
+    checkedFullTables2.sort((table1, table2) => {
+      return table1.tableNum - table2.tableNum;
+    });
+
+    checkedFullTables2.splice(formNum, checkedFullTables2.length);
+
+    console.log("checkedFullTables2 : ", checkedFullTables2);
+
+    if (checkedFullTables2.length !== formNum) {
+      returnedState = true;
+      seterrorMsg("אנא מלא את כל הטבלאות");
+    }
+
+    if (store.user === -1) {
+      returnedState = true;
+
+      seterrorMsg("יש להתחבר על מנת להמשיך");
+    }
+
+    let counter = 0;
+    checkedFullTables2.forEach((table) => {
+      table.choosenCards.forEach((card) => {
+        if (card.cards.length === 1) {
+          counter++;
+        }
+      });
+    });
+
+    if (counter !== tableNum) {
+      returnedState = true;
+    }
+    settablesCheck(returnedState);
+    settrimedFullTables(checkedFullTables2);
+  };
+
   useEffect(() => {
     setfullTables([
       {
@@ -145,8 +213,9 @@ const ChancePage = ({ navigation }) => {
   }, [tableNum]);
 
   useEffect(() => {
-    console.log("fulltables : ", fullTables);
-  }, [fullTables]);
+    checkTables(fullTables, tableNum, settablesCheck, setfullTables, formNum);
+    console.log("fullTables : ", fullTables);
+  }, [fullTables, tableNum]);
 
   return (
     <>
@@ -161,9 +230,9 @@ const ChancePage = ({ navigation }) => {
               <View style={chanceListstyles.topNumCircle}>
                 <Text
                   style={{
-                    fontSize: 20,
-                    color: "#009943",
-                    fontFamily: "fb-Spacer-bold",
+                    fontSize: 35,
+                    color: "#E62321",
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   1
@@ -324,14 +393,33 @@ const ChancePage = ({ navigation }) => {
             >
               <Button
                 onPress={() => {
-                  let summary = { chance: fullTables, investNum };
-                  navigation.navigate("SumPageChance", {
-                    tableNum: tableNum,
-                    investNum: investNum,
-                    fullTables: fullTables,
-                    // gameType: "regular",
-                    gameType: "chance_shitati",
-                  });
+                  if (tablesCheck === true) {
+                    Toast.show({
+                      textStyle: { fontFamily: "fb-Spacer" },
+                      text: errorMsg,
+                      buttonText: "סגור",
+                      position: "top",
+                      // type: "warning",
+                      buttonStyle: {
+                        backgroundColor: "white",
+                        borderRadius: 8,
+                      },
+                      textStyle: { color: "white", fontFamily: "fb-Spacer" },
+                      buttonTextStyle: {
+                        color: "black",
+                        fontFamily: "fb-Spacer",
+                      },
+                      duration: 2500,
+                    });
+                  }
+                  if (tablesCheck === false) {
+                    navigation.navigate("SumPageChance", {
+                      tableNum: tableNum,
+                      investNum: investNum,
+                      fullTables: fullTables,
+                      gameType: "chance_shitati",
+                    });
+                  }
                 }}
                 style={chanceListstyles.sendFormBtn}
               >
@@ -400,4 +488,4 @@ const ChancePage = ({ navigation }) => {
     </>
   );
 };
-export default ChancePage;
+export default ChancePageShitati;

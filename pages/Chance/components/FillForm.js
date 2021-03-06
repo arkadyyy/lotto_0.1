@@ -133,6 +133,7 @@ const Num = ({
         //   type: "heart",
         // }
         onPress={() => {
+          console.log("counter when pressed num : ", counter);
           if (pressed.symbolsPressed.includes(symbol)) {
             setpressed({
               numberOfPress: pressed.numberOfPress - 1,
@@ -270,6 +271,7 @@ const FillForm = ({
   const [counter, setcounter] = useState(
     allCounters.find((counter) => counter.formNum === opendTableNum).counter
   );
+
   const [autoFillFormFired, setautoFillFormFired] = useState(false);
 
   const [pressedSpade, setpressedSpade] = useState({
@@ -310,9 +312,11 @@ const FillForm = ({
     setpressedHeart({ ...pressedHeart, symbolsPressed: [] });
     setpressedDiamond({ ...pressedDiamond, symbolsPressed: [] });
     setpressedSpade({ ...pressedSpade, symbolsPressed: [] });
+    setcounter(0);
   };
 
   const autoFill = async (opendTableNum, usedTableNum) => {
+    setcounter(0);
     const cardArr = ["7", "8", "9", "10", "J", "Q", "K", "A"];
     let randomNumArr = [0, 1, 2, 3];
 
@@ -342,6 +346,8 @@ const FillForm = ({
       pressed.splice(random, 1);
       console.log("randomnumarr : ", randomNumArr);
     });
+
+    setcounter(tableNum);
   };
 
   useEffect(() => {
@@ -378,6 +384,7 @@ const FillForm = ({
     let counterMatches = allCounters.find(
       (counter) => counter.formNum === opendTableNum
     ).counter;
+    console.log("counterMatches : ", counterMatches);
 
     setcounter(counterMatches);
   }, [opendTableNum]);
@@ -419,26 +426,6 @@ const FillForm = ({
       )[0];
       console.log("usedtable  ##### : ", usedtable);
 
-      // setpressedSpade({
-      //   ...pressedSpade,
-      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "spade")
-      //     .cards,
-      // });
-      // setpressedHeart({
-      //   ...pressedHeart,
-      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "heart")
-      //     .cards,
-      // });
-      // setpressedDiamond({
-      //   ...pressedDiamond,
-      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "diamond")
-      //     .cards,
-      // });
-      // setpressedClubs({
-      //   ...pressedClubs,
-      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "clubs")
-      //     .cards,
-      // });
       deleteFilled();
       autoFill(opendTableNum, usedTableNum);
     }
@@ -455,6 +442,12 @@ const FillForm = ({
       { formNum: opendTableNum, counter: counter },
     ]);
   }, [counter]);
+
+  useEffect(() => {
+    setcounter(
+      allCounters.find((counter) => counter.formNum === opendTableNum).counter
+    );
+  }, [allCounters]);
 
   return (
     <>
@@ -609,14 +602,14 @@ const FillForm = ({
                   onPress={() => {
                     //if we have already a object for this table , remove the previos one and put a new one
                     // if (indexOfTable !== -1) {
-                    // let fullTablesCopy = fullTables.filter(
-                    // (table) => table.tableNum !== opendTableNum
-                    // );
-                    // setFullTables([...fullTablesCopy, usedTable]);
+                    //   let fullTablesCopy = fullTables.filter(
+                    //     (table) => table.tableNum !== opendTableNum
+                    //   );
+                    //   setFullTables([...fullTablesCopy, usedTable]);
 
-                    // if we dont have already object for this table,just create one
+                    //   // if we dont have already object for this table,just create one
                     // } else {
-                    // setFullTables([...fullTables, usedTable]);
+                    //   setFullTables([...fullTables, usedTable]);
                     // }
                     // arrowClickedRight();
                     if (opendTableNum < formNum) {
@@ -663,14 +656,14 @@ const FillForm = ({
                   onPress={() => {
                     //if we have already a object for this table , remove the previos one and put a new one
                     // if (indexOfTable !== -1) {
-                    // let fullTablesCopy = fullTables.filter(
-                    // (table) => table.tableNum !== opendTableNum
-                    // );
-                    // setFullTables([...fullTablesCopy, usedTable]);
+                    //   let fullTablesCopy = fullTables.filter(
+                    //     (table) => table.tableNum !== opendTableNum
+                    //   );
+                    //   setFullTables([...fullTablesCopy, usedTable]);
 
-                    // if we dont have already object for this table,just create one
+                    //   // if we dont have already object for this table,just create one
                     // } else {
-                    // setFullTables([...fullTables, usedTable]);
+                    //   setFullTables([...fullTables, usedTable]);
                     // }
                     // arrowClickedLeft();
                     if (opendTableNum > 1) {

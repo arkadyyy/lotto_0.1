@@ -95,11 +95,10 @@ export default function DrawerContent(props) {
                   </Text>
                 </TouchableOpacity>
               </View>
-
-              <ColorLine />
             </View>
           )}
         </View>
+        <ColorLine />
 
         <View style={{ marginLeft: 8 }}>
           <DrawerItem
@@ -137,7 +136,7 @@ export default function DrawerContent(props) {
             label='אודות'
             onPress={() => {
               props.navigation.navigate("About", {
-                pageComeFrom:"sideBar"
+                pageComeFrom: "sideBar",
               });
             }}
           />
@@ -153,8 +152,7 @@ export default function DrawerContent(props) {
 
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <TouchableOpacity
-                            onPress={() => navigation.navigate("AccessibilityDeclaration")}
-
+            onPress={() => navigation.navigate("AccessibilityDeclaration")}
             style={{
               borderBottomColor: "white",
               borderBottomWidth: 0.2,
@@ -168,8 +166,7 @@ export default function DrawerContent(props) {
           </TouchableOpacity>
 
           <TouchableOpacity
-                              onPress={() => navigation.navigate("TermsOfUse")}
-
+            onPress={() => navigation.navigate("TermsOfUse")}
             style={{
               borderBottomColor: "white",
               borderBottomWidth: 0.2,
@@ -183,8 +180,7 @@ export default function DrawerContent(props) {
           </TouchableOpacity>
 
           <TouchableOpacity
-                onPress={() => navigation.navigate("StatuteTakanon")}
-
+            onPress={() => navigation.navigate("StatuteTakanon")}
             style={{
               borderBottomColor: "white",
               borderBottomWidth: 0.2,

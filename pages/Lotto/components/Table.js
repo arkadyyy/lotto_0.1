@@ -26,8 +26,8 @@ const Num = ({ num }) => {
     <>
       <View
         style={{
-          width: 20,
-          height: 20,
+          width: 24,
+          height: 24,
           borderRadius: 30,
           backgroundColor: "white",
 
@@ -36,7 +36,9 @@ const Num = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer-bold" }}>
+          {num}
+        </Text>
       </View>
     </>
   );
@@ -50,13 +52,15 @@ const StrongNum = ({ num }) => {
           height: 30,
           borderRadius: 30,
           backgroundColor: "yellow",
-top:-5,
+          top: -5,
           margin: 5,
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "red", fontFamily: "fb-Spacer" }}>{num}</Text>
+        <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
+          {num}
+        </Text>
       </View>
     </>
   );
@@ -75,7 +79,6 @@ const Table = ({
 
   const [table1, settable1] = useState([" ", " ", " ", " ", " ", " "]);
   const [strongNum1, setstrongNum1] = useState(" ");
-  
 
   useEffect(() => {
     if (double === true && tableNum > 10) {
@@ -100,14 +103,11 @@ const Table = ({
           settable1(fullTable1.choosenNums);
           setstrongNum1(fullTable1.strongNum);
         }
-       
       });
     } else {
       settable1([" ", " ", " ", " ", " ", " "]);
       setstrongNum1(" ");
     }
-
-  
   }, [fullTables]);
 
   return (
@@ -127,7 +127,7 @@ const Table = ({
             color: "white",
             fontSize: 11,
             marginHorizontal: 10,
-            fontFamily: "fb-Spacer",
+            fontFamily: "fb-Spacer-bold",
           }}
         >
           טבלה {index}
@@ -143,30 +143,30 @@ const Table = ({
           <View style={{ flexDirection: "row" }}>
             {route.name === "LottoPage" && (
               <>
-                 {table1.sort(function(b,a) {
-                 return a-b;
-                })
+                {table1
+                  .sort(function (b, a) {
+                    return a - b;
+                  })
                   .map((num, index) => (
-                  <Num key={index} num={num} />
-                ))}
+                    <Num key={index} num={num} />
+                  ))}
               </>
             )}
             {route.name === "DoubleLottoPage" && (
               <>
-                {table1.sort(function(b,a) {
-                 return a-b;
+                {table1
+                  .sort(function (b, a) {
+                    return a - b;
                   })
                   .map((num, index) => (
-                  <Num key={index} num={num} />
-                ))}
+                    <Num key={index} num={num} />
+                  ))}
               </>
             )}
             <StrongNum num={strongNum1} />
           </View>
         </TouchableOpacity>
-       
       </ListItem>
-    
     </>
   );
 };

@@ -34,7 +34,8 @@ import EStyleSheet from "react-native-extended-stylesheet";
 import LottoListstyles from "../../pages/Lotto/LottoListStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
-  faAngleDoubleLeft,faAngleDoubleRight
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
 //////////////////////////////////////////////////////////////
 
@@ -69,12 +70,11 @@ const ResultList = (props) => {
                   <View>
                     <Text
                       style={{
-                        fontSize: EStyleSheet.value("$rem") * 38,
+                        fontSize: EStyleSheet.value("$rem") * 30,
                         color: "white",
                         fontWeight: "bold",
-                                              marginLeft: EStyleSheet.value("$rem") * 20,
-                                              fontFamily: "fb-Spacer-bold",
-
+                        marginLeft: EStyleSheet.value("$rem") * 20,
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       לוטו רגיל
@@ -83,34 +83,40 @@ const ResultList = (props) => {
                 </Left>
 
                 <Right>
-                <View style={{ flexDirection:"row"}}>
-                <FontAwesomeIcon style={{marginTop:EStyleSheet.value("$rem") * 5,marginRight:EStyleSheet.value("$rem") * 2}} icon={faAngleDoubleLeft} color={"white"} />
-
+                  <View style={{ flexDirection: "row" }}>
                     <Button
                       small
                       style={{
                         borderRadius: 13,
-                          backgroundColor: "white",
-                          width: EStyleSheet.value("$rem") * 85,
-                          height: EStyleSheet.value("$rem") * 25,
-                          flexDirection:"row",
-                        justifyContent:"center"
-                          
+                        backgroundColor: "white",
+                        width: EStyleSheet.value("$rem") * 105,
+                        height: EStyleSheet.value("$rem") * 25,
+                        flexDirection: "row",
+                        justifyContent: "center",
                       }}
                       onPress={() => navigation.navigate("ResultLotto")}
-                                      >
+                    >
                       <Text
-                            style={{
-                            fontWeight: "bold",
-                            color: "#00AEEF",
-                            fontSize: EStyleSheet.value("$rem") * 17,
-                   
-                            fontFamily: "fb-Spacer-bold",
-                            // textAlignVertical:"center",
-                            // textAlign:"center"
-                                    }}
-                          >
-                       תוצאות
+                        style={{
+                          fontWeight: "bold",
+                          color: "#00AEEF",
+                          fontSize: EStyleSheet.value("$rem") * 17,
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontFamily: "fb-Spacer-bold",
+                          // textAlignVertical:"center",
+                          // textAlign:"center"
+                        }}
+                      >
+                        תוצאות
+                        <FontAwesomeIcon
+                          style={{
+                            marginTop: EStyleSheet.value("$rem") * 5,
+                            marginRight: EStyleSheet.value("$rem") * 2,
+                          }}
+                          icon={faAngleDoubleLeft}
+                          color={"#00AEEF"}
+                        />
                       </Text>
                     </Button>
                   </View>
@@ -128,12 +134,11 @@ const ResultList = (props) => {
                   <View>
                     <Text
                       style={{
-                        fontSize: EStyleSheet.value("$rem") * 38,
+                        fontSize: EStyleSheet.value("$rem") * 30,
                         color: "white",
-                                              fontWeight: "bold",
-                                              marginLeft: EStyleSheet.value("$rem") * 20,
-                                              fontFamily: "fb-Spacer-bold",
-
+                        fontWeight: "bold",
+                        marginLeft: EStyleSheet.value("$rem") * 20,
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       צ'אנס
@@ -142,34 +147,40 @@ const ResultList = (props) => {
                 </Left>
 
                 <Right>
-                <View style={{ flexDirection:"row"}}>
-                <FontAwesomeIcon style={{marginTop:EStyleSheet.value("$rem") * 5,marginRight:EStyleSheet.value("$rem") * 2}} icon={faAngleDoubleLeft} color={"white"} />
-
+                  <View style={{ flexDirection: "row" }}>
                     <Button
                       small
                       style={{
                         borderRadius: 13,
-                          backgroundColor: "white",
-                          width: EStyleSheet.value("$rem") * 85,
-                          height: EStyleSheet.value("$rem") * 25,
-                          flexDirection:"row",
-                        justifyContent:"center"
-                          
+                        backgroundColor: "white",
+                        width: EStyleSheet.value("$rem") * 105,
+                        height: EStyleSheet.value("$rem") * 25,
+                        flexDirection: "row",
+                        justifyContent: "center",
                       }}
                       onPress={() => navigation.navigate("ResultChance")}
-                                      >
+                    >
                       <Text
-                            style={{
-                            fontWeight: "bold",
-                            color: "#00AEEF",
-                            fontSize: EStyleSheet.value("$rem") * 17,
-                   
-                            fontFamily: "fb-Spacer-bold",
-                            // textAlignVertical:"center",
-                            // textAlign:"center"
-                                    }}
-                          >
-                       תוצאות
+                        style={{
+                          fontWeight: "bold",
+                          color: "#00AEEF",
+                          fontSize: EStyleSheet.value("$rem") * 17,
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontFamily: "fb-Spacer-bold",
+                          // textAlignVertical:"center",
+                          // textAlign:"center"
+                        }}
+                      >
+                        תוצאות
+                        <FontAwesomeIcon
+                          style={{
+                            marginTop: EStyleSheet.value("$rem") * 5,
+                            marginRight: EStyleSheet.value("$rem") * 2,
+                          }}
+                          icon={faAngleDoubleLeft}
+                          color={"#00AEEF"}
+                        />
                       </Text>
                     </Button>
                   </View>
@@ -187,48 +198,53 @@ const ResultList = (props) => {
                   <View>
                     <Text
                       style={{
-                        fontSize: EStyleSheet.value("$rem") * 38,
+                        fontSize: EStyleSheet.value("$rem") * 30,
                         color: "white",
-                                              fontWeight: "bold",
-                                              marginLeft: EStyleSheet.value("$rem") * 20,
-                                              fontFamily: "fb-Spacer-bold",
-
+                        fontWeight: "bold",
+                        marginLeft: EStyleSheet.value("$rem") * 20,
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
-                    777
+                      777
                     </Text>
                   </View>
                 </Left>
 
                 <Right>
-                <View style={{ flexDirection:"row"}}>
-                <FontAwesomeIcon style={{marginTop:EStyleSheet.value("$rem") * 5,marginRight:EStyleSheet.value("$rem") * 2}} icon={faAngleDoubleLeft} color={"white"} />
-
+                  <View style={{ flexDirection: "row" }}>
                     <Button
                       small
                       style={{
                         borderRadius: 13,
-                          backgroundColor: "white",
-                          width: EStyleSheet.value("$rem") * 85,
-                          height: EStyleSheet.value("$rem") * 25,
-                          flexDirection:"row",
-                        justifyContent:"center"
-                          
+                        backgroundColor: "white",
+                        width: EStyleSheet.value("$rem") * 105,
+                        height: EStyleSheet.value("$rem") * 25,
+                        flexDirection: "row",
+                        justifyContent: "center",
                       }}
                       onPress={() => navigation.navigate("Result777")}
-                                      >
+                    >
                       <Text
-                            style={{
-                            fontWeight: "bold",
-                            color: "#00AEEF",
-                            fontSize: EStyleSheet.value("$rem") * 17,
-                   
-                            fontFamily: "fb-Spacer-bold",
-                            // textAlignVertical:"center",
-                            // textAlign:"center"
-                                    }}
-                          >
-                       תוצאות
+                        style={{
+                          fontWeight: "bold",
+                          color: "#00AEEF",
+                          fontSize: EStyleSheet.value("$rem") * 17,
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontFamily: "fb-Spacer-bold",
+                          // textAlignVertical:"center",
+                          // textAlign:"center"
+                        }}
+                      >
+                        תוצאות
+                        <FontAwesomeIcon
+                          style={{
+                            marginTop: EStyleSheet.value("$rem") * 5,
+                            marginRight: EStyleSheet.value("$rem") * 2,
+                          }}
+                          icon={faAngleDoubleLeft}
+                          color={"#00AEEF"}
+                        />
                       </Text>
                     </Button>
                   </View>
@@ -246,12 +262,11 @@ const ResultList = (props) => {
                   <View>
                     <Text
                       style={{
-                        fontSize: EStyleSheet.value("$rem") * 38,
+                        fontSize: EStyleSheet.value("$rem") * 30,
                         color: "white",
-                                              fontWeight: "bold",
-                                              marginLeft: EStyleSheet.value("$rem") * 20,
-                                              fontFamily: "fb-Spacer-bold",
-
+                        fontWeight: "bold",
+                        marginLeft: EStyleSheet.value("$rem") * 20,
+                        fontFamily: "fb-Spacer-bold",
                       }}
                     >
                       123
@@ -260,43 +275,47 @@ const ResultList = (props) => {
                 </Left>
 
                 <Right>
-                <View style={{ flexDirection:"row"}}>
-                <FontAwesomeIcon style={{marginTop:EStyleSheet.value("$rem") * 5,marginRight:EStyleSheet.value("$rem") * 2}} icon={faAngleDoubleLeft} color={"white"} />
-
+                  <View style={{ flexDirection: "row" }}>
                     <Button
                       small
                       style={{
                         borderRadius: 13,
-                          backgroundColor: "white",
-                          width: EStyleSheet.value("$rem") * 85,
-                          height: EStyleSheet.value("$rem") * 25,
-                          flexDirection:"row",
-                        justifyContent:"center"
-                          
+                        backgroundColor: "white",
+                        width: EStyleSheet.value("$rem") * 105,
+                        height: EStyleSheet.value("$rem") * 25,
+                        flexDirection: "row",
+                        justifyContent: "center",
                       }}
                       onPress={() => navigation.navigate("Result123")}
-                                      >
+                    >
                       <Text
-                            style={{
-                            fontWeight: "bold",
-                            color: "#00AEEF",
-                            fontSize: EStyleSheet.value("$rem") * 17,
-                   
-                            fontFamily: "fb-Spacer-bold",
-                            // textAlignVertical:"center",
-                            // textAlign:"center"
-                                    }}
-                          >
-                       תוצאות
+                        style={{
+                          fontWeight: "bold",
+                          color: "#00AEEF",
+                          fontSize: EStyleSheet.value("$rem") * 17,
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontFamily: "fb-Spacer-bold",
+                          // textAlignVertical:"center",
+                          // textAlign:"center"
+                        }}
+                      >
+                        תוצאות
+                        <FontAwesomeIcon
+                          style={{
+                            marginTop: EStyleSheet.value("$rem") * 5,
+                            marginRight: EStyleSheet.value("$rem") * 2,
+                          }}
+                          icon={faAngleDoubleLeft}
+                          color={"#00AEEF"}
+                        />
                       </Text>
                     </Button>
                   </View>
                 </Right>
               </ListItem>
-             
             </List>
-           
-          
+
             <View
               style={{
                 flexDirection: "row",

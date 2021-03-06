@@ -1,20 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-} from "native-base";
+import { ListItem } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 
 const Num = ({ num }) => {
@@ -22,8 +9,8 @@ const Num = ({ num }) => {
     <>
       <View
         style={{
-          width: 20,
-          height: 20,
+          width: 23,
+          height: 23,
           borderRadius: 30,
           backgroundColor: "white",
 
@@ -32,7 +19,9 @@ const Num = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer-bold" }}>
+          {num}
+        </Text>
       </View>
     </>
   );
@@ -89,23 +78,23 @@ const Table = ({
             color: "white",
             fontSize: 11,
             marginHorizontal: 10,
-            fontFamily: "fb-Spacer",
+            fontFamily: "fb-Spacer-bold",
           }}
         >{`טבלה ${tableNum}`}</Text>
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);
             setopendTableNum(tableNum);
-            
           }}
         >
           <View style={{ flexDirection: "row-reverse" }}>
-            {table.sort(function(b,a) {
-                 return a-b;
-                })
+            {table
+              .sort(function (b, a) {
+                return a - b;
+              })
               .map((num, index) => (
-              <Num table={table} key={index} num={num} />
-            ))}
+                <Num table={table} key={index} num={num} />
+              ))}
           </View>
         </TouchableOpacity>
       </ListItem>

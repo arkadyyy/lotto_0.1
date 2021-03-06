@@ -2,22 +2,7 @@ import React, { useState } from "react";
 import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-  // Col,
-  Row,
-} from "native-base";
+import { ListItem } from "native-base";
 import shitatiTableStyles from "./shitatiTableStyles";
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
@@ -30,8 +15,8 @@ const Num = ({ num }) => {
     <>
       <View
         style={{
-          width: 20,
-          height: 20,
+          width: 24,
+          height: 24,
           borderRadius: 30,
           backgroundColor: "white",
 
@@ -40,7 +25,9 @@ const Num = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer-bold" }}>
+          {num}
+        </Text>
       </View>
     </>
   );
@@ -61,7 +48,9 @@ const StrongNum = ({ strongNumber }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "red", fontFamily: "fb-Spacer" }}>{strongNumber}</Text>
+        <Text style={{ color: "red", fontFamily: "fb-Spacer" }}>
+          {strongNumber}
+        </Text>
       </View>
     </>
   );
@@ -126,15 +115,14 @@ const ShitatiTable = ({
 
   return (
     <>
-
       <ListItem
         style={{
           backgroundColor: !table1.includes(" ") ? "#78C849" : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
-          height: EStyleSheet.value("$rem")*95,
+          height: EStyleSheet.value("$rem") * 105,
           alignItems: "center",
-          width: width ,
+          width: width,
         }}
       >
         <Text
@@ -142,7 +130,7 @@ const ShitatiTable = ({
             color: "white",
             fontSize: 11,
             marginHorizontal: 5,
-            fontFamily: "fb-Spacer",
+            fontFamily: "fb-Spacer-bold",
           }}
         >
           טבלה {index1}{" "}
@@ -153,41 +141,56 @@ const ShitatiTable = ({
             setopendTableNum(index1);
           }}
         >
-          <View style={{ flexDirection: "column", flex: 1, }}>
-            
-            <View style={{
-              flex: 1, flexDirection: "row", flexWrap: "wrap",
-              width: tzerufimNumber === 12 ? "78%"
-                : tzerufimNumber === 11 ? "75%"
-                : tzerufimNumber === 10 ? "73%"
-                : tzerufimNumber === 9 ? "73%"
-                : tzerufimNumber === 8 ? "70%"
-                  :"60%"
-            }}>
-            {table1.sort(function(a, b) {
-           return a - b;
-            })     
+          <View style={{ flexDirection: "column", flex: 1 }}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                flexWrap: "wrap",
+                width:
+                  tzerufimNumber === 12
+                    ? "78%"
+                    : tzerufimNumber === 11
+                    ? "75%"
+                    : tzerufimNumber === 10
+                    ? "73%"
+                    : tzerufimNumber === 9
+                    ? "73%"
+                    : tzerufimNumber === 8
+                    ? "70%"
+                    : "60%",
+              }}
+            >
+              {table1
+                .sort(function (a, b) {
+                  return a - b;
+                })
                 .map((num, index) => (
-                <Num key={index} num={num} />
+                  <Num key={index} num={num} />
                 ))}
             </View>
-         
-           
-              {/* <View style={shitatiTableStyles.tzerufimNumber12}> */}
-            <View style={{
-              flexDirection: "row",
-              left:tzerufimNumber===12? 180 
-              : tzerufimNumber===11 ? 180 
-              : tzerufimNumber===10 ? 150 
-              : tzerufimNumber===9 ? 150 
-              : tzerufimNumber===8 ? 120 
-                :90,
-              top: -5
-            }}>
 
+            {/* <View style={shitatiTableStyles.tzerufimNumber12}> */}
+            <View
+              style={{
+                flexDirection: "row",
+                left:
+                  tzerufimNumber === 12
+                    ? 180
+                    : tzerufimNumber === 11
+                    ? 180
+                    : tzerufimNumber === 10
+                    ? 150
+                    : tzerufimNumber === 9
+                    ? 150
+                    : tzerufimNumber === 8
+                    ? 120
+                    : 90,
+                top: -5,
+              }}
+            >
               <StrongNum key={index} strongNumber={strongNumber} />
             </View>
-            
           </View>
         </TouchableOpacity>
         {/* {double && (

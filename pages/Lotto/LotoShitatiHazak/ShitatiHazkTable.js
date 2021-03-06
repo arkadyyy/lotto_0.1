@@ -28,8 +28,8 @@ const Num = ({ num }) => {
     <>
       <View
         style={{
-          width: 20,
-          height: 20,
+          width: 24,
+          height: 24,
           borderRadius: 30,
           backgroundColor: "white",
 
@@ -38,7 +38,9 @@ const Num = ({ num }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>{num}</Text>
+        <Text style={{ color: "black", fontFamily: "fb-Spacer-bold" }}>
+          {num}
+        </Text>
       </View>
     </>
   );
@@ -49,8 +51,8 @@ const StrongNum = ({ strongNum }) => {
     <>
       <View
         style={{
-          width: 20,
-          height: 20,
+          width: 24,
+          height: 24,
           borderRadius: 30,
           backgroundColor: "yellow",
 
@@ -59,7 +61,9 @@ const StrongNum = ({ strongNum }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ color: "red", fontFamily: "fb-Spacer" }}>{strongNum}</Text>
+        <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
+          {strongNum}
+        </Text>
       </View>
     </>
   );
@@ -155,9 +159,9 @@ const ShitatiHazakTable = ({
           backgroundColor: !table1.includes(" ") ? "#78C849" : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
-          height: EStyleSheet.value("$rem")*85,
+          height: EStyleSheet.value("$rem") * 95,
           alignItems: "center",
-          width: EStyleSheet.value("$rem")*400,
+          width: EStyleSheet.value("$rem") * 400,
         }}
       >
         <Text
@@ -178,22 +182,24 @@ const ShitatiHazakTable = ({
         >
           <View style={{ flexDirection: "column" }}>
             <View style={{ flexDirection: "row" }}>
-              {table1.sort(function(a,b) {
-                 return a-b;
+              {table1
+                .sort(function (a, b) {
+                  return a - b;
                 })
-              
+
                 .map((num, index) => (
-                <Num key={index} num={num} />
-              ))}
+                  <Num key={index} num={num} />
+                ))}
             </View>
-            
+
             <View style={{ flexDirection: "row" }}>
-              {strongNumbers.sort(function(a,b) {
-                 return a-b;
+              {strongNumbers
+                .sort(function (a, b) {
+                  return a - b;
                 })
                 .map((strongNum, index) => (
-                <StrongNum key={index} strongNum={strongNum} />
-              ))}
+                  <StrongNum key={index} strongNum={strongNum} />
+                ))}
             </View>
           </View>
         </TouchableOpacity>

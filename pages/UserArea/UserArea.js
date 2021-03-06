@@ -39,7 +39,7 @@ const UserArea = ({ navigation }) => {
   const [activeForms, setactiveForms] = useState([]);
   const [formsHistory, setformsHistory] = useState([]);
   const [wins, setwins] = useState([]);
-  const [money, setMoney] = useState("סכום");
+  const [money, setMoney] = useState("1,000,000");
 
   useEffect(() => {
     axios
@@ -114,104 +114,123 @@ const UserArea = ({ navigation }) => {
   return (
     <>
       <NavBar navigation={navigation} />
-      <ScrollView style={{ flex: 1,marginTop:-15 }}>
-        <View style={{marginTop:-10}}>
-          <View
-            style={{
-              flexDirection: "row",
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: 20,
-              marginTop: 20,
-              
-            }}
-          >
-            <Text
+      <ScrollView style={{ flex: 1, marginTop: -15 }}>
+        <View style={{ marginTop: -10 }}>
+          <View style={{ height: 100, marginTop: 15, marginBottom: 40 }}>
+            <View
               style={{
-                fontSize: 20,
-                color: "black",
-                fontFamily: "fb-Spacer-bold",
+                flexDirection: "row",
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: 20,
+                marginTop: 20,
               }}
-            >
-              שלום,{name}
-            </Text>
-            <Text>ברשותך {money} 
-            </Text>
-            <FontAwesomeIcon icon={faShekelSign} size={10} style={{alignSelf:"center"}}/>
-            <Button
-              onPress={async () => {
-                await navigation.navigate("Home");
-                dispatch(LogOut());
-              }}
-              style={{
-                paddingLeft: 23,
-                paddingRight: 23,
-                backgroundColor: "#263742",
-              }}
-              rounded
-              small
             >
               <Text
                 style={{
-                  color: "white",
-                  fontSize: 12,
+                  fontSize: 20,
+                  color: "black",
                   fontFamily: "fb-Spacer-bold",
                 }}
               >
-                התנתק
+                שלום,{name}
               </Text>
-            </Button>
-          </View>
-          <View style={{ flexDirection: "row", left: 18, top: -15 }}>
-          <Button
-              onPress={async () => {
-               console.log("משוך קרדיט");
-              }}
-              style={{
-                paddingLeft: 23,
-                paddingRight: 23,
-                backgroundColor: "#263742",
-              }}
-              rounded
-              small
-            >
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 12,
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                משוך קרדיט
-              </Text>
-            </Button>
-            <Button
-              onPress={async () => {
-               console.log("טען קרדיט");
-              }}
-              style={{
-                paddingLeft: 23,
-                paddingRight: 23,
-                backgroundColor: "#263742",
-              }}
-              rounded
-              small
-            >
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 12,
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                טען קרדיט
-              </Text>
-            </Button>
-       
 
+              <Button
+                onPress={async () => {
+                  await navigation.navigate("Home");
+                  dispatch(LogOut());
+                }}
+                style={{
+                  paddingLeft: 23,
+                  paddingRight: 23,
+                  backgroundColor: "#263742",
+                  marginHorizontal: 10,
+                }}
+                rounded
+                small
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 12,
+                    fontFamily: "fb-Spacer-bold",
+                  }}
+                >
+                  התנתק
+                </Text>
+              </Button>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                padding: 15,
+                backgroundColor: "white",
+                margin: 2,
+              }}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text> {money}</Text>
+                <FontAwesomeIcon
+                  icon={faShekelSign}
+                  size={10}
+                  style={{ alignSelf: "center" }}
+                />
+              </View>
+              <View style={{ flexDirection: "row" }}>
+                <TouchableOpacity
+                  onPress={async () => {
+                    console.log("משוך קרדיט");
+                  }}
+                  style={{
+                    paddingLeft: 23,
+                    paddingRight: 23,
+                    borderColor: "#263742",
+                    borderWidth: 1,
+                    borderRadius: 12,
+                    padding: 6,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "#263742",
+                      fontSize: 12,
+                      fontFamily: "fb-Spacer-bold",
+                    }}
+                  >
+                    משוך קרדיט
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={async () => {
+                    console.log("טען קרדיט");
+                  }}
+                  style={{
+                    paddingLeft: 23,
+                    paddingRight: 23,
+                    borderColor: "#263742",
+                    borderWidth: 1,
+                    borderRadius: 12,
+                    padding: 6,
+                    marginHorizontal: 2,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "#263742",
+                      fontSize: 12,
+                      fontFamily: "fb-Spacer-bold",
+                    }}
+                  >
+                    טען קרדיט
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
-          
+
           {/* {end of hello user} */}
           {/* <BlankSquare color={"#00AEEF"} /> */}
           <View style={{ alignItems: "center" }}>
@@ -230,7 +249,7 @@ const UserArea = ({ navigation }) => {
                   style={{
                     backgroundColor: "#BFBFBF",
                     padding: 15,
-                    height: 120,
+                    height: 100,
                   }}
                 >
                   <TouchableOpacity
@@ -303,7 +322,7 @@ const UserArea = ({ navigation }) => {
                   style={{
                     backgroundColor: "#BFBFBF",
                     padding: 15,
-                    height: 120,
+                    height: 100,
                   }}
                 >
                   <TouchableOpacity
@@ -357,7 +376,7 @@ const UserArea = ({ navigation }) => {
                   style={{
                     backgroundColor: "#BFBFBF",
                     padding: 15,
-                    height: 120,
+                    height: 100,
                   }}
                 >
                   <TouchableOpacity

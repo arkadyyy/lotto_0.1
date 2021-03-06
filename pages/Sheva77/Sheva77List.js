@@ -61,7 +61,7 @@ const Seva77List = (props) => {
                     style={{
                       fontSize: 33,
                       color: "white",
-                      marginHorizontal: 8,
+                      marginHorizontal: 20,
                       fontFamily: "fb-Spacer-bold",
                     }}
                   >
@@ -108,7 +108,7 @@ const Seva77List = (props) => {
                     style={{
                       fontSize: 33,
                       color: "white",
-                      marginHorizontal: 8,
+                      marginHorizontal: 20,
                       fontFamily: "fb-Spacer-bold",
                     }}
                   >
@@ -155,7 +155,7 @@ const Seva77List = (props) => {
                     style={{
                       fontSize: 33,
                       color: "white",
-                      marginHorizontal: 8,
+                      marginHorizontal: 20,
                       fontFamily: "fb-Spacer-bold",
                     }}
                   >
@@ -190,26 +190,45 @@ const Seva77List = (props) => {
             </ListItem>
           </List>
           <View style={{ flexDirection: "row", margin: 12 }}>
-          <View style={{ height: "50%", backgroundColor: "white" }}></View>
-          <Text style={{ flex: 4, fontSize:20, fontFamily: "fb-Spacer",alignSelf:"flex-start" }}>
-              הסבר על הגרלות 777
-          </Text>
-            <View style={{flexDirection:"row",flex:1,left:20}}>
-            <TouchableOpacity style={{
-              width: 20,
-              height: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              alignSelf:"baseline",
-              borderRadius: 100,
-              backgroundColor: "#1F3842",
-            }}>
-            <Text style={{ fontSize: 20, color: "white" }}>+</Text>
-          </TouchableOpacity>
+            <View style={{ height: "50%", backgroundColor: "white" }}></View>
+            <Text
+              style={{
+                flex: 4,
+                fontSize: 16,
+                fontFamily: "fb-Spacer",
+                alignSelf: "flex-start",
+                paddingHorizontal: 8,
+              }}
+            >
+              הסבר על הגרלות לוטו
+            </Text>
+            <View style={{ flexDirection: "row", flex: 1 }}>
+              <TouchableOpacity
+                style={{
+                  width: 20,
+                  height: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignSelf: "baseline",
+                  borderRadius: 100,
+                  backgroundColor: "#1F3842",
+                }}
+              >
+                <Text style={{ fontSize: 20, color: "white" }}>+</Text>
+              </TouchableOpacity>
 
-          <Text style={{ flex: 1, fontFamily: "fb-Spacer",alignSelf:"center" }}> עוד...</Text>
+              <Text
+                style={{
+                  flex: 1,
+                  fontFamily: "fb-Spacer",
+                  alignSelf: "center",
+                }}
+              >
+                {" "}
+                עוד...
+              </Text>
             </View>
-            </View>
+          </View>
           <View
             style={{
               padding: 1,
@@ -218,7 +237,9 @@ const Seva77List = (props) => {
               fontFamily: "fb-Spacer",
             }}
           >
-            <Text style={{ fontSize: 10, fontFamily: "fb-Spacer" }}>
+            <Text
+              style={{ fontSize: 10, fontFamily: "fb-Spacer", padding: 10 }}
+            >
               לאחר התשלום אנו בלוטומטיק מקבלים את הטופס שמילאתם ושולחים אותו
               עבורכם בנקודת מכירה מורשית של מפעל הפיס, את הטופס שמילאנו עבורגם
               בנקודה אנו סורקים ושולחים לכם לתיבת הדואר האלקטרוני ומעלים את

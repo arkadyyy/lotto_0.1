@@ -5,16 +5,7 @@ import { Label, ListItem } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
 
-const Table = ({
-  setshowTable,
-  pressedSpade,
-  pressedHeart,
-  pressedDiamond,
-  pressedClubs,
-  tableIndex,
-  fullTables,
-  setopendTableNum,
-}) => {
+const Table = ({ setshowTable, tableIndex, fullTables, setopendTableNum }) => {
   const [usedSpade, setusedSpade] = useState([]);
   const [usedHeart, setusedHeart] = useState([]);
   const [usedDiamond, setusedDiamond] = useState([]);

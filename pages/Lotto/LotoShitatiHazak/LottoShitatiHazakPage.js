@@ -106,7 +106,15 @@ const LottoShitatiHazakPage = ({ navigation }) => {
           <View style={LottoListstyles.lottoPageContainer}>
             <View style={LottoListstyles.header}>
               <View style={LottoListstyles.topNumCircle}>
-                <Text style={{ fontSize: 20, color: "#E62321" }}>1</Text>
+                <Text
+                  style={{
+                    fontSize: 35,
+                    color: "#E62321",
+                    fontFamily: "fb-Spacer",
+                  }}
+                >
+                  1
+                </Text>
               </View>
               <Text
                 style={{
@@ -127,14 +135,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
             <Text style={LottoListstyles.subHeader}>
               בחר 7 מספרים ו-{hazakimNumber} מספרים חזקים
             </Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                flexWrap: "wrap",
-                marginLeft: 20,
-              }}
-            >
+            <View style={LottoListstyles.autoBtnContainer}>
               <Button
                 onPress={autoFillForm}
                 style={LottoListstyles.autoBtn}
@@ -211,7 +212,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                   if (tablesCheck === false) {
                     navigation.navigate("SumPageLotto", {
                       tableNum: tableNum,
-                      screenName:"לוטו שיטתי חזק",
+                      screenName: "לוטו שיטתי חזק",
                       fullTables: fullTables,
                       gameType: "shitati_hazak",
                       hazakimNumber: hazakimNumber,
@@ -228,26 +229,44 @@ const LottoShitatiHazakPage = ({ navigation }) => {
           </View>
 
           <View style={{ flexDirection: "row", margin: 12 }}>
-          <View style={{ height: "50%", backgroundColor: "white" }}></View>
-          <Text style={{ flex: 4, fontSize:20, fontFamily: "fb-Spacer",alignSelf:"flex-start" }}>
+            <View style={{ height: "50%", backgroundColor: "white" }}></View>
+            <Text
+              style={{
+                flex: 4,
+                fontSize: 20,
+                fontFamily: "fb-Spacer",
+                alignSelf: "flex-start",
+              }}
+            >
               הסבר על הגרלות לוטו
-          </Text>
-            <View style={{flexDirection:"row",flex:1,left:20}}>
-            <TouchableOpacity style={{
-              width: 20,
-              height: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              alignSelf:"baseline",
-              borderRadius: 100,
-              backgroundColor: "#1F3842",
-            }}>
-            <Text style={{ fontSize: 20, color: "white" }}>+</Text>
-          </TouchableOpacity>
+            </Text>
+            <View style={{ flexDirection: "row", flex: 1, left: 20 }}>
+              <TouchableOpacity
+                style={{
+                  width: 20,
+                  height: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignSelf: "baseline",
+                  borderRadius: 100,
+                  backgroundColor: "#1F3842",
+                }}
+              >
+                <Text style={{ fontSize: 20, color: "white" }}>+</Text>
+              </TouchableOpacity>
 
-          <Text style={{ flex: 1, fontFamily: "fb-Spacer",alignSelf:"center" }}> עוד...</Text>
+              <Text
+                style={{
+                  flex: 1,
+                  fontFamily: "fb-Spacer",
+                  alignSelf: "center",
+                }}
+              >
+                {" "}
+                עוד...
+              </Text>
             </View>
-            </View>
+          </View>
           {/* <View style={LottoListstyles.lottoExplanationContainer}>
             <Text style={{ fontSize: EStyleSheet.value("$rem") * 20 }}>
               הסבר על הגרלות לוטו
