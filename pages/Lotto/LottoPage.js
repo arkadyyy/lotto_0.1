@@ -296,9 +296,9 @@ const LottoPage = ({ navigation }) => {
               <View style={LottoListstyles.topNumCircle}>
                 <Text
                   style={{
-                    fontSize: 20,
-                    color: "#FF0000",
-                    fontFamily: "fb-Spacer-bold",
+                    fontSize: 35,
+                    color: "#E62321",
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   1

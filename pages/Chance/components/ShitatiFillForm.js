@@ -4,11 +4,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 import { ScrollView } from "react-native-gesture-handler";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  faArrowAltCircleRight,
-  faArrowAltCircleLeft,
-} from "@fortawesome/free-regular-svg-icons";
-import chanceListstyles from "../ChanceListStyles";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import useForceUpdate from "use-force-update";
 
@@ -235,6 +230,10 @@ const FillForm = ({
   }, [tableNum]);
 
   useEffect(() => {
+    setallCounters(counter);
+  }, [counter]);
+
+  useEffect(() => {
     if (opendTableNum !== 0) {
       setusedTable(
         fullTables.find((table) => table.tableNum === opendTableNum)
@@ -341,6 +340,13 @@ const FillForm = ({
       { formNum: opendTableNum, counter: counter },
     ]);
   }, [counter]);
+
+  useEffect(() => {
+    setcounter(
+      allCounters.find((counter) => counter.formNum === opendTableNum).counter
+    );
+    console.log("allCounters from shitatifillForm : ", allCounters);
+  }, [allCounters]);
 
   return (
     <>

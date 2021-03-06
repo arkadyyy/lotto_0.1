@@ -11,37 +11,18 @@ import {
   TextInput,
 } from "react-native";
 import logInStyles from "./LogInStyles";
-import {
-  Container,
-  Item,
-  Content,
-  Header,
-  Input,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  Radio,
-  ListItem,
-  CheckBox,
-  Label,
-  Spinner,
-} from "native-base";
+import { Button, Label, Spinner } from "native-base";
 import { useSelector, useDispatch } from "react-redux";
 
 import NavBar from "../../components/NavBar";
-import { color } from "react-native-reanimated";
+
 import ColorLine from "../../components/ColorLine";
 import { useEffect } from "react";
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../../aws-exports";
 
 import { LogIn } from "../../redux/actions/actions";
-import { Touchable } from "react-native";
+
 Amplify.configure(awsconfig);
 
 const LogInPage = ({ navigation }) => {
@@ -107,7 +88,6 @@ const LogInPage = ({ navigation }) => {
               <View
                 style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
               ></View>
-              {/* 00ADEF Deep Sky Blue*/}
 
               <View
                 style={[

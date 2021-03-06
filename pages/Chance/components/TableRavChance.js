@@ -5,27 +5,13 @@ import { Label, ListItem } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import { useEffect } from "react";
 
-const Table = ({
-  setshowTable,
-  pressedSpade,
-  pressedHeart,
-  pressedDiamond,
-  pressedClubs,
-  tableIndex,
-  fullTables,
-  setopendTableNum,
-}) => {
+const Table = ({ setshowTable, tableIndex, fullTables, setopendTableNum }) => {
   const [usedSpade, setusedSpade] = useState([]);
   const [usedHeart, setusedHeart] = useState([]);
   const [usedDiamond, setusedDiamond] = useState([]);
   const [usedClubs, setusedClubs] = useState([]);
 
-  const [table1, settable1] = useState([]);
-
   useEffect(() => {
-    let fullTable1 = 0;
-    let x;
-
     fullTables.forEach((table) => {
       if (+table.tableNum === tableIndex) {
         setusedSpade(

@@ -70,7 +70,7 @@ export default function Home({ navigation }) {
                       },
                     ]}
                   >
-                    <View style={homestyles.openingPageBtnBorder}>
+                    <View style={homestyles.openingPageBtnBorderLotto}>
                       <Image
                         style={homestyles.openingPageTopIcon}
                         source={require("../../assets/home/red_ball.png")}
@@ -114,7 +114,7 @@ export default function Home({ navigation }) {
                     </View>
                   </Button>
                   <Image
-                    style={{ width: 70, height: 30 }}
+                    style={{ width: 80, height: 30, left: 5 }}
                     source={require("../../assets/home/logoLotto.png")}
                   />
                 </View>
@@ -128,7 +128,7 @@ export default function Home({ navigation }) {
                       { backgroundColor: "#009943" },
                     ]}
                   >
-                    <View style={homestyles.openingPageBtnBorder}>
+                    <View style={homestyles.openingPageBtnBorderChance}>
                       <Image
                         style={homestyles.openingPageTopIcon}
                         source={require("../../assets/home/spade.png")}
@@ -188,7 +188,7 @@ export default function Home({ navigation }) {
                       { backgroundColor: "#EB2874" },
                     ]}
                   >
-                    <View style={homestyles.openingPageBtnBorder}>
+                    <View style={homestyles.openingPageBtnBorderSheva77}>
                       <Image
                         resizeMode='contain'
                         style={[homestyles.openingPageTopIcon]}
@@ -233,7 +233,7 @@ export default function Home({ navigation }) {
                     </View>
                   </Button>
                   <Image
-                    style={{ width: 70, height: 30 }}
+                    style={{ width: 80, height: 30, left: 5 }}
                     source={require("../../assets/home/logo777.png")}
                   />
                 </View>
@@ -251,7 +251,7 @@ export default function Home({ navigation }) {
                       },
                     ]}
                   >
-                    <View style={homestyles.openingPageBtnBorder}>
+                    <View style={homestyles.openingPageBtnBorderOne23}>
                       <Image
                         style={homestyles.openingPageTopIcon}
                         source={require("../../assets/home/orange_ball.png")}
@@ -295,7 +295,7 @@ export default function Home({ navigation }) {
                     </View>
                   </Button>
                   <Image
-                    style={{ width: 70, height: 30 }}
+                    style={{ width: 80, height: 30, left: 5 }}
                     source={require("../../assets/home/logo123.png")}
                   />
                 </View>
@@ -335,7 +335,7 @@ export default function Home({ navigation }) {
                     <Button
                       onPress={() => {
                         navigation.navigate("About", {
-                          pageComeFrom:"Home"
+                          pageComeFrom: "Home",
                         });
                       }}
                       style={[

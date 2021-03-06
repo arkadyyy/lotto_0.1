@@ -186,9 +186,9 @@ const One23Page = ({ navigation }) => {
               <View style={one23listStyles.topNumCircle}>
                 <Text
                   style={{
-                    fontSize: 20,
+                    fontSize: 35,
                     color: "#E62321",
-                    fontFamily: "fb-Spacer-bold",
+                    fontFamily: "fb-Spacer",
                   }}
                 >
                   1
