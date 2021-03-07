@@ -24,6 +24,7 @@ const ChooseNumOfTables = ({
   shitati,
   hagralot,
   setHagralot,
+  setHagralotMultiplicaton,
 }) => {
   const route = useRoute();
 
@@ -63,6 +64,7 @@ const ChooseNumOfTables = ({
                 }}
                 onPress={() => {
                   settableNum(3);
+                  setHagralotMultiplicaton(3);
                 }}
               >
                 <Text
@@ -85,6 +87,7 @@ const ChooseNumOfTables = ({
                 }}
                 onPress={() => {
                   settableNum(2);
+                  setHagralotMultiplicaton(2);
                 }}
               >
                 <Text
@@ -107,6 +110,7 @@ const ChooseNumOfTables = ({
                 }}
                 onPress={() => {
                   settableNum(1);
+                  setHagralotMultiplicaton(1);
                 }}
               >
                 <Text
@@ -151,6 +155,7 @@ const ChooseNumOfTables = ({
                 onPress={() => {
                   // settableNum(1);
                   setHagralot(-1);
+                  setHagralotMultiplicaton(1);
                 }}
               >
                 <Text style={{ color: "white" }}>1</Text>
@@ -170,6 +175,7 @@ const ChooseNumOfTables = ({
                 onPress={() => {
                   // settableNum(4);
                   setHagralot(4);
+                  setHagralotMultiplicaton(4);
                 }}
               >
                 <Text style={{ color: "white" }}>4</Text>
@@ -189,6 +195,7 @@ const ChooseNumOfTables = ({
                 onPress={() => {
                   // settableNum(6);
                   setHagralot(6);
+                  setHagralotMultiplicaton(6);
                 }}
               >
                 <Text style={{ color: "white" }}>6</Text>
@@ -208,6 +215,7 @@ const ChooseNumOfTables = ({
                 onPress={() => {
                   // settableNum(8);
                   setHagralot(8);
+                  setHagralotMultiplicaton(8);
                 }}
               >
                 <Text style={{ color: "white" }}>8</Text>

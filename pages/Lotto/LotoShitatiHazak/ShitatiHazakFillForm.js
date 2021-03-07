@@ -1,26 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Dimensions,Image } from "react-native";
+import { Text, View, Dimensions, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-} from "native-base";
-import { ScrollView } from "react-native-gesture-handler";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  faArrowAltCircleRight,
-  faArrowAltCircleLeft,
-} from "@fortawesome/free-regular-svg-icons";
 import EStyleSheet from "react-native-extended-stylesheet";
 const { width, height } = Dimensions.get("window");
 
@@ -90,10 +70,14 @@ const StrongNum = ({
           margin: 2,
         }}
       >
-        <Text style={{
-          color:choosenStrongNums.includes(num) ? "#E62321" : "white",
-          fontFamily: "fb-Spacer"
-        }}>{num}</Text>
+        <Text
+          style={{
+            color: choosenStrongNums.includes(num) ? "#E62321" : "white",
+            fontFamily: "fb-Spacer",
+          }}
+        >
+          {num}
+        </Text>
       </TouchableOpacity>
     </>
   );
@@ -147,11 +131,11 @@ const ShitatiHazakFillForm = ({
 
   useEffect(() => {
     fullTables.forEach((table, index) => {
-      if (table.tableNum === opendTableNum) {
+      if (table.tableNum === 1) {
         setchoosenNums(table.choosenNums);
         setChoosenStrongNums(table.choosenStrongNums);
 
-        setindexOfTable(index);
+        setindexOfTable(1);
         setusedTable(table);
       }
     });
@@ -192,84 +176,80 @@ const ShitatiHazakFillForm = ({
             marginHorizontal: 15,
           }}
         >
-<View style={{ flexDirection: "row", flex: 1 }}>
+          <View style={{ flexDirection: "row", flex: 1 }}>
             <View style={{ flexDirection: "row", flex: 1 }}>
-<TouchableOpacity
-             style={{
-              width: 30,
-              height: 30,
-              borderColor: "white",
-              borderWidth: 2,
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: 23,
-              margin: 3,
-            }}
-            disabled={choosenNums.length !== 0 ? true : false}
-            onPress={() => {
-              let numbers = autoFill(7);
-              setchoosenNums(numbers.randomNumbers);
-              let strongNumbers = autoFill(hazakimNumber);
-              setChoosenStrongNums(strongNumbers.randomChoosenStrongNums);
-            }}
-            >
-             
-             <Image
+              <TouchableOpacity
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderColor: "white",
+                  borderWidth: 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 23,
+                  margin: 3,
+                }}
+                disabled={choosenNums.length !== 0 ? true : false}
+                onPress={() => {
+                  let numbers = autoFill(7);
+                  setchoosenNums(numbers.randomNumbers);
+                  let strongNumbers = autoFill(hazakimNumber);
+                  setChoosenStrongNums(strongNumbers.randomChoosenStrongNums);
+                }}
+              >
+                <Image
                   style={{ width: 22.5, height: 12.5 }}
                   source={require("C:/fullstack/lottoMatic/assets/fillTable.png")}
                 />
-          </TouchableOpacity>
+              </TouchableOpacity>
 
-
-          <TouchableOpacity
-             onPress={() => {
-              setchoosenNums([]);
-              setChoosenStrongNums([]);
-            }}
-              style={{
-                width: 30,
-                height: 30,
-                borderColor: "white",
-                borderWidth: 2,
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Image
+              <TouchableOpacity
+                onPress={() => {
+                  setchoosenNums([]);
+                  setChoosenStrongNums([]);
+                }}
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderColor: "white",
+                  borderWidth: 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 23,
+                  margin: 3,
+                }}
+              >
+                <Image
                   style={{ width: 22.5, height: 12.5 }}
                   source={require("C:/fullstack/lottoMatic/assets/removeForm.png")}
                 />
-            </TouchableOpacity>
-          
+              </TouchableOpacity>
 
-            <TouchableOpacity
-             style={{
-              width: 30,
-              height: 30,
-              borderColor: "white",
-              borderWidth: 2,
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: 23,
-              margin: 3,
-            }}
-              disabled={choosenNums.length !== 0 ? true : false}
-              onPress={() => {
-                let numbers = autoFill(7);
-                setchoosenNums(numbers.randomNumbers);
-                let strongNumbers = autoFill(hazakimNumber);
-                setChoosenStrongNums(strongNumbers.randomChoosenStrongNums);
-              }}
-            >
-             
-             <Image
+              <TouchableOpacity
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderColor: "white",
+                  borderWidth: 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 23,
+                  margin: 3,
+                }}
+                disabled={choosenNums.length !== 0 ? true : false}
+                onPress={() => {
+                  let numbers = autoFill(7);
+                  setchoosenNums(numbers.randomNumbers);
+                  let strongNumbers = autoFill(hazakimNumber);
+                  setChoosenStrongNums(strongNumbers.randomChoosenStrongNums);
+                }}
+              >
+                <Image
                   style={{ width: 22.5, height: 12.5 }}
                   source={require("C:/fullstack/lottoMatic/assets/fillForm.png")}
                 />
-          </TouchableOpacity>
-          <View
+              </TouchableOpacity>
+              <View
                 style={{
                   top: 3,
                   left: 7,
@@ -279,7 +259,7 @@ const ShitatiHazakFillForm = ({
                   height: 33,
                 }}
               ></View>
-               <View
+              <View
                 style={{
                   borderRadius: 30,
                   justifyContent: "center",
@@ -291,7 +271,7 @@ const ShitatiHazakFillForm = ({
                   marginVertical: 4,
                   top: 3,
                 }}
-          ></View>
+              ></View>
             </View>
             <View
               style={{
@@ -300,7 +280,7 @@ const ShitatiHazakFillForm = ({
                 flex: 1,
               }}
             >
-                            <View
+              <View
                 style={{
                   top: 3,
                   left: 7,
@@ -310,34 +290,34 @@ const ShitatiHazakFillForm = ({
                   height: 33,
                 }}
               ></View>
-          <TouchableOpacity
-           style={{
-            height: 25,
-            padding: 7,
-            backgroundColor: "white",
-            borderRadius: 13,
-            justifyContent: "center",
-            alignItems: "center",
-            marginHorizontal: 6,
-            marginVertical: 4,
-            top: 3,
-            }}
-            onPress={() => {
-              setshowTable(false);
-              if (indexOfTable !== -1) {
-                // let x = fullTables.splice(indexOfTable, 1);
-                setFullTables([...fullTables, usedTable]);
-              } else {
-                setFullTables([...fullTables, usedTable]);
-              }
-            }}
-          >
-            <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
-              סגור חלון
-            </Text>
-          </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  height: 25,
+                  padding: 7,
+                  backgroundColor: "white",
+                  borderRadius: 13,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginHorizontal: 6,
+                  marginVertical: 4,
+                  top: 3,
+                }}
+                onPress={() => {
+                  setshowTable(false);
+                  if (indexOfTable !== -1) {
+                    // let x = fullTables.splice(indexOfTable, 1);
+                    setFullTables([...fullTables, usedTable]);
+                  } else {
+                    setFullTables([...fullTables, usedTable]);
+                  }
+                }}
+              >
+                <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
+                  סגור חלון
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
         </View>
         {/* {fill numbers} */}
         <View
@@ -474,7 +454,7 @@ const ShitatiHazakFillForm = ({
               ))}
           </View> */}
         </View>
-        <View style={{ marginTop: -10 }}>
+        <View style={{ marginTop: -47 }}>
           <Text
             style={{
               color: "white",

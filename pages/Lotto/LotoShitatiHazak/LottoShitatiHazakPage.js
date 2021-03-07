@@ -3,21 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../../components/NavBar";
 import BlankSquare from "../../../components/BlankSquare";
 import LottoListstyles from "../LottoListStyles";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-  Toast,
-} from "native-base";
+import { Button, List, Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "../../Lotto/components/ChooseNumOfTables";
 import ChooseForm from "../components/ChooseForm";
@@ -25,8 +11,7 @@ import ShitatiHazakFillForm from "./ShitatiHazakFillForm";
 import ShitatiHazakTable from "./ShitatiHazkTable";
 import { autoFill } from "./ShitatiHazakFillForm";
 import EStyleSheet from "react-native-extended-stylesheet";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+
 import { useSelector, useDispatch } from "react-redux";
 
 const LottoShitatiHazakPage = ({ navigation }) => {
@@ -34,7 +19,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
   const [tableNum, settableNum] = useState(1);
   // const [tzerufimNumber, setTzerufimNumber] = useState(8);
   const [hazakimNumber, setHazakimNumber] = useState(4);
-  // const [opendTableTzerufimNum, setOpendTableTzerufimNum] = useState(8);
+
   const [opendTableHazakimNumber, setOpendTableHazakimNumber] = useState(4);
   const [double, setdouble] = useState(false);
   const [fullTables, setFullTables] = useState([]);

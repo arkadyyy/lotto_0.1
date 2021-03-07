@@ -46,6 +46,7 @@ const SumPage777 = ({ route, navigation }) => {
 
   const [price, setPrice] = useState(null);
   const [otomatic, setOtomatic] = useState(true);
+  const [HagralotMultiplicaton, setHagralotMultiplicaton] = useState(1);
 
   const [hagralot, setHagralot] = useState(-1);
   const [url, seturl] = useState("");
@@ -63,7 +64,7 @@ const SumPage777 = ({ route, navigation }) => {
     let x = await fullTables.map((table, index) => {
       return {
         numbers: table.choosenNums,
-        strong_number: [table.strongNum],
+
         table_number: table.tableNum,
       };
     });
@@ -74,7 +75,7 @@ const SumPage777 = ({ route, navigation }) => {
         {
           multi_lottery: hagralot,
           tables: x,
-          form_type: formType,
+          form_type: Number(formType),
         },
         {
           headers: {
@@ -87,23 +88,10 @@ const SumPage777 = ({ route, navigation }) => {
       .then((res) => setPrice(res.data.price))
       .catch((err) => console.log(err));
 
-    setsendToServer({
-      multi_lottery: hagralot,
-      tables: x,
-    });
-  };
-
-  const onblur = () => {
-    navigation.addListener("blur", () => {
-      console.log("navigation blur happend &&&&&&&");
-      setPrice(null);
-      setOtomatic(true);
-
-      setsendToServer({
-        multi_lottery: -1,
-        tables: [],
-      });
-    });
+    // setsendToServer({
+    //   multi_lottery: hagralot,
+    //   tables: x,
+    // });
   };
 
   useEffect(() => {
@@ -119,7 +107,7 @@ const SumPage777 = ({ route, navigation }) => {
       let x = trimedFullTables.map((table, index) => {
         return {
           numbers: table.choosenNums,
-          strong_number: [table.strongNum],
+
           table_number: table.tableNum,
         };
       });
@@ -131,7 +119,7 @@ const SumPage777 = ({ route, navigation }) => {
       );
 
       setsendToServer({
-        form_type: formType,
+        form_type: Number(formType),
         multi_lottery: hagralot,
         tables: x,
       });
@@ -139,7 +127,7 @@ const SumPage777 = ({ route, navigation }) => {
       let x = fullTables.map((table, index) => {
         return {
           numbers: table.choosenNums,
-          strong_number: [table.strongNum],
+
           table_number: table.tableNum,
         };
       });
@@ -151,7 +139,7 @@ const SumPage777 = ({ route, navigation }) => {
       );
 
       setsendToServer({
-        form_type: formType,
+        form_type: Number(formType),
         multi_lottery: hagralot,
         tables: x,
       });
@@ -159,7 +147,7 @@ const SumPage777 = ({ route, navigation }) => {
       let x = fullTables.map((table, index) => {
         return {
           numbers: table.choosenNums,
-          strong_number: table.choosenStrongNums,
+
           table_number: table.tableNum,
         };
       });
@@ -171,40 +159,39 @@ const SumPage777 = ({ route, navigation }) => {
       );
 
       setsendToServer({
-        form_type: formType,
+        form_type: Number(formType),
         multi_lottery: hagralot,
         tables: x,
       });
     }
   }, [fullTables, otomatic, navigation]);
 
-  // useEffect(() => {
-  //   onblur();
-  //   //set url accordingly to game
-  //   if (gameType === "777") {
-  //     seturl("http://52.90.122.190:5000/games/777/type/regular/0");
-  //     getPrice(
-  //       "http://52.90.122.190:5000/games/777/type/regular/calculate_price",
-  //       fullTables,
-  //       formType
-  //     );
-  //   } else if (gameType === "778") {
-  //     seturl("http://52.90.122.190:5000/games/777/type/shitati/0");
-  //     getPrice(
-  //       "http://52.90.122.190:5000/games/777/type/shitati/calculate_price",
-  //       fullTables,
-  //       formType
-  //     );
-  //   } else if (gameType === "779") {
-  //     seturl("http://52.90.122.190:5000/games/777/type/shitati/0");
-  //     getPrice(
-  //       "http://52.90.122.190:5000/games/777/type/shitati/calculate_price",
-  //       fullTables,
-  //       formType
-  //     );
-  //   }
-  //   console.log("formType : ", formType);
-  // }, [[fullTables, hagralot, otomatic, navigation]]);
+  useEffect(() => {
+    //set url accordingly to game
+    if (gameType === "777") {
+      seturl("http://52.90.122.190:5000/games/777/type/regular/0");
+      getPrice(
+        "http://52.90.122.190:5000/games/777/type/regular/calculate_price",
+        fullTables,
+        formType
+      );
+    } else if (gameType === "778") {
+      seturl("http://52.90.122.190:5000/games/777/type/shitati/0");
+      getPrice(
+        "http://52.90.122.190:5000/games/777/type/shitati/calculate_price",
+        fullTables,
+        formType
+      );
+    } else if (gameType === "779") {
+      seturl("http://52.90.122.190:5000/games/777/type/shitati/0");
+      getPrice(
+        "http://52.90.122.190:5000/games/777/type/shitati/calculate_price",
+        fullTables,
+        formType
+      );
+    }
+    console.log("formType : ", formType);
+  }, [navigation]);
 
   useEffect(() => {
     //configure data sent to server
@@ -220,7 +207,7 @@ const SumPage777 = ({ route, navigation }) => {
     console.log("x : ", x);
 
     setsendToServer({
-      form_type: formType,
+      form_type: Number(formType),
       multi_lottery: hagralot,
       tables: x,
     });
@@ -271,7 +258,11 @@ const SumPage777 = ({ route, navigation }) => {
               </Text>
             </View>
 
-            <ChooseNumOfTables hagralot={hagralot} setHagralot={setHagralot} />
+            <ChooseNumOfTables
+              setHagralotMultiplicaton={setHagralotMultiplicaton}
+              hagralot={hagralot}
+              setHagralot={setHagralot}
+            />
             <ExtraAndOtomatChoose
               otomatic={otomatic}
               setOtomatic={setOtomatic}
@@ -383,7 +374,7 @@ const SumPage777 = ({ route, navigation }) => {
                     fontFamily: "fb-Spacer",
                   }}
                 >
-                  לתשלום: {price}{" "}
+                  לתשלום: {price * HagralotMultiplicaton}
                 </Text>
                 <View style={{ height: 10 }}>
                   <FontAwesomeIcon
@@ -424,7 +415,6 @@ const SumPage777 = ({ route, navigation }) => {
                         res
                       );
                       navigation.navigate(`congratulation`);
-
                     });
                   {
                   }
