@@ -216,6 +216,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                       fullTables: fullTables,
                       gameType: "shitati_hazak",
                       hazakimNumber: hazakimNumber,
+                      trimedFullTables: fullTables,
                     });
                   }
                 }}

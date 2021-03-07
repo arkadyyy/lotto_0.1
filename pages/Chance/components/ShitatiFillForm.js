@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 import { ScrollView } from "react-native-gesture-handler";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import useForceUpdate from "use-force-update";
 
@@ -77,7 +78,7 @@ const Num = ({
         disabled={disabled(pressed, cardTypeUsed, usedTableNum)}
         onPress={() => {
           console.log("pressed : ", pressed);
-          console.log("counter : ", counter);
+          console.log("cardTypeUsed :~~~~~~~ ", cardTypeUsed);
           if (pressed.symbolsPressed.includes(symbol)) {
             setpressed({
               numberOfPress: pressed.numberOfPress - 1,
@@ -134,6 +135,8 @@ const FillForm = ({
   setallCounters,
   formNum,
   autoFillForm,
+  cardTypeUsed,
+  setcardTypeUsed,
 }) => {
   const [symbols, setsymbols] = useState([
     "A",
@@ -172,8 +175,6 @@ const FillForm = ({
     symbolsPressed: [],
     type: "clubs",
   });
-
-  const [cardTypeUsed, setcardTypeUsed] = useState([]);
 
   const arrowClickedRight = () => {
     if (opendTableNum > 1) {
@@ -232,6 +233,7 @@ const FillForm = ({
 
   useEffect(() => {
     setallCounters(counter);
+    console.log();
   }, [counter]);
 
   useEffect(() => {
