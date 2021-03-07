@@ -209,7 +209,7 @@ const Sheva778Page = ({ navigation }) => {
               </Button>
             </View>
           </View>
-          <View style={{ flexDirection: "row", margin: 12 }}>
+          {/* <View style={{ flexDirection: "row", margin: 12 }}>
             <View style={{ height: "50%", backgroundColor: "white" }}></View>
             <Text
               style={{
@@ -247,7 +247,7 @@ const Sheva778Page = ({ navigation }) => {
                 עוד...
               </Text>
             </View>
-          </View>
+          </View> */}
         </View>
       </ScrollView>
     </>

@@ -415,7 +415,7 @@ const ChancePageShitati = ({ navigation }) => {
               </Button>
             </View>
           </View>
-          <View style={{ flexDirection: "row", margin: 12 }}>
+          {/* <View style={{ flexDirection: "row", margin: 12 }}>
             <View style={{ height: "50%", backgroundColor: "white" }}></View>
             <Text
               style={{
@@ -453,7 +453,7 @@ const ChancePageShitati = ({ navigation }) => {
                 עוד...
               </Text>
             </View>
-          </View>
+          </View> */}
           {/* <View style={chanceListstyles.lottoExplanationContainer}>
             <Text style={{ fontSize: 18 }}>הסבר על הגרלות לוטו</Text>
             <TouchableOpacity>

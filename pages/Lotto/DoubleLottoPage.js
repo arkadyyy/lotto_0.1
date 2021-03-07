@@ -392,8 +392,8 @@ const DoubleLottoPage = ({ navigation }) => {
               </Button>
             </View>
           </View>
-          <View style={{ flexDirection: "row", margin: 12 }}>
-            <View style={{ height: "50%", backgroundColor: "white" }}></View>
+          {/* <View style={{ flexDirection: "row", margin: 12 }}> */}
+            {/* <View style={{ height: "50%", backgroundColor: "white" }}></View>
             <Text
               style={{
                 flex: 4,
@@ -403,9 +403,9 @@ const DoubleLottoPage = ({ navigation }) => {
               }}
             >
               הסבר על הגרלות לוטו
-            </Text>
-            <View style={{ flexDirection: "row", flex: 1, left: 20 }}>
-              <TouchableOpacity
+            </Text> */}
+            {/* <View style={{ flexDirection: "row", flex: 1, left: 20 }}> */}
+              {/* <TouchableOpacity
                 style={{
                   width: 20,
                   height: 20,
@@ -417,9 +417,9 @@ const DoubleLottoPage = ({ navigation }) => {
                 }}
               >
                 <Text style={{ fontSize: 20, color: "white" }}>+</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
-              <Text
+              {/* <Text
                 style={{
                   flex: 1,
                   fontFamily: "fb-Spacer",
@@ -428,35 +428,10 @@ const DoubleLottoPage = ({ navigation }) => {
               >
                 {" "}
                 עוד...
-              </Text>
-            </View>
-          </View>
-          {/* <View style={LottoListstyles.lottoExplanationContainer}>
-            <Text style={{ fontSize: EStyleSheet.value("$rem") * 20 }}>
-              הסבר על הגרלות לוטו
-            </Text>
-            <View style={{ flexDirection: "row", paddingTop: 5 }}>
-              <FontAwesomeIcon
-                color='#263742'
-                border={true}
-                inverse
-                icon={faPlusCircle}
-                onPress={() => {
-                  navigation.navigate("HowItWorks");
-                }}
-              />
-              <Text
-                style={{
-                  marginRight: 10,
-                  paddingRight: 5,
-                  paddingTop: 2,
-                  fontSize: EStyleSheet.value("$rem") * 15,
-                }}
-              >
-                עוד...
-              </Text>
-            </View>
-          </View> */}
+              </Text> */}
+            {/* </View> */}
+          {/* </View> */}
+        
         </View>
       </ScrollView>
     </>
