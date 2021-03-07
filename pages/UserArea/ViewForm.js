@@ -110,7 +110,7 @@ const ViewForm = ({
           <View>
             <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                <Text style={{ fontFamily: "fb-Spacer" }}>טבלה {tableNum}</Text>
+                <Text style={{ fontFamily: "fb-Spacer",paddingTop:14}}>טבלה {tableNum}</Text>
                 <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                   {Object.values(numbers).map((num, index) => (
                     <View
@@ -298,7 +298,7 @@ const ViewForm = ({
                     >
                       {ShapesTitle[indexShapes] === "clover" &&
                         <Image
-                        style={{ width: 50, height: 70, borderRadius: 7,marginRight:30 }}
+                        style={{ width: 50, height: 70, borderRadius: 7 }}
                         source={require(`C:/fullstack/lottoMatic/assets/chance/choosenClubs.png`)}
                           />
                       }
@@ -323,9 +323,10 @@ const ViewForm = ({
                      
                       <Text style={{
                         fontFamily: "fb-Spacer",
-                        top: -20,
-                        fontSize: num === "Q" || num === "K" || num === "A" || num === "J" ? 20 : 25,
-                        
+                        top: -28,
+                        // fontSize: num === "Q" || num === "K" || num === "A" || num === "J" ? 20 : 25,
+                        fontSize: 20,
+                        fontWeight:"bold"
                       }}>{num}</Text>
 
                       {console.log("num:::::::::::::::", num)}

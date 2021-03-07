@@ -42,7 +42,7 @@ const LogInPage = ({ navigation }) => {
   //4 - confimation message/ successfuly reset password
 
   useEffect(() => {
-    // dispatch(LogIn("dlevkovich05@gmail.com", "Dekel1145"));
+    dispatch(LogIn("dlevkovich05@gmail.com", "Dekel1145"));
     dispatch({ type: "RESET_SIGNUP" });
   }, []);
   useEffect(() => {
