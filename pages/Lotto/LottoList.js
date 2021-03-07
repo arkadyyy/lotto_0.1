@@ -271,7 +271,7 @@ const LottoList = (props) => {
               >
                 הסבר על הגרלות לוטו
               </Text>
-              <View style={{ flexDirection: "row", flex: 1 }}>
+              {/* <View style={{ flexDirection: "row", flex: 1 }}>
                 <TouchableOpacity
                   style={{
                     width: 20,
@@ -296,7 +296,7 @@ const LottoList = (props) => {
                   {" "}
                   עוד...
                 </Text>
-              </View>
+              </View> */}
             </View>
             <View
               style={{

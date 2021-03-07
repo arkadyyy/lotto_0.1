@@ -35,7 +35,7 @@ const Seva77List = (props) => {
   
 useEffect(() => {
   setOpenExplnation(false) 
-}, [onGoBack()])
+}, [navigation.onGoBack])
 
   return (
     <>

@@ -119,7 +119,7 @@ const One23List = (props) => {
               >
                 הסבר על הגרלות 123
               </Text>
-              <View style={{ flexDirection: "row", flex: 1 }}>
+              {/* <View style={{ flexDirection: "row", flex: 1 }}>
                 <TouchableOpacity
                   style={{
                     width: 20,
@@ -144,7 +144,7 @@ const One23List = (props) => {
                   {" "}
                   עוד...
                 </Text>
-              </View>
+              </View> */}
             </View>
             <View
               style={{

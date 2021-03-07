@@ -187,8 +187,8 @@ const HowItWork = ({ navigation }) => {
       <NavBar navigation={navigation} screenName={"HowItWork"} />
 
       <View
-        // style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
-        style={{ width: "100%", height: 7, backgroundColor: "#F2F2F2" }}
+        style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
+        // style={{ width: "100%", height: 7, backgroundColor: "#F2F2F2" }}
       ></View>
       <ScrollView style={{ flex: 1 }}>
               <View
@@ -198,8 +198,8 @@ const HowItWork = ({ navigation }) => {
 
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <View
-              // style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
-              style={{ width: "100%", height: 7, backgroundColor: "#F2F2F2" }}
+              style={{ width: "100%", height: 7, backgroundColor: "#00ADEF" }}
+              // style={{ width: "100%", height: 7, backgroundColor: "#F2F2F2" }}
             ></View>
             {/* 00ADEF Deep Sky Blue*/}
             {/* {store.signUp === 3 && <LogInPage />} */}
@@ -222,8 +222,8 @@ paddingTop:EStyleSheet.value("$rem") * 10,
                 <View
                     style={{
                                       height: EStyleSheet.value("$rem") * 600,
-                                      // backgroundColor: "#00ADEF",
-                                      backgroundColor: "#F2F2F2",
+                                      backgroundColor: "#00ADEF",
+                                      // backgroundColor: "#F2F2F2",
                                       width: "90%",
                                   padding:10,
                                       flex: 1,
@@ -251,31 +251,31 @@ paddingTop:EStyleSheet.value("$rem") * 10,
 
            לשלוח טפסי לוטו אונליין! 
 </Text> */}
-<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"black" }}>
+<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
 לאחר התשלום אנו בלוטומטיק מקבלים את הטופס שמילאתם ושולחים אותו עבורכם בנקודת מכירה מורשית של מפעל הפיס.
 
 </Text>
-<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"black" }}>
+<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
 
 את הטופס ששלחנו עבורכם בנקודה אנו סורקים ומעבירים לכם לתיבת הדואר האלקטרוני, ובנוסף מעלים את הטופס הסרוק לאזור האישי שלכם באפליקציה.
 </Text>
-<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"black" }}>
+<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
  
 הטופס המקורי יישמר אצלנו במשרדי החברה ובמידה וזכיתם בסכום  העולה על 11,000 ש״ח יימסר לכם הטופס באופן אישי. 
 </Text>
-<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"black" }}>
+<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
 
 במידה וסכום הזכייה שלכם הינו מ11,000 ש״ח או נמוך ממנו החשבון שלכם באתר יזוכה באופן אוטומטי ותקבלו על כך הודעה, אתם תוכלו למשוך את הכסף מהחשבון שכלם באתר לתוך חשבון הבנק שלכם או שתבחרו לנצל את היתרה לשליחת טפסים חדשים. 
 </Text>
-<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"black" }}>
+<Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
  
                   </Text>
-                  <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"black" }}>
+                  <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
 
                   אנו מאחלים לכם חווית שימוש והנאה מרבית מהשירות שלנו ומלאי תקווה שנביא לכם את המזל. 
 
            </Text>
-           <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"black" }}>
+           <Text style={{ direction: "rtl", fontSize: EStyleSheet.value("$rem") * 17,color:"white" }}>
 
 בהצלחה! 
            </Text>
