@@ -77,6 +77,7 @@ const Num = ({
         disabled={disabled(pressed, cardTypeUsed, usedTableNum)}
         onPress={() => {
           console.log("pressed : ", pressed);
+          console.log("counter : ", counter);
           if (pressed.symbolsPressed.includes(symbol)) {
             setpressed({
               numberOfPress: pressed.numberOfPress - 1,

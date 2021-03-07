@@ -44,21 +44,32 @@ const ChancePageShitati = ({ navigation }) => {
     await deletForm();
     const cardArr = ["7", "8", "9", "10", "J", "Q", "K", "A"];
 
-    for (let index = 1; index <= formNum; index++) {
-      console.log(" i am here ~~~~~~~~");
-      //filtered are all fulltables that are not gonna change
-      let filtered = fullTables.filter((table) => table.tableNum !== index);
-      // console.log("filtered : ", filtered);
-      //usedtable is the table we are currently changing, auto filling
-      let usedTable = fullTables.find((table) => table.tableNum === index);
-      // console.log("usedTable : ", usedTable);
+    //filtered are all fulltables that are not gonna change
+    let filtered = fullTables.filter((table) => table.tableNum !== 1);
+    // console.log("filtered : ", filtered);
+    //usedtable is the table we are currently changing, auto filling
+    let usedTable = fullTables.find((table) => table.tableNum === 1);
+    // console.log("usedTable : ", usedTable);
 
-      var shuffled = cardArr.sort(function () {
-        return 0.5 - Math.random();
-      });
-      var selected = shuffled.slice(0, tableNum);
+    usedTable.choosenCards = [
+      { type: "spade", cards: [] },
+      { type: "heart", cards: [] },
+      { type: "diamond", cards: [] },
+      { type: "clubs", cards: [] },
+    ];
 
-      let x = Array.from({ length: tableNum }, (v, i) => {
+    var shuffled = cardArr.sort(function () {
+      return 0.5 - Math.random();
+    });
+    var selected = shuffled.slice(0, tableNum);
+    let x;
+
+    //resetting usedtable cards be4 putting enw ones
+
+    let randomNumArr = [0, 1, 2, 3];
+
+    for (let i = 0; i < tableNum; i++) {
+      x = Array.from({ length: tableNum }, (v, i) => {
         let shitatiArr = [];
 
         var shuffled2 = cardArr.sort(function () {
@@ -68,48 +79,22 @@ const ChancePageShitati = ({ navigation }) => {
 
         return shitatiArr;
       });
-      console.log("x from autofill : ", x);
 
-      console.log("selected : ", selected);
-
-      //resetting usedtable cards be4 putting enw ones
-      usedTable.choosenCards = [
-        {
-          cards: [],
-          type: "spade",
-        },
-        {
-          cards: [],
-          type: "heart",
-        },
-        {
-          cards: [],
-          type: "diamond",
-        },
-        {
-          cards: [],
-          type: "clubs",
-        },
-      ];
-      let randomNumArr = [0, 1, 2, 3];
-
-      for (let i = 0; i < tableNum; i++) {
-        let random = Math.floor(Math.random() * randomNumArr.length);
-        usedTable.choosenCards[randomNumArr[random]].cards = x[0][0];
-        randomNumArr.splice(random, 1);
-      }
-      // selected.forEach((card, index) => {
-      //   let random = Math.floor(Math.random() * randomNumArr.length);
-
-      //   usedTable.choosenCards[randomNumArr[random]].cards = [card];
-
-      //   console.log("usedtable choosencards : ", usedTable.choosenCards);
-
-      //   randomNumArr.splice(random, 1);
-      //   console.log("randomNumArr : ", randomNumArr);
-      // });
-      setfullTables([...filtered, usedTable]);
+      let random = Math.floor(Math.random() * randomNumArr.length);
+      usedTable.choosenCards[randomNumArr[random]].cards = x[0][0];
+      randomNumArr.splice(random, 1);
     }
+    // selected.forEach((card, index) => {
+    //   let random = Math.floor(Math.random() * randomNumArr.length);
+
+    //   usedTable.choosenCards[randomNumArr[random]].cards = [card];
+
+    //   console.log("usedtable choosencards : ", usedTable.choosenCards);
+
+    //   randomNumArr.splice(random, 1);
+    //   console.log("randomNumArr : ", randomNumArr);
+    // });
+    setfullTables([...filtered, usedTable]);
 
     /////////// done with setting fulltables,now resetting fillform counter
 
@@ -215,6 +200,7 @@ const ChancePageShitati = ({ navigation }) => {
   useEffect(() => {
     checkTables(fullTables, tableNum, settablesCheck, setfullTables, formNum);
     console.log("fullTables : ", fullTables);
+    console.log("allCounters : ", allCounters);
   }, [fullTables, tableNum]);
 
   return (
