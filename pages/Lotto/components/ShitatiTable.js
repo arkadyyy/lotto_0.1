@@ -149,9 +149,9 @@ const ShitatiTable = ({
                 flexWrap: "wrap",
                 width:
                   tzerufimNumber === 12
-                    ? "78%"
+                    ? "85%"
                     : tzerufimNumber === 11
-                    ? "75%"
+                    ? "80%"
                     : tzerufimNumber === 10
                     ? "73%"
                     : tzerufimNumber === 9
@@ -176,17 +176,17 @@ const ShitatiTable = ({
                 flexDirection: "row",
                 left:
                   tzerufimNumber === 12
-                    ? 180
+                    ? 200
                     : tzerufimNumber === 11
-                    ? 180
+                    ? 193
                     : tzerufimNumber === 10
-                    ? 150
+                    ? 165
                     : tzerufimNumber === 9
-                    ? 150
+                    ? 160
                     : tzerufimNumber === 8
-                    ? 120
-                    : 90,
-                top: -5,
+                    ? 130
+                    : 95,
+                top: -12,
               }}
             >
               <StrongNum key={index} strongNumber={strongNumber} />

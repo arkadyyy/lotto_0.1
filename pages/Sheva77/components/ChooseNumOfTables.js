@@ -64,7 +64,7 @@ const ChooseNumOfTables = ({
                 }}
                 onPress={() => {
                   settableNum(3);
-                  setHagralotMultiplicaton(3);
+                  // setHagralotMultiplicaton(3);
                 }}
               >
                 <Text
@@ -87,7 +87,7 @@ const ChooseNumOfTables = ({
                 }}
                 onPress={() => {
                   settableNum(2);
-                  setHagralotMultiplicaton(2);
+                  // setHagralotMultiplicaton(2);
                 }}
               >
                 <Text
@@ -110,7 +110,7 @@ const ChooseNumOfTables = ({
                 }}
                 onPress={() => {
                   settableNum(1);
-                  setHagralotMultiplicaton(1);
+                  // setHagralotMultiplicaton(1);
                 }}
               >
                 <Text
