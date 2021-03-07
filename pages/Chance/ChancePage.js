@@ -865,7 +865,7 @@ const ChancePage = ({ navigation }) => {
             </View>
           </View>
 
-          <View style={{ flexDirection: "row", margin: 12 }}>
+          {/* <View style={{ flexDirection: "row", margin: 12 }}>
             <View style={{ height: "50%", backgroundColor: "white" }}></View>
             <Text
               style={{
@@ -903,7 +903,7 @@ const ChancePage = ({ navigation }) => {
                 עוד...
               </Text>
             </View>
-          </View>
+          </View> */}
         </View>
       </ScrollView>
     </>

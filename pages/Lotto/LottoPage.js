@@ -416,7 +416,7 @@ const LottoPage = ({ navigation }) => {
               </Button>
             </View>
           </View>
-          <View style={{ flexDirection: "row", margin: 12 }}>
+          {/* <View style={{ flexDirection: "row", margin: 12 }}>
             <View style={{ height: "50%", backgroundColor: "white" }}></View>
             <Text
               style={{
@@ -454,7 +454,7 @@ const LottoPage = ({ navigation }) => {
                 עוד...
               </Text>
             </View>
-          </View>
+          </View> */}
           {/* <View style={LottoListstyles.lottoExplanationContainer}>
             <Text style={{ fontSize: EStyleSheet.value("$rem") * 20 }}>
               הסבר על הגרלות לוטו
