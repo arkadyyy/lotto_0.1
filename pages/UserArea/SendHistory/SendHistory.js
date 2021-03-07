@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text, Touchable, View } from "react-native";
+import { ScrollView, StyleSheet, Text, Touchable, View,Dimensions,Share } from "react-native";
 import {
   Container,
   Header,
@@ -27,6 +27,7 @@ import CameraRoll from "@react-native-community/cameraroll";
 import * as Permissions from 'expo-permissions';
 // import * as MediaLibrary from 'expo-media-library';
 import { WebView } from 'react-native-webview';
+import * as Linking from 'expo-linking';
 
 
 const SeeOrDupilcate = ({
@@ -200,6 +201,10 @@ else if (form.form_type.includes("777")) {
         
           <TouchableOpacity
             onPress={() => {
+
+
+          
+
               axios
                 .get(`http://52.90.122.190:5000/admin/download/${form.id}`, {
                   headers: {
@@ -209,41 +214,46 @@ else if (form.form_type.includes("777")) {
                   },
                 })
                 .then((res) => {
-                  setWebView(true);                  
+              console.log("axios res:", res);
+              // console.log("res url:",res.config.url);
+
+
+
+                  // setWebView(true);                  
                   // setWebViewUri( 'https://infinite.red');                  
                   // setWebViewUri( `http://52.90.122.190:5000/admin/download/${form.id}`);                  
-                  setWebViewUri( `http://52.90.122.190:5000/admin/download/d3279410-baf6-47e7-8377-bf59e4578c73`);                  
-                  console.log("axios res:", res);
+                  // setWebViewUri( `http://52.90.122.190:5000/admin/download/d3279410-baf6-47e7-8377-bf59e4578c73`);                  
                   
-                                   // const fileUri = FileSystem.documentDirectory + 'toffes.pdf';
-                  // FileSystem.downloadAsync(
-                  //   // 'http://techslides.com/demos/sample-videos/small.mp4',
-                  // `http://52.90.122.190:5000/admin/download/${form.id}`,
-                  //   // FileSystem.documentDirectory + `downloadfile.pdf`,
-                  //   fileUri,                    
-                  //   {
-                  //     headers: {
-                  //       Authorization: store.jwt,
-                  //     },
-                  //   }
-
-                  // )
-                  // .then(({ uri }) => {
-                  //   console.log('Finished downloading to ', uri);
-                  //   FileSystem.getInfoAsync(uri)
+                  const fileUri = FileSystem.documentDirectory + 'toffes.pdf';
+                  FileSystem.downloadAsync(
+                    // 'http://techslides.com/demos/sample-videos/small.mp4',
+                    res.config.url,                  
+                    FileSystem.documentDirectory + `downloadfile.pdf`,
+                    // fileUri,                    
+                    {
+                      headers: {
+                        Authorization: store.jwt,
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                       },
+                    }
+                 )
+                  .then(({ uri }) => {
+                    console.log('Finished downloading to ', uri);
+                    // FileSystem.getInfoAsync(uri)
                       
-                  //     .then((res) => {
-                  //       console.log('resCamera', res)
-                  //       // CameraRoll.saveToCameraRoll(uri, 'pdf')
-                  //       CameraRoll.save(res.uri);
-                  //       console.log("uriiiiii:",res.uri);
+                      // .then((res) => {
+                        // console.log('resCamera', res)
+                        // CameraRoll.saveToCameraRoll(uri, 'pdf')
+                        // CameraRoll.save(res.uri);
+                        // console.log("uriiiiii:",res.uri);
                   //       // ca
-                  //     })
+                      // })
                     
-                  // })
-                  // .catch(error => {
-                  //   console.error(error);
-                  // });
+                  })
+                  .catch(error => {
+                    console.error(error);
+                   });
                 })
                 .catch((err) => console.log(err));
 
