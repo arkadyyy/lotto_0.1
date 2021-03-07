@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text,Image } from "react-native";
 import ViewFormStyles from "./ViewFormStyles.js";
 const ViewForm = ({
@@ -11,6 +11,8 @@ const ViewForm = ({
   cardsShitati,
   ShapesTitle,
 }) => {
+  // const [onlyFullTables,setOnlyFullTables] = useState(2);
+  
   {
     console.log("numbers:", numbers);
   }
@@ -38,13 +40,18 @@ const ViewForm = ({
                 }
           }
         >
-          {form_type === "regular_lotto" && tableNum < 10 ? (
+          {/* {form_type === "regular_lotto" && tableNum < 10 ? (
             <Text style={{ marginRight: 7, fontFamily: "fb-Spacer" }}>
               טבלה {tableNum}
             </Text>
-          ) : (
-            <Text style={{ fontFamily: "fb-Spacer" }}>טבלה {tableNum}</Text>
-          )}
+          ) : ( */}
+            {
+              tableNum ? (
+              <Text style={{ fontFamily: "fb-Spacer" }}>טבלה {tableNum}</Text>
+              ):null              
+              }
+          
+            {/* )} */}
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
             <View
@@ -72,7 +79,8 @@ const ViewForm = ({
                 ))}
               </View>
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                {numbers.map((num, index) => (
+                  {numbers.map((num, index) => (
+                    <>
                   <View
                     key={index}
                     style={{
@@ -86,8 +94,11 @@ const ViewForm = ({
                     }}
                   >
                     <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
-                  </View>
-                ))}
+                      </View>
+                   
+                    </>
+                  ))}
+                  
               </View>
             </View>
           </View>

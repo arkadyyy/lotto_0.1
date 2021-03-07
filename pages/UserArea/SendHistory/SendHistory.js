@@ -15,6 +15,7 @@ import {
   ListItem,
   Content,
 } from "native-base";
+
 import ViewForm from "../ViewForm";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import axios from "axios";
@@ -24,6 +25,8 @@ import * as WebBrowser from 'expo-web-browser';
 import { useSelector, useDispatch } from "react-redux";
 import CameraRoll from "@react-native-community/cameraroll";
 import * as Permissions from 'expo-permissions';
+// import * as MediaLibrary from 'expo-media-library';
+import { WebView } from 'react-native-webview';
 
 
 const SeeOrDupilcate = ({
@@ -31,7 +34,8 @@ const SeeOrDupilcate = ({
   form, hagralaName, setHagralaName,
 hagralaNameHebrew, setHagralaNameHebrew,
   gameType, setGameType, screenName, setScreenName,
-  formNum,choosenCards,setChoosenCards,store
+  formNum, choosenCards, setChoosenCards, store,
+  webView,setWebView,webViewUri,setWebViewUri
 }) => {
 
   if (index === open.index) {
@@ -204,37 +208,42 @@ else if (form.form_type.includes("777")) {
                     "Content-Type": "application/json",
                   },
                 })
-                .then( (res) => {
+                .then((res) => {
+                  setWebView(true);                  
+                  // setWebViewUri( 'https://infinite.red');                  
+                  // setWebViewUri( `http://52.90.122.190:5000/admin/download/${form.id}`);                  
+                  setWebViewUri( `http://52.90.122.190:5000/admin/download/d3279410-baf6-47e7-8377-bf59e4578c73`);                  
                   console.log("axios res:", res);
-                  const fileUri = FileSystem.documentDirectory + 'toffes.pdf';
-                  FileSystem.downloadAsync(
-                    // 'http://techslides.com/demos/sample-videos/small.mp4',
-                  `http://52.90.122.190:5000/admin/download/${form.id}`,
-                    // FileSystem.documentDirectory + `downloadfile.pdf`,
-                    fileUri,                    
-                    {
-                      headers: {
-                        Authorization: store.jwt,
-                      },
-                    }
+                  
+                                   // const fileUri = FileSystem.documentDirectory + 'toffes.pdf';
+                  // FileSystem.downloadAsync(
+                  //   // 'http://techslides.com/demos/sample-videos/small.mp4',
+                  // `http://52.90.122.190:5000/admin/download/${form.id}`,
+                  //   // FileSystem.documentDirectory + `downloadfile.pdf`,
+                  //   fileUri,                    
+                  //   {
+                  //     headers: {
+                  //       Authorization: store.jwt,
+                  //     },
+                  //   }
 
-                  )
-                  .then(({ uri }) => {
-                    console.log('Finished downloading to ', uri);
-                    FileSystem.getInfoAsync(uri)
+                  // )
+                  // .then(({ uri }) => {
+                  //   console.log('Finished downloading to ', uri);
+                  //   FileSystem.getInfoAsync(uri)
                       
-                      .then((res) => {
-                        console.log('resCamera', res)
-                        // CameraRoll.saveToCameraRoll(uri, 'pdf')
-                        CameraRoll.save(res.uri);
-                        console.log("uriiiiii:",res.uri);
-                        // ca
-                      })
+                  //     .then((res) => {
+                  //       console.log('resCamera', res)
+                  //       // CameraRoll.saveToCameraRoll(uri, 'pdf')
+                  //       CameraRoll.save(res.uri);
+                  //       console.log("uriiiiii:",res.uri);
+                  //       // ca
+                  //     })
                     
-                  })
-                  .catch(error => {
-                    console.error(error);
-                  });
+                  // })
+                  // .catch(error => {
+                  //   console.error(error);
+                  // });
                 })
                 .catch((err) => console.log(err));
 
@@ -308,7 +317,7 @@ else if (form.form_type.includes("777")) {
                     key={index}
                     numbers={table.numbers}
                     strongNum={table.strong_number}
-                    tableNum={table.table_number}
+                    tableNum={table.numbers.length? table.table_number : null}
                     form_type={form.form_type}
                   />
                 ))}
@@ -391,6 +400,11 @@ else if (form.form_type.includes("777")) {
             )}
           </View>
         </View>
+        {webView ?
+ <WebView
+ source={{ uri: webViewUri }}
+ style={{ marginTop: 20, backgroundColor:"red",padding:100 }}
+/>  :null}
         <View
           style={{
             borderBottomColor: "black",
@@ -413,6 +427,8 @@ const SendHistory = ({ navigation,formsHistory }) => {
   const [investNum, setInvestNum] = useState(" ");
   const formNum = "1";
   const [choosenCards,setChoosenCards] = useState([]);
+  const [webView,setWebView] = useState();
+  const [webViewUri,setWebViewUri] = useState();
   // const [permission, askForPermission] = usePermissions(Permissions.CAMERA, { ask: true });
 
   const store = useSelector((state) => state);
@@ -576,6 +592,8 @@ const SendHistory = ({ navigation,formsHistory }) => {
                   choosenCards={choosenCards}
                   setChoosenCards={setChoosenCards}
                   store={store}
+                  webView={webView} setWebView={setWebView}
+                  webViewUri={webViewUri} setWebViewUri={setWebViewUri}
                 />
               )}
             </>
