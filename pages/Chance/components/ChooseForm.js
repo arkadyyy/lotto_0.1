@@ -37,12 +37,13 @@ const ChooseForm = ({ color }) => {
             flex: 2,
           }}
         >
-          {route.name === "ChancePage" ?
-            <Text>צ'אנס</Text>
-            : route.name === "RavChancePage" ?
-              <Text>רב צ'אנס</Text>
-              : <Text>צ'אנס שיטתי</Text>}
-
+          {route.name === "ChancePage" ? (
+            <Text style={{ fontFamily: "fb-Spacer-bold" }}>צ'אנס</Text>
+          ) : route.name === "RavChancePage" ? (
+            <Text style={{ fontFamily: "fb-Spacer-bold" }}>רב צ'אנס</Text>
+          ) : (
+            <Text style={{ fontFamily: "fb-Spacer-bold" }}>צ'אנס שיטתי</Text>
+          )}
         </View>
         {/* <View
           style={{

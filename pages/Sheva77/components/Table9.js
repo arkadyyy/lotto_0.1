@@ -22,8 +22,8 @@ const Num = ({ num }) => {
     <>
       <View
         style={{
-          width: 20,
-          height: 20,
+          width: 22,
+          height: 22,
           borderRadius: 30,
           backgroundColor: "white",
 
@@ -78,7 +78,7 @@ const Table9 = ({
         }
       });
     } else {
-      settable([" ", " ", " ", " ", " ", " ", " ", " "," "]);
+      settable([" ", " ", " ", " ", " ", " ", " ", " ", " "]);
     }
   }, [fullTables]);
   return (
@@ -88,38 +88,46 @@ const Table9 = ({
           backgroundColor: "#FBB03B",
           backgroundColor: !table.includes(" ") ? "#FBB03B" : "#AA1B55",
           flexWrap: "wrap",
-          flexDirection:"row",
+          flexDirection: "row",
           marginTop: 4,
-          height: 80,
+          height: 85,
           // alignItems: "center",
           width: 300,
           justifyContent: "space-around",
-          flexDirection:"column"
+          flexDirection: "column",
         }}
       >
         <View>
-        <Text
-          style={{
-            color: "white",
-            fontSize: 11,
-            marginHorizontal: 10,
-            fontFamily: "fb-Spacer",
-          }}
-        >{`טבלה ${tableNum}`}</Text>
+          <Text
+            style={{
+              color: "white",
+              fontSize: 11,
+              marginHorizontal: 10,
+              fontFamily: "fb-Spacer",
+            }}
+          >{`טבלה ${tableNum}`}</Text>
         </View>
-          <TouchableOpacity
+        <TouchableOpacity
           onPress={() => {
             setshowTable(true);
             setopendTableNum(tableNum);
           }}
         >
-          <View style={{ flex:1,flexDirection:"row",flexWrap:"wrap",width:"70%" }}>
-            {table.sort(function(a,b) {
-                 return a-b;
-                })
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              flexWrap: "wrap",
+              width: "70%",
+            }}
+          >
+            {table
+              .sort(function (a, b) {
+                return a - b;
+              })
               .map((num, index) => (
-              <Num table={table} key={index} num={num} />
-            ))}
+                <Num table={table} key={index} num={num} />
+              ))}
           </View>
         </TouchableOpacity>
       </ListItem>

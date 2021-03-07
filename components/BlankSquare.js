@@ -1,24 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Card,
-  CardItem,
-  List,
-  ListItem,
-} from "native-base";
+import { Button } from "native-base";
 import axios from "axios";
 import EStyleSheet from "react-native-extended-stylesheet";
 
-const Timer = ({ color, usedDate }) => {
+const Timer = ({ color, usedDate, navigation }) => {
   const [seconds, setseconds] = useState(0);
   const [minutes, setminutes] = useState(0);
   const [hours, sethours] = useState(0);
@@ -47,11 +34,6 @@ const Timer = ({ color, usedDate }) => {
     if (secondsLeft > 0) {
       setseconds(secondsLeft);
     }
-
-    // console.log("days : ", daysLeft);
-    // console.log("hours : ", hoursLeft);
-    // console.log("minutes : ", minutesLeft);
-    // console.log("seconds : ", secondsLeft);
   }, 1000);
 
   useEffect(() => {}, []);
@@ -71,7 +53,9 @@ const Timer = ({ color, usedDate }) => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>{Math.floor(seconds % 10)}</Text>
+              <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
+                {Math.floor(seconds % 10)}
+              </Text>
             </View>
             <View
               style={{
@@ -84,10 +68,16 @@ const Timer = ({ color, usedDate }) => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>{Math.floor(seconds / 10)}</Text>
+              <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
+                {Math.floor(seconds / 10)}
+              </Text>
             </View>
           </View>
-          <Text style={{ marginLeft: 18, fontSize: 10 }}>שניות</Text>
+          <Text
+            style={{ marginLeft: 18, fontSize: 10, fontFamily: "fb-Spacer" }}
+          >
+            שניות
+          </Text>
         </View>
 
         <View>
@@ -104,7 +94,7 @@ const Timer = ({ color, usedDate }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
                   {Math.floor(minutes % 10)}
                 </Text>
               </View>
@@ -119,12 +109,16 @@ const Timer = ({ color, usedDate }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
                   {Math.floor(minutes / 10)}
                 </Text>
               </View>
             </View>
-            <Text style={{ marginLeft: 15, fontSize: 10 }}>דקות</Text>
+            <Text
+              style={{ marginLeft: 15, fontSize: 10, fontFamily: "fb-Spacer" }}
+            >
+              דקות
+            </Text>
           </View>
         </View>
         <View>
@@ -140,7 +134,9 @@ const Timer = ({ color, usedDate }) => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>{Math.floor(hours % 10)}</Text>
+              <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
+                {Math.floor(hours % 10)}
+              </Text>
             </View>
             <View
               style={{
@@ -153,10 +149,16 @@ const Timer = ({ color, usedDate }) => {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: "white" }}>{Math.floor(hours / 10)}</Text>
+              <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
+                {Math.floor(hours / 10)}
+              </Text>
             </View>
           </View>
-          <Text style={{ marginLeft: 18, fontSize: 10 }}>שעות</Text>
+          <Text
+            style={{ marginLeft: 18, fontSize: 10, fontFamily: "fb-Spacer" }}
+          >
+            שעות
+          </Text>
         </View>
         <View>
           <View>
@@ -172,7 +174,9 @@ const Timer = ({ color, usedDate }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>{Math.floor(days % 10)}</Text>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
+                  {Math.floor(days % 10)}
+                </Text>
               </View>
               <View
                 style={{
@@ -185,12 +189,21 @@ const Timer = ({ color, usedDate }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "white" }}>{Math.floor(days / 10)}</Text>
+                <Text style={{ color: "white", fontFamily: "fb-Spacer-bold" }}>
+                  {Math.floor(days / 10)}
+                </Text>
               </View>
             </View>
-            <Text style={{ marginLeft: 15, fontSize: 10 }}>ימים</Text>
+            <Text
+              style={{ marginLeft: 15, fontSize: 10, fontFamily: "fb-Spacer" }}
+            >
+              ימים
+            </Text>
           </View>
           <Button
+            onPress={() => {
+              navigation.navigate("Results");
+            }}
             small
             rounded
             bordered
@@ -201,7 +214,11 @@ const Timer = ({ color, usedDate }) => {
               marginVertical: 15,
             }}
           >
-            <Text style={{ color: color, fontSize: 10 }}>ארכיון תוצאות</Text>
+            <Text
+              style={{ color: color, fontSize: 10, fontFamily: "fb-Spacer" }}
+            >
+              ארכיון תוצאות
+            </Text>
           </Button>
         </View>
       </View>
@@ -209,7 +226,7 @@ const Timer = ({ color, usedDate }) => {
   );
 };
 
-const BlankSquare = ({ color, gameName }) => {
+const BlankSquare = ({ color, gameName, navigation }) => {
   const route = useRoute();
 
   const [usedDate, setusedDate] = useState(0);

@@ -36,61 +36,6 @@ const Num = ({
     handleUpdate();
   }, [fullTables]);
 
-  // if (shitatiPage === "shitatiPage") {
-  //   const [isDisabled, setisDisabled] = useState(false);
-  //   useEffect(() => {
-  //     //if we pressed on a card and we added it to pressed.symbolsPressed ...
-  //     if (pressed.symbolsPressed.length >= 1) {
-  //       //first of all , remove its old object in fullTables be4 we put its new object
-  //       let filtered = fullTables.choosenCards.filter(
-  //         (x) => x.cardType !== pressed.type
-  //       );
-
-  //       //now we set updated fulltables
-  //       setfullTables({
-  //         gameType: usedTableNum,
-  //         choosenCards: [
-  //           ...filtered,
-  //           {
-  //             cardType: pressed.type,
-  //             card: pressed.symbolsPressed,
-  //           },
-  //         ],
-  //       });
-  //     }
-  //   }, [pressed]);
-
-  //   useEffect(() => {
-  //     let x = disabled(pressed, tablesUsed, usedTableNum, typeArr);
-
-  //     setisDisabled(x);
-
-  //     console.log("counter:", counter);
-  //   }, [counter]);
-
-  //   const disabled = (pressed, tablesUsed, usedTableNum, typeArr) => {
-  //     if (pressed.symbolsPressed.includes(symbol)) {
-  //       console.log("i am in first if");
-  //       return false;
-  //       //instead of counter / 4 === usedTableNum i need to replace it with pressed.numberOfPress >= 4
-  //     } else if (typeArr.length === usedTableNum && counter / 4 === usedTableNum) {
-  //       console.log("i am in secend if");
-  //       return true;
-  //     } else if (pressed.symbolsPressed.length >= 4) {
-  //       console.log("i am in third if");
-  //       return true;
-  //     } else if (
-  //       typeArr.length === usedTableNum &&
-  //       !typeArr.includes(pressed.type)
-  //     ) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   };
-  //   // מה שלמעלה לקוח מהtable
-  // }
-
   return (
     <>
       <TouchableOpacity
@@ -99,7 +44,7 @@ const Num = ({
           height: 35,
           borderRadius: 6,
           backgroundColor: pressed.symbolsPressed.includes(symbol)
-            ? "#8CC63F"
+            ? "#009943"
             : "white",
 
           margin: 5,
@@ -115,23 +60,6 @@ const Num = ({
             ? true
             : false
         }
-        // disabled={
-        //   shitatiPage === "shitatiPage"
-        //     ? isDisabled
-        //     : pressed.symbolsPressed.includes(symbol)
-        //     ? false
-        //     : pressed.symbolsPressed.length > 0
-        //     ? true
-        //     : counter > tableNum - 1
-        //     ? true
-        //     : false
-        // }
-
-        // {
-        //   numberOfPress: 0,
-        //   symbolsPressed: [],
-        //   type: "heart",
-        // }
         onPress={() => {
           console.log("counter when pressed num : ", counter);
           if (pressed.symbolsPressed.includes(symbol)) {
@@ -152,71 +80,15 @@ const Num = ({
             setcounter(counter + 1);
           }
         }}
-        // onPress={() => {
-        //   // {numberOfPress :0 ,symbolsPressed : []}
-        //   if (shitatiPage === "shitatiPage") {
-        //     if (
-        //       pressed.symbolsPressed.includes(symbol) &&
-        //       pressed.symbolsPressed.length === 1
-        //     ) {
-        //       settypeArr(typeArr.filter((type) => type !== pressed.type));
-        //       settablesUsed(tablesUsed - 1);
-        //       setpressed({
-        //         numberOfPress: pressed.numberOfPress - 1,
-        //         symbolsPressed: pressed.symbolsPressed.filter(
-        //           (x) => x !== symbol
-        //         ),
-        //         type: pressed.type,
-        //       });
-
-        //       setcounter(counter - 1);
-        //     } else if (pressed.symbolsPressed.includes(symbol)) {
-        //       setpressed({
-        //         numberOfPress: pressed.numberOfPress - 1,
-        //         symbolsPressed: pressed.symbolsPressed.filter(
-        //           (x) => x !== symbol
-        //         ),
-        //         type: pressed.type,
-        //       });
-
-        //       setcounter(counter - 1);
-        //     } else {
-        //       setpressed({
-        //         numberOfPress: pressed.numberOfPress + 1,
-        //         symbolsPressed: [...pressed.symbolsPressed, symbol],
-        //         type: pressed.type,
-        //       });
-
-        //       if (pressed.symbolsPressed.length === 0) {
-        //         settypeArr([...typeArr, pressed.type]);
-        //         settablesUsed(tablesUsed + 1);
-        //       }
-        //       setcounter(counter + 1);
-        //     }
-
-        //     console.log("pressed : ", pressed);
-        //   } else {
-        //     if (pressed.symbolsPressed.includes(symbol)) {
-        //       setpressed({
-        //         numberOfPress: pressed.numberOfPress - 1,
-        //         symbolsPressed: pressed.symbolsPressed.filter(
-        //           (x) => x !== symbol
-        //         ),
-        //         type: pressed.type,
-        //       });
-        //       setcounter(counter - 1);
-        //     } else {
-        //       setpressed({
-        //         numberOfPress: ++pressed.numberOfPress,
-        //         symbolsPressed: [...pressed.symbolsPressed, symbol],
-        //         type: pressed.type,
-        //       });
-        //       setcounter(counter + 1);
-        //     }
-        //   }
-        // }}
       >
-        <Text style={{ color: "black" }}>{symbol}</Text>
+        <Text
+          style={{
+            color: pressed.symbolsPressed.includes(symbol) ? "white" : "black",
+            fontFamily: "fb-Spacer-bold",
+          }}
+        >
+          {symbol}
+        </Text>
       </TouchableOpacity>
     </>
   );
@@ -494,15 +366,6 @@ const FillForm = ({
                   margin: 3,
                 }}
               >
-                {/* <Text
-                style={{
-                  fontSize: 10,
-                  color: "white",
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                מלא טבלה אוטומטית
-              </Text> */}
                 <Image
                   style={{ width: 22.5, height: 12.5 }}
                   source={require("C:/fullstack/lottoMatic/assets/fillTable.png")}
@@ -524,20 +387,6 @@ const FillForm = ({
                   deleteFilled();
                 }}
               >
-                {/* onPress={() => {
-                  setchoosenNums([]);
-                  setstrongNum(" ");
-                  // setTableRowColor('#D60617')
-                }} */}
-                {/* <Text
-                style={{
-                  fontSize: 10,
-                  color: "white",
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                מחק טבלה אוטומטית
-              </Text> */}
                 <Image
                   style={{ width: 22.5, height: 12.5 }}
                   source={require("C:/fullstack/lottoMatic/assets/removeForm.png")}
@@ -600,18 +449,6 @@ const FillForm = ({
                   size={25}
                   icon={faAngleRight}
                   onPress={() => {
-                    //if we have already a object for this table , remove the previos one and put a new one
-                    // if (indexOfTable !== -1) {
-                    //   let fullTablesCopy = fullTables.filter(
-                    //     (table) => table.tableNum !== opendTableNum
-                    //   );
-                    //   setFullTables([...fullTablesCopy, usedTable]);
-
-                    //   // if we dont have already object for this table,just create one
-                    // } else {
-                    //   setFullTables([...fullTables, usedTable]);
-                    // }
-                    // arrowClickedRight();
                     if (opendTableNum < formNum) {
                       setopendTableNum(opendTableNum + 1);
                     }
@@ -619,12 +456,6 @@ const FillForm = ({
                 />
               </TouchableOpacity>
             </View>
-
-            {/* <Text
-              style={{ color: "white", fontSize: 13, fontFamily: "fb-Spacer" }}
-            >
-              טפסים
-            </Text> */}
             <View
               style={{
                 flexDirection: "row",
@@ -654,18 +485,6 @@ const FillForm = ({
                   size={25}
                   icon={faAngleLeft}
                   onPress={() => {
-                    //if we have already a object for this table , remove the previos one and put a new one
-                    // if (indexOfTable !== -1) {
-                    //   let fullTablesCopy = fullTables.filter(
-                    //     (table) => table.tableNum !== opendTableNum
-                    //   );
-                    //   setFullTables([...fullTablesCopy, usedTable]);
-
-                    //   // if we dont have already object for this table,just create one
-                    // } else {
-                    //   setFullTables([...fullTables, usedTable]);
-                    // }
-                    // arrowClickedLeft();
                     if (opendTableNum > 1) {
                       setopendTableNum(opendTableNum - 1);
                     }
@@ -697,17 +516,6 @@ const FillForm = ({
                 }}
                 onPress={() => {
                   setshowTable(false);
-
-                  //if we have already a object for this table , remove the previos one and put a new one
-                  //  if (indexOfTable !== -1) {
-                  //   let fullTablesCopy = fullTables.filter(
-                  //     (table) => table.tableNum !== opendTableNum
-                  //   );
-                  // setFullTables([...fullTablesCopy, usedTable]);
-                  //if we dont have already object for this table,just create one
-                  // } else {
-                  //   setFullTables([...fullTables, usedTable]);
-                  // }
                 }}
               >
                 <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
@@ -744,12 +552,12 @@ const FillForm = ({
               style={{
                 color: "white",
                 marginBottom: 5,
-                fontSize: 10,
+                fontSize: 17,
                 marginHorizontal: 5,
                 fontFamily: "fb-Spacer",
               }}
             >
-              {`מלא צירוף ${opendTableNum}`}
+              {`מלא טופס ${opendTableNum}`}
             </Text>
           </View>
 

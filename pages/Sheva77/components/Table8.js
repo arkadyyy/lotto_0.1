@@ -22,8 +22,8 @@ const Num = ({ num }) => {
     <>
       <View
         style={{
-          width: 20,
-          height: 20,
+          width: 22,
+          height: 22,
           borderRadius: 30,
           backgroundColor: "white",
 
@@ -76,14 +76,15 @@ const Table8 = ({
           backgroundColor: "#FBB03B",
           backgroundColor: !table.includes(" ") ? "#FBB03B" : "#AA1B55",
           flexWrap: "wrap",
-          flexDirection:"column",
+          flexDirection: "column",
           marginTop: 3,
           height: 85,
-          // alignItems: "center",
+
           width: 400,
+
+          justifyContent: "center",
         }}
       >
-        <View>
         <Text
           style={{
             color: "white",
@@ -92,21 +93,29 @@ const Table8 = ({
             fontFamily: "fb-Spacer",
           }}
         >{`טבלה ${tableNum}`}</Text>
-        </View>
-        
+
         <TouchableOpacity
           onPress={() => {
             setshowTable(true);
             setopendTableNum(tableNum);
           }}
         >
-          <View style={{ flexDirection: "row-reverse",flexWrap:"wrap",flex:1,width:"100%" }}>
-            {table.sort(function(b,a) {
-                 return a-b;
-                })
+          <View
+            style={{
+              flexDirection: "row-reverse",
+              flexWrap: "wrap",
+              flex: 1,
+              width: "100%",
+              marginTop: 8,
+            }}
+          >
+            {table
+              .sort(function (b, a) {
+                return a - b;
+              })
               .map((num, index) => (
-              <Num table={table} key={index} num={num} />
-            ))}
+                <Num table={table} key={index} num={num} />
+              ))}
           </View>
         </TouchableOpacity>
       </ListItem>

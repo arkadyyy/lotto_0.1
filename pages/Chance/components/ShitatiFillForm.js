@@ -68,7 +68,7 @@ const Num = ({
           height: 35,
           borderRadius: 6,
           backgroundColor: pressed.symbolsPressed.includes(symbol)
-            ? "#8CC63F"
+            ? "#009943"
             : "white",
 
           margin: 5,
@@ -111,7 +111,14 @@ const Num = ({
           }
         }}
       >
-        <Text style={{ color: "black" }}>{symbol}</Text>
+        <Text
+          style={{
+            color: pressed.symbolsPressed.includes(symbol) ? "white" : "black",
+            fontFamily: "fb-Spacer-bold",
+          }}
+        >
+          {symbol}
+        </Text>
       </TouchableOpacity>
     </>
   );
@@ -378,97 +385,87 @@ const FillForm = ({
             marginHorizontal: 15,
           }}
         >
-          <View style={{ flexDirection: "row", flex: 1 }}>
-            <View style={{ flexDirection: "row", flex: 1 }}>
-              <TouchableOpacity
-                onPress={() => {
-                  autoFill(opendTableNum, usedTableNum);
-                  console.log(usedTableNum);
-                }}
-                style={{
-                  width: 30,
-                  height: 30,
-                  borderColor: "white",
-                  borderWidth: 2,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 23,
-                  margin: 3,
-                }}
-              >
-                {/* <Text
-                style={{
-                  fontSize: 10,
-                  color: "white",
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                מלא טבלה אוטומטית
-              </Text> */}
-                <Image
-                  style={{ width: 22.5, height: 12.5 }}
-                  source={require("C:/fullstack/lottoMatic/assets/fillTable.png")}
-                />
-              </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: "row",
+              flex: 1,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                flex: 1,
+                justifyContent: "space-between",
+              }}
+            >
+              <View style={{ flexDirection: "row" }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    autoFill(opendTableNum, usedTableNum);
+                    console.log(usedTableNum);
+                  }}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderColor: "white",
+                    borderWidth: 2,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 23,
+                    margin: 3,
+                  }}
+                >
+                  <Image
+                    style={{ width: 22.5, height: 12.5 }}
+                    source={require("C:/fullstack/lottoMatic/assets/fillTable.png")}
+                  />
+                </TouchableOpacity>
 
-              <TouchableOpacity
-                style={{
-                  width: 30,
-                  height: 30,
-                  borderColor: "white",
-                  borderWidth: 2,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 23,
-                  margin: 3,
-                }}
-                onPress={() => {
-                  deleteFilled();
-                }}
-              >
-                {/* onPress={() => {
-                  setchoosenNums([]);
-                  setstrongNum(" ");
-                  // setTableRowColor('#D60617')
-                }} */}
-                {/* <Text
-                style={{
-                  fontSize: 10,
-                  color: "white",
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                מחק טבלה אוטומטית
-              </Text> */}
-                <Image
-                  style={{ width: 22.5, height: 12.5 }}
-                  source={require("C:/fullstack/lottoMatic/assets/removeForm.png")}
-                />
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderColor: "white",
+                    borderWidth: 2,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 23,
+                    margin: 3,
+                  }}
+                  onPress={() => {
+                    deleteFilled();
+                  }}
+                >
+                  <Image
+                    style={{ width: 22.5, height: 12.5 }}
+                    source={require("C:/fullstack/lottoMatic/assets/removeForm.png")}
+                  />
+                </TouchableOpacity>
 
-              <TouchableOpacity
-                style={{
-                  width: 30,
-                  height: 30,
-                  borderColor: "white",
-                  borderWidth: 2,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 23,
-                  margin: 3,
-                }}
-                onPress={() => {
-                  setautoFillFormFired(true);
-                  autoFillForm(tableNum, formNum);
-                }}
-              >
-                <Image
-                  style={{ width: 22.5, height: 12.5 }}
-                  source={require("C:/fullstack/lottoMatic/assets/fillForm.png")}
-                />
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderColor: "white",
+                    borderWidth: 2,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 23,
+                    margin: 3,
+                  }}
+                  onPress={() => {
+                    setautoFillFormFired(true);
+                    autoFillForm(tableNum, formNum);
+                  }}
+                >
+                  <Image
+                    style={{ width: 22.5, height: 12.5 }}
+                    source={require("C:/fullstack/lottoMatic/assets/fillForm.png")}
+                  />
+                </TouchableOpacity>
+              </View>
 
-              <View
+              {/* <View
                 style={{
                   top: 3,
                   left: 7,
@@ -502,18 +499,6 @@ const FillForm = ({
                   size={25}
                   icon={faAngleRight}
                   onPress={() => {
-                    //if we have already a object for this table , remove the previos one and put a new one
-                    // if (indexOfTable !== -1) {
-                    // let fullTablesCopy = fullTables.filter(
-                    // (table) => table.tableNum !== opendTableNum
-                    // );
-                    // setFullTables([...fullTablesCopy, usedTable]);
-
-                    // if we dont have already object for this table,just create one
-                    // } else {
-                    // setFullTables([...fullTables, usedTable]);
-                    // }
-                    // arrowClickedRight();
                     if (opendTableNum < formNum) {
                       setopendTableNum(opendTableNum + 1);
                     }
@@ -522,11 +507,6 @@ const FillForm = ({
               </TouchableOpacity>
             </View>
 
-            {/* <Text
-              style={{ color: "white", fontSize: 13, fontFamily: "fb-Spacer" }}
-            >
-              טפסים
-            </Text> */}
             <View
               style={{
                 flexDirection: "row",
@@ -556,18 +536,6 @@ const FillForm = ({
                   size={25}
                   icon={faAngleLeft}
                   onPress={() => {
-                    //if we have already a object for this table , remove the previos one and put a new one
-                    // if (indexOfTable !== -1) {
-                    // let fullTablesCopy = fullTables.filter(
-                    // (table) => table.tableNum !== opendTableNum
-                    // );
-                    // setFullTables([...fullTablesCopy, usedTable]);
-
-                    // if we dont have already object for this table,just create one
-                    // } else {
-                    // setFullTables([...fullTables, usedTable]);
-                    // }
-                    // arrowClickedLeft();
                     if (opendTableNum > 1) {
                       setopendTableNum(opendTableNum - 1);
                     }
@@ -583,7 +551,7 @@ const FillForm = ({
                   marginRight: 13,
                   height: 33,
                 }}
-              ></View>
+              ></View> */}
 
               <TouchableOpacity
                 style={{
@@ -599,17 +567,6 @@ const FillForm = ({
                 }}
                 onPress={() => {
                   setshowTable(false);
-
-                  //if we have already a object for this table , remove the previos one and put a new one
-                  //  if (indexOfTable !== -1) {
-                  //   let fullTablesCopy = fullTables.filter(
-                  //     (table) => table.tableNum !== opendTableNum
-                  //   );
-                  // setFullTables([...fullTablesCopy, usedTable]);
-                  //if we dont have already object for this table,just create one
-                  // } else {
-                  //   setFullTables([...fullTables, usedTable]);
-                  // }
                 }}
               >
                 <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
@@ -646,12 +603,12 @@ const FillForm = ({
               style={{
                 color: "white",
                 marginBottom: 5,
-                fontSize: 10,
+                fontSize: 17,
                 marginHorizontal: 5,
                 fontFamily: "fb-Spacer",
               }}
             >
-              {`מלא צירוף ${opendTableNum}`}
+              {`מלא טופס ${opendTableNum}`}
             </Text>
           </View>
 

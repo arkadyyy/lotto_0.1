@@ -32,7 +32,7 @@ const Num = ({ num, choosenNums, setchoosenNums }) => {
           margin: 3,
         }}
       >
-        <Text style={{ fontFamily: "fb-Spacer" }}>{num}</Text>
+        <Text style={{ fontFamily: "fb-Spacer-bold" }}>{num}</Text>
       </TouchableOpacity>
     </>
   );
@@ -73,7 +73,7 @@ const StrongNum = ({
         <Text
           style={{
             color: choosenStrongNums.includes(num) ? "#E62321" : "white",
-            fontFamily: "fb-Spacer",
+            fontFamily: "fb-Spacer-bold",
           }}
         >
           {num}
@@ -249,7 +249,7 @@ const ShitatiHazakFillForm = ({
                   source={require("C:/fullstack/lottoMatic/assets/fillForm.png")}
                 />
               </TouchableOpacity>
-              <View
+              {/* <View
                 style={{
                   top: 3,
                   left: 7,
@@ -258,7 +258,7 @@ const ShitatiHazakFillForm = ({
                   marginRight: 13,
                   height: 33,
                 }}
-              ></View>
+              ></View> */}
               <View
                 style={{
                   borderRadius: 30,
@@ -280,7 +280,7 @@ const ShitatiHazakFillForm = ({
                 flex: 1,
               }}
             >
-              <View
+              {/* <View
                 style={{
                   top: 3,
                   left: 7,
@@ -289,7 +289,7 @@ const ShitatiHazakFillForm = ({
                   marginRight: 13,
                   height: 33,
                 }}
-              ></View>
+              ></View> */}
               <TouchableOpacity
                 style={{
                   height: 25,
@@ -346,7 +346,7 @@ const ShitatiHazakFillForm = ({
               style={{
                 color: "white",
                 marginBottom: 5,
-                fontSize: 10,
+                fontSize: 17,
                 marginHorizontal: 5,
                 fontFamily: "fb-Spacer",
               }}

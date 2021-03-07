@@ -425,59 +425,13 @@ const FillForm = ({
               style={{
                 color: "white",
                 marginBottom: 5,
-                fontSize: 10,
+                fontSize: 17,
                 marginHorizontal: 5,
                 fontFamily: "fb-Spacer",
               }}
             >
               {`מלא את טבלה ${opendTableNum}`}
             </Text>
-            <TouchableOpacity
-              disabled={choosenNums.length !== 0 ? true : false}
-              onPress={() => {
-                let numbers = autoFill(7);
-                setchoosenNums(numbers.randomNumbers);
-              }}
-              style={{
-                borderColor: "white",
-                borderWidth: 1,
-                padding: 3,
-                borderRadius: 7,
-                marginHorizontal: 1,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 10,
-                  color: "white",
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                מלא טבלה אוטומטית
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setchoosenNums([]);
-              }}
-              style={{
-                borderColor: "white",
-                borderWidth: 1,
-                padding: 3,
-                borderRadius: 7,
-                marginHorizontal: 1,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 10,
-                  color: "white",
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                מחק טבלה אוטומטית
-              </Text>
-            </TouchableOpacity>
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
