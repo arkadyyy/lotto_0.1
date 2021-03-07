@@ -201,10 +201,6 @@ else if (form.form_type.includes("777")) {
         
           <TouchableOpacity
             onPress={() => {
-
-
-          
-
               axios
                 .get(`http://52.90.122.190:5000/admin/download/${form.id}`, {
                   headers: {
@@ -215,15 +211,8 @@ else if (form.form_type.includes("777")) {
                 })
                 .then((res) => {
               console.log("axios res:", res);
-              // console.log("res url:",res.config.url);
-
-
-
-                  // setWebView(true);                  
-                  // setWebViewUri( 'https://infinite.red');                  
-                  // setWebViewUri( `http://52.90.122.190:5000/admin/download/${form.id}`);                  
-                  // setWebViewUri( `http://52.90.122.190:5000/admin/download/d3279410-baf6-47e7-8377-bf59e4578c73`);                  
-                  
+              console.log("parse????????",JSON.parse(res.data));
+              // console.log("res url:",res.config.url);                   
                   const fileUri = FileSystem.documentDirectory + 'toffes.pdf';
                   FileSystem.downloadAsync(
                     // 'http://techslides.com/demos/sample-videos/small.mp4',
@@ -232,7 +221,8 @@ else if (form.form_type.includes("777")) {
                     // fileUri,                    
                     {
                       headers: {
-                        Authorization: store.jwt,
+                        Authorization:"eyJraWQiOiI3OTNMc2t1K3lDQ3FtTWlGc3UyWFE2R0dOREFxbDJWaDJDT0JJaWNVS1BrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJmMzIyNTYyMy1mYWZkLTQxYWEtOGYwMi1kYzIzNzYzNGVmY2MiLCJjb2duaXRvOmdyb3VwcyI6WyJjbGllbnRzIiwiYWRtaW5zIl0sImV2ZW50X2lkIjoiZDA5N2FjMzctOTgzMC00NDBiLTg2NTYtZjIwZDE4OGRlOWUyIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJhd3MuY29nbml0by5zaWduaW4udXNlci5hZG1pbiIsImF1dGhfdGltZSI6MTYxNTEyNDc5MCwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfODNkUk5tdk5QIiwiZXhwIjoxNjE1MTI4MzkwLCJpYXQiOjE2MTUxMjQ3OTAsImp0aSI6IjIyZjQ4MTU1LWE2NGYtNDE2OS1hNjEyLTEwYjgzOTM2Mjc1MiIsImNsaWVudF9pZCI6IjFqcGM2NDY2MjZscHVjOWExOG1wamdycDVqIiwidXNlcm5hbWUiOiJmMzIyNTYyMy1mYWZkLTQxYWEtOGYwMi1kYzIzNzYzNGVmY2MifQ.PEdRSezMakZUeTK06solelWBFbZsRNPW8BQwIXUNn6qRCYVIdSDWEKcFbqxDxo3u11T4yh9ND23P7B9ddwxnq3kCTbeNJ5fnCKPizRGgzq3C626ZtKt_M7TWwm-u_8x01W0W4HXH4LleK-q5Jl-zZUvwBRfRhUwBlSI3o6BOOgMMlNjiJFXjhZohMtxLN4DFBMnUhM8S8aaltqaaLMBXuqCJQLhJm3stqFIq72BNc9G_aMIEBV-WgvzTzksROedgqI3QkfnvZd6ke3vBx8CNgc096GT1EuI0ptEP7cywiXmuHEs0tufiVJMIzJR1XROVgoI11ObhDyNFjy2ZCcaO0Q"
+                        ,
                         Accept: "application/json",
                         "Content-Type": "application/json",
                        },
@@ -241,7 +231,6 @@ else if (form.form_type.includes("777")) {
                   .then(({ uri }) => {
                     console.log('Finished downloading to ', uri);
                     // FileSystem.getInfoAsync(uri)
-                      
                       // .then((res) => {
                         // console.log('resCamera', res)
                         // CameraRoll.saveToCameraRoll(uri, 'pdf')

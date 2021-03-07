@@ -142,7 +142,7 @@ const LottoShitatiPage = ({ navigation }) => {
               borderRadius: 30,
               borderColor: fillOtomatic === false ? "white" : "#8CC63F",
               borderWidth: 2,
-              // margin: 5,
+              marginTop: 5,
               justifyContent: "center",
               alignItems: "center",
               height: 25,
@@ -166,12 +166,22 @@ const LottoShitatiPage = ({ navigation }) => {
                 </Text>
 
               </TouchableOpacity>
+              {/* <View
+            style={{
+              marginLeft: 4,
+              marginTop: 9,
+              borderLeftColor: "white",
+              height: 20,
+              width: 10,
+              borderLeftWidth: 1,
+            }}
+          ></View> */}
               <View
             style={{
               borderRadius: 30,
               borderColor: fillOtomatic === true ? "white" : "#8CC63F",
               borderWidth: 2,
-              // margin: 5,
+              marginTop: 5,
               justifyContent: "center",
               alignItems: "center",
               height: 25,
@@ -191,13 +201,15 @@ const LottoShitatiPage = ({ navigation }) => {
                   setFillOtomatic(false)
                 }
                 }
-                style={fillOtomatic === true ? LottoListstyles.autoBtn : LottoListstyles.autoBtnFalse}
+                // style={fillOtomatic === true ? LottoListstyles.autoBtn : LottoListstyles.autoBtnFalse}
+                style={LottoListstyles.autoBtn}
               >
                 <Text style={LottoListstyles.autoBtnText}>
                   מחק טופס אוטומטי
                 </Text>
               </TouchableOpacity>
             </View>
+            
             {showTable && (
               <ShitatiFillForm
                 setshowTable={setshowTable}
