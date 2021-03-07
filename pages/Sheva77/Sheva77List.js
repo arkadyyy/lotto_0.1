@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { ScrollView, Text, TouchableOpacity, View, Image } from "react-native";
 import homestyles from "../Home/HomeStyles";
@@ -31,6 +31,11 @@ import Sheva77Liststyles from "./Sheva77ListStyles";
 
 const Seva77List = (props) => {
   const { navigation } = props;
+  const [openExplnation, setOpenExplnation] = useState(false);
+  
+useEffect(() => {
+  setOpenExplnation(false) 
+}, [onGoBack()])
 
   return (
     <>
@@ -78,7 +83,10 @@ const Seva77List = (props) => {
                       borderRadius: 13,
                       backgroundColor: "white",
                     }}
-                    onPress={() => navigation.navigate("Sheva77Page")}
+                    onPress={() => {
+                      navigation.navigate("Sheva77Page");
+                      setOpenExplnation(false);
+                    }}
                   >
                     <Text
                       style={{
@@ -125,7 +133,10 @@ const Seva77List = (props) => {
                       borderRadius: 13,
                       backgroundColor: "white",
                     }}
-                    onPress={() => navigation.navigate("Sheva778Page")}
+                    onPress={() => {
+                      navigation.navigate("Sheva778Page");
+                      setOpenExplnation(false)
+                    }}
                   >
                     <Text
                       style={{
@@ -172,7 +183,11 @@ const Seva77List = (props) => {
                       borderRadius: 13,
                       backgroundColor: "white",
                     }}
-                    onPress={() => navigation.navigate("Sheva779Page")}
+                    onPress={() => {
+                      navigation.navigate("Sheva779Page");
+                      setOpenExplnation(false);
+
+                    }}
                   >
                     <Text
                       style={{
@@ -204,6 +219,7 @@ const Seva77List = (props) => {
             </Text>
             <View style={{ flexDirection: "row", flex: 1 }}>
               <TouchableOpacity
+                onPress={() =>{setOpenExplnation(true)} }
                 style={{
                   width: 20,
                   height: 20,
@@ -238,16 +254,18 @@ const Seva77List = (props) => {
             }}
           >
             <Text
-              style={{ fontSize: 10, fontFamily: "fb-Spacer", padding: 10 }}
-            >
-             777 – כל אחד זוכה!
+              style={{ fontSize: 10, fontFamily: "fb-Spacer" }}
+            >{`777 – כל אחד זוכה!
 הגרלת 777 ייחודית במינה ואחד המשחקים הפופולאריים ביותר. 
 להגרלת ה777 מספר יתרונות מובהקים.
 •	סיכויי זכייה גבוהים במיוחד. 
 •	הזכייה בפרס הראשון הינה קבועה ואינה מתחלקת בין הזוכים, כלומר ניחשתם נכונה שבעה מספרים הסכום קבוע והוא שלכם בלבד. 
 •	כל אחד זוכה, ניחשתם נכונה שבעה מספרים זכיתם ב70,000 ש״ח, ניחשתם נכונה 6 מספרים זכיתם ב500 ש״ח, ניחשתם נכונה 5 מספרים זכיתם ב50 ש״ח ניחשתם נכונה 4 מספרים זכיתם ב20 ש״ח, לא ניחשתם אף מספר עדין זכיתם בחמישה שקלים- כן כן לא ניחשתם אף מספר ואילו עדין זכיתם! 
 מתי זה קורה? 
-ההגרלה מתקיימת שבעה ימים בשבוע, בימים א׳-ה׳ ההגרלה מתקיימת פעמיים ביום (13:30 ו19:30) ביום ו׳ בשעה 13:00 ואילו בצאת השבת בשעה 22:25
+`}</Text>
+            {openExplnation && <Text
+              style={{ fontSize: 10, fontFamily: "fb-Spacer" }}
+            >{`ההגרלה מתקיימת שבעה ימים בשבוע, בימים א׳-ה׳ ההגרלה מתקיימת פעמיים ביום (13:30 ו19:30) ביום ו׳ בשעה 13:00 ואילו בצאת השבת בשעה 22:25
 איך זה עובד?
 ישנה טבלה ובה שבעים מספרים, על המשתמש לבחור שבעה מספרים ולמלא בטבלה. 
 ניתן למלא שלוש טבלאות שונות כאשר ממלאים שבעה מספרים בכל טבלה. 
@@ -258,10 +276,11 @@ const Seva77List = (props) => {
 ישנה גם האפשרות של פיס 777 שיטתי
 777 שיטתי 8 (לפיו בוחרים שמונה מספרים ומסמנים בטבלת שבעים המספרים ועל בסיס המספרים שנבחרו יוצר המחשב שמונה צירופים של שבעה מספרים)  הפרס במצב בו כל שמונת המספרים שסימנתם עלו בגורל הינו 560,000!  70,000 ש״ח כפול 8. 
 777 שיטתי 9 (לפיו בוחרים תשעה מספרים ומסמנים בטבלת שבעים המספרים ועל בסיס המספרים שנבחרו יוצר המחשב שלושים ושישה צירופים של שבעה מספרים) הפרס במצב בו תשעת המספרים שסימנתם עלו בגורל הינו 2,520,000! 
-
+              
 בכדי לדעת את תוצאות ההגרלה והמספרים שעלו בגורל וכמו כן את תוצאות המשחקים שכבר התקיימו ניתן להיכנס לאתר ולהתעדכן בזמן אמת ובכל רגע נתון.
-            </Text>
-          </View>
+`}</Text>}
+          
+              </View>
           <View
             style={{
               flexDirection: "row",

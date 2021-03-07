@@ -124,7 +124,7 @@ const FillForm = ({
         setusedTable(table);
       }
     });
-  }, [opendTableNum]);
+  }, [fullTables, opendTableNum, arrowClickedRight, arrowClickedLeft]);
 
   // useeffect that runs when choosennums  changes
   useEffect(() => {
@@ -134,11 +134,11 @@ const FillForm = ({
     });
   }, [choosenNums]);
 
-  useEffect(() => {
-    fullTables.forEach((table, index) => {
-      setusedTable(table);
-    });
-  }, [fullTables, opendTableNum, arrowClickedRight, arrowClickedLeft]);
+  // useEffect(() => {
+  //   fullTables.forEach((table, index) => {
+  //     setusedTable(table);
+  //   });
+  // }, [fullTables, opendTableNum, arrowClickedRight, arrowClickedLeft]);
 
   const arrowClickedRight = () => {
     if (opendTableNum > 1) {
