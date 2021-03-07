@@ -30,8 +30,9 @@ const SumPageLotto = ({ route, navigation }) => {
     fullTables,
     gameType,
     tzerufimNumber,
-    hazakimNumber,
+
     trimedFullTables,
+    hazakimNumber,
   } = route.params;
   const [showTable, setshowTable] = useState(false);
   const [double, setdouble] = useState(false);
@@ -83,14 +84,25 @@ const SumPageLotto = ({ route, navigation }) => {
   const getPrice = async (url, trimedFullTables) => {
     setPrice(null);
     console.log("i am here");
-
-    let x = await trimedFullTables.map((table, index) => {
-      return {
-        numbers: table.choosenNums,
-        strong_number: [table.strongNum],
-        table_number: table.tableNum,
-      };
-    });
+    let x;
+    if (gameType === "regular" || gameType === "double") {
+      x = await trimedFullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
+          strong_number: [table.strongNum],
+          table_number: table.tableNum,
+        };
+      });
+    }
+    if (gameType === "shitati" || gameType === "shitati_hazak") {
+      x = await trimedFullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
+          strong_number: table.choosenStrongNums,
+          table_number: table.tableNum,
+        };
+      });
+    }
 
     if (gameType === "regular" || gameType === "double") {
       axios
@@ -119,14 +131,14 @@ const SumPageLotto = ({ route, navigation }) => {
         })
         .catch((err) => console.log(err));
     } else if (gameType === "shitati" || gameType === "shitati_hazak") {
-      console.log("x from shitati : ", x);
+      console.log("x from shitati : ", x[0]);
       axios
         .post(
           url,
           {
             extra: extra,
             multi_lottery: hagralot,
-            tables: x,
+            tables: x[0],
           },
           {
             headers: {
@@ -149,6 +161,7 @@ const SumPageLotto = ({ route, navigation }) => {
 
     setsendToServer({
       extra: extra,
+      form_type: String(hazakimNumber),
       multi_lottery: hagralot,
       tables: x,
     });
@@ -186,6 +199,7 @@ const SumPageLotto = ({ route, navigation }) => {
 
       setsendToServer({
         extra: extra,
+        form_type: String(hazakimNumber),
         multi_lottery: hagralot,
         tables: x,
       });
@@ -193,7 +207,7 @@ const SumPageLotto = ({ route, navigation }) => {
       let x = trimedFullTables.map((table, index) => {
         return {
           numbers: table.choosenNums,
-          strong_number: [table.strongNum],
+          strong_number: table.choosenStrongNums,
           table_number: table.tableNum,
         };
       });
@@ -225,7 +239,7 @@ const SumPageLotto = ({ route, navigation }) => {
 
       setsendToServer({
         extra: extra,
-        form_type: `${hazakimNumber}`,
+        form_type: String(hazakimNumber),
         multi_lottery: hagralot,
         tables: x,
       });

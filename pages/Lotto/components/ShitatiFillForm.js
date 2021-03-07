@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Dimensions,Image } from "react-native";
+import { Text, View, Dimensions, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
   Container,
@@ -63,19 +63,31 @@ const Num = ({ num, choosenNums, setchoosenNums, tzerufimNumber }) => {
 const StrongNum = ({
   num,
   strongNum,
-  setStrongNum,
+  setstrongNum,
+
   choosenStrongNums,
   setChoosenStrongNums,
 }) => {
+  const disabled = () => {
+    if (strongNum === num) {
+      return false;
+    }
+    if (strongNum > 1) {
+      return true;
+    }
+  };
+
   return (
     <>
       <TouchableOpacity
-        // disabled={strongNum === num ? false : strongNum > 1 ? true : false}
+        disabled={disabled()}
         onPress={() => {
-          strongNum === 0 && setStrongNum(num);
-          // if (strongNum === num) {
-          //   setstrongNum(0);
-          // }
+          // strongNum === 0 && setStrongNum(num);
+          if (strongNum === num) {
+            setstrongNum(0);
+          } else {
+            setstrongNum(num);
+          }
         }}
         style={{
           width: 35,
@@ -89,10 +101,14 @@ const StrongNum = ({
           margin: 2,
         }}
       >
-        <Text style={{
-          color: strongNum === num ? "#E62321" : "white",
-          fontFamily: "fb-Spacer"
-        }}>{num}</Text>
+        <Text
+          style={{
+            color: strongNum === num ? "#E62321" : "white",
+            fontFamily: "fb-Spacer",
+          }}
+        >
+          {num}
+        </Text>
       </TouchableOpacity>
     </>
   );
@@ -133,24 +149,22 @@ const ShitatiFillForm = ({
   });
   const [indexOfTable, setindexOfTable] = useState(-1);
 
-
-
   useEffect(() => {
     fullTables.forEach((table, index) => {
-      if (table.tableNum === opendTableNum) {
+      if (table.tableNum === 1) {
         setchoosenNums(table.choosenNums);
         setStrongNum(table.strongNum);
 
-        setindexOfTable(index);
+        setindexOfTable(1);
         setusedTable(table);
       }
     });
   }, []);
 
-  useEffect(() => {
-    setchoosenNums([]);
-    setStrongNum(0);
-  }, [tzerufimNumber]);
+  // useEffect(() => {
+  //   setchoosenNums([]);
+  //   setStrongNum(0);
+  // }, [tzerufimNumber]);
 
   useEffect(() => {
     setusedTable({
@@ -173,7 +187,7 @@ const ShitatiFillForm = ({
         style={{
           backgroundColor: "#263742",
           width: "100%",
-          top: EStyleSheet.value("$rem") * -35,
+          top: EStyleSheet.value("$rem") * -42,
           height: 500,
           position: "relative",
           zIndex: 2000,
@@ -194,81 +208,78 @@ const ShitatiFillForm = ({
             marginHorizontal: 15,
           }}
         >
-  <View style={{ flexDirection: "row", flex: 1 }}>
+          <View style={{ flexDirection: "row", flex: 1 }}>
             <View style={{ flexDirection: "row", flex: 1 }}>
-          
-          <TouchableOpacity
-             style={{
-              width: 30,
-              height: 30,
-              borderColor: "white",
-              borderWidth: 2,
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: 23,
-              margin: 3,
-            }}
-              disabled={choosenNums.length !== 0 ? true : false}
-              onPress={() => {
-                let numbers = autoFill(tzerufimNumber);
-                setchoosenNums(numbers.randomNumbers);
-                setStrongNum(numbers.strongNum);
-              }}
-            >
-             
-             <Image
+              <TouchableOpacity
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderColor: "white",
+                  borderWidth: 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 23,
+                  margin: 3,
+                }}
+                disabled={choosenNums.length !== 0 ? true : false}
+                onPress={() => {
+                  let numbers = autoFill(tzerufimNumber);
+                  setchoosenNums(numbers.randomNumbers);
+                  setStrongNum(numbers.strongNum);
+                }}
+              >
+                <Image
                   style={{ width: 22.5, height: 12.5 }}
                   source={require("C:/fullstack/lottoMatic/assets/fillTable.png")}
                 />
-          </TouchableOpacity>
-          
-            <TouchableOpacity
-              onPress={() => {
-                setchoosenNums([]);
-                setStrongNum();
-              }}
-              style={{
-                width: 30,
-                height: 30,
-                borderColor: "white",
-                borderWidth: 2,
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 23,
-                margin: 3,
-              }}
-            >
-              <Image
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => {
+                  setchoosenNums([]);
+                  setStrongNum();
+                }}
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderColor: "white",
+                  borderWidth: 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 23,
+                  margin: 3,
+                }}
+              >
+                <Image
                   style={{ width: 22.5, height: 12.5 }}
                   source={require("C:/fullstack/lottoMatic/assets/removeForm.png")}
                 />
-            </TouchableOpacity>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-             style={{
-              width: 30,
-              height: 30,
-              borderColor: "white",
-              borderWidth: 2,
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: 23,
-              margin: 3,
-            }}
-              disabled={choosenNums.length !== 0 ? true : false}
-              onPress={() => {
-                let numbers = autoFill(tzerufimNumber);
-                setchoosenNums(numbers.randomNumbers);
-                setStrongNum(numbers.strongNum);
-              }}
-            >
-             
-             <Image
+              <TouchableOpacity
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderColor: "white",
+                  borderWidth: 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 23,
+                  margin: 3,
+                }}
+                disabled={choosenNums.length !== 0 ? true : false}
+                onPress={() => {
+                  let numbers = autoFill(tzerufimNumber);
+                  setchoosenNums(numbers.randomNumbers);
+                  setStrongNum(numbers.strongNum);
+                }}
+              >
+                <Image
                   style={{ width: 22.5, height: 12.5 }}
                   source={require("C:/fullstack/lottoMatic/assets/fillForm.png")}
                 />
-          </TouchableOpacity>
-          <View
+              </TouchableOpacity>
+              <View
                 style={{
                   top: 3,
                   left: 7,
@@ -278,7 +289,7 @@ const ShitatiFillForm = ({
                   height: 33,
                 }}
               ></View>
-               <View
+              <View
                 style={{
                   borderRadius: 30,
                   justifyContent: "center",
@@ -299,7 +310,7 @@ const ShitatiFillForm = ({
                 flex: 1,
               }}
             >
-                            <View
+              <View
                 style={{
                   top: 3,
                   left: 7,
@@ -309,36 +320,34 @@ const ShitatiFillForm = ({
                   height: 33,
                 }}
               ></View>
-          <TouchableOpacity
-           style={{
-            height: 25,
-            padding: 7,
-            backgroundColor: "white",
-            borderRadius: 13,
-            justifyContent: "center",
-            alignItems: "center",
-            marginHorizontal: 6,
-            marginVertical: 4,
-            top: 3,
-          }}
-            onPress={() => {
-              setshowTable(false);
-              if (indexOfTable !== -1) {
-                // let x = fullTables.splice(indexOfTable, 1);
-                setFullTables([...fullTables, usedTable]);
-              } else {
-                setFullTables([...fullTables, usedTable]);
-              }
-            }}
+              <TouchableOpacity
+                style={{
+                  height: 25,
+                  padding: 7,
+                  backgroundColor: "white",
+                  borderRadius: 13,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginHorizontal: 6,
+                  marginVertical: 4,
+                  top: 3,
+                }}
+                onPress={() => {
+                  setshowTable(false);
+                  if (indexOfTable !== -1) {
+                    // let x = fullTables.splice(indexOfTable, 1);
+                    setFullTables([...fullTables, usedTable]);
+                  } else {
+                    setFullTables([...fullTables, usedTable]);
+                  }
+                }}
               >
-                
-            <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
-              סגור חלון
-            </Text>
+                <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
+                  סגור חלון
+                </Text>
               </TouchableOpacity>
-              
-        </View>
-        </View>
+            </View>
+          </View>
         </View>
         {/* {fill numbers} */}
         <View
@@ -374,55 +383,6 @@ const ShitatiFillForm = ({
             >
               מלא את טבלה {opendTableNum}
             </Text>
-            {/* <TouchableOpacity
-              disabled={choosenNums.length !== 0 ? true : false}
-              onPress={() => {
-                let numbers = autoFill(tzerufimNumber);
-                setchoosenNums(numbers.randomNumbers);
-                setStrongNum(numbers.strongNum);
-                // console.log('fullTable1:',fullTable1);
-              }}
-              style={{
-                borderColor: "white",
-                borderWidth: 1,
-                padding: 3,
-                borderRadius: 7,
-                marginHorizontal: 1,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 10,
-                  color: "white",
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                מלא טבלה אוטומטית
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setchoosenNums([]);
-                setStrongNum();
-              }}
-              style={{
-                borderColor: "white",
-                borderWidth: 1,
-                padding: 3,
-                borderRadius: 7,
-                marginHorizontal: 1,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 10,
-                  color: "white",
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                מחק טבלה אוטומטית
-              </Text>
-            </TouchableOpacity> */}
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
@@ -436,44 +396,8 @@ const ShitatiFillForm = ({
               />
             ))}
           </View>
-          {/* <View style={{ flexDirection: "row", flexWrap: "wrap" }}> */}
-            {/* {choosenNums.length > 0 && (
-              <Text
-                style={{
-                  color: "white",
-                  top: "3%",
-                  right: 8,
-                  fontFamily: "fb-Spacer-bold",
-                }}
-              >
-                המספרים שנבחרו
-              </Text>
-            )} */}
-            {/* {choosenNums
-              .sort(function (a, b) {
-                return b - a;
-              })
-
-              .map((num) => (
-                <View
-                  style={{
-                    width: 20,
-                    height: 20,
-                    borderRadius: 30,
-                    backgroundColor: "pink",
-                    margin: 5,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text style={{ color: "black", fontFamily: "fb-Spacer" }}>
-                    {num}
-                  </Text>
-                </View>
-              ))} */}
-          {/* </View> */}
         </View>
-        <View style={{ marginTop: "-10%" }}>
+        <View style={{ marginTop: "-14%" }}>
           <Text
             style={{
               color: "white",
@@ -501,7 +425,7 @@ const ShitatiFillForm = ({
           >
             {Array.from(Array(7)).map((x, index) => (
               <StrongNum
-                setStrongNum={setStrongNum}
+                setstrongNum={setStrongNum}
                 strongNum={strongNum}
                 num={index + 1}
                 key={index}

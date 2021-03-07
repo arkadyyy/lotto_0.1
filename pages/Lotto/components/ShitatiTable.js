@@ -120,7 +120,7 @@ const ShitatiTable = ({
           backgroundColor: !table1.includes(" ") ? "#78C849" : "#D60617",
           flexWrap: "wrap",
           marginTop: 4,
-          height: EStyleSheet.value("$rem") * 105,
+          height: EStyleSheet.value("$rem") * 130,
           alignItems: "center",
           width: width,
         }}
