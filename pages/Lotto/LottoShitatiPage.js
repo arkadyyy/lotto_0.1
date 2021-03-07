@@ -26,7 +26,7 @@ import ShitatiTable from "./components/ShitatiTable";
 import { autoFill } from "../Lotto/components/FillForm";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faPlusCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Touchable } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -41,6 +41,7 @@ const LottoShitatiPage = ({ navigation }) => {
   const [opendTableNum, setopendTableNum] = useState(1);
   const [tablesCheck, settablesCheck] = useState(false);
   const [errorMsg, seterrorMsg] = useState("");
+  const[fillOtomatic, setFillOtomatic] = useState(false);
 
   const store = useSelector((state) => state);
   const autoFillForm = () => {
@@ -51,6 +52,8 @@ const LottoShitatiPage = ({ navigation }) => {
       strongNum: numbers.strongNum,
     };
     setFullTables([table]);
+    setFillOtomatic(true);
+
   };
 
   const checkTables = (fullTables, tableNum) => {
@@ -134,17 +137,61 @@ const LottoShitatiPage = ({ navigation }) => {
               בחר {tzerufimNumber} מספרים וחזק
             </Text>
             <View style={LottoListstyles.autoBtnContainer}>
+            <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomatic === false ? "white" : "#8CC63F",
+              borderWidth: 2,
+              // margin: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faCheck}
+              color={fillOtomatic === false ? "white" : "#8CC63F"}
+            />
+          </View>
               <TouchableOpacity
                 onPress={autoFillForm}
                 style={LottoListstyles.autoBtn}
+                
               >
                 <Text style={LottoListstyles.autoBtnText}>
                   מלא טופס אוטומטי
                 </Text>
+
               </TouchableOpacity>
+              <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomatic === true ? "white" : "#8CC63F",
+              borderWidth: 2,
+              // margin: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faTimes}
+              color={fillOtomatic === true ? "white" : "#8CC63F"}
+            />
+          </View>
               <TouchableOpacity
-                onPress={() => setFullTables([])}
-                style={LottoListstyles.autoBtn}
+                onPress={() => {
+                  setFullTables([])
+                  setFillOtomatic(false)
+                }
+                }
+                style={fillOtomatic === true ? LottoListstyles.autoBtn : LottoListstyles.autoBtnFalse}
               >
                 <Text style={LottoListstyles.autoBtnText}>
                   מחק טופס אוטומטי

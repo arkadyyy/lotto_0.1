@@ -25,6 +25,16 @@ const LottoListstyles = StyleSheet.create({
     alignItems: "center",
     padding: 7,
   },
+  autoBtnFalse: {
+    borderColor: "green",
+    borderWidth: 1,
+    borderRadius: 19,
+    margin: 5,
+    paddingHorizontal: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 7,
+  },
 
   autoBtnText: {
     color: "white",
