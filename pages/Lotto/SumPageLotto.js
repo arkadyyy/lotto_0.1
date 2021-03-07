@@ -4,7 +4,7 @@ import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
-import { Button,Spinner,Toast} from "native-base";
+import { Button, Spinner, Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ExtraAndOtomatChoose from "./components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
@@ -119,14 +119,14 @@ const SumPageLotto = ({ route, navigation }) => {
         })
         .catch((err) => console.log(err));
     } else if (gameType === "shitati" || gameType === "shitati_hazak") {
-      console.log("x from shitati : ", x[0]);
+      console.log("x from shitati : ", x);
       axios
         .post(
           url,
           {
             extra: extra,
             multi_lottery: hagralot,
-            tables: x[0],
+            tables: x,
           },
           {
             headers: {
@@ -232,74 +232,72 @@ const SumPageLotto = ({ route, navigation }) => {
     }
   }, [fullTables, extra, otomatic, navigation]);
 
-  // useEffect(() => {
-  //   navigation.addListener("blur", () => {
-  //     console.log("blur happend");
-  //     setPrice(null);
-  //     seturl("");
-  //     setOtomatic(true);
-  //     setExtra(true);
-  //     setdisplayPrice(false);
-  //     setsendToServer({
-  //       extra: false,
-  //       multi_lottery: -1,
-  //       tables: [],
-  //     });
-  //   });
-  //   //set post url according to game
-  //   navigation.addListener("focus", () => {
-  //     console.log("focus happend");
-  //     if (gameType === "regular") {
-  //       seturl("http://52.90.122.190:5000/games/lotto/type/regular/0");
-  //       getPrice(
-  //         "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
-  //         trimedFullTables
-  //       );
-  //     } else if (gameType === "double") {
-  //       seturl("http://52.90.122.190:5000/games/lotto/type/regular_double/0");
-  //       getPrice(
-  //         "http://52.90.122.190:5000/games/lotto/type/regular_double/calculate_price",
-  //         trimedFullTables
-  //       );
-  //     } else if (gameType === "shitati") {
-  //       seturl("http://52.90.122.190:5000/games/lotto/type/shitati/0");
-  //       getPrice(
-  //         "http://52.90.122.190:5000/games/lotto/type/shitati/calculate_price",
-  //         trimedFullTables
-  //       );
-  //     } else if (gameType === "double_shitati") {
-  //       seturl("http://52.90.122.190:5000/games/lotto/type/double_shitati/0");
-  //       getPrice(
-  //         "http://52.90.122.190:5000/games/lotto/type/double_shitati/calculate_price",
-  //         trimedFullTables
-  //       );
-  //     } else if (gameType === "shitati_hazak") {
-  //       seturl("http://52.90.122.190:5000/games/lotto/type/shitati_hazak/0");
-  //       getPrice(
-  //         "http://52.90.122.190:5000/games/lotto/type/shitati_hazak/calculate_price",
-  //         trimedFullTables
-  //       );
-  //     } else if (gameType === "double_shitati_hazak") {
-  //       seturl(
-  //         "http://52.90.122.190:5000/games/lotto/type/double_shitati_hazak/0"
-  //       );
-  //       getPrice(
-  //         "http://52.90.122.190:5000/games/lotto/type/double_shitati_hazak/calculate_price",
-  //         trimedFullTables
-  //       );
-  //     }
-  //   });
-  // }, [navigation]);
+  useEffect(() => {
+    navigation.addListener("blur", () => {
+      console.log("blur happend");
+      setPrice(null);
+      seturl("");
+      setOtomatic(true);
+      setExtra(true);
+      setdisplayPrice(false);
+      setsendToServer({
+        extra: false,
+        multi_lottery: -1,
+        tables: [],
+      });
+    });
+    //set post url according to game
+    navigation.addListener("focus", () => {
+      console.log("focus happend");
+      if (gameType === "regular") {
+        seturl("http://52.90.122.190:5000/games/lotto/type/regular/0");
+        getPrice(
+          "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
+          trimedFullTables
+        );
+      } else if (gameType === "double") {
+        seturl("http://52.90.122.190:5000/games/lotto/type/regular_double/0");
+        getPrice(
+          "http://52.90.122.190:5000/games/lotto/type/regular_double/calculate_price",
+          trimedFullTables
+        );
+      } else if (gameType === "shitati") {
+        seturl("http://52.90.122.190:5000/games/lotto/type/shitati/0");
+        getPrice(
+          "http://52.90.122.190:5000/games/lotto/type/shitati/calculate_price",
+          trimedFullTables
+        );
+      } else if (gameType === "double_shitati") {
+        seturl("http://52.90.122.190:5000/games/lotto/type/double_shitati/0");
+        getPrice(
+          "http://52.90.122.190:5000/games/lotto/type/double_shitati/calculate_price",
+          trimedFullTables
+        );
+      } else if (gameType === "shitati_hazak") {
+        seturl("http://52.90.122.190:5000/games/lotto/type/shitati_hazak/0");
+        getPrice(
+          "http://52.90.122.190:5000/games/lotto/type/shitati_hazak/calculate_price",
+          trimedFullTables
+        );
+      } else if (gameType === "double_shitati_hazak") {
+        seturl(
+          "http://52.90.122.190:5000/games/lotto/type/double_shitati_hazak/0"
+        );
+        getPrice(
+          "http://52.90.122.190:5000/games/lotto/type/double_shitati_hazak/calculate_price",
+          trimedFullTables
+        );
+      }
+    });
+  }, [navigation]);
 
   return (
     <>
       <ScrollView>
-       
         <NavBar navigation={navigation} screenName={screenName} />
         <BlankSquare gameName='הגרלת לוטו' color='#E62321' />
         {/* <ChooseForm setdouble={setdouble} double={double} /> */}
         <View style={{ margin: 15 }}>
-          
           <View
             style={{
               backgroundColor: "#E62321",
@@ -475,28 +473,27 @@ const SumPageLotto = ({ route, navigation }) => {
                         res
                       );
                       navigation.navigate(`congratulation`);
-                      
+
                       setSpinner(false);
-
                     })
-                    .catch((err) => console.log("errrrrrrrr:",err));
-                    setSpinner(false);
-                    seterrorMsg("ארעה שגיאה בשליחת הטופס");
-                  Toast.show({
-                      text: errorMsg,
-                      textStyle: { fontFamily: "fb-Spacer" },
-                      buttonText: "סגור",
-                      position: "top",
-                      // type: "warning",
-                      buttonStyle: {
-                        backgroundColor: "white",
-                        borderRadius: 8,
-                      },
-                      textStyle: { color: "white" },
-                      buttonTextStyle: { color: "black" },
-                      duration: 2500,
+                    .catch((err) => {
+                      setSpinner(false);
+                      seterrorMsg("ארעה שגיאה בשליחת הטופס");
+                      Toast.show({
+                        text: errorMsg,
+                        textStyle: { fontFamily: "fb-Spacer" },
+                        buttonText: "סגור",
+                        position: "top",
+                        // type: "warning",
+                        buttonStyle: {
+                          backgroundColor: "white",
+                          borderRadius: 8,
+                        },
+                        textStyle: { color: "white" },
+                        buttonTextStyle: { color: "black" },
+                        duration: 2500,
+                      });
                     });
-
                 }}
                 style={{
                   borderRadius: 17,
@@ -516,15 +513,11 @@ const SumPageLotto = ({ route, navigation }) => {
                   שלח טופס
                 </Text>
               </Button>
-              {spinner &&
-                <Spinner/>
-      }
+              {spinner && <Spinner />}
             </View>
           </View>
         </View>
-        
       </ScrollView>
-      
     </>
   );
 };

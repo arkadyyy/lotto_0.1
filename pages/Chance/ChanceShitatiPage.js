@@ -26,6 +26,8 @@ const ChancePageShitati = ({ navigation }) => {
   const [errorMsg, seterrorMsg] = useState("");
   const [trimedFullTables, settrimedFullTables] = useState([]);
 
+  const [cardTypeUsed, setcardTypeUsed] = useState([]);
+
   const [fullTables, setfullTables] = useState([
     {
       tableNum: 1,
@@ -82,6 +84,10 @@ const ChancePageShitati = ({ navigation }) => {
 
       let random = Math.floor(Math.random() * randomNumArr.length);
       usedTable.choosenCards[randomNumArr[random]].cards = x[0][0];
+      setcardTypeUsed([
+        ...cardTypeUsed,
+        usedTable.choosenCards[randomNumArr[random]].type,
+      ]);
       randomNumArr.splice(random, 1);
     }
     // selected.forEach((card, index) => {
@@ -100,16 +106,19 @@ const ChancePageShitati = ({ navigation }) => {
 
     let updatedAllCounters = allCounters.map((counter, index) => {
       if (counter.formNum <= formNum) {
-        counter.counter = 100;
+        counter.counter = 4 * tableNum;
         return counter;
       } else {
         return counter;
       }
     });
     setallCounters(updatedAllCounters);
+
+    //setting cardtypeUsed
   };
 
   const deletForm = () => {
+    setcardTypeUsed([]);
     setfullTables([
       {
         tableNum: 1,
@@ -294,6 +303,8 @@ const ChancePageShitati = ({ navigation }) => {
                 setallCounters={setallCounters}
                 formNum={formNum}
                 autoFillForm={autoFillForm}
+                cardTypeUsed={cardTypeUsed}
+                setcardTypeUsed={setcardTypeUsed}
               />
             )}
             <View style={chanceListstyles.listContainerBorder}>

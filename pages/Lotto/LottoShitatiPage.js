@@ -210,6 +210,7 @@ const LottoShitatiPage = ({ navigation }) => {
                       fullTables: fullTables,
                       gameType: "shitati",
                       tzerufimNumber: tzerufimNumber,
+                      trimedFullTables: fullTables,
                     });
                   }
                 }}

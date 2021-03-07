@@ -26,6 +26,7 @@ const DoubleLottoPage = ({ navigation }) => {
   const [opendTableNum, setopendTableNum] = useState(0);
   const [errorMsg, seterrorMsg] = useState("");
   const [tablesCheck, settablesCheck] = useState(false);
+  const [trimedFullTables, settrimedFullTables] = useState([]);
   const [fullTables, setFullTables] = useState([
     {
       choosenNums: [" ", " ", " ", " ", " ", " "],
@@ -241,6 +242,7 @@ const DoubleLottoPage = ({ navigation }) => {
       }
     });
     settablesCheck(returnedState);
+    settrimedFullTables(checkedFullTables2);
   };
 
   const tableNumChangeCheck = (fullTables, tableNum) => {
@@ -381,6 +383,7 @@ const DoubleLottoPage = ({ navigation }) => {
                       screenName: "לוטו",
                       fullTables: fullTables,
                       gameType: "double",
+                      trimedFullTables: trimedFullTables,
                     });
                   }
                 }}
