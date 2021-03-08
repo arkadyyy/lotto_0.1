@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import sheva77Liststyles from "./Sheva77ListStyles";
-import { Button, List, ListItem, Toast } from "native-base";
+import { Button, List, ListItem, Toast, } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
@@ -198,6 +198,7 @@ const Sheva778Page = ({ navigation }) => {
                       fullTables: fullTables,
                       gameType: "778",
                       formType: 8,
+                      
                     });
                   }
                 }}

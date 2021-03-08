@@ -32,6 +32,7 @@ const SumPage777 = ({ route, navigation }) => {
     gameType,
     formType,
     trimedFullTables,
+    
   } = route.params;
   const [showTable, setshowTable] = useState(false);
   // const [tableNum, settableNum] = useState(1);
@@ -59,7 +60,7 @@ const SumPage777 = ({ route, navigation }) => {
   });
 
   const getPrice = async (url, fullTables, formType) => {
-    setPrice(null);
+    setPrice(" ");
 
     console.log("i am focused ");
 
@@ -373,7 +374,7 @@ const SumPage777 = ({ route, navigation }) => {
                   flexDirection: "row",
                 }}
               >
-                {!displayPrice ?
+                {price * HagralotMultiplicaton===0 ?
                   <Spinner/>
                   : (
                     <Text
