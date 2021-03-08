@@ -438,7 +438,9 @@ const SumPageLotto = ({ route, navigation }) => {
                   marginTop: 7,
                 }}
               >
-                {displayPrice && (
+                {!displayPrice ?
+                <Spinner/>
+                : (
                   <Text
                     color='white'
                     style={{
