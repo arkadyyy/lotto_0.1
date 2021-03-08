@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
-import { Button, List } from "native-base";
+import { Button, List,Spinner } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ExtraAndOtomatChoose from "../../pages/Lotto/components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
@@ -44,12 +44,14 @@ const SumPage777 = ({ route, navigation }) => {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [price, setPrice] = useState(null);
+  const [price, setPrice] = useState("");
   const [otomatic, setOtomatic] = useState(true);
   const [HagralotMultiplicaton, setHagralotMultiplicaton] = useState(1);
 
   const [hagralot, setHagralot] = useState(-1);
   const [url, seturl] = useState("");
+  const [displayPrice, setdisplayPrice] = useState(false);
+  const [spinner, setSpinner] = useState(false);
 
   const [sendToServer, setsendToServer] = useState({
     multi_lottery: -1,
@@ -86,6 +88,12 @@ const SumPage777 = ({ route, navigation }) => {
         }
       )
       .then((res) => setPrice(res.data.price))
+      .catch((err) => console.log(err))
+      .then((data) => {
+        setTimeout(() => {
+          setdisplayPrice(true);
+        }, 1500);
+      })
       .catch((err) => console.log(err));
 
     // setsendToServer({
@@ -365,21 +373,25 @@ const SumPage777 = ({ route, navigation }) => {
                   flexDirection: "row",
                 }}
               >
-                <Text
-                  color='white'
-                  style={{
-                    fontSize: EStyleSheet.value("$rem") * 22,
-                    color: "white",
-                    marginLeft: 15,
-                    fontFamily: "fb-Spacer",
-                  }}
-                >
-                  לתשלום: {price * HagralotMultiplicaton}
-                </Text>
+                {!displayPrice ?
+                  <Spinner/>
+                  : (
+                    <Text
+                      color='white'
+                      style={{
+                        fontSize: EStyleSheet.value("$rem") * 22,
+                        color: "white",
+                        marginLeft: 15,
+                        fontFamily: "fb-Spacer",
+                      }}
+                    >
+                      לתשלום: {price * HagralotMultiplicaton}
+                    </Text>
+                  )}
                 <View style={{ height: 10 }}>
                   <FontAwesomeIcon
                     size={10}
-                    style={{ marginVertical: 7, marginLeft: -4 }}
+                    style={{ marginVertical: 7, marginLeft: 3 }}
                     icon={faShekelSign}
                     color='white'
                   />
