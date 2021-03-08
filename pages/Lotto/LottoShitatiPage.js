@@ -26,7 +26,7 @@ import ShitatiTable from "./components/ShitatiTable";
 import { autoFill } from "../Lotto/components/FillForm";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faCheck, faPlusCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Touchable } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
