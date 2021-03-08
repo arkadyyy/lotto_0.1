@@ -346,7 +346,7 @@ const SumPage777 = ({ route, navigation }) => {
                     fontFamily: "fb-Spacer",
                   }}
                 >
-                  סה"כ {tableNum}טבלאות
+                  סה"כ {tableNum} טבלאות
                 </Text>
                 <View
                   style={{
@@ -375,7 +375,7 @@ const SumPage777 = ({ route, navigation }) => {
                 }}
               >
                 {price * HagralotMultiplicaton===0 ?
-                  <Spinner/>
+                 <Text>:...</Text>
                   : (
                     <Text
                       color='white'
@@ -386,6 +386,7 @@ const SumPage777 = ({ route, navigation }) => {
                         fontFamily: "fb-Spacer",
                       }}
                     >
+
                       לתשלום: {price * HagralotMultiplicaton}
                     </Text>
                   )}

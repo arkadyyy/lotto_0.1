@@ -20,6 +20,8 @@ import { LogIn } from "../../redux/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faShekelSign } from "@fortawesome/free-solid-svg-icons";
 import EStyleSheet from "react-native-extended-stylesheet";
+import { CommonActions } from '@react-navigation/native';
+
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
@@ -150,6 +152,7 @@ const SumPageLotto = ({ route, navigation }) => {
         )
         .then((res) => {
           setPrice(res.data.price);
+          console.log("?????shitaty price changed?");
         })
         .then((data) => {
           setTimeout(() => {
@@ -438,9 +441,9 @@ const SumPageLotto = ({ route, navigation }) => {
                   marginTop: 7,
                 }}
               >
-                {!displayPrice ?
-                <Spinner/>
-                : (
+                
+
+                
                   <Text
                     color='white'
                     style={{
@@ -449,10 +452,13 @@ const SumPageLotto = ({ route, navigation }) => {
                       marginLeft: 15,
                       fontFamily: "fb-Spacer",
                     }}
-                  >
-                    לתשלום: {price * HagralotMultiplicaton}
-                  </Text>
-                )}
+                >
+                {!displayPrice ? ("לתשלום ...") : 
+                  
+                    `לתשלום: ${price * HagralotMultiplicaton}`
+}  
+                </Text>
+                
 
                 <FontAwesomeIcon
                   size={10}
@@ -488,7 +494,22 @@ const SumPageLotto = ({ route, navigation }) => {
                         "this is res from post server request $$$$ : ",
                         res
                       );
-                      navigation.navigate(`congratulation`);
+                      navigation.dispatch(
+                        CommonActions.navigate({
+                          name: 'congratulation',
+                        }),
+                        CommonActions.reset({
+                          index: 1,
+                          routes: [
+                            {
+                              name: 'Home',
+                              // params: { user: 'jane', key: route.params.key },
+                            },
+                            { name: 'userArea' },
+                          ],
+                        })
+                      );
+                      // navigation.navigate(`congratulation`);
 
                       setSpinner(false);
                     })

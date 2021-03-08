@@ -270,7 +270,7 @@ const SumPage123 = ({ route, navigation }) => {
                     fontFamily: "fb-Spacer",
                   }}
                 >
-                  סה"כ {tableNum}טבלאות
+                  סה"כ {tableNum} טבלאות
                 </Text>
                 <View
                   style={{
@@ -307,12 +307,12 @@ const SumPage123 = ({ route, navigation }) => {
                     fontFamily: "fb-Spacer",
                   }}
                 >
-                  לתשלום: {price}{" "}
+                  לתשלום: {price!=0? price: "..."}
                 </Text>
                 <View style={{ height: 10 }}>
                   <FontAwesomeIcon
                     size={10}
-                    style={{ marginVertical: 7, marginLeft: -4 }}
+                    style={{ marginVertical: 7, marginLeft: 2 }}
                     icon={faShekelSign}
                     color='white'
                   />

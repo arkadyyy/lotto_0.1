@@ -34,10 +34,18 @@ import BlankSquare from "../components/BlankSquare";
 import signInstyles from "./SignIn/SignInStyles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
+import { CommonActions } from '@react-navigation/native';
 
 //////////////////////////////////////////////////////////////
 
-export default function congratulation ({ navigation }) {
+export default function congratulation({ navigation }) {
+  // navigation.dispatch(
+  //   CommonActions.reset({
+  //     index: 1,
+  //     routeNames: [''],
+
+  //   })
+  // );
   return (
     <>
       <NavBar navigation={navigation} screenName={"congratulation"} />

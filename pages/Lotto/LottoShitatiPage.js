@@ -42,6 +42,7 @@ const LottoShitatiPage = ({ navigation }) => {
   const [tablesCheck, settablesCheck] = useState(false);
   const [errorMsg, seterrorMsg] = useState("");
   const[fillOtomatic, setFillOtomatic] = useState(false);
+  const[fillOtomaticTrue, setFillOtomaticTrue] = useState(false);
 
   const store = useSelector((state) => state);
   const autoFillForm = () => {
@@ -52,8 +53,11 @@ const LottoShitatiPage = ({ navigation }) => {
       strongNum: numbers.strongNum,
     };
     setFullTables([table]);
-    setFillOtomatic(true);
-
+    // setFillOtomatic(true);
+    setFillOtomaticTrue(true)
+    setTimeout(() => { 
+            setFillOtomaticTrue(false)
+      }, 1000);
   };
 
   const checkTables = (fullTables, tableNum) => {
@@ -140,7 +144,7 @@ const LottoShitatiPage = ({ navigation }) => {
             <View
             style={{
               borderRadius: 30,
-              borderColor: fillOtomatic === false ? "white" : "#8CC63F",
+              borderColor: fillOtomaticTrue === false ? "white" : "#8CC63F",
               borderWidth: 2,
               marginTop: 5,
               justifyContent: "center",
@@ -153,12 +157,22 @@ const LottoShitatiPage = ({ navigation }) => {
           >
             <FontAwesomeIcon
               icon={faCheck}
-              color={fillOtomatic === false ? "white" : "#8CC63F"}
+              color={fillOtomaticTrue === false ? "white" : "#8CC63F"}
             />
           </View>
               <TouchableOpacity
                 onPress={autoFillForm}
-                style={LottoListstyles.autoBtn}
+                // style={LottoListstyles.autoBtn}
+                style={{
+                  borderColor:fillOtomaticTrue === false ? "white" : "#8CC63F",
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  margin: 5,
+                  paddingHorizontal: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+                }}
                 
               >
                 <Text style={LottoListstyles.autoBtnText}>
@@ -179,7 +193,7 @@ const LottoShitatiPage = ({ navigation }) => {
               <View
             style={{
               borderRadius: 30,
-              borderColor: fillOtomatic === true ? "white" : "#8CC63F",
+              borderColor: fillOtomatic === false ? "white" : "#8CC63F",
               borderWidth: 2,
               marginTop: 5,
               justifyContent: "center",
@@ -192,17 +206,29 @@ const LottoShitatiPage = ({ navigation }) => {
           >
             <FontAwesomeIcon
               icon={faTimes}
-              color={fillOtomatic === true ? "white" : "#8CC63F"}
+              color={fillOtomatic === false ? "white" : "#8CC63F"}
             />
           </View>
               <TouchableOpacity
                 onPress={() => {
-                  setFullTables([])
+                  setFullTables([]);
+                  setFillOtomatic(true)
+                  setTimeout(() => {  
                   setFillOtomatic(false)
+                  }, 1000);
                 }
                 }
-                // style={fillOtomatic === true ? LottoListstyles.autoBtn : LottoListstyles.autoBtnFalse}
-                style={LottoListstyles.autoBtn}
+                style={{
+                  borderColor:fillOtomatic === false ? "white" : "#8CC63F",
+                  borderWidth: 1,
+    borderRadius: 10,
+    margin: 5,
+    paddingHorizontal: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 7,
+                }}
+
               >
                 <Text style={LottoListstyles.autoBtnText}>
                   מחק טופס אוטומטי

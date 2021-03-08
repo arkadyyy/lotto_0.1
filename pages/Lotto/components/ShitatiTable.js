@@ -43,7 +43,8 @@ const StrongNum = ({ strongNumber }) => {
           borderRadius: 30,
           backgroundColor: "yellow",
 
-          margin: 5,
+          marginHorizontal: 5,
+          marginBottom:30,
           justifyContent: "center",
           alignItems: "center",
         }}
