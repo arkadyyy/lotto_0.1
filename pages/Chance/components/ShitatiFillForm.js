@@ -23,6 +23,8 @@ const Num = ({
   setusedTable,
   cardTypeUsed,
   setcardTypeUsed,
+  tableNum,
+  autoFillFormFired,
 }) => {
   const [isDisabled, setisDisabled] = useState(false);
   const forceUpdate = useForceUpdate();
@@ -52,13 +54,21 @@ const Num = ({
       x = true;
     } else if (pressed.symbolsPressed.length >= 4) {
       x = true;
+    } else if (counter % 4 === 0 && cardTypeUsed.length === usedTableNum) {
+      x = true;
     }
 
     return x;
   };
+
   useEffect(() => {
+    console.log("pressed from Num : ", pressed);
     handleUpdate();
-  }, [fullTables]);
+  }, [autoFillFormFired]);
+
+  useEffect(() => {
+    console.log("cardTypeUsed : ", cardTypeUsed);
+  }, []);
 
   return (
     <>
@@ -79,6 +89,7 @@ const Num = ({
         onPress={() => {
           console.log("pressed : ", pressed);
           console.log("cardTypeUsed :~~~~~~~ ", cardTypeUsed);
+          console.log("counter : ", counter);
           if (pressed.symbolsPressed.includes(symbol)) {
             setpressed({
               numberOfPress: pressed.numberOfPress - 1,
@@ -102,6 +113,7 @@ const Num = ({
             cardTypeUsed.length <= usedTableNum
           ) {
             setcardTypeUsed([...cardTypeUsed, pressed.type]);
+            console.log("i have added card to usedcardarr");
           } else if (pressed.symbolsPressed.length === 1) {
             console.log("i am here !");
 
@@ -142,9 +154,15 @@ const FillForm = ({
   setallCounters,
   formNum,
   autoFillForm,
+  deletForm,
   cardTypeUsed,
   setcardTypeUsed,
 }) => {
+  const forceUpdate = useForceUpdate();
+  const handleUpdate = () => {
+    forceUpdate();
+  };
+
   const [symbols, setsymbols] = useState([
     "A",
     "K",
@@ -183,55 +201,12 @@ const FillForm = ({
     type: "clubs",
   });
 
-  const arrowClickedRight = () => {
-    if (opendTableNum > 1) {
-      setopendTableNum(opendTableNum - 1);
-    }
-  };
-
-  const arrowClickedLeft = () => {
-    if (opendTableNum < formNum) {
-      setopendTableNum(opendTableNum + 1);
-    }
-  };
-
   const deleteFilled = () => {
     setpressedClubs({ ...pressedClubs, symbolsPressed: [] });
     setpressedHeart({ ...pressedHeart, symbolsPressed: [] });
     setpressedDiamond({ ...pressedDiamond, symbolsPressed: [] });
     setpressedSpade({ ...pressedSpade, symbolsPressed: [] });
-  };
-
-  const autoFill = async (opendTableNum, usedTableNum) => {
-    const cardArr = ["7", "8", "9", "10", "J", "Q", "K", "A"];
-    let randomNumArr = [0, 1, 2, 3];
-
-    const pressed = [
-      [pressedSpade, setpressedSpade],
-      [pressedHeart, setpressedHeart],
-      [pressedDiamond, setpressedDiamond],
-      [pressedClubs, setpressedClubs],
-    ];
-
-    await pressed.forEach((pressed) => {
-      pressed[0].symbolsPressed = [];
-    });
-
-    var shuffled = cardArr.sort(function () {
-      return 0.5 - Math.random();
-    });
-    var selected = shuffled.slice(0, tableNum);
-    console.log("selected : ", selected);
-
-    selected.forEach((card, index) => {
-      let random = Math.floor(Math.random() * randomNumArr.length);
-
-      pressed[random][1]({ ...pressed[random][0], symbolsPressed: [card] });
-
-      randomNumArr.splice(random, 1);
-      pressed.splice(random, 1);
-      console.log("randomnumarr : ", randomNumArr);
-    });
+    setcounter(0);
   };
 
   useEffect(() => {
@@ -244,7 +219,7 @@ const FillForm = ({
   }, [counter]);
 
   useEffect(() => {
-    if (opendTableNum !== 0) {
+    if (opendTableNum !== 0 || autoFillFormFired === true) {
       setusedTable(
         fullTables.find((table) => table.tableNum === opendTableNum)
       );
@@ -275,67 +250,78 @@ const FillForm = ({
     ).counter;
 
     setcounter(counterMatches);
-  }, [opendTableNum]);
+    setautoFillFormFired(false);
+  }, [fullTables]);
 
-  useEffect(() => {
-    setusedTable({
-      tableNum: opendTableNum,
-      choosenCards: [
-        { type: "spade", cards: pressedSpade.symbolsPressed },
-        { type: "heart", cards: pressedHeart.symbolsPressed },
-        { type: "diamond", cards: pressedDiamond.symbolsPressed },
-        { type: "clubs", cards: pressedClubs.symbolsPressed },
-      ],
-    });
+  // useEffect(() => {
+  //   setusedTable({
+  //     tableNum: opendTableNum,
+  //     choosenCards: [
+  //       { type: "spade", cards: pressedSpade.symbolsPressed },
+  //       { type: "heart", cards: pressedHeart.symbolsPressed },
+  //       { type: "diamond", cards: pressedDiamond.symbolsPressed },
+  //       { type: "clubs", cards: pressedClubs.symbolsPressed },
+  //     ],
+  //   });
 
-    let filtered = fullTables.filter(
-      (table) => table.tableNum !== opendTableNum
-    );
-    if (autoFillFormFired === false) {
-      setfullTables([
-        ...filtered,
-        {
-          tableNum: opendTableNum,
-          choosenCards: [
-            { type: "spade", cards: pressedSpade.symbolsPressed },
-            { type: "heart", cards: pressedHeart.symbolsPressed },
-            { type: "diamond", cards: pressedDiamond.symbolsPressed },
-            { type: "clubs", cards: pressedClubs.symbolsPressed },
-          ],
-        },
-      ]);
-    }
-  }, [pressedSpade, pressedHeart, pressedDiamond, pressedClubs]);
+  //   let filtered = fullTables.filter(
+  //     (table) => table.tableNum !== opendTableNum
+  //   );
+  //   if (autoFillFormFired === false) {
+  //     setfullTables([
+  //       ...filtered,
+  //       {
+  //         tableNum: opendTableNum,
+  //         choosenCards: [
+  //           { type: "spade", cards: pressedSpade.symbolsPressed },
+  //           { type: "heart", cards: pressedHeart.symbolsPressed },
+  //           { type: "diamond", cards: pressedDiamond.symbolsPressed },
+  //           { type: "clubs", cards: pressedClubs.symbolsPressed },
+  //         ],
+  //       },
+  //     ]);
+  //   }
+  // }, [
+  //   pressedSpade,
+  //   pressedHeart,
+  //   pressedDiamond,
+  //   pressedClubs,
+  //   autoFillFormFired,
+  // ]);
 
   useEffect(() => {
     if (autoFillFormFired === true) {
-      let usedtable = fullTables.find(
-        (table) => table.tableNum === usedTableNum
-      )[0];
-      console.log("usedtable  ##### : ", usedtable);
+      // let usedtable = fullTables.find(
+      //   (table) => table.tableNum === usedTableNum
+      // )[0];
+      // console.log("usedtable  ##### : ", usedtable);
 
       // setpressedSpade({
       //   ...pressedSpade,
-      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "spade")
-      //     .cards,
+      //   symbolsPressed: fullTables[0].choosenCards.find(
+      //     (x) => x.type === "spade"
+      //   ).cards,
       // });
       // setpressedHeart({
       //   ...pressedHeart,
-      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "heart")
-      //     .cards,
+      //   symbolsPressed: fullTables[0].choosenCards.find(
+      //     (x) => x.type === "heart"
+      //   ).cards,
       // });
       // setpressedDiamond({
       //   ...pressedDiamond,
-      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "diamond")
-      //     .cards,
+      //   symbolsPressed: fullTables[0].choosenCards.find(
+      //     (x) => x.type === "diamond"
+      //   ).cards,
       // });
       // setpressedClubs({
       //   ...pressedClubs,
-      //   symbolsPressed: usedtable.choosenCards.find((x) => x.type === "clubs")
-      //     .cards,
+      //   symbolsPressed: fullTables[0].choosenCards.find(
+      //     (x) => x.type === "clubs"
+      //   ).cards,
       // });
       deleteFilled();
-      autoFill(opendTableNum, usedTableNum);
+      autoFillForm(tableNum, formNum);
     }
 
     setautoFillFormFired(false);
@@ -355,7 +341,7 @@ const FillForm = ({
     setcounter(
       allCounters.find((counter) => counter.formNum === opendTableNum).counter
     );
-    console.log("allCounters from shitatifillForm : ", allCounters);
+    // console.log("allCounters from shitatifillForm : ", allCounters);
   }, [allCounters]);
 
   return (
@@ -399,9 +385,9 @@ const FillForm = ({
               }}
             >
               <View style={{ flexDirection: "row" }}>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   onPress={() => {
-                    autoFill(opendTableNum, usedTableNum);
+                    autoFillForm(tableNum, formNum);
                     console.log(usedTableNum);
                   }}
                   style={{
@@ -419,7 +405,7 @@ const FillForm = ({
                     style={{ width: 22.5, height: 12.5 }}
                     source={require("C:/fullstack/lottoMatic/assets/fillTable.png")}
                   />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
                 <TouchableOpacity
                   style={{
@@ -433,7 +419,7 @@ const FillForm = ({
                     margin: 3,
                   }}
                   onPress={() => {
-                    deleteFilled();
+                    deletForm();
                   }}
                 >
                   <Image
@@ -567,6 +553,36 @@ const FillForm = ({
                 }}
                 onPress={() => {
                   setshowTable(false);
+                  setusedTable({
+                    tableNum: opendTableNum,
+                    choosenCards: [
+                      { type: "spade", cards: pressedSpade.symbolsPressed },
+                      { type: "heart", cards: pressedHeart.symbolsPressed },
+                      { type: "diamond", cards: pressedDiamond.symbolsPressed },
+                      { type: "clubs", cards: pressedClubs.symbolsPressed },
+                    ],
+                  });
+
+                  let filtered = fullTables.filter(
+                    (table) => table.tableNum !== opendTableNum
+                  );
+                  if (autoFillFormFired === false) {
+                    setfullTables([
+                      ...filtered,
+                      {
+                        tableNum: opendTableNum,
+                        choosenCards: [
+                          { type: "spade", cards: pressedSpade.symbolsPressed },
+                          { type: "heart", cards: pressedHeart.symbolsPressed },
+                          {
+                            type: "diamond",
+                            cards: pressedDiamond.symbolsPressed,
+                          },
+                          { type: "clubs", cards: pressedClubs.symbolsPressed },
+                        ],
+                      },
+                    ]);
+                  }
                 }}
               >
                 <Text style={{ color: "red", fontFamily: "fb-Spacer-bold" }}>
@@ -631,6 +647,9 @@ const FillForm = ({
             />
             {symbols.map((symbol, index) => (
               <Num
+                autoFillFormF
+                autoFillFormFired={autoFillFormFired}
+                ired={autoFillFormFired}
                 key={index}
                 shitatiPage={shitatiPage}
                 usedTableNum={usedTableNum}
@@ -645,6 +664,8 @@ const FillForm = ({
                 setusedTable={setusedTable}
                 cardTypeUsed={cardTypeUsed}
                 setcardTypeUsed={setcardTypeUsed}
+                tableNum={tableNum}
+                tableNum={tableNum}
               />
             ))}
           </View>
@@ -668,6 +689,7 @@ const FillForm = ({
             />
             {symbols.map((symbol, index) => (
               <Num
+                autoFillFormFired={autoFillFormFired}
                 key={index}
                 shitatiPage={shitatiPage}
                 usedTableNum={usedTableNum}
@@ -682,6 +704,7 @@ const FillForm = ({
                 setusedTable={setusedTable}
                 cardTypeUsed={cardTypeUsed}
                 setcardTypeUsed={setcardTypeUsed}
+                tableNum={tableNum}
               />
             ))}
           </View>
@@ -705,6 +728,7 @@ const FillForm = ({
             />
             {symbols.map((symbol, index) => (
               <Num
+                autoFillFormFired={autoFillFormFired}
                 key={index}
                 shitatiPage={shitatiPage}
                 usedTableNum={usedTableNum}
@@ -719,6 +743,7 @@ const FillForm = ({
                 setusedTable={setusedTable}
                 cardTypeUsed={cardTypeUsed}
                 setcardTypeUsed={setcardTypeUsed}
+                tableNum={tableNum}
               />
             ))}
           </View>
@@ -742,6 +767,7 @@ const FillForm = ({
             />
             {symbols.map((symbol, index) => (
               <Num
+                autoFillFormFired={autoFillFormFired}
                 key={index}
                 shitatiPage={shitatiPage}
                 usedTableNum={usedTableNum}
@@ -756,6 +782,7 @@ const FillForm = ({
                 setusedTable={setusedTable}
                 cardTypeUsed={cardTypeUsed}
                 setcardTypeUsed={setcardTypeUsed}
+                tableNum={tableNum}
               />
             ))}
           </View>
