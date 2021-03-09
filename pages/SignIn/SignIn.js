@@ -1048,7 +1048,7 @@ const SignIn = ({ navigation }) => {
                       הבא
                     </Text>
                   </Button>
-                  <Button
+                  {/* <Button
                     onPress={() =>
                       navigation.navigate("Payment", { valid: false })
                     }
@@ -1064,7 +1064,7 @@ const SignIn = ({ navigation }) => {
                     }}
                   >
                     <Text>הכנס פרטי תשלום -כפתור זמני-</Text>
-                  </Button>
+                  </Button> */}
                 </View>
               </>
             )}
