@@ -954,9 +954,9 @@ const SignIn = ({ navigation }) => {
                           duration: 2500,
                         });
                       } else if (fieldCheck === false) {
-                        navigation.navigate("Payment", {
+                        // navigation.navigate("Payment", {
                           //  keyTopass:valueTopass
-                        });
+                        // });
 
                         setGender(""),
                           setFirstName(""),
