@@ -1,8 +1,9 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
+
 import EStyleSheet from "react-native-extended-stylesheet";
 import {
-  ScrollView,
-  StyleSheet,
+  BackHandler,
+  Alert ,
   Text,
   Touchable,
   View,
@@ -38,6 +39,24 @@ import { CommonActions } from '@react-navigation/native';
 //////////////////////////////////////////////////////////////
 
 export default function congratulation({ navigation }) {
+  const backAction = () => {
+    navigation.navigate("Home")
+    // Alert.alert("Hold on!", "Are you sure you want to go back?", [
+    //   {
+    //     text: "Cancel",
+    //     onPress: () => null,
+    //     style: "cancel"
+    //   },
+    //   { text: "YES", onPress: () => BackHandler.exitApp() }
+    // ]);
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
+  }, []);
   // navigation.dispatch(
   //   CommonActions.reset({
   //     index: 1,
@@ -45,13 +64,7 @@ export default function congratulation({ navigation }) {
 
   //   })
   // );
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('beforeRemove', e => {
-      e.preventDefault(); // Prevent default action
-      unsubscribe() // Unsubscribe the event on first call to prevent infinite loop
-      navigation.navigate('Home') // Navigate to your desired screen
-    });
- }, [])
+  
   return (
     <>
       <NavBar navigation={navigation} screenName={"congratulation"} />
