@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
-import { Button, List,Spinner } from "native-base";
+import { Button, List, Spinner } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ExtraAndOtomatChoose from "../../pages/Lotto/components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
@@ -28,7 +28,6 @@ const SumPage777 = ({ route, navigation }) => {
     gameType,
     formType,
     trimedFullTables,
-    
   } = route.params;
 
   const store = useSelector((state) => state);
@@ -117,7 +116,7 @@ const SumPage777 = ({ route, navigation }) => {
       );
 
       setsendToServer({
-        form_type: Number(formType),
+        form_type: String(formType),
         multi_lottery: hagralot,
         tables: x,
       });
@@ -137,7 +136,7 @@ const SumPage777 = ({ route, navigation }) => {
       );
 
       setsendToServer({
-        form_type: Number(formType),
+        form_type: String(formType),
         multi_lottery: hagralot,
         tables: x,
       });
@@ -157,11 +156,12 @@ const SumPage777 = ({ route, navigation }) => {
       );
 
       setsendToServer({
-        form_type: Number(formType),
+        form_type: String(formType),
         multi_lottery: hagralot,
         tables: x,
       });
     }
+    console.log("trimedFullTables : ", trimedFullTables);
   }, [fullTables, otomatic, navigation]);
 
   useEffect(() => {
@@ -193,19 +193,29 @@ const SumPage777 = ({ route, navigation }) => {
 
   useEffect(() => {
     //configure data sent to server
+    let x;
+    if (gameType === "777") {
+      x = trimedFullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
 
-    let x = fullTables.map((table, index) => {
-      return {
-        numbers: table.choosenNums,
+          table_number: table.tableNum,
+        };
+      });
+    } else {
+      x = fullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
 
-        table_number: table.tableNum,
-      };
-    });
+          table_number: table.tableNum,
+        };
+      });
+    }
 
     console.log("x : ", x);
 
     setsendToServer({
-      form_type: Number(formType),
+      form_type: String(formType),
       multi_lottery: hagralot,
       tables: x,
     });
@@ -363,22 +373,21 @@ const SumPage777 = ({ route, navigation }) => {
                   flexDirection: "row",
                 }}
               >
-                {price * HagralotMultiplicaton===0 ?
-                 <Text>:...</Text>
-                  : (
-                    <Text
-                      color='white'
-                      style={{
-                        fontSize: EStyleSheet.value("$rem") * 22,
-                        color: "white",
-                        marginLeft: 15,
-                        fontFamily: "fb-Spacer",
-                      }}
-                    >
-
-                      לתשלום: {price * HagralotMultiplicaton}
-                    </Text>
-                  )}
+                {price * HagralotMultiplicaton === 0 ? (
+                  <Text>:...</Text>
+                ) : (
+                  <Text
+                    color='white'
+                    style={{
+                      fontSize: EStyleSheet.value("$rem") * 22,
+                      color: "white",
+                      marginLeft: 15,
+                      fontFamily: "fb-Spacer",
+                    }}
+                  >
+                    לתשלום: {price * HagralotMultiplicaton}
+                  </Text>
+                )}
                 <View style={{ height: 10 }}>
                   <FontAwesomeIcon
                     size={10}
@@ -421,7 +430,6 @@ const SumPage777 = ({ route, navigation }) => {
                       );
                       navigation.navigate(`congratulation`);
                       setSpinner(false);
-
                     });
                   {
                   }
@@ -445,7 +453,6 @@ const SumPage777 = ({ route, navigation }) => {
                 </Text>
               </Button>
               {spinner && <Spinner />}
-
             </View>
           </View>
         </View>

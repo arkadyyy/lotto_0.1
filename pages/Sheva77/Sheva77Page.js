@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import sheva77Liststyles from "./Sheva77ListStyles";
-import { Button, List, Toast, } from "native-base";
+import { Button, List, Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ChooseForm from "./components/ChooseForm";
@@ -44,8 +44,8 @@ const Sheva77Page = ({ navigation }) => {
   ]);
 
   const store = useSelector((state) => state);
-  const[fillOtomatic, setFillOtomatic] = useState(false);
-  const[fillOtomaticTrue, setFillOtomaticTrue] = useState(false);
+  const [fillOtomatic, setFillOtomatic] = useState(false);
+  const [fillOtomaticTrue, setFillOtomaticTrue] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     console.log(store);
@@ -71,11 +71,12 @@ const Sheva77Page = ({ navigation }) => {
       };
       fullTabels1 = [...fullTabels1, table];
     }
+
     setFullTables(fullTabels1);
-    setFillOtomaticTrue(true)
-    setTimeout(() => { 
-      setFillOtomaticTrue(false)
-}, 1000);
+    setFillOtomaticTrue(true);
+    setTimeout(() => {
+      setFillOtomaticTrue(false);
+    }, 1000);
   };
 
   const deletForm = () => {
@@ -209,29 +210,29 @@ const Sheva77Page = ({ navigation }) => {
               בחר {numOfNum} מספרים בכל טבלה
             </Text>
             <View style={sheva77Liststyles.autoBtnContainer}>
-            <View
-            style={{
-              borderRadius: 30,
-              borderColor: fillOtomaticTrue === false ? "white" : "#8CC63F",
-              borderWidth: 2,
-              marginTop: 5,
-              justifyContent: "center",
-              alignItems: "center",
-              height: 25,
-              width: 25,
-              top: 6,
-              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
-            }}
-          >
-            <FontAwesomeIcon
-              icon={faCheck}
-              color={fillOtomaticTrue === false ? "white" : "#8CC63F"}
-            />
-          </View>
+              <View
+                style={{
+                  borderRadius: 30,
+                  borderColor: fillOtomaticTrue === false ? "white" : "#8CC63F",
+                  borderWidth: 2,
+                  marginTop: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: 25,
+                  width: 25,
+                  top: 6,
+                  // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  color={fillOtomaticTrue === false ? "white" : "#8CC63F"}
+                />
+              </View>
               <TouchableOpacity
                 // style={sheva77Liststyles.autoBtn}
                 style={{
-                  borderColor:fillOtomaticTrue === false ? "white" : "#8CC63F",
+                  borderColor: fillOtomaticTrue === false ? "white" : "#8CC63F",
                   borderWidth: 1,
                   borderRadius: 19,
                   margin: 5,
@@ -251,37 +252,38 @@ const Sheva77Page = ({ navigation }) => {
                     color: "white",
                     fontSize: 10,
                     fontFamily: "fb-Spacer-bold",
-                    borderColor:fillOtomaticTrue === false ? "white" : "#8CC63F",
+                    borderColor:
+                      fillOtomaticTrue === false ? "white" : "#8CC63F",
 
                     textAlign: "center",
                   }}
-                  >
+                >
                   מלא טופס אוטומטי
                 </Text>
               </TouchableOpacity>
               <View
-            style={{
-              borderRadius: 30,
-              borderColor: fillOtomatic === false ? "white" : "#8CC63F",
-              borderWidth: 2,
-              marginTop: 5,
-              justifyContent: "center",
-              alignItems: "center",
-              height: 25,
-              width: 25,
-              top: 6,
-              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
-            }}
-          >
-            <FontAwesomeIcon
-              icon={faTimes}
-              color={fillOtomatic === false ? "white" : "#8CC63F"}
-            />
-          </View>
+                style={{
+                  borderRadius: 30,
+                  borderColor: fillOtomatic === false ? "white" : "#8CC63F",
+                  borderWidth: 2,
+                  marginTop: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: 25,
+                  width: 25,
+                  top: 6,
+                  // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faTimes}
+                  color={fillOtomatic === false ? "white" : "#8CC63F"}
+                />
+              </View>
               <TouchableOpacity
                 // style={sheva77Liststyles.autoBtn}
                 style={{
-                  borderColor:fillOtomatic === false ? "white" : "#8CC63F",
+                  borderColor: fillOtomatic === false ? "white" : "#8CC63F",
                   borderWidth: 1,
                   borderRadius: 19,
                   margin: 5,
@@ -295,13 +297,12 @@ const Sheva77Page = ({ navigation }) => {
                 bordered
                 onPress={() => {
                   deletForm();
-                  setFillOtomatic(true)
-                  setTimeout(() => { 
-                          setFillOtomatic(false)
-                    }, 1000);
-                }
-                }
-                 >
+                  setFillOtomatic(true);
+                  setTimeout(() => {
+                    setFillOtomatic(false);
+                  }, 1000);
+                }}
+              >
                 <Text style={sheva77Liststyles.autoBtnText}>
                   מחק טופס אוטומטי
                 </Text>
