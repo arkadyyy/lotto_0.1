@@ -200,23 +200,37 @@ const SumPageLotto = ({ route, navigation }) => {
           table_number: table.tableNum,
         };
       });
+
       if (gameType === "regular") {
         getPrice(
           "http://52.90.122.190:5000/games/lotto/type/regular/calculate_price",
           trimedFullTables
         );
+        setsendToServer({
+          extra: extra,
+
+          multi_lottery: hagralot,
+          tables: x,
+        });
       }
       if (gameType === "double") {
         getPrice(
           "http://52.90.122.190:5000/games/lotto/type/regular_double/calculate_price",
           trimedFullTables
         );
+
+        setsendToServer({
+          extra: extra,
+
+          multi_lottery: hagralot,
+          tables: x,
+        });
       }
     } else if (gameType === "shitati") {
       let x = trimedFullTables.map((table, index) => {
         return {
           numbers: table.choosenNums,
-          strong_number: table.choosenStrongNums,
+          strong_number: [table.strongNum],
           table_number: table.tableNum,
         };
       });
@@ -228,7 +242,7 @@ const SumPageLotto = ({ route, navigation }) => {
 
       setsendToServer({
         extra: extra,
-        form_type: `${tzerufimNumber}`,
+        form_type: String(tzerufimNumber),
         multi_lottery: hagralot,
         tables: x,
       });
@@ -253,6 +267,10 @@ const SumPageLotto = ({ route, navigation }) => {
         tables: x,
       });
     }
+
+    navigation.addListener("blur", () => {
+      setPrice(0);
+    });
   }, [fullTables, extra, otomatic, navigation]);
 
   useEffect(() => {
@@ -488,6 +506,7 @@ const SumPageLotto = ({ route, navigation }) => {
                       setSpinner(false);
                     })
                     .catch((err) => {
+                      console.log("err : ", err);
                       setSpinner(false);
                       seterrorMsg("ארעה שגיאה בשליחת הטופס");
                       Toast.show({
