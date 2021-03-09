@@ -406,7 +406,7 @@ const FillForm = ({
                 }}
                 onPress={() => {
                   setautoFillFormFired(true);
-                  autoFillForm(tableNum, formNum);
+                  autoFillForm(tableNum, formNum, setfullTables);
                 }}
               >
                 <Image

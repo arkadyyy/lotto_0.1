@@ -7,15 +7,11 @@ import { Button, List,Spinner } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ExtraAndOtomatChoose from "../../pages/Lotto/components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
-import ChooseForm from "./components/ChooseForm";
-import FillForm from "./components/FillForm";
-import Table from "./components/Table";
-import { autoFill } from "./components/FillForm";
+
 import { useEffect } from "react";
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../../aws-exports";
 import { useSelector, useDispatch } from "react-redux";
-import { LogIn } from "../../redux/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCheck, faShekelSign } from "@fortawesome/free-solid-svg-icons";
 import EStyleSheet from "react-native-extended-stylesheet";
@@ -34,14 +30,7 @@ const SumPage777 = ({ route, navigation }) => {
     trimedFullTables,
     
   } = route.params;
-  const [showTable, setshowTable] = useState(false);
-  // const [tableNum, settableNum] = useState(1);
-  const [double, setdouble] = useState(false);
-  // const [fullTables, setFullTables] = useState([]);
-  const [indexOfTable, setIndexOfTable] = useState("");
-  const [opendTableNum, setopendTableNum] = useState(0);
-  const [tableRowColor, setTableRowColor] = useState("D60617");
-  const [jwtState, setjwtState] = useState({});
+
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 

@@ -8,10 +8,6 @@ import { Button, Spinner, Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ExtraAndOtomatChoose from "./components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
-import ChooseForm from "./components/ChooseForm";
-import FillForm from "./components/FillForm";
-import Table from "./components/Table";
-import { autoFill } from "./components/FillForm";
 import { useEffect } from "react";
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../../aws-exports";
@@ -20,8 +16,6 @@ import { LogIn } from "../../redux/actions/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faShekelSign } from "@fortawesome/free-solid-svg-icons";
 import EStyleSheet from "react-native-extended-stylesheet";
-import { CommonActions } from '@react-navigation/native';
-
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
 
@@ -36,14 +30,6 @@ const SumPageLotto = ({ route, navigation }) => {
     trimedFullTables,
     hazakimNumber,
   } = route.params;
-  const [showTable, setshowTable] = useState(false);
-  const [double, setdouble] = useState(false);
-  // const [fullTables, setFullTables] = useState([]);
-  const [indexOfTable, setIndexOfTable] = useState("");
-  const [opendTableNum, setopendTableNum] = useState(0);
-  const [tableRowColor, setTableRowColor] = useState("D60617");
-  const [jwtState, setjwtState] = useState({});
-  const [gameName, setGameName] = useState("");
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -87,6 +73,8 @@ const SumPageLotto = ({ route, navigation }) => {
     setPrice(null);
     console.log("i am here");
     let x;
+
+    // x holds updated fulltables (fulltables only ~!) data for server
     if (gameType === "regular" || gameType === "double") {
       x = await trimedFullTables.map((table, index) => {
         return {
@@ -96,12 +84,23 @@ const SumPageLotto = ({ route, navigation }) => {
         };
       });
     }
-    if (gameType === "shitati" || gameType === "shitati_hazak") {
+    if (gameType === "shitati") {
+      x = await trimedFullTables.map((table, index) => {
+        return {
+          numbers: table.choosenNums,
+          strong_number: [table.strongNum],
+          table_number: table.tableNum,
+        };
+      });
+    }
+
+    if (gameType === "shitati_hazak") {
       x = await trimedFullTables.map((table, index) => {
         return {
           numbers: table.choosenNums,
           strong_number: table.choosenStrongNums,
           table_number: table.tableNum,
+          form_type: hazakimNumber,
         };
       });
     }
@@ -132,8 +131,7 @@ const SumPageLotto = ({ route, navigation }) => {
           }, 1500);
         })
         .catch((err) => console.log(err));
-    } else if (gameType === "shitati" || gameType === "shitati_hazak") {
-      console.log("x from shitati : ", x[0]);
+    } else if (gameType === "shitati") {
       axios
         .post(
           url,
@@ -141,6 +139,7 @@ const SumPageLotto = ({ route, navigation }) => {
             extra: extra,
             multi_lottery: hagralot,
             tables: x[0],
+            form_type: `${tzerufimNumber}`,
           },
           {
             headers: {
@@ -152,7 +151,7 @@ const SumPageLotto = ({ route, navigation }) => {
         )
         .then((res) => {
           setPrice(res.data.price);
-          console.log("?????shitaty price changed?");
+          console.log("res.data.price : ~~~~~~", res.data.price);
         })
         .then((data) => {
           setTimeout(() => {
@@ -160,14 +159,41 @@ const SumPageLotto = ({ route, navigation }) => {
           }, 1500);
         })
         .catch((err) => console.log(err));
-    }
+    } else if (gameType === "shitati_hazak") {
+      axios
+        .post(
+          url,
+          {
+            extra: extra,
+            multi_lottery: hagralot,
+            tables: x[0],
+            form_type: `${hazakimNumber}`,
+          },
+          {
+            headers: {
+              Authorization: store.jwt,
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          setPrice(res.data.price);
+        })
+        .then((data) => {
+          setTimeout(() => {
+            setdisplayPrice(true);
+          }, 1500);
+        })
+        .catch((err) => console.log(err));
 
-    setsendToServer({
-      extra: extra,
-      form_type: String(hazakimNumber),
-      multi_lottery: hagralot,
-      tables: x,
-    });
+      // setsendToServer({
+      //   extra: extra,
+      //   form_type: String(hazakimNumber),
+      //   multi_lottery: hagralot,
+      //   tables: x,
+      // });
+    }
   };
 
   useEffect(() => {
@@ -199,13 +225,6 @@ const SumPageLotto = ({ route, navigation }) => {
           trimedFullTables
         );
       }
-
-      setsendToServer({
-        extra: extra,
-        form_type: String(hazakimNumber),
-        multi_lottery: hagralot,
-        tables: x,
-      });
     } else if (gameType === "shitati") {
       let x = trimedFullTables.map((table, index) => {
         return {
@@ -217,7 +236,7 @@ const SumPageLotto = ({ route, navigation }) => {
 
       getPrice(
         "http://52.90.122.190:5000/games/lotto/type/shitati/calculate_price",
-        trimedFullTables
+        x
       );
 
       setsendToServer({
@@ -237,7 +256,7 @@ const SumPageLotto = ({ route, navigation }) => {
       console.log(x);
       getPrice(
         "http://52.90.122.190:5000/games/lotto/type/shitati_hazak/calculate_price",
-        trimedFullTables
+        x
       );
 
       setsendToServer({
@@ -250,19 +269,7 @@ const SumPageLotto = ({ route, navigation }) => {
   }, [fullTables, extra, otomatic, navigation]);
 
   useEffect(() => {
-    navigation.addListener("blur", () => {
-      console.log("blur happend");
-      setPrice(null);
-      seturl("");
-      setOtomatic(true);
-      setExtra(true);
-      setdisplayPrice(false);
-      setsendToServer({
-        extra: false,
-        multi_lottery: -1,
-        tables: [],
-      });
-    });
+    setPrice(0);
     //set post url according to game
     navigation.addListener("focus", () => {
       console.log("focus happend");
@@ -441,9 +448,7 @@ const SumPageLotto = ({ route, navigation }) => {
                   marginTop: 7,
                 }}
               >
-                
-
-                
+                {
                   <Text
                     color='white'
                     style={{
@@ -452,13 +457,10 @@ const SumPageLotto = ({ route, navigation }) => {
                       marginLeft: 15,
                       fontFamily: "fb-Spacer",
                     }}
-                >
-                {!displayPrice ? ("לתשלום ...") : 
-                  
-                    `לתשלום: ${price * HagralotMultiplicaton}`
-                }  
-                </Text>
-                
+                  >
+                    לתשלום: {price * HagralotMultiplicaton}
+                  </Text>
+                }
 
                 <FontAwesomeIcon
                   size={10}
@@ -494,12 +496,7 @@ const SumPageLotto = ({ route, navigation }) => {
                         "this is res from post server request $$$$ : ",
                         res
                       );
-                      navigation.reset({
-                        index: 0,
-                        routes: [{ name: 'congratulation' }],
-                      });
-                      
-                      // navigation.navigate(`congratulation`);
+                      navigation.navigate(`congratulation`);
 
                       setSpinner(false);
                     })

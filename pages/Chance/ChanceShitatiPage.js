@@ -69,6 +69,7 @@ const ChancePageShitati = ({ navigation }) => {
     //resetting usedtable cards be4 putting enw ones
 
     let randomNumArr = [0, 1, 2, 3];
+    let updatedCardTypeArr = [];
 
     for (let i = 0; i < tableNum; i++) {
       x = Array.from({ length: tableNum }, (v, i) => {
@@ -84,6 +85,14 @@ const ChancePageShitati = ({ navigation }) => {
 
       let random = Math.floor(Math.random() * randomNumArr.length);
       usedTable.choosenCards[randomNumArr[random]].cards = x[0][0];
+      console.log(
+        "checking type picking in autofill : ",
+        usedTable.choosenCards[randomNumArr[random]].type
+      );
+      console.log("cardTypeUsed****** : ", cardTypeUsed);
+      updatedCardTypeArr.push(
+        usedTable.choosenCards[randomNumArr[random]].type
+      );
       setcardTypeUsed([
         ...cardTypeUsed,
         usedTable.choosenCards[randomNumArr[random]].type,
@@ -106,7 +115,7 @@ const ChancePageShitati = ({ navigation }) => {
 
     let updatedAllCounters = allCounters.map((counter, index) => {
       if (counter.formNum <= formNum) {
-        counter.counter = 4 * tableNum;
+        counter.counter = tableNum * 4;
         return counter;
       } else {
         return counter;
@@ -115,6 +124,8 @@ const ChancePageShitati = ({ navigation }) => {
     setallCounters(updatedAllCounters);
 
     //setting cardtypeUsed
+
+    setcardTypeUsed(updatedCardTypeArr);
   };
 
   const deletForm = () => {
@@ -204,6 +215,7 @@ const ChancePageShitati = ({ navigation }) => {
       return counter;
     });
     setallCounters(updatedAllCounters);
+    setcardTypeUsed([]);
   }, [tableNum]);
 
   useEffect(() => {
@@ -305,6 +317,7 @@ const ChancePageShitati = ({ navigation }) => {
                 autoFillForm={autoFillForm}
                 cardTypeUsed={cardTypeUsed}
                 setcardTypeUsed={setcardTypeUsed}
+                deletForm={deletForm}
               />
             )}
             <View style={chanceListstyles.listContainerBorder}>
