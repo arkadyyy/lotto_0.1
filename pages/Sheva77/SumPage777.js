@@ -410,6 +410,8 @@ const SumPage777 = ({ route, navigation }) => {
             >
               <Button
                 onPress={() => {
+                  setSpinner(true);
+
                   // let summary = { chance: fullTables, investNum };
                   // console.log(summary);
                   // console.log("store.user : ", store.user.signInUserSession);
@@ -429,6 +431,8 @@ const SumPage777 = ({ route, navigation }) => {
                         res
                       );
                       navigation.navigate(`congratulation`);
+                      setSpinner(false);
+
                     });
                   {
                   }
@@ -451,6 +455,8 @@ const SumPage777 = ({ route, navigation }) => {
                   שלח טופס
                 </Text>
               </Button>
+              {spinner && <Spinner />}
+
             </View>
           </View>
         </View>

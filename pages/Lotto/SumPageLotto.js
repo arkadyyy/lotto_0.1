@@ -456,7 +456,7 @@ const SumPageLotto = ({ route, navigation }) => {
                 {!displayPrice ? ("לתשלום ...") : 
                   
                     `לתשלום: ${price * HagralotMultiplicaton}`
-}  
+                }  
                 </Text>
                 
 
@@ -494,21 +494,11 @@ const SumPageLotto = ({ route, navigation }) => {
                         "this is res from post server request $$$$ : ",
                         res
                       );
-                      navigation.dispatch(
-                        CommonActions.navigate({
-                          name: 'congratulation',
-                        }),
-                        CommonActions.reset({
-                          index: 1,
-                          routes: [
-                            {
-                              name: 'Home',
-                              // params: { user: 'jane', key: route.params.key },
-                            },
-                            { name: 'userArea' },
-                          ],
-                        })
-                      );
+                      navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'congratulation' }],
+                      });
+                      
                       // navigation.navigate(`congratulation`);
 
                       setSpinner(false);

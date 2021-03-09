@@ -329,6 +329,8 @@ const SumPage123 = ({ route, navigation }) => {
             >
               <Button
                 onPress={() => {
+                  setSpinner(true);
+
                   let summary = { chance: fullTables, investNum };
                   // console.log(summary);
                   // console.log("store.user : ", store.user.signInUserSession);
@@ -352,24 +354,25 @@ const SumPage123 = ({ route, navigation }) => {
                       setSpinner(false);
 
                     })
-                    .catch((err) => console.log("errrrrrrrr:",err));
-                    setSpinner(false);
-                    seterrorMsg("ארעה שגיאה בשליחת הטופס");
-                  Toast.show({
-                      text: errorMsg,
-                      textStyle: { fontFamily: "fb-Spacer" },
-                      buttonText: "סגור",
-                      position: "top",
-                      // type: "warning",
-                      buttonStyle: {
-                        backgroundColor: "white",
-                        borderRadius: 8,
-                      },
-                      textStyle: { color: "white" },
-                      buttonTextStyle: { color: "black" },
-                      duration: 2500,
+                    .catch((err) => {
+                      console.log("errrrrrrrr:", err);
+                      setSpinner(false);
+                      seterrorMsg("ארעה שגיאה בשליחת הטופס");
+                      Toast.show({
+                        text: errorMsg,
+                        textStyle: { fontFamily: "fb-Spacer" },
+                        buttonText: "סגור",
+                        position: "top",
+                        // type: "warning",
+                        buttonStyle: {
+                          backgroundColor: "white",
+                          borderRadius: 8,
+                        },
+                        textStyle: { color: "white" },
+                        buttonTextStyle: { color: "black" },
+                        duration: 2500,
+                      });
                     });
-
                 }}
                 style={{
                   borderRadius: 17,

@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState,useEffect } from "react";
 import EStyleSheet from "react-native-extended-stylesheet";
 import {
   ScrollView,
@@ -46,6 +45,13 @@ export default function congratulation({ navigation }) {
 
   //   })
   // );
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', e => {
+      e.preventDefault(); // Prevent default action
+      unsubscribe() // Unsubscribe the event on first call to prevent infinite loop
+      navigation.navigate('Home') // Navigate to your desired screen
+    });
+ }, [])
   return (
     <>
       <NavBar navigation={navigation} screenName={"congratulation"} />

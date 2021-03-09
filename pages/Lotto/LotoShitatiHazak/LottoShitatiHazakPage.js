@@ -13,6 +13,8 @@ import { autoFill } from "./ShitatiHazakFillForm";
 import EStyleSheet from "react-native-extended-stylesheet";
 
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const LottoShitatiHazakPage = ({ navigation }) => {
   const [showTable, setshowTable] = useState(false);
@@ -29,6 +31,8 @@ const LottoShitatiHazakPage = ({ navigation }) => {
   const [errorMsg, seterrorMsg] = useState("");
 
   const store = useSelector((state) => state);
+  const[fillOtomatic, setFillOtomatic] = useState(false);
+  const[fillOtomaticTrue, setFillOtomaticTrue] = useState(false);
 
   const autoFillForm = () => {
     let numbers = autoFill(hazakimNumber);
@@ -40,6 +44,10 @@ const LottoShitatiHazakPage = ({ navigation }) => {
       choosenStrongNums: numbers.randomChoosenStrongNums,
     };
     setFullTables([table]);
+    setFillOtomaticTrue(true)
+    setTimeout(() => { 
+            setFillOtomaticTrue(false)
+      }, 1000);
   };
 
   const checkTables = (fullTables, tableNum) => {
@@ -121,9 +129,38 @@ const LottoShitatiHazakPage = ({ navigation }) => {
               בחר 7 מספרים ו-{hazakimNumber} מספרים חזקים
             </Text>
             <View style={LottoListstyles.autoBtnContainer}>
-              <Button
+            <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomaticTrue === false ? "white" : "#8CC63F",
+              borderWidth: 2,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faCheck}
+              color={fillOtomaticTrue === false ? "white" : "#8CC63F"}
+            />
+          </View>
+              <TouchableOpacity
                 onPress={autoFillForm}
-                style={LottoListstyles.autoBtn}
+                // style={LottoListstyles.autoBtn}
+                style={{
+                  borderColor:fillOtomaticTrue === false ? "white" : "#8CC63F",
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  margin: 5,
+                  paddingHorizontal: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+                }}
                 small
                 rounded
                 bordered
@@ -131,10 +168,46 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                 <Text style={LottoListstyles.autoBtnText}>
                   מלא טופס אוטומטי
                 </Text>
-              </Button>
-              <Button
-                onPress={() => setFullTables([])}
-                style={LottoListstyles.autoBtn}
+              </TouchableOpacity>
+              <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomatic === false ? "white" : "#8CC63F",
+              borderWidth: 2,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faTimes}
+              color={fillOtomatic === false ? "white" : "#8CC63F"}
+            />
+          </View>
+              <TouchableOpacity
+                onPress={() => {
+                  setFullTables([]);
+                  setFillOtomatic(true)
+                  setTimeout(() => {  
+                  setFillOtomatic(false)
+                  }, 1000);
+                }
+                }
+                // style={LottoListstyles.autoBtn}
+                style={{
+                  borderColor:fillOtomatic === false ? "white" : "#8CC63F",
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  margin: 5,
+                  paddingHorizontal: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+                }}
                 small
                 rounded
                 bordered
@@ -142,7 +215,7 @@ const LottoShitatiHazakPage = ({ navigation }) => {
                 <Text style={LottoListstyles.autoBtnText}>
                   מחק טופס אוטומטית
                 </Text>
-              </Button>
+              </TouchableOpacity>
             </View>
             {showTable && (
               <ShitatiHazakFillForm

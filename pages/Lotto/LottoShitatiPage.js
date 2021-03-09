@@ -221,12 +221,12 @@ const LottoShitatiPage = ({ navigation }) => {
                 style={{
                   borderColor:fillOtomatic === false ? "white" : "#8CC63F",
                   borderWidth: 1,
-    borderRadius: 10,
-    margin: 5,
-    paddingHorizontal: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 7,
+                  borderRadius: 10,
+                  margin: 5,
+                  paddingHorizontal: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
                 }}
 
               >

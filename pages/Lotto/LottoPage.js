@@ -114,10 +114,7 @@ const LottoPage = ({ navigation }) => {
   const route = useRoute();
 
   const autoFillForm = async () => {
-    setFillOtomaticTrue(true)
-    setTimeout(() => { 
-            setFillOtomaticTrue(false)
-      }, 1000);
+    
     await deletForm();
     let fullTabels1 = [];
     for (let i = 1; i <= 14; i++) {
@@ -140,7 +137,10 @@ const LottoPage = ({ navigation }) => {
       fullTabels1 = [...fullTabels1, table];
     }
     setFullTables(fullTabels1);
-   
+    setFillOtomaticTrue(true)
+    setTimeout(() => { 
+            setFillOtomaticTrue(false)
+      }, 1000);
   };
 
   const deletForm = () => {
@@ -217,9 +217,6 @@ const LottoPage = ({ navigation }) => {
         tableNum: 14,
       },
     ]);
-    // setTimeout(() => {  
-    //   setFillOtomatic(false)
-    // }, 1000);
   };
 
   const checkTables = (fullTables, tableNum, settablesCheck) => {
@@ -357,34 +354,21 @@ const LottoPage = ({ navigation }) => {
                 onPress={autoFillForm}
                 // style={LottoListstyles.autoBtn}
                 style={{
-                  borderColor: "white",
-    borderWidth: 1,
-    borderRadius: 10,
-    margin: 5,
-    paddingHorizontal: 10,
-    justifyContent: "center",
-    alignItems: "center",
+                  // borderColor: "white",
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  margin: 5,
+                  paddingHorizontal: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
                   padding: 7,
                   borderColor:fillOtomaticTrue === false ? "white" : "#8CC63F",
 
               }}
               >
                 <Text
-                  // style={LottoListstyles.autoBtnText}>
-                  style={{
-
-                    color: "white",
-                    fontSize: 13,
-                    fontFamily: "fb-Spacer-bold",
-                    borderColor:fillOtomaticTrue === false ? "white" : "#8CC63F",
-                
-                    textAlign: "center",
-                  
-
-                  }}>
-                  
-                  
-                  מלא טופס אוטומטי
+                  style={LottoListstyles.autoBtnText}>
+                    מלא טופס אוטומטי
                 </Text>
               </TouchableOpacity>
               <View
