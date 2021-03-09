@@ -203,7 +203,7 @@ const ChancePage = ({ navigation }) => {
     setFillOtomaticTrue(true)
     setTimeout(() => { 
             setFillOtomaticTrue(false)
-      }, 1000);
+      }, 300);
   };
 
   const deletForm = () => {
@@ -583,10 +583,20 @@ onPress={() => {
   setFillOtomatic(true)
   setTimeout(() => { 
           setFillOtomatic(false)
-    }, 1000);
-}
-}                style={chanceListstyles.autoBtn}
-              >
+    }, 300);
+                }}
+                // style={chanceListstyles.autoBtn}
+style={{
+  borderColor:fillOtomatic === false ? "white" : "#8CC63F",
+  borderWidth: 1,
+  borderRadius: 19,
+  margin: 5,
+  paddingHorizontal: 20,
+  justifyContent: "center",
+  alignItems: "center",
+  padding: 7,
+}}              
+>
                 <Text style={chanceListstyles.autoBtnText}>
                   מחק טופס אוטומטית
                 </Text>

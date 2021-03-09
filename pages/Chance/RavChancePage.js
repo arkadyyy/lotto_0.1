@@ -12,7 +12,7 @@ import chanceListstyles from "./ChanceListStyles";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faMinus, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const ChancePage = ({ navigation }) => {
   const store = useSelector((state) => state);
@@ -133,7 +133,9 @@ const ChancePage = ({ navigation }) => {
   ]);
 
   const dispatch = useDispatch();
-
+  const[fillOtomatic, setFillOtomatic] = useState(false);
+  const [fillOtomaticTrue, setFillOtomaticTrue] = useState(false);
+  
   const autoFillForm = async (tableNum, formNum) => {
     await deletForm();
     const cardArr = ["7", "8", "9", "10", "J", "Q", "K", "A"];
@@ -198,6 +200,10 @@ const ChancePage = ({ navigation }) => {
       }
     });
     setallCounters(updatedAllCounters);
+    setFillOtomaticTrue(true)
+    setTimeout(() => { 
+            setFillOtomaticTrue(false)
+      }, 300);
   };
 
   const deletForm = () => {
@@ -513,19 +519,84 @@ const ChancePage = ({ navigation }) => {
             {/* </View> */}
 
             <View style={chanceListstyles.autoBtnContainer}>
+            <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomaticTrue === false ? "white" : "#8CC63F",
+              borderWidth: 2,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faCheck}
+              color={fillOtomaticTrue === false ? "white" : "#8CC63F"}
+            />
+          </View>
               <TouchableOpacity
                 onPress={() => {
                   autoFillForm(tableNum, formNum);
                 }}
-                style={chanceListstyles.autoBtn}
+                // style={chanceListstyles.autoBtn}
+                style={{
+                  borderColor:fillOtomaticTrue === false ? "white" : "#8CC63F",
+                  borderWidth: 1,
+                  borderRadius: 19,
+                  margin: 5,
+                  paddingHorizontal: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+              }}
               >
                 <Text style={chanceListstyles.autoBtnText}>
                   מלא טופס אוטומטי
                 </Text>
               </TouchableOpacity>
+              <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomatic === false ? "white" : "#8CC63F",
+              borderWidth: 2,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faTimes}
+              color={fillOtomatic === false ? "white" : "#8CC63F"}
+            />
+          </View>
               <TouchableOpacity
-                onPress={deletForm}
-                style={chanceListstyles.autoBtn}
+                onPress={() => {
+                  deletForm();
+                  setFillOtomatic(true)
+                  setTimeout(() => { 
+                          setFillOtomatic(false)
+                    }, 300);
+                }
+                }
+                // style={chanceListstyles.autoBtn}
+                style={{
+                  borderColor:fillOtomatic === false ? "white" : "#8CC63F",
+                  borderWidth: 1,
+                  borderRadius: 19,
+                  margin: 5,
+                  paddingHorizontal: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+              }}
               >
                 <Text style={chanceListstyles.autoBtnText}>
                   מחק טופס אוטומטית
