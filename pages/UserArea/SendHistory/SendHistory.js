@@ -28,6 +28,7 @@ import * as Permissions from 'expo-permissions';
 // import * as MediaLibrary from 'expo-media-library';
 import { WebView } from 'react-native-webview';
 import * as Linking from 'expo-linking';
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 
 const SeeOrDupilcate = ({
@@ -550,31 +551,65 @@ const SendHistory = ({ navigation,formsHistory }) => {
                     {form["עלות הטופס"]}
                   </Text>
                 </View>
-
-                <Button
-                  // disabled={index === open.index ? false : true}
-                  style={{ borderColor: "white", padding: 5, flex: 1.2 }}
-                  small
-                  bordered
-                  onPress={() => {
-                    setOpen({ isOpen: !open.isOpen, index: index });
-                    console.log("????????????form:",form);
-                    // console.log("tableNum:", form.marks.tables.length);
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: 10,
-                      color: "white",
-                      fontFamily: "fb-Spacer",
+                {!open.isOpen ?
+                  <Button
+                    // disabled={index === open.index ? true : false}
+                  
+                    style={{ borderColor: "white", padding: 5, flex: 1.2 }}
+                    small
+                    bordered
+                    onPress={() => {
+                      setOpen({ isOpen: !open.isOpen, index: index });
+                      console.log("????????????form:", form);
+                      // console.log("tableNum:", form.marks.tables.length);
                     }}
                   >
-                    {/* {open.isOpen && index === open.index */}
+                    <Text
+                      style={{
+                        fontSize: 10,
+                        color: "white",
+                        fontFamily: "fb-Spacer",
+                      }}
+                    >
+                      {/* {open.isOpen && index === open.index */}
                       {/* ? "סגור" : */}
                       שכפל או צפה
                     {/* } */}
+                    </Text>
+                  </Button>
+                  :
+                  
+                    open.isOpen && index === open.index ?
+                  <Text style={{  padding: 5, flex: 1.2 }}></Text>
+                  :
+                  <Button
+                    disabled
+                    style={{ borderColor: "#f4f4f4", padding: 5, flex: 1.2 }}
+                    small
+                    bordered
+                    onPress={() => {
+                      setOpen({ isOpen: !open.isOpen, index: index });
+                      console.log("????????????form:", form);
+                      // console.log("tableNum:", form.marks.tables.length);
+                    }}
+                  >
+                
+                      <Text
+                        style={{
+                          fontSize: 10,
+                          color: "white",
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
+                        שכפל או צפה
                   </Text>
-                </Button>
+                    
+                  </Button>
+                  
+                  
+                }
+            
+              
               </ListItem>
               {open.isOpen && (
                 <SeeOrDupilcate
