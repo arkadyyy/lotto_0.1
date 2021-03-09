@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { ScrollView, Text, TouchableOpacity, View, Image } from "react-native";
 import homestyles from "../Home/HomeStyles";
@@ -31,7 +31,12 @@ import ChanceListstyles from "./ChanceListStyles";
 
 const ChanceList = (props) => {
   const { navigation } = props;
-
+  const [openExplnation, setOpenExplnation] = useState(false);
+ 
+  useEffect(() => {
+    setOpenExplnation(false) 
+  }, [navigation.onGoBack])
+  
   return (
     <>
       <NavBar navigation={navigation} screenName={"ChanceList"} />
@@ -77,8 +82,11 @@ const ChanceList = (props) => {
                     borderRadius: 13,
                     backgroundColor: "white",
                   }}
-                  onPress={() => navigation.navigate("ChancePage")}
-                >
+                  onPress={() => {
+                    navigation.navigate("ChancePage");
+                  setOpenExplnation(false);
+                }}
+              >
                   <Text
                     style={{
                       color: "red",
@@ -124,8 +132,11 @@ const ChanceList = (props) => {
                     borderRadius: 13,
                     backgroundColor: "white",
                   }}
-                  onPress={() => navigation.navigate("RavChancePage")}
-                >
+                  onPress={() => {
+                    navigation.navigate("RavChancePage");
+                    setOpenExplnation(false);
+                  }
+                  }>
                   <Text
                     style={{
                       color: "red",
@@ -171,7 +182,10 @@ const ChanceList = (props) => {
                     borderRadius: 13,
                     backgroundColor: "white",
                   }}
-                  onPress={() => navigation.navigate("ChanceShitatiPage")}
+                  onPress={() => {
+                    navigation.navigate("ChanceShitatiPage")
+                    setOpenExplnation(false);
+                  }}
                 >
                   <Text
                     style={{
@@ -203,6 +217,8 @@ const ChanceList = (props) => {
           </Text>
           <View style={{ flexDirection: "row", flex: 1 }}>
             <TouchableOpacity
+            onPress={() =>{setOpenExplnation(true)} }
+
               style={{
                 width: 20,
                 height: 20,
@@ -237,7 +253,7 @@ const ChanceList = (props) => {
           }}
         >
           <Text style={{ fontSize: 10, fontFamily: "fb-Spacer", padding: 10 }}>
-          הרגע הזה שפשוט לוקחים צ׳אנס וזוכים- איזה אושר! 
+          הרגע הזה שפשוט לוקחים צ׳אנס וזוכים- איזה אושר! `
 הגרלת צ׳אנס הינה הגרלת כדורים מבוססת קלפים. 
 הגרלת הצא׳נס נחשקת במיוחד ואחד מהמשחקים המועדפים על פני רבים וזאת ממספר סיבות
 •	אפשרויות זכייה רבות. 
@@ -252,6 +268,11 @@ const ChanceList = (props) => {
 במשחק ארבעה סוגי סדרות ( עלה, תלתן, לב ויהלום). בכל סדרה ישנם שמונה קלפים משבע ועד אס. 
 בכל הגרלה עולים ארבעה קלפים, אחד מכל סדרה. על השחקן לנחש אילו ארבעה קלפים עלו בגורל. 
 חישובי סכומי הזכייה מושפעים מסכום ההשקעה וסוג טופס הצ׳אנס שאותו משחקים שכן לכל טופס ישנם מכפלות פרסים שונות. 
+`</Text>
+          
+{openExplnation && <Text
+              style={{ fontSize: 10, fontFamily: "fb-Spacer" }}
+              >
 סוגי הטפסים הינם: 
 צ׳אנס 1 
 במשחק זה עליך לנחש קלף אחד מסדרה אחת בלבד ואותו לסמן בטופס. 
@@ -274,7 +295,7 @@ const ChanceList = (props) => {
 במידה וניחשתם קלף אחד נכונה עדין זכיתם בפרס, כאשר הפרס מורכב מסכום ההשקעה בטופס כפול 2/10. 
 
 אז מהרו לקחת צ׳אנס ותתחילו לזכות!
-          </Text>
+          </Text>}
         </View>
         <View
           style={{

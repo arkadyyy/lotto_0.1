@@ -19,7 +19,7 @@ import { LogIn } from "../../redux/actions/actions";
 import { useRoute } from "@react-navigation/native";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 Amplify.configure(awsconfig);
 const { width, height } = Dimensions.get("window");
@@ -108,11 +108,13 @@ const LottoPage = ({ navigation }) => {
   const [errorMsg, seterrorMsg] = useState("");
   const [trimedFullTables, settrimedFullTables] = useState([]);
   const store = useSelector((state) => state);
-
+ const[fillOtomatic, setFillOtomatic] = useState(false);
+  const[fillOtomaticTrue, setFillOtomaticTrue] = useState(false);
   const dispatch = useDispatch();
   const route = useRoute();
 
   const autoFillForm = async () => {
+    
     await deletForm();
     let fullTabels1 = [];
     for (let i = 1; i <= 14; i++) {
@@ -135,9 +137,14 @@ const LottoPage = ({ navigation }) => {
       fullTabels1 = [...fullTabels1, table];
     }
     setFullTables(fullTabels1);
+    setFillOtomaticTrue(true)
+    setTimeout(() => { 
+            setFillOtomaticTrue(false)
+      }, 1000);
   };
 
   const deletForm = () => {
+   
     setFullTables([
       {
         choosenNums: [" ", " ", " ", " ", " ", " "],
@@ -210,7 +217,6 @@ const LottoPage = ({ navigation }) => {
         tableNum: 14,
       },
     ]);
-    // setTableRowColor("#D60617");
   };
 
   const checkTables = (fullTables, tableNum, settablesCheck) => {
@@ -325,17 +331,85 @@ const LottoPage = ({ navigation }) => {
 
             <Text style={LottoListstyles.subHeader}>בחר 6 מספרים וחזק</Text>
             <View style={LottoListstyles.autoBtnContainer}>
+            <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomaticTrue === false ? "white" : "#8CC63F",
+              borderWidth: 2,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faCheck}
+              color={fillOtomaticTrue === false ? "white" : "#8CC63F"}
+            />
+          </View>
               <TouchableOpacity
                 onPress={autoFillForm}
-                style={LottoListstyles.autoBtn}
+                // style={LottoListstyles.autoBtn}
+                style={{
+                  // borderColor: "white",
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  margin: 5,
+                  paddingHorizontal: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+                  borderColor:fillOtomaticTrue === false ? "white" : "#8CC63F",
+
+              }}
               >
-                <Text style={LottoListstyles.autoBtnText}>
-                  מלא טופס אוטומטי
+                <Text
+                  style={LottoListstyles.autoBtnText}>
+                    מלא טופס אוטומטי
                 </Text>
               </TouchableOpacity>
+              <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomatic === false ? "white" : "#8CC63F",
+              borderWidth: 2,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faTimes}
+              color={fillOtomatic === false ? "white" : "#8CC63F"}
+            />
+          </View>
               <TouchableOpacity
-                onPress={deletForm}
-                style={LottoListstyles.autoBtn}
+                onPress={() => {
+                  deletForm();
+                  setFillOtomatic(true)
+                  setTimeout(() => { 
+                          setFillOtomatic(false)
+                    }, 1000);
+                }
+                }
+                // style={LottoListstyles.autoBtn}
+                style={{
+                  borderColor:fillOtomatic === false ? "white" : "#8CC63F",
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  margin: 5,
+                  paddingHorizontal: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+              }}
               >
                 <Text style={LottoListstyles.autoBtnText}>
                   מחק טופס אוטומטית

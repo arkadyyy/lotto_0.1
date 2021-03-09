@@ -8,10 +8,6 @@ import { Button, Spinner, Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ExtraAndOtomatChoose from "./components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
-import ChooseForm from "./components/ChooseForm";
-import FillForm from "./components/FillForm";
-import Table from "./components/Table";
-import { autoFill } from "./components/FillForm";
 import { useEffect } from "react";
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../../aws-exports";
@@ -34,14 +30,6 @@ const SumPageLotto = ({ route, navigation }) => {
     trimedFullTables,
     hazakimNumber,
   } = route.params;
-  const [showTable, setshowTable] = useState(false);
-  const [double, setdouble] = useState(false);
-  // const [fullTables, setFullTables] = useState([]);
-  const [indexOfTable, setIndexOfTable] = useState("");
-  const [opendTableNum, setopendTableNum] = useState(0);
-  const [tableRowColor, setTableRowColor] = useState("D60617");
-  const [jwtState, setjwtState] = useState({});
-  const [gameName, setGameName] = useState("");
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();

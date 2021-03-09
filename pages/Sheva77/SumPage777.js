@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
-import { Button, List } from "native-base";
+import { Button, List,Spinner } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ExtraAndOtomatChoose from "../../pages/Lotto/components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
@@ -28,17 +28,20 @@ const SumPage777 = ({ route, navigation }) => {
     gameType,
     formType,
     trimedFullTables,
+    
   } = route.params;
 
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [price, setPrice] = useState(null);
+  const [price, setPrice] = useState("");
   const [otomatic, setOtomatic] = useState(true);
   const [HagralotMultiplicaton, setHagralotMultiplicaton] = useState(1);
 
   const [hagralot, setHagralot] = useState(-1);
   const [url, seturl] = useState("");
+  const [displayPrice, setdisplayPrice] = useState(false);
+  const [spinner, setSpinner] = useState(false);
 
   const [sendToServer, setsendToServer] = useState({
     multi_lottery: -1,
@@ -46,7 +49,7 @@ const SumPage777 = ({ route, navigation }) => {
   });
 
   const getPrice = async (url, fullTables, formType) => {
-    setPrice(null);
+    setPrice(" ");
 
     console.log("i am focused ");
 
@@ -75,6 +78,12 @@ const SumPage777 = ({ route, navigation }) => {
         }
       )
       .then((res) => setPrice(res.data.price))
+      .catch((err) => console.log(err))
+      .then((data) => {
+        setTimeout(() => {
+          setdisplayPrice(true);
+        }, 1500);
+      })
       .catch((err) => console.log(err));
 
     // setsendToServer({
@@ -326,7 +335,7 @@ const SumPage777 = ({ route, navigation }) => {
                     fontFamily: "fb-Spacer",
                   }}
                 >
-                  סה"כ {tableNum}טבלאות
+                  סה"כ {tableNum} טבלאות
                 </Text>
                 <View
                   style={{
@@ -354,21 +363,26 @@ const SumPage777 = ({ route, navigation }) => {
                   flexDirection: "row",
                 }}
               >
-                <Text
-                  color='white'
-                  style={{
-                    fontSize: EStyleSheet.value("$rem") * 22,
-                    color: "white",
-                    marginLeft: 15,
-                    fontFamily: "fb-Spacer",
-                  }}
-                >
-                  לתשלום: {price * HagralotMultiplicaton}
-                </Text>
+                {price * HagralotMultiplicaton===0 ?
+                 <Text>:...</Text>
+                  : (
+                    <Text
+                      color='white'
+                      style={{
+                        fontSize: EStyleSheet.value("$rem") * 22,
+                        color: "white",
+                        marginLeft: 15,
+                        fontFamily: "fb-Spacer",
+                      }}
+                    >
+
+                      לתשלום: {price * HagralotMultiplicaton}
+                    </Text>
+                  )}
                 <View style={{ height: 10 }}>
                   <FontAwesomeIcon
                     size={10}
-                    style={{ marginVertical: 7, marginLeft: -4 }}
+                    style={{ marginVertical: 7, marginLeft: 3 }}
                     icon={faShekelSign}
                     color='white'
                   />
@@ -385,6 +399,8 @@ const SumPage777 = ({ route, navigation }) => {
             >
               <Button
                 onPress={() => {
+                  setSpinner(true);
+
                   // let summary = { chance: fullTables, investNum };
                   // console.log(summary);
                   // console.log("store.user : ", store.user.signInUserSession);
@@ -404,6 +420,8 @@ const SumPage777 = ({ route, navigation }) => {
                         res
                       );
                       navigation.navigate(`congratulation`);
+                      setSpinner(false);
+
                     });
                   {
                   }
@@ -426,6 +444,8 @@ const SumPage777 = ({ route, navigation }) => {
                   שלח טופס
                 </Text>
               </Button>
+              {spinner && <Spinner />}
+
             </View>
           </View>
         </View>

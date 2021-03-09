@@ -15,6 +15,8 @@ import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../../aws-exports";
 import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 Amplify.configure(awsconfig);
 
@@ -56,8 +58,12 @@ const One23Page = ({ navigation }) => {
       tableNum: 5,
     },
   ]);
+  const[fillOtomatic, setFillOtomatic] = useState(false);
+  const [fillOtomaticTrue, setFillOtomaticTrue] = useState(false);
+  
+  const autoFillForm = async () => {
+    await deletForm();
 
-  const autoFillForm = () => {
     let fullTabels = [];
     for (let i = 1; i <= 5; i++) {
       while (i <= tableNum) {
@@ -76,6 +82,11 @@ const One23Page = ({ navigation }) => {
       fullTabels = [...fullTabels, table];
     }
     setFullTables(fullTabels);
+    // setFullTables(fullTabels1);
+    setFillOtomaticTrue(true)
+    setTimeout(() => { 
+            setFillOtomaticTrue(false)
+      }, 1000);
   };
 
   const deletForm = () => {
@@ -214,17 +225,83 @@ const One23Page = ({ navigation }) => {
               </Text>
             </View>
             <View style={one23listStyles.autoBtnContainer}>
+            <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomaticTrue === false ? "white" : "#8CC63F",
+              borderWidth: 2,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faCheck}
+              color={fillOtomaticTrue === false ? "white" : "#8CC63F"}
+            />
+              </View>
+              
               <TouchableOpacity
                 onPress={autoFillForm}
-                style={one23listStyles.autoBtn}
+                // style={one23listStyles.autoBtn}
+                style={{
+                  borderColor:fillOtomaticTrue === false ? "white" : "#8CC63F",
+                  borderWidth: 1,
+                  borderRadius: 19,
+                  margin: 5,
+                  paddingHorizontal: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+                }}
               >
                 <Text style={one23listStyles.autoBtnText}>
                   מלא טופס אוטומטי
                 </Text>
               </TouchableOpacity>
+              <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomatic === false ? "white" : "#8CC63F",
+              borderWidth: 2,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faTimes}
+              color={fillOtomatic === false ? "white" : "#8CC63F"}
+            />
+          </View>
               <TouchableOpacity
-                onPress={() => deletForm()}
-                style={one23listStyles.autoBtn}
+                onPress={() => {
+                  deletForm()
+                  setFillOtomatic(true)
+                  setTimeout(() => { 
+                  setFillOtomatic(false)
+                    }, 1000);
+                }
+                }
+                // style={one23listStyles.autoBtn}
+                style={{
+                  borderColor:fillOtomatic === false ? "white" : "#8CC63F",
+                  borderWidth: 1,
+                  borderRadius: 19,
+                  margin: 5,
+                  paddingHorizontal: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+                }}
                 small
                 rounded
                 bordered
