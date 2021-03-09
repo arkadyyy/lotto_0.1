@@ -552,57 +552,61 @@ const SendHistory = ({ navigation,formsHistory }) => {
                   </Text>
                 </View>
                 {!open.isOpen ?
-                <Button
-                  // disabled={index === open.index ? true : false}
+                  <Button
+                    // disabled={index === open.index ? true : false}
                   
-                  style={{ borderColor: "white", padding: 5, flex: 1.2 }}
-                  small
-                  bordered
-                  onPress={() => {
-                    setOpen({ isOpen: !open.isOpen, index: index });
-                    console.log("????????????form:",form);
-                    // console.log("tableNum:", form.marks.tables.length);
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: 10,
-                      color: "white",
-                      fontFamily: "fb-Spacer",
+                    style={{ borderColor: "white", padding: 5, flex: 1.2 }}
+                    small
+                    bordered
+                    onPress={() => {
+                      setOpen({ isOpen: !open.isOpen, index: index });
+                      console.log("????????????form:", form);
+                      // console.log("tableNum:", form.marks.tables.length);
                     }}
                   >
-                    {/* {open.isOpen && index === open.index */}
+                    <Text
+                      style={{
+                        fontSize: 10,
+                        color: "white",
+                        fontFamily: "fb-Spacer",
+                      }}
+                    >
+                      {/* {open.isOpen && index === open.index */}
                       {/* ? "סגור" : */}
                       שכפל או צפה
                     {/* } */}
-                  </Text>
-                </Button>
+                    </Text>
+                  </Button>
+                  :
+                  
+                    open.isOpen && index === open.index ?
+                  <Text style={{  padding: 5, flex: 1.2 }}></Text>
                   :
                   <Button
-                  disabled
-                  
-                  style={{ borderColor: "#f4f4f4", padding: 5, flex: 1.2 }}
-                  small
-                  bordered
-                  onPress={() => {
-                    setOpen({ isOpen: !open.isOpen, index: index });
-                    console.log("????????????form:",form);
-                    // console.log("tableNum:", form.marks.tables.length);
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: 10,
-                      color: "white",
-                      fontFamily: "fb-Spacer",
+                    disabled
+                    style={{ borderColor: "#f4f4f4", padding: 5, flex: 1.2 }}
+                    small
+                    bordered
+                    onPress={() => {
+                      setOpen({ isOpen: !open.isOpen, index: index });
+                      console.log("????????????form:", form);
+                      // console.log("tableNum:", form.marks.tables.length);
                     }}
                   >
-                    {open.isOpen && index === open.index
-                      ? "סגור" : 
-                      "שכפל או צפה"
-        }
+                
+                      <Text
+                        style={{
+                          fontSize: 10,
+                          color: "white",
+                          fontFamily: "fb-Spacer",
+                        }}
+                      >
+                        שכפל או צפה
                   </Text>
-                </Button>
+                    
+                  </Button>
+                  
+                  
                 }
             
               
