@@ -72,11 +72,19 @@ export default function DrawerContent(props) {
                 <Text style={drawerstyles.text}>שלום {store.name}</Text>
                 <Text style={drawerstyles.text}>0.00</Text>
               </View>
-              <Hr text={null} lineColor='#eee' width={1} />
+                {/* <Hr text={null} lineColor='#eee' width={1} /> */}
+                <View
+  style={{
+    borderBottomColor: 'white',
+                    borderBottomWidth: 1,
+    
+  }}
+/>
               <View
                 style={{
                   flexDirection: "row",
-                  justifyContent: "space-between",
+                    justifyContent: "space-between",
+                  paddingTop:3
                 }}
               >
                 <TouchableOpacity
