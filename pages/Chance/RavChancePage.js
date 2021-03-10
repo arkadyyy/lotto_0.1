@@ -624,6 +624,7 @@ const ChancePage = ({ navigation }) => {
                 <ScrollView>
                   {Array.from(Array(formNum)).map((x, index) => (
                     <Table
+                      key={index}
                       tableIndex={index + 1}
                       formNum={formNum}
                       tableNum={tableNum}

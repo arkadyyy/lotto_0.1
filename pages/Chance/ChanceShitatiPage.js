@@ -400,6 +400,7 @@ const ChancePageShitati = ({ navigation }) => {
                 <ScrollView>
                   {Array.from(Array(formNum)).map((x, index) => (
                     <TableChanceShitati
+                      key={index}
                       tableIndex={index + 1}
                       formNum={formNum}
                       tableNum={tableNum}
