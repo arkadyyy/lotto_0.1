@@ -404,7 +404,10 @@ const UserArea = ({ navigation }) => {
             {/* {end of userArea navigation} */}
 
             {screen === "activeForms" && (
-              <ActiveForms navigation={navigation} activeforms={activeForms} />
+              <ActiveForms
+                navigation={navigation}
+                activeforms={activeForms}
+              />
             )}
             {screen === "sendHistory" && (
               <SendHistory
@@ -426,7 +429,10 @@ const UserArea = ({ navigation }) => {
             )}
 
             {screen === "HistoryRefund" && (
-              <HistoryRefund navigation={navigation} refunds={refunds} />
+              <HistoryRefund
+                navigation={navigation}
+                refunds={refunds}
+              />
             )}
 
             <ColorLine />
