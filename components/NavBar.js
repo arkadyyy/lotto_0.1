@@ -158,7 +158,11 @@ const NavBar = (props) => {
             } else if (store.user === -1) {
               navigation.navigate("LogInPage");
             } else {
-              navigation.navigate("UserArea");
+              navigation.navigate("UserArea", {
+                // screenFromParams: "sendHistory"
+                pageComeFrom: "activeForms",
+
+              });
             }
           }}
           style={[

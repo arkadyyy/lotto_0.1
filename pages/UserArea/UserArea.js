@@ -26,8 +26,13 @@ import axios from "axios";
 import { set } from "react-native-reanimated";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faShekelSign } from "@fortawesome/free-solid-svg-icons";
-const UserArea = ({ navigation }) => {
-  const [screen, setScreen] = useState("activeForms");
+const UserArea = ({ navigation, route }) => {
+  
+  // const { screenFromParams } = route.params;
+  const { pageComeFrom } = route.params;
+  
+  // const [screen, setScreen] = useState("activeForms");
+  const [screen, setScreen] = useState(pageComeFrom);
   const store = useSelector((state) => state);
   const name = useSelector((state) => state.name);
   const dispatch = useDispatch();
@@ -40,6 +45,14 @@ const UserArea = ({ navigation }) => {
   const [wins, setwins] = useState([]);
   const [money, setMoney] = useState("1,000,000");
 
+  useEffect(() => {
+    
+    // screenFromParams ? <>
+    // console.log("???screenFromParams:", screenFromParams);
+    setScreen(pageComeFrom)
+    // </>:null}
+  }, [navigation,pageComeFrom])
+  
   useEffect(() => {
     axios
       .get("http://52.90.122.190:5000/my_space/pullings", {
@@ -403,7 +416,10 @@ const UserArea = ({ navigation }) => {
             {/* {end of userArea navigation} */}
 
             {screen === "activeForms" && (
-              <ActiveForms navigation={navigation} activeforms={activeForms} />
+              <ActiveForms
+                navigation={navigation}
+                activeforms={activeForms}
+              />
             )}
             {screen === "sendHistory" && (
               <SendHistory
@@ -425,7 +441,10 @@ const UserArea = ({ navigation }) => {
             )}
 
             {screen === "HistoryRefund" && (
-              <HistoryRefund navigation={navigation} refunds={refunds} />
+              <HistoryRefund
+                navigation={navigation}
+                refunds={refunds}
+              />
             )}
 
             <ColorLine />

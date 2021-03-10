@@ -38,7 +38,7 @@ import ChanceShitatiPage from "./pages/Chance/ChanceShitatiPage";
 import SumPageChance from "./pages/Chance/SumPageChance";
 import SumPage777 from "./pages/Sheva77/SumPage777";
 import SumPage123 from "./pages/One23/SumPage123";
-// import AboutUs from "./pages/AboutUs";
+import ActiveForms from "./pages/UserArea/ActiveForms/ActiveForms";
 import HowItWork from "./components/HowItWork";
 import Help from "./components/Help";
 import GetInTouch from "./components/GetInTouch";
@@ -160,6 +160,7 @@ export default function App() {
               <Drawer.Screen name='SumPageLotto' component={SumPageLotto} />
               <Drawer.Screen name='ResultList' component={ResultList} />
               <Drawer.Screen name='congratulation' component={congratulation}/>
+              <Drawer.Screen name='ActiveForms' component={ActiveForms}/>
             </Drawer.Navigator>
           </NavigationContainer>
         </Root>

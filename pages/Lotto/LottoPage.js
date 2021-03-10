@@ -140,7 +140,7 @@ const LottoPage = ({ navigation }) => {
     setFillOtomaticTrue(true)
     setTimeout(() => { 
             setFillOtomaticTrue(false)
-      }, 1000);
+      }, 300);
   };
 
   const deletForm = () => {
@@ -396,7 +396,7 @@ const LottoPage = ({ navigation }) => {
                   setFillOtomatic(true)
                   setTimeout(() => { 
                           setFillOtomatic(false)
-                    }, 1000);
+                    }, 300);
                 }
                 }
                 // style={LottoListstyles.autoBtn}

@@ -126,7 +126,10 @@ style={{
         </Text>  
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("UserArea");
+            navigation.navigate("UserArea", {
+              pageComeFrom: "sendHistory",
+
+            });
           }}
         >
           <View style={{flexDirection:"row",alignSelf:"center"}}>

@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import NavBar from "../../components/NavBar";
 import BlankSquare from "../../components/BlankSquare";
 import axios from "axios";
-import { Button, List } from "native-base";
+import { Button, Spinner } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import ChooseNumOfTables from "./components/ChooseNumOfTables";
 import ExtraAndOtomatChoose from "../../pages/Lotto/components/ExtraAndOtomatChoose/ExtraAndOtomatChoose";
@@ -34,6 +34,7 @@ const SumPageChance = ({ route, navigation }) => {
     formNum,
   } = route.params;
   const [showTable, setshowTable] = useState(false);
+  const [spinner, setSpinner] = useState(false);
 
   const [double, setdouble] = useState(false);
   const [HagralotMultiplicaton, setHagralotMultiplicaton] = useState(1);
@@ -402,6 +403,8 @@ const SumPageChance = ({ route, navigation }) => {
             >
               <Button
                 onPress={() => {
+                  setSpinner(true);
+
                   console.log("sendToServer : ", sendToServer);
                   mappedUsedTables.forEach(async (table) => {
                     await axios
@@ -418,7 +421,7 @@ const SumPageChance = ({ route, navigation }) => {
                           res
                         );
                         navigation.navigate(`congratulation`);
-
+                        setSpinner(false);
                       });
                   });
 
@@ -441,6 +444,7 @@ const SumPageChance = ({ route, navigation }) => {
                   שלח טופס
                 </Text>
               </Button>
+              {spinner && <Spinner />}
             </View>
           </View>
         </View>
