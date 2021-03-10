@@ -432,11 +432,11 @@ const LottoPage = ({ navigation }) => {
                 <ScrollView>
                   {Array.from(Array(tableNum)).map((x, index) => (
                     <Table
+                      key={index}
                       settableNum={settableNum}
                       fullTables={fullTables}
                       double={double}
                       tableNum={tableNum}
-                      key={index}
                       index={index + 1}
                       setshowTable={setshowTable}
                       setIndexOfTable={setIndexOfTable}
@@ -475,10 +475,11 @@ const LottoPage = ({ navigation }) => {
                   if (tablesCheck === false) {
                     navigation.navigate("SumPageLotto", {
                       tableNum: tableNum,
-                      screenName: "לוטו",
+                      screenName: !double ? "לוטו": "דאבל לוטו",
                       fullTables: fullTables,
-                      gameType: "regular",
+                      gameType: !double? "regular" : "double",
                       trimedFullTables: trimedFullTables,
+                      // double:double
                     });
                   }
                 }}

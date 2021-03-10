@@ -15,7 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { LogIn } from "../../redux/actions/actions";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faPlusCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 /////////////////////////////////////////////////////////////////////////////////
 
 const DoubleLottoPage = ({ navigation }) => {
@@ -27,6 +27,9 @@ const DoubleLottoPage = ({ navigation }) => {
   const [errorMsg, seterrorMsg] = useState("");
   const [tablesCheck, settablesCheck] = useState(false);
   const [trimedFullTables, settrimedFullTables] = useState([]);
+  const[fillOtomatic, setFillOtomatic] = useState(false);
+  const[fillOtomaticTrue, setFillOtomaticTrue] = useState(false);
+
   const [fullTables, setFullTables] = useState([
     {
       choosenNums: [" ", " ", " ", " ", " ", " "],
@@ -103,7 +106,9 @@ const DoubleLottoPage = ({ navigation }) => {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const autoFillForm = () => {
+  const autoFillForm = async () => {
+    await deletForm();
+
     let fullTabels1 = [];
     for (let i = 1; i <= 14; i++) {
       while (i <= tableNum) {
@@ -125,6 +130,10 @@ const DoubleLottoPage = ({ navigation }) => {
       fullTabels1 = [...fullTabels1, table];
     }
     setFullTables(fullTabels1);
+    setFillOtomaticTrue(true)
+    setTimeout(() => { 
+            setFillOtomaticTrue(false)
+      }, 300);
   };
   const deletForm = () => {
     setFullTables([
@@ -199,6 +208,7 @@ const DoubleLottoPage = ({ navigation }) => {
         tableNum: 14,
       },
     ]);
+   
   };
 
   const checkTables = (fullTables, tableNum, settablesCheck) => {
@@ -313,17 +323,81 @@ const DoubleLottoPage = ({ navigation }) => {
 
             <Text style={LottoListstyles.subHeader}>בחר 6 מספרים וחזק</Text>
             <View style={LottoListstyles.autoBtnContainer}>
+            <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomaticTrue === false ? "white" : "#8CC63F",
+              borderWidth: 2,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faCheck}
+              color={fillOtomaticTrue === false ? "white" : "#8CC63F"}
+            />
+          </View>
               <TouchableOpacity
                 onPress={autoFillForm}
-                style={LottoListstyles.autoBtn}
+                // style={LottoListstyles.autoBtn}
+                style={{
+                  borderColor:fillOtomaticTrue === false ? "white" : "#8CC63F",
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  margin: 5,
+                  paddingHorizontal: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+                }}
               >
                 <Text style={LottoListstyles.autoBtnText}>
                   מלא טופס אוטומטי
                 </Text>
               </TouchableOpacity>
+              <View
+            style={{
+              borderRadius: 30,
+              borderColor: fillOtomatic === false ? "white" : "#8CC63F",
+              borderWidth: 2,
+              marginTop: 5,
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+              width: 25,
+              top: 6,
+              // backgroundColor: tableNum === 2 ? "#8CC63F" : "white",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faTimes}
+              color={fillOtomatic === false ? "white" : "#8CC63F"}
+            />
+          </View>
               <TouchableOpacity
-                onPress={() => deletForm()}
-                style={LottoListstyles.autoBtn}
+                onPress={() => {
+                  deletForm();
+                  setFillOtomatic(true)
+                  setTimeout(() => { 
+                          setFillOtomatic(false)
+                    }, 300);
+                }}
+                // style={LottoListstyles.autoBtn}
+                style={{
+                  borderColor:fillOtomatic === false ? "white" : "#8CC63F",
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  margin: 5,
+                  paddingHorizontal: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 7,
+              }}
               >
                 <Text style={LottoListstyles.autoBtnText}>
                   מחק טופס אוטומטי
@@ -380,7 +454,7 @@ const DoubleLottoPage = ({ navigation }) => {
                   if (tablesCheck === false) {
                     navigation.navigate("SumPageLotto", {
                       tableNum: tableNum,
-                      screenName: "לוטו",
+                      screenName: "דאבל לוטו",
                       fullTables: fullTables,
                       gameType: "double",
                       trimedFullTables: trimedFullTables,

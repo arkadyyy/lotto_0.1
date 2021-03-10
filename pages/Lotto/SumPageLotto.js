@@ -26,7 +26,7 @@ const SumPageLotto = ({ route, navigation }) => {
     fullTables,
     gameType,
     tzerufimNumber,
-
+    double,
     trimedFullTables,
     hazakimNumber,
   } = route.params;
@@ -40,7 +40,6 @@ const SumPageLotto = ({ route, navigation }) => {
   const [extra, setExtra] = useState(false);
   const [url, seturl] = useState("");
   const [HagralotMultiplicaton, setHagralotMultiplicaton] = useState(1);
-  // const [tableNum, settableNum] = useState(1);
   const [spinner, setSpinner] = useState(false);
   const [errorMsg, seterrorMsg] = useState("");
 
@@ -105,7 +104,7 @@ const SumPageLotto = ({ route, navigation }) => {
       });
     }
 
-    if (gameType === "regular" || gameType === "double") {
+    if (gameType === "regular") {
       axios
         .post(
           url,
@@ -127,6 +126,29 @@ const SumPageLotto = ({ route, navigation }) => {
         })
 
         .catch((err) => console.log(err));
+    } else if (gameType === "double") {
+        axios
+          .post(
+            url,
+            {
+              extra: extra,
+              multi_lottery: hagralot,
+              tables: x,
+            },
+            {
+              headers: {
+                Authorization: store.jwt,
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+            }
+          )
+          .then((res) => {
+            setPrice(res.data.price);
+          })
+  
+          .catch((err) => console.log(err));
+    
     } else if (gameType === "shitati") {
       axios
         .post(
