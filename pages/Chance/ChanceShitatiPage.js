@@ -157,6 +157,7 @@ const ChancePageShitati = ({ navigation }) => {
     formNum
   ) => {
     let returnedState = false;
+
     let fulltablesCopy = fullTables.slice(0);
     console.log(tableNum);
 
@@ -170,10 +171,10 @@ const ChancePageShitati = ({ navigation }) => {
 
     console.log("checkedFullTables2 : ", checkedFullTables2);
 
-    if (checkedFullTables2.length !== formNum) {
-      returnedState = true;
-      seterrorMsg("אנא מלא את כל הטבלאות");
-    }
+    // if (checkedFullTables2.length !== formNum) {
+    //   returnedState = true;
+    //   seterrorMsg("אנא מלא את כל הטבלאות");
+    // }
 
     if (store.user === -1) {
       returnedState = true;
@@ -184,7 +185,7 @@ const ChancePageShitati = ({ navigation }) => {
     let counter = 0;
     checkedFullTables2.forEach((table) => {
       table.choosenCards.forEach((card) => {
-        if (card.cards.length === 1) {
+        if (card.cards.length >= 1) {
           counter++;
         }
       });
@@ -193,6 +194,7 @@ const ChancePageShitati = ({ navigation }) => {
     if (counter !== tableNum) {
       returnedState = true;
     }
+
     settablesCheck(returnedState);
     settrimedFullTables(checkedFullTables2);
   };

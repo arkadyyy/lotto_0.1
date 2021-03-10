@@ -333,18 +333,18 @@ const ChancePage = ({ navigation }) => {
       seterrorMsg("יש להתחבר על מנת להמשיך");
     }
 
-    let counter = 0;
     checkedFullTables2.forEach((table) => {
+      let counter = 0;
       table.choosenCards.forEach((card) => {
         if (card.cards.length === 1) {
           counter++;
         }
       });
+      if (counter !== tableNum) {
+        returnedState = true;
+      }
     });
 
-    if (counter !== tableNum) {
-      returnedState = true;
-    }
     settablesCheck(returnedState);
     settrimedFullTables(checkedFullTables2);
   };
