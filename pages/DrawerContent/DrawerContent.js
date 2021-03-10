@@ -79,12 +79,25 @@ export default function DrawerContent(props) {
                   justifyContent: "space-between",
                 }}
               >
-                <TouchableOpacity>
+                <TouchableOpacity
+                      onPress={() => navigation.navigate("UserArea", {
+
+                      pageComeFrom: "activeForms",
+                    })}
+
+                  >
                   <Text style={[drawerstyles.text, { fontSize: 12 }]}>
                     טפסים פעילים
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("UserArea", {
+                      // screenFromParams: "sendHistory"
+                      pageComeFrom: "sendHistory",
+
+                    })}
+                  
+                  >
                   <Text style={[drawerstyles.text, { fontSize: 12 }]}>
                     היסטורית שליחות
                   </Text>
