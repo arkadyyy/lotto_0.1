@@ -377,7 +377,9 @@ export default function Home({ navigation }) {
                 </View>
               </View>
             </View>
-            <Hr text={undefined} lineColor='#eee' width={1} />
+            <ColorLine />
+
+            {/* <Hr text={undefined} lineColor='#eee' width={1} /> */}
             <View style={homestyles.footerMsg}>
               <Text style={homestyles.footerText}>
                 אתר זה מעניק שירות של משלוח טפסי הגרלה של מפעל הפיס כגוף עצמאי.

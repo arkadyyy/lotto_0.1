@@ -57,7 +57,7 @@ export default function DrawerContent(props) {
               >
                 <Text style={drawerstyles.text}>שלום {store.name}</Text>
               </View>
-              <Hr text={null} lineColor='#eee' width={1} />
+              {/* <Hr text={null} lineColor='#eee' width={1} /> */}
 
               <ColorLine />
             </View>

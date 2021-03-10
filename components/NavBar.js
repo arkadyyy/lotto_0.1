@@ -188,7 +188,7 @@ const NavBar = (props) => {
             {store.user.attributes ? "אזור אישי" : "התחבר"}
           </Text>
         </Button>
-        {props.screenName === "home" && (
+        {props.screenName === "home" && !store.user.attributes ? (
           <Button
             onPress={() => {
               navigation.navigate("SignIn");
@@ -216,7 +216,7 @@ const NavBar = (props) => {
               </Text>
             </View>
           </Button>
-        )}
+        ):null}
       </View>
     </Header>
   );

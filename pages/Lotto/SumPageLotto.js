@@ -135,7 +135,7 @@ const SumPageLotto = ({ route, navigation }) => {
             extra: extra,
             multi_lottery: hagralot,
             tables: x[0],
-            form_type: `${tzerufimNumber}`,
+            form_type:tzerufimNumber===5 ? 6 : tzerufimNumber,
           },
           {
             headers: {
