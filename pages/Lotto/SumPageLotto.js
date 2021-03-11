@@ -42,7 +42,7 @@ const SumPageLotto = ({ route, navigation }) => {
   const [HagralotMultiplicaton, setHagralotMultiplicaton] = useState(1);
   const [spinner, setSpinner] = useState(false);
   const [errorMsg, seterrorMsg] = useState("");
-
+  const [doubleCheck,setdoubleCheck] = useState(null)
   const [sendToServer, setsendToServer] = useState({
     extra: false,
     multi_lottery: -1,
@@ -212,6 +212,8 @@ const SumPageLotto = ({ route, navigation }) => {
       setGameName("הגרלת צ'אנס");
     }
 
+    setdoubleCheck(double)
+    console.log("doubleCheck : ",doubleCheck);
     //configure data sent to server
 
     if (gameType === "regular" || gameType === "double") {
