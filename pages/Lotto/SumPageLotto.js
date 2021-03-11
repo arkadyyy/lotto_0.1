@@ -70,7 +70,7 @@ const SumPageLotto = ({ route, navigation }) => {
 
   const getPrice = async (url, trimedFullTables) => {
     setPrice(null);
-    console.log("i am here");
+    // console.log("i am here"+ screenName+gameType+price);
     let x;
 
     // x holds updated fulltables (fulltables only ~!) data for server
@@ -297,9 +297,11 @@ const SumPageLotto = ({ route, navigation }) => {
 
   useEffect(() => {
     setPrice(0);
+    
     //set post url according to game
     navigation.addListener("focus", () => {
       console.log("focus happend");
+      console.log(double);
       if (gameType === "regular") {
         seturl("http://52.90.122.190:5000/games/lotto/type/regular/0");
         getPrice(

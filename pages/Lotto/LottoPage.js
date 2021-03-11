@@ -219,6 +219,7 @@ const LottoPage = ({ navigation }) => {
     ]);
   };
 
+
   const checkTables = (fullTables, tableNum, settablesCheck) => {
     let returnedState = false;
     let fulltablesCopy = fullTables.slice(0);
@@ -289,6 +290,16 @@ const LottoPage = ({ navigation }) => {
     tableNumChangeCheck(fullTables, tableNum);
     console.log("fulltables ~~~ : ", fullTables);
   }, [tableNum]);
+
+  // useEffect(() => {
+  //   // settrimedFullTables(trimedFullTables);
+  //   console.log("?????",trimedFullTables);
+  //   console.log("double222222222: ", double);
+  // }, [double]);
+
+
+
+  
 
   return (
     <>
@@ -473,13 +484,14 @@ const LottoPage = ({ navigation }) => {
                     });
                   }
                   if (tablesCheck === false) {
+                    console.log("doubleState22222:",double);
                     navigation.navigate("SumPageLotto", {
                       tableNum: tableNum,
                       screenName: !double ? "לוטו": "דאבל לוטו",
                       fullTables: fullTables,
                       gameType: !double? "regular" : "double",
                       trimedFullTables: trimedFullTables,
-                      // double:double
+                      double:double
                     });
                   }
                 }}
